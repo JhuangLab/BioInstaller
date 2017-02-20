@@ -149,6 +149,10 @@ install.github <- function(name = "", version = NULL, show.list = FALSE, destdir
   }
 
   config <- eval.config()
+  if (show.list) {
+    show.avaliable.versions(config)
+    return(NULL)
+  }
   version <- version.initial(name, version, config)
   args.all <- as.list(match.call())
   args.all$version <- version
@@ -157,10 +161,6 @@ install.github <- function(name = "", version = NULL, show.list = FALSE, destdir
   config <- parse.config.with.var(config = config, args.all = args.all)
   config <- parse.config.with.db(config, db)
 
-  if (show.list) {
-    show.avaliable.versions(config)
-    return(NULL)
-  }
 
   destdir <- normalizePath(destdir, mustWork = FALSE)
   status <- destdir.initial(destdir, strict = FALSE, download.only)
@@ -285,6 +285,10 @@ install.nongithub <- function(name = "", version = NULL, show.list = FALSE, dest
     return(FALSE)
   }
   config <- eval.config()
+  if (show.list) {
+    show.avaliable.versions(config)
+    return(NULL)
+  }
   version <- version.initial(name, version, config)
   args.all <- as.list(match.call())
   args.all$version <- version
@@ -292,10 +296,6 @@ install.nongithub <- function(name = "", version = NULL, show.list = FALSE, dest
   args.all <- args.all[names(args.all) != ""]
   config <- parse.config.with.var(config = config, args.all = args.all)
   config <- parse.config.with.db(config, db)
-  if (show.list) {
-    show.avaliable.versions(config)
-    return(NULL)
-  }
 
   destdir <- normalizePath(destdir, mustWork = FALSE)
   status <- destdir.initial(destdir, strict = FALSE, download.only)
@@ -323,10 +323,6 @@ install.nongithub <- function(name = "", version = NULL, show.list = FALSE, dest
   dir.create(extract_dir, showWarnings = FALSE)
   destfile <- sprintf("%s/%s", extract_dir, filename)
 
-  if (show.list) {
-    show.avaliable.versions(config)
-    return(NULL)
-  }
   if(!is.null(name.saved)) {
     msg <- sprintf("Now start to install %s in %s.", name, destdir)
   } else {
