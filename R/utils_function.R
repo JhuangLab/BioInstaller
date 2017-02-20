@@ -91,7 +91,11 @@ extract.file <- function(file, destdir, decompress = TRUE) {
     files <- list.files(dirname(file)) 
     files.path <- sprintf("%s/%s", dirname(file), files)
     destfiles.path <- sprintf("%s/%s", destdir, files)
-    status <- file.rename(files.path, destfiles.path)
+    if(sum(length(list.files(files.path))) == 0) {
+      status <- file.copy(files.path, destfiles.path)
+    } else {
+      status <- file.copy(files.path, destdir, recursive = T)
+    }
     status <- all(status)
     return(status)
   }
@@ -100,13 +104,21 @@ extract.file <- function(file, destdir, decompress = TRUE) {
     files <- list.files(dirname(file)) 
     files.path <- sprintf("%s/%s", dirname(file), files)
     destfiles.path <- sprintf("%s/%s", destdir, files)
-    status <- file.rename(files.path, destfiles.path)
+    if(sum(length(list.files(files.path))) == 0) {
+      status <- file.copy(files.path, destfiles.path)
+    } else {
+      status <- file.copy(files.path, destdir, recursive = T)
+    }
   } else if (filetype == "gz") {
     gunzip(file)
     files <- list.files(dirname(file)) 
     files.path <- sprintf("%s/%s", dirname(file), files)
     destfiles.path <- sprintf("%s/%s", destdir, files)
-    status <- file.rename(files.path, destfiles.path)
+    if(sum(length(list.files(files.path))) == 0) {
+      status <- file.copy(files.path, destfiles.path)
+    } else {
+      status <- file.copy(files.path, destdir, recursive = T)
+    }
   } else if (filetype == "tar") {
     status <- untar(file, exdir = destdir)
   } else if (filetype == "tar.gz") {
@@ -119,7 +131,11 @@ extract.file <- function(file, destdir, decompress = TRUE) {
       files.child <- list.files(files.parent)
       files.path <- sprintf("%s/%s", files.parent, files.child)
       destfiles.path <- sprintf("%s/%s", destdir, files.child)
-      status <- file.rename(files.path, destfiles.path)
+      if(sum(length(list.files(files.path))) == 0) {
+        status <- file.copy(files.path, destfiles.path)
+      } else {
+        status <- file.copy(files.path, destdir, recursive = T)
+      }
       unlink(files.parent, recursive = TRUE)
     }
   }
