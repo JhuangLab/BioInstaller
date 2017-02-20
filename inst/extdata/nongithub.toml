@@ -64,7 +64,7 @@ after_success = "echo 'successful!'"
 
 make_dir = ["./"]
 
-bin_dir = ["./"]
+bin_dir = ["./scripts"]
 
 [htseq.before_install]
 linux = ""
