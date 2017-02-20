@@ -168,7 +168,6 @@ install.github <- function(name = "", version = NULL, show.list = FALSE, destdir
     return(FALSE)
   }
 
-  config <- parse.config.with.db(config, db)
   github_url <- config$github_url
   make.dir <- config$make_dir
 
@@ -186,6 +185,8 @@ install.github <- function(name = "", version = NULL, show.list = FALSE, destdir
   }
 
   process.dependence(config, db, destdir, verbose)
+  config <- parse.config.with.db(config, db)
+
   if(!is.null(name.saved)) {
     msg <- sprintf("Now start to install %s in %s.", name, destdir)
   } else {
@@ -302,7 +303,6 @@ install.nongithub <- function(name = "", version = NULL, show.list = FALSE, dest
     return(FALSE)
   }
 
-  config <- parse.config.with.db(config, db)
   source_url <- config$source_url
   filename <- url2filename(source_url)
   if(download.only && !verbose) {
@@ -318,6 +318,7 @@ install.nongithub <- function(name = "", version = NULL, show.list = FALSE, dest
   }
 
   process.dependence(config, db, destdir, verbose)
+  config <- parse.config.with.db(config, db)
   extract_dir <- sprintf("%s/install_tmp/", tempdir())
   dir.create(extract_dir, showWarnings = FALSE)
   destfile <- sprintf("%s/%s", extract_dir, filename)
