@@ -127,7 +127,7 @@ extract.file <- function(file, destdir, decompress = TRUE) {
   return(status)
 }
 
-download.file.custom <- function(url = "", destfile = "", ..., is.dir = FALSE) {
+download.file.custom <- function(url = "", destfile = "", is.dir = FALSE, ...) {
   if (is.dir) {
     filenames <- getURL(url, ftp.use.epsv = FALSE, dirlistonly = TRUE)
     filenames <- str_replace_all(filenames, "\r\n", "\n")
@@ -136,7 +136,7 @@ download.file.custom <- function(url = "", destfile = "", ..., is.dir = FALSE) {
     for (i in filenames) {
       fn <- sprintf("%s/%s", destfile, i)
       dir.create(dirname(fn), showWarnings = F, recursive = TRUE)
-      download.file(url = sprintf("%s/%s",url, i), destfile = destfile)
+      download.file(url = sprintf("%s/%s",url, i), destfile = fn)
     }
   } else {
     download.file(url = url, destfile = destfile, ...)
