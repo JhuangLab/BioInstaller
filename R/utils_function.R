@@ -71,6 +71,9 @@ get.subconfig <- function(config, subconfig) {
 
 get.file.type <- function(file) {
   filetype.lib <- c("tar.gz", "tar", "gz", "zip")
+  if(is.na(file)) {
+    return(FALSE)
+  }
   for (i in filetype.lib) {
     if (str_detect(file, i)) {
       return(i)
@@ -79,6 +82,9 @@ get.file.type <- function(file) {
 }
 extract.file <- function(file, destdir, decompress = TRUE) {
   filetype <- get.file.type(file)
+  if (filetype == FALSE) {
+    status <- FALSE
+  }
   destdir.initial(destdir)
   dir.create(destdir, showWarnings = F, recursive = TRUE)
   if(!decompress) {
@@ -130,7 +136,7 @@ download.file.custom <- function(url = "", destfile = "", ..., is.dir = FALSE) {
     for (i in filenames) {
       fn <- sprintf("%s/%s", destfile, i)
       dir.create(dirname(fn), showWarnings = F, recursive = TRUE)
-      download.file(sprintf("%s/%s", url, i), fn)
+      download.file(url = sprintf("%s/%s",url, i), destfile = destfile)
     }
   } else {
     download.file(url = url, destfile = destfile, ...)

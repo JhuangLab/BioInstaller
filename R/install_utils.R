@@ -132,19 +132,29 @@ is.download.dir <- function(config) {
 
 
 # According the config$source_is.dir decide wheather need to download a dir or a file to destfile
-download.dir.files <- function(config, source_url, destfile) {
+download.dir.files <- function(config, source_url, destfile, showWarnings = FALSE) {
   if(any(!file.exists(dirname(destfile)))) {
     dir.create(dirname(destfile), showWarnings = FALSE, recursive = TRUE)
   }
   is.dir <- is.download.dir(config)
   count <- 1
   for (i in source_url) {
-    tryCatch({download.file.custom(url = i, destfile = destfile[count], is.dir = is.dir);break}, 
+    tryCatch({status <- download.file.custom(url = i, destfile = destfile[count], is.dir = is.dir);break}, 
       error = function(e) {
-      }, warning = function(w) {})
+        if(showWarnings) {
+          warning(e)
+        }
+      }, warning = function(w) {
+        if(showWarnings) {
+          warning(e)
+        }
+    })
     count <- count + 1
   }
-  if (all(!file.exists(destfile))) {
+
+  if (!is.dir && all(!file.exists(destfile))) {
+    return(FALSE)
+  } else if (is.dir && length(list.files(destfile)) == 0) {
     return(FALSE)
   }
   status <- TRUE

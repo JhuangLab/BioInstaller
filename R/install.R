@@ -14,6 +14,7 @@
 #' system.file("extdata", "softwares_db_demo.yaml", package = "BioInstaller"))
 #' @param download.only Logicol indicating wheather only download source or file (non-github)
 #' @param decompress Logicol indicating wheather need to decompress the downloaded file, default is TRUE
+#' @param showWarings Logical should the warnings on failure be shown?
 #' @param verbose TRUE is debug mode
 #' @param ... Other key and value paired need be saved in BioInstaller passed to \code{\link{change.info}}
 #' @export
@@ -25,7 +26,7 @@ install.bioinfo <- function(name = c(), destdir = c(), name.saved = NULL, github
   "github.toml", package = "BioInstaller"), nongithub.cfg = system.file("extdata", 
   "nongithub.toml", package = "BioInstaller"), version = c(), show.list = FALSE, 
   db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", system.file("extdata", "softwares_db_demo.yaml", 
-  package = "BioInstaller")), download.only = FALSE, decompress = TRUE, verbose = FALSE, ...) {
+  package = "BioInstaller")), download.only = FALSE, decompress = TRUE, showWarnings = FALSE, verbose = FALSE, ...) {
   db.check(db)
   if(verbose) {
     flog.info("Debug:Now run install.bioinfo function.")
@@ -50,8 +51,8 @@ install.bioinfo <- function(name = c(), destdir = c(), name.saved = NULL, github
         destdir[count] <- normalizePath(destdir[count], mustWork = FALSE)
       }
       status <- install.github(name = i, destdir = destdir[count], github.cfg = github.cfg, name.saved = name.saved,
-        version = version[count], show.list = show.list, db = db, download.only = download.only, verbose = verbose, 
-        ...)
+        version = version[count], show.list = show.list, db = db, download.only = download.only, verbose = verbose,
+        showWarnings = showWarnings, ...)
 
       if(is.logical(status) && download.only && status && !verbose) {
         flog.info(sprintf("%s be downloaded in %s successful", name, destdir))
@@ -72,7 +73,7 @@ install.bioinfo <- function(name = c(), destdir = c(), name.saved = NULL, github
 
     } else if (i %in% eval.config.groups(file = nongithub.cfg)) {
       status <- install.nongithub(name = i, destdir = destdir[count], name.saved = name.saved, nongithub.cfg = nongithub.cfg, 
-        version = version, show.list = show.list, db = db, download.only = download.only, 
+        version = version, show.list = show.list, db = db, download.only = download.only, showWarnings = showWarnings,
         decompress = decompress, verbose = verbose, ...)
 
       if(is.logical(status) && download.only && status && !verbose) {
@@ -130,6 +131,7 @@ install.bioinfo <- function(name = c(), destdir = c(), name.saved = NULL, github
 #' @param db File of saving softwares infomation, default is Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", 
 #' system.file("extdata", "softwares_db_demo.yaml", package = "BioInstaller"))
 #' @param download.only Logicol indicating wheather only download source or file (non-github)
+#' @param showWarings Logical should the warnings on failure be shown?
 #' @param verbose TRUE is debug mode
 #' @param ... Other key and value paired need be saved in BioInstaller passed to \code{\link{change.info}}
 #' @return Bool Value
@@ -138,7 +140,7 @@ install.bioinfo <- function(name = c(), destdir = c(), name.saved = NULL, github
 install.github <- function(name = "", version = NULL, show.list = FALSE, destdir = "./", 
   name.saved = NULL, github.cfg = system.file("extdata", "github.toml", package = "BioInstaller"), 
   db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", system.file("extdata", "softwares_db_demo.yaml", 
-    package = "BioInstaller")), download.only = FALSE, verbose = FALSE, ...) {
+    package = "BioInstaller")), download.only = FALSE, showWarnings = FALSE, verbose = FALSE, ...) {
   old.work.dir <- getwd()
   config.cfg <- github.cfg
   name <- tolower(name)
@@ -268,6 +270,7 @@ install.github <- function(name = "", version = NULL, show.list = FALSE, destdir
 #' @param download.only Logicol indicating wheather only download source or file (non-github)
 #' @param decompress Logicol indicating wheather need to decompress the downloaded file, default is TRUE
 #' @param ... Other key and value paired need be saved in BioInstaller passed to \code{\link{change.info}}
+#' @param showWarings Logical should the warnings on failure be shown?
 #' @param verbose TRUE is debug mode
 #' @return Bool Value
 #' @examples
@@ -275,7 +278,7 @@ install.github <- function(name = "", version = NULL, show.list = FALSE, destdir
 install.nongithub <- function(name = "", version = NULL, show.list = FALSE, destdir = "./", 
   name.saved = NULL, nongithub.cfg = system.file("extdata", "nongithub.toml", package = "BioInstaller"), 
   db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", system.file("extdata", "softwares_db_demo.yaml", 
-    package = "BioInstaller")), download.only = FALSE, decompress = TRUE, verbose = FALSE, ...) {
+    package = "BioInstaller")), download.only = FALSE, decompress = TRUE, showWarnings = FALSE, verbose = FALSE, ...) {
   old.work.dir <- getwd()
   config.cfg <- nongithub.cfg
   name <- tolower(name)
@@ -309,7 +312,7 @@ install.nongithub <- function(name = "", version = NULL, show.list = FALSE, dest
     msg <- sprintf("Now start to download %s in %s.", name, destdir)
     flog.info(msg)
     destfile <- sprintf(sprintf("%s/%s", destdir, filename))
-    status <- download.dir.files(config, source_url, destfile)
+    status <- download.dir.files(config, source_url, destfile, showWarnings)
     return(status)
   } else if (download.only && verbose) {
     msg <- sprintf("Debug:Now need to download %s in %s.", name, destdir)
@@ -337,7 +340,7 @@ install.nongithub <- function(name = "", version = NULL, show.list = FALSE, dest
     flog.info(sprintf("Debug:destfile:%s", destfile))
     flog.info(sprintf("Debug:destdir:%s", destdir))
   } else {
-    status <- download.dir.files(config, source_url, destfile)
+    status <- download.dir.files(config, source_url, destfile, showWarnings)
     if(!status) {
       return(FALSE)
     }
