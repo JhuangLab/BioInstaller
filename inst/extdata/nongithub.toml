@@ -50,6 +50,32 @@ linux = ""
 mac = ""
 windows = ""
 
+[htseq]
+source_url = ["https://pypi.python.org/packages/3c/6e/f8dc3500933e036993645c3f854c4351c9028b180c6dcececde944022992/HTSeq-{{version}}.tar.gz",
+"https://pypi.python.org/packages/72/0f/566afae6c149762af301a19686cd5fd1876deb2b48d09546dbd5caebbb78/HTSeq-{{version}}.tar.gz", "https://pypi.python.org/packages/7d/be/784905ab26e2b53dff8a65bcbc1321e5a3b4f894c1960c152f71e5fc791e/HTSeq-{{version}}-py2.7.exe"]
+
+version_newest = "0.6.1p1"
+
+version_available = ["0.6.1p1", "0.6.1", "0.6.1.win32"]
+
+after_failure = "echo 'fail!'"
+
+after_success = "echo 'successful!'"
+
+make_dir = ["./"]
+
+bin_dir = ["./"]
+
+[htseq.before_install]
+linux = ""
+mac = ""
+windows = ""
+
+[htseq.install]
+linux = "python setup.py install"
+mac = "python setup.py install"
+windows = "HTSeq-{{version}}-py2.7.exe"
+
 [gatk_bundle]
 source_url = "ftp://gsapubftp-anonymous@ftp.broadinstitute.org/bundle/{{version}}/"
 

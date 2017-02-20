@@ -133,23 +133,23 @@ is.download.dir <- function(config) {
 
 # According the config$source_is.dir decide wheather need to download a dir or a file to destfile
 download.dir.files <- function(config, source_url, destfile) {
-  if(!file.exists(dirname(destfile))) {
+  if(any(!file.exists(dirname(destfile)))) {
     dir.create(dirname(destfile), showWarnings = FALSE, recursive = TRUE)
   }
   is.dir <- is.download.dir(config)
   count <- 1
   for (i in source_url) {
-    tryCatch(download.file.custom(url = i, destfile = destfile[count], is.dir = is.dir), 
+    tryCatch({download.file.custom(url = i, destfile = destfile[count], is.dir = is.dir);break}, 
       error = function(e) {
-        warning(e)
-        flog.info("Fail, try another URL.")
-      })
+      }, warning = function(w) {})
     count <- count + 1
   }
   if (all(!file.exists(destfile))) {
     return(FALSE)
   }
-  return(TRUE)
+  status <- TRUE
+  attr(status, "success") <- destfile[count]
+  return(status)
 }
 
 # Convert URL to filename

@@ -345,6 +345,7 @@ install.nongithub <- function(name = "", version = NULL, show.list = FALSE, dest
     if(!status) {
       return(FALSE)
     }
+    destfile <- attributes(status)$success
     status <- extract.file(destfile, destdir, decompress)
     if(!status) {
       return(FALSE)
