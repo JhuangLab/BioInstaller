@@ -1,0 +1,10 @@
+set.biosoftwares.db(sprintf('%s/.BioInstaller', tempdir()))
+install.nongithub('gmap', destdir = sprintf('%s/gmap', tempdir()), verbose = T)
+install.nongithub('gmap', destdir = sprintf('%s/gmapsource', tempdir()), download.only = T, verbose = T)
+install.bioinfo('samtools', destdir = sprintf('%s/testbio/samtools', tempdir()), name.saved = "samtools",verbose = T)
+
+#install.bioinfo('annovar', destdir = sprintf('%s/testbio/annovar', tempdir()), name.saved = "annovar_latest", verbose = T, download.only = T)
+#install.bioinfo('annovar', destdir = sprintf('%s/testbio/annovar', tempdir()), name.saved = "annovar_latest", decompress = F)
+#install.bioinfo('annovar', destdir = sprintf('%s/testbio/annovar', tempdir()), name.saved = "annovar_latest")
+#print(get.info("annovar_latest"))
+#print(list.files(sprintf('%s/testbio/annovar', tempdir())))

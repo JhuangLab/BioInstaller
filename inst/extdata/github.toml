@@ -1,0 +1,390 @@
+# Configuration file of install.softwares(Github)
+title = "Github Configuration File"
+[bwa]
+github_url = "https://github.com/lh3/bwa"
+
+version_newest = "v0.7.15"
+
+version_available = ["0.5.10", "0.5.9", "0.6.0", "0.6.1", "0.6.2", "0.7.0", "0.7.1", "0.7.10", "0.7.11", "0.7.12", "0.7.2", "0.7.3", "0.7.3a", "0.7.5", "0.7.5a", "0.7.6a", "0.7.7", "0.7.8", "0.7.9", "0.7.9a", "altgt-final", "bwa-0.5.9", "bwapi-final", "color-final", "final-chain-short", "narrow-band-final", "shortchain-final", "single-start", "v0.7.13", "v0.7.15"]
+
+after_failure = "echo 'fail!'"
+
+after_success = "echo 'successful!'"
+
+make_dir = ["./"]
+
+bin_dir = ["./"]
+
+[bwa.before_install]
+linux = ""
+mac = ""
+windows = ""
+
+[bwa.install]
+linux = "make"
+mac = "make"
+windows = "make"
+
+[star]
+github_url = "https://github.com/alexdobin/STAR"
+
+version_newest = "2.5.2b"
+
+supported.os = ["linux", "mac"]
+
+version_available = ["2.5.0b", "2.5.0c", "2.5.1a", "2.5.1b", "2.5.2a", "2.5.2b", "STAR_2.3.1z12", "STAR_2.3.1z9", "STAR_2.4.0a", "STAR_2.4.0c", "STAR_2.4.0d", "STAR_2.4.0e", "STAR_2.4.0f1", "STAR_2.4.0g", "STAR_2.4.0g1", "STAR_2.4.0h", "STAR_2.4.0h1", "STAR_2.4.0i", "STAR_2.4.0j", "STAR_2.4.0k", "STAR_2.4.1a", "STAR_2.4.1b", "STAR_2.4.1c", "STAR_2.4.1d", "STAR_2.4.2a", "STAR_2.5.0a"]
+
+after_failure = "echo 'fail!'"
+
+after_success = "echo 'successful!'"
+
+make_dir = ["source", "./"]
+
+[star.bin_dir]
+linux = "./bin/Linux_x86_64"
+mac = "./bin/MacOSX_x86_64"
+
+[star.before_install]
+linux = ""
+mac = ""
+windows = ""
+
+[star.install]
+linux = "make"
+mac = "make"
+windows = "make"
+
+[htslib]
+github_url = "https://github.com/samtools/htslib"
+
+version_newest = "1.3.2"
+
+version_available = ["0.2.0-rc1","0.2.0-rc10", "0.2.0-rc11", "0.2.0-rc12", "0.2.0-rc2", "0.2.0-rc3", "0.2.0-rc4", "0.2.0-rc5", "0.2.0-rc6", "0.2.0-rc7", "0.2.0-rc8", "0.2.0-rc9", "1.0", "1.1", "1.2", "1.2.1", "1.3", "1.3.1", "1.3.2", "stable1", "stable2", "vcf-direct-final"]
+
+after_failure = "echo 'fail!'"
+
+after_success = "echo 'successful!'"
+
+make_dir = ["./"]
+
+bin_dir = ["./"]
+
+[htslib.before_install]
+linux = ""
+mac = ""
+windows = ""
+
+[htslib.install]
+linux = "make"
+mac = "make"
+windows = "make"
+
+[samtools]
+github_url = "https://github.com/samtools/samtools"
+
+version_newest = "1.3.1"
+
+dependence = ["htslib"]
+
+dependence_version = ["1.3.2"]
+
+version_available = ["0.1.1", "0.1.10", "0.1.11", "0.1.12", "0.1.12a", "0.1.13", "0.1.14", "0.1.15", "0.1.16", "0.1.17", "0.1.18", "0.1.19", "0.1.2-svntag", "0.1.2-tarball", "0.1.20", "0.1.3", "0.1.4", "0.1.5", "0.1.5a", "0.1.5b", "0.1.5c", "0.1.6", "0.1.7", "0.1.7a", "0.1.8", "0.1.9", "0.2.0-rc1", "0.2.0-rc10", "0.2.0-rc11", "0.2.0-rc12", "0.2.0-rc2", "0.2.0-rc3", "0.2.0-rc4", "0.2.0-rc5", "0.2.0-rc6", "0.2.0-rc7", "0.2.0-rc8", "0.2.0-rc9", "1.0", "1.1", "1.2", "1.3", "1.3.1", "st-final" ]
+
+after_failure = "echo 'fail!'"
+
+after_success = "ln -s htslib/* ./"
+
+make_dir = ["./"]
+
+bin_dir = ["./"]
+
+[samtools.before_install]
+linux = ""
+mac = ""
+windows = ""
+
+[samtools.install]
+linux = "autoconf -Wno-syntax; sed -i 's;HTSDIR = ../htslib;HTSDIR = {{-htslib:source.dir-}};' config.mk; make && make install prefix=`pwd`"
+mac = "make"
+windows = "make"
+
+[bcftools]
+github_url = "https://github.com/samtools/bcftools"
+
+version_newest = "1.3.1"
+
+version_available = ["0.1.0", "0.2.0-rc1", "0.2.0-rc10", "0.2.0-rc11", "0.2.0-rc12", "0.2.0-rc2", "0.2.0-rc3", "0.2.0-rc4", "0.2.0-rc5", "0.2.0-rc6", "0.2.0-rc7", "0.2.0-rc8", "0.2.0-rc9", "1.0", "1.1", "1.2", "1.3", "1.3.1", "stable1", "stable2", "vcf-direct-final"]
+
+after_failure = "echo 'fail!'"
+
+after_success = "echo 'successful!'"
+
+make_dir = ["./"]
+
+bin_dir = ["./"]
+
+[bcftools.before_install]
+linux = ""
+mac = ""
+windows = ""
+
+[bcftools.install]
+linux = "make"
+mac = "make"
+windows = "make"
+
+[bowtie]
+github_url = "https://github.com/BenLangmead/bowtie"
+
+version_newest = "v1.2.0"
+
+version_available = ["v0.12.9", "v1.0.0", "v1.0.1", "v1.1.0", "v1.1.1", "v1.1.2", "v1.2.0"]
+
+after_failure = "echo 'fail!'"
+
+after_success = "echo 'successful!'"
+
+make_dir = ["./"]
+
+bin_dir = ["./"]
+
+[bowtie.before_install]
+linux = ""
+mac = ""
+windows = ""
+
+[bowtie.install]
+linux = "make"
+mac = "make"
+windows = "make"
+
+[bowtie2]
+github_url = "https://github.com/BenLangmead/bowtie2"
+
+version_newest = "v2.3.0"
+
+version_available = ["TBB_pinned", "noIO_TBB_pinned", "rlb_v1", "rlb_v1a", "rlb_v1b", "v2.0.5", "v2.0.6", "v2.0.7", "v2.2.0", "v2.2.1", "v2.2.2", "v2.2.3", "v2.2.4", "v2.2.5", "v2.2.6", "v2.2.7", "v2.2.8", "v2.2.9", "v2.3.0"]
+
+after_failure = "echo 'fail!'"
+
+after_success = "echo 'successful!'"
+
+make_dir = ["./"]
+
+bin_dir = ["./"]
+
+[bowtie2.before_install]
+linux = ""
+mac = ""
+windows = ""
+
+[bowtie2.install]
+linux = "make"
+mac = "make"
+windows = "make"
+
+[tophat2]
+github_url = "https://github.com/infphilo/tophat"
+
+version_newest = "v2.1.1"
+
+version_available = ["v2.1.1", "v2.1.0"]
+
+after_failure = "echo 'fail!'"
+
+after_success = "echo 'successful!'"
+
+make_dir = ["./"]
+
+bin_dir = ["./"]
+
+[tophat2.before_install]
+linux = ""
+mac = ""
+windows = ""
+
+[tophat2.install]
+linux = "sh autogen.sh && ./configure --prefix=`pwd` && make && make install"
+mac = "sh autogen.sh && ./configure --prefix=`pwd` && make && make install"
+windows = ""
+
+[varscan2]
+github_url = "https://github.com/Miachol/varscan"
+
+version_newest = "v2.4.3"
+
+version_available = ["v2.4.0", "v2.4.1", "v2.4.2", "v2.4.3"]
+
+after_failure = "echo 'fail!'"
+
+after_success = "echo 'successful!'"
+
+make_dir = ["./"]
+
+bin_dir = ["./"]
+
+[varscan2.before_install]
+linux = ""
+mac = ""
+windows = ""
+
+[varscan2.install]
+linux = ""
+mac = ""
+windows = ""
+
+[picard]
+github_url = "https://github.com/broadinstitute/picard"
+
+version_newest = "2.8.1"
+
+version_available = ["1.03", "1.04", "1.05", "1.06", "1.07", "1.08", "1.09", "1.10", "1.100", "1.101", "1.102", "1.103", "1.104", "1.105", "1.106", "1.107", "1.108", "1.109", "1.11", "1.110", "1.113", "1.114", "1.115", "1.116", "1.117", "1.118", "1.119", "1.12", "1.120", "1.121", "1.122", "1.123", "1.124", "1.125", "1.126", "1.127", "1.128", "1.129", "1.13", "1.130", "1.131", "1.133", "1.134", "1.135", "1.136", "1.137", "1.138", "1.139", "1.14", "1.140", "1.141", "1.15", "1.16", "1.17", "1.18", "1.19", "1.21", "1.22", "1.23", "1.24", "1.25", "1.26", "1.27", "1.28", "1.29", "1.30", "1.31", "1.32", "1.33", "1.34", "1.35", "1.36", "1.37", "1.38", "1.39", "1.40", "1.41", "1.42", "1.43", "1.44", "1.45", "1.46", "1.47", "1.48", "1.49", "1.50", "1.51", "1.52", "1.53", "1.54", "1.55", "1.56", "1.57", "1.58", "1.59", "1.60", "1.61", "1.62", "1.63", "1.64", "1.65", "1.66", "1.67", "1.68", "1.69", "1.70", "1.71", "1.72", "1.73", "1.74", "1.75", "1.76", "1.77", "1.78", "1.79", "1.80", "1.81", "1.82", "1.83", "1.84", "1.85", "1.86", "1.87", "1.88", "1.89", "1.90", "1.91", "1.92", "1.93", "1.94", "1.95", "1.96", "1.97", "1.98", "1.99", "2.0.1", "2.1.0", "2.1.1", "2.2.0", "2.2.1", "2.2.2", "2.2.3", "2.2.4", "2.3.0", "2.3.0_buildhotfix", "2.4.0", "2.4.1", "2.5.0", "2.5.0-gradle", "2.6.0", "2.7.0", "2.7.1", "2.7.2", "2.8.0", "2.8.1", "BCM", "bc_4.13"]
+
+after_failure = "echo 'fail!'"
+
+after_success = "echo 'successful!'"
+
+make_dir = ["./"]
+
+bin_dir = ["build/libs"]
+
+[picard.before_install]
+linux = ""
+mac = ""
+windows = ""
+
+[picard.install]
+linux = "./gradlew shadowJar"
+mac = ""
+windows = ""
+
+[vcftools]
+github_url = "https://github.com/vcftools/vcftools"
+
+version_newest = "v0.1.14"
+
+version_available = ["v0.1.14", "v0.1.13"]
+
+after_failure = "echo 'fail!'"
+
+after_success = "echo 'successful!'"
+
+make_dir = ["./"]
+
+bin_dir = ["./"]
+
+[vcftools.before_install]
+linux = ""
+mac = ""
+windows = ""
+
+[vcftools.install]
+linux = "./autogen.sh && ./configure --prefix=`pwd` && make && make install"
+mac = ""
+windows = ""
+
+[pindel]
+github_url = "https://github.com/genome/pindel"
+
+dependence = ["htslib"]
+
+dependence_version = ["1.3.2"]
+
+version_newest = "v0.2.5b8"
+
+version_available = ["bcbio", "r0.2.4t", "ubuntu/lucid/0.2.4t-1", "ubuntu/lucid/0.2.4t-2", "ubuntu/lucid/0.2.4t-3", "upstream/0.2.4t", "v0.2.4t", "v0.2.5", "v0.2.5a7", "v0.2.5b1", "v0.2.5b4", "v0.2.5b5", "v0.2.5b6", "v0.2.5b8"]
+
+after_failure = "echo 'fail!'"
+
+after_success = "echo 'successful!'"
+
+make_dir = ["./"]
+
+bin_dir = ["./"]
+
+[pindel.before_install]
+linux = ""
+mac = ""
+windows = ""
+
+[pindel.install]
+linux = "./INSTALL {{-htslib:source.dir-}}"
+mac = ""
+windows = ""
+
+[lofreq]
+github_url = "https://github.com/Miachol/lofreq"
+
+version_newest = "2.1.2"
+
+version_available = ["2.1.2"]
+
+after_failure = "echo 'fail!'"
+
+after_success = "echo 'successful!'"
+
+make_dir = ["./"]
+
+bin_dir = ["lofreq_star-2.1.2_linux-x86-64/bin/"]
+
+[lofreq.before_install]
+linux = ""
+mac = ""
+windows = ""
+
+[lofreq.install]
+linux = ""
+mac = ""
+windows = ""
+
+[hisat2]
+github_url = "https://github.com/infphilo/hisat2"
+
+version_newest = "cba6e8cb"
+
+version_available = ["cba6e8cb"]
+
+after_failure = "echo 'fail!'"
+
+after_success = "echo 'successful!'"
+
+make_dir = ["./"]
+
+bin_dir = ["./"]
+
+[hisat2.before_install]
+linux = ""
+mac = ""
+windows = ""
+
+[hisat2.install]
+linux = "make"
+mac = "make"
+windows = "make"
+
+[freebayes]
+github_url = "https://github.com/ekg/freebayes"
+
+recursive_clone = true
+
+version_newest = "v1.1.0"
+
+version_available = ["development", "first", "may_release", "stable", "v0.1.0", "v0.9.10", "v0.9.13", "v0.9.14", "v0.9.15", "v0.9.16", "v0.9.17", "v0.9.18", "v0.9.19", "v0.9.20", "v0.9.21", "v0.9.9.1", "v0.9.9.2", "v1.0.0", "v1.0.1", "v1.0.2", "v1.1.0", "v9.9.1", "v9.9.11", "v9.9.13", "v9.9.2"]
+
+after_failure = "echo 'fail!'"
+
+after_success = "echo 'successful!'"
+
+make_dir = ["./"]
+
+bin_dir = ["./bin"]
+
+[freebayes.before_install]
+linux = ""
+mac = ""
+windows = ""
+
+[freebayes.install]
+linux = "make"
+mac = "make"
+windows = "make"
