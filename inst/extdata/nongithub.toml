@@ -67,9 +67,9 @@ make_dir = ["./"]
 bin_dir = ["./scripts"]
 
 [htseq.before_install]
-linux = ""
-mac = ""
-windows = ""
+linux = "pip install numpy"
+mac = "pip install numpy"
+windows = "pip install numpy"
 
 [htseq.install]
 linux = "python setup.py install"
