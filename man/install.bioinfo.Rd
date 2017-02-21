@@ -7,10 +7,11 @@
 install.bioinfo(name = c(), destdir = c(), name.saved = NULL,
   github.cfg = system.file("extdata", "github.toml", package =
   "BioInstaller"), nongithub.cfg = system.file("extdata", "nongithub.toml",
-  package = "BioInstaller"), version = c(), show.list = FALSE,
-  db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", system.file("extdata",
-  "softwares_db_demo.yaml", package = "BioInstaller")), download.only = FALSE,
-  decompress = TRUE, showWarnings = FALSE, verbose = FALSE, ...)
+  package = "BioInstaller"), version = c(), show.all.versions = FALSE,
+  show.all.names = FALSE, db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE",
+  system.file("extdata", "softwares_db_demo.yaml", package = "BioInstaller")),
+  download.only = FALSE, decompress = TRUE, showWarnings = FALSE,
+  verbose = FALSE, ...)
 }
 \arguments{
 \item{name}{Software name}
@@ -28,7 +29,9 @@ default is system.file('extdata', 'nongithub.toml', package='BioInstaller')}
 
 \item{version}{Software version}
 
-\item{show.list}{Logical wheather show all avaliable version can be install}
+\item{show.all.versions}{Logical wheather show all avaliable versions can be install}
+
+\item{show.all.names}{Logical wheather show all avaliable names can be install}
 
 \item{db}{File of saving softwares infomation, default is Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", 
 system.file("extdata", "softwares_db_demo.yaml", package = "BioInstaller"))}
@@ -37,11 +40,11 @@ system.file("extdata", "softwares_db_demo.yaml", package = "BioInstaller"))}
 
 \item{decompress}{Logicol indicating wheather need to decompress the downloaded file, default is TRUE}
 
+\item{showWarnings}{Logical should the warnings on failure be shown?}
+
 \item{verbose}{TRUE is debug mode}
 
 \item{...}{Other key and value paired need be saved in BioInstaller passed to \code{\link{change.info}}}
-
-\item{showWarings}{Logical should the warnings on failure be shown?}
 }
 \value{
 Bool Value or a list

@@ -59,7 +59,7 @@ version.initial <- function(name, version, config) {
 
 # Check wheather show all avaliable version can be installed
 show.avaliable.versions <- function(config) {
-  print(paste(config$version_available, sep = "\n"))
+  return(config$version_available)
 }
 
 # Check wheather destdir is exist or not, if not will create it, and set workdir in make.dir
@@ -146,7 +146,7 @@ download.dir.files <- function(config, source_url, destfile, showWarnings = FALS
         }
       }, warning = function(w) {
         if(showWarnings) {
-          warning(e)
+          warning(w)
         }
     })
     count <- count + 1

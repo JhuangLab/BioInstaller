@@ -4,7 +4,7 @@
 \alias{install.nongithub}
 \title{Download and Install Software(Non-Github) in SIMut}
 \usage{
-install.nongithub(name = "", version = NULL, show.list = FALSE,
+install.nongithub(name = "", version = NULL, show.all.versions = FALSE,
   destdir = "./", name.saved = NULL,
   nongithub.cfg = system.file("extdata", "nongithub.toml", package =
   "BioInstaller"), db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE",
@@ -17,7 +17,7 @@ install.nongithub(name = "", version = NULL, show.list = FALSE,
 
 \item{version}{Software version}
 
-\item{show.list}{Logical wheather show all avaliable version can be install}
+\item{show.all.versions}{Logical wheather show all avaliable version can be install}
 
 \item{destdir}{A string, point the install path}
 
@@ -34,11 +34,11 @@ system.file("extdata", "softwares_db_demo.yaml", package = "BioInstaller"))}
 
 \item{decompress}{Logicol indicating wheather need to decompress the downloaded file, default is TRUE}
 
+\item{showWarnings}{Logical should the warnings on failure be shown?}
+
 \item{verbose}{TRUE is debug mode}
 
 \item{...}{Other key and value paired need be saved in BioInstaller passed to \code{\link{change.info}}}
-
-\item{showWarings}{Logical should the warnings on failure be shown?}
 }
 \value{
 Bool Value

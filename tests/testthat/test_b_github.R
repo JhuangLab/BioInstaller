@@ -58,16 +58,16 @@ print(status)
 flog.info('Debug:install.github(name = "hisat2", destdir = sprintf(destdir="%s/hisat2", tempdir()), verbose = T)')
 status <- install.github(name = "hisat2", destdir = sprintf("%s/hisat2", tempdir()), verbose = T)
 
-flog.info('Debug:install.github(show.list = T, verbose = T)')
-status <- suppressWarnings(install.github(show.list = T, verbose = T))
+flog.info('Debug:install.github(show.all.versions = T, verbose = T)')
+status <- suppressWarnings(install.github(show.all.versions = T, verbose = T))
 print(status)
 
-flog.info('Debug:install.github(name = "bwa", show.list = T, verbose = T)')
-status <- install.github(name = "bwa", show.list = T, verbose = T)
+flog.info('Debug:install.github(name = "bwa", show.all.versions = T, verbose = T)')
+status <- install.github(name = "bwa", show.all.versions = T, verbose = T)
 print(status)
 
-flog.info('Debug:install.github(name = list(), show.list = T, verbose = T)')
-status <- tryCatch(install.github(name = list(), show.list = T, verbose = T), error = function(e) {return(e)})
+flog.info('Debug:install.github(name = list(), show.all.versions = T, verbose = T)')
+status <- tryCatch(install.github(name = list(), show.all.versions = T, verbose = T), error = function(e) {return(e)})
 print(status)
 
 

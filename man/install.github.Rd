@@ -4,7 +4,7 @@
 \alias{install.github}
 \title{Install from Github}
 \usage{
-install.github(name = "", version = NULL, show.list = FALSE,
+install.github(name = "", version = NULL, show.all.versions = FALSE,
   destdir = "./", name.saved = NULL, github.cfg = system.file("extdata",
   "github.toml", package = "BioInstaller"),
   db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", system.file("extdata",
@@ -16,7 +16,7 @@ install.github(name = "", version = NULL, show.list = FALSE,
 
 \item{version}{Software version}
 
-\item{show.list}{Logical wheather show all avaliable version can be install}
+\item{show.all.versions}{Logical wheather show all avaliable version can be install}
 
 \item{destdir}{A string, point the install path}
 
@@ -31,11 +31,11 @@ system.file("extdata", "softwares_db_demo.yaml", package = "BioInstaller"))}
 
 \item{download.only}{Logicol indicating wheather only download source or file (non-github)}
 
+\item{showWarnings}{Logical should the warnings on failure be shown?}
+
 \item{verbose}{TRUE is debug mode}
 
 \item{...}{Other key and value paired need be saved in BioInstaller passed to \code{\link{change.info}}}
-
-\item{showWarings}{Logical should the warnings on failure be shown?}
 }
 \value{
 Bool Value
