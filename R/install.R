@@ -64,6 +64,9 @@ install.bioinfo <- function(name = c(), destdir = c(), name.saved = NULL, github
         return(TRUE)
       }
 
+      if (is.null(status)) {
+        return(TRUE)
+      }
       if (status == TRUE && (i %in% show.installed(db))) {
         install.success <- c(install.success, i)
       } else {
