@@ -396,7 +396,7 @@ windows = "make"
 [macs]
 github_url = "https://github.com/taoliu/MACS/"
 
-version_newest = "v2.0.9"
+version_newest = "2015.4.20"
 
 version_available = ["1.4beta", "1.4rc2", "2.1.0.20140616", "2015.4.20", "initial_merging_by_Ben", "tag_at_May_31_2012", "v1.4.0", "v1.4.1", "v1.4.2", "v2", "v2.0.10_6_6_2012", "v2.0.2", "v2.0.3", "v2.0.4", "v2.0.5", "v2.0.6", "v2.0.7", "v2.0.8", "v2.0.9"]
 
