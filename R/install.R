@@ -43,8 +43,8 @@ install.bioinfo <- function(name = c(), destdir = c(), name.saved = NULL, github
     github.names <- eval.config.groups(file = github.cfg)
     nongithub.names <- eval.config.groups(file = nongithub.cfg)
     all.names <- c(github.names, nongithub.names)
-    all.names <- all.names[!all.names %in% c("title", "debug", "demo")]
-    return(c(eval.config.groups(file = github.cfg), eval.config.groups(file = nongithub.cfg)))
+    all.names <- all.names[!(all.names %in% c("title", "debug", "demo"))]
+    return(all.names)
   }
   install.success <- c()
   install.fail <- c()
