@@ -414,6 +414,6 @@ mac = "pip install cython"
 windows = "pip install cython"
 
 [macs.install]
-linux = "python setup.py install"
-mac = "python setup.py install"
-windows = "python setup.py install"
+linux = "if [ -f setup_w_cython.py ]; then python setup_w_cython.py install; else python setup.py install ;fi"
+mac = "if [ -f setup_w_cython.py ]; then python setup_w_cython.py install; else python setup.py install ;fi"
+windows = "if [ -f setup_w_cython.py ]; then python setup_w_cython.py install; else python setup.py install ;fi"
