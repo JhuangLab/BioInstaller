@@ -58,7 +58,7 @@ get.gmap.versions <- function() {
 }
 
 # Function get GMAP-GSNAP latest version
-get.gmap.newest.versions <- function() {
+get.gmap.newest.version <- function() {
   urls <- c("http://research-pub.gene.com/gmap/")
   versions_final <- NULL
   for (url in urls) {
@@ -80,4 +80,35 @@ get.gmap.newest.versions <- function() {
     versions_final <- c(versions_final, versions)
   }
   return(versions_final)
+}
+
+
+# Function get Edena all versions
+get.edena.versions <- function() {
+  urls <- c("http://www.genomic.ch/edena.php")
+  versions_final <- NULL
+  for (url in urls) {
+    h <- basicTextGatherer()
+    web <- getURL(url, headerfunction = h$update)
+    web <- str_split(web, "\n")
+    web <- web[[1]]
+    
+    web <- web[str_detect(web, "href")]
+    web <- web[str_detect(web, "Edena")]
+
+    downlad_url <- str_extract(web, 'href=".*[zp]"')
+    downlad_url <- str_replace_all(downlad_url, 'href=\"|"', "")
+    downlad_url <- str_replace(downlad_url, fixed("./"), "http://www.genomic.ch/")
+
+    versions <- str_extract(downlad_url, "/[eE].*[(zip)(gz)]")
+    versions <- str_replace(versions, "/.*/", "")
+    versions <- str_replace(versions, ".tar.gz$", "")
+    versions <- str_replace(versions, ".zip$", "")
+    versions_final <- c(versions_final, versions)
+  }
+  return(versions_final)
+}
+# Function get Edena newest version
+get.edena.newest.version <- function() {
+  return(get.edena.versions()[1])
 }

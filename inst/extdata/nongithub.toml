@@ -193,3 +193,28 @@ windows = ""
 linux = ""
 mac = ""
 windows = ""
+
+[edena]
+source_url = ["http://www.genomic.ch/edena/{{version}}.tar.gz", "http://www.genomic.ch/edena/{{version}}.zip"]
+
+version_newest = "EdenaV3.131028"
+
+version_available = ["EdenaV3.131028", "EdenaV3.130110", "EdenaV3.121122", "Edena3dev120926_linux64", "Edena3Dev120626_linux64", "Edena3Dev120626_linux32", "Edena3Dev120615_linux64", "Edena3Dev120615_linux32", "Edena3Dev110920_linux64", "Edena3Dev110920_linux32", "Edena3Dev110815_linux64", "Edena3Dev110815_linux32", "Edena3Dev110814_linux64", "Edena3Dev110814_linux32", "Edena3Dev110705_linux64", "Edena3Dev110705_linux32", "edena2.1.1_linux32", "edena2.1.1_linux64", "edena2.1.1_windows"]
+
+after_failure = "echo 'fail!'"
+
+after_success = "echo 'successful!'"
+
+make_dir = ["./"]
+
+bin_dir = ["./"]
+
+[edena.before_install]
+linux = ""
+mac = ""
+windows = ""
+
+[edena.install]
+linux = "make"
+mac = "make"
+windows = "make"
