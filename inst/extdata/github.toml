@@ -417,3 +417,28 @@ windows = "pip install cython"
 linux = "if [ -f setup_w_cython.py ]; then python setup_w_cython.py install; else python setup.py install ;fi"
 mac = "if [ -f setup_w_cython.py ]; then python setup_w_cython.py install; else python setup.py install ;fi"
 windows = "if [ -f setup_w_cython.py ]; then python setup_w_cython.py install; else python setup.py install ;fi"
+
+[bedtools]
+github_url = "https://github.com/arq5x/bedtools2"
+
+version_newest = "v2.26.0"
+
+version_available = ["v2.18.0", "v2.18.1", "v2.18.2", "v2.19.0", "v2.19.1", "v2.20.0", "v2.20.1", "v2.21.0", "v2.22.0", "v2.22.1", "v2.23.0", "v2.24.0", "v2.25.0", "v2.26.0"]
+
+after_failure = "echo 'fail!'"
+
+after_success = "echo 'successful!'"
+
+make_dir = ["./"]
+
+bin_dir = ["./bin"]
+
+[bedtools.before_install]
+linux = ""
+mac = ""
+windows = ""
+
+[bedtools.install]
+linux = "make"
+mac = "make"
+windows = "make"
