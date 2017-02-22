@@ -207,7 +207,7 @@ after_success = "echo 'successful!'"
 
 make_dir = ["./"]
 
-bin_dir = ["./"]
+bin_dir = ["./bin"]
 
 [edena.before_install]
 linux = ""
