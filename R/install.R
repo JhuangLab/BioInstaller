@@ -54,58 +54,36 @@ install.bioinfo <- function(name = c(), destdir = c(), name.saved = NULL, github
   bynongithub <- NULL
   for (i in name) {
     i <- tolower(i)
+    if(!show.all.versions) {
+      destdir[count] <- normalizePath(destdir[count], mustWork = FALSE)
+    }
     if (i %in% eval.config.groups(file = github.cfg)) {
-      if(!show.all.versions) {
-        destdir[count] <- normalizePath(destdir[count], mustWork = FALSE)
-      }
       status <- install.github(name = i, destdir = destdir[count], github.cfg = github.cfg, name.saved = name.saved,
         version = version[count], show.all.versions = show.all.versions, db = db, download.only = download.only, verbose = verbose,
         showWarnings = showWarnings, ...)
-
-      if(is.logical(status) && download.only && status && !verbose) {
-        flog.info(sprintf("%s be downloaded in %s successful", name, destdir))
-        return(TRUE)
-      } else if(is.logical(status) && download.only && !status && !verbose) {
-        flog.info(sprintf("%s downloaded fail!", name))
-        return(FALSE)
-      } else if (is.logical(status) && download.only && verbose) {
-        return(TRUE)
-      }
-
-      if (show.all.versions) {
-        return(status)
-      }
-      if (status == TRUE && (i %in% show.installed(db))) {
-        install.success <- c(install.success, i)
-      } else {
-        install.fail <- c(install.fail, i)
-      }
       bygithub <- c(bygithub, i)
-
     } else if (i %in% eval.config.groups(file = nongithub.cfg)) {
       status <- install.nongithub(name = i, destdir = destdir[count], name.saved = name.saved, nongithub.cfg = nongithub.cfg, 
         version = version, show.all.versions = show.all.versions, db = db, download.only = download.only, showWarnings = showWarnings,
         decompress = decompress, verbose = verbose, ...)
-
-      if(is.logical(status) && download.only && status && !verbose) {
-        flog.info(sprintf("%s be downloaded in %s successful", name, destdir))
-        return(TRUE)
-      } else if(is.logical(status) && download.only && !status && !verbose) {
-        flog.info(sprintf("%s downloaded fail!", name))
-        return(FALSE)
-      } else if (is.logical(status) && download.only && verbose) {
-        return(TRUE)
-      }
-
-      if (is.null(status)) {
-        return(TRUE)
-      }
-      if (status == TRUE && (i %in% show.installed(db))) {
-        install.success <- c(install.success, i)
-      } else {
-        install.fail <- c(install.fail, i)
-      }
       bynongithub <- c(bynongithub, i)
+    }
+    if(is.logical(status) && download.only && status && !verbose) {
+      flog.info(sprintf("%s be downloaded in %s successful", name, destdir))
+      return(TRUE)
+    } else if(is.logical(status) && download.only && !status && !verbose) {
+      flog.info(sprintf("%s downloaded fail!", name))
+      return(FALSE)
+    } else if (is.logical(status) && download.only && verbose) {
+      return(TRUE)
+    }
+    if (show.all.versions) {
+      return(status)
+    }
+    if (status == TRUE && (i %in% show.installed(db))) {
+      install.success <- c(install.success, i)
+    } else {
+      install.fail <- c(install.fail, i)
     }
     count <- count + 1
   }

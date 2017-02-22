@@ -218,3 +218,28 @@ windows = ""
 linux = "make"
 mac = "make"
 windows = "make"
+
+[ucsc_kent_utilities]
+source_url = "http://hgdownload.cse.ucsc.edu/admin/exe/userApps.{{version}}.src.tgz"
+
+version_newest = "v344"
+
+version_available = ["v305", "v306", "v307", "v308", "v309", "v310", "v311", "v312", "v313", "v314", "v315", "v316", "v317", "v318", "v319", "v320", "v321", "v322", "v323", "v324", "v325", "v326", "v327", "v328", "v329", "v330", "v331", "v332", "v333", "v334", "v335", "v336", "v337", "v338", "v339", "v340", "v341", "v342", "v343", "v344"]
+
+after_failure = "echo 'fail!'"
+
+after_success = "echo 'successful!'"
+
+make_dir = ["./"]
+
+bin_dir = ["./bin"]
+
+[ucsc_kent_utilities.before_install]
+linux = ""
+mac = ""
+windows = ""
+
+[ucsc_kent_utilities.install]
+linux = "make"
+mac = "make"
+windows = "make"

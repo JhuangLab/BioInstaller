@@ -70,13 +70,13 @@ get.subconfig <- function(config, subconfig) {
 }
 
 get.file.type <- function(file) {
-  filetype.lib <- c("tar.gz", "tar", "gz", "zip")
+  filetype.lib <- c("tgz$", "tar.xz$", "tar.bz2$", "tar.gz$", "tar$", "gz$", "zip$", "bz2$", "xz$")
   if(is.na(file)) {
     return(FALSE)
   }
   for (i in filetype.lib) {
     if (str_detect(file, i)) {
-      return(i)
+      return(str_replace_all(i, fixed("$"), ""))
     }
   }
 }
@@ -109,7 +109,7 @@ extract.file <- function(file, destdir, decompress = TRUE) {
     } else {
       status <- file.copy(files.path, destdir, recursive = T)
     }
-  } else if (filetype == "gz") {
+  } else if (filetype %in% c("gz", "xz", "bz2")) {
     gunzip(file)
     files <- list.files(dirname(file)) 
     files.path <- sprintf("%s/%s", dirname(file), files)
@@ -119,10 +119,8 @@ extract.file <- function(file, destdir, decompress = TRUE) {
     } else {
       status <- file.copy(files.path, destdir, recursive = T)
     }
-  } else if (filetype == "tar") {
+  } else if (filetype %in% c("tar", "tar.gz", "tgz", "tar.bz2", "tar.xz")) {
     status <- untar(file, exdir = destdir)
-  } else if (filetype == "tar.gz") {
-    status <- untar(file, exdir = destdir, compressed = "gzip")
     files.parent <- list.files(destdir)
     if(length(files.parent) == 1) {
       file.rename(sprintf("%s/%s", destdir, files.parent), sprintf("%s/tmp00", destdir))
