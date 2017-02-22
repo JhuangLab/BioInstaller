@@ -219,7 +219,7 @@ linux = "make"
 mac = "make"
 windows = "make"
 
-[ucsc_kent_utilities]
+[ucsc_utils]
 source_url = "http://hgdownload.cse.ucsc.edu/admin/exe/userApps.{{version}}.src.tgz"
 
 version_newest = "v344"
@@ -234,12 +234,12 @@ make_dir = ["./"]
 
 bin_dir = ["./bin"]
 
-[ucsc_kent_utilities.before_install]
+[ucsc_utils.before_install]
 linux = ""
 mac = ""
 windows = ""
 
-[ucsc_kent_utilities.install]
+[ucsc_utils.install]
 linux = "make"
 mac = "make"
 windows = "make"
