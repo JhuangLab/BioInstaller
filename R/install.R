@@ -149,8 +149,7 @@ install.github <- function(name = "", version = NULL, show.all.versions = FALSE,
   args.all$version <- version
   args.all$destdir <- destdir
   args.all <- args.all[names(args.all) != ""]
-  config <- parse.config.with.var(config = config, args.all = args.all)
-  config <- parse.config.with.db(config, db)
+  config <- configr::parse.extra(config = config, extra.list = args.all, other.config = db)
 
 
   destdir <- normalizePath(destdir, mustWork = FALSE)
@@ -176,7 +175,7 @@ install.github <- function(name = "", version = NULL, show.all.versions = FALSE,
   }
 
   process.dependence(config, db, destdir, verbose)
-  config <- parse.config.with.db(config, db)
+  config <- configr::parse.extra(config = config, other.config = db)
 
   if(!is.null(name.saved)) {
     msg <- sprintf("Now start to install %s in %s.", name, destdir)

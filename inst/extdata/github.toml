@@ -104,8 +104,8 @@ mac = ""
 windows = ""
 
 [samtools.install]
-linux = "autoconf -Wno-syntax; sed -i 's;HTSDIR = ../htslib;HTSDIR = {{-htslib:source.dir-}};' config.mk; make && make install prefix=`pwd`"
-mac = "autoconf -Wno-syntax; sed -i 's;HTSDIR = ../htslib;HTSDIR = {{-htslib:source.dir-}};' config.mk; make && make install prefix=`pwd`"
+linux = "autoconf -Wno-syntax; sed -i 's;HTSDIR = ../htslib;HTSDIR = {{htslib:source.dir}};' config.mk; make && make install prefix=`pwd`"
+mac = "autoconf -Wno-syntax; sed -i 's;HTSDIR = ../htslib;HTSDIR = {{htslib:source.dir}};' config.mk; make && make install prefix=`pwd`"
 windows = "make"
 
 [bcftools]
@@ -133,8 +133,8 @@ mac = ""
 windows = ""
 
 [bcftools.install]
-linux = "sed -i 's;HTSDIR = ../htslib;HTSDIR = {{-htslib:source.dir-}};' Makefile; make"
-mac = "sed -i 's;HTSDIR = ../htslib;HTSDIR = {{-htslib:source.dir-}};' Makefile; make"
+linux = "sed -i 's;HTSDIR = ../htslib;HTSDIR = {{htslib:source.dir}};' Makefile; make"
+mac = "sed -i 's;HTSDIR = ../htslib;HTSDIR = {{htslib:source.dir}};' Makefile; make"
 windows = "make"
 
 [bowtie]
@@ -312,7 +312,7 @@ mac = ""
 windows = ""
 
 [pindel.install]
-linux = "./INSTALL {{-htslib:source.dir-}}"
+linux = "./INSTALL {{htslib:source.dir}}"
 mac = ""
 windows = ""
 
