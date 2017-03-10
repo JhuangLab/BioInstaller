@@ -285,8 +285,8 @@ install.nongithub <- function(name = "", version = NULL, show.all.versions = FAL
   args.all$version <- version
   args.all$destdir <- destdir
   args.all <- args.all[names(args.all) != ""]
-  config <- parse.config.with.var(config = config, args.all = args.all)
-  config <- parse.config.with.db(config, db)
+  config <- configr::parse.extra(config = config, extra.list = args.all)
+  config <- configr::parse.extra(config, other.config = db)
 
   destdir <- normalizePath(destdir, mustWork = FALSE)
   status <- destdir.initial(destdir, strict = FALSE, download.only)
@@ -309,7 +309,7 @@ install.nongithub <- function(name = "", version = NULL, show.all.versions = FAL
   }
 
   process.dependence(config, db, destdir, verbose)
-  config <- parse.config.with.db(config, db)
+  config <- configr::parse.extra(config, other.config = db)
   extract_dir <- sprintf("%s/install_tmp/", tempdir())
   dir.create(extract_dir, showWarnings = FALSE)
   destfile <- sprintf("%s/%s", extract_dir, filename)
