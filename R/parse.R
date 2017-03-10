@@ -95,11 +95,11 @@ get.edena.versions <- function() {
     
     web <- web[str_detect(web, "href")]
     web <- web[str_detect(web, "Edena")]
-
-    downlad_url <- str_extract(web, 'href=".*[zp]"')
-    downlad_url <- str_replace_all(downlad_url, 'href=\"|"', "")
+    
+    downlad_url <- str_extract(web, "href=\".*[zp]\"")
+    downlad_url <- str_replace_all(downlad_url, "href=\"|\"", "")
     downlad_url <- str_replace(downlad_url, fixed("./"), "http://www.genomic.ch/")
-
+    
     versions <- str_extract(downlad_url, "/[eE].*[(zip)(gz)]")
     versions <- str_replace(versions, "/.*/", "")
     versions <- str_replace(versions, ".tar.gz$", "")

@@ -70,8 +70,9 @@ get.subconfig <- function(config, subconfig) {
 }
 
 get.file.type <- function(file) {
-  filetype.lib <- c("tgz$", "tar.xz$", "tar.bz2$", "tar.gz$", "tar$", "gz$", "zip$", "bz2$", "xz$")
-  if(is.na(file)) {
+  filetype.lib <- c("tgz$", "tar.xz$", "tar.bz2$", "tar.gz$", "tar$", "gz$", "zip$", 
+    "bz2$", "xz$")
+  if (is.na(file)) {
     return(FALSE)
   }
   for (i in filetype.lib) {
@@ -87,11 +88,11 @@ extract.file <- function(file, destdir, decompress = TRUE) {
   }
   destdir.initial(destdir)
   dir.create(destdir, showWarnings = F, recursive = TRUE)
-  if(!decompress) {
-    files <- list.files(dirname(file)) 
+  if (!decompress) {
+    files <- list.files(dirname(file))
     files.path <- sprintf("%s/%s", dirname(file), files)
     destfiles.path <- sprintf("%s/%s", destdir, files)
-    if(sum(length(list.files(files.path))) == 0) {
+    if (sum(length(list.files(files.path))) == 0) {
       status <- file.copy(files.path, destfiles.path)
     } else {
       status <- file.copy(files.path, destdir, recursive = T)
@@ -101,20 +102,20 @@ extract.file <- function(file, destdir, decompress = TRUE) {
   }
   if (filetype == "zip") {
     unzip(file)
-    files <- list.files(dirname(file)) 
+    files <- list.files(dirname(file))
     files.path <- sprintf("%s/%s", dirname(file), files)
     destfiles.path <- sprintf("%s/%s", destdir, files)
-    if(sum(length(list.files(files.path))) == 0) {
+    if (sum(length(list.files(files.path))) == 0) {
       status <- file.copy(files.path, destfiles.path)
     } else {
       status <- file.copy(files.path, destdir, recursive = T)
     }
   } else if (filetype %in% c("gz", "xz", "bz2")) {
     gunzip(file)
-    files <- list.files(dirname(file)) 
+    files <- list.files(dirname(file))
     files.path <- sprintf("%s/%s", dirname(file), files)
     destfiles.path <- sprintf("%s/%s", destdir, files)
-    if(sum(length(list.files(files.path))) == 0) {
+    if (sum(length(list.files(files.path))) == 0) {
       status <- file.copy(files.path, destfiles.path)
     } else {
       status <- file.copy(files.path, destdir, recursive = T)
@@ -122,14 +123,15 @@ extract.file <- function(file, destdir, decompress = TRUE) {
   } else if (filetype %in% c("tar", "tar.gz", "tgz", "tar.bz2", "tar.xz")) {
     status <- untar(file, exdir = destdir)
     files.parent <- list.files(destdir)
-    if(length(files.parent) == 1) {
-      file.rename(sprintf("%s/%s", destdir, files.parent), sprintf("%s/tmp00", destdir))
+    if (length(files.parent) == 1) {
+      file.rename(sprintf("%s/%s", destdir, files.parent), sprintf("%s/tmp00", 
+        destdir))
       unlink(sprintf("%s/%s", destdir, files.parent), recursive = TRUE)
       files.parent <- sprintf("%s/tmp00", destdir)
       files.child <- list.files(files.parent)
       files.path <- sprintf("%s/%s", files.parent, files.child)
       destfiles.path <- sprintf("%s/%s", destdir, files.child)
-      if(sum(length(list.files(files.path))) == 0) {
+      if (sum(length(list.files(files.path))) == 0) {
         status <- file.copy(files.path, destfiles.path)
       } else {
         status <- file.copy(files.path, destdir, recursive = T)
@@ -150,7 +152,7 @@ download.file.custom <- function(url = "", destfile = "", is.dir = FALSE, ...) {
     for (i in filenames) {
       fn <- sprintf("%s/%s", destfile, i)
       dir.create(dirname(fn), showWarnings = F, recursive = TRUE)
-      download.file(url = sprintf("%s/%s",url, i), destfile = fn)
+      download.file(url = sprintf("%s/%s", url, i), destfile = fn)
     }
   } else {
     download.file(url = url, destfile = destfile, ...)
@@ -159,18 +161,20 @@ download.file.custom <- function(url = "", destfile = "", is.dir = FALSE, ...) {
 
 # Check destdir and decide wheather overwrite
 destdir.initial <- function(destdir, strict = TRUE, download.only = FALSE) {
-  if(!download.only && file.exists(destdir) && length(list.files(destdir) != 0) && strict) {
+  if (!download.only && file.exists(destdir) && length(list.files(destdir) != 0) && 
+    strict) {
     flag <- "y"
     flag.input <- "N"
-    while(flag.input == "N" || !flag.input %in% c("y", "n" ,"Y", "N")) {
-     if(flag.input != "N" && !(flag.input %in% c("y", "n" ,"Y", "N"))) {
-       cat("Please input y/n/Y/N!\n") 
-     }
-     flag.input <- readline(prompt=sprintf("%s not empty, overwrite?[y]", destdir))
-     flag.input <- str_sub(flag.input, 1, 1)
-     flag.input <- tolower(flag.input)
+    while (flag.input == "N" || !flag.input %in% c("y", "n", "Y", "N")) {
+      if (flag.input != "N" && !(flag.input %in% c("y", "n", "Y", "N"))) {
+        cat("Please input y/n/Y/N!\n")
+      }
+      flag.input <- readline(prompt = sprintf("%s not empty, overwrite?[y]", 
+        destdir))
+      flag.input <- str_sub(flag.input, 1, 1)
+      flag.input <- tolower(flag.input)
     }
-    if(flag.input == "n") {
+    if (flag.input == "n") {
       return(FALSE)
     } else {
       unlink(destdir, recursive = TRUE)
@@ -179,15 +183,16 @@ destdir.initial <- function(destdir, strict = TRUE, download.only = FALSE) {
   } else if (!download.only && file.exists(destdir) && !strict) {
     flag <- "y"
     flag.input <- "N"
-    while(flag.input == "N" || !flag.input %in% c("y", "n" ,"Y", "N")) {
-     if(flag.input != "N" && !(flag.input %in% c("y", "n" ,"Y", "N"))) {
-       cat("Please input y/n/Y/N!\n") 
-     }
-     flag.input <- readline(prompt=sprintf("%s existed, overwrite?[y]", destdir))
-     flag.input <- str_sub(flag.input, 1, 1)
-     flag.input <- tolower(flag.input)
+    while (flag.input == "N" || !flag.input %in% c("y", "n", "Y", "N")) {
+      if (flag.input != "N" && !(flag.input %in% c("y", "n", "Y", "N"))) {
+        cat("Please input y/n/Y/N!\n")
+      }
+      flag.input <- readline(prompt = sprintf("%s existed, overwrite?[y]", 
+        destdir))
+      flag.input <- str_sub(flag.input, 1, 1)
+      flag.input <- tolower(flag.input)
     }
-    if(flag.input == "n") {
+    if (flag.input == "n") {
       return(FALSE)
     } else {
       unlink(destdir, recursive = TRUE)
