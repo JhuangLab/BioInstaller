@@ -1,6 +1,6 @@
 #' Update biologly softwares infomation of system
 #'
-#' @param name Software name 
+#' @param name Software name
 #' @param installed Wheather be installed successful in system
 #' @param source.dir Directorie of softwares source code
 #' @param bin.dir Directorie of softwares bin
@@ -12,10 +12,10 @@
 #' @return Bool Value
 #' @examples
 #' set.biosoftwares.db(sprintf('%s/.BioInstaller', tempdir()))
-#' change.info(name = 'demo', installed = 'yes', source.dir = '', 
+#' change.info(name = 'demo', installed = 'yes', source.dir = '',
 #' bin.dir = '', excutable.files = c('demo'), others.customer = 'demo')
-change.info <- function(name = "", installed = TRUE, source.dir = "", bin.dir = "", 
-  executable.files = "", db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", system.file("extdata", 
+change.info <- function(name = "", installed = TRUE, source.dir = "", bin.dir = "",
+  executable.files = "", db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", system.file("extdata",
     "softwares_db_demo.yaml", package = "BioInstaller")), ..., verbose = FALSE) {
   msg <- sprintf("Running change.info for %s and be saved to %s", name, db)
   flog.info(msg)
@@ -31,14 +31,14 @@ change.info <- function(name = "", installed = TRUE, source.dir = "", bin.dir = 
   }
   Sys.setenv(R_CONFIGFILE_ACTIVE = config.cfg)
   config <- configr::read.config()
-  config[[name]] = list(installed = installed, source.dir = source.dir, bin_dir = bin.dir, 
+  config[[name]] = list(installed = installed, source.dir = source.dir, bin_dir = bin.dir,
     executable_files = executable.files, ...)
   configr::write.config(config.dat = config, write.type = "yaml")
 }
 
 #' Show biologly softwares infomation of system
 #'
-#' @param name Software name 
+#' @param name Software name
 #' @param db File of saving softwares infomation
 #' @param verbose TRUE is debug mode
 #' @export
@@ -46,7 +46,7 @@ change.info <- function(name = "", installed = TRUE, source.dir = "", bin.dir = 
 #' @examples
 #' set.biosoftwares.db(sprintf('%s/.BioInstaller', tempdir()))
 #' get.info('bwa')
-get.info <- function(name = "", db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", system.file("extdata", 
+get.info <- function(name = "", db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", system.file("extdata",
   "softwares_db_demo.yaml", package = "BioInstaller")), verbose = FALSE) {
   db <- normalizePath(db, mustWork = FALSE)
   if(!db.check(db)) {
@@ -68,7 +68,7 @@ get.info <- function(name = "", db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", syste
 
 #' Delete biologly softwares infomation of system
 #'
-#' @param name Software name 
+#' @param name Software name
 #' @param db File of saving softwares infomation
 #' @param verbose TRUE is debug mode
 #' @export
@@ -76,7 +76,7 @@ get.info <- function(name = "", db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", syste
 #' @examples
 #' set.biosoftwares.db(sprintf('%s/.BioInstaller', tempdir()))
 #' del.info('bwa')
-del.info <- function(name = "", db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", system.file("extdata", 
+del.info <- function(name = "", db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", system.file("extdata",
   "softwares_db_demo.yaml", package = "BioInstaller")), verbose = FALSE) {
   db <- normalizePath(db, mustWork = FALSE)
   if(!db.check(db)) {
@@ -106,8 +106,8 @@ del.info <- function(name = "", db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", syste
 #' @examples
 #' set.biosoftwares.db(sprintf('%s/.BioInstaller', tempdir()))
 #' show.installed()
-show.installed <- function(db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", system.file("extdata", 
-  "softwares_db_demo.yaml", package = "BioInstaller")), only.installed = TRUE, 
+show.installed <- function(db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", system.file("extdata",
+  "softwares_db_demo.yaml", package = "BioInstaller")), only.installed = TRUE,
   verbose = FALSE) {
   db <- normalizePath(db, mustWork = FALSE)
   if(!db.check(db)) {
@@ -121,7 +121,12 @@ show.installed <- function(db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", system.fil
   Sys.setenv(R_CONFIGFILE_ACTIVE = config.cfg)
   for (i in configr::eval.config.groups()) {
     Sys.setenv(R_CONFIG_ACTIVE = i)
-    is.installed <- eval.config()$installed == TRUE
+    config <- eval.config()
+    if("installed" %in% names(config)){
+      is.installed <- config["installed"] == TRUE
+    } else {
+      is.installed <- FALSE
+    }
     if (only.installed && is.installed) {
       softwares <- c(softwares, i)
     } else if (!only.installed) {
