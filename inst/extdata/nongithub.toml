@@ -293,3 +293,29 @@ windows = "autoreconf -ivf"
 linux = "./configure --prefix={{destdir}} && make && make install"
 mac = "./configure --prefix={{destdir}} && make && make install"
 windows = "./configure --prefix={{destdir}} && make && make install"
+
+
+[cesa]
+source_url = ["http://liulab.dfci.harvard.edu/CEAS/src/CEAS-Package-{{version}}.tar.gz"]
+
+version_newest = "1.0.2"
+
+version_available = ["1.0.2"]
+
+after_failure = "echo 'fail!'"
+
+after_success = "echo 'successful!'"
+
+make_dir = ["./"]
+
+bin_dir = ["./bin"]
+
+[cesa.before_install]
+linux = ""
+mac = ""
+windows = ""
+
+[cesa.install]
+linux = "python setup.py install"
+mac = "python setup.py install"
+windows = "python setup.py install"
