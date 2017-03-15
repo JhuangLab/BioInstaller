@@ -24,10 +24,9 @@
 #' set.biosoftwares.db(sprintf('%s/.BioInstaller', tempdir()))
 #' install.bioinfo('bwa', sprintf('%s/bwa', tempdir()), TRUE)
 install.bioinfo <- function(name = c(), destdir = c(), name.saved = NULL, github.cfg = system.file("extdata", 
-  "github.toml", package = "BioInstaller"), nongithub.cfg = system.file("extdata", 
-  "nongithub.toml", package = "BioInstaller"), version = c(), show.all.versions = FALSE, 
-  show.all.names = FALSE, db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", system.file("extdata", 
-    "softwares_db_demo.yaml", package = "BioInstaller")), download.only = FALSE, 
+  "github.toml", package = "BioInstaller"), nongithub.cfg = system.file("extdata", "nongithub.toml", package = "BioInstaller"), 
+  version = c(), show.all.versions = FALSE, show.all.names = FALSE, db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", 
+    system.file("extdata", "softwares_db_demo.yaml", package = "BioInstaller")), download.only = FALSE, 
   decompress = TRUE, showWarnings = FALSE, verbose = FALSE, ...) {
   db.check(db)
   if (verbose) {
@@ -59,16 +58,14 @@ install.bioinfo <- function(name = c(), destdir = c(), name.saved = NULL, github
       destdir[count] <- normalizePath(destdir[count], mustWork = FALSE)
     }
     if (i %in% eval.config.groups(file = github.cfg)) {
-      status <- install.github(name = i, destdir = destdir[count], github.cfg = github.cfg, 
-        name.saved = name.saved, version = version[count], show.all.versions = show.all.versions, 
-        db = db, download.only = download.only, verbose = verbose, showWarnings = showWarnings, 
-        ...)
+      status <- install.github(name = i, destdir = destdir[count], github.cfg = github.cfg, name.saved = name.saved, 
+        version = version[count], show.all.versions = show.all.versions, db = db, download.only = download.only, 
+        verbose = verbose, showWarnings = showWarnings, ...)
       bygithub <- c(bygithub, i)
     } else if (i %in% eval.config.groups(file = nongithub.cfg)) {
-      status <- install.nongithub(name = i, destdir = destdir[count], name.saved = name.saved, 
-        nongithub.cfg = nongithub.cfg, version = version, show.all.versions = show.all.versions, 
-        db = db, download.only = download.only, showWarnings = showWarnings, 
-        decompress = decompress, verbose = verbose, ...)
+      status <- install.nongithub(name = i, destdir = destdir[count], name.saved = name.saved, nongithub.cfg = nongithub.cfg, 
+        version = version, show.all.versions = show.all.versions, db = db, download.only = download.only, 
+        showWarnings = showWarnings, decompress = decompress, verbose = verbose, ...)
       bynongithub <- c(bynongithub, i)
     }
     if (is.logical(status) && download.only && status && !verbose) {
@@ -91,10 +88,8 @@ install.bioinfo <- function(name = c(), destdir = c(), name.saved = NULL, github
     count <- count + 1
   }
   if (verbose) {
-    flog.info(sprintf("Debug:Install by Github configuration file: %s", paste0(bygithub, 
-      collapse = ", ")))
-    flog.info(sprintf("Debug:Install by Non Github configuration file: %s", paste0(bynongithub, 
-      collapse = ", ")))
+    flog.info(sprintf("Debug:Install by Github configuration file: %s", paste0(bygithub, collapse = ", ")))
+    flog.info(sprintf("Debug:Install by Non Github configuration file: %s", paste0(bynongithub, collapse = ", ")))
     fail.list <- ""
     success.list <- ""
   } else {
@@ -131,10 +126,9 @@ install.bioinfo <- function(name = c(), destdir = c(), name.saved = NULL, github
 #' @return Bool Value
 #' @examples
 #' set.biosoftwares.db(sprintf('%s/.BioInstaller', tempdir()))
-install.github <- function(name = "", version = NULL, show.all.versions = FALSE, 
-  destdir = "./", name.saved = NULL, github.cfg = system.file("extdata", "github.toml", 
-    package = "BioInstaller"), db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", system.file("extdata", 
-    "softwares_db_demo.yaml", package = "BioInstaller")), download.only = FALSE, 
+install.github <- function(name = "", version = NULL, show.all.versions = FALSE, destdir = "./", name.saved = NULL, 
+  github.cfg = system.file("extdata", "github.toml", package = "BioInstaller"), db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", 
+    system.file("extdata", "softwares_db_demo.yaml", package = "BioInstaller")), download.only = FALSE, 
   showWarnings = FALSE, verbose = FALSE, ...) {
   old.work.dir <- getwd()
   config.cfg <- github.cfg
@@ -232,9 +226,8 @@ install.github <- function(name = "", version = NULL, show.all.versions = FALSE,
         if (!is.null(name.saved)) {
           name <- tolower(name.saved)
         }
-        change.info(name = name, installed = TRUE, source.dir = destdir, 
-          bin.dir = bin.dir, version = version, last.update.time = last.update.time, 
-          db = db, ...)
+        change.info(name = name, installed = TRUE, source.dir = destdir, bin.dir = bin.dir, version = version, 
+          last.update.time = last.update.time, db = db, ...)
       }
     }
   } else {
@@ -270,10 +263,9 @@ install.github <- function(name = "", version = NULL, show.all.versions = FALSE,
 #' @return Bool Value
 #' @examples
 #' set.biosoftwares.db(sprintf('%s/.BioInstaller', tempdir()))
-install.nongithub <- function(name = "", version = NULL, show.all.versions = FALSE, 
-  destdir = "./", name.saved = NULL, nongithub.cfg = system.file("extdata", "nongithub.toml", 
-    package = "BioInstaller"), db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", system.file("extdata", 
-    "softwares_db_demo.yaml", package = "BioInstaller")), download.only = FALSE, 
+install.nongithub <- function(name = "", version = NULL, show.all.versions = FALSE, destdir = "./", name.saved = NULL, 
+  nongithub.cfg = system.file("extdata", "nongithub.toml", package = "BioInstaller"), db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", 
+    system.file("extdata", "softwares_db_demo.yaml", package = "BioInstaller")), download.only = FALSE, 
   decompress = TRUE, showWarnings = FALSE, verbose = FALSE, ...) {
   old.work.dir <- getwd()
   config.cfg <- nongithub.cfg
@@ -355,8 +347,7 @@ install.nongithub <- function(name = "", version = NULL, show.all.versions = FAL
   }
   if (!verbose) {
     if ((length(files) == 1) && (length(list.files(files)) != 0)) {
-      file.copy(sprintf("%s/%s", files, list.files(files)), "./", recursive = T, 
-        copy.mode = TRUE)
+      file.copy(sprintf("%s/%s", files, list.files(files)), "./", recursive = T, copy.mode = TRUE)
       unlink(files, recursive = TRUE, force = TRUE)
     }
   } else {
@@ -388,9 +379,8 @@ install.nongithub <- function(name = "", version = NULL, show.all.versions = FAL
         if (!is.null(name.saved)) {
           name <- tolower(name.saved)
         }
-        change.info(name = name, installed = TRUE, source.dir = destdir, 
-          bin.dir = bin.dir, version = version, last.update.time = last.update.time, 
-          db = db, ...)
+        change.info(name = name, installed = TRUE, source.dir = destdir, bin.dir = bin.dir, version = version, 
+          last.update.time = last.update.time, db = db, ...)
       }
     }
   } else {

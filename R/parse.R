@@ -42,14 +42,14 @@ get.gmap.versions <- function() {
     web <- getURL(url, headerfunction = h$update)
     web <- str_split(web, "\n")
     web <- web[[1]]
-
+    
     web <- web[str_detect(web, "href")]
     web <- web[str_detect(web, "gmap")]
-
+    
     downlad_url <- str_extract(web, "href=.*z>")
     downlad_url <- str_replace(downlad_url, "href=|>", "")
     downlad_url <- paste0("http://research-pub.gene.com/gmap/", downlad_url)
-
+    
     versions <- str_extract(downlad_url, "gmap-.*.tar")
     versions <- str_replace(versions, ".tar$", "")
     versions_final <- c(versions_final, versions)
@@ -66,15 +66,15 @@ get.gmap.newest.version <- function() {
     web <- getURL(url, headerfunction = h$update)
     web <- str_split(web, "\n")
     web <- web[[1]]
-
+    
     web <- web[str_detect(web, "href")]
     web <- web[str_detect(web, "gmap")]
     web <- web[str_detect(web, "Latest")]
-
+    
     downlad_url <- str_extract(web, "href=.*z>")
     downlad_url <- str_replace(downlad_url, "href=|>", "")
     downlad_url <- paste0("http://research-pub.gene.com/gmap/", downlad_url)
-
+    
     versions <- str_extract(downlad_url, "gmap-.*.tar")
     versions <- str_replace(versions, ".tar$", "")
     versions_final <- c(versions_final, versions)
@@ -92,14 +92,14 @@ get.edena.versions <- function() {
     web <- getURL(url, headerfunction = h$update)
     web <- str_split(web, "\n")
     web <- web[[1]]
-
+    
     web <- web[str_detect(web, "href")]
     web <- web[str_detect(web, "Edena")]
-
+    
     downlad_url <- str_extract(web, "href=\".*[zp]\"")
     downlad_url <- str_replace_all(downlad_url, "href=\"|\"", "")
     downlad_url <- str_replace(downlad_url, fixed("./"), "http://www.genomic.ch/")
-
+    
     versions <- str_extract(downlad_url, "/[eE].*[(zip)(gz)]")
     versions <- str_replace(versions, "/.*/", "")
     versions <- str_replace(versions, ".tar.gz$", "")
@@ -123,7 +123,7 @@ get.fastqc.versions <- function() {
     web <- getURL(url, headerfunction = h$update)
     web <- str_split(web, "\n")
     web <- web[[1]]
-
+    
     web <- web[str_detect(web, "Version")]
     web <- str_extract(web, "[0-9][.0-9]*")
   }

@@ -62,8 +62,7 @@ show.avaliable.versions <- function(config) {
   return(config$version_available)
 }
 
-# Check wheather destdir is exist or not, if not will create it, and set workdir
-# in make.dir
+# Check wheather destdir is exist or not, if not will create it, and set workdir in make.dir
 set.makedir <- function(make.dir, destdir) {
   if (dir.exists(destdir)) {
     setwd(destdir)
@@ -103,8 +102,7 @@ get.need.install <- function(config, db) {
 # Install dependence
 install.dependence <- function(need.install, need.install.version, destdir) {
   flog.info(sprintf("Try install the dependence:%s", paste0(need.install, collapse = ", ")))
-  install.status <- install.bioinfo(need.install, sprintf("%s/%s", dirname(destdir), 
-    need.install), version = need.install.version)
+  install.status <- install.bioinfo(need.install, sprintf("%s/%s", dirname(destdir), need.install), version = need.install.version)
   fail.list <- install.status$fail.list
   if (!is.null(fail.list) && fail.list != "") {
     stop(sprintf("Dependence Error:%s install fail.", paste0(fail.list, collapse = ", ")))
@@ -131,8 +129,7 @@ is.download.dir <- function(config) {
 }
 
 
-# According the config$source_is.dir decide wheather need to download a dir or a
-# file to destfile
+# According the config$source_is.dir decide wheather need to download a dir or a file to destfile
 download.dir.files <- function(config, source_url, destfile, showWarnings = FALSE) {
   if (any(!file.exists(dirname(destfile)))) {
     dir.create(dirname(destfile), showWarnings = FALSE, recursive = TRUE)
