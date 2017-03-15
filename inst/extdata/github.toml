@@ -496,3 +496,28 @@ windows = ""
 linux = "sh autogen.sh && ./configure --enable-maxk=96 --prefix={{destdir}} --with-mpi --with-sqlite={{sqlite:source.dir}} CPPFLAGS=-I{{sparsehash:source.dir}}/include && make && make install"
 mac = "sh autogen.sh && ./configure --enable-maxk=96 --prefix={{destdir}} --with-mpi --with-sqlite={{sqlite:source.dir}} CPPFLAGS=-I{{sparsehash:source.dir}}/include && make && make install"
 windows = "sh autogen.sh && ./configure --enable-maxk=96 --prefix={{destdir}} --with-mpi --with-sqlite={{sqlite:source.dir}} CPPFLAGS=-I{{sparsehash:source.dir}}/include && make && make install"
+
+[bamtools]
+github_url = "https://github.com/pezmaster31/bamtools"
+
+version_newest = "v2.4.1"
+
+version_available = ["v2.0.0", "v2.0.1", "v2.0.2", "v2.0.3", "v2.0.4", "v2.0.5", "v2.1.0", "v2.1.1", "v2.2.0", "v2.2.1", "v2.2.2", "v2.2.3", "v2.3.0", "v2.4.0", "v2.4.1"]
+
+after_failure = "echo 'fail!'"
+
+after_success = "echo 'successful!'"
+
+make_dir = ["./"]
+
+bin_dir = ["{{destdir}}/bin"]
+
+[bamtools.before_install]
+linux = "mkdir build; cd build && cmake .."
+mac = "mkdir build; cd build && cmake .."
+windows = "md build; cd build && cmake .."
+
+[bamtools.install]
+linux = "cd build && make"
+mac = "cd build && make"
+windows = "cd build && make"
