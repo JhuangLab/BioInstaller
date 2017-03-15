@@ -1,4 +1,4 @@
-#' Download and Install Software in SIMut
+#' Download and install biology software or database
 #'
 #' @param name Software name
 #' @param destdir A string, point the install path
