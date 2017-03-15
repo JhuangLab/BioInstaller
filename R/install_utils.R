@@ -116,8 +116,12 @@ process.dependence <- function(config, db, destdir, verbose) {
   } else if (is.setted.dependence(config)) {
     need.install <- get.need.install(config, db)$need.install
     need.install.version <- get.need.install(config, db)$need.install.version
-    if (is.need.dependence(need.install)) {
-      install.dependence(need.install, need.install.version, destdir)
+    count <- 1
+    for(i in need.install) {
+      if (is.need.dependence(i)) {
+        install.dependence(i, need.install.version[count], destdir)
+      }
+      count <- count + 1
     }
   }
 }

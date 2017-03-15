@@ -104,8 +104,8 @@ mac = ""
 windows = ""
 
 [samtools.install]
-linux = "autoconf -Wno-syntax; sed -i 's;HTSDIR = ../htslib;HTSDIR = {{htslib:source.dir}};' config.mk; make && make install prefix=`pwd`"
-mac = "autoconf -Wno-syntax; sed -i 's;HTSDIR = ../htslib;HTSDIR = {{htslib:source.dir}};' config.mk; make && make install prefix=`pwd`"
+linux = "autoconf -Wno-syntax; sed -i 's;HTSDIR = ../htslib;HTSDIR = {{htslib:source.dir}};' config.mk; make && make install prefix={{destdir}}"
+mac = "autoconf -Wno-syntax; sed -i 's;HTSDIR = ../htslib;HTSDIR = {{htslib:source.dir}};' config.mk; make && make install prefix={{destdir}}"
 windows = "make"
 
 [bcftools]
@@ -208,8 +208,8 @@ mac = ""
 windows = ""
 
 [tophat2.install]
-linux = "sh autogen.sh && ./configure --prefix=`pwd` && make && make install"
-mac = "sh autogen.sh && ./configure --prefix=`pwd` && make && make install"
+linux = "sh autogen.sh && ./configure --prefix={{destdir}} && make && make install"
+mac = "sh autogen.sh && ./configure --prefix={{destdir}} && make && make install"
 windows = ""
 
 [varscan2]
@@ -283,7 +283,7 @@ mac = ""
 windows = ""
 
 [vcftools.install]
-linux = "./autogen.sh && ./configure --prefix=`pwd` && make && make install"
+linux = "./autogen.sh && ./configure --prefix={{destdir}} && make && make install"
 mac = ""
 windows = ""
 
@@ -442,3 +442,57 @@ windows = ""
 linux = "make"
 mac = "make"
 windows = "make"
+
+[sparsehash]
+github_url = "https://github.com/sparsehash/sparsehash"
+
+version_newest = "sparsehash-2.0.3"
+
+version_available = ["-1.9", "sparsehash-0.1", "sparsehash-0.2", "sparsehash-0.3", "sparsehash-0.4", "sparsehash-0.5", "sparsehash-0.6", "sparsehash-0.8", "sparsehash-0.9", "sparsehash-0.9.1", "sparsehash-1.0", "sparsehash-1.0.1", "sparsehash-1.0.2", "sparsehash-1.1", "sparsehash-1.10", "sparsehash-1.11", "sparsehash-1.12", "sparsehash-1.2", "sparsehash-1.3", "sparsehash-1.4", "sparsehash-1.5", "sparsehash-1.5.1", "sparsehash-1.5.2", "sparsehash-1.6", "sparsehash-1.7", "sparsehash-1.8.1", "sparsehash-1.9", "sparsehash-2.0", "sparsehash-2.0.1", "sparsehash-2.0.2", "sparsehash-2.0.3"]
+
+after_failure = "echo 'fail!'"
+
+after_success = "echo 'successful!'"
+
+make_dir = ["./"]
+
+bin_dir = ["./"]
+
+[sparsehash.before_install]
+linux = ""
+mac = ""
+windows = ""
+
+[sparsehash.install]
+linux = "sh autogen.sh && ./configure --prefix={{destdir}} && make && make install"
+mac = "sh autogen.sh && ./configure --prefix={{destdir}} && make && make install"
+windows = "sh autogen.sh && ./configure --prefix={{destdir}} && make && make install"
+
+[abyss]
+github_url = "https://github.com/bcgsc/abyss"
+
+version_newest = "2.0.2"
+
+version_available = ["1.0", "1.0.1", "1.0.10", "1.0.11", "1.0.12", "1.0.13", "1.0.14", "1.0.15", "1.0.16", "1.0.2", "1.0.3", "1.0.4", "1.0.5", "1.0.6", "1.0.7", "1.0.8", "1.0.9", "1.1.0", "1.1.1", "1.1.2", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.3.0", "1.3.1", "1.3.2", "1.3.3", "1.3.4", "1.3.5", "1.3.6", "1.3.7", "1.5.0", "1.5.1", "1.5.2", "1.9.0", "2.0.0", "2.0.1", "2.0.2", "konnector-prelease", "konnector2-prerelease"]
+
+dependence = ["sparsehash", "sqlite"]
+
+dependence_version = ["sparsehash-2.0.3", "3170000"]
+
+after_failure = "echo 'fail!'"
+
+after_success = "echo 'successful!'"
+
+make_dir = ["./"]
+
+bin_dir = ["./"]
+
+[abyss.before_install]
+linux = ""
+mac = ""
+windows = ""
+
+[abyss.install]
+linux = "sh autogen.sh && ./configure --enable-maxk=96 --prefix={{destdir}} --with-mpi --with-sqlite={{sqlite:source.dir}} CPPFLAGS=-I{{sparsehash:source.dir}}/include && make && make install"
+mac = "sh autogen.sh && ./configure --enable-maxk=96 --prefix={{destdir}} --with-mpi --with-sqlite={{sqlite:source.dir}} CPPFLAGS=-I{{sparsehash:source.dir}}/include && make && make install"
+windows = "sh autogen.sh && ./configure --enable-maxk=96 --prefix={{destdir}} --with-mpi --with-sqlite={{sqlite:source.dir}} CPPFLAGS=-I{{sparsehash:source.dir}}/include && make && make install"

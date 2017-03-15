@@ -39,11 +39,11 @@ install.bioinfo <- function(name = c(), destdir = c(), name.saved = NULL, github
     flog.info(sprintf("Debug:github.cfg:%s", github.cfg))
     flog.info(sprintf("Debug:nongithub.cfg:%s", nongithub.cfg))
   }
+  github.names <- eval.config.groups(file = github.cfg)
+  nongithub.names <- eval.config.groups(file = nongithub.cfg)
+  all.names <- c(github.names, nongithub.names)
+  all.names <- all.names[!(all.names %in% c("title", "debug", "demo"))]
   if (show.all.names) {
-    github.names <- eval.config.groups(file = github.cfg)
-    nongithub.names <- eval.config.groups(file = nongithub.cfg)
-    all.names <- c(github.names, nongithub.names)
-    all.names <- all.names[!(all.names %in% c("title", "debug", "demo"))]
     return(all.names)
   }
   install.success <- c()
@@ -67,6 +67,9 @@ install.bioinfo <- function(name = c(), destdir = c(), name.saved = NULL, github
         version = version, show.all.versions = show.all.versions, db = db, download.only = download.only,
         showWarnings = showWarnings, decompress = decompress, verbose = verbose, ...)
       bynongithub <- c(bynongithub, i)
+    } else {
+      warning(sprintf("%s not existed in install database, so can not be installed by BioInstaller package.", i))
+      next
     }
     if (is.logical(status) && download.only && status && !verbose) {
       flog.info(sprintf("%s be downloaded in %s successful", name, destdir))

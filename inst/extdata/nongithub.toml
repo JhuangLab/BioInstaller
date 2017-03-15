@@ -21,9 +21,9 @@ mac = ""
 windows = ""
 
 [gmap.install]
-linux = "./configure --prefix=`pwd` && make && make install"
-mac = "sed -i s/\"## CFLAGS='-O3 -m64' .*\"/\"CFLAGS='-O3 -m64'\"/ config.site && ./configure --prefix=`pwd` && make && make install"
-windows = "./configure --prefix=`pwd` && make && make install"
+linux = "./configure --prefix={{destdir}} && make && make install"
+mac = "sed -i s/\"## CFLAGS='-O3 -m64' .*\"/\"CFLAGS='-O3 -m64'\"/ config.site && ./configure --prefix={{destdir}} && make && make install"
+windows = "./configure --prefix={{destdir}} && make && make install"
 
 [annovar]
 source_url = "http://www.openbioinformatics.org/annovar/download/0wgxR2rIVP/annovar.{{version}}.tar.gz"
@@ -268,3 +268,28 @@ windows = ""
 linux = ""
 mac = ""
 windows = ""
+
+[sqlite]
+source_url = ["http://www.sqlite.org/2017/sqlite-autoconf-{{version}}.tar.gz", "http://www.sqlite.org/2016/sqlite-autoconf-{{version}}.tar.gz"]
+
+version_newest = "3170000"
+
+version_available = ["3170000", "3130000"]
+
+after_failure = "echo 'fail!'"
+
+after_success = "echo 'successful!'"
+
+make_dir = ["./"]
+
+bin_dir = ["./bin"]
+
+[sqlite.before_install]
+linux = "autoreconf -ivf"
+mac = "autoreconf -ivf"
+windows = "autoreconf -ivf"
+
+[sqlite.install]
+linux = "./configure --prefix={{destdir}} && make && make install"
+mac = "./configure --prefix={{destdir}} && make && make install"
+windows = "./configure --prefix={{destdir}} && make && make install"
