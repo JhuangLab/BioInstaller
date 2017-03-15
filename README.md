@@ -41,6 +41,7 @@ Name | Version_Newest | Description
 [Edean](http://www.genomic.ch/edena/) | V3.131028 | De novo short reads assembler
 [ucsc_utils](http://hgdownload.cse.ucsc.edu/admin/exe/) | v344 | UCSC genome browser 'kent' bioinformatic utilities (blat, liftOver, and other command line utilities) are freely downloadable for academic, noncommercial, and personal use.
 [FastQC](http://www.bioinformatics.bbsrc.ac.uk/projects/fastqc/) | 0.11.5 | A quality control tool for high throughput sequence data.
+[ABySS](https://github.com/bcgsc/abyss) | 2.0.2 | ABySS is a de novo sequence assembler intended for short paired-end reads and large genomes.
 
 ** Protected **
 
@@ -59,6 +60,8 @@ gatk_bundle | b37 |  The Standard Data Set pending completion of the Hg38 bundle
 gatk_bundle | hg18 | Includes the UCSC-style hg18 reference along with all lifted over VCF files. The refGene track and BAM files are not available. We only provide data files for this genome-build that can be lifted over "easily" from our master b37 repository. Sorry for whatever inconvenience that this might cause. Also includes a chain file to lift over to b37.
 gatk_bundle | hg19 | Includes the UCSC-style hg19 reference along with all lifted over VCF files.
 gatk_bundle | hg38 | This contains all the resource files needed for Best Practices short variant discovery in whole-genome sequencing data (WGS). Exome files and itemized resource list coming soon(ish).
+[sparsehash](https://github.com/sparsehash/sparsehash) | 2.0.3 | C++ associative containers
+[sqlite](https://www.sqlite.org/) | 3.17 | SQLite is an in-process library that implements a self-contained, serverless, zero-configuration, transactional SQL database engine. The code for SQLite is in the public domain and is thus free for use for any purpose, commercial or private. SQLite is the most widely deployed database in the world with more applications than we can count, including several high-profile projects.
 
 ### - Refference
 
