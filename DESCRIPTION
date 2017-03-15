@@ -11,9 +11,9 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Imports:
-    stringr (>= 1.0.0),
+    stringr (>= 1.2.0),
     futile.logger (>= 1.4.1),
-    configr (>= 0.1.1),
+    configr (>= 0.2.0),
     git2r (>= 0.0.3),
     R.utils (>= 2.5.0),
     RCurl (>= 1.95-4.8)
