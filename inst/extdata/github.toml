@@ -63,7 +63,7 @@ version_available = ["0.2.0-rc1","0.2.0-rc10", "0.2.0-rc11", "0.2.0-rc12", "0.2.
 
 after_failure = "echo 'fail!'"
 
-after_success = "echo 'successful!'"
+after_success = "ln -s htslib/* ./"
 
 make_dir = ["./"]
 
@@ -92,7 +92,7 @@ version_available = ["0.1.1", "0.1.10", "0.1.11", "0.1.12", "0.1.12a", "0.1.13",
 
 after_failure = "echo 'fail!'"
 
-after_success = "ln -s htslib/* ./"
+after_success = "ln -s {{htslib:source.dir}} ./"
 
 make_dir = ["./"]
 
@@ -104,9 +104,9 @@ mac = ""
 windows = ""
 
 [samtools.install]
-linux = "autoconf -Wno-syntax; sed -i 's;HTSDIR = ../htslib;HTSDIR = {{htslib:source.dir}};' config.mk; make && make install prefix={{destdir}}"
-mac = "autoconf -Wno-syntax; sed -i 's;HTSDIR = ../htslib;HTSDIR = {{htslib:source.dir}};' config.mk; make && make install prefix={{destdir}}"
-windows = "make"
+linux = ["autoconf -Wno-syntax; sed -i 's;HTSDIR = ../htslib;HTSDIR = {{htslib:source.dir}};' config.mk; make && make install prefix=`pwd`"]
+mac = ["autoconf -Wno-syntax; sed -i 's;HTSDIR = ../htslib;HTSDIR = {{htslib:source.dir}};' config.mk; make && make install prefix=`pwd`"]
+windows = ["autoconf -Wno-syntax; sed -i 's;HTSDIR = ../htslib;HTSDIR = {{htslib:source.dir}};' config.mk; make && make install prefix=`pwd`"]
 
 [bcftools]
 github_url = "https://github.com/samtools/bcftools"
@@ -208,8 +208,8 @@ mac = ""
 windows = ""
 
 [tophat2.install]
-linux = "sh autogen.sh && ./configure --prefix={{destdir}} && make && make install"
-mac = "sh autogen.sh && ./configure --prefix={{destdir}} && make && make install"
+linux = "sh autogen.sh && ./configure --prefix=`pwd` && make && make install"
+mac = "sh autogen.sh && ./configure --prefix=`pwd` && make && make install"
 windows = ""
 
 [varscan2]
@@ -283,7 +283,7 @@ mac = ""
 windows = ""
 
 [vcftools.install]
-linux = "./autogen.sh && ./configure --prefix={{destdir}} && make && make install"
+linux = "./autogen.sh && ./configure --prefix=`pwd` && make && make install"
 mac = ""
 windows = ""
 
@@ -464,9 +464,9 @@ mac = ""
 windows = ""
 
 [sparsehash.install]
-linux = "sh autogen.sh && ./configure --prefix={{destdir}} && make && make install"
-mac = "sh autogen.sh && ./configure --prefix={{destdir}} && make && make install"
-windows = "sh autogen.sh && ./configure --prefix={{destdir}} && make && make install"
+linux = "sh autogen.sh && ./configure --prefix=`pwd` && make && make install"
+mac = "sh autogen.sh && ./configure --prefix=`pwd` && make && make install"
+windows = "sh autogen.sh && ./configure --prefix=`pwd` && make && make install"
 
 [abyss]
 github_url = "https://github.com/bcgsc/abyss"
@@ -493,9 +493,9 @@ mac = ""
 windows = ""
 
 [abyss.install]
-linux = "sh autogen.sh && ./configure --enable-maxk=96 --prefix={{destdir}} --with-mpi --with-sqlite={{sqlite:source.dir}} CPPFLAGS=-I{{sparsehash:source.dir}}/include && make && make install"
-mac = "sh autogen.sh && ./configure --enable-maxk=96 --prefix={{destdir}} --with-mpi --with-sqlite={{sqlite:source.dir}} CPPFLAGS=-I{{sparsehash:source.dir}}/include && make && make install"
-windows = "sh autogen.sh && ./configure --enable-maxk=96 --prefix={{destdir}} --with-mpi --with-sqlite={{sqlite:source.dir}} CPPFLAGS=-I{{sparsehash:source.dir}}/include && make && make install"
+linux = "sh autogen.sh && ./configure --enable-maxk=96 --prefix=`pwd` --with-mpi --with-sqlite={{sqlite:source.dir}} CPPFLAGS=-I{{sparsehash:source.dir}}/include && make && make install"
+mac = "sh autogen.sh && ./configure --enable-maxk=96 --prefix=`pwd` --with-mpi --with-sqlite={{sqlite:source.dir}} CPPFLAGS=-I{{sparsehash:source.dir}}/include && make && make install"
+windows = "sh autogen.sh && ./configure --enable-maxk=96 --prefix=`pwd` --with-mpi --with-sqlite={{sqlite:source.dir}} CPPFLAGS=-I{{sparsehash:source.dir}}/include && make && make install"
 
 [bamtools]
 github_url = "https://github.com/pezmaster31/bamtools"
@@ -510,7 +510,7 @@ after_success = "echo 'successful!'"
 
 make_dir = ["./"]
 
-bin_dir = ["{{destdir}}/bin"]
+bin_dir = ["./bin"]
 
 [bamtools.before_install]
 linux = "mkdir build; cd build && cmake .."

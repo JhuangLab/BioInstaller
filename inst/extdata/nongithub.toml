@@ -21,9 +21,9 @@ mac = ""
 windows = ""
 
 [gmap.install]
-linux = "./configure --prefix={{destdir}} && make && make install"
-mac = "sed -i s/\"## CFLAGS='-O3 -m64' .*\"/\"CFLAGS='-O3 -m64'\"/ config.site && ./configure --prefix={{destdir}} && make && make install"
-windows = "./configure --prefix={{destdir}} && make && make install"
+linux = "./configure --prefix=`pwd` && make && make install"
+mac = "sed -i s/\"## CFLAGS='-O3 -m64' .*\"/\"CFLAGS='-O3 -m64'\"/ config.site && ./configure --prefix=`pwd` && make && make install"
+windows = "./configure --prefix=`pwd` && make && make install"
 
 [annovar]
 source_url = "http://www.openbioinformatics.org/annovar/download/0wgxR2rIVP/annovar.{{version}}.tar.gz"
@@ -290,9 +290,9 @@ mac = "autoreconf -ivf"
 windows = "autoreconf -ivf"
 
 [sqlite.install]
-linux = "./configure --prefix={{destdir}} && make && make install"
-mac = "./configure --prefix={{destdir}} && make && make install"
-windows = "./configure --prefix={{destdir}} && make && make install"
+linux = "./configure --prefix=`pwd` && make && make install"
+mac = "./configure --prefix=`pwd` && make && make install"
+windows = "./configure --prefix=`pwd` && make && make install"
 
 
 [cesa]
