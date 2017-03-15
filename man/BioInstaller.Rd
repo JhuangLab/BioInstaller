@@ -4,20 +4,20 @@
 \name{BioInstaller}
 \alias{BioInstaller}
 \alias{BioInstaller-package}
-\title{Install and download massive bioinformatics analysis software and database, 
-such as NGS analysis tools with its required database or/and refference, 
-is still a complicated task. BioInstaller can be used to install 
+\title{Install and download massive bioinformatics analysis software and database,
+such as NGS analysis tools with its required database or/and reference genome,
+is still a complicated task. BioInstaller can be used to install
 that tools and database in R conveniently.}
 \description{
-Install and download massive bioinformatics analysis software and database, 
-such as NGS analysis tools with its required database or/and refference, 
-is still a complicated task. BioInstaller can be used to install 
+Install and download massive bioinformatics analysis software and database,
+such as NGS analysis tools with its required database or/and reference genome,
+is still a complicated task. BioInstaller can be used to install
 that tools and database in R conveniently.
 }
 \seealso{
 Useful links:
 
-\url{https://github.com/Miachol/BioInstaller} 
+\url{https://github.com/Miachol/BioInstaller}
 
 Report bugs at \url{https://github.com/Miachol/BioInstaller/issues}
 }
