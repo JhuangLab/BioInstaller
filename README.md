@@ -54,11 +54,11 @@ Name | Newest | Description |
 ### - Dependences
 Name | Version | Description
 :--- |:--- | --- 
-[gatk_bundle](ftp://gsapubftp-anonymous@ftp.broadinstitute.org/bundle/b36) | b36 | Includes the 1000 Genomes pilot b36 formatted reference sequence (human_b36_both.fasta) along with all lifted over VCF files. The refGene track and BAM files are not available. We only provide data files for this genome-build that can be lifted over "easily" from our master b37 repository. Sorry for whatever inconvenience that this might cause. Also includes a chain file to lift over to b37.
-[gatk_bundle](ftp://gsapubftp-anonymous@ftp.broadinstitute.org/bundle/b37) | b37 |  The Standard Data Set pending completion of the Hg38 bundle
-[gatk_bundle](ftp://gsapubftp-anonymous@ftp.broadinstitute.org/bundle/hg18) | hg18 | Includes the UCSC-style hg18 reference along with all lifted over VCF files. The refGene track and BAM files are not available. We only provide data files for this genome-build that can be lifted over "easily" from our master b37 repository. Sorry for whatever inconvenience that this might cause. Also includes a chain file to lift over to b37.
-[gatk_bundle](ftp://gsapubftp-anonymous@ftp.broadinstitute.org/bundle/hg19) | hg19 | Includes the UCSC-style hg19 reference along with all lifted over VCF files.
-[gatk_bundle](ftp://gsapubftp-anonymous@ftp.broadinstitute.org/bundle/hg38) | hg38 | This contains all the resource files needed for Best Practices short variant discovery in whole-genome sequencing data (WGS). Exome files and itemized resource list coming soon(ish).
+gatk_bundle | b36 | Includes the 1000 Genomes pilot b36 formatted reference sequence (human_b36_both.fasta) along with all lifted over VCF files. The refGene track and BAM files are not available. We only provide data files for this genome-build that can be lifted over "easily" from our master b37 repository. Sorry for whatever inconvenience that this might cause. Also includes a chain file to lift over to b37.
+gatk_bundle | b37 |  The Standard Data Set pending completion of the Hg38 bundle
+gatk_bundle | hg18 | Includes the UCSC-style hg18 reference along with all lifted over VCF files. The refGene track and BAM files are not available. We only provide data files for this genome-build that can be lifted over "easily" from our master b37 repository. Sorry for whatever inconvenience that this might cause. Also includes a chain file to lift over to b37.
+gatk_bundle | hg19 | Includes the UCSC-style hg19 reference along with all lifted over VCF files.
+gatk_bundle | hg38 | This contains all the resource files needed for Best Practices short variant discovery in whole-genome sequencing data (WGS). Exome files and itemized resource list coming soon(ish).
 
 ### - Refference
 
