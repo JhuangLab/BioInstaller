@@ -2,6 +2,7 @@
 % Please edit documentation in R/install.R
 \name{install.bioinfo}
 \alias{install.bioinfo}
+\title{Download and install biology software or database}
 \usage{
 install.bioinfo(name = c(), destdir = c(), name.saved = NULL,
   github.cfg = system.file("extdata", "github.toml", package =
@@ -49,6 +50,7 @@ system.file('extdata', 'softwares_db_demo.yaml', package = 'BioInstaller'))}
 Bool Value or a list
 }
 \description{
+Download and install biology software or database
 }
 \examples{
 set.biosoftwares.db(sprintf('\%s/.BioInstaller', tempdir()))
