@@ -22,13 +22,13 @@ install.nongithub(name = "", version = NULL, show.all.versions = FALSE,
 \item{destdir}{A string, point the install path}
 
 \item{name.saved}{Software name when you want to install different version, you
-can use this to point the installed softwares name like "GATK-3.7"}
+can use this to point the installed softwares name like 'GATK-3.7'}
 
 \item{nongithub.cfg}{Configuration file of installed by non github url,
 default is system.file('extdata', 'nongithub.toml', package='BioInstaller')}
 
-\item{db}{File of saving softwares infomation, default is Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", 
-system.file("extdata", "softwares_db_demo.yaml", package = "BioInstaller"))}
+\item{db}{File of saving softwares infomation, default is Sys.getenv('BIO_SOFTWARES_DB_ACTIVE', 
+system.file('extdata', 'softwares_db_demo.yaml', package = 'BioInstaller'))}
 
 \item{download.only}{Logicol indicating wheather only download source or file (non-github)}
 

@@ -34,6 +34,6 @@ Update biologly softwares infomation of system
 }
 \examples{
 set.biosoftwares.db(sprintf('\%s/.BioInstaller', tempdir()))
-change.info(name = 'demo', installed = 'yes', source.dir = '', 
+change.info(name = 'demo', installed = 'yes', source.dir = '',
 bin.dir = '', excutable.files = c('demo'), others.customer = 'demo')
 }
