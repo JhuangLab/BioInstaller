@@ -1,10 +1,10 @@
-# [![Build Status](https://travis-ci.org/Miachol/BioInstaller.svg)](https://travis-ci.org/Miachol/BioInstaller) [![License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)](https://en.wikipedia.org/wiki/MIT_License) [![codecov](https://codecov.io/github/Miachol/BioInstaller/branch/master/graphs/badge.svg)](https://codecov.io/github/Miachol/BioInstaller) 
+# [![Build Status](https://travis-ci.org/Miachol/BioInstaller.svg)](https://travis-ci.org/Miachol/BioInstaller) [![License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)](https://en.wikipedia.org/wiki/MIT_License) [![CRAN](http://www.r-pkg.org/badges/version/BioInstaller)](https://cran.r-project.org/package=BioInstaller) [![Downloads](http://cranlogs.r-pkg.org/badges/BioInstaller?color=brightgreen)](http://www.r-pkg.org/pkg/BioInstaller) [![codecov](https://codecov.io/github/Miachol/BioInstaller/branch/master/graphs/badge.svg)](https://codecov.io/github/Miachol/BioInstaller) 
 
 BioInstaller package
 ==============
 
 ## Introduction
-Install and download massive bioinformatics analysis software and database, such as NGS analysis tools with its required database or/and refference, is still a task that need to spend a lot of time. 
+Install and download massive bioinformatics analysis software and database, such as NGS analysis tools with its required database or/and reference, is still a task that need to spend a lot of time. 
 
 Especialy, when start a NGS analysis work in a new computer or system, you need costs so much time and energy to 
  establish a complete set of softwares and dependce of a analysis pipeline and set the corresponding configuration file.
@@ -64,7 +64,7 @@ gatk_bundle | hg38 | This contains all the resource files needed for Best Practi
 [sparsehash](https://github.com/sparsehash/sparsehash) | 2.0.3 | C++ associative containers
 [sqlite](https://www.sqlite.org/) | 3.17 | SQLite is an in-process library that implements a self-contained, serverless, zero-configuration, transactional SQL database engine. The code for SQLite is in the public domain and is thus free for use for any purpose, commercial or private. SQLite is the most widely deployed database in the world with more applications than we can count, including several high-profile projects.
 
-### Refference
+### Reference
 
 Name | Version | Description
 :--- |:--- | :--- 
