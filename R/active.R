@@ -10,7 +10,7 @@
 #' is.biosoftwares.db.active('config.cfg')
 #' @export
 is.biosoftwares.db.active <- function(biosoftwares.db) {
-  biosoftwares.db <- normalizePath(biosoftwares.db)
+  biosoftwares.db <- normalizePath(biosoftwares.db, mustWork = FALSE)
   identical(biosoftwares.db, Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", system.file("extdata", "softwares_db_demo.yaml", 
     package = "BioInstaller")))
 }

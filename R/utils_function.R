@@ -10,22 +10,24 @@ is.file.empty <- function(path) {
 
 # Get the operating system distribution
 get.os <- function() {
-  centos.flag <- as.character(Sys.which("yum"))
-  ubuntu.flag <- as.character(Sys.which("apt-get"))
-  arch.flag <- as.character(Sys.which("pacman"))
-  windows.flag <- as.character(Sys.which("cmd.exe"))
-  mac.flag <- as.character(Sys.which("appleteamview"))
-  
-  if (centos.flag != "") {
-    return("centos")
-  } else if (ubuntu.flag != "") {
-    return("ubuntu")
-  } else if (windows.flag != "") {
-    return("windows")
-  } else if (arch.flag != "") {
-    return("arch")
-  } else if (mac.flag != "") {
+  os <- Sys.info()["sysname"][[1]]
+  if(os == "Linux"){
+    centos.flag <- as.character(Sys.which("yum"))
+    ubuntu.flag <- as.character(Sys.which("apt-get"))
+    arch.flag <- as.character(Sys.which("pacman"))
+    if (centos.flag != "") {
+      return("centos")
+    } else if (ubuntu.flag != "") {
+      return("ubuntu")
+    } else if (arch.flag != "") {
+      return("arch")
+    } else {
+      return("other")
+    } 
+  } else if (os == "Darwin") {
     return("mac")
+  } else if (os == "Windows") {
+    return("windows")
   }
 }
 

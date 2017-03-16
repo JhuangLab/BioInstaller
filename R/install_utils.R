@@ -66,18 +66,14 @@ show.avaliable.versions <- function(config) {
 set.makedir <- function(make.dir, destdir) {
   if (dir.exists(destdir)) {
     setwd(destdir)
-    for (i in make.dir) {
-      if (i != "./" && dir.exists(i)) {
-        setwd(i)
-      }
-    }
   } else {
     dir.create(destdir, showWarnings = FALSE, recursive = TRUE)
     setwd(destdir)
-    for (i in make.dir) {
-      if (i != "./" && dir.exists(i)) {
-        setwd(i)
-      }
+
+  }
+  for (i in make.dir) {
+    if (i != "./" && dir.exists(i)) {
+      setwd(i)
     }
   }
 }
