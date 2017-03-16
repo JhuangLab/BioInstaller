@@ -51,8 +51,8 @@ flog.info('Debug:install.github(name = "pindel", destdir = sprintf(destdir="%s/p
 status <- install.github(name = "pindel", destdir = sprintf("%s/pindel", tempdir()), verbose = T)
 print(status)
 
-flog.info('Debug:install.github(name = "lofreq", destdir = sprintf(destdir="%s/lofreq", tempdir()), verbose = T)')
-status <- install.github(name = "lofreq", destdir = sprintf("%s/lofreq", tempdir()), verbose = T)
+flog.info('Debug:install.github(name = "lofreq", destdir = sprintf(destdir="%s/lofreq", tempdir()), verbose = F)')
+status <- install.github(name = "lofreq", destdir = sprintf("%s/lofreq", tempdir()), verbose = F)
 print(status)
 
 flog.info('Debug:install.github(name = "hisat2", destdir = sprintf(destdir="%s/hisat2", tempdir()), verbose = T)')

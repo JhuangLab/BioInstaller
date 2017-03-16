@@ -6,5 +6,6 @@ install.bioinfo('samtools', destdir = sprintf('%s/testbio/samtools', tempdir()),
 #install.bioinfo('annovar', destdir = sprintf('%s/testbio/annovar', tempdir()), name.saved = "annovar_latest", verbose = T, download.only = T)
 #install.bioinfo('annovar', destdir = sprintf('%s/testbio/annovar', tempdir()), name.saved = "annovar_latest", decompress = F)
 #install.bioinfo('annovar', destdir = sprintf('%s/testbio/annovar', tempdir()), name.saved = "annovar_latest")
+#install.bioinfo('edena', destdir = sprintf('%s/edena', tempdir()), name.saved = "edena_latest")
 #print(get.info("annovar_latest"))
 #print(list.files(sprintf('%s/testbio/annovar', tempdir())))
