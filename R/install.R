@@ -152,7 +152,8 @@ install.github <- function(name = "", version = NULL, show.all.versions = FALSE,
   args.all$version <- version
   args.all$destdir <- destdir
   args.all <- args.all[names(args.all) != ""]
-  config <- configr::parse.extra(config = config, extra.list = args.all, other.config = db)
+  config <- configr::parse.extra(config = config, extra.list = args.all)
+  config <- configr::parse.extra(config = config, other.config = db)
 
 
   destdir <- normalizePath(destdir, mustWork = FALSE)
