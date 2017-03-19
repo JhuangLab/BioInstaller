@@ -333,7 +333,7 @@ after_success = "echo 'successful!'"
 
 make_dir = ["./"]
 
-bin_dir = ["./bin"]
+bin_dir = ["./"]
 
 [novoalign.before_install]
 linux = ""
@@ -341,6 +341,31 @@ mac = ""
 windows = ""
 
 [novoalign.install]
+linux = ""
+mac = ""
+windows = ""
+
+[ssaha2]
+source_url = ["ftp://ftp.sanger.ac.uk/pub/resources/software/ssaha2/ssaha2_{{version}}.tgz"]
+
+version_newest = "v2.5.5_x86_64"
+
+version_available = ["v2.5.1_mac", "v2.5.2_i686", "v2.5.2_ia64", "v2.5.2_x86_64", "v2.5.3_i686", "v2.5.3_ia64", "v2.5.3_x86_64", "v2.5.4_i686", "v2.5.4_MacOSX_i386", "v2.5.4_x86_64", "v2.5.5_i686", "v2.5.5_x86_64"]
+
+after_failure = "echo 'fail!'"
+
+after_success = "echo 'successful!'"
+
+make_dir = ["./"]
+
+bin_dir = ["./bin"]
+
+[ssaha2.before_install]
+linux = ""
+mac = ""
+windows = ""
+
+[ssaha2.install]
 linux = ""
 mac = ""
 windows = ""

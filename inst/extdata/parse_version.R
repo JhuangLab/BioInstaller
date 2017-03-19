@@ -154,3 +154,27 @@ get.novoalign.versions <- function() {
 get.novoalign.newest.version <- function() {
   return(get.novoalign.versions()[1])
 }
+
+# Function get ssaha2 all versions
+get.ssaha2.versions <- function() {
+  urls <- c("ftp://ftp.sanger.ac.uk/pub/resources/software/ssaha2/")
+  versions_final <- NULL
+  for (url in urls) {
+    h <- basicTextGatherer()
+    web <- getURL(url, headerfunction = h$update)
+    web <- str_split(web, "\n")
+    web <- web[[1]]
+    web <- web[str_detect(web, "tgz")]
+    web <- web[str_detect(web, "201[01 ]* ssaha2_v2.")]
+    web <- str_extract(web, "ssaha2.*gz")
+    web <- str_replace(web, "ssaha2_", "")
+    web <- str_replace(web, ".tgz", "")
+  }
+  versions_final <- web
+  return(versions_final)
+}
+# Function get ssaha2 newest version
+get.ssaha2.newest.version <- function() {
+  versions <- get.ssaha2.versions()
+  return(version[length(versions)])
+}

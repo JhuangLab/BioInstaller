@@ -43,7 +43,7 @@ Name | Version_Newest | Description
 [FastQC](http://www.bioinformatics.bbsrc.ac.uk/projects/fastqc/) | 0.11.5 | A quality control tool for high throughput sequence data.
 [ABySS](https://github.com/bcgsc/abyss) | 2.0.2 | ABySS is a de novo sequence assembler intended for short paired-end reads and large genomes.
 [CESA](http://liulab.dfci.harvard.edu/CEAS/) | 1.0.2 | Cis-regulatory Element Annotation System
-[NovoAlign](http://www.novocraft.com/products/novoalign/) | v3.7.0 | Powerful tool designed for mapping of short reads onto a reference genome from Illumina, Ion Torrent, and 454 NGS platforms.
+[SSAHA2](http://www.sanger.ac.uk/science/tools/ssaha2-0) | v2.5.5 | SSAHA2 (Sequence Search and Alignment by Hashing Algorithm) is a pairwise sequence alignment program designed for the efficient mapping of sequencing reads onto genomic reference sequences. SSAHA2 reads of most sequencing platforms (ABI-Sanger, Roche 454, Illumina-Solexa) and a range of output formats (SAM, CIGAR, PSL etc.) are supported. A pile-up pipeline for analysis and genotype calling is available as a separate package.
 
 **Protected**
 
@@ -52,6 +52,7 @@ Name | Newest | Description |
 [ANNOVAR](http://annovar.openbioinformatics.org/en/latest/) | 2017Feb15 | An efficient software tool to utilize update-to-date information to functionally annotate genetic variants detected from diverse genomes (including human genome hg18, hg19, hg38, as well as mouse, worm, fly, yeast and many others
 [GATK](https://software.broadinstitute.org/gatk/) | 3.7 | Developed by the Data Science and Data Engineering group at the Broad Institute, the toolkit offers a wide variety of tools with a primary focus on variant discovery and genotyping. Its powerful processing engine and high-performance computing features make it capable of taking on projects of any size (Protected need install by change.info)
 [MuTect](http://archive.broadinstitute.org/cancer/cga/mutect/) | 1.1.7 | A method developed at the Broad Institute for the reliable and accurate identification of somatic point mutations in next generation sequencing data of cancer genomes (Protected need install by change.info)
+[NovoAlign](http://www.novocraft.com/products/novoalign/) | v3.7.0 | Powerful tool designed for mapping of short reads onto a reference genome from Illumina, Ion Torrent, and 454 NGS platforms.
 
 
 ### Dependences
