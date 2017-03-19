@@ -1,3 +1,6 @@
+library("RCurl")
+library("stringr")
+options(stringsAsFactors = F)
 # Get All Hisat2 ftp reffa url
 get.hisat2.reffa.url <- function() {
   url <- "ftp://ftp.ccb.jhu.edu/pub/infphilo/hisat2/data/"
@@ -114,7 +117,7 @@ get.edena.newest.version <- function() {
 }
 
 
-# Function get Edena all versions
+# Function get fastqc all versions
 get.fastqc.versions <- function() {
   urls <- c("http://www.bioinformatics.bbsrc.ac.uk/projects/fastqc/")
   versions_final <- NULL
@@ -129,7 +132,25 @@ get.fastqc.versions <- function() {
   }
   return(versions_final)
 }
-# Function get Edena newest version
+# Function get fastqc newest version
 get.fastqc.newest.version <- function() {
-  return(get.edena.versions()[1])
+  return(get.fastqc.versions()[1])
+}
+
+# Function get Novoalign all versions
+get.novoalign.versions <- function() {
+  urls <- system.file("extdata", "html/novocraft.html", package = "BioInstaller")
+  versions_final <- NULL
+  for (url in urls) {
+    web <- readLines(url, warn = FALSE)
+    web <- web[str_detect(web, "download.php")]
+    web <- web[str_detect(web, "tar.gz")]
+    web <- str_extract(web, "[0-9][.0-9]*")
+  }
+  versions_final <- paste0("V", web, c(".Linux3.0", ".Linux2.6", ".MacOSX"))
+  return(versions_final)
+}
+# Function get Novoalign newest version
+get.novoalign.newest.version <- function() {
+  return(get.novoalign.versions()[1])
 }

@@ -154,6 +154,7 @@ install.github <- function(name = "", version = NULL, show.all.versions = FALSE,
   args.all <- args.all[names(args.all) != ""]
   config <- configr::parse.extra(config = config, extra.list = args.all)
   config <- configr::parse.extra(config = config, other.config = db)
+  config <- configr::parse.extra(config = config, rcmd.parse = T)
 
 
   destdir <- normalizePath(destdir, mustWork = FALSE)
@@ -291,6 +292,7 @@ install.nongithub <- function(name = "", version = NULL, show.all.versions = FAL
   args.all <- args.all[names(args.all) != ""]
   config <- configr::parse.extra(config = config, extra.list = args.all)
   config <- configr::parse.extra(config, other.config = db)
+  config <- configr::parse.extra(config = config, rcmd.parse = T)
 
   destdir <- normalizePath(destdir, mustWork = FALSE)
   status <- destdir.initial(destdir, strict = FALSE, download.only)

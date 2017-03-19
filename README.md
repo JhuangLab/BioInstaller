@@ -43,6 +43,7 @@ Name | Version_Newest | Description
 [FastQC](http://www.bioinformatics.bbsrc.ac.uk/projects/fastqc/) | 0.11.5 | A quality control tool for high throughput sequence data.
 [ABySS](https://github.com/bcgsc/abyss) | 2.0.2 | ABySS is a de novo sequence assembler intended for short paired-end reads and large genomes.
 [CESA](http://liulab.dfci.harvard.edu/CEAS/) | 1.0.2 | Cis-regulatory Element Annotation System
+[NovoAlign](http://www.novocraft.com/products/novoalign/) | v3.7.0 | Powerful tool designed for mapping of short reads onto a reference genome from Illumina, Ion Torrent, and 454 NGS platforms.
 
 **Protected**
 
