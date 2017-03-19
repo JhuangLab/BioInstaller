@@ -133,7 +133,7 @@ drop_redundance_dir <- function(destdir) {
     }
     unlink(files.parent, recursive = TRUE)
     files.parent <- list.files(destdir)
-    if (length(files.parent) > 1) {
+    if (length(files.parent) > 0) {
       TRUE
     } else {
       FALSE

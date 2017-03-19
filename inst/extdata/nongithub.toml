@@ -369,3 +369,53 @@ windows = ""
 linux = ""
 mac = ""
 windows = ""
+
+[gatk]
+source_url = ["http://bioinfo.rjh.com.cn/download/gatk/download.php?filename=gatk{{version}}.zip"]
+
+version_newest = "3.7"
+
+version_available = ["3.7", "3.6", "3.5", "3.4-46"]
+
+after_failure = "echo 'fail!'"
+
+after_success = "echo 'successful!'"
+
+make_dir = ["./"]
+
+bin_dir = ["./"]
+
+[gatk.before_install]
+linux = ""
+mac = ""
+windows = ""
+
+[gatk.install]
+linux = ""
+mac = ""
+windows = ""
+
+[mutect]
+source_url = ["http://bioinfo.rjh.com.cn/download/gatk/download.php?filename=mutect{{version}}.zip"]
+
+version_newest = "1.1.7"
+
+version_available = ["1.1.7", "1.1.4", "1.1.1"]
+
+after_failure = "echo 'fail!'"
+
+after_success = "echo 'successful!'"
+
+make_dir = ["./"]
+
+bin_dir = ["./"]
+
+[mutect.before_install]
+linux = ""
+mac = ""
+windows = ""
+
+[mutect.install]
+linux = ""
+mac = ""
+windows = ""
