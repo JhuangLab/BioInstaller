@@ -151,6 +151,7 @@ install.github <- function(name = "", version = NULL, show.all.versions = FALSE,
   args.all <- as.list(match.call())
   args.all$version <- version
   args.all$destdir <- destdir
+  args.all$os.version <- get.os()
   args.all <- args.all[names(args.all) != ""]
   config <- configr::parse.extra(config = config, extra.list = args.all)
   config <- configr::parse.extra(config = config, other.config = db)
@@ -289,6 +290,7 @@ install.nongithub <- function(name = "", version = NULL, show.all.versions = FAL
   args.all <- as.list(match.call())
   args.all$version <- version
   args.all$destdir <- destdir
+  args.all$os.version <- get.os()
   args.all <- args.all[names(args.all) != ""]
   config <- configr::parse.extra(config = config, extra.list = args.all)
   config <- configr::parse.extra(config, other.config = db)
@@ -300,7 +302,8 @@ install.nongithub <- function(name = "", version = NULL, show.all.versions = FAL
     return(FALSE)
   }
 
-  source_url <- config$source_url
+  source_url <- source.url.initial(config)
+  print(source_url)
   filename <- url2filename(source_url)
   if (download.only && !verbose) {
     msg <- sprintf("Now start to download %s in %s.", name, destdir)

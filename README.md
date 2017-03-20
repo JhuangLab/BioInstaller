@@ -44,6 +44,7 @@ Name | Version_Newest | Description
 [ABySS](https://github.com/bcgsc/abyss) | 2.0.2 | ABySS is a de novo sequence assembler intended for short paired-end reads and large genomes.
 [CESA](http://liulab.dfci.harvard.edu/CEAS/) | 1.0.2 | Cis-regulatory Element Annotation System
 [SSAHA2](http://www.sanger.ac.uk/science/tools/ssaha2-0) | v2.5.5 | SSAHA2 (Sequence Search and Alignment by Hashing Algorithm) is a pairwise sequence alignment program designed for the efficient mapping of sequencing reads onto genomic reference sequences. SSAHA2 reads of most sequencing platforms (ABI-Sanger, Roche 454, Illumina-Solexa) and a range of output formats (SAM, CIGAR, PSL etc.) are supported. A pile-up pipeline for analysis and genotype calling is available as a separate package.
+[sratools](http://ncbi.github.io/sra-tools/) | 2.8.2-1 | The SRA Toolkit and SDK from NCBI is a collection of tools and libraries for using data in the INSDC Sequence Read Archives.
 
 **Protected**
 

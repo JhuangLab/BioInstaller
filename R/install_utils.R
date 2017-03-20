@@ -166,3 +166,23 @@ download.dir.files <- function(config, source_url, destfile, showWarnings = FALS
 url2filename <- function(url) {
   return(str_replace_all(url, ".*/", ""))
 }
+
+# Initital source_url
+source.url.initial <- function(config) {
+  source_url <- config$source_url
+  if(is.null(source_url)) {
+    return(NULL)
+  }
+  if(is.list(config$source_url)) {
+    os.version <- get.os()
+    if(os.version == "windows") {
+      return(source_url$windows)
+    } else if(os.version == "mac") {
+      return(source_url$mac)
+    } else {
+      return(source_url$linux)
+    }
+  } else {
+    return(config$source_url)
+  }
+}
