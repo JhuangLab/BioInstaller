@@ -36,7 +36,7 @@ Name | Version_Newest | Description
 [VarScan2](http://dkoboldt.github.io/varscan/) | 2.4.3 | Variant calling and somatic mutation/CNV detection for next-generation sequencing data
 [freebayes](https://github.com/ekg/freebayes) | 1.1.0 | Bayesian haplotype-based polymorphism discovery and genotyping. 
 [HTSeq](https://github.com/simon-anders/htseq) | 0.6.1p2 | A Python library to facilitate processing and analysis of data from high-throughput sequencing (HTS) experiments
-[GMAP](http://research-pub.gene.com/gmap/) | 2017-02-15 | A Genomic Mapping and Alignment Program for mRNA and EST Sequences and Genomic Short-read Nucleotide Alignment Program
+[GMAP](http://research-pub.gene.com/gmap/) | 2017-03-17 | A Genomic Mapping and Alignment Program for mRNA and EST Sequences and Genomic Short-read Nucleotide Alignment Program
 [MACS](https://github.com/taoliu/MACS) | 2015.4.20 | MACS -- Model-based Analysis of ChIP-Seq. [More](http://liulab.dfci.harvard.edu/MACS/) detail.
 [Edean](http://www.genomic.ch/edena/) | V3.131028 | De novo short reads assembler
 [ucsc_utils](http://hgdownload.cse.ucsc.edu/admin/exe/) | v344 | UCSC genome browser 'kent' bioinformatic utilities (blat, liftOver, and other command line utilities) are freely downloadable for academic, noncommercial, and personal use.
