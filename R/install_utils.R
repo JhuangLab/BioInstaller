@@ -189,3 +189,37 @@ source.url.initial <- function(config) {
     return(config$source_url)
   }
 }
+
+convert.bool <- function(flag) {
+  if (is.null(flag) || !(flag %in% c(FALSE, 0, "no", "false")) || flag %in% c("true", 
+    TRUE, 1, "yes")) {
+    TRUE
+  } else {
+    FALSE
+  }
+}
+
+git.download <- function(name, destdir, version, github_url, use_git2r, recursive_clone) {
+  msg <- sprintf("Now start to download %s in %s.", name, destdir)
+  flog.info(msg)
+  use_git2r <- convert.bool(use_git2r)
+  recursive_clone <- convert.bool(recursive_clone)
+  if (use_git2r) {
+    repo <- git2r::clone(github_url, destdir)
+    text <- sprintf("git2r::checkout(git2r::tags(repo)[['%s']])", version)
+    status <- eval(parse(text = text))
+    status <- is.null(status)
+  } else {
+    if (recursive_clone) {
+      cmd <- sprintf("git clone --recursive %s %s", github_url, destdir)
+    } else {
+      cmd <- sprintf("git clone %s %s", github_url, destdir)
+    }
+    status <- for_runcmd(cmd)
+    olddir <- getwd()
+    setwd(destdir)
+    status <- for_runcmd(sprintf("git checkout %s", version))
+    status <- status == 0
+    setwd(olddir)
+  }
+}

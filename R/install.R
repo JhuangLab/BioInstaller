@@ -172,16 +172,19 @@ install.github <- function(name = "", version = NULL, show.all.versions = FALSE,
   }
   
   github_url <- config$github_url
+  use_git2r <- config$use_git2r
+  recursive_clone <- config$recursive_clone
+  if (is.null(github_url) || github_url == "") {
+    need.download = FALSE
+  } else {
+    need.download = TRUE
+  }
   make.dir <- config$make_dir
   
-  if (download.only && !verbose) {
-    msg <- sprintf("Now start to download %s in %s.", name, destdir)
-    flog.info(msg)
-    repo <- git2r::clone(github_url, destdir)
-    text <- sprintf("git2r::checkout(git2r::tags(repo)[['%s']])", version)
-    eval(parse(text = text))
+  if (need.download && download.only && !verbose) {
+    status <- git.download(name, destdir, version, github_url, use_git2r, recursive_clone)
     return(status)
-  } else if (download.only && verbose) {
+  } else if (need.download && download.only && verbose) {
     msg <- sprintf("Debug:Now need to download %s in %s.", name, destdir)
     flog.info(msg)
     return(TRUE)
@@ -198,9 +201,12 @@ install.github <- function(name = "", version = NULL, show.all.versions = FALSE,
   flog.info(msg)
   flog.info("Running before install steps.")
   if (!verbose) {
-    repo <- git2r::clone(github_url, destdir)
-    text <- sprintf("git2r::checkout(git2r::tags(repo)[['%s']])", version)
-    eval(parse(text = text))
+    if (need.download) {
+      status <- git.download(name, destdir, version, github_url, use_git2r, 
+        recursive_clone)
+    } else {
+      dir.create(destdir, recursive = T)
+    }
   } else {
     flog.info("Gebug:Git clone and checkout to point version.")
     flog.info(sprintf("Debug:github_url:%s", github_url))
@@ -312,14 +318,19 @@ install.nongithub <- function(name = "", version = NULL, show.all.versions = FAL
   }
   
   source_url <- source.url.initial(config)
+  if (is.null(source_url)) {
+    need.download <- FALSE
+  } else {
+    need.download <- TRUE
+  }
   filename <- url2filename(source_url)
-  if (download.only && !verbose) {
+  if (need.download && download.only && !verbose) {
     msg <- sprintf("Now start to download %s in %s.", name, destdir)
     flog.info(msg)
     destfile <- sprintf(sprintf("%s/%s", destdir, filename))
     status <- download.dir.files(config, source_url, destfile, showWarnings)
     return(status)
-  } else if (download.only && verbose) {
+  } else if (need.download && download.only && verbose) {
     msg <- sprintf("Debug:Now need to download %s in %s.", name, destdir)
     flog.info(msg)
     return(TRUE)
@@ -345,14 +356,18 @@ install.nongithub <- function(name = "", version = NULL, show.all.versions = FAL
     flog.info(sprintf("Debug:destfile:%s", destfile))
     flog.info(sprintf("Debug:destdir:%s", destdir))
   } else {
-    status <- download.dir.files(config, source_url, destfile, showWarnings)
-    if (!status) {
-      return(FALSE)
-    }
-    destfile <- attributes(status)$success
-    status <- extract.file(destfile, destdir, decompress)
-    if (!status) {
-      return(FALSE)
+    if (need.download) {
+      status <- download.dir.files(config, source_url, destfile, showWarnings)
+      if (!status) {
+        return(FALSE)
+      }
+      destfile <- attributes(status)$success
+      status <- extract.file(destfile, destdir, decompress)
+      if (!status) {
+        return(FALSE)
+      }
+    } else {
+      status <- TRUE
     }
   }
   make.dir <- config$make_dir

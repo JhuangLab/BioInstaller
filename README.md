@@ -34,7 +34,7 @@ Name | Version_Newest | Description
 [pindel](https://github.com/genome/pindel) | 0.2.5b8 | Detect breakpoints of large deletions, medium sized insertions, inversions, tandem duplications and other structural variants at single-based resolution from next-gen sequence data
 [lofreq](http://csb5.github.io/lofreq/) | 2.1.2 | Sensitive variant calling from sequencing data
 [VarScan2](http://dkoboldt.github.io/varscan/) | 2.4.3 | Variant calling and somatic mutation/CNV detection for next-generation sequencing data
-[freebayes](https://github.com/ekg/freebayes) | 1.1.0 | Bayesian haplotype-based polymorphism discovery and genotyping (Unsupported now)
+[freebayes](https://github.com/ekg/freebayes) | 1.1.0 | Bayesian haplotype-based polymorphism discovery and genotyping. 
 [HTSeq](https://github.com/simon-anders/htseq) | 0.6.1p2 | A Python library to facilitate processing and analysis of data from high-throughput sequencing (HTS) experiments
 [GMAP](http://research-pub.gene.com/gmap/) | 2017-02-15 | A Genomic Mapping and Alignment Program for mRNA and EST Sequences and Genomic Short-read Nucleotide Alignment Program
 [MACS](https://github.com/taoliu/MACS) | 2015.4.20 | MACS -- Model-based Analysis of ChIP-Seq. [More](http://liulab.dfci.harvard.edu/MACS/) detail.
@@ -45,6 +45,7 @@ Name | Version_Newest | Description
 [CESA](http://liulab.dfci.harvard.edu/CEAS/) | 1.0.2 | Cis-regulatory Element Annotation System
 [SSAHA2](http://www.sanger.ac.uk/science/tools/ssaha2-0) | v2.5.5 | SSAHA2 (Sequence Search and Alignment by Hashing Algorithm) is a pairwise sequence alignment program designed for the efficient mapping of sequencing reads onto genomic reference sequences. SSAHA2 reads of most sequencing platforms (ABI-Sanger, Roche 454, Illumina-Solexa) and a range of output formats (SAM, CIGAR, PSL etc.) are supported. A pile-up pipeline for analysis and genotype calling is available as a separate package.
 [sratools](http://ncbi.github.io/sra-tools/) | 2.8.2-1 | The SRA Toolkit and SDK from NCBI is a collection of tools and libraries for using data in the INSDC Sequence Read Archives.
+[breakdancer](https://github.com/genome/breakdancer) | v1.4.5 | a Cpp package that provides genome-wide detection of structural variants from next generation paired-end sequencing reads. It includes two complementary programs. BreakDancerMax predicts five types of structural variants: insertions, deletions, inversions, inter- and intra-chromosomal translocations from next-generation short paired-end sequencing reads using read pairs that are mapped with unexpected separation distances or orientation.  BreakDancerMini focuses on detecting small indels (usually between 10bp and 100bp) using normally mapped read pairs.
 
 **Protected**
 
