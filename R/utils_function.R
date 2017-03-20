@@ -1,5 +1,5 @@
-# Check the file or dir wheather exists(file need size > 0) @param path A string.  @return Bool Value
-# @examples isexist('~/workdir')
+# Check the file or dir wheather exists(file need size > 0) @param path A string.
+# @return Bool Value @examples isexist('~/workdir')
 is.file.empty <- function(path) {
   if (!is.na(file.size(path)) & file.size(path) > 0) {
     return(FALSE)
@@ -11,7 +11,7 @@ is.file.empty <- function(path) {
 # Get the operating system distribution
 get.os <- function() {
   os <- Sys.info()["sysname"][[1]]
-  if(os == "Linux"){
+  if (os == "Linux") {
     centos.flag <- as.character(Sys.which("yum"))
     ubuntu.flag <- as.character(Sys.which("apt-get"))
     arch.flag <- as.character(Sys.which("pacman"))
@@ -23,7 +23,7 @@ get.os <- function() {
       return("arch")
     } else {
       return("other")
-    } 
+    }
   } else if (os == "Darwin") {
     return("mac")
   } else if (os == "Windows") {
@@ -72,7 +72,8 @@ get.subconfig <- function(config, subconfig) {
 }
 
 get.file.type <- function(file) {
-  filetype.lib <- c("tgz$", "tar.xz$", "tar.bz2$", "tar.gz$", "tar$", "gz$", "zip$", "bz2$", "xz$")
+  filetype.lib <- c("tgz$", "tar.xz$", "tar.bz2$", "tar.gz$", "tar$", "gz$", "zip$", 
+    "bz2$", "xz$")
   if (is.na(file)) {
     return(FALSE)
   }
@@ -120,7 +121,8 @@ extract.file <- function(file, destdir, decompress = TRUE) {
 drop_redundance_dir <- function(destdir) {
   files.parent <- list.files(destdir)
   if (length(files.parent) == 1) {
-    file.rename(sprintf("%s/%s", destdir, files.parent), sprintf("%s/tmp00", destdir))
+    file.rename(sprintf("%s/%s", destdir, files.parent), sprintf("%s/tmp00", 
+      destdir))
     unlink(sprintf("%s/%s", destdir, files.parent), recursive = TRUE)
     files.parent <- sprintf("%s/tmp00", destdir)
     files.child <- list.files(files.parent)
@@ -159,14 +161,16 @@ download.file.custom <- function(url = "", destfile = "", is.dir = FALSE, ...) {
 
 # Check destdir and decide wheather overwrite
 destdir.initial <- function(destdir, strict = TRUE, download.only = FALSE) {
-  if (!download.only && file.exists(destdir) && length(list.files(destdir) != 0) && strict) {
+  if (!download.only && file.exists(destdir) && length(list.files(destdir) != 0) && 
+    strict) {
     flag <- "y"
     flag.input <- "N"
     while (flag.input == "N" || !flag.input %in% c("y", "n", "Y", "N")) {
       if (flag.input != "N" && !(flag.input %in% c("y", "n", "Y", "N"))) {
         cat("Please input y/n/Y/N!\n")
       }
-      flag.input <- readline(prompt = sprintf("%s not empty, overwrite?[y]", destdir))
+      flag.input <- readline(prompt = sprintf("%s not empty, overwrite?[y]", 
+        destdir))
       flag.input <- str_sub(flag.input, 1, 1)
       flag.input <- tolower(flag.input)
     }
@@ -183,7 +187,8 @@ destdir.initial <- function(destdir, strict = TRUE, download.only = FALSE) {
       if (flag.input != "N" && !(flag.input %in% c("y", "n", "Y", "N"))) {
         cat("Please input y/n/Y/N!\n")
       }
-      flag.input <- readline(prompt = sprintf("%s existed, overwrite?[y]", destdir))
+      flag.input <- readline(prompt = sprintf("%s existed, overwrite?[y]", 
+        destdir))
       flag.input <- str_sub(flag.input, 1, 1)
       flag.input <- tolower(flag.input)
     }

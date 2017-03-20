@@ -178,3 +178,30 @@ get.ssaha2.newest.version <- function() {
   versions <- get.ssaha2.versions()
   return(version[length(versions)])
 }
+
+
+# Function get breakdancer all versions
+get.breakdancer.versions <- function() {
+  urls <- c("https://sourceforge.net/projects/breakdancer/files/")
+  versions_final <- NULL
+  for (url in urls) {
+    h <- basicTextGatherer()
+    web <- getURL(url, headerfunction = h$update)
+    web <- str_split(web, "\n")
+    web <- web[[1]]
+    web <- web[str_detect(web, "/download")]
+    web <- web[str_detect(web, "href")]
+    web <- web[!str_detect(web, "source=files")]
+    web <- str_extract(web, "[0-9].*[pz]")
+    web <- str_replace(web, "(.zip)|(.tgz)|(.tar.gz)|(.gz)", "")
+  }
+  versions_final <- web
+  return(versions_final)
+}
+# Function get breakdancer newest version
+get.breakdancer.newest.version <- function() {
+  versions <- get.breakdancer.versions()
+  return(version[1])
+}
+
+

@@ -62,14 +62,15 @@ show.avaliable.versions <- function(config) {
   return(config$version_available)
 }
 
-# Check wheather destdir is exist or not, if not will create it, and set workdir in make.dir
+# Check wheather destdir is exist or not, if not will create it, and set workdir
+# in make.dir
 set.makedir <- function(make.dir, destdir) {
   if (dir.exists(destdir)) {
     setwd(destdir)
   } else {
     dir.create(destdir, showWarnings = FALSE, recursive = TRUE)
     setwd(destdir)
-
+    
   }
   for (i in make.dir) {
     if (i != "./" && dir.exists(i)) {
@@ -98,7 +99,8 @@ get.need.install <- function(config, db) {
 # Install dependence
 install.dependence <- function(need.install, need.install.version, destdir) {
   flog.info(sprintf("Try install the dependence:%s", paste0(need.install, collapse = ", ")))
-  install.status <- install.bioinfo(name = need.install, destdir = sprintf("%s/%s", dirname(destdir), need.install), version = need.install.version)
+  install.status <- install.bioinfo(name = need.install, destdir = sprintf("%s/%s", 
+    dirname(destdir), need.install), version = need.install.version)
   fail.list <- install.status$fail.list
   if (!is.null(fail.list) && fail.list != "") {
     stop(sprintf("Dependence Error:%s install fail.", paste0(fail.list, collapse = ", ")))
@@ -113,7 +115,7 @@ process.dependence <- function(config, db, destdir, verbose) {
     need.install <- get.need.install(config, db)$need.install
     need.install.version <- get.need.install(config, db)$need.install.version
     count <- 1
-    for(i in need.install) {
+    for (i in need.install) {
       if (is.need.dependence(i)) {
         install.dependence(i, need.install.version[count], destdir)
       }
@@ -129,7 +131,8 @@ is.download.dir <- function(config) {
 }
 
 
-# According the config$source_is.dir decide wheather need to download a dir or a file to destfile
+# According the config$source_is.dir decide wheather need to download a dir or a
+# file to destfile
 download.dir.files <- function(config, source_url, destfile, showWarnings = FALSE) {
   if (any(!file.exists(dirname(destfile)))) {
     dir.create(dirname(destfile), showWarnings = FALSE, recursive = TRUE)
@@ -170,14 +173,14 @@ url2filename <- function(url) {
 # Initital source_url
 source.url.initial <- function(config) {
   source_url <- config$source_url
-  if(is.null(source_url)) {
+  if (is.null(source_url)) {
     return(NULL)
   }
-  if(is.list(config$source_url)) {
+  if (is.list(config$source_url)) {
     os.version <- get.os()
-    if(os.version == "windows") {
+    if (os.version == "windows") {
       return(source_url$windows)
-    } else if(os.version == "mac") {
+    } else if (os.version == "mac") {
       return(source_url$mac)
     } else {
       return(source_url$linux)

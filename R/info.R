@@ -14,9 +14,9 @@
 #' set.biosoftwares.db(sprintf('%s/.BioInstaller', tempdir()))
 #' change.info(name = 'demo', installed = 'yes', source.dir = '',
 #' bin.dir = '', excutable.files = c('demo'), others.customer = 'demo')
-change.info <- function(name = "", installed = TRUE, source.dir = "", bin.dir = "", executable.files = "", 
-  db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", system.file("extdata", "softwares_db_demo.yaml", package = "BioInstaller")), 
-  ..., verbose = FALSE) {
+change.info <- function(name = "", installed = TRUE, source.dir = "", bin.dir = "", 
+  executable.files = "", db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", system.file("extdata", 
+    "softwares_db_demo.yaml", package = "BioInstaller")), ..., verbose = FALSE) {
   msg <- sprintf("Running change.info for %s and be saved to %s", name, db)
   flog.info(msg)
   source.dir <- normalizePath(source.dir, mustWork = F)
@@ -31,8 +31,8 @@ change.info <- function(name = "", installed = TRUE, source.dir = "", bin.dir = 
   }
   Sys.setenv(R_CONFIGFILE_ACTIVE = config.cfg)
   config <- configr::read.config()
-  config[[name]] = list(installed = installed, source.dir = source.dir, bin_dir = bin.dir, executable_files = executable.files, 
-    ...)
+  config[[name]] = list(installed = installed, source.dir = source.dir, bin_dir = bin.dir, 
+    executable_files = executable.files, ...)
   configr::write.config(config.dat = config, write.type = "yaml")
 }
 
@@ -46,8 +46,8 @@ change.info <- function(name = "", installed = TRUE, source.dir = "", bin.dir = 
 #' @examples
 #' set.biosoftwares.db(sprintf('%s/.BioInstaller', tempdir()))
 #' get.info('bwa')
-get.info <- function(name = "", db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", system.file("extdata", "softwares_db_demo.yaml", 
-  package = "BioInstaller")), verbose = FALSE) {
+get.info <- function(name = "", db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", system.file("extdata", 
+  "softwares_db_demo.yaml", package = "BioInstaller")), verbose = FALSE) {
   db <- normalizePath(db, mustWork = FALSE)
   if (!db.check(db)) {
     return(FALSE)
@@ -76,8 +76,8 @@ get.info <- function(name = "", db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", syste
 #' @examples
 #' set.biosoftwares.db(sprintf('%s/.BioInstaller', tempdir()))
 #' del.info('bwa')
-del.info <- function(name = "", db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", system.file("extdata", "softwares_db_demo.yaml", 
-  package = "BioInstaller")), verbose = FALSE) {
+del.info <- function(name = "", db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", system.file("extdata", 
+  "softwares_db_demo.yaml", package = "BioInstaller")), verbose = FALSE) {
   db <- normalizePath(db, mustWork = FALSE)
   if (!db.check(db)) {
     return(FALSE)
@@ -106,8 +106,9 @@ del.info <- function(name = "", db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", syste
 #' @examples
 #' set.biosoftwares.db(sprintf('%s/.BioInstaller', tempdir()))
 #' show.installed()
-show.installed <- function(db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", system.file("extdata", "softwares_db_demo.yaml", 
-  package = "BioInstaller")), only.installed = TRUE, verbose = FALSE) {
+show.installed <- function(db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", system.file("extdata", 
+  "softwares_db_demo.yaml", package = "BioInstaller")), only.installed = TRUE, 
+  verbose = FALSE) {
   db <- normalizePath(db, mustWork = FALSE)
   if (!db.check(db)) {
     return(FALSE)
