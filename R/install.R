@@ -119,9 +119,9 @@ install.bioinfo <- function(name = c(), destdir = c(), name.saved = NULL, github
 #' Install from Github
 #'
 #' @param name Software name
+#' @param destdir A string, point the install path
 #' @param version Software version
 #' @param show.all.versions Logical wheather show all avaliable version can be install
-#' @param destdir A string, point the install path
 #' @param name.saved Software name when you want to install different version, you
 #' can use this to point the installed softwares name like 'GATK-3.7'
 #' @param github.cfg Configuration file of installed by github url,
@@ -133,13 +133,15 @@ install.bioinfo <- function(name = c(), destdir = c(), name.saved = NULL, github
 #' @param verbose TRUE is debug mode
 #' @param ... Other key and value paired need be saved in BioInstaller passed to \code{\link{change.info}}
 #' @return Bool Value
+#' @export
 #' @examples
 #' set.biosoftwares.db(sprintf('%s/.BioInstaller', tempdir()))
-install.github <- function(name = "", version = NULL, show.all.versions = FALSE, 
-  destdir = "./", name.saved = NULL, github.cfg = system.file("extdata", "github.toml", 
-    package = "BioInstaller"), db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", system.file("extdata", 
-    "softwares_db_demo.yaml", package = "BioInstaller")), download.only = FALSE, 
-  showWarnings = FALSE, verbose = FALSE, ...) {
+#' install.github('bwa', destdir = sprintf('%s/bwa_example', tempdir()), verbose = TRUE)
+install.github <- function(name = "", destdir = "./", version = NULL, show.all.versions = FALSE, 
+  name.saved = NULL, github.cfg = system.file("extdata", "github.toml", package = "BioInstaller"), 
+  db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", system.file("extdata", "softwares_db_demo.yaml", 
+    package = "BioInstaller")), download.only = FALSE, showWarnings = FALSE, 
+  verbose = FALSE, ...) {
   old.work.dir <- getwd()
   config.cfg <- github.cfg
   name <- tolower(name)
@@ -266,9 +268,9 @@ install.github <- function(name = "", version = NULL, show.all.versions = FALSE,
 #' Download and Install Software(Non-Github) in SIMut
 #'
 #' @param name Software name
+#' @param destdir A string, point the install path
 #' @param version Software version
 #' @param show.all.versions Logical wheather show all avaliable version can be install
-#' @param destdir A string, point the install path
 #' @param name.saved Software name when you want to install different version, you
 #' can use this to point the installed softwares name like 'GATK-3.7'
 #' @param nongithub.cfg Configuration file of installed by non github url,
@@ -281,13 +283,15 @@ install.github <- function(name = "", version = NULL, show.all.versions = FALSE,
 #' @param showWarnings Logical should the warnings on failure be shown?
 #' @param verbose TRUE is debug mode
 #' @return Bool Value
+#' @export
 #' @examples
 #' set.biosoftwares.db(sprintf('%s/.BioInstaller', tempdir()))
-install.nongithub <- function(name = "", version = NULL, show.all.versions = FALSE, 
-  destdir = "./", name.saved = NULL, nongithub.cfg = system.file("extdata", "nongithub.toml", 
-    package = "BioInstaller"), db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", system.file("extdata", 
-    "softwares_db_demo.yaml", package = "BioInstaller")), download.only = FALSE, 
-  decompress = TRUE, showWarnings = FALSE, verbose = FALSE, ...) {
+#' install.nongithub('gmap', sprintf('%s/gmap_example', tempdir()), verbose = TRUE)
+install.nongithub <- function(name = "", destdir = "./", version = NULL, show.all.versions = FALSE, 
+  name.saved = NULL, nongithub.cfg = system.file("extdata", "nongithub.toml", package = "BioInstaller"), 
+  db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", system.file("extdata", "softwares_db_demo.yaml", 
+    package = "BioInstaller")), download.only = FALSE, decompress = TRUE, showWarnings = FALSE, 
+  verbose = FALSE, ...) {
   old.work.dir <- getwd()
   config.cfg <- nongithub.cfg
   name <- tolower(name)

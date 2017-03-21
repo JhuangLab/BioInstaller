@@ -410,8 +410,8 @@ bin_dir = ["./bin"]
 
 [sratools.source_url]
 linux = "https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/{{version}}/sratoolkit.@>@if('{{os.version}}' == 'centos') {'{{version}}-centos_linux64'} else if ('{{os.version}}' == 'ubuntu') {'{{version}}-ubuntu64'}@<@.tar.gz"
-win = "https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/{{version}}/sratoolkit.{{version}}-win64..zip"
-mac = "https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/{{version}}/sratoolkit.{{version}}-mac64..zip"
+windows = "https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/{{version}}/sratoolkit.{{version}}-win64.zip"
+mac = "https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/{{version}}/sratoolkit.{{version}}-mac64.zip"
 
 [sratools.before_install]
 linux = ""

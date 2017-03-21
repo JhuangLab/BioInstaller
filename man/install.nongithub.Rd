@@ -4,8 +4,8 @@
 \alias{install.nongithub}
 \title{Download and Install Software(Non-Github) in SIMut}
 \usage{
-install.nongithub(name = "", version = NULL, show.all.versions = FALSE,
-  destdir = "./", name.saved = NULL,
+install.nongithub(name = "", destdir = "./", version = NULL,
+  show.all.versions = FALSE, name.saved = NULL,
   nongithub.cfg = system.file("extdata", "nongithub.toml", package =
   "BioInstaller"), db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE",
   system.file("extdata", "softwares_db_demo.yaml", package = "BioInstaller")),
@@ -15,11 +15,11 @@ install.nongithub(name = "", version = NULL, show.all.versions = FALSE,
 \arguments{
 \item{name}{Software name}
 
+\item{destdir}{A string, point the install path}
+
 \item{version}{Software version}
 
 \item{show.all.versions}{Logical wheather show all avaliable version can be install}
-
-\item{destdir}{A string, point the install path}
 
 \item{name.saved}{Software name when you want to install different version, you
 can use this to point the installed softwares name like 'GATK-3.7'}
@@ -48,4 +48,5 @@ Download and Install Software(Non-Github) in SIMut
 }
 \examples{
 set.biosoftwares.db(sprintf('\%s/.BioInstaller', tempdir()))
+install.nongithub('gmap', sprintf('\%s/gmap_example', tempdir()), verbose = TRUE)
 }
