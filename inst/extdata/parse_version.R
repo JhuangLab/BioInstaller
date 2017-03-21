@@ -176,7 +176,7 @@ get.ssaha2.versions <- function() {
 # Function get ssaha2 newest version
 get.ssaha2.newest.version <- function() {
   versions <- get.ssaha2.versions()
-  return(version[length(versions)])
+  return(versions[length(versions)])
 }
 
 
@@ -201,7 +201,109 @@ get.breakdancer.versions <- function() {
 # Function get breakdancer newest version
 get.breakdancer.newest.version <- function() {
   versions <- get.breakdancer.versions()
-  return(version[1])
+  return(versions[1])
+}
+
+
+# Function get fusioncatcher all versions
+get.fusioncatcher.versions <- function() {
+  urls <- c("https://sourceforge.net/projects/fusioncatcher/files/")
+  versions_final <- NULL
+  for (url in urls) {
+    h <- basicTextGatherer()
+    web <- getURL(url, headerfunction = h$update)
+    web <- str_split(web, "\n")
+    web <- web[[1]]
+    web <- web[str_detect(web, "/download")]
+    web <- web[str_detect(web, "href")]
+    web <- web[!str_detect(web, "source=files")]
+    web <- str_extract(web, "v[0-9].*[pz]")
+    web <- str_replace(web, "(.zip)|(.tgz)|(.tar.gz)|(.gz)", "")
+    web <- web[!is.na(web)]
+  }
+  versions_final <- web
+  return(versions_final)
+}
+# Function get fusioncatcher newest version
+get.fusioncatcher.newest.version <- function() {
+  versions <- get.fusioncatcher.versions()
+  return(versions[1])
+}
+
+
+# Function get pigz all versions
+get.pigz.versions <- function() {
+  urls <- c("http://cdn-fastly.deb.debian.org/debian/pool/main/p/pigz/")
+  versions_final <- NULL
+  for (url in urls) {
+    h <- basicTextGatherer()
+    web <- getURL(url, headerfunction = h$update)
+    web <- str_split(web, "\n")
+    web <- web[[1]]
+    web <- web[str_detect(web, "orig.tar.gz")]
+    web <- web[str_detect(web, "href")]
+    web <- str_extract(web, ">pigz_[0-9].*orig.tar.gz")
+    web <- str_replace_all(web, "pigz_|>|.orig.tar.gz", "")
+    web <- web[!is.na(web)]
+  }
+  versions_final <- web
+  return(versions_final)
+}
+# Function get pigz newest version
+get.pigz.newest.version <- function() {
+  versions <- get.pigz.versions()
+  return(versions[length(versions)])
+}
+
+
+# Function get velvet all versions
+get.velvet.versions <- function() {
+  urls <- c("http://www.ebi.ac.uk/~zerbino/velvet/")
+  versions_final <- NULL
+  for (url in urls) {
+    h <- basicTextGatherer()
+    web <- getURL(url, headerfunction = h$update)
+    web <- str_split(web, "\n")
+    web <- web[[1]]
+    web <- web[str_detect(web, "href")]
+    web <- web[str_detect(web, "velvet")]
+    web <- web[str_detect(web, "tgz")]
+    web <- str_extract(web, "velvet_[0-9].*.tgz")
+    web <- str_replace_all(web, "velvet_|>|.tgz", "")
+    web <- web[!is.na(web)]
+  }
+  versions_final <- web
+  return(versions_final)
+}
+# Function get velvet newest version
+get.velvet.newest.version <- function() {
+  versions <- get.velvet.versions()
+  return(versions[1])
+}
+
+
+# Function get lzo all versions
+get.lzo.versions <- function() {
+  urls <- c("http://www.oberhumer.com/opensource/lzo/download/")
+  versions_final <- NULL
+  for (url in urls) {
+    h <- basicTextGatherer()
+    web <- getURL(url, headerfunction = h$update)
+    web <- str_split(web, "\n")
+    web <- web[[1]]
+    web <- web[str_detect(web, "lzo")]
+    web <- web[str_detect(web, "tar.gz")]
+    web <- str_extract(web, ">lzo-[0-9].*.tar.gz")
+    web <- str_replace_all(web, "lzo-|>|.tar.gz", "")
+    web <- web[!is.na(web)]
+  }
+  versions_final <- web
+  return(versions_final)
+}
+# Function get lzo newest version
+get.lzo.newest.version <- function() {
+  versions <- get.lzo.versions()
+  return(versions[1])
 }
 
 

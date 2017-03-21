@@ -15,11 +15,6 @@ make_dir = ["./"]
 
 bin_dir = ["./"]
 
-[gmap.before_install]
-linux = ""
-mac = ""
-windows = ""
-
 [gmap.install]
 linux = "./configure --prefix=`pwd` && make && make install"
 mac = "sed -i s/\"## CFLAGS='-O3 -m64' .*\"/\"CFLAGS='-O3 -m64'\"/ config.site && ./configure --prefix=`pwd` && make && make install"
@@ -40,16 +35,6 @@ make_dir = ["./"]
 
 bin_dir = ["./"]
 
-[annovar.before_install]
-linux = ""
-mac = ""
-windows = ""
-
-[annovar.install]
-linux = ""
-mac = ""
-windows = ""
-
 [gatk_bundle]
 source_url = "ftp://gsapubftp-anonymous@ftp.broadinstitute.org/bundle/{{version}}/"
 
@@ -65,16 +50,6 @@ after_success = "echo 'successful!'"
 
 make_dir = ["./"]
 
-[gatk_bundle.before_install]
-linux = ""
-mac = ""
-windows = ""
-
-[gatk_bundle.install]
-linux = ""
-mac = ""
-windows = ""
-
 [hisat2_reffa]
 source_url = "ftp://ftp.ccb.jhu.edu/pub/infphilo/hisat2/data/{{version}}.tar.gz"
 
@@ -87,16 +62,6 @@ after_failure = "echo 'fail!'"
 after_success = "echo 'successful!'"
 
 make_dir = ["./"]
-
-[hisat2_reffa.before_install]
-linux = ""
-mac = ""
-windows = ""
-
-[hisat2_reffa.install]
-linux = ""
-mac = ""
-windows = ""
 
 [ucsc_reffa]
 source_url = ["http://hgdownload.cse.ucsc.edu/goldenPath/{{version}}/bigZips/{{version}}.chromFa.tar.gz",
@@ -112,16 +77,6 @@ after_success = "echo 'successful!'"
 
 make_dir = ["./"]
 
-[ucsc_reffa.before_install]
-linux = ""
-mac = ""
-windows = ""
-
-[ucsc_reffa.install]
-linux = ""
-mac = ""
-windows = ""
-
 [ensemble_grch37_reffa]
 source_url = "ftp://ftp.ensembl.org/pub/release-{{version}}/fasta/homo_sapiens/dna/Homo_sapiens.GRCh37.{{version}}.dna.primary_assembly.fa.gz"
 
@@ -135,16 +90,6 @@ after_success = "echo 'successful!'"
 
 make_dir = ["./"]
 
-[ensemble_grch37_reffa.before_install]
-linux = ""
-mac = ""
-windows = ""
-
-[ensemble_grch37_reffa.install]
-linux = ""
-mac = ""
-windows = ""
-
 [ensemble_grch38_reffa]
 source_url = "ftp://ftp.ensembl.org/pub/release-{{version}}/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.primary_assembly.fa.gz"
 
@@ -157,16 +102,6 @@ after_failure = "echo 'fail!'"
 after_success = "echo 'successful!'"
 
 make_dir = ["./"]
-
-[ensemble_grch38_reffa.before_install]
-linux = ""
-mac = ""
-windows = ""
-
-[ensemble_grch38_reffa.install]
-linux = ""
-mac = ""
-windows = ""
 
 [edena]
 source_url = ["http://www.genomic.ch/edena/{{version}}.tar.gz", "http://www.genomic.ch/edena/{{version}}.zip"]
@@ -182,11 +117,6 @@ after_success = "echo 'successful!'"
 make_dir = ["./"]
 
 bin_dir = ["./bin"]
-
-[edena.before_install]
-linux = ""
-mac = ""
-windows = ""
 
 [edena.install]
 linux = "make"
@@ -208,11 +138,6 @@ make_dir = ["./"]
 
 bin_dir = ["./bin"]
 
-[ucsc_utils.before_install]
-linux = ""
-mac = ""
-windows = ""
-
 [ucsc_utils.install]
 linux = "make"
 mac = "make"
@@ -232,16 +157,6 @@ after_success = "echo 'successful!'"
 make_dir = ["./"]
 
 bin_dir = ["."]
-
-[fastqc.before_install]
-linux = ""
-mac = ""
-windows = ""
-
-[fastqc.install]
-linux = ""
-mac = ""
-windows = ""
 
 [sqlite]
 source_url = ["http://www.sqlite.org/2017/sqlite-autoconf-{{version}}.tar.gz", "http://www.sqlite.org/2016/sqlite-autoconf-{{version}}.tar.gz"]
@@ -284,11 +199,6 @@ make_dir = ["./"]
 
 bin_dir = ["./bin"]
 
-[cesa.before_install]
-linux = ""
-mac = ""
-windows = ""
-
 [cesa.install]
 linux = "python setup.py install"
 mac = "python setup.py install"
@@ -309,16 +219,6 @@ make_dir = ["./"]
 
 bin_dir = ["./"]
 
-[novoalign.before_install]
-linux = ""
-mac = ""
-windows = ""
-
-[novoalign.install]
-linux = ""
-mac = ""
-windows = ""
-
 [ssaha2]
 source_url = ["ftp://ftp.sanger.ac.uk/pub/resources/software/ssaha2/ssaha2_{{version}}.tgz"]
 
@@ -333,16 +233,6 @@ after_success = "echo 'successful!'"
 make_dir = ["./"]
 
 bin_dir = ["./bin"]
-
-[ssaha2.before_install]
-linux = ""
-mac = ""
-windows = ""
-
-[ssaha2.install]
-linux = ""
-mac = ""
-windows = ""
 
 [gatk]
 source_url = ["http://bioinfo.rjh.com.cn/download/gatk/download.php?filename=gatk{{version}}.zip"]
@@ -359,16 +249,6 @@ make_dir = ["./"]
 
 bin_dir = ["./"]
 
-[gatk.before_install]
-linux = ""
-mac = ""
-windows = ""
-
-[gatk.install]
-linux = ""
-mac = ""
-windows = ""
-
 [mutect]
 source_url = ["http://bioinfo.rjh.com.cn/download/gatk/download.php?filename=mutect{{version}}.zip"]
 
@@ -383,11 +263,6 @@ after_success = "echo 'successful!'"
 make_dir = ["./"]
 
 bin_dir = ["./"]
-
-[mutect.before_install]
-linux = ""
-mac = ""
-windows = ""
 
 [mutect.install]
 linux = ""
@@ -413,13 +288,116 @@ linux = "https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/{{version}}/sratoolkit.@>@if
 windows = "https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/{{version}}/sratoolkit.{{version}}-win64.zip"
 mac = "https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/{{version}}/sratoolkit.{{version}}-mac64.zip"
 
-[sratools.before_install]
-linux = ""
-mac = ""
-windows = ""
-
 [sratools.install]
 linux = ""
 mac = ""
 windows = ""
 
+
+[fusioncatcher]
+source_url = "http://sf.net/projects/fusioncatcher/files/fusioncatcher_{{version}}.zip"
+
+version_newest = "v0.99.7b"
+
+version_available = ["v0.99.7b", "v0.99.7a", "v0.99.6a", "v0.99.5a", "v0.99.4e", "v0.99.4d", "v0.99.4c", "v0.99.4b", "v0.99.4a", "v0.99.3e", "v0.99.3d", "v0.99.3c", "v0.99.3b", "v0.99.3a", "v0.99.2", "v0.99.1", "v0.99.0", "v0.95", "v0.96", "v0.93", "v0.94", "v0.98", "v0.97"]
+
+after_failure = "echo 'fail!'"
+
+after_success = "echo 'successful!'"
+
+make_dir = ["./"]
+
+bin_dir = ["./bin"]
+
+[fusioncatcher.before_install]
+linux = ""
+mac = ""
+windows = ""
+
+[fusioncatcher.install]
+linux = ""
+mac = ""
+windows = ""
+
+[pigz]
+source_url = "http://cdn-fastly.deb.debian.org/debian/pool/main/p/pigz/pigz_{{version}}.orig.tar.gz"
+
+version_newest = "2.2.4"
+
+version_available = ["2.2.4", "2.3.1", "2.3.4"]
+
+after_failure = "echo 'fail!'"
+
+after_success = "echo 'successful!'"
+
+make_dir = ["./"]
+
+bin_dir = ["./"]
+
+[pigz.install]
+linux = "make"
+mac = "make"
+windows = "make"
+
+[velvet]
+source_url = "http://www.ebi.ac.uk/~zerbino/velvet/velvet_{{version}}.tgz"
+
+version_newest = "1.2.10"
+
+version_available = ["1.2.10", "0.7.01", "0.6.01", "0.5.01", "0.4", "0.3"]
+
+after_failure = "echo 'fail!'"
+
+after_success = "echo 'successful!'"
+
+make_dir = ["./"]
+
+bin_dir = ["./"]
+
+[velvet.install]
+linux = "make"
+mac = "make"
+windows = "make"
+
+[lzo]
+source_url = "http://www.oberhumer.com/opensource/lzo/download/lzo-{{version}}.tar.gz"
+
+version_newest = "2.10"
+
+version_available = ["2.00", "2.01", "2.02", "2.03", "2.04", "2.05", "2.06", "2.07", "2.08", "2.09", "2.10"]
+
+after_failure = "echo 'fail!'"
+
+after_success = "echo 'successful!'"
+
+make_dir = ["./"]
+
+bin_dir = ["./"]
+
+[lzo.install]
+linux = ["./configure --prefix=`pwd` --enable-shared && make", " make install"]
+mac = ["./configure --prefix=`pwd` --enable-shared && make", " make install"]
+
+
+[lzop]
+source_url = "http://www.lzop.org/download/lzop-{{version}}.tar.gz"
+
+dependence = ["lzo"]
+
+dependence_version = ["2.10"]
+
+version_newest = "1.03"
+
+version_available = ["1.03", "1.02-rc1", "1.01"]
+
+after_failure = "echo 'fail!'"
+
+after_success = "echo 'successful!'"
+
+make_dir = ["./"]
+
+bin_dir = ["./"]
+
+[lzop.install]
+linux = "export CPPFLAGS='-I{{lzo:source.dir}}/include';export LDFLAGS='-L{{lzo:source.dir}}/src/.libs'; ./configure --prefix=`pwd`&& make"
+mac = "export CPPFLAGS='-I{{lzo:source.dir}}/include';export LDFLAGS='-L{{lzo:source.dir}}/src/.libs'; ./configure --prefix=`pwd`&& make"

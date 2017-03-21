@@ -51,6 +51,9 @@ version.initial <- function(name, version, config) {
   if (is.null(version)) {
     version <- config$version_newest
   }
+  if(is.numeric(version)) {
+    version <- as.character(version)
+  }
   if (!version %in% config$version_available) {
     stop(sprintf("%s version of %s are not available!", version, name))
   }

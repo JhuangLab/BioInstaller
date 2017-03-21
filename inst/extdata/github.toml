@@ -15,11 +15,6 @@ make_dir = ["./"]
 
 bin_dir = ["./"]
 
-[bwa.before_install]
-linux = ""
-mac = ""
-windows = ""
-
 [bwa.install]
 linux = "make"
 mac = "make"
@@ -44,11 +39,6 @@ make_dir = ["source", "./"]
 linux = "./bin/Linux_x86_64"
 mac = "./bin/MacOSX_x86_64"
 
-[star.before_install]
-linux = ""
-mac = ""
-windows = ""
-
 [star.install]
 linux = "make"
 mac = "make"
@@ -68,11 +58,6 @@ after_success = "ln -s htslib/* ./"
 make_dir = ["./"]
 
 bin_dir = ["./"]
-
-[htslib.before_install]
-linux = ""
-mac = ""
-windows = ""
 
 [htslib.install]
 linux = "make"
@@ -98,11 +83,6 @@ make_dir = ["./"]
 
 bin_dir = ["./"]
 
-[samtools.before_install]
-linux = ""
-mac = ""
-windows = ""
-
 [samtools.install]
 linux = ["autoconf -Wno-syntax; sed -i 's;HTSDIR = ../htslib;HTSDIR = {{htslib:source.dir}};' config.mk; make && make install prefix=`pwd`"]
 mac = ["autoconf -Wno-syntax; sed -i 's;HTSDIR = ../htslib;HTSDIR = {{htslib:source.dir}};' config.mk; make && make install prefix=`pwd`"]
@@ -127,11 +107,6 @@ make_dir = ["./"]
 
 bin_dir = ["./"]
 
-[bcftools.before_install]
-linux = ""
-mac = ""
-windows = ""
-
 [bcftools.install]
 linux = "sed -i 's;HTSDIR = ../htslib;HTSDIR = {{htslib:source.dir}};' Makefile; make"
 mac = "sed -i 's;HTSDIR = ../htslib;HTSDIR = {{htslib:source.dir}};' Makefile; make"
@@ -151,11 +126,6 @@ after_success = "echo 'successful!'"
 make_dir = ["./"]
 
 bin_dir = ["./"]
-
-[bowtie.before_install]
-linux = ""
-mac = ""
-windows = ""
 
 [bowtie.install]
 linux = "make"
@@ -177,11 +147,6 @@ make_dir = ["./"]
 
 bin_dir = ["./"]
 
-[bowtie2.before_install]
-linux = ""
-mac = ""
-windows = ""
-
 [bowtie2.install]
 linux = "make"
 mac = "make"
@@ -201,11 +166,6 @@ after_success = "echo 'successful!'"
 make_dir = ["./"]
 
 bin_dir = ["./"]
-
-[tophat2.before_install]
-linux = ""
-mac = ""
-windows = ""
 
 [tophat2.install]
 linux = "sh autogen.sh && ./configure --prefix=`pwd` && make && make install"
@@ -227,16 +187,6 @@ make_dir = ["./"]
 
 bin_dir = ["./"]
 
-[varscan2.before_install]
-linux = ""
-mac = ""
-windows = ""
-
-[varscan2.install]
-linux = ""
-mac = ""
-windows = ""
-
 [picard]
 github_url = "https://github.com/broadinstitute/picard"
 
@@ -251,11 +201,6 @@ after_success = "echo 'successful!'"
 make_dir = ["./"]
 
 bin_dir = ["build/libs"]
-
-[picard.before_install]
-linux = ""
-mac = ""
-windows = ""
 
 [picard.install]
 linux = "./gradlew shadowJar"
@@ -276,11 +221,6 @@ after_success = "echo 'successful!'"
 make_dir = ["./"]
 
 bin_dir = ["./"]
-
-[vcftools.before_install]
-linux = ""
-mac = ""
-windows = ""
 
 [vcftools.install]
 linux = "./autogen.sh && ./configure --prefix=`pwd` && make && make install"
@@ -331,16 +271,6 @@ make_dir = ["./"]
 
 bin_dir = ["lofreq_star-2.1.2_linux-x86-64/bin/"]
 
-[lofreq.before_install]
-linux = ""
-mac = ""
-windows = ""
-
-[lofreq.install]
-linux = ""
-mac = ""
-windows = ""
-
 [hisat2]
 github_url = "https://github.com/infphilo/hisat2"
 
@@ -355,11 +285,6 @@ after_success = "echo 'successful!'"
 make_dir = ["./"]
 
 bin_dir = ["./"]
-
-[hisat2.before_install]
-linux = ""
-mac = ""
-windows = ""
 
 [hisat2.install]
 linux = "make"
@@ -383,11 +308,6 @@ after_success = "echo 'successful!'"
 make_dir = ["./"]
 
 bin_dir = ["./bin"]
-
-[freebayes.before_install]
-linux = ""
-mac = ""
-windows = ""
 
 [freebayes.install]
 linux = "make"
@@ -434,11 +354,6 @@ make_dir = ["./"]
 
 bin_dir = ["./bin"]
 
-[bedtools.before_install]
-linux = ""
-mac = ""
-windows = ""
-
 [bedtools.install]
 linux = "make"
 mac = "make"
@@ -458,11 +373,6 @@ after_success = "echo 'successful!'"
 make_dir = ["./"]
 
 bin_dir = ["./"]
-
-[sparsehash.before_install]
-linux = ""
-mac = ""
-windows = ""
 
 [sparsehash.install]
 linux = "sh autogen.sh && ./configure --prefix=`pwd` && make && make install"
@@ -487,11 +397,6 @@ after_success = "echo 'successful!'"
 make_dir = ["./"]
 
 bin_dir = ["./"]
-
-[abyss.before_install]
-linux = ""
-mac = ""
-windows = ""
 
 [abyss.install]
 linux = "sh autogen.sh && ./configure --enable-maxk=96 --prefix=`pwd` --with-mpi --with-sqlite={{sqlite:source.dir}} CPPFLAGS=-I{{sparsehash:source.dir}}/include && make"
@@ -573,3 +478,45 @@ windows = ["pip install numpy", "pip install Cython", "pip install 'matplotlib>=
 linux = "python setup.py install"
 mac = "python setup.py install"
 windows = "python setup.py install"
+
+[seqtk]
+github_url = "https://github.com/ndaniel/seqtk"
+
+version_newest = "1.2-r101b"
+
+version_available = ["1.0", "1.0-r68a", "1.0-r68b", "1.0-r68c", "1.0-r68d", "1.0-r68e", "1.0-r82b", "1.2-r101b", "seqtk-1.0-r68b", "seqtk-1.0-r86a", "sgdp"]
+
+after_failure = "echo 'fail!'"
+
+after_success = "echo 'successful!'"
+
+make_dir = ["./"]
+
+bin_dir = ["./"]
+
+[seqtk.install]
+linux = "make"
+mac = "make"
+windows = "make"
+
+[delly]
+github_url = "https://github.com/dellytools/delly.git"
+use_git2r = false
+recursive_clone = true
+
+version_newest = "v0.7.6"
+
+version_available = ["v0.1.2", "v0.1.3", "v0.2.1", "v0.2.2", "v0.3.1", "v0.3.2", "v0.3.3", "v0.5.3", "v0.5.4", "v0.5.5", "v0.5.6", "v0.5.8", "v0.5.9", "v0.6.1", "v0.6.2", "v0.6.3", "v0.6.5", "v0.6.6", "v0.6.7", "v0.6.8", "v0.7.1", "v0.7.2", "v0.7.3", "v0.7.5", "v0.7.6"]
+
+after_failure = "echo 'fail!'"
+
+after_success = "echo 'successful!'"
+
+make_dir = ["./"]
+
+bin_dir = ["./src"]
+
+[delly.install]
+linux = "make all"
+mac = "make all"
+windows = "make all"

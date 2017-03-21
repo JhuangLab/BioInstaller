@@ -36,6 +36,8 @@ runcmd <- function(cmd, verbose = FALSE) {
     flog.info(sprintf("Need to run CMD:%s", cmd))
     return(0)
   } else if (is.character(cmd) && cmd != "") {
+    cmd <- str_replace_all(cmd, fixed('-e \\"'), '-e "')
+    cmd <- str_replace_all(cmd, fixed(')\\"'), ')"')
     flog.info(sprintf("Running CMD:%s", cmd))
     system(cmd)
   } else {
@@ -59,6 +61,9 @@ for_runcmd <- function(cmd_vector, verbose = FALSE) {
 
 get.subconfig <- function(config, subconfig) {
   os <- get.os()
+  if (is.null(config[[subconfig]])) {
+    return("")
+  }
   if (!is.list(config[[subconfig]])) {
     return(config[[subconfig]])
   }
