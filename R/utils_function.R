@@ -36,8 +36,8 @@ runcmd <- function(cmd, verbose = FALSE) {
     flog.info(sprintf("Need to run CMD:%s", cmd))
     return(0)
   } else if (is.character(cmd) && cmd != "") {
-    cmd <- str_replace_all(cmd, fixed('-e \\"'), '-e "')
-    cmd <- str_replace_all(cmd, fixed(')\\"'), ')"')
+    cmd <- str_replace_all(cmd, fixed("-e \\\""), "-e \"")
+    cmd <- str_replace_all(cmd, fixed(")\\\""), ")\"")
     flog.info(sprintf("Running CMD:%s", cmd))
     system(cmd)
   } else {
@@ -87,13 +87,13 @@ get.file.type <- function(file) {
       return(str_replace_all(i, fixed("$"), ""))
     }
   }
+  return("other")
 }
 extract.file <- function(file, destdir, decompress = TRUE) {
   filetype <- get.file.type(file)
   if (filetype == FALSE) {
     status <- FALSE
   }
-  destdir.initial(destdir)
   dir.create(destdir, showWarnings = F, recursive = TRUE)
   if (!decompress) {
     files <- list.files(dirname(file))
@@ -116,6 +116,8 @@ extract.file <- function(file, destdir, decompress = TRUE) {
   } else if (filetype %in% c("tar", "tar.gz", "tgz", "tar.bz2", "tar.xz")) {
     status <- untar(file, exdir = destdir)
     status <- drop_redundance_dir(destdir)
+  } else {
+    status <- TRUE
   }
   
   status <- all(status)

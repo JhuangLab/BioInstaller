@@ -306,4 +306,28 @@ get.lzo.newest.version <- function() {
   return(versions[1])
 }
 
+# Function get snpeff all versions
+get.snpeff.versions <- function() {
+  urls <- c("https://sourceforge.net/projects/snpeff/files/")
+  versions_final <- NULL
+  for (url in urls) {
+    h <- basicTextGatherer()
+    web <- getURL(url, headerfunction = h$update)
+    web <- str_split(web, "\n")
+    web <- web[[1]]
+    web <- web[str_detect(web, "/download")]
+    web <- web[str_detect(web, "href")]
+    web <- web[!str_detect(web, "source=files")]
+    web <- str_extract(web, "v[0-9].*_core.zip")
+    web <- str_replace(web, "(_core.zip)|snpEff_", "")
+    web <- web[!is.na(web)]
+  }
+  versions_final <- web
+  return(versions_final)
+}
+# Function get snpeff newest version
+get.snpeff.newest.version <- function() {
+  versions <- get.snpeff.versions()
+  return(versions[1])
+}
 

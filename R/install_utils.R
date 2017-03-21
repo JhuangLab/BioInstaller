@@ -51,7 +51,7 @@ version.initial <- function(name, version, config) {
   if (is.null(version)) {
     version <- config$version_newest
   }
-  if(is.numeric(version)) {
+  if (is.numeric(version)) {
     version <- as.character(version)
   }
   if (!version %in% config$version_available) {
@@ -142,10 +142,16 @@ download.dir.files <- function(config, source_url, destfile, showWarnings = FALS
   }
   is.dir <- is.download.dir(config)
   count <- 1
+  status <- c()
   for (i in source_url) {
     tryCatch({
-      status <- download.file.custom(url = i, destfile = destfile[count], is.dir = is.dir)
-      break
+      status.tmp <- FALSE
+      status.tmp <- download.file.custom(url = i, destfile = destfile[count], 
+        is.dir = is.dir)
+      if (!is.logical(status.tmp) && status.tmp == 0) {
+        status.tmp <- TRUE
+      }
+      status <- c(status, status.tmp)
     }, error = function(e) {
       if (showWarnings) {
         warning(e)
@@ -157,14 +163,15 @@ download.dir.files <- function(config, source_url, destfile, showWarnings = FALS
     })
     count <- count + 1
   }
-  
-  if (!is.dir && all(!file.exists(destfile))) {
+  destfile <- destfile[file.exists(destfile)]
+  if (!is.dir && all(!(file.size(destfile) > 0))) {
     return(FALSE)
-  } else if (is.dir && length(list.files(destfile)) == 0) {
+  }
+  if (is.dir && length(list.files(destfile)) == 0) {
     return(FALSE)
   }
   status <- TRUE
-  attr(status, "success") <- destfile[count]
+  attr(status, "success") <- destfile[status]
   return(status)
 }
 

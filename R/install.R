@@ -333,6 +333,9 @@ install.nongithub <- function(name = "", destdir = "./", version = NULL, show.al
     flog.info(msg)
     destfile <- sprintf(sprintf("%s/%s", destdir, filename))
     status <- download.dir.files(config, source_url, destfile, showWarnings)
+    if (all(!status)) {
+      return(FALSE)
+    }
     return(status)
   } else if (need.download && download.only && verbose) {
     msg <- sprintf("Debug:Now need to download %s in %s.", name, destdir)
@@ -362,12 +365,25 @@ install.nongithub <- function(name = "", destdir = "./", version = NULL, show.al
   } else {
     if (need.download) {
       status <- download.dir.files(config, source_url, destfile, showWarnings)
-      if (!status) {
+      if (all(!status)) {
         return(FALSE)
       }
       destfile <- attributes(status)$success
-      status <- extract.file(destfile, destdir, decompress)
-      if (!status) {
+      if (!is.null(config$decompress)) {
+        decompress <- unlist(config$decompress)
+      }
+      if (length(decompress) < length(destfile)) {
+        len <- length(destfile) - length(decompress)
+        decompress <- c(decompress, rep(FALSE, len))
+      } else if (length(decompress) > length(destfile)) {
+        decompress <- decompress[1:length(destfile)]
+      }
+      count <- 1
+      for (fn in destfile) {
+        status <- extract.file(fn, destdir, decompress[count])
+        count <- count + 1
+      }
+      if (!all(status)) {
         return(FALSE)
       }
     } else {
