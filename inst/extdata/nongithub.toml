@@ -66,6 +66,7 @@ make_dir = ["./"]
 [ucsc_reffa]
 source_url = ["http://hgdownload.cse.ucsc.edu/goldenPath/{{version}}/bigZips/{{version}}.chromFa.tar.gz",
 "http://hgdownload.cse.ucsc.edu/goldenPath/{{version}}/bigZips/chromFa.tar.gz"]
+url_all_download = false
 
 version_newest = "hg38"
 
@@ -105,6 +106,7 @@ make_dir = ["./"]
 
 [edena]
 source_url = ["http://www.genomic.ch/edena/{{version}}.tar.gz", "http://www.genomic.ch/edena/{{version}}.zip"]
+url_all_download = false
 
 version_newest = "EdenaV3.131028"
 
@@ -463,3 +465,26 @@ bin_dir = ["./bin"]
 [tvc.install]
 linux = '''Rscript -e "fn.sh <- system.file('extdata', 'scripts/install_tvc.sh', package = 'BioInstaller'); system(sprintf('sh %s {{destdir}} {{version}}', fn.sh))"'''
 mac = '''Rscript -e "fn.sh <- system.file('extdata', 'scripts/install_tvc.sh', package = 'BioInstaller'); system(sprintf('sh %s {{destdir}} {{version}}', fn.sh))"'''
+
+[imagej]
+version_newest = "150"
+
+version_available = ["150"]
+
+after_failure = "echo 'fail!'"
+
+after_success = "echo 'successful!'"
+
+make_dir = ["./"]
+
+bin_dir = ["./"]
+
+[imagej.source_url]
+linux = "http://wsr.imagej.net/distros/linux/ij{{version}}-linux64-java8.zip"
+mac = "http://wsr.imagej.net/distros/osx/ij{{version}}-osx-java8.zip"
+windows = "http://wsr.imagej.net/distros/win/ij{{version}}-win-java8.zip"
+
+[imagej.install]
+linux = ""
+mac = ""
+windows = ""
