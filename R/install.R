@@ -328,11 +328,16 @@ install.nongithub <- function(name = "", destdir = "./", version = NULL, show.al
     need.download <- TRUE
   }
   filename <- url2filename(source_url)
+  url.all.download <- config$url_all_download
+  if (is.null(url.all.download)) {
+    url.all.download <- FALSE
+  }
   if (need.download && download.only && !verbose) {
     msg <- sprintf("Now start to download %s in %s.", name, destdir)
     flog.info(msg)
     destfile <- sprintf(sprintf("%s/%s", destdir, filename))
-    status <- download.dir.files(config, source_url, destfile, showWarnings)
+    status <- download.dir.files(config, source_url, destfile, showWarnings, 
+      url.all.download)
     if (all(!status)) {
       return(FALSE)
     }
@@ -364,7 +369,8 @@ install.nongithub <- function(name = "", destdir = "./", version = NULL, show.al
     flog.info(sprintf("Debug:destdir:%s", destdir))
   } else {
     if (need.download) {
-      status <- download.dir.files(config, source_url, destfile, showWarnings)
+      status <- download.dir.files(config, source_url, destfile, showWarnings, 
+        url.all.download)
       if (all(!status)) {
         return(FALSE)
       }

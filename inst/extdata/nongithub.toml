@@ -159,7 +159,9 @@ make_dir = ["./"]
 bin_dir = ["."]
 
 [sqlite]
-source_url = ["http://www.sqlite.org/2017/sqlite-autoconf-{{version}}.tar.gz", "http://www.sqlite.org/2016/sqlite-autoconf-{{version}}.tar.gz"]
+source_url = ["http://www.sqlite.org/2017/sqlite-autoconf-{{version}}.tar.gz",
+              "http://www.sqlite.org/2016/sqlite-autoconf-{{version}}.tar.gz"]
+url_all_download = false
 
 version_newest = "3170000"
 

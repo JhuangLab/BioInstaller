@@ -36,8 +36,8 @@ after_success = "echo 'successful!'"
 make_dir = ["source", "./"]
 
 [star.bin_dir]
-linux = "./bin/Linux_x86_64"
-mac = "./bin/MacOSX_x86_64"
+linux = "{{destdir}}/bin/Linux_x86_64"
+mac = "{{destdir}}/bin/MacOSX_x86_64"
 
 [star.install]
 linux = "make"
