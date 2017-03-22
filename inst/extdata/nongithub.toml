@@ -456,7 +456,7 @@ after_success = "echo 'successful!'"
 
 make_dir = ["./"]
 
-bin_dir = ["./"]
+bin_dir = ["./bin"]
 
 [tvc.install]
 linux = '''Rscript -e "fn.sh <- system.file('extdata', 'scripts/install_tvc.sh', package = 'BioInstaller'); system(sprintf('sh %s {{destdir}} {{version}}', fn.sh))"'''

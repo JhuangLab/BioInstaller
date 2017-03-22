@@ -545,3 +545,21 @@ mac = ["git checkout -b {{version}} tmap.{{version}}", "git submodule update",
 windows = ["git checkout -b {{version}} tmap.{{version}}", "git submodule update", 
          "sh autogen.sh && ./configure --prefix=`pwd` && make", "make install"]
 
+[somaticsniper]
+github_url = "https://github.com/genome/somatic-sniper"
+
+version_newest = "v1.0.5.0"
+
+version_available = ["v0.1.0", "v0.7.4", "v0.7.4.1", "v0.7.4.2", "v0.7.4.3", "v0.7.4.4", "v0.7.4.5", "v0.7.4.6", "v0.7.4.7", "v0.7.4.8", "v0.7.4.9", "v1.0.0", "v1.0.0.1", "v1.0.0.2", "v1.0.1", "v1.0.2", "v1.0.2.1", "v1.0.2.2", "v1.0.2.3", "v1.0.3", "v1.0.4", "v1.0.4.1", "v1.0.4.2", "v1.0.5.0"]
+
+after_failure = "echo 'fail!'"
+
+after_success = "echo 'successful!'"
+
+make_dir = ["./"]
+
+bin_dir = ["./build/bin"]
+
+[somaticsniper.install]
+linux = "mkdir build; cd build && cmake ../ && make deps && make -j && make test"
+mac = "mkdir build; cd build && cmake ../ && make deps && make -j && make test"
