@@ -330,7 +330,7 @@ install.nongithub <- function(name = "", destdir = "./", version = NULL, show.al
   filename <- url2filename(source_url)
   url.all.download <- config$url_all_download
   if (is.null(url.all.download)) {
-    url.all.download <- FALSE
+    url.all.download <- TRUE
   }
   if (need.download && download.only && !verbose) {
     msg <- sprintf("Now start to download %s in %s.", name, destdir)

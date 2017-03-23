@@ -331,3 +331,29 @@ get.snpeff.newest.version <- function() {
   return(versions[1])
 }
 
+# Function get zlib all versions
+get.zlib.versions <- function() {
+  urls <- c("https://sourceforge.net/projects/libpng/files/zlib/")
+  versions_final <- NULL
+  for (url in urls) {
+    h <- basicTextGatherer()
+    web <- getURL(url, headerfunction = h$update)
+    web <- str_split(web, "\n")
+    web <- web[[1]]
+    web <- web[str_detect(web, "href")]
+    web <- web[!str_detect(web, "source=files")]
+    web <- web[str_detect(web, 'files\\/zlib\\/')]
+    web <- web[!str_detect(web, 'timeline')]
+    web <- str_extract(web, "[0-9.]*")
+    web <- str_extract(web, "[0-9][0-9.]*")
+    web <- web[!is.na(web)]
+  }
+  versions_final <- web
+  return(versions_final)
+}
+# Function get zlib newest version
+get.zlib.newest.version <- function() {
+  versions <- get.zlib.versions()
+  return(versions[1])
+}
+

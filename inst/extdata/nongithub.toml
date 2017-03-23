@@ -488,3 +488,45 @@ windows = "http://wsr.imagej.net/distros/win/ij{{version}}-win-java8.zip"
 linux = ""
 mac = ""
 windows = ""
+
+[zlib]
+version_newest = "1.2.11"
+
+version_available = ["1.2.11", "1.2.10", "1.2.9", "1.2.7", "1.2.8", "1.2.6", "1.2.5", "1.2.4", "1.2.3", "1.2.1", "1.1.4", "1.1.3"]
+
+after_failure = "echo 'fail!'"
+
+after_success = "echo 'successful!'"
+
+make_dir = ["./"]
+
+bin_dir = ["./lib"]
+
+[zlib.source_url] 
+linux = ["https://sourceforge.net/projects/libpng/files/zlib/{{version}}/zlib-{{version}}.tar.gz"]
+mac = ["https://sourceforge.net/projects/libpng/files/zlib/{{version}}/zlib-{{version}}.tar.gz"]
+windows = ["https://sourceforge.net/projects/libpng/files/zlib/{{version}}/zlib@>@str_replace_all('{{version}}', fixed('.'), '')@<@.zip"]
+
+[zlib.install]
+linux = "./configure --prefix=`pwd` && make && make install"
+mac = "./configure --prefix=`pwd` && make && make install"
+windows = ""
+
+[bzip2]
+source_url = "http://www.bzip.org/{{version}}/bzip2-{{version}}.tar.gz"
+version_newest = "1.0.6"
+
+version_available = ["1.0.6"]
+
+after_failure = "echo 'fail!'"
+
+after_success = "echo 'successful!'"
+
+make_dir = ["./"]
+
+bin_dir = ["./bin"]
+
+[bzip2.install]
+linux = "make && make install PREFIX=`pwd`"
+mac = "make && make install PREFIX=`pwd`"
+windows = ""

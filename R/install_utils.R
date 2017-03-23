@@ -146,14 +146,18 @@ download.dir.files <- function(config, source_url, destfile, showWarnings = FALS
   status <- c()
   for (i in source_url) {
     tryCatch({
-      status.tmp <- FALSE
       status.tmp <- download.file.custom(url = i, destfile = destfile[count], 
         is.dir = is.dir)
       if (!is.logical(status.tmp) && status.tmp == 0) {
         status.tmp <- TRUE
+      } else {
+        status.tmp <- FALSE
       }
+      status.attr <- attributes(status)$success
       status <- c(status, status.tmp)
-      attr(status, "success") <- c(attributes(status)$success, destfile[count])
+      if(status.tmp) {
+        attr(status, "success") <- c(status.attr, destfile[count])
+      }
       if (!url.all.download && status.tmp) {
         break
       }
@@ -182,7 +186,9 @@ download.dir.files <- function(config, source_url, destfile, showWarnings = FALS
 
 # Convert URL to filename
 url2filename <- function(url) {
-  return(str_replace_all(url, ".*/", ""))
+  filename <- basename(url)
+  filename <- str_replace_all(filename, ".*=", "")
+  return(filename)
 }
 
 # Initital source_url
