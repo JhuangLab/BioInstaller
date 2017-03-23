@@ -155,7 +155,7 @@ download.dir.files <- function(config, source_url, destfile, showWarnings = FALS
       }
       status.attr <- attributes(status)$success
       status <- c(status, status.tmp)
-      if(status.tmp) {
+      if (status.tmp) {
         attr(status, "success") <- c(status.attr, destfile[count])
       }
       if (!url.all.download && status.tmp) {

@@ -357,3 +357,29 @@ get.zlib.newest.version <- function() {
   return(versions[1])
 }
 
+# Function get armadillo all versions
+get.armadillo.versions <- function() {
+  urls <- c("https://sourceforge.net/projects/arma/files/")
+  versions_final <- NULL
+  for (url in urls) {
+    h <- basicTextGatherer()
+    web <- getURL(url, headerfunction = h$update)
+    web <- str_split(web, "\n")
+    web <- web[[1]]
+    web <- web[str_detect(web, "href")]
+    web <- web[!str_detect(web, "source=files")]
+    web <- web[str_detect(web, 'files\\/armadillo')]
+    web <- web[!str_detect(web, 'timeline')]
+    web <- str_extract(web, "[0-9][0-9.]*")
+    web <- str_replace(web, ".$", "")
+    web <- web[!is.na(web)]
+  }
+  versions_final <- web
+  return(versions_final)
+}
+# Function get armadillo newest version
+get.armadillo.newest.version <- function() {
+  versions <- get.armadillo.versions()
+  return(versions[1])
+}
+

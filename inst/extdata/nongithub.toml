@@ -530,3 +530,23 @@ bin_dir = ["./bin"]
 linux = "make && make install PREFIX=`pwd`"
 mac = "make && make install PREFIX=`pwd`"
 windows = ""
+
+[armadillo]
+source_url = ["@>@ if('{{version}}' != '4.600.1') {'https://sourceforge.net/projects/arma/files/armadillo-{{version}}.tar.xz'} else {'http://updates.iontorrent.com/updates/software/external/armadillo-{{version}}.tar.gz'}@<@"]
+
+version_newest = "7.800.1"
+
+version_available = ["7.800.1", "4.600.1"]
+
+after_failure = "echo 'fail!'"
+
+after_success = "echo 'successful!'"
+
+make_dir = ["./"]
+
+bin_dir = ["./"]
+
+[armadillo.install]
+linux = ["@>@if('{{version}}' != '4.600.1'){'./configure --prefix=`pwd` && make'} else {%'%sed -i 's:^// #define ARMA_USE_LAPACK$:#define ARMA_USE_LAPACK:g' include/armadillo_bits/config.hpp; sed -i 's:^// #define ARMA_USE_BLAS$:#define ARMA_USE_BLAS:g' include/armadillo_bits/config.hpp && cmake . && make -j4%'%}@<@"]
+mac = ["@>@if('{{version}}' != '4.600.1'){'./configure --prefix=`pwd` && make'} else {%'%sed -i 's:^// #define ARMA_USE_LAPACK$:#define ARMA_USE_LAPACK:g' include/armadillo_bits/config.hpp; sed -i 's:^// #define ARMA_USE_BLAS$:#define ARMA_USE_BLAS:g' include/armadillo_bits/config.hpp && cmake . && make -j4%'%}@<@"]
+windows = ""
