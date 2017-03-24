@@ -563,3 +563,65 @@ bin_dir = ["./build/bin"]
 [somaticsniper.install]
 linux = "mkdir build; cd build && cmake ../ && make deps && make -j && make test"
 mac = "mkdir build; cd build && cmake ../ && make deps && make -j && make test"
+
+[bamutil]
+github_url = "https://github.com/statgen/bamUtil"
+
+version_newest = "v1.0.14"
+
+version_available = ["v1.0.0", "v1.0.10", "v1.0.11", "v1.0.12", "v1.0.13", "v1.0.14", "v1.0.2", "v1.0.3", "v1.0.5", "v1.0.6", "v1.0.7", "v1.0.9"]
+
+after_failure = "echo 'fail!'"
+
+after_success = "echo 'successful!'"
+
+make_dir = ["./"]
+
+bin_dir = ["./bin"]
+
+[bamutil.install]
+linux = "make cloneLib && make && make install INSTALLDIR={{destdir}}"
+mac = "make cloneLib && make && make install INSTALLDIR={{destdir}}"
+windows = "make cloneLib && make && make install INSTALLDIR={{destdir}}"
+
+[vcflib]
+github_url = "https://github.com/vcflib/vcflib"
+use_git2r = false
+recursive_clone = true
+
+version_newest = "v1.0.0-rc1"
+
+version_available = ["v1.0.0-rc1", "v1.0.0-rc0"]
+
+after_failure = "echo 'fail!'"
+
+after_success = "echo 'successful!'"
+
+make_dir = ["./"]
+
+bin_dir = ["./bin"]
+
+[vcflib.install]
+linux = "make"
+mac = "make"
+windows = "make"
+
+[jvarkit]
+github_url = "https://github.com/lindenb/jvarkit/"
+
+version_newest = "master"
+
+version_available = ["master"]
+
+after_failure = "echo 'fail!'"
+
+after_success = "echo 'successful!'"
+
+make_dir = ["./"]
+
+bin_dir = ["./dist"]
+
+[jvarkit.install]
+linux = "make all"
+mac = "make all"
+windows = "make all"
