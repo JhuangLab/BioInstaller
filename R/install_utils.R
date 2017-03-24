@@ -227,9 +227,16 @@ git.download <- function(name, destdir, version, github_url, use_git2r, recursiv
   recursive_clone <- convert.bool(recursive_clone)
   if (use_git2r) {
     repo <- git2r::clone(github_url, destdir)
-    text <- sprintf("git2r::checkout(git2r::tags(repo)[['%s']])", version)
-    status <- eval(parse(text = text))
-    status <- is.null(status)
+    if(version != "master") {
+      text <- sprintf("git2r::checkout(git2r::tags(repo)[['%s']])", version)
+      status <- eval(parse(text = text))
+      status <- is.null(status)
+    }
+    if(length(list.files(destdir)) != 0) {
+      status <- TRUE
+    } else {
+      status <- FALSE
+    }
   } else {
     if (recursive_clone) {
       cmd <- sprintf("git clone --recursive %s %s", github_url, destdir)
@@ -237,10 +244,16 @@ git.download <- function(name, destdir, version, github_url, use_git2r, recursiv
       cmd <- sprintf("git clone %s %s", github_url, destdir)
     }
     status <- for_runcmd(cmd)
+    status <- status == 0
+    if(!status) {
+      return(FALSE)
+    }
     olddir <- getwd()
     setwd(destdir)
-    status <- for_runcmd(sprintf("git checkout %s", version))
-    status <- status == 0
+    if(version != "master") {
+      status <- for_runcmd(sprintf("git checkout %s", version))
+    }
     setwd(olddir)
   }
+  return(status)
 }
