@@ -28,6 +28,8 @@ get.os <- function() {
     return("mac")
   } else if (os == "Windows") {
     return("windows")
+  } else {
+    return("other")
   }
 }
 
