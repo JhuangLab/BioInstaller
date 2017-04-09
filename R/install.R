@@ -354,9 +354,6 @@ install.nongithub <- function(name = "", destdir = "./", version = NULL, show.al
   
   process.dependence(config, db, destdir, verbose)
   config <- configr::parse.extra(config, other.config = db)
-  extract_dir <- sprintf("%s/install_tmp/", tempdir())
-  dir.create(extract_dir, showWarnings = FALSE)
-  destfile <- sprintf("%s/%s", extract_dir, filename)
   
   if (!is.null(name.saved)) {
     msg <- sprintf("Now start to install %s in %s.", name, destdir)
@@ -367,12 +364,11 @@ install.nongithub <- function(name = "", destdir = "./", version = NULL, show.al
   flog.info("Running before install steps.")
   if (verbose) {
     flog.info("Debug:Source download and decompression step.")
-    flog.info(sprintf("Debug:source_url:%s.", source_url))
-    flog.info(sprintf("Debug:extract_dir:%s.", extract_dir))
-    flog.info(sprintf("Debug:destfile:%s", destfile))
-    flog.info(sprintf("Debug:destdir:%s", destdir))
   } else {
-    if (need.download) {
+    if (need.download && !is.download.dir(config)) {
+      extract_dir <- sprintf("%s/install_tmp/", tempdir())
+      dir.create(extract_dir, showWarnings = FALSE)
+      destfile <- sprintf("%s/%s", extract_dir, filename)
       status <- download.dir.files(config, source_url, destfile, showWarnings, 
         url.all.download)
       status[is.null(status)] <- FALSE
@@ -397,6 +393,11 @@ install.nongithub <- function(name = "", destdir = "./", version = NULL, show.al
       if (!all(status)) {
         return(FALSE)
       }
+    } else if (need.download && is.download.dir(config)) {
+      destfile <- sprintf(sprintf("%s/%s", destdir, filename))
+      status <- download.dir.files(config, source_url, destfile, showWarnings, 
+        url.all.download)
+      status[is.null(status)] <- FALSE
     } else {
       status <- TRUE
     }
