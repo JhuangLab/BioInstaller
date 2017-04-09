@@ -35,7 +35,7 @@ devtools::install_github("Miachol/BioInstaller")
 
 **NGS Utils:** 
 
-- htslib, samtools, bcftools, bedtools, bamtools, vcftools, sratools, picard, HTSeq, seqtk, UCSC Utils(blat, liftOver)
+- htslib, samtools, bcftools, bedtools, bamtools, vcftools, sratools, picard, HTSeq, seqtk, UCSC Utils(blat, liftOver), bamUtil, jvarkit
 
 **NGS Variant Caller:** 
     
@@ -51,7 +51,7 @@ devtools::install_github("Miachol/BioInstaller")
 
 **NGS Quality Control:** 
 
-- FastQC
+- FastQC, PRINSEQ, SolexaQA, FASTX-Toolkit
 
 **NGS Others:**
 
@@ -67,5 +67,5 @@ devtools::install_github("Miachol/BioInstaller")
 
 **Others:** 
 
-- sparsehash, sqlite, pigz, lzo, lzop
+- sparsehash, sqlite, pigz, lzo, lzop, bzip2, zlib, armadillo
 

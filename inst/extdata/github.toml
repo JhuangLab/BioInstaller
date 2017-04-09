@@ -625,3 +625,47 @@ bin_dir = ["./dist"]
 linux = "make all"
 mac = "make all"
 windows = "make all"
+
+[fastx_toolkit]
+github_url = "https://github.com/agordon/fastx_toolkit"
+
+dependence = ["libgtextutils"]
+
+dependence_version = ["0.7"]
+
+version_newest = "0.0.14"
+
+version_available = ["0.0.14", "0.0.14-rc1", "0.0.14-rc1-no-tr1", "0.0.14-rc2"]
+
+after_failure = "echo 'fail!'"
+
+after_success = "echo 'successful!'"
+
+make_dir = ["./"]
+
+bin_dir = ["./bin"]
+
+[fastx_toolkit.install]
+linux = "export PKG_CONFIG_PATH=PKG_CONFIG_PATH:{{libgtextutils:source.dir}}; ./reconf && ./configure --prefix=`pwd` && make && make install"
+mac = "export PKG_CONFIG_PATH=PKG_CONFIG_PATH:{{libgtextutils:source.dir}}; ./reconf && ./configure --prefix=`pwd` && make && make install"
+windows = "export PKG_CONFIG_PATH=PKG_CONFIG_PATH:{{libgtextutils:source.dir}}; ./reconf && ./configure --prefix=`pwd` && make && make install"
+
+[libgtextutils]
+github_url = "https://github.com/agordon/libgtextutils"
+
+version_newest = "0.7"
+
+version_available = ["0.7", "0.0.7-rc1"]
+
+after_failure = "echo 'fail!'"
+
+after_success = "echo 'successful!'"
+
+make_dir = ["./"]
+
+bin_dir = ["./"]
+
+[libgtextutils.install]
+linux = "./reconf && ./configure --prefix=`pwd` && make && make install"
+mac = "./reconf && ./configure --prefix=`pwd` && make && make install"
+windows = "./reconf && ./configure --prefix=`pwd` && make && mak install"

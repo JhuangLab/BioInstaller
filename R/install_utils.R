@@ -147,7 +147,7 @@ download.dir.files <- function(config, source_url, destfile, showWarnings = FALS
   for (i in source_url) {
     tryCatch({
       status.tmp <- download.file.custom(url = i, destfile = destfile[count], 
-        is.dir = is.dir)
+        is.dir = is.dir, showWarnings = showWarnings)
       if (!is.logical(status.tmp) && status.tmp == 0) {
         status.tmp <- TRUE
       } else {
@@ -245,6 +245,7 @@ git.download <- function(name, destdir, version, github_url, use_git2r, recursiv
     }
     status <- for_runcmd(cmd)
     status <- status == 0
+    status[is.null(status)] <- FALSE
     if(!status) {
       return(FALSE)
     }

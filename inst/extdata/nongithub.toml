@@ -550,3 +550,72 @@ bin_dir = ["./"]
 linux = ["@>@if('{{version}}' != '4.600.1'){'./configure --prefix=`pwd` && make'} else {%'%sed -i 's:^// #define ARMA_USE_LAPACK$:#define ARMA_USE_LAPACK:g' include/armadillo_bits/config.hpp; sed -i 's:^// #define ARMA_USE_BLAS$:#define ARMA_USE_BLAS:g' include/armadillo_bits/config.hpp && cmake . && make -j4%'%}@<@"]
 mac = ["@>@if('{{version}}' != '4.600.1'){'./configure --prefix=`pwd` && make'} else {%'%sed -i 's:^// #define ARMA_USE_LAPACK$:#define ARMA_USE_LAPACK:g' include/armadillo_bits/config.hpp; sed -i 's:^// #define ARMA_USE_BLAS$:#define ARMA_USE_BLAS:g' include/armadillo_bits/config.hpp && cmake . && make -j4%'%}@<@"]
 windows = ""
+
+[samstat]
+source_url = "https://sourceforge.net/projects/samstat/files/samstat-{{version}}.tar.gz"
+
+version_newest = "1.5.1"
+
+version_available = ["1.5.1", "1.5"]
+
+after_failure = "echo 'fail!'"
+
+after_success = "echo 'successful!'"
+
+make_dir = ["./"]
+
+bin_dir = ["./bin"]
+
+[samstat.before_install]
+linux = "autoreconf -ivf"
+mac = "autoreconf -ivf"
+windows = "autoreconf -ivf"
+
+[samstat.install]
+linux = "./configure --prefix=`pwd` && make && make install"
+mac = "./configure --prefix=`pwd` && make && make install"
+windows = "./configure --prefix=`pwd` && make && make install"
+
+[prinseq]
+source_url = "https://sourceforge.net/projects/prinseq/files/standalone/prinseq-lite-{{version}}.tar.gz"
+
+version_newest = "0.20.4"
+
+version_available = ["0.20.4", "0.20.3", "0.20.2", "0.20.1", "0.20", "0.19.5", "0.19.4", "0.19.3", "0.19.2", "0.19.1", "0.19", "0.18.3", "0.18.2", "0.18.1", "0.18", "0.17.4", "0.17.3", "0.17.2", "0.17.1", "0.17", "0.16", "0.15.1", "0.15", "0.14.4", "0.14.2", "0.14.1", "0.14", "0.13.2", "0.13.1", "0.13", "0.12", "0.11", "0.10", "0.9", "0.8"]
+
+after_failure = "echo 'fail!'"
+
+after_success = "echo 'successful!'"
+
+make_dir = ["./"]
+
+bin_dir = ["./"]
+
+
+[prinseq.install]
+linux = ""
+mac = ""
+windows = ""
+
+[solexaqa]
+source_url = ["https://sourceforge.net/projects/solexaqa/files/src/SolexaQA++_v{{version}}.zip",
+              "https://sourceforge.net/projects/solexaqa/files/src/SolexaQA_v.{{version}}.zip"]
+url_all_download = false
+
+version_newest = "3.1.7.1"
+
+version_available = ["3.1.7.1", "3.1.7", "3.1.6", "3.1.5", "3.1.4", "3.1.3", "3.1.2", "3.1.1", "3.1", "3.0", "2.5", "2.4", "2.3", "2.2", "2.1", "2.0", "1.13"]
+
+after_failure = "echo 'fail!'"
+
+after_success = "echo 'successful!'"
+
+make_dir = ["./"]
+
+bin_dir = ["./"]
+
+
+[solexaqa.install]
+linux = "chmod -R +x *"
+mac = "chmod -R +x *"
+windows = "chmod -R +x *"

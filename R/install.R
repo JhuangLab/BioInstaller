@@ -75,6 +75,7 @@ install.bioinfo <- function(name = c(), destdir = c(), name.saved = NULL, github
         i))
       next
     }
+    status[is.null(status)] <- FALSE
     if (is.logical(status) && download.only && status && !verbose) {
       flog.info(sprintf("%s be downloaded in %s successful", name, destdir))
       return(TRUE)
@@ -147,6 +148,7 @@ install.github <- function(name = "", destdir = "./", version = NULL, show.all.v
   name <- tolower(name)
   
   status <- config.and.name.initial(config.cfg, name)
+  status[is.null(status)] <- FALSE
   if (!status) {
     return(FALSE)
   }
@@ -297,6 +299,7 @@ install.nongithub <- function(name = "", destdir = "./", version = NULL, show.al
   name <- tolower(name)
   
   status <- config.and.name.initial(config.cfg, name)
+  status[is.null(status)] <- FALSE
   if (!status) {
     return(FALSE)
   }
@@ -338,6 +341,7 @@ install.nongithub <- function(name = "", destdir = "./", version = NULL, show.al
     destfile <- sprintf(sprintf("%s/%s", destdir, filename))
     status <- download.dir.files(config, source_url, destfile, showWarnings, 
       url.all.download)
+    status[is.null(status)] <- FALSE
     if (all(!status)) {
       return(FALSE)
     }
@@ -371,6 +375,7 @@ install.nongithub <- function(name = "", destdir = "./", version = NULL, show.al
     if (need.download) {
       status <- download.dir.files(config, source_url, destfile, showWarnings, 
         url.all.download)
+      status[is.null(status)] <- FALSE
       if (all(!status)) {
         return(FALSE)
       }

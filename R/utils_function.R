@@ -152,20 +152,37 @@ drop_redundance_dir <- function(destdir) {
   }
 }
 
-download.file.custom <- function(url = "", destfile = "", is.dir = FALSE, ...) {
+download.file.custom <- function(url = "", destfile = "", is.dir = FALSE, showWarnings = F, ...) {
+  status <- NULL
   if (is.dir) {
     filenames <- getURL(url, ftp.use.epsv = FALSE, dirlistonly = TRUE)
     filenames <- str_replace_all(filenames, "\r\n", "\n")
     filenames <- str_split(filenames, "\n")[[1]]
     filenames <- filenames[filenames != ""]
+    dir.create(destfile, showWarnings = F, recursive = TRUE)
     for (i in filenames) {
       fn <- sprintf("%s/%s", destfile, i)
-      dir.create(dirname(fn), showWarnings = F, recursive = TRUE)
-      download.file(url = sprintf("%s/%s", url, i), destfile = fn)
+      tryCatch({
+        status.tmp <- download.file(url = sprintf("%s/%s", url, i), destfile = fn)
+        status <- c(status.tmp, status)
+        }, error = function(e) {
+          if (showWarnings) {
+              warning(e)
+          }
+        }, warning = function(w) {
+          if (showWarnings) {
+              warning(e)
+          }
+        }
+      )
+    }
+    if(any(status == 0)) {
+      status <- 0
     }
   } else {
-    download.file(url = url, destfile = destfile, ...)
+    status <- download.file(url = url, destfile = destfile, ...)
   }
+  return(status)
 }
 
 # Check destdir and decide wheather overwrite
