@@ -31,7 +31,7 @@ devtools::install_github("Miachol/BioInstaller")
 
 **NGS Aligner:** 
 
-- BWA, STAR, TMAP, Bowtie, Bowtie2, tophat2, hisat2, GMAP-GSNAP, ABySS, SSAHA2, Velvet, Edean
+- BWA, STAR, TMAP, Bowtie, Bowtie2, tophat2, hisat2, GMAP-GSNAP, ABySS, SSAHA2, Velvet, Edean, Trinity, oases, RUM, MapSplice2
 
 **NGS Utils:** 
 

@@ -669,3 +669,63 @@ bin_dir = ["./"]
 linux = "./reconf && ./configure --prefix=`pwd` && make && make install"
 mac = "./reconf && ./configure --prefix=`pwd` && make && make install"
 windows = "./reconf && ./configure --prefix=`pwd` && make && mak install"
+
+[trinityrnaseq]
+github_url = "https://github.com/trinityrnaseq/trinityrnaseq"
+
+version_newest = "Trinity-v2.4.0"
+
+version_available = ["Trinity-v2.3.1_PRERELEASE", "Trinity-v2.3.2", "Trinity-v2.4.0", "v2.0.2", "v2.0.3", "v2.0.4", "v2.0.5", "v2.0.6", "v2.1.0", "v2.1.1", "v2.2.0", "v2.3.0_PRERELEASE"]
+
+after_failure = "echo 'fail!'"
+
+after_success = "echo 'successful!'"
+
+make_dir = ["./"]
+
+bin_dir = ["./"]
+
+[trinityrnaseq.install]
+linux = "make"
+mac = "make"
+windows = "make"
+
+[oases]
+github_url = "https://github.com/dzerbino/oases"
+
+version_newest = "0.2.09"
+
+version_available = ["0.2.09"]
+
+after_failure = "echo 'fail!'"
+
+after_success = "echo 'successful!'"
+
+make_dir = ["./"]
+
+bin_dir = ["./"]
+
+[oases.install]
+linux = "make"
+mac = "make"
+windows = "make"
+
+[rum]
+github_url = "https://github.com/itmat/rum"
+
+version_newest = "v2.0.5_06"
+
+version_available = ["v1.11.0", "v1.12_00", "v1.12_01", "v2.0.0_01", "v2.0.0_02", "v2.0.0_03", "v2.0.0_04", "v2.0.0_05", "v2.0.0_06", "v2.0.0_07", "v2.0.0_08", "v2.0.0_09", "v2.0.0_10", "v2.0.0_11", "v2.0.0_12", "v2.0.0_13", "v2.0.0_14", "v2.0.0_15", "v2.0.1", "v2.0.1_01", "v2.0.2", "v2.0.2_01", "v2.0.2_02", "v2.0.2_03", "v2.0.2_04", "v2.0.2_05", "v2.0.2_06", "v2.0.2_07", "v2.0.2_08", "v2.0.3", "v2.0.3_01", "v2.0.3_02", "v2.0.3_03", "v2.0.3_04", "v2.0.3_05", "v2.0.3_06", "v2.0.4", "v2.0.5_01", "v2.0.5_02", "v2.0.5_03", "v2.0.5_04", "v2.0.5_05", "v2.0.5_06"]
+
+after_failure = "echo 'fail!'"
+
+after_success = "echo 'successful!'"
+
+make_dir = ["./"]
+
+bin_dir = ["./"]
+
+[rum.install]
+linux = ["cpan -i autodie", "cpan -i Log::Log4perl", "perl Makefile.PL && make", "make install"]
+mac = ["cpan -i autodie", "cpan -i Log::Log4perl", "perl Makefile.PL && make", "make install"]
+windows = ["cpan -i autodie", "cpan -i Log::Log4perl", "perl Makefile.PL && make", "make install"]

@@ -619,3 +619,24 @@ bin_dir = ["./"]
 linux = "chmod -R +x *"
 mac = "chmod -R +x *"
 windows = "chmod -R +x *"
+
+[mapsplice2]
+source_url = "http://protocols.netlab.uky.edu/~zeng/MapSplice-v{{version}}.zip"
+
+version_newest = "2.2.1"
+
+version_available = ["2.2.1", "2.2.0", "2.1.9", "2.1.8", "2.1.7", "2.1.6", "2.1.5", "2.1.4", "2.1.3", "2.1.2", "2.1.0"]
+
+after_failure = "echo 'fail!'"
+
+after_success = "echo 'successful!'"
+
+make_dir = ["./"]
+
+bin_dir = ["./bin"]
+
+
+[mapsplice2.install]
+linux = "make"
+mac = "make"
+windows = "make"

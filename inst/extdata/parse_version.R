@@ -409,7 +409,7 @@ get.prinseq.newest.version <- function() {
   return(versions[1])
 }
 
-# Function get prinseq all versions
+# Function get solexaqa all versions
 get.solexaqa.versions <- function() {
   urls <- c("https://sourceforge.net/projects/solexaqa/files/src/")
   versions_final <- NULL
@@ -436,3 +436,25 @@ get.solexaqa.newest.version <- function() {
   return(versions[1])
 }
 
+# Function get mapsplice2 all versions
+get.mapsplice2.versions <- function() {
+  urls <- c("http://www.netlab.uky.edu/p/bioinfo/MapSplice2")
+  versions_final <- NULL
+  for (url in urls) {
+    h <- basicTextGatherer()
+    web <- getURL(url, headerfunction = h$update)
+    web <- str_split(web, "\n")
+    web <- web[[1]]
+    web <- web[str_detect(web, "href")]
+    web <- web[str_detect(web, "download")]
+    web <- str_extract(web, "[0-9]\\.[0-9.]*")
+    web <- web[!is.na(web)]
+  }
+  versions_final <- web
+  return(versions_final)
+}
+# Function get mapsplice2 newest version
+get.mapsplice2.newest.version <- function() {
+  versions <- get.mapsplice2.versions()
+  return(versions[1])
+}
