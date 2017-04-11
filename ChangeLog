@@ -1,3 +1,7 @@
+2017-04-11 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
+
+		* bcl2fastq2 be supported
+
 2017-04-09 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
 
 		* samstat, PRINSEQ, SolexaQA, fastx_toolkit be supported

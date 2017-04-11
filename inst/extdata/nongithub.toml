@@ -640,3 +640,24 @@ bin_dir = ["./bin"]
 linux = "make"
 mac = "make"
 windows = "make"
+
+[bcl2fastq2]
+source_url = "https://support.illumina.com/content/dam/illumina-support/documents/downloads/software/bcl2fastq/bcl2fastq2-v{{version}}.tar.gz"
+
+version_newest = "2.19.0"
+
+version_available = ["2.19.0"]
+
+after_failure = "echo 'fail!'"
+
+after_success = "echo 'successful!'"
+
+make_dir = ["./"]
+
+bin_dir = ["./bin"]
+
+
+[bcl2fastq2.install]
+linux = "mkdir build; cd build; ../src/configure --prefix={{destdir}} && make && make install"
+mac = "mkdir build; cd build; ../src/configure --prefix={{destdir}} && make && make install"
+windows = "mkdir build; cd build; ../src/configure --prefix={{destdir}} && make && make install"

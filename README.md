@@ -35,7 +35,7 @@ devtools::install_github("Miachol/BioInstaller")
 
 **NGS Utils:** 
 
-- htslib, samtools, bcftools, bedtools, bamtools, vcftools, sratools, picard, HTSeq, seqtk, UCSC Utils(blat, liftOver), bamUtil, jvarkit
+- htslib, samtools, bcftools, bedtools, bamtools, vcftools, sratools, picard, HTSeq, seqtk, UCSC Utils(blat, liftOver), bamUtil, jvarkit, bcl2fastq2
 
 **NGS Variant Caller:** 
     
