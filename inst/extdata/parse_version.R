@@ -119,7 +119,7 @@ get.edena.newest.version <- function() {
 
 # Function get fastqc all versions
 get.fastqc.versions <- function() {
-  urls <- c("http://www.bioinformatics.bbsrc.ac.uk/projects/fastqc/")
+  urls <- c("http://www.bioinformatics.babraham.ac.uk/projects/fastqc/")
   versions_final <- NULL
   for (url in urls) {
     h <- basicTextGatherer()
@@ -127,8 +127,8 @@ get.fastqc.versions <- function() {
     web <- str_split(web, "\n")
     web <- web[[1]]
     
-    web <- web[str_detect(web, "Version")]
-    web <- str_extract(web, "[0-9][.0-9]*")
+    web <- str_extract(web, "Version [0-9][.0-9]*")
+    web <- str_replace_all(web, "Version", "")
   }
   return(versions_final)
 }
