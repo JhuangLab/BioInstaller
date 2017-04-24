@@ -152,7 +152,8 @@ drop_redundance_dir <- function(destdir) {
   }
 }
 
-download.file.custom <- function(url = "", destfile = "", is.dir = FALSE, showWarnings = F, ...) {
+download.file.custom <- function(url = "", destfile = "", is.dir = FALSE, showWarnings = F, 
+  ...) {
   status <- NULL
   if (is.dir) {
     filenames <- getURL(url, ftp.use.epsv = FALSE, dirlistonly = TRUE)
@@ -165,18 +166,17 @@ download.file.custom <- function(url = "", destfile = "", is.dir = FALSE, showWa
       tryCatch({
         status.tmp <- download.file(url = sprintf("%s/%s", url, i), destfile = fn)
         status <- c(status.tmp, status)
-        }, error = function(e) {
-          if (showWarnings) {
-              warning(e)
-          }
-        }, warning = function(w) {
-          if (showWarnings) {
-              warning(e)
-          }
+      }, error = function(e) {
+        if (showWarnings) {
+          warning(e)
         }
-      )
+      }, warning = function(w) {
+        if (showWarnings) {
+          warning(w)
+        }
+      })
     }
-    if(any(status == 0)) {
+    if (any(status == 0)) {
       status <- 0
     }
   } else {

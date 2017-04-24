@@ -303,6 +303,9 @@ source_url = ["https://sourceforge.net/projects/fusioncatcher/files/fusioncatche
               "https://sourceforge.net/projects/fusioncatcher/files/bootstrap.py"]
 decompress = [true, false]
 
+#dependence = ["bwa", "blat", "faToTwoBit", "bowtie", "bowtie2", "star", "sratools", "velvet", "lzo", "pigz", "seqtk", "picard", "samtools_old", "pxz", "liftover"]
+#dependence_version = ["v0.7.15", "latest", "latest", "v1.2.0", "v2.3.0", "2.5.3a", "2.8.2-1", "1.2.10", "2.10", "2.2.4", "1.2-r101b", "2.9.0", "0.1.19", "master", "latest"]
+
 version_newest = "v0.99.7b"
 
 version_available = ["v0.99.7b", "v0.99.7a", "v0.99.6a", "v0.99.5a", "v0.99.4e", "v0.99.4d", "v0.99.4c", "v0.99.4b", "v0.99.4a", "v0.99.3e", "v0.99.3d", "v0.99.3c", "v0.99.3b", "v0.99.3a", "v0.99.2", "v0.99.1", "v0.99.0", "v0.95", "v0.96", "v0.93", "v0.94", "v0.98", "v0.97"]
@@ -656,8 +659,82 @@ make_dir = ["./"]
 
 bin_dir = ["./bin"]
 
-
 [bcl2fastq2.install]
 linux = "mkdir build; cd build; ../src/configure --prefix={{destdir}} && make && make install"
 mac = "mkdir build; cd build; ../src/configure --prefix={{destdir}} && make && make install"
 windows = "mkdir build; cd build; ../src/configure --prefix={{destdir}} && make && make install"
+
+[blat]
+decompress = false
+version_newest = "latest"
+
+version_available = ["latest"]
+
+after_failure = "echo 'fail!'"
+
+after_success = "echo 'successful!'"
+
+make_dir = ["./"]
+
+bin_dir = ["./bin"]
+
+[blat.source_url]
+
+linux = "http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/blat/blat"
+mac = "http://hgdownload.soe.ucsc.edu/admin/exe/macOSX.x86_64/blat/blat"
+windows = "http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/blat/blat"
+
+[blat.install]
+linux = "chmod +x blat"
+mac = "chmod +x blat"
+windows = ""
+
+[fatotwobit]
+decompress = false
+version_newest = "latest"
+
+version_available = ["latest"]
+
+after_failure = "echo 'fail!'"
+
+after_success = "echo 'successful!'"
+
+make_dir = ["./"]
+
+bin_dir = ["./bin"]
+
+[fatotwobit.source_url]
+
+linux = "http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/faToTwoBit"
+mac = "http://hgdownload.soe.ucsc.edu/admin/exe/macOSX.x86_64/faToTwoBit"
+windows = "http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/faToTwoBit"
+
+[fatotwobit.install]
+linux = "chmod +x faToTwoBit"
+mac = "chmod +x faToTwoBit"
+windows = ""
+
+[liftover]
+decompress = false
+version_newest = "latest"
+
+version_available = ["latest"]
+
+after_failure = "echo 'fail!'"
+
+after_success = "echo 'successful!'"
+
+make_dir = ["./"]
+
+bin_dir = ["./bin"]
+
+[liftover.source_url]
+
+linux = "http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/liftOver"
+mac = "http://hgdownload.soe.ucsc.edu/admin/exe/macOSX.x86_64/liftOver"
+windows = "http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/liftOver"
+
+[liftover.install]
+linux = "chmod +x liftOver"
+mac = "chmod +x liftOver"
+windows = ""

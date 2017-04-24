@@ -73,7 +73,7 @@ dependence = ["htslib"]
 
 dependence_version = ["{{version}}"]
 
-version_available = ["0.1.1", "0.1.10", "0.1.11", "0.1.12", "0.1.12a", "0.1.13", "0.1.14", "0.1.15", "0.1.16", "0.1.17", "0.1.18", "0.1.19", "0.1.2-svntag", "0.1.2-tarball", "0.1.20", "0.1.3", "0.1.4", "0.1.5", "0.1.5a", "0.1.5b", "0.1.5c", "0.1.6", "0.1.7", "0.1.7a", "0.1.8", "0.1.9", "0.2.0-rc1", "0.2.0-rc10", "0.2.0-rc11", "0.2.0-rc12", "0.2.0-rc2", "0.2.0-rc3", "0.2.0-rc4", "0.2.0-rc5", "0.2.0-rc6", "0.2.0-rc7", "0.2.0-rc8", "0.2.0-rc9", "1.0", "1.1", "1.2", "1.3", "1.3.1", "1.4" ]
+version_available = ["1.0", "1.1", "1.2", "1.3", "1.3.1", "1.4", "0.2.0-rc1", "0.2.0-rc10", "0.2.0-rc11", "0.2.0-rc12", "0.2.0-rc2", "0.2.0-rc3", "0.2.0-rc4", "0.2.0-rc5", "0.2.0-rc6", "0.2.0-rc7", "0.2.0-rc8", "0.2.0-rc9"]
 
 after_failure = "echo 'fail!'"
 
@@ -88,6 +88,26 @@ linux = ["autoconf -Wno-syntax; sed -i 's;HTSDIR = ../htslib;HTSDIR = {{htslib:s
 mac = ["autoconf -Wno-syntax; sed -i 's;HTSDIR = ../htslib;HTSDIR = {{htslib:source.dir}};' config.mk; make && make install prefix=`pwd`"]
 windows = ["autoconf -Wno-syntax; sed -i 's;HTSDIR = ../htslib;HTSDIR = {{htslib:source.dir}};' config.mk; make && make install prefix=`pwd`"]
 
+[samtools_old]
+github_url = "https://github.com/samtools/samtools"
+
+version_newest = "0.1.9"
+
+version_available = ["0.1.1", "0.1.10", "0.1.11", "0.1.12", "0.1.12a", "0.1.13", "0.1.14", "0.1.15", "0.1.16", "0.1.17", "0.1.18", "0.1.19", "0.1.2-svntag", "0.1.2-tarball", "0.1.20", "0.1.3", "0.1.4", "0.1.5", "0.1.5a", "0.1.5b", "0.1.5c", "0.1.6", "0.1.7", "0.1.7a", "0.1.8", "0.1.9"]
+
+after_failure = "echo 'fail!'"
+
+after_success = ""
+
+make_dir = ["./"]
+
+bin_dir = ["./"]
+
+[samtools_old.install]
+linux = "make"
+mac = "make"
+windows = "make"
+
 [bcftools]
 github_url = "https://github.com/samtools/bcftools"
 
@@ -97,7 +117,7 @@ version_available = ["0.1.0", "0.2.0-rc1", "0.2.0-rc10", "0.2.0-rc11", "0.2.0-rc
 
 dependence = ["htslib"]
 
-dependence_version = ["1.3.2"]
+dependence_version = ["{{version}}"]
 
 after_failure = "echo 'fail!'"
 
@@ -729,3 +749,43 @@ bin_dir = ["./"]
 linux = ["cpan -i autodie", "cpan -i Log::Log4perl", "perl Makefile.PL && make", "make install"]
 mac = ["cpan -i autodie", "cpan -i Log::Log4perl", "perl Makefile.PL && make", "make install"]
 windows = ["cpan -i autodie", "cpan -i Log::Log4perl", "perl Makefile.PL && make", "make install"]
+
+[igraph]
+github_url = "https://github.com/igraph/igraph"
+
+version_newest = "0.7.1"
+
+version_available = ["0.5.8", "0.6.5", "0.6.6", "0.7.0", "0.7.1", "0.8.0-pre"]
+
+after_failure = "echo 'fail!'"
+
+after_success = "echo 'successful!'"
+
+make_dir = ["./"]
+
+bin_dir = ["./bin"]
+
+[igraph.install]
+linux = "sh bootstrap.sh;./configure --prefix=`pwd` && make && make install"
+mac = "sh bootstrap.sh;./configure --prefix=`pwd` && make && make install"
+windows = "sh bootstrap.sh;./configure --prefix=`pwd` && make && make install"
+
+[pxz]
+github_url = "https://github.com/jnovy/pxz"
+
+version_newest = "master"
+
+version_available = ["master"]
+
+after_failure = "echo 'fail!'"
+
+after_success = "echo 'successful!'"
+
+make_dir = ["./"]
+
+bin_dir = ["./"]
+
+[pxz.install]
+linux = "make"
+mac = "make"
+windows = "make"

@@ -2,6 +2,10 @@
 		
 		* Update FastQC URL
 		* Update Version newest
+		* Change dependece install dir in the {{destdir}}/dependence/some_dependence
+		* Add "softwares_version" format name recognition, eg. bwa@0.7.2a,
+		name.saved="bwa@0.7.2a", version=0.7.2a
+		* Release 0.1.0
 
 2017-04-11 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
 

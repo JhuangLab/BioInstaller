@@ -1,7 +1,5 @@
-#' Install and download massive bioinformatics analysis software and database,
-#' such as NGS analysis tools with its required database or/and reference genome,
-#' is still a complicated task. BioInstaller can be used to install
-#' that tools and database in R conveniently.
+#' This package can be used to install and download massive bioinformatics analysis 
+#' softwares and databases, such as NGS reads mapping tools with its required databases.
 #'
 #' @author
 #' Li Jianfeng \url{lee_jianfeng@sjtu.edu.cn}
