@@ -113,8 +113,9 @@ extract.file <- function(file, destdir, decompress = TRUE) {
     unzip(file, exdir = destdir)
     status <- drop_redundance_dir(destdir)
   } else if (filetype %in% c("gz", "xz", "bz2")) {
-    gunzip(file)
-    status <- drop_redundance_dir(destdir)
+    status <- gunzip(filename=file, sprintf("%s/%s", destdir, 
+                     str_replace_all(basename(file), ".gz$|.xz|.bz2", "")))
+    status <- is.character(status)
   } else if (filetype %in% c("tar", "tar.gz", "tgz", "tar.bz2", "tar.xz")) {
     status <- untar(file, exdir = destdir)
     status <- drop_redundance_dir(destdir)
