@@ -92,9 +92,31 @@ is.setted.dependence <- function(config) {
   return(!is.null(config$dependence_version) && !is.null(config$dependence))
 }
 
+check.need.install <- function(names, versions, db) {
+  result <- c()
+  names.installed <- show.installed(db)
+  count <- 1
+  for(i in names) {
+    if(i %in% names.installed) {
+      if (versions[count] == get.info(i)$version) {
+        result <- c(result, TRUE)
+      } else {
+        result <- c(result, FALSE)
+      }
+    } else {
+      result <- c(result, FALSE)
+    }
+  count <- count + 1
+  }
+  return(result)
+}
+
 # Get need install name
 get.need.install <- function(config, db) {
-  need.install <- config$dependence[!config$dependence %in% show.installed(db)]
+  fil1 <- check.need.install(config$dependence, config$dependence_version, db)
+  fil2<- check.need.install(str_replace_all(config$dependence, "@", "_"), 
+                            config$dependence_version, db)
+  need.install <- config$dependence[!(fil1 | fil2)]
   need.install.version <- config$dependence_version[!config$dependence %in% show.installed(db)]
   return(list(need.install = need.install, need.install.version = need.install.version))
 }
@@ -103,7 +125,7 @@ get.need.install <- function(config, db) {
 install.dependence <- function(need.install, need.install.version, destdir) {
   flog.info(sprintf("Try install the dependence:%s", paste0(need.install, collapse = ", ")))
   install.status <- install.bioinfo(name = need.install, destdir = sprintf("%s/%s", 
-    dirname(destdir), need.install), version = need.install.version)
+    dirname(destdir), str_replace_all(need.install, "@", "_")), version = need.install.version)
   fail.list <- install.status$fail.list
   if (!is.null(fail.list) && fail.list != "") {
     stop(sprintf("Dependence Error:%s install fail.", paste0(fail.list, collapse = ", ")))

@@ -458,3 +458,28 @@ get.mapsplice2.newest.version <- function() {
   versions <- get.mapsplice2.versions()
   return(versions[1])
 }
+
+# Function get root all versions
+get.root.versions <- function() {
+  urls <- c("https://root.cern.ch/releases")
+  versions_final <- NULL
+  for (url in urls) {
+    h <- basicTextGatherer()
+    web <- getURL(url, headerfunction = h$update)
+    web <- str_split(web, "\n")
+    web <- web[[1]]
+    web <- web[str_detect(web, "href")]
+    web <- web[str_detect(web, "Release")]
+    web <- str_extract(web, "[0-9]\\.[0-9./]*")
+    web <- str_replace_all(web, fixed("/"), fixed("."))
+    web <- web[!is.na(web)]
+  }
+  versions_final <- web
+  versions_final <- sort(versions_final, decreasing=T)
+  return(versions_final)
+}
+# Function get root newest version
+get.root.newest.version <- function() {
+  versions <- get.root.versions()
+  return(versions[1])
+}

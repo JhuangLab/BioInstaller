@@ -63,12 +63,12 @@ install.bioinfo <- function(name = c(), destdir = c(), name.saved = NULL, github
     sf.name = str_split(i, "@")[[1]][1]
     sf.version = str_split(i, "@")[[1]][2]
     if (is.null(name.saved[count]) || is.na(name.saved[count])) {
-      name.saved[count] <- i
+      name.saved[count] <- str_replace(i, "@", "_")
     }
     if (i %in% github.softwares || (sf.name %in% github.softwares && (sf.name != 
       i))) {
       if (sf.name %in% github.softwares && sf.name != i) {
-        name.saved[count] <- i
+        name.saved[count] <- str_replace(i, "@", "_")
         i <- sf.name
         version[count] <- sf.version
       }
@@ -80,7 +80,7 @@ install.bioinfo <- function(name = c(), destdir = c(), name.saved = NULL, github
     } else if (i %in% nongithub.softwares || (sf.name %in% nongithub.names && sf.name != 
       i)) {
       if (sf.name %in% nongithub.softwares && sf.name != i) {
-        name.saved[count] <- i
+        name.saved[count] <- str_replace(i, "@", "_")
         i = sf.name
         version[count] = sf.version
       }

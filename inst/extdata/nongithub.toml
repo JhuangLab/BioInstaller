@@ -738,3 +738,43 @@ windows = "http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/liftOver"
 linux = "chmod +x liftOver"
 mac = "chmod +x liftOver"
 windows = ""
+
+[svtoolkit]
+source_url = "http://bioinfo.rjh.com.cn/download/svtoolkit/download.php?filename=svtoolkit_{{version}}.tar.gz"
+
+version_newest = "2.00.1747"
+
+version_available = ["2.00.1678", "2.00.1685", "2.00.1696", "2.00.1710", "2.00.1736", "2.00.1747"]
+
+after_failure = "echo 'fail!'"
+
+after_success = "echo 'successful!'"
+
+make_dir = ["./"]
+
+bin_dir = ["./lib"]
+
+[svtoolkit.install]
+linux = ""
+mac = ""
+windows = ""
+
+[root]
+source_url = "https://root.cern.ch/download/root_v{{version}}.source.tar.gz"
+
+version_newest = "6.09.02"
+
+version_available = ["6.09.02", "6.08.06", "6.08.04", "6.08.02", "6.08.00", "6.06.08", "6.06.06", "6.06.04", "6.06.02", "6.06.00", "6.05.02", "6.04.18", "6.04.16", "6.04.14", "6.04.12", "6.04.10", "6.04.08", "6.04.06", "6.04.04", "6.04.02", "6.04.00", "6.03.04", "6.03.02", "6.02.12", "6.02.10", "6.02.08", "6.02.05", "6.02.04", "6.02.03", "6.02.02", "6.02.01", "6.02.00", "6.00.02", "6.00.01", "6.00.00", "5.99.06", "5.99.05", "5.99.04", "5.34.36", "5.34.34", "5.34.32", "5.34.30", "5.34.28", "5.34.26", "5.34.25", "5.34.24", "5.34.23", "5.34.22", "5.34.21", "5.34.20", "5.34.19", "5.34.18", "5.34.17", "5.34.14", "5.34.13", "5.34.12", "5.34.11", "5.34.10", "5.34.09", "5.34.08", "5.34.07", "5.34.06", "5.34.05", "5.34.04", "5.34.03", "5.34.02", "5.34.01", "5.34.00", "5.33.02", "5.32.04", "5.32.03", "5.32.02", "5.32.01", "5.32.00", "5.30.06", "5.30.05", "5.30.04", "5.30.03", "5.30.02", "5.30.01", "5.30.00", "5.29.02", "5.28.00", "5.28.00", "5.28.00", "5.28.00", "5.28.00", "5.28.00", "5.28.00", "5.28.00", "5.28.00", "5.27.06", "5.27.04", "5.27.02", "5.26.00", "5.26.00", "5.26.00", "5.25.02", "5.24.00", "5.24.00", "5.23.04", "5.23.02", "5.22.00", "5.22.00", "5.22.00", "5.22.00", "5.22.00", "5.22.00", "5.22.00", "5.22.00", "5.22.00"]
+
+after_failure = "echo 'fail!'"
+
+after_success = '''Rscript -e "fn.sh <- system.file('extdata', 'scripts/echo_root_env.sh', package = 'BioInstaller'); system(sprintf('sh %s {{destdir}}', fn.sh))"; source ~/.bashrc'''
+
+make_dir = ["./"]
+
+bin_dir = ["./bin"]
+
+[root.install]
+linux = "./configure && make && source bin/thisroot.sh"
+mac = "./configure && make && source bin/thisroot.sh"
+windows = "./configure && make && source bin/thisroot.sh"
