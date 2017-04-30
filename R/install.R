@@ -40,8 +40,8 @@ install.bioinfo <- function(name = c(), destdir = c(), name.saved = NULL, github
     flog.info(sprintf("Debug:github.cfg:%s", github.cfg))
     flog.info(sprintf("Debug:nongithub.cfg:%s", nongithub.cfg))
   }
-  github.names <- eval.config.groups(file = github.cfg)
-  nongithub.names <- eval.config.groups(file = nongithub.cfg)
+  github.names <- eval.config.sections(file = github.cfg)
+  nongithub.names <- eval.config.sections(file = nongithub.cfg)
   all.names <- c(github.names, nongithub.names)
   all.names <- all.names[!(all.names %in% c("title", "debug", "demo"))]
   if (show.all.names) {
@@ -58,8 +58,8 @@ install.bioinfo <- function(name = c(), destdir = c(), name.saved = NULL, github
     if (!show.all.versions) {
       destdir[count] <- normalizePath(destdir[count], mustWork = FALSE)
     }
-    github.softwares <- eval.config.groups(file = github.cfg)
-    nongithub.softwares <- eval.config.groups(file = nongithub.cfg)
+    github.softwares <- eval.config.sections(file = github.cfg)
+    nongithub.softwares <- eval.config.sections(file = nongithub.cfg)
     sf.name = str_split(i, "@")[[1]][1]
     sf.version = str_split(i, "@")[[1]][2]
     if (is.null(name.saved[count]) || is.na(name.saved[count])) {

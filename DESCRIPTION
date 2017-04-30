@@ -1,6 +1,6 @@
 Package: BioInstaller 
 Title: Lightweight Biology Software Installer
-Version: 0.1.0
+Version: 0.1.1
 Authors@R: person("Jianfeng", "Li", email = "lee_jianfeng@sjtu.edu.cn", role = c("aut", "cre"))
 Description: 
     Can be used to install and download massive bioinformatics analysis softwares and databases, such as NGS reads mapping tools with its required databases.
@@ -14,7 +14,7 @@ LazyData: true
 Imports:
     stringr (>= 1.2.0),
     futile.logger (>= 1.4.1),
-    configr (>= 0.2.1),
+    configr (>= 0.2.2),
     git2r (>= 0.0.3),
     R.utils (>= 2.5.0),
     RCurl (>= 1.95-4.8)

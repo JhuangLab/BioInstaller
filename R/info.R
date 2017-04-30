@@ -57,7 +57,7 @@ get.info <- function(name = "", db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", syste
     file.create(config.cfg)
   }
   Sys.setenv(R_CONFIGFILE_ACTIVE = config.cfg)
-  if (!(name %in% configr::eval.config.groups())) {
+  if (!(name %in% configr::eval.config.sections())) {
     warning(sprintf("%s not existed in BioInstaller database.", name))
     return(FALSE)
   }
@@ -87,7 +87,7 @@ del.info <- function(name = "", db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", syste
     file.create(config.cfg)
   }
   Sys.setenv(R_CONFIGFILE_ACTIVE = config.cfg)
-  if (!(name %in% configr::eval.config.groups())) {
+  if (!(name %in% configr::eval.config.sections())) {
     warning(sprintf("%s not existed in BioInstaller database.", name))
     return(FALSE)
   }
@@ -119,8 +119,8 @@ show.installed <- function(db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", system.fil
   }
   softwares <- c()
   Sys.setenv(R_CONFIGFILE_ACTIVE = config.cfg)
-  groups <- configr::eval.config.groups()
-  for (i in groups) {
+  sections <- configr::eval.config.sections()
+  for (i in sections) {
     Sys.setenv(R_CONFIG_ACTIVE = i)
     config <- eval.config()
     if ("installed" %in% names(config)) {

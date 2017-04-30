@@ -1,6 +1,7 @@
 2017-04-30 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
 
 		* cnvkit be supported
+		* eval.config.groups replaced by eval.config.sections
 
 2017-04-27 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
 
