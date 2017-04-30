@@ -31,7 +31,7 @@ devtools::install_github("Miachol/BioInstaller")
 
 **NGS Aligner:** 
 
-- BWA, STAR, TMAP, Bowtie, Bowtie2, tophat2, hisat2, GMAP-GSNAP, ABySS, SSAHA2, Velvet, Edean, Trinity, oases, RUM, MapSplice2
+- BWA, STAR, TMAP, Bowtie, Bowtie2, tophat2, hisat2, GMAP-GSNAP, ABySS, SSAHA2, Velvet, Edean, Trinity, oases, RUM, MapSplice2, NovoAlign
 
 **NGS Utils:** 
 
@@ -39,7 +39,7 @@ devtools::install_github("Miachol/BioInstaller")
 
 **NGS Variant Caller:** 
     
-- GATK, Mutect, VarScan2, FreeBayes, LoFreq, TVC, SomaticSniper, Pindel, Delly, BreakDancer, FusionCatcher
+- GATK, Mutect, VarScan2, FreeBayes, LoFreq, TVC, SomaticSniper, Pindel, Delly, BreakDancer, FusionCatcher, Genome STRiP, CNVnator, CNVkit
 
 **NGS Variant Annotation:** 
 
@@ -67,5 +67,5 @@ devtools::install_github("Miachol/BioInstaller")
 
 **Others:** 
 
-- sparsehash, sqlite, pigz, lzo, lzop, bzip2, zlib, armadillo
+- sparsehash, sqlite, pigz, lzo, lzop, bzip2, zlib, armadillo, pxz, ROOT
 
