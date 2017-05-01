@@ -483,3 +483,29 @@ get.root.newest.version <- function() {
   versions <- get.root.versions()
   return(versions[1])
 }
+
+# Function get curl all versions
+get.curl.versions <- function() {
+  urls <- c("https://curl.haxx.se/download/")
+  versions_final <- NULL
+  for (url in urls) {
+    h <- basicTextGatherer()
+    web <- getURL(url, headerfunction = h$update)
+    web <- str_split(web, "\n")
+    web <- web[[1]]
+    web <- web[str_detect(web, "href")]
+    web <- web[str_detect(web, "curl-")]
+    web <- str_extract(web, "[0-9]\\.[0-9./]*")
+    web <- web[!is.na(web)]
+    web <- web[!duplicated(web)]
+    web <- str_replace(web, ".$", "")
+  }
+  versions_final <- web
+  versions_final <- sort(versions_final, decreasing=T)
+  return(versions_final)
+}
+# Function get curl newest version
+get.curl.newest.version <- function() {
+  versions <- get.curl.versions()
+  return(versions[1])
+}

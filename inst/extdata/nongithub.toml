@@ -530,9 +530,9 @@ make_dir = ["./"]
 bin_dir = ["./bin"]
 
 [bzip2.install]
-linux = "make && make install PREFIX=`pwd`"
-mac = "make && make install PREFIX=`pwd`"
-windows = ""
+linux = "make -f Makefile-libbz2_so && make clean && make && make install PREFIX=`pwd`"
+mac = "make -f Makefile-libbz2_so && make clean && make && make install PREFIX=`pwd`"
+windows = "make -f Makefile-libbz2_so && make clean && make && make install PREFIX=`pwd`"
 
 [armadillo]
 source_url = ["@>@ if('{{version}}' != '4.600.1') {'https://sourceforge.net/projects/arma/files/armadillo-{{version}}.tar.xz'} else {'http://updates.iontorrent.com/updates/software/external/armadillo-{{version}}.tar.gz'}@<@"]
@@ -843,3 +843,63 @@ linux = ["autoconf -Wno-syntax; sed -i 's;HTSDIR = ../htslib;HTSDIR = {{htslib:s
 mac = ["autoconf -Wno-syntax; sed -i 's;HTSDIR = ../htslib;HTSDIR = {{htslib:source.dir}};' config.mk; ./configure --prefix=`pwd`; make && make install prefix=`pwd`"]
 windows = ["autoconf -Wno-syntax; sed -i 's;HTSDIR = ../htslib;HTSDIR = {{htslib:source.dir}};' config.mk; ./configure --prefix=`pwd`; make && make install prefix=`pwd`"]
 
+[pcre]
+source_url = "ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-{{version}}.tar.gz"
+
+version_newest = "8.40"
+
+version_available = ["8.40","8.39"]
+
+after_failure = "echo 'fail!'"
+
+after_success = "echo 'successful!'"
+
+make_dir = ["./"]
+
+bin_dir = ["./bin"]
+
+[pcre.install]
+linux = ["autoreconf -ivf && ./configure --enable-utf8 --prefix={{destdir}} && make -j3", "make install"]
+mac = ["./configure --enable-utf8 --prefix={{destdir}} && make -j3", "make install"]
+windows = ["./configure --enable-utf8 --prefix={{destdir}} && make -j3", "make install"]
+
+[xz]
+source_url = "http://tukaani.org/xz/xz-{{version}}.tar.gz"
+decompress = false
+
+version_newest = "5.2.3"
+
+version_available = ["5.2.3", "5.2.2"]
+
+after_failure = "echo 'fail!'"
+
+after_success = "mv xz-{{version}}/* ./ ; rm -rf xz-{{version}}"
+
+make_dir = ["./"]
+
+bin_dir = ["./bin"]
+
+[xz.install]
+linux = ["tar -xzvf xz-{{version}}.tar.gz && cd xz-{{version}} && ./configure --prefix={{destdir}} && make -j3", "make install"]
+mac = ["tar -xzvf xz-{{version}}.tar.gz && cd xz-{{version}} && ./configure --prefix={{destdir}} && make -j3", "make install"]
+windows = ["tar -xzvf xz-{{version}}.tar.gz && cd xz-{{version}} && ./configure --prefix={{destdir}} && make -j3", "make install"]
+
+[curl]
+source_url = "https://curl.haxx.se/download/curl-{{version}}.tar.gz"
+
+version_newest = "7.54.0"
+
+version_available = ["7.54.0", "7.53.1", "7.53.0", "7.52.1", "7.52.0", "7.51.0", "7.50.3", "7.50.2", "7.50.1", "7.50.0", "7.49.1", "7.49.0", "7.48.0", "7.47.1", "7.47.0", "7.46.0", "7.45.0", "7.44.0", "7.43.0", "7.42.1", "7.42.0", "7.41.0", "7.40.0", "7.39.0", "7.38.0", "7.37.1", "7.37.0", "7.36.0", "7.35.0", "7.34.0", "7.33.0", "7.32.0", "7.31.0", "7.30.0", "7.29.0", "7.28.1", "7.28.0", "7.27.0", "7.26.0", "7.25.0", "7.24.0", "7.23.1", "7.23.0", "7.22.0", "7.21.7", "7.21.6", "7.21.5", "7.21.4", "7.21.3", "7.21.2", "7.21.1", "7.21.0", "7.20.1", "7.20.0"]
+
+after_failure = "echo 'fail!'"
+
+after_success = "echo 'successful!'"
+
+make_dir = ["./"]
+
+bin_dir = ["./bin"]
+
+[curl.install]
+linux = ["./configure --prefix={{destdir}} && make -j3", "make install"]
+mac = ["./configure --prefix={{destdir}} && make -j3", "make install"]
+windows = ["./configure --prefix={{destdir}} && make -j3", "make install"]
