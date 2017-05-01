@@ -96,8 +96,8 @@ check.need.install <- function(names, versions, db) {
   result <- c()
   names.installed <- show.installed(db)
   count <- 1
-  for(i in names) {
-    if(i %in% names.installed) {
+  for (i in names) {
+    if (i %in% names.installed) {
       if (versions[count] == get.info(i)$version) {
         result <- c(result, TRUE)
       } else {
@@ -106,7 +106,7 @@ check.need.install <- function(names, versions, db) {
     } else {
       result <- c(result, FALSE)
     }
-  count <- count + 1
+    count <- count + 1
   }
   return(result)
 }
@@ -114,10 +114,10 @@ check.need.install <- function(names, versions, db) {
 # Get need install name
 get.need.install <- function(config, db) {
   fil1 <- check.need.install(config$dependence, config$dependence_version, db)
-  fil2<- check.need.install(str_replace_all(config$dependence, "@", "_"), 
-                            config$dependence_version, db)
+  fil2 <- check.need.install(str_replace_all(config$dependence, "@", "_"), config$dependence_version, 
+    db)
   need.install <- config$dependence[!(fil1 | fil2)]
-  need.install.version <- config$dependence_version[!config$dependence %in% show.installed(db)]
+  need.install.version <- config$dependence_version[!(fil1 | fil2)]
   return(list(need.install = need.install, need.install.version = need.install.version))
 }
 

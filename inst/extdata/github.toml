@@ -44,50 +44,6 @@ linux = "make"
 mac = "make"
 windows = "make"
 
-[htslib]
-github_url = "https://github.com/samtools/htslib"
-
-version_newest = "1.4"
-
-version_available = ["0.2.0-rc1","0.2.0-rc10", "0.2.0-rc11", "0.2.0-rc12", "0.2.0-rc2", "0.2.0-rc3", "0.2.0-rc4", "0.2.0-rc5", "0.2.0-rc6", "0.2.0-rc7", "0.2.0-rc8", "0.2.0-rc9", "1.0", "1.1", "1.2", "1.2.1", "1.3", "1.3.1", "1.3.2", "1.4"]
-
-after_failure = "echo 'fail!'"
-
-after_success = "ln -s htslib/* ./"
-
-make_dir = ["./"]
-
-bin_dir = ["./"]
-
-[htslib.install]
-linux = "make"
-mac = "make"
-windows = "make"
-
-[samtools]
-github_url = "https://github.com/samtools/samtools"
-
-version_newest = "1.4"
-
-dependence = ["htslib"]
-
-dependence_version = ["{{version}}"]
-
-version_available = ["1.0", "1.1", "1.2", "1.3", "1.3.1", "1.4", "0.2.0-rc1", "0.2.0-rc10", "0.2.0-rc11", "0.2.0-rc12", "0.2.0-rc2", "0.2.0-rc3", "0.2.0-rc4", "0.2.0-rc5", "0.2.0-rc6", "0.2.0-rc7", "0.2.0-rc8", "0.2.0-rc9"]
-
-after_failure = "echo 'fail!'"
-
-after_success = "ln -s {{htslib:source.dir}} ./"
-
-make_dir = ["./"]
-
-bin_dir = ["./"]
-
-[samtools.install]
-linux = ["autoconf -Wno-syntax; sed -i 's;HTSDIR = ../htslib;HTSDIR = {{htslib:source.dir}};' config.mk; make && make install prefix=`pwd`"]
-mac = ["autoconf -Wno-syntax; sed -i 's;HTSDIR = ../htslib;HTSDIR = {{htslib:source.dir}};' config.mk; make && make install prefix=`pwd`"]
-windows = ["autoconf -Wno-syntax; sed -i 's;HTSDIR = ../htslib;HTSDIR = {{htslib:source.dir}};' config.mk; make && make install prefix=`pwd`"]
-
 [samtools_old]
 github_url = "https://github.com/samtools/samtools"
 
@@ -790,29 +746,6 @@ linux = "make"
 mac = "make"
 windows = "make"
 
-[cnvnator]
-github_url = "https://github.com/abyzovlab/CNVnator"
-
-dependence = ["samtools@1.3.1", "root@6.03.04"]
-dependence_version = ["1.3.1", "6.03.04"]
-
-version_newest = "v0.3.3"
-
-version_available = ["v0.3.3", "v0.3.2", "v0.3.1"]
-
-after_failure = "echo 'fail!'"
-
-after_success = "echo 'successful!'"
-
-make_dir = ["./src"]
-
-bin_dir = ["{{destdir}}/src"]
-
-[cnvnator.install]
-linux = "ln -s {{samtools_1.3.1:source.dir}} ./samtools; make"
-mac = "ln -s {{samtools_1.3.1:source.dir}} ./samtools; make"
-windows = "ln -s {{samtools_1.3.1:source.dir}} ./samtools; make"
-
 [cnvkit]
 github_url = "https://github.com/etal/cnvkit"
 
@@ -832,3 +765,54 @@ bin_dir = ["./scripts"]
 linux = "pip install ."
 mac = "pip install ."
 windows = "pip install ."
+
+[speedseq]
+github_url = "https://github.com/hall-lab/speedseq"
+use_git2r = false
+recursive_clone = true
+
+dependence = ["root@6.03.04"]
+dependence_version = ["6.03.04"]
+
+version_newest = "master"
+
+version_available = ["v0.0.2", "v0.0.3", "v0.0.3a", "v0.1.0", "v0.1.1", "v0.1.2", "master"]
+
+after_failure = "echo 'fail!'"
+
+after_success = "echo 'successful!'"
+
+make_dir = ["./"]
+
+bin_dir = ["./bin"]
+
+[speedseq.install]
+linux = "source ~/.bashrc; make"
+mac = "source ~/.bashrc; make"
+windows = "source ~/.bashrc; make"
+
+[cnvnator]
+
+github_url = "https://github.com/abyzovlab/CNVnator"
+
+dependence = ["cnvnator_samtools", "root@6.03.04"]
+
+dependence_version = ["1.3.1", "6.03.04"]
+
+version_newest = "v0.3.3"
+
+version_available = ["v0.3.3", "v0.3.2", "v0.3.1"]
+
+after_failure = "echo 'fail!'"
+
+after_success = "echo 'successful!'"
+
+make_dir = ["./src"]
+
+bin_dir = ["{{destdir}}/src"]
+
+[cnvnator.install]
+
+linux = "source ~/.bashrc; ln -s {{cnvnator_samtools:source.dir}} ./samtools; make"
+mac = "source ~/.bashrc; ln -s {{cnvnator_samtools:source.dir}} ./samtools; make"
+windows = "source ~/.bashrch; ln -s {{cnvnator_samtools:source.dir}} ./samtools; make"

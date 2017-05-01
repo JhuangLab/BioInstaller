@@ -54,6 +54,7 @@ install.bioinfo <- function(name = c(), destdir = c(), name.saved = NULL, github
   bygithub <- NULL
   bynongithub <- NULL
   for (i in name) {
+    old_wd <- getwd()
     i <- tolower(i)
     if (!show.all.versions) {
       destdir[count] <- normalizePath(destdir[count], mustWork = FALSE)
@@ -112,6 +113,7 @@ install.bioinfo <- function(name = c(), destdir = c(), name.saved = NULL, github
     } else {
       install.fail <- c(install.fail, name.saved[count])
     }
+    setwd(old_wd)
     count <- count + 1
   }
   if (verbose) {
@@ -235,7 +237,11 @@ install.github <- function(name = "", destdir = "./", version = NULL, show.all.v
     flog.info(sprintf("Debug:version:%s", version))
   }
   process.dependence(config, db, destdir, verbose)
-  config <- configr::parse.extra(config = config, other.config = db)
+  config.and.name.initial(config.cfg, name)
+  config <- eval.config()
+  config <- configr::parse.extra(config = config, extra.list = args.all)
+  config <- configr::parse.extra(config, other.config = db)
+  config <- configr::parse.extra(config = config, rcmd.parse = T)
   if (!verbose) {
     set.makedir(make.dir, destdir)
   } else {
@@ -343,7 +349,7 @@ install.nongithub <- function(name = "", destdir = "./", version = NULL, show.al
   }
   
   source_url <- source.url.initial(config)
-  if (is.null(source_url)) {
+  if (is.null(source_url) | source_url == "") {
     need.download <- FALSE
   } else {
     need.download <- TRUE
@@ -419,7 +425,11 @@ install.nongithub <- function(name = "", destdir = "./", version = NULL, show.al
     }
   }
   process.dependence(config, db, destdir, verbose)
+  config.and.name.initial(config.cfg, name)
+  config <- eval.config()
+  config <- configr::parse.extra(config = config, extra.list = args.all)
   config <- configr::parse.extra(config, other.config = db)
+  config <- configr::parse.extra(config = config, rcmd.parse = T)
   make.dir <- config$make_dir
   files <- list.files(destdir)
   if (!verbose) {
