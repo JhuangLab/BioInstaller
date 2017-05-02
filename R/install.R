@@ -1,6 +1,7 @@
 #' Download and install biology software or database
 #'
 #' @param name Software name
+#' @param download.dir A string, point the source code download destdir
 #' @param destdir A string, point the install path
 #' @param name.saved Software name when you want to install different version, you
 #' can use this to point the installed softwares name like 'GATK-3.7'
@@ -22,13 +23,14 @@
 #' @return Bool Value or a list
 #' @examples
 #' set.biosoftwares.db(sprintf('%s/.BioInstaller', tempdir()))
-#' install.bioinfo('bwa', sprintf('%s/bwa', tempdir()), verbose = TRUE)
-install.bioinfo <- function(name = c(), destdir = c(), name.saved = NULL, github.cfg = system.file("extdata", 
-  "github.toml", package = "BioInstaller"), nongithub.cfg = system.file("extdata", 
-  "nongithub.toml", package = "BioInstaller"), version = c(), show.all.versions = FALSE, 
-  show.all.names = FALSE, db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", system.file("extdata", 
-    "softwares_db_demo.yaml", package = "BioInstaller")), download.only = FALSE, 
-  decompress = TRUE, showWarnings = FALSE, verbose = FALSE, ...) {
+#' install.bioinfo('bwa', download.dir = sprintf('%s/bwa111', tempdir()), verbose = TRUE)
+install.bioinfo <- function(name = c(), download.dir = c(), destdir = c(), name.saved = NULL, 
+  github.cfg = system.file("extdata", "github.toml", package = "BioInstaller"), 
+  nongithub.cfg = system.file("extdata", "nongithub.toml", package = "BioInstaller"), 
+  version = c(), show.all.versions = FALSE, show.all.names = FALSE, db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", 
+    system.file("extdata", "softwares_db_demo.yaml", package = "BioInstaller")), 
+  download.only = FALSE, decompress = TRUE, showWarnings = FALSE, verbose = FALSE, 
+  ...) {
   db.check(db)
   if (verbose) {
     flog.info("Debug:Now run install.bioinfo function.")
@@ -57,38 +59,38 @@ install.bioinfo <- function(name = c(), destdir = c(), name.saved = NULL, github
     old_wd <- getwd()
     i <- tolower(i)
     if (!show.all.versions) {
-      destdir[count] <- normalizePath(destdir[count], mustWork = FALSE)
+      processed.dir.list <- pre.process.dir(i, destdir, download.dir, count)
+      destdir[count] <- processed.dir.list[["des.dir"]]
+      download.dir[count] <- processed.dir.list[["down.dir"]]
     }
-    github.softwares <- eval.config.sections(file = github.cfg)
-    nongithub.softwares <- eval.config.sections(file = nongithub.cfg)
     sf.name = str_split(i, "@")[[1]][1]
     sf.version = str_split(i, "@")[[1]][2]
     if (is.null(name.saved[count]) || is.na(name.saved[count])) {
       name.saved[count] <- str_replace(i, "@", "_")
     }
-    if (i %in% github.softwares || (sf.name %in% github.softwares && (sf.name != 
-      i))) {
-      if (sf.name %in% github.softwares && sf.name != i) {
+    if (i %in% github.names || (sf.name %in% github.names && (sf.name != i))) {
+      if (sf.name %in% github.names && sf.name != i) {
         name.saved[count] <- str_replace(i, "@", "_")
         i <- sf.name
         version[count] <- sf.version
       }
-      status <- install.github(name = i, destdir = destdir[count], github.cfg = github.cfg, 
-        name.saved = name.saved[count], version = version[count], show.all.versions = show.all.versions, 
-        db = db, download.only = download.only, verbose = verbose, showWarnings = showWarnings, 
-        ...)
+      status <- install.github(name = i, destdir = destdir[count], download.dir = download.dir[count], 
+        github.cfg = github.cfg, name.saved = name.saved[count], version = version[count], 
+        show.all.versions = show.all.versions, db = db, download.only = download.only, 
+        verbose = verbose, showWarnings = showWarnings, ...)
       bygithub <- c(bygithub, i)
-    } else if (i %in% nongithub.softwares || (sf.name %in% nongithub.names && sf.name != 
+    } else if (i %in% nongithub.names || (sf.name %in% nongithub.names && sf.name != 
       i)) {
-      if (sf.name %in% nongithub.softwares && sf.name != i) {
+      if (sf.name %in% nongithub.names && sf.name != i) {
         name.saved[count] <- str_replace(i, "@", "_")
-        i = sf.name
+        i <- sf.name
         version[count] = sf.version
       }
-      status <- install.nongithub(name = i, destdir = destdir[count], name.saved = name.saved[count], 
-        nongithub.cfg = nongithub.cfg, version = version[count], show.all.versions = show.all.versions, 
-        db = db, download.only = download.only, showWarnings = showWarnings, 
-        decompress = decompress, verbose = verbose, ...)
+      status <- install.nongithub(name = i, destdir = destdir[count], download.dir = download.dir[count], 
+        name.saved = name.saved[count], nongithub.cfg = nongithub.cfg, version = version[count], 
+        show.all.versions = show.all.versions, db = db, download.only = download.only, 
+        showWarnings = showWarnings, decompress = decompress, verbose = verbose, 
+        ...)
       bynongithub <- c(bynongithub, i)
     } else {
       warning(sprintf("%s not existed in install database, so can not be installed by BioInstaller package.", 
@@ -141,6 +143,7 @@ install.bioinfo <- function(name = c(), destdir = c(), name.saved = NULL, github
 #' Install from Github
 #'
 #' @param name Software name
+#' @param download.dir A string, point the source code download destdir
 #' @param destdir A string, point the install path
 #' @param version Software version
 #' @param show.all.versions Logical wheather show all avaliable version can be install
@@ -158,12 +161,12 @@ install.bioinfo <- function(name = c(), destdir = c(), name.saved = NULL, github
 #' @export
 #' @examples
 #' set.biosoftwares.db(sprintf('%s/.BioInstaller', tempdir()))
-#' install.github('bwa', destdir = sprintf('%s/bwa_example', tempdir()), verbose = TRUE)
-install.github <- function(name = "", destdir = "./", version = NULL, show.all.versions = FALSE, 
-  name.saved = NULL, github.cfg = system.file("extdata", "github.toml", package = "BioInstaller"), 
-  db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", system.file("extdata", "softwares_db_demo.yaml", 
-    package = "BioInstaller")), download.only = FALSE, showWarnings = FALSE, 
-  verbose = FALSE, ...) {
+#' install.github('bwa', download.dir = sprintf('%s/bwa_example', tempdir()), verbose = TRUE)
+install.github <- function(name = "", download.dir = NULL, destdir = NULL, version = NULL, 
+  show.all.versions = FALSE, name.saved = NULL, github.cfg = system.file("extdata", 
+    "github.toml", package = "BioInstaller"), db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", 
+    system.file("extdata", "softwares_db_demo.yaml", package = "BioInstaller")), 
+  download.only = FALSE, showWarnings = FALSE, verbose = FALSE, ...) {
   old.work.dir <- getwd()
   config.cfg <- github.cfg
   name <- tolower(name)
@@ -180,21 +183,23 @@ install.github <- function(name = "", destdir = "./", version = NULL, show.all.v
     return(all.versions)
   }
   version <- version.initial(name, version, config)
+  processed.dir.list <- pre.process.dir(name, destdir, download.dir, 1)
+  destdir <- processed.dir.list[["des.dir"]]
+  download.dir <- processed.dir.list[["down.dir"]]
+  status <- destdir.initial(download.dir, strict = FALSE, download.only)
+  if (status == FALSE) {
+    return(FALSE)
+  }
+  
   args.all <- as.list(match.call())
   args.all$version <- version
   args.all$destdir <- destdir
+  args.all$download.dir <- download.dir
   args.all$os.version <- get.os()
   args.all <- args.all[names(args.all) != ""]
   config <- configr::parse.extra(config = config, extra.list = args.all)
   config <- configr::parse.extra(config = config, other.config = db)
   config <- configr::parse.extra(config = config, rcmd.parse = T)
-  
-  
-  destdir <- normalizePath(destdir, mustWork = FALSE)
-  status <- destdir.initial(destdir, strict = FALSE, download.only)
-  if (status == FALSE) {
-    return(FALSE)
-  }
   
   github_url <- config$github_url
   use_git2r <- config$use_git2r
@@ -207,10 +212,11 @@ install.github <- function(name = "", destdir = "./", version = NULL, show.all.v
   make.dir <- config$make_dir
   
   if (need.download && download.only && !verbose) {
-    status <- git.download(name, destdir, version, github_url, use_git2r, recursive_clone)
+    status <- git.download(name, download.dir, version, github_url, use_git2r, 
+      recursive_clone)
     return(status)
   } else if (need.download && download.only && verbose) {
-    msg <- sprintf("Debug:Now need to download %s in %s.", name, destdir)
+    msg <- sprintf("Debug:Now need to download %s in %s.", name, download.dir)
     flog.info(msg)
     return(TRUE)
   }
@@ -225,25 +231,26 @@ install.github <- function(name = "", destdir = "./", version = NULL, show.all.v
   flog.info("Running before install steps.")
   if (!verbose) {
     if (need.download) {
-      status <- git.download(name, destdir, version, github_url, use_git2r, 
+      status <- git.download(name, download.dir, version, github_url, use_git2r, 
         recursive_clone)
     } else {
-      dir.create(destdir, recursive = T)
+      dir.create(download.dir, recursive = T)
     }
   } else {
     flog.info("Gebug:Git clone and checkout to point version.")
     flog.info(sprintf("Debug:github_url:%s", github_url))
     flog.info(sprintf("Debug:destdir:%s", destdir))
+    flog.info(sprintf("Debug:download.dir:%s", download.dir))
     flog.info(sprintf("Debug:version:%s", version))
   }
-  process.dependence(config, db, destdir, verbose)
-  config.and.name.initial(config.cfg, name)
+  process.dependence(config, db, download.dir, destdir, verbose)
+  status <- config.and.name.initial(config.cfg, name)
   config <- eval.config()
   config <- configr::parse.extra(config = config, extra.list = args.all)
   config <- configr::parse.extra(config, other.config = db)
   config <- configr::parse.extra(config = config, rcmd.parse = T)
   if (!verbose) {
-    set.makedir(make.dir, destdir)
+    set.makedir(make.dir, download.dir)
   } else {
     flog.info("Debug:Now is step of set workdir of make")
   }
@@ -273,7 +280,7 @@ install.github <- function(name = "", destdir = "./", version = NULL, show.all.v
         if (!is.null(name.saved)) {
           name <- tolower(name.saved)
         }
-        change.info(name = name, installed = TRUE, source.dir = destdir, 
+        change.info(name = name, installed = TRUE, source.dir = download.dir, 
           bin.dir = bin.dir, version = version, last.update.time = last.update.time, 
           db = db, ...)
       }
@@ -294,6 +301,7 @@ install.github <- function(name = "", destdir = "./", version = NULL, show.all.v
 #' Download and Install Software(Non-Github) in SIMut
 #'
 #' @param name Software name
+#' @param download.dir A string, point the source code download destdir
 #' @param destdir A string, point the install path
 #' @param version Software version
 #' @param show.all.versions Logical wheather show all avaliable version can be install
@@ -312,12 +320,13 @@ install.github <- function(name = "", destdir = "./", version = NULL, show.all.v
 #' @export
 #' @examples
 #' set.biosoftwares.db(sprintf('%s/.BioInstaller', tempdir()))
-#' install.nongithub('gmap', sprintf('%s/gmap_example', tempdir()), verbose = TRUE)
-install.nongithub <- function(name = "", destdir = "./", version = NULL, show.all.versions = FALSE, 
-  name.saved = NULL, nongithub.cfg = system.file("extdata", "nongithub.toml", package = "BioInstaller"), 
-  db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", system.file("extdata", "softwares_db_demo.yaml", 
-    package = "BioInstaller")), download.only = FALSE, decompress = TRUE, showWarnings = FALSE, 
-  verbose = FALSE, ...) {
+#' install.nongithub('gmap', download.dir = sprintf('%s/gmap_example11', tempdir()), verbose = TRUE)
+install.nongithub <- function(name = "", download.dir = NULL, destdir = NULL, version = NULL, 
+  show.all.versions = FALSE, name.saved = NULL, nongithub.cfg = system.file("extdata", 
+    "nongithub.toml", package = "BioInstaller"), db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", 
+    system.file("extdata", "softwares_db_demo.yaml", package = "BioInstaller")), 
+  download.only = FALSE, decompress = TRUE, showWarnings = FALSE, verbose = FALSE, 
+  ...) {
   old.work.dir <- getwd()
   config.cfg <- nongithub.cfg
   name <- tolower(name)
@@ -333,23 +342,26 @@ install.nongithub <- function(name = "", destdir = "./", version = NULL, show.al
     return(all.versions)
   }
   version <- version.initial(name, version, config)
-  args.all <- as.list(match.call())
-  args.all$version <- version
-  args.all$destdir <- destdir
-  args.all$os.version <- get.os()
-  args.all <- args.all[names(args.all) != ""]
-  config <- configr::parse.extra(config = config, extra.list = args.all)
-  config <- configr::parse.extra(config, other.config = db)
-  config <- configr::parse.extra(config = config, rcmd.parse = T)
-  
-  destdir <- normalizePath(destdir, mustWork = FALSE)
-  status <- destdir.initial(destdir, strict = FALSE, download.only)
+  processed.dir.list <- pre.process.dir(name, destdir, download.dir, 1)
+  destdir <- processed.dir.list[["des.dir"]]
+  download.dir <- processed.dir.list[["down.dir"]]
+  status <- destdir.initial(download.dir, strict = FALSE, download.only)
   if (status == FALSE) {
     return(FALSE)
   }
   
+  args.all <- as.list(match.call())
+  args.all$version <- version
+  args.all$destdir <- destdir
+  args.all$download.dir <- download.dir
+  args.all$os.version <- get.os()
+  args.all <- args.all[names(args.all) != ""]
+  config <- configr::parse.extra(config = config, extra.list = args.all)
+  config <- configr::parse.extra(config = config, other.config = db)
+  config <- configr::parse.extra(config = config, rcmd.parse = T)
+  
   source_url <- source.url.initial(config)
-  if (is.null(source_url) | source_url == "") {
+  if (all(is.null(source_url)) | all(source_url == "")) {
     need.download <- FALSE
   } else {
     need.download <- TRUE
@@ -360,9 +372,9 @@ install.nongithub <- function(name = "", destdir = "./", version = NULL, show.al
     url.all.download <- TRUE
   }
   if (need.download && download.only && !verbose) {
-    msg <- sprintf("Now start to download %s in %s.", name, destdir)
+    msg <- sprintf("Now start to download %s in %s.", name, download.dir)
     flog.info(msg)
-    destfile <- sprintf(sprintf("%s/%s", destdir, filename))
+    destfile <- sprintf(sprintf("%s/%s", download.dir, filename))
     status <- download.dir.files(config, source_url, destfile, showWarnings, 
       url.all.download)
     status[is.null(status)] <- FALSE
@@ -371,17 +383,13 @@ install.nongithub <- function(name = "", destdir = "./", version = NULL, show.al
     }
     return(status)
   } else if (need.download && download.only && verbose) {
-    msg <- sprintf("Debug:Now need to download %s in %s.", name, destdir)
+    msg <- sprintf("Debug:Now need to download %s in %s.", name, download.dir)
     flog.info(msg)
     return(TRUE)
   }
   
   
-  if (!is.null(name.saved)) {
-    msg <- sprintf("Now start to install %s in %s.", name, destdir)
-  } else {
-    msg <- sprintf("Now start to install %s in %s.", name.saved, destdir)
-  }
+  msg <- sprintf("Now start to install %s in %s.", name, destdir)
   flog.info(msg)
   flog.info("Running before install steps.")
   if (verbose) {
@@ -391,6 +399,8 @@ install.nongithub <- function(name = "", destdir = "./", version = NULL, show.al
       extract_dir <- sprintf("%s/install_tmp/", tempdir())
       dir.create(extract_dir, showWarnings = FALSE)
       destfile <- sprintf("%s/%s", extract_dir, filename)
+      msg <- sprintf("Now start to download %s in %s.", name, download.dir)
+      flog.info(msg)
       status <- download.dir.files(config, source_url, destfile, showWarnings, 
         url.all.download)
       status[is.null(status)] <- FALSE
@@ -409,14 +419,14 @@ install.nongithub <- function(name = "", destdir = "./", version = NULL, show.al
       }
       count <- 1
       for (fn in destfile) {
-        status <- extract.file(fn, destdir, decompress[count])
+        status <- extract.file(fn, download.dir, decompress[count])
         count <- count + 1
       }
       if (!all(status)) {
         return(FALSE)
       }
     } else if (need.download && is.download.dir(config)) {
-      destfile <- sprintf(sprintf("%s/%s", destdir, filename))
+      destfile <- sprintf(sprintf("%s/%s", download.dir, filename))
       status <- download.dir.files(config, source_url, destfile, showWarnings, 
         url.all.download)
       status[is.null(status)] <- FALSE
@@ -424,16 +434,16 @@ install.nongithub <- function(name = "", destdir = "./", version = NULL, show.al
       status <- TRUE
     }
   }
-  process.dependence(config, db, destdir, verbose)
-  config.and.name.initial(config.cfg, name)
+  process.dependence(config, db, download.dir, destdir, verbose)
+  status <- config.and.name.initial(config.cfg, name)
   config <- eval.config()
   config <- configr::parse.extra(config = config, extra.list = args.all)
-  config <- configr::parse.extra(config, other.config = db)
+  config <- configr::parse.extra(config = config, other.config = db)
   config <- configr::parse.extra(config = config, rcmd.parse = T)
   make.dir <- config$make_dir
-  files <- list.files(destdir)
+  files <- list.files(download.dir)
   if (!verbose) {
-    set.makedir(make.dir, destdir)
+    set.makedir(make.dir, download.dir)
   } else {
     flog.info("Debug:Now is step of set workdir of make")
   }
@@ -472,7 +482,7 @@ install.nongithub <- function(name = "", destdir = "./", version = NULL, show.al
         if (!is.null(name.saved)) {
           name <- tolower(name.saved)
         }
-        change.info(name = name, installed = TRUE, source.dir = destdir, 
+        change.info(name = name, installed = TRUE, source.dir = download.dir, 
           bin.dir = bin.dir, version = version, last.update.time = last.update.time, 
           db = db, ...)
       }

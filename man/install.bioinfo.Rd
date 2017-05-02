@@ -4,17 +4,19 @@
 \alias{install.bioinfo}
 \title{Download and install biology software or database}
 \usage{
-install.bioinfo(name = c(), destdir = c(), name.saved = NULL,
-  github.cfg = system.file("extdata", "github.toml", package =
-  "BioInstaller"), nongithub.cfg = system.file("extdata", "nongithub.toml",
-  package = "BioInstaller"), version = c(), show.all.versions = FALSE,
-  show.all.names = FALSE, db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE",
-  system.file("extdata", "softwares_db_demo.yaml", package = "BioInstaller")),
-  download.only = FALSE, decompress = TRUE, showWarnings = FALSE,
-  verbose = FALSE, ...)
+install.bioinfo(name = c(), download.dir = c(), destdir = c(),
+  name.saved = NULL, github.cfg = system.file("extdata", "github.toml",
+  package = "BioInstaller"), nongithub.cfg = system.file("extdata",
+  "nongithub.toml", package = "BioInstaller"), version = c(),
+  show.all.versions = FALSE, show.all.names = FALSE,
+  db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", system.file("extdata",
+  "softwares_db_demo.yaml", package = "BioInstaller")), download.only = FALSE,
+  decompress = TRUE, showWarnings = FALSE, verbose = FALSE, ...)
 }
 \arguments{
 \item{name}{Software name}
+
+\item{download.dir}{A string, point the source code download destdir}
 
 \item{destdir}{A string, point the install path}
 
@@ -54,5 +56,5 @@ Download and install biology software or database
 }
 \examples{
 set.biosoftwares.db(sprintf('\%s/.BioInstaller', tempdir()))
-install.bioinfo('bwa', sprintf('\%s/bwa', tempdir()), verbose = TRUE)
+install.bioinfo('bwa', download.dir = sprintf('\%s/bwa111', tempdir()), verbose = TRUE)
 }

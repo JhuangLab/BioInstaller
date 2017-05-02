@@ -4,8 +4,8 @@
 \alias{install.github}
 \title{Install from Github}
 \usage{
-install.github(name = "", destdir = "./", version = NULL,
-  show.all.versions = FALSE, name.saved = NULL,
+install.github(name = "", download.dir = NULL, destdir = NULL,
+  version = NULL, show.all.versions = FALSE, name.saved = NULL,
   github.cfg = system.file("extdata", "github.toml", package =
   "BioInstaller"), db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE",
   system.file("extdata", "softwares_db_demo.yaml", package = "BioInstaller")),
@@ -13,6 +13,8 @@ install.github(name = "", destdir = "./", version = NULL,
 }
 \arguments{
 \item{name}{Software name}
+
+\item{download.dir}{A string, point the source code download destdir}
 
 \item{destdir}{A string, point the install path}
 
@@ -45,5 +47,5 @@ Install from Github
 }
 \examples{
 set.biosoftwares.db(sprintf('\%s/.BioInstaller', tempdir()))
-install.github('bwa', destdir = sprintf('\%s/bwa_example', tempdir()), verbose = TRUE)
+install.github('bwa', download.dir = sprintf('\%s/bwa_example', tempdir()), verbose = TRUE)
 }

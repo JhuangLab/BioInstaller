@@ -509,3 +509,30 @@ get.curl.newest.version <- function() {
   versions <- get.curl.versions()
   return(versions[1])
 }
+
+# Function get r all versions
+get.r.versions <- function() {
+  urls <- paste0("https://cran.r-project.org/src/base/R-", c(0,1,2,3), "/")
+  versions_final <- NULL
+  for (url in urls) {
+    h <- basicTextGatherer()
+    web <- getURL(url, headerfunction = h$update)
+    web <- str_split(web, "\n")
+    web <- web[[1]]
+    web <- web[str_detect(web, "href")]
+    web <- web[str_detect(web, "R-")]
+    web <- str_extract(web, "R.[0-9-a-z.]*.tgz|R.[0-9-a-z.]*.tar.gz")
+    web <- str_replace(web, ".tar.gz|.tgz$", "")
+    web <- str_replace(web, "R-", "")
+    web <- web[!is.na(web)]
+    web <- web[!duplicated(web)]
+    versions_final <- c(versions_final, web)
+  }
+  versions_final <- sort(versions_final, decreasing=T)
+  return(versions_final)
+}
+# Function get r newest version
+get.r.newest.version <- function() {
+  versions <- get.r.versions()
+  return(versions[1])
+}

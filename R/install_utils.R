@@ -122,10 +122,13 @@ get.need.install <- function(config, db) {
 }
 
 # Install dependence
-install.dependence <- function(need.install, need.install.version, destdir) {
+install.dependence <- function(need.install, need.install.version, download.dir, 
+  destdir) {
   flog.info(sprintf("Try install the dependence:%s", paste0(need.install, collapse = ", ")))
-  install.status <- install.bioinfo(name = need.install, destdir = sprintf("%s/%s", 
-    dirname(destdir), str_replace_all(need.install, "@", "_")), version = need.install.version)
+  download.dir = sprintf("%s/%s", download.dir, str_replace_all(need.install, "@", 
+    "_"))
+  install.status <- install.bioinfo(name = need.install, download.dir = download.dir, 
+    destdir = rep(destdir, length(download.dir)), version = need.install.version)
   fail.list <- install.status$fail.list
   if (!is.null(fail.list) && fail.list != "") {
     stop(sprintf("Dependence Error:%s install fail.", paste0(fail.list, collapse = ", ")))
@@ -133,7 +136,7 @@ install.dependence <- function(need.install, need.install.version, destdir) {
 }
 
 # Dependence processor
-process.dependence <- function(config, db, destdir, verbose) {
+process.dependence <- function(config, db, download.dir, destdir, verbose) {
   if (verbose) {
     sprintf("Debug:Check and install dependence step.")
   } else if (is.setted.dependence(config)) {
@@ -141,8 +144,8 @@ process.dependence <- function(config, db, destdir, verbose) {
     need.install.version <- get.need.install(config, db)$need.install.version
     count <- 1
     if (is.need.dependence(need.install)) {
-      install.dependence(need.install, need.install.version, paste0(destdir, 
-        "/dependence/", need.install))
+      install.dependence(need.install, need.install.version, destdir = destdir, 
+        download.dir = download.dir)
     }
   }
 }
@@ -277,4 +280,23 @@ git.download <- function(name, destdir, version, github_url, use_git2r, recursiv
     setwd(olddir)
   }
   return(status)
+}
+
+
+pre.process.dir <- function(name, destdir, download.dir, count) {
+  if (is.null.na(destdir[count]) && !is.null.na(download.dir[count])) {
+    download.dir[count] <- normalizePath(download.dir[count], mustWork = FALSE)
+    destdir[count] <- download.dir[count]
+  } else if (is.null.na(download.dir[count]) && !is.null.na(destdir[count])) {
+    destdir[count] <- normalizePath(destdir[count], mustWork = FALSE)
+    download.dir[count] <- destdir[count]
+  } else if (is.null.na(download.dir[count]) && is.null.na(destdir[count])) {
+    download.dir[count] <- sprintf("%s/%s", tempdir(), name)
+    destdir[count] <- download.dir[count]
+  } else {
+    download.dir[count] <- normalizePath(download.dir[count], mustWork = FALSE)
+    destdir[count] <- normalizePath(destdir[count], mustWork = FALSE)
+  }
+  processed.dirs <- list(des.dir = destdir[count], down.dir = download.dir[count])
+  return(processed.dirs)
 }

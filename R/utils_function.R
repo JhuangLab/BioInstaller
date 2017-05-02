@@ -228,3 +228,7 @@ destdir.initial <- function(destdir, strict = TRUE, download.only = FALSE) {
   }
   return(TRUE)
 }
+
+is.null.na <- function(value) {
+  return(is.null(value) || is.na(value))
+}

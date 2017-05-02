@@ -9,16 +9,16 @@ version_available = ["0.5.10", "0.5.9", "0.6.0", "0.6.1", "0.6.2", "0.7.0", "0.7
 
 after_failure = "echo 'fail!'"
 
-after_success = "echo 'successful!'"
+after_success = ["echo 'successful!'"]
 
 make_dir = ["./"]
 
-bin_dir = ["./"]
+bin_dir = ["{{destdir}}/bin"]
 
 [bwa.install]
-linux = "make"
-mac = "make"
-windows = "make"
+linux = "make && mkdir -p {{destdir}}/bin; cp {{download.dir}}/bwa {{destdir}}/bin"
+mac = "make && mkdir -p {{destdir}}/bin; cp {{download.dir}}/bwa {{destdir}}/bin"
+windows = "make && md {{destdir}}\bin; cp {{download.dir}}\bwa {{destdir}}\bin"
 
 [star]
 github_url = "https://github.com/alexdobin/STAR"
@@ -36,13 +36,13 @@ after_success = "echo 'successful!'"
 make_dir = ["source", "./"]
 
 [star.bin_dir]
-linux = "{{destdir}}/bin/Linux_x86_64"
-mac = "{{destdir}}/bin/MacOSX_x86_64"
+linux = "{{destdir}}/bin"
+mac = "{{destdir}}/bin"
 
 [star.install]
-linux = "make"
-mac = "make"
-windows = "make"
+linux = "make && mkdir -p {{destdir}}/bin; cp {{download.dir}}/bin/Linux_x86_64/* {{destdir}}/bin"
+mac = "make && mkdir -p {{destdir}}/bin; cp {{download.dir}}/bin/MacOSX_x86_64/* {{destdir}}/bin"
+windows = "make && mkdir -p {{destdir}}/bin; cp {{download.dir}}/bin/Linux_x86_64/* {{destdir}}/bin"
 
 [samtools_old]
 github_url = "https://github.com/samtools/samtools"
@@ -57,12 +57,12 @@ after_success = ""
 
 make_dir = ["./"]
 
-bin_dir = ["./"]
+bin_dir = ["{{destdir}}/bin"]
 
 [samtools_old.install]
-linux = "make"
-mac = "make"
-windows = "make"
+linux = "make && mkdir -p {{destdir}}/bin; cp samtools {{destdir}}/bin/samtools_{{version}}"
+mac = "make && mkdir -p {{destdir}}/bin; cp samtools {{destdir}}/bin/samtools_{{version}}"
+windows = "make && mkdir -p {{destdir}}/bin; cp samtools {{destdir}}/bin/samtools_{{version}}"
 
 [bcftools]
 github_url = "https://github.com/samtools/bcftools"
@@ -81,12 +81,12 @@ after_success = "echo 'successful!'"
 
 make_dir = ["./"]
 
-bin_dir = ["./"]
+bin_dir = ["{{destdir}}/bin"]
 
 [bcftools.install]
-linux = "sed -i 's;HTSDIR = ../htslib;HTSDIR = {{htslib:source.dir}};' Makefile; make"
-mac = "sed -i 's;HTSDIR = ../htslib;HTSDIR = {{htslib:source.dir}};' Makefile; make"
-windows = "make"
+linux = "sed -i 's;HTSDIR = ../htslib;HTSDIR = {{htslib:source.dir}};' Makefile; make; mkdir -p {{destdir}}/bin; cp bcftools {{destdir}}/bin"
+mac = "sed -i 's;HTSDIR = ../htslib;HTSDIR = {{htslib:source.dir}};' Makefile; make; mkdir -p {{destdir}}/bin; cp bcftools {{destdir}}/bin"
+windows = "sed -i 's;HTSDIR = ../htslib;HTSDIR = {{htslib:source.dir}};' Makefile; make; mkdir -p {{destdir}}/bin; cp bcftools {{destdir}}/bin"
 
 [bowtie]
 github_url = "https://github.com/BenLangmead/bowtie"
@@ -101,12 +101,12 @@ after_success = "echo 'successful!'"
 
 make_dir = ["./"]
 
-bin_dir = ["./"]
+bin_dir = ["{{destdir}}/bin"]
 
 [bowtie.install]
-linux = "make"
-mac = "make"
-windows = "make"
+linux = "make && mkdir -p {{destdir}}/bin; fn=`ls -F |grep '*' | tr -d '*'` fn=`echo $fn | tr ' ' '\n' |grep -v '.h' | grep -v '.cpp'|sort -u`;cp $fn {{destdir}}/bin"
+mac = "make && mkdir -p {{destdir}}/bin; fn=`ls -F |grep '*' | tr -d '*'` fn=`echo $fn | tr ' ' '\n' |grep -v '.h' | grep -v '.cpp'|sort -u`;cp $fn {{destdir}}/bin"
+windows = "make && mkdir -p {{destdir}}/bin; fn=`ls -F |grep '*' | tr -d '*'` fn=`echo $fn | tr ' ' '\n' |grep -v '.h' | grep -v '.cpp'|sort -u`;cp $fn {{destdir}}/bin"
 
 [bowtie2]
 github_url = "https://github.com/BenLangmead/bowtie2"
@@ -121,12 +121,12 @@ after_success = "echo 'successful!'"
 
 make_dir = ["./"]
 
-bin_dir = ["./"]
+bin_dir = ["{{destdir}}/bin"]
 
 [bowtie2.install]
-linux = "make"
-mac = "make"
-windows = "make"
+linux = "make && mkdir -p {{destdir}}/bin; fn=`ls -F |grep '*' | tr -d '*'` fn=`echo $fn | tr ' ' '\n' |grep -v '.h' | grep -v '.cpp'|sort -u`;cp $fn {{destdir}}/bin"
+mac = "make && mkdir -p {{destdir}}/bin; fn=`ls -F |grep '*' | tr -d '*'` fn=`echo $fn | tr ' ' '\n' |grep -v '.h' | grep -v '.cpp'|sort -u`;cp $fn {{destdir}}/bin"
+windows = "make && mkdir -p {{destdir}}/bin; fn=`ls -F |grep '*' | tr -d '*'` fn=`echo $fn | tr ' ' '\n' |grep -v '.h' | grep -v '.cpp'|sort -u`;cp $fn {{destdir}}/bin"
 
 [tophat2]
 github_url = "https://github.com/infphilo/tophat"
@@ -141,12 +141,12 @@ after_success = "echo 'successful!'"
 
 make_dir = ["./"]
 
-bin_dir = ["./"]
+bin_dir = ["{{destdir}}/bin"]
 
 [tophat2.install]
-linux = "sh autogen.sh && ./configure --prefix=`pwd` && make && make install"
-mac = "sh autogen.sh && ./configure --prefix=`pwd` && make && make install"
-windows = ""
+linux = "sh autogen.sh && ./configure --prefix={{destdir}} && make && make install"
+mac = "sh autogen.sh && ./configure --prefix={{destdir}} && make && make install"
+windows = "sh autogen.sh && ./configure --prefix={{destdir}} && make && make install"
 
 [varscan2]
 github_url = "https://github.com/Miachol/varscan"
@@ -161,7 +161,12 @@ after_success = "echo 'successful!'"
 
 make_dir = ["./"]
 
-bin_dir = ["./"]
+bin_dir = ["{{destdir}}/bin"]
+
+[varscan2.install]
+linux = "mkdir -p {{destdir}}/bin; cp `ls *.jar` {{destdir}}/bin"
+mac = "mkdir -p {{destdir}}/bin; cp `ls *.jar` {{destdir}}/bin"
+windows = "mkdir -p {{destdir}}/bin; cp `ls *.jar` {{destdir}}/bin"
 
 [picard]
 github_url = "https://github.com/broadinstitute/picard"
@@ -176,12 +181,12 @@ after_success = "echo 'successful!'"
 
 make_dir = ["./"]
 
-bin_dir = ["build/libs"]
+bin_dir = ["{{destdir}}/bin"]
 
 [picard.install]
-linux = "./gradlew shadowJar"
-mac = ""
-windows = ""
+linux = "{{download.dir}}/gradlew shadowJar && mkdir {{destdir}}/bin; cp {{download.dir}}/build/libs/* {{destdir}}/bin"
+mac = "{{download.dir}}/gradlew shadowJar && mkdir {{destdir}}/bin; cp {{download.dir}}/build/libs/* {{destdir}}/bin"
+windows = "{{download.dir}}/gradlew shadowJar && mkdir {{destdir}}/bin; cp {{download.dir}}/build/libs/* {{destdir}}/bin"
 
 [vcftools]
 github_url = "https://github.com/vcftools/vcftools"
@@ -196,12 +201,12 @@ after_success = "echo 'successful!'"
 
 make_dir = ["./"]
 
-bin_dir = ["./"]
+bin_dir = ["{{destdir}}/bin"]
 
 [vcftools.install]
-linux = "./autogen.sh && ./configure --prefix=`pwd` && make && make install"
-mac = ""
-windows = ""
+linux = "./autogen.sh && ./configure --prefix={{destdir}} && make && make install"
+mac = "./autogen.sh && ./configure --prefix={{destdir}} && make && make install"
+windows = "./autogen.sh && ./configure --prefix={{destdir}} && make && make install"
 
 [pindel]
 github_url = "https://github.com/genome/pindel"
@@ -220,12 +225,12 @@ after_success = "echo 'successful!'"
 
 make_dir = ["./"]
 
-bin_dir = ["./"]
+bin_dir = ["{{destdir}}/bin"]
 
 [pindel.install]
-linux = "./INSTALL {{htslib:source.dir}}"
-mac = ""
-windows = ""
+linux = "./INSTALL {{htslib:source.dir}}; mkdir {{destdir}}/bin; cp `ls -F {{download.dir}} |grep '*' | grep -v 'INSTALL'` {{destdir}}/bin"
+mac = "./INSTALL {{htslib:source.dir}}; mkdir {{destdir}}/bin; cp `ls -F {{download.dir}} |grep '*' | grep -v 'INSTALL'` {{destdir}}/bin"
+windows = "./INSTALL {{htslib:source.dir}}; mkdir {{destdir}}/bin; cp `ls -F {{download.dir}} |grep '*' | grep -v 'INSTALL'` {{destdir}}/bin"
 
 [lofreq]
 github_url = "https://github.com/Miachol/lofreq"
@@ -240,7 +245,12 @@ after_success = "echo 'successful!'"
 
 make_dir = ["./"]
 
-bin_dir = ["lofreq_star-2.1.2_linux-x86-64/bin/"]
+bin_dir = ["{{destdir}}/bin/"]
+
+[lofreq.install]
+linux = "mkdir -p {{destdir}}/bin; bindir={{download.dir}}/lofreq_star-2.1.2_linux-x86-64/bin; files=`ls $bindir/*`; cd $bindir; chmod +x $files; cp $files {{destdir}}/bin"
+mac = "mkdir -p {{destdir}}/bin; bindir={{download.dir}}/lofreq_star-2.1.2_linux-x86-64/bin; files=`ls $bindir/*`; cd $bindir; chmod +x $files; cp $files {{destdir}}/bin"
+windows = "mkdir -p {{destdir}}/bin; bindir={{download.dir}}/lofreq_star-2.1.2_linux-x86-64/bin; files=`ls $bindir/*`; cd $bindir; chmod +x $files; cp $files {{destdir}}/bin"
 
 [hisat2]
 github_url = "https://github.com/infphilo/hisat2"
@@ -255,12 +265,12 @@ after_success = "echo 'successful!'"
 
 make_dir = ["./"]
 
-bin_dir = ["./"]
+bin_dir = ["{{download.dir}}"]
 
 [hisat2.install]
-linux = "make"
-mac = "make"
-windows = "make"
+linux = "make && mkdir -p {{destdir}}/bin; fn=`ls -F |grep '*' | tr -d '*'` fn=`echo $fn | tr ' ' '\n' |grep -v '.h' | grep -v '.cpp'|sort -u`;cp $fn {{destdir}}/bin"
+mac = "make && mkdir -p {{destdir}}/bin; fn=`ls -F |grep '*' | tr -d '*'` fn=`echo $fn | tr ' ' '\n' |grep -v '.h' | grep -v '.cpp'|sort -u`;cp $fn {{destdir}}/bin"
+windows = "make && mkdir -p {{destdir}}/bin; fn=`ls -F |grep '*' | tr -d '*'` fn=`echo $fn | tr ' ' '\n' |grep -v '.h' | grep -v '.cpp'|sort -u`;cp $fn {{destdir}}/bin"
 
 [freebayes]
 github_url = "https://github.com/ekg/freebayes"
@@ -278,12 +288,12 @@ after_success = "echo 'successful!'"
 
 make_dir = ["./"]
 
-bin_dir = ["./bin"]
+bin_dir = ["{{destdir}}/bin"]
 
 [freebayes.install]
-linux = "make"
-mac = "make"
-windows = "make"
+linux = "make && mkdir -p {{destdir}}/bin; fn=`ls -F |grep '*' | tr -d '*'` fn=`echo $fn | tr ' ' '\n' |grep -v '.h' | grep -v '.cpp'|sort -u`;cp $fn {{destdir}}/bin"
+mac = "make && mkdir -p {{destdir}}/bin; fn=`ls -F |grep '*' | tr -d '*'` fn=`echo $fn | tr ' ' '\n' |grep -v '.h' | grep -v '.cpp'|sort -u`;cp $fn {{destdir}}/bin"
+windows = "make && mkdir -p {{destdir}}/bin; fn=`ls -F |grep '*' | tr -d '*'` fn=`echo $fn | tr ' ' '\n' |grep -v '.h' | grep -v '.cpp'|sort -u`;cp $fn {{destdir}}/bin"
 
 [macs]
 github_url = "https://github.com/taoliu/MACS/"
@@ -298,7 +308,7 @@ after_success = "echo 'successful!'"
 
 make_dir = ["./"]
 
-bin_dir = ["./bin"]
+bin_dir = ["{{download.dir}}/bin"]
 
 [macs.before_install]
 linux = "pip install cython"
@@ -323,12 +333,12 @@ after_success = "echo 'successful!'"
 
 make_dir = ["./"]
 
-bin_dir = ["./bin"]
+bin_dir = ["{{destdir}}/bin"]
 
 [bedtools.install]
-linux = "make"
-mac = "make"
-windows = "make"
+linux = "make && mkdir -p {{destdir}}/bin; cp {{download.dir}}/bin/* {{destdir}}/bin"
+mac = "make && mkdir -p {{destdir}}/bin; cp {{download.dir}}/bin/* {{destdir}}/bin"
+windows = "make && mkdir -p {{destdir}}/bin; cp {{download.dir}}/bin/* {{destdir}}/bin"
 
 [sparsehash]
 github_url = "https://github.com/sparsehash/sparsehash"
@@ -343,12 +353,12 @@ after_success = "echo 'successful!'"
 
 make_dir = ["./"]
 
-bin_dir = ["./"]
+bin_dir = ["{{destdir}}/bin"]
 
 [sparsehash.install]
-linux = "sh autogen.sh && ./configure --prefix=`pwd` && make && make install"
-mac = "sh autogen.sh && ./configure --prefix=`pwd` && make && make install"
-windows = "sh autogen.sh && ./configure --prefix=`pwd` && make && make install"
+linux = "sh autogen.sh && ./configure --prefix={{destdir}} && make && make install"
+mac = "sh autogen.sh && ./configure --prefix={{destdir}} && make && make install"
+windows = "sh autogen.sh && ./configure --prefix={{destdir}} && make && make install"
 
 [abyss]
 github_url = "https://github.com/bcgsc/abyss"
@@ -367,12 +377,12 @@ after_success = "echo 'successful!'"
 
 make_dir = ["./"]
 
-bin_dir = ["./"]
+bin_dir = ["{{destdir}}/bin"]
 
 [abyss.install]
-linux = "sh autogen.sh && ./configure --enable-maxk=96 --prefix=`pwd` --with-mpi --with-sqlite={{sqlite:source.dir}} CPPFLAGS=-I{{sparsehash:source.dir}}/include && make"
-mac = "sh autogen.sh && ./configure --enable-maxk=96 --prefix=`pwd` --with-mpi --with-sqlite={{sqlite:source.dir}} CPPFLAGS=-I{{sparsehash:source.dir}}/include && make"
-windows = "sh autogen.sh && ./configure --enable-maxk=96 --prefix=`pwd` --with-mpi --with-sqlite={{sqlite:source.dir}} CPPFLAGS=-I{{sparsehash:source.dir}}/include && make"
+linux = "sh autogen.sh && ./configure --enable-maxk=96 --prefix={{destdir}} --with-mpi --with-sqlite={{sqlite:source.dir}} CPPFLAGS=-I{{sparsehash:source.dir}}/include && make"
+mac = "sh autogen.sh && ./configure --enable-maxk=96 --prefix={{destdir}} --with-mpi --with-sqlite={{sqlite:source.dir}} CPPFLAGS=-I{{sparsehash:source.dir}}/include && make"
+windows = "sh autogen.sh && ./configure --enable-maxk=96 --prefix={{destdir}} --with-mpi --with-sqlite={{sqlite:source.dir}} CPPFLAGS=-I{{sparsehash:source.dir}}/include && make"
 
 [bamtools]
 github_url = "https://github.com/pezmaster31/bamtools"
@@ -387,7 +397,7 @@ after_success = "echo 'successful!'"
 
 make_dir = ["./"]
 
-bin_dir = ["./bin"]
+bin_dir = ["{{destdir}}/bin"]
 
 [bamtools.before_install]
 linux = "mkdir build; cd build && cmake .."
@@ -395,9 +405,9 @@ mac = "mkdir build; cd build && cmake .."
 windows = "md build; cd build && cmake .."
 
 [bamtools.install]
-linux = "cd build && make"
-mac = "cd build && make"
-windows = "cd build && make"
+linux = "cd build && make ;mkdir -p {{destdir}}/bin; cp {{download.dir}}/bin/* {{destdir}}/bin"
+mac = "cd build && make ;mkdir -p {{destdir}}/bin; cp {{download.dir}}/bin/* {{destdir}}/bin"
+windows = "cd build && make ;mkdir -p {{destdir}}/bin; cp {{download.dir}}/bin/* {{destdir}}/bin"
 
 [breakdancer]
 github_url = "https://github.com/genome/breakdancer.git"
@@ -413,7 +423,7 @@ after_success = "echo 'successful!'"
 
 make_dir = ["./"]
 
-bin_dir = ["./bin"]
+bin_dir = ["{{download.dir}}/build/bin"]
 
 [breakdancer.before_install]
 linux = ["mkdir build; cd build && cmake .. -DCMAKE_BUILD_TYPE=release -DCMAKE_INSTALL_PREFIX=/usr/local"]
@@ -438,7 +448,7 @@ after_success = "echo 'successful!'"
 
 make_dir = ["./"]
 
-bin_dir = ["./scripts"]
+bin_dir = ["{{download.dir}}/scripts"]
 
 [htseq.before_install]
 linux = ["pip install numpy", "pip install Cython", "pip install 'matplotlib>=1.4'"]
@@ -463,12 +473,12 @@ after_success = "echo 'successful!'"
 
 make_dir = ["./"]
 
-bin_dir = ["./"]
+bin_dir = ["{{destdir}}/bin"]
 
 [seqtk.install]
-linux = "make"
-mac = "make"
-windows = "make"
+linux = "make && mkdir -p {{destdir}}/bin; cp {{download.dir}}/seqtk {{destdir}}/bin"
+mac = "make && mkdir -p {{destdir}}/bin; cp {{download.dir}}/seqtk {{destdir}}/bin"
+windows = "make && mkdir -p {{destdir}}/bin; cp {{download.dir}}/seqtk {{destdir}}/bin"
 
 [delly]
 github_url = "https://github.com/dellytools/delly.git"
@@ -485,12 +495,12 @@ after_success = "echo 'successful!'"
 
 make_dir = ["./"]
 
-bin_dir = ["./src"]
+bin_dir = ["{{destdir}}/bin"]
 
 [delly.install]
-linux = "make all"
-mac = "make all"
-windows = "make all"
+linux = "make all; mkdir -p {{destdir}}/bin; fn=`ls -F src|grep '*' | tr -d '*'` fn=`echo $fn | tr ' ' '\n' |grep -v '.h' | grep -v '.cpp'|sort -u`;cd src; cp $fn {{destdir}}/bin"
+mac = "make all; mkdir -p {{destdir}}/bin; fn=`ls -F src|grep '*' | tr -d '*'` fn=`echo $fn | tr ' ' '\n' |grep -v '.h' | grep -v '.cpp'|sort -u`;cd src; cp $fn {{destdir}}/bin"
+windows = "make all; mkdir -p {{destdir}}/bin; fn=`ls -F src|grep '*' | tr -d '*'` fn=`echo $fn | tr ' ' '\n' |grep -v '.h' | grep -v '.cpp'|sort -u`;cd src; cp $fn {{destdir}}/bin"
 
 [tmap]
 github_url = "git://github.com/iontorrent/TMAP.git"
@@ -506,7 +516,7 @@ after_success = "echo 'successful!'"
 
 make_dir = ["./"]
 
-bin_dir = ["./"]
+bin_dir = ["{{destdir}}/bin"]
 
 [tmap.before_install]
 linux = ["git submodule init", " git submodule update"]
@@ -515,11 +525,11 @@ windows = ["git submodule init", " git submodule update"]
 
 [tmap.install]
 linux = ["git checkout -b {{version}} tmap.{{version}}", "git submodule update", 
-         "sh autogen.sh && ./configure --prefix=`pwd` && make", "make install"]
+         "sh autogen.sh && ./configure --prefix={{destdir}} && make", "make install"]
 mac = ["git checkout -b {{version}} tmap.{{version}}", "git submodule update", 
-         "sh autogen.sh && ./configure --prefix=`pwd` && make", "make install"]
+         "sh autogen.sh && ./configure --prefix={{destdir}} && make", "make install"]
 windows = ["git checkout -b {{version}} tmap.{{version}}", "git submodule update", 
-         "sh autogen.sh && ./configure --prefix=`pwd` && make", "make install"]
+         "sh autogen.sh && ./configure --prefix={{destdir}} && make", "make install"]
 
 [somaticsniper]
 github_url = "https://github.com/genome/somatic-sniper"
@@ -534,11 +544,12 @@ after_success = "echo 'successful!'"
 
 make_dir = ["./"]
 
-bin_dir = ["./build/bin"]
+bin_dir = ["{{destdir}}/bin"]
 
 [somaticsniper.install]
-linux = "mkdir build; cd build && cmake ../ && make deps && make -j && make test"
-mac = "mkdir build; cd build && cmake ../ && make deps && make -j && make test"
+linux = "mkdir build; cd build && cmake ../ && make deps && make -j && make test; mkdir -p {{destdir}}/bin; cp {{download.dir}}/build/bin/* {{destdir}}/bin"
+mac = "mkdir build; cd build && cmake ../ && make deps && make -j && make test; mkdir -p {{destdir}}/bin; cp {{download.dir}}/build/bin/* {{destdir}}/bin"
+windows = "mkdir build; cd build && cmake ../ && make deps && make -j && make test; mkdir -p {{destdir}}/bin; cp {{download.dir}}/build/bin/* {{destdir}}/bin"
 
 [bamutil]
 github_url = "https://github.com/statgen/bamUtil"
@@ -553,7 +564,7 @@ after_success = "echo 'successful!'"
 
 make_dir = ["./"]
 
-bin_dir = ["./bin"]
+bin_dir = ["{{destdir}}/bin"]
 
 [bamutil.install]
 linux = "make cloneLib && make && make install INSTALLDIR={{destdir}}"
@@ -575,12 +586,12 @@ after_success = "echo 'successful!'"
 
 make_dir = ["./"]
 
-bin_dir = ["./bin"]
+bin_dir = ["{{destdir}}/bin"]
 
 [vcflib.install]
-linux = "make"
-mac = "make"
-windows = "make"
+linux = "make && mkdir -p {{destdir}}/bin; fn=`ls -F bin|grep '*' | tr -d '*'` fn=`echo $fn | tr ' ' '\n' |grep -v '.h' | grep -v '.cpp'|sort -u`;cd bin; cp $fn {{destdir}}/bin"
+mac = "make && mkdir -p {{destdir}}/bin; fn=`ls -F bin|grep '*' | tr -d '*'` fn=`echo $fn | tr ' ' '\n' |grep -v '.h' | grep -v '.cpp'|sort -u`;cd bin; cp $fn {{destdir}}/bin"
+windows = "make && mkdir -p {{destdir}}/bin; fn=`ls -F bin|grep '*' | tr -d '*'` fn=`echo $fn | tr ' ' '\n' |grep -v '.h' | grep -v '.cpp'|sort -u`;cd bin; cp $fn {{destdir}}/bin"
 
 [jvarkit]
 github_url = "https://github.com/lindenb/jvarkit/"
@@ -595,7 +606,7 @@ after_success = "echo 'successful!'"
 
 make_dir = ["./"]
 
-bin_dir = ["./dist"]
+bin_dir = ["{{download.dir}}/dist"]
 
 [jvarkit.install]
 linux = "make all"
@@ -619,12 +630,12 @@ after_success = "echo 'successful!'"
 
 make_dir = ["./"]
 
-bin_dir = ["./bin"]
+bin_dir = ["{{destdir}}/bin"]
 
 [fastx_toolkit.install]
-linux = "export PKG_CONFIG_PATH=PKG_CONFIG_PATH:{{libgtextutils:source.dir}}; ./reconf && ./configure --prefix=`pwd` && make && make install"
-mac = "export PKG_CONFIG_PATH=PKG_CONFIG_PATH:{{libgtextutils:source.dir}}; ./reconf && ./configure --prefix=`pwd` && make && make install"
-windows = "export PKG_CONFIG_PATH=PKG_CONFIG_PATH:{{libgtextutils:source.dir}}; ./reconf && ./configure --prefix=`pwd` && make && make install"
+linux = "export PKG_CONFIG_PATH=PKG_CONFIG_PATH:{{libgtextutils:source.dir}}; ./reconf && ./configure --prefix={{destdir}} && make && make install"
+mac = "export PKG_CONFIG_PATH=PKG_CONFIG_PATH:{{libgtextutils:source.dir}}; ./reconf && ./configure --prefix={{destdir}} && make && make install"
+windows = "export PKG_CONFIG_PATH=PKG_CONFIG_PATH:{{libgtextutils:source.dir}}; ./reconf && ./configure --prefix={{destdir}} && make && make install"
 
 [libgtextutils]
 github_url = "https://github.com/agordon/libgtextutils"
@@ -639,12 +650,12 @@ after_success = "echo 'successful!'"
 
 make_dir = ["./"]
 
-bin_dir = ["./"]
+bin_dir = ["{{destdir}}/lib"]
 
 [libgtextutils.install]
-linux = "./reconf && ./configure --prefix=`pwd` && make && make install"
-mac = "./reconf && ./configure --prefix=`pwd` && make && make install"
-windows = "./reconf && ./configure --prefix=`pwd` && make && mak install"
+linux = "./reconf && ./configure --prefix={{destdir}} && make && make install"
+mac = "./reconf && ./configure --prefix={{destdir}} && make && make install"
+windows = "./reconf && ./configure --prefix={{destdir}} && make && mak install"
 
 [trinityrnaseq]
 github_url = "https://github.com/trinityrnaseq/trinityrnaseq"
@@ -659,15 +670,17 @@ after_success = "echo 'successful!'"
 
 make_dir = ["./"]
 
-bin_dir = ["./"]
+bin_dir = ["{{destdir}}/bin"]
 
 [trinityrnaseq.install]
-linux = "make"
-mac = "make"
-windows = "make"
+linux = "make && mkdir -p {{destdir}}/bin; fn=`ls -F |grep '*' | tr -d '*'` fn=`echo $fn | tr ' ' '\n' |grep -v '.h' | grep -v '.cpp'|sort -u`;cp $fn {{destdir}}/bin"
+mac = "make && mkdir -p {{destdir}}/bin; fn=`ls -F |grep '*' | tr -d '*'` fn=`echo $fn | tr ' ' '\n' |grep -v '.h' | grep -v '.cpp'|sort -u`;cp $fn {{destdir}}/bin"
+windows = "make && mkdir -p {{destdir}}/bin; fn=`ls -F |grep '*' | tr -d '*'` fn=`echo $fn | tr ' ' '\n' |grep -v '.h' | grep -v '.cpp'|sort -u`;cp $fn {{destdir}}/bin"
 
 [oases]
 github_url = "https://github.com/dzerbino/oases"
+use_git2r = false
+recursive_clone = true
 
 version_newest = "0.2.09"
 
@@ -679,12 +692,12 @@ after_success = "echo 'successful!'"
 
 make_dir = ["./"]
 
-bin_dir = ["./"]
+bin_dir = ["{{destdir}}/bin"]
 
 [oases.install]
-linux = "make"
-mac = "make"
-windows = "make"
+linux = "make && mkdir -p {{destdir}}/bin; fn=`ls -F |grep '*' | tr -d '*'` fn=`echo $fn | tr ' ' '\n' |grep -v '.h' | grep -v '.cpp'|sort -u`;cp $fn {{destdir}}/bin"
+mac = "make && mkdir -p {{destdir}}/bin; fn=`ls -F |grep '*' | tr -d '*'` fn=`echo $fn | tr ' ' '\n' |grep -v '.h' | grep -v '.cpp'|sort -u`;cp $fn {{destdir}}/bin"
+windows = "make && mkdir -p {{destdir}}/bin; fn=`ls -F |grep '*' | tr -d '*'` fn=`echo $fn | tr ' ' '\n' |grep -v '.h' | grep -v '.cpp'|sort -u`;cp $fn {{destdir}}/bin"
 
 [rum]
 github_url = "https://github.com/itmat/rum"
@@ -699,12 +712,12 @@ after_success = "echo 'successful!'"
 
 make_dir = ["./"]
 
-bin_dir = ["./"]
+bin_dir = ["{{destdir}}/bin"]
 
 [rum.install]
-linux = ["cpan -i autodie", "cpan -i Log::Log4perl", "perl Makefile.PL && make", "make install"]
-mac = ["cpan -i autodie", "cpan -i Log::Log4perl", "perl Makefile.PL && make", "make install"]
-windows = ["cpan -i autodie", "cpan -i Log::Log4perl", "perl Makefile.PL && make", "make install"]
+linux = ["cpan -i autodie", "cpan -i Log::Log4perl", "perl Makefile.PL INSTALL_BASE={{destdir}} && make", "make install"]
+mac = ["cpan -i autodie", "cpan -i Log::Log4perl", "perl Makefile.PL INSTALL_BASE={{destdir}} && make", "make install"]
+windows = ["cpan -i autodie", "cpan -i Log::Log4perl", "perl Makefile.PL INSTALL_BASE={{destdir}} && make", "make install"]
 
 [igraph]
 github_url = "https://github.com/igraph/igraph"
@@ -719,12 +732,12 @@ after_success = "echo 'successful!'"
 
 make_dir = ["./"]
 
-bin_dir = ["./bin"]
+bin_dir = ["{{destdir}}/lib"]
 
 [igraph.install]
-linux = "sh bootstrap.sh;./configure --prefix=`pwd` && make && make install"
-mac = "sh bootstrap.sh;./configure --prefix=`pwd` && make && make install"
-windows = "sh bootstrap.sh;./configure --prefix=`pwd` && make && make install"
+linux = "sh bootstrap.sh;./configure --prefix={{destdir}} && make && make install"
+mac = "sh bootstrap.sh;./configure --prefix={{destdir}} && make && make install"
+windows = "sh bootstrap.sh;./configure --prefix={{destdir}} && make && make install"
 
 [pxz]
 github_url = "https://github.com/jnovy/pxz"
@@ -739,12 +752,12 @@ after_success = "echo 'successful!'"
 
 make_dir = ["./"]
 
-bin_dir = ["./"]
+bin_dir = ["{{destdir}}/bin"]
 
 [pxz.install]
-linux = "make"
-mac = "make"
-windows = "make"
+linux = "make && mkdir -p {{destdir}}/bin; fn=`ls -F |grep '*' | tr -d '*'` fn=`echo $fn | tr ' ' '\n' |grep -v '.h' | grep -v '.cpp'|sort -u`;cp $fn {{destdir}}/bin"
+mac = "make && mkdir -p {{destdir}}/bin; fn=`ls -F |grep '*' | tr -d '*'` fn=`echo $fn | tr ' ' '\n' |grep -v '.h' | grep -v '.cpp'|sort -u`;cp $fn {{destdir}}/bin"
+windows = "make && mkdir -p {{destdir}}/bin; fn=`ls -F |grep '*' | tr -d '*'` fn=`echo $fn | tr ' ' '\n' |grep -v '.h' | grep -v '.cpp'|sort -u`;cp $fn {{destdir}}/bin"
 
 [cnvkit]
 github_url = "https://github.com/etal/cnvkit"
@@ -759,7 +772,7 @@ after_success = "echo 'successful!'"
 
 make_dir = ["./"]
 
-bin_dir = ["./scripts"]
+bin_dir = ["{{download.dir}}"]
 
 [cnvkit.install]
 linux = "pip install ."
@@ -784,12 +797,12 @@ after_success = "echo 'successful!'"
 
 make_dir = ["./"]
 
-bin_dir = ["./bin"]
+bin_dir = ["{{destdir}}/bin/speedseq"]
 
 [speedseq.install]
-linux = "source ~/.bashrc; make"
-mac = "source ~/.bashrc; make"
-windows = "source ~/.bashrc; make"
+linux = "source ~/.bashrc; make; mkdir {{destdir}}/bin/speedseq; fn=`ls -F bin|grep '*' | tr -d '*'` fn=`echo $fn | tr ' ' '\n' |grep -v '.h' | grep -v '.cpp'|sort -u`;cd bin; cp $fn {{destdir}}/bin/speedseq"
+mac = "source ~/.bashrc; make; mkdir {{destdir}}/bin/speedseq; fn=`ls -F bin|grep '*' | tr -d '*'` fn=`echo $fn | tr ' ' '\n' |grep -v '.h' | grep -v '.cpp'|sort -u`;cd bin; cp $fn {{destdir}}/bin/speedseq"
+windows = "source ~/.bashrc; make; mkdir {{destdir}}/bin/speedseq; fn=`ls -F bin|grep '*' | tr -d '*'` fn=`echo $fn | tr ' ' '\n' |grep -v '.h' | grep -v '.cpp'|sort -u`;cd bin; cp $fn {{destdir}}/bin/speedseq"
 
 [cnvnator]
 
@@ -807,12 +820,12 @@ after_failure = "echo 'fail!'"
 
 after_success = "echo 'successful!'"
 
-make_dir = ["./src"]
+make_dir = ["./", "./src"]
 
-bin_dir = ["{{destdir}}/src"]
+bin_dir = ["{{destdir}}/bin"]
 
 [cnvnator.install]
 
-linux = "source ~/.bashrc; ln -s {{cnvnator_samtools:source.dir}} ./samtools; make"
-mac = "source ~/.bashrc; ln -s {{cnvnator_samtools:source.dir}} ./samtools; make"
-windows = "source ~/.bashrch; ln -s {{cnvnator_samtools:source.dir}} ./samtools; make"
+linux = "source ~/.bashrc; ln -s {{cnvnator_samtools:source.dir}} ./samtools; make; mkdir -p {{destdir}}/bin; fn=`ls -F |grep '*' | tr -d '*'` fn=`echo $fn | tr ' ' '\n' |grep -v '.h' | grep -v '.cpp'|sort -u`;cp $fn {{destdir}}/bin"
+mac = "source ~/.bashrc; ln -s {{cnvnator_samtools:source.dir}} ./samtools; make; mkdir -p {{destdir}}/bin; fn=`ls -F |grep '*' | tr -d '*'` fn=`echo $fn | tr ' ' '\n' |grep -v '.h' | grep -v '.cpp'|sort -u`;cp $fn {{destdir}}/bin"
+windows = "source ~/.bashrc; ln -s {{cnvnator_samtools:source.dir}} ./samtools; make; mkdir -p {{destdir}}/bin; fn=`ls -F |grep '*' | tr -d '*'` fn=`echo $fn | tr ' ' '\n' |grep -v '.h' | grep -v '.cpp'|sort -u`;cp $fn {{destdir}}/bin"
