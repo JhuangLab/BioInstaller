@@ -895,9 +895,9 @@ make_dir = ["./"]
 bin_dir = ["{{destdir}}/bin"]
 
 [curl.install]
-linux = ["./configure --prefix={{destdir}} && make -j3", "make install"]
-mac = ["./configure --prefix={{destdir}} && make -j3", "make install"]
-windows = ["./configure --prefix={{destdir}} && make -j3", "make install"]
+linux = ["./configure --prefix={{destdir}} --with-ssl && make -j3", "make install"]
+mac = ["./configure --prefix={{destdir}} --with-ssl && make -j3", "make install"]
+windows = ["./configure --prefix={{destdir}} --with-ssl && make -j3", "make install"]
 
 
 
