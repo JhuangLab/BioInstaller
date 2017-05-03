@@ -11,7 +11,8 @@ install.bioinfo(name = c(), download.dir = c(), destdir = c(),
   show.all.versions = FALSE, show.all.names = FALSE,
   db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", system.file("extdata",
   "softwares_db_demo.yaml", package = "BioInstaller")), download.only = FALSE,
-  decompress = TRUE, showWarnings = FALSE, verbose = FALSE, ...)
+  decompress = TRUE, dependence.need = TRUE, showWarnings = FALSE,
+  verbose = FALSE, ...)
 }
 \arguments{
 \item{name}{Software name}
@@ -41,6 +42,8 @@ system.file('extdata', 'softwares_db_demo.yaml', package = 'BioInstaller'))}
 \item{download.only}{Logicol indicating wheather only download source or file (non-github)}
 
 \item{decompress}{Logicol indicating wheather need to decompress the downloaded file, default is TRUE}
+
+\item{dependence.need}{Logical should the dependence should be installed}
 
 \item{showWarnings}{Logical should the warnings on failure be shown?}
 

@@ -16,6 +16,7 @@
 #' system.file('extdata', 'softwares_db_demo.yaml', package = 'BioInstaller'))
 #' @param download.only Logicol indicating wheather only download source or file (non-github)
 #' @param decompress Logicol indicating wheather need to decompress the downloaded file, default is TRUE
+#' @param dependence.need Logical should the dependence should be installed
 #' @param showWarnings Logical should the warnings on failure be shown?
 #' @param verbose TRUE is debug mode
 #' @param ... Other key and value paired need be saved in BioInstaller passed to \code{\link{change.info}}
@@ -29,7 +30,7 @@ install.bioinfo <- function(name = c(), download.dir = c(), destdir = c(), name.
   nongithub.cfg = system.file("extdata", "nongithub.toml", package = "BioInstaller"), 
   version = c(), show.all.versions = FALSE, show.all.names = FALSE, db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", 
     system.file("extdata", "softwares_db_demo.yaml", package = "BioInstaller")), 
-  download.only = FALSE, decompress = TRUE, showWarnings = FALSE, verbose = FALSE, 
+  download.only = FALSE, decompress = TRUE, dependence.need = TRUE, showWarnings = FALSE, verbose = FALSE, 
   ...) {
   db.check(db)
   if (verbose) {
@@ -77,7 +78,7 @@ install.bioinfo <- function(name = c(), download.dir = c(), destdir = c(), name.
       status <- install.github(name = i, destdir = destdir[count], download.dir = download.dir[count], 
         github.cfg = github.cfg, name.saved = name.saved[count], version = version[count], 
         show.all.versions = show.all.versions, db = db, download.only = download.only, 
-        verbose = verbose, showWarnings = showWarnings, ...)
+        verbose = verbose, showWarnings = showWarnings, dependence.need = dependence.need, ...)
       bygithub <- c(bygithub, i)
     } else if (i %in% nongithub.names || (sf.name %in% nongithub.names && sf.name != 
       i)) {
@@ -89,7 +90,8 @@ install.bioinfo <- function(name = c(), download.dir = c(), destdir = c(), name.
       status <- install.nongithub(name = i, destdir = destdir[count], download.dir = download.dir[count], 
         name.saved = name.saved[count], nongithub.cfg = nongithub.cfg, version = version[count], 
         show.all.versions = show.all.versions, db = db, download.only = download.only, 
-        showWarnings = showWarnings, decompress = decompress, verbose = verbose, 
+        showWarnings = showWarnings, decompress = decompress, dependence.need = dependence.need,
+        verbose = verbose, 
         ...)
       bynongithub <- c(bynongithub, i)
     } else {
@@ -154,6 +156,7 @@ install.bioinfo <- function(name = c(), download.dir = c(), destdir = c(), name.
 #' @param db File of saving softwares infomation, default is Sys.getenv('BIO_SOFTWARES_DB_ACTIVE',
 #' system.file('extdata', 'softwares_db_demo.yaml', package = 'BioInstaller'))
 #' @param download.only Logicol indicating wheather only download source or file (non-github)
+#' @param dependence.need Logical should the dependence should be installed
 #' @param showWarnings Logical should the warnings on failure be shown?
 #' @param verbose TRUE is debug mode
 #' @param ... Other key and value paired need be saved in BioInstaller passed to \code{\link{change.info}}
@@ -166,7 +169,7 @@ install.github <- function(name = "", download.dir = NULL, destdir = NULL, versi
   show.all.versions = FALSE, name.saved = NULL, github.cfg = system.file("extdata", 
     "github.toml", package = "BioInstaller"), db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", 
     system.file("extdata", "softwares_db_demo.yaml", package = "BioInstaller")), 
-  download.only = FALSE, showWarnings = FALSE, verbose = FALSE, ...) {
+  download.only = FALSE, showWarnings = FALSE, dependence.need = TRUE, verbose = FALSE, ...) {
   old.work.dir <- getwd()
   config.cfg <- github.cfg
   name <- tolower(name)
@@ -243,12 +246,14 @@ install.github <- function(name = "", download.dir = NULL, destdir = NULL, versi
     flog.info(sprintf("Debug:download.dir:%s", download.dir))
     flog.info(sprintf("Debug:version:%s", version))
   }
-  process.dependence(config, db, download.dir, destdir, verbose)
-  status <- config.and.name.initial(config.cfg, name)
-  config <- eval.config()
-  config <- configr::parse.extra(config = config, extra.list = args.all)
-  config <- configr::parse.extra(config, other.config = db)
-  config <- configr::parse.extra(config = config, rcmd.parse = T)
+  if (dependence.need) {
+    process.dependence(config, db, download.dir, destdir, verbose)
+    status <- config.and.name.initial(config.cfg, name)
+    config <- eval.config()
+    config <- configr::parse.extra(config = config, extra.list = args.all)
+    config <- configr::parse.extra(config, other.config = db)
+    config <- configr::parse.extra(config = config, rcmd.parse = T)
+  }
   if (!verbose) {
     set.makedir(make.dir, download.dir)
   } else {
@@ -314,6 +319,7 @@ install.github <- function(name = "", download.dir = NULL, destdir = NULL, versi
 #' @param download.only Logicol indicating wheather only download source or file (non-github)
 #' @param decompress Logicol indicating wheather need to decompress the downloaded file, default is TRUE
 #' @param ... Other key and value paired need be saved in BioInstaller passed to \code{\link{change.info}}
+#' @param dependence.need Logical should the dependence should be installed
 #' @param showWarnings Logical should the warnings on failure be shown?
 #' @param verbose TRUE is debug mode
 #' @return Bool Value
@@ -325,7 +331,7 @@ install.nongithub <- function(name = "", download.dir = NULL, destdir = NULL, ve
   show.all.versions = FALSE, name.saved = NULL, nongithub.cfg = system.file("extdata", 
     "nongithub.toml", package = "BioInstaller"), db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", 
     system.file("extdata", "softwares_db_demo.yaml", package = "BioInstaller")), 
-  download.only = FALSE, decompress = TRUE, showWarnings = FALSE, verbose = FALSE, 
+  download.only = FALSE, decompress = TRUE, dependence.need = TRUE, showWarnings = FALSE, verbose = FALSE, 
   ...) {
   old.work.dir <- getwd()
   config.cfg <- nongithub.cfg
@@ -434,12 +440,14 @@ install.nongithub <- function(name = "", download.dir = NULL, destdir = NULL, ve
       status <- TRUE
     }
   }
-  process.dependence(config, db, download.dir, destdir, verbose)
-  status <- config.and.name.initial(config.cfg, name)
-  config <- eval.config()
-  config <- configr::parse.extra(config = config, extra.list = args.all)
-  config <- configr::parse.extra(config = config, other.config = db)
-  config <- configr::parse.extra(config = config, rcmd.parse = T)
+  if(dependence.need) {
+    process.dependence(config, db, download.dir, destdir, verbose)
+    status <- config.and.name.initial(config.cfg, name)
+    config <- eval.config()
+    config <- configr::parse.extra(config = config, extra.list = args.all)
+    config <- configr::parse.extra(config = config, other.config = db)
+    config <- configr::parse.extra(config = config, rcmd.parse = T)
+  }
   make.dir <- config$make_dir
   files <- list.files(download.dir)
   if (!verbose) {
