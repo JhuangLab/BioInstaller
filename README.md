@@ -53,6 +53,14 @@ devtools::install_github("Miachol/BioInstaller")
 
 - FastQC, PRINSEQ, SolexaQA, FASTX-Toolkit
 
+**NGS Analysis Framework
+
+- SpeedSeq
+
+**Network analysis software
+
+- igraph
+
 **NGS Others:**
 
 - gatk_bundle
@@ -67,5 +75,5 @@ devtools::install_github("Miachol/BioInstaller")
 
 **Others:** 
 
-- sparsehash, sqlite, pigz, lzo, lzop, bzip2, zlib, armadillo, pxz, ROOT
+- sparsehash, sqlite, pigz, lzo, lzop, bzip2, zlib, armadillo, pxz, ROOT, curl, xz, pcre, R
 
