@@ -1,6 +1,7 @@
 2017-05-03 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
 
 		* download.dir be supported
+		* install.dir be saved in softwares info configuration file
 
 2017-04-30 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
 

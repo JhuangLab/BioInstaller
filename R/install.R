@@ -281,7 +281,7 @@ install.github <- function(name = "", download.dir = NULL, destdir = NULL, versi
           name <- tolower(name.saved)
         }
         change.info(name = name, installed = TRUE, source.dir = download.dir, 
-          bin.dir = bin.dir, version = version, last.update.time = last.update.time, 
+          install.dir = destdir, bin.dir = bin.dir, version = version, last.update.time = last.update.time, 
           db = db, ...)
       }
     }
@@ -483,7 +483,7 @@ install.nongithub <- function(name = "", download.dir = NULL, destdir = NULL, ve
           name <- tolower(name.saved)
         }
         change.info(name = name, installed = TRUE, source.dir = download.dir, 
-          bin.dir = bin.dir, version = version, last.update.time = last.update.time, 
+          install.dir = destdir, bin.dir = bin.dir, version = version, last.update.time = last.update.time, 
           db = db, ...)
       }
     }

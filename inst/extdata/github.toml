@@ -380,9 +380,9 @@ make_dir = ["./"]
 bin_dir = ["{{destdir}}/bin"]
 
 [abyss.install]
-linux = "sh autogen.sh && ./configure --enable-maxk=96 --prefix={{destdir}} --with-mpi --with-sqlite={{sqlite:source.dir}} CPPFLAGS=-I{{sparsehash:source.dir}}/include && make"
-mac = "sh autogen.sh && ./configure --enable-maxk=96 --prefix={{destdir}} --with-mpi --with-sqlite={{sqlite:source.dir}} CPPFLAGS=-I{{sparsehash:source.dir}}/include && make"
-windows = "sh autogen.sh && ./configure --enable-maxk=96 --prefix={{destdir}} --with-mpi --with-sqlite={{sqlite:source.dir}} CPPFLAGS=-I{{sparsehash:source.dir}}/include && make"
+linux = "sh autogen.sh && ./configure --enable-maxk=96 --prefix={{destdir}} --with-mpi --with-sqlite={{sqlite:install.dir}} CPPFLAGS=-I{{sparsehash:install.dir}}/include && make"
+mac = "sh autogen.sh && ./configure --enable-maxk=96 --prefix={{destdir}} --with-mpi --with-sqlite={{sqlite:install.dir}} CPPFLAGS=-I{{sparsehash:install.dir}}/include && make"
+windows = "sh autogen.sh && ./configure --enable-maxk=96 --prefix={{destdir}} --with-mpi --with-sqlite={{sqlite:install.dir}} CPPFLAGS=-I{{sparsehash:install.dir}}/include && make"
 
 [bamtools]
 github_url = "https://github.com/pezmaster31/bamtools"

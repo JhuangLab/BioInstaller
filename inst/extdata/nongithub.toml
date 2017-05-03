@@ -418,9 +418,9 @@ make_dir = ["./"]
 bin_dir = ["{{destdir}}/lib"]
 
 [lzop.install]
-linux = "export CPPFLAGS='-I{{lzo:source.dir}}/include';export LDFLAGS='-L{{lzo:source.dir}}/src/.libs'; ./configure --prefix={{destdir}}&& make &&make install"
-mac = "export CPPFLAGS='-I{{lzo:source.dir}}/include';export LDFLAGS='-L{{lzo:source.dir}}/src/.libs'; ./configure --prefix={{destdir}}&& make &&make install"
-windows = "export CPPFLAGS='-I{{lzo:source.dir}}/include';export LDFLAGS='-L{{lzo:source.dir}}/src/.libs'; ./configure --prefix={{destdir}}&& make &&make install"
+linux = "export CPPFLAGS='-I{{lzo:install.dir}}/include';export LDFLAGS='-L{{lzo:install.dir}}/lib'; ./configure --prefix={{destdir}}&& make &&make install"
+mac = "export CPPFLAGS='-I{{lzo:install.dir}}/include';export LDFLAGS='-L{{lzo:install.dir}}/lib'; ./configure --prefix={{destdir}}&& make &&make install"
+windows = "export CPPFLAGS='-I{{lzo:install.dir}}/include';export LDFLAGS='-L{{lzo:install.dir}}/lib'; ./configure --prefix={{destdir}}&& make &&make install"
 
 [fusioncatcher_reffa]
 source_url = ["https://sourceforge.net/projects/fusioncatcher/files/data/ensembl_v{{version}}.tar.gz.aa",
