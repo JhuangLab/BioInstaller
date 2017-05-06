@@ -30,8 +30,8 @@ install.bioinfo <- function(name = c(), download.dir = c(), destdir = c(), name.
   nongithub.cfg = system.file("extdata", "nongithub.toml", package = "BioInstaller"), 
   version = c(), show.all.versions = FALSE, show.all.names = FALSE, db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", 
     system.file("extdata", "softwares_db_demo.yaml", package = "BioInstaller")), 
-  download.only = FALSE, decompress = TRUE, dependence.need = TRUE, showWarnings = FALSE, verbose = FALSE, 
-  ...) {
+  download.only = FALSE, decompress = TRUE, dependence.need = TRUE, showWarnings = FALSE, 
+  verbose = FALSE, ...) {
   db.check(db)
   if (verbose) {
     flog.info("Debug:Now run install.bioinfo function.")
@@ -78,7 +78,8 @@ install.bioinfo <- function(name = c(), download.dir = c(), destdir = c(), name.
       status <- install.github(name = i, destdir = destdir[count], download.dir = download.dir[count], 
         github.cfg = github.cfg, name.saved = name.saved[count], version = version[count], 
         show.all.versions = show.all.versions, db = db, download.only = download.only, 
-        verbose = verbose, showWarnings = showWarnings, dependence.need = dependence.need, ...)
+        verbose = verbose, showWarnings = showWarnings, dependence.need = dependence.need, 
+        ...)
       bygithub <- c(bygithub, i)
     } else if (i %in% nongithub.names || (sf.name %in% nongithub.names && sf.name != 
       i)) {
@@ -90,9 +91,8 @@ install.bioinfo <- function(name = c(), download.dir = c(), destdir = c(), name.
       status <- install.nongithub(name = i, destdir = destdir[count], download.dir = download.dir[count], 
         name.saved = name.saved[count], nongithub.cfg = nongithub.cfg, version = version[count], 
         show.all.versions = show.all.versions, db = db, download.only = download.only, 
-        showWarnings = showWarnings, decompress = decompress, dependence.need = dependence.need,
-        verbose = verbose, 
-        ...)
+        showWarnings = showWarnings, decompress = decompress, dependence.need = dependence.need, 
+        verbose = verbose, ...)
       bynongithub <- c(bynongithub, i)
     } else {
       warning(sprintf("%s not existed in install database, so can not be installed by BioInstaller package.", 
@@ -169,7 +169,8 @@ install.github <- function(name = "", download.dir = NULL, destdir = NULL, versi
   show.all.versions = FALSE, name.saved = NULL, github.cfg = system.file("extdata", 
     "github.toml", package = "BioInstaller"), db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", 
     system.file("extdata", "softwares_db_demo.yaml", package = "BioInstaller")), 
-  download.only = FALSE, showWarnings = FALSE, dependence.need = TRUE, verbose = FALSE, ...) {
+  download.only = FALSE, showWarnings = FALSE, dependence.need = TRUE, verbose = FALSE, 
+  ...) {
   old.work.dir <- getwd()
   config.cfg <- github.cfg
   name <- tolower(name)
@@ -331,8 +332,8 @@ install.nongithub <- function(name = "", download.dir = NULL, destdir = NULL, ve
   show.all.versions = FALSE, name.saved = NULL, nongithub.cfg = system.file("extdata", 
     "nongithub.toml", package = "BioInstaller"), db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", 
     system.file("extdata", "softwares_db_demo.yaml", package = "BioInstaller")), 
-  download.only = FALSE, decompress = TRUE, dependence.need = TRUE, showWarnings = FALSE, verbose = FALSE, 
-  ...) {
+  download.only = FALSE, decompress = TRUE, dependence.need = TRUE, showWarnings = FALSE, 
+  verbose = FALSE, ...) {
   old.work.dir <- getwd()
   config.cfg <- nongithub.cfg
   name <- tolower(name)
@@ -440,7 +441,7 @@ install.nongithub <- function(name = "", download.dir = NULL, destdir = NULL, ve
       status <- TRUE
     }
   }
-  if(dependence.need) {
+  if (dependence.need) {
     process.dependence(config, db, download.dir, destdir, verbose)
     status <- config.and.name.initial(config.cfg, name)
     config <- eval.config()

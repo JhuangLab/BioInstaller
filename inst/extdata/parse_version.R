@@ -536,3 +536,30 @@ get.r.newest.version <- function() {
   versions <- get.r.versions()
   return(versions[1])
 }
+
+get.pcre.versions <- function() {
+  urls <- "https://ftp.pcre.org/pub/pcre/"
+  versions_final <- NULL
+  for (url in urls) {
+    h <- basicTextGatherer()
+    web <- getURL(url, headerfunction = h$update)
+    web <- str_split(web, "\n")
+    web <- web[[1]]
+    web <- web[str_detect(web, "href")]
+    web <- web[str_detect(web, "pcre")]
+    web <- str_extract(web, "pcre[0-9-a-z.]*.tar.gz")
+    web <- web[!str_detect(web,"pcre2")]
+    web <- str_replace(web, ".tar.gz$", "")
+    web <- str_replace(web, "pcre-", "")
+    web <- web[!is.na(web)]
+    web <- web[!duplicated(web)]
+    versions_final <- c(versions_final, web)
+  }
+  versions_final <- sort(versions_final, decreasing=T)
+  return(versions_final)
+}
+# Function get r newest version
+get.pcre.newest.version <- function() {
+  versions <- get.r.versions()
+  return(versions[1])
+}
