@@ -35,7 +35,7 @@ check.install.name <- function(name, config.cfg) {
     warning("Parameter 'name' must be a character.")
     return(FALSE)
   }
-  if (!(name %in% eval.config.groups(config.cfg))) {
+  if (!(name %in% eval.config.sections(config.cfg))) {
     if (name == "") {
       warning("Parameter 'name' can not be empty!")
     } else {
@@ -125,6 +125,12 @@ get.need.install <- function(config, db) {
 install.dependence <- function(need.install, need.install.version, download.dir, 
   destdir) {
   flog.info(sprintf("Try install the dependence:%s", paste0(need.install, collapse = ", ")))
+  dest.path <- Sys.getenv("BIO_DEPENDENCE_DIR")
+  if (dest.path != "") {
+    dest.path <- normalizePath(dest.path, mustWork = F)
+    download.dir <- dest.path
+    destdir <- dest.path
+  }
   download.dir = sprintf("%s/%s", download.dir, str_replace_all(need.install, "@", 
     "_"))
   install.status <- install.bioinfo(name = need.install, download.dir = download.dir, 

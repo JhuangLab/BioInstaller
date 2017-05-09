@@ -560,6 +560,35 @@ get.pcre.versions <- function() {
 }
 # Function get r newest version
 get.pcre.newest.version <- function() {
-  versions <- get.r.versions()
+  versions <- get.pcre.versions()
+  return(versions[1])
+}
+
+get.miniconda.versions <- function() {
+  urls <- "https://repo.continuum.io/miniconda/"
+  versions_final <- NULL
+  for (url in urls) {
+    h <- basicTextGatherer()
+    web <- getURL(url, headerfunction = h$update)
+    web <- str_split(web, "\n")
+    web <- web[[1]]
+    web <- web[str_detect(web, "href")]
+    web <- web[str_detect(web, "Miniconda")]
+    web <- web[!str_detect(web, "latest")]
+    web <- str_extract(web, "Miniconda[0-9-a-zA-Z.-_]*.[(.sh)(.exe)$]")
+    web <- str_replace(web, ".tar.gz$", "")
+    web <- str_replace(web, ".exe$", "")
+    web <- str_replace(web, ".sh$", "")
+    web <- str_replace(web, "^Miniconda-|Miniconda", "")
+    web <- web[!is.na(web)]
+    web <- web[!duplicated(web)]
+    versions_final <- c(versions_final, web)
+  }
+  versions_final <- sort(versions_final, decreasing=T)
+  return(versions_final)
+}
+# Function get r newest version
+get.miniconda.newest.version <- function() {
+  versions <- get.miniconda.versions()
   return(versions[1])
 }

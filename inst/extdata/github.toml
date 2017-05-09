@@ -291,9 +291,9 @@ make_dir = ["./"]
 bin_dir = ["{{destdir}}/bin"]
 
 [freebayes.install]
-linux = "make && mkdir -p {{destdir}}/bin; fn=`ls -F |grep '*' | tr -d '*'` fn=`echo $fn | tr ' ' '\n' |grep -v '.h' | grep -v '.cpp'|sort -u`;cp $fn {{destdir}}/bin"
-mac = "make && mkdir -p {{destdir}}/bin; fn=`ls -F |grep '*' | tr -d '*'` fn=`echo $fn | tr ' ' '\n' |grep -v '.h' | grep -v '.cpp'|sort -u`;cp $fn {{destdir}}/bin"
-windows = "make && mkdir -p {{destdir}}/bin; fn=`ls -F |grep '*' | tr -d '*'` fn=`echo $fn | tr ' ' '\n' |grep -v '.h' | grep -v '.cpp'|sort -u`;cp $fn {{destdir}}/bin"
+linux = ["make", "mkdir -p {{destdir}}/bin; cp {{download.dir}}/bin/* {{destdir}}/bin"]
+mac = ["make", "mkdir -p {{destdir}}/bin; cp {{download.dir}}/bin/* {{destdir}}/bin"]
+windows = ["make", "mkdir -p {{destdir}}/bin; cp {{download.dir}}/bin/* {{destdir}}/bin"]
 
 [macs]
 github_url = "https://github.com/taoliu/MACS/"
@@ -336,9 +336,9 @@ make_dir = ["./"]
 bin_dir = ["{{destdir}}/bin"]
 
 [bedtools.install]
-linux = "make && mkdir -p {{destdir}}/bin; cp {{download.dir}}/bin/* {{destdir}}/bin"
-mac = "make && mkdir -p {{destdir}}/bin; cp {{download.dir}}/bin/* {{destdir}}/bin"
-windows = "make && mkdir -p {{destdir}}/bin; cp {{download.dir}}/bin/* {{destdir}}/bin"
+linux = ["make", "mkdir -p {{destdir}}/bin; cp {{download.dir}}/bin/* {{destdir}}/bin"]
+mac = ["make", "mkdir -p {{destdir}}/bin; cp {{download.dir}}/bin/* {{destdir}}/bin"]
+windows = ["make", "mkdir -p {{destdir}}/bin; cp {{download.dir}}/bin/* {{destdir}}/bin"]
 
 [sparsehash]
 github_url = "https://github.com/sparsehash/sparsehash"
@@ -405,9 +405,9 @@ mac = "mkdir build; cd build && cmake .."
 windows = "md build; cd build && cmake .."
 
 [bamtools.install]
-linux = "cd build && make ;mkdir -p {{destdir}}/bin; cp {{download.dir}}/bin/* {{destdir}}/bin"
-mac = "cd build && make ;mkdir -p {{destdir}}/bin; cp {{download.dir}}/bin/* {{destdir}}/bin"
-windows = "cd build && make ;mkdir -p {{destdir}}/bin; cp {{download.dir}}/bin/* {{destdir}}/bin"
+linux = ["cd build && make", "mkdir -p {{destdir}}/bin; cp {{download.dir}}/bin/* {{destdir}}/bin"]
+mac = ["cd build && make", "mkdir -p {{destdir}}/bin; cp {{download.dir}}/bin/* {{destdir}}/bin"]
+windows = ["cd build && make", "mkdir -p {{destdir}}/bin; cp {{download.dir}}/bin/* {{destdir}}/bin"]
 
 [breakdancer]
 github_url = "https://github.com/genome/breakdancer.git"
@@ -589,9 +589,9 @@ make_dir = ["./"]
 bin_dir = ["{{destdir}}/bin"]
 
 [vcflib.install]
-linux = "make && mkdir -p {{destdir}}/bin; fn=`ls -F bin|grep '*' | tr -d '*'` fn=`echo $fn | tr ' ' '\n' |grep -v '.h' | grep -v '.cpp'|sort -u`;cd bin; cp $fn {{destdir}}/bin"
-mac = "make && mkdir -p {{destdir}}/bin; fn=`ls -F bin|grep '*' | tr -d '*'` fn=`echo $fn | tr ' ' '\n' |grep -v '.h' | grep -v '.cpp'|sort -u`;cd bin; cp $fn {{destdir}}/bin"
-windows = "make && mkdir -p {{destdir}}/bin; fn=`ls -F bin|grep '*' | tr -d '*'` fn=`echo $fn | tr ' ' '\n' |grep -v '.h' | grep -v '.cpp'|sort -u`;cd bin; cp $fn {{destdir}}/bin"
+linux = ["make", "mkdir -p {{destdir}}/bin; cp {{download.dir}}/bin/* {{destdir}}/bin"]
+mac = ["make", "mkdir -p {{destdir}}/bin; cp {{download.dir}}/bin/* {{destdir}}/bin"]
+windows = ["make", "mkdir -p {{destdir}}/bin; cp {{download.dir}}/bin/* {{destdir}}/bin"]
 
 [jvarkit]
 github_url = "https://github.com/lindenb/jvarkit/"
@@ -609,9 +609,9 @@ make_dir = ["./"]
 bin_dir = ["{{download.dir}}/dist"]
 
 [jvarkit.install]
-linux = "make all"
-mac = "make all"
-windows = "make all"
+linux = ["make all", "mkdir -p {{destdir}}/bin; cp {{download.dir}}/dist/* {{destdir}}/bin"]
+mac = ["make all", "mkdir -p {{destdir}}/bin; cp {{download.dir}}/dist/* {{destdir}}/bin"]
+windows = ["make all", "mkdir -p {{destdir}}/bin; cp {{download.dir}}/dist/* {{destdir}}/bin"]
 
 [fastx_toolkit]
 github_url = "https://github.com/agordon/fastx_toolkit"
@@ -826,6 +826,6 @@ bin_dir = ["{{destdir}}/bin"]
 
 [cnvnator.install]
 
-linux = "source ~/.bashrc; ln -s {{cnvnator_samtools:source.dir}} ./samtools; make; mkdir -p {{destdir}}/bin; fn=`ls -F |grep '*' | tr -d '*'` fn=`echo $fn | tr ' ' '\n' |grep -v '.h' | grep -v '.cpp'|sort -u`;cp $fn {{destdir}}/bin"
-mac = "source ~/.bashrc; ln -s {{cnvnator_samtools:source.dir}} ./samtools; make; mkdir -p {{destdir}}/bin; fn=`ls -F |grep '*' | tr -d '*'` fn=`echo $fn | tr ' ' '\n' |grep -v '.h' | grep -v '.cpp'|sort -u`;cp $fn {{destdir}}/bin"
-windows = "source ~/.bashrc; ln -s {{cnvnator_samtools:source.dir}} ./samtools; make; mkdir -p {{destdir}}/bin; fn=`ls -F |grep '*' | tr -d '*'` fn=`echo $fn | tr ' ' '\n' |grep -v '.h' | grep -v '.cpp'|sort -u`;cp $fn {{destdir}}/bin"
+linux = "source ~/.bashrc; ln -s {{cnvnator_samtools:source.dir}} ./samtools; make; mkdir -p {{destdir}}/bin; cp cnvnator cnvnator2VCF.pl {{destdir}}/bin"
+mac = "source ~/.bashrc; ln -s {{cnvnator_samtools:source.dir}} ./samtools; make; mkdir -p {{destdir}}/bin; cp cnvnator cnvnator2VCF.pl {{destdir}}/bin"
+windows = "source ~/.bashrc; ln -s {{cnvnator_samtools:source.dir}} ./samtools; make; mkdir -p {{destdir}}/bin; cp cnvnator cnvnator2VCF.pl {{destdir}}/bin"

@@ -121,9 +121,9 @@ make_dir = ["./"]
 bin_dir = ["{{destdir}}/bin"]
 
 [edena.install]
-linux = "make; mkdir -p {{destdir}}/bin; cp {{download.dir}}/bin/* {{destdir}}/bin"
-mac = "make; mkdir -p {{destdir}}/bin; cp {{download.dir}}/bin/* {{destdir}}/bin"
-windows = "make; mkdir -p {{destdir}}/bin; cp {{download.dir}}/bin/* {{destdir}}/bin"
+linux = ["make", "mkdir -p {{destdir}}/bin; cp {{download.dir}}/bin/* {{destdir}}/bin"]
+mac = ["make", "mkdir -p {{destdir}}/bin; cp {{download.dir}}/bin/* {{destdir}}/bin"]
+windows = ["make", "mkdir -p {{destdir}}/bin; cp {{download.dir}}/bin/* {{destdir}}/bin"]
 
 [ucsc_utils]
 source_url = "http://hgdownload.cse.ucsc.edu/admin/exe/userApps.{{version}}.src.tgz"
@@ -141,9 +141,9 @@ make_dir = ["./"]
 bin_dir = ["{{destdir}}/bin"]
 
 [ucsc_utils.install]
-linux = "make; mkdir -p {{destdir}}/bin; cp {{download.dir}}/bin/* {{destdir}}/bin"
-mac = "make; mkdir -p {{destdir}}/bin; cp {{download.dir}}/bin/* {{destdir}}/bin"
-windows = "make; mkdir -p {{destdir}}/bin; cp {{download.dir}}/bin/* {{destdir}}/bin"
+linux = ["make", "mkdir -p {{destdir}}/bin; cp {{download.dir}}/bin/* {{destdir}}/bin"]
+mac = ["make", "mkdir -p {{destdir}}/bin; cp {{download.dir}}/bin/* {{destdir}}/bin"]
+windows = ["make", "mkdir -p {{destdir}}/bin; cp {{download.dir}}/bin/* {{destdir}}/bin"]
 
 [fastqc]
 source_url = ["http://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v{{version}}.zip"]
@@ -308,9 +308,9 @@ windows = "https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/{{version}}/sratoolkit.{{v
 mac = "https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/{{version}}/sratoolkit.{{version}}-mac64.zip"
 
 [sratools.install]
-linux = "mkdir -p {{destdir}}/bin; fn=`ls -F bin|grep '*' | tr -d '*'` ;cd bin; cp $fn {{destdir}}/bin"
-mac = "mkdir -p {{destdir}}/bin; fn=`ls -F bin|grep '*' | tr -d '*'` ;cd bin; cp $fn {{destdir}}/bin"
-windows = "mkdir -p {{destdir}}/bin; fn=`ls -F bin|grep '*' | tr -d '*'` ;cd bin; cp $fn {{destdir}}/bin"
+linux = ["mkdir -p {{destdir}}/bin; fn=`ls -F bin|grep '*' | tr -d '*'` ;cd bin;", " cp $fn {{destdir}}/bin"]
+mac = ["mkdir -p {{destdir}}/bin; fn=`ls -F bin|grep '*' | tr -d '*'` ;cd bin;", " cp $fn {{destdir}}/bin"]
+windows = ["mkdir -p {{destdir}}/bin; fn=`ls -F bin|grep '*' | tr -d '*'` ;cd bin;", " cp $fn {{destdir}}/bin"]
 
 [fusioncatcher]
 source_url = ["https://sourceforge.net/projects/fusioncatcher/files/fusioncatcher_{{version}}.zip", 
@@ -333,9 +333,9 @@ make_dir = ["./"]
 bin_dir = ["{{destdir}}/bin/fusioncatcher"]
 
 [fusioncatcher.install]
-linux = "mkdir {{destdir}}/bin/fusioncatcher; chmod +x bin/*; cp bin/* {{destdir}}/bin/fusioncatcher"
-mac = "mkdir {{destdir}}/bin/fusioncatcher; chmod +x bin/*; cp bin/* {{destdir}}/binfusioncatcher"
-windows = "mkdir {{destdir}}/bin/fusioncatcher; chmod +x bin/*; cp bin/* {{destdir}}/bin/fusioncatcher"
+linux = ["mkdir {{destdir}}/bin/fusioncatcher; chmod +x bin/*; ", "cp bin/* {{destdir}}/bin/fusioncatcher"]
+mac = ["mkdir {{destdir}}/bin/fusioncatcher; chmod +x bin/*; ", "cp bin/* {{destdir}}/bin/fusioncatcher"]
+windows = ["mkdir {{destdir}}/bin/fusioncatcher; chmod +x bin/*; ", "cp bin/* {{destdir}}/bin/fusioncatcher"]
 
 [pigz]
 source_url = "http://cdn-fastly.deb.debian.org/debian/pool/main/p/pigz/pigz_{{version}}.orig.tar.gz"
@@ -470,9 +470,9 @@ make_dir = ["./"]
 bin_dir = ["./bin"]
 
 [tvc.install]
-linux = '''Rscript -e "fn.sh <- system.file('extdata', 'scripts/install_tvc.sh', package = 'BioInstaller'); system(sprintf('sh %s {{destdir}} {{version}}', fn.sh))"; mkdir {{destdir}}/bin; cp bin/* {{destdir}}/bin'''
-mac = '''Rscript -e "fn.sh <- system.file('extdata', 'scripts/install_tvc.sh', package = 'BioInstaller'); system(sprintf('sh %s {{destdir}} {{version}}', fn.sh))"; mkdir {{destdir}}/bin; cp bin/* {{destdir}}/bin'''
-windows = '''Rscript -e "fn.sh <- system.file('extdata', 'scripts/install_tvc.sh', package = 'BioInstaller'); system(sprintf('sh %s {{destdir}} {{version}}', fn.sh))"; mkdir {{destdir}}/bin; cp bin/* {{destdir}}/bin'''
+linux = ['''Rscript -e "fn.sh <- system.file('extdata', 'scripts/install_tvc.sh', package = 'BioInstaller'); system(sprintf('sh %s {{destdir}} {{version}}', fn.sh))";''', 'mkdir {{destdir}}/bin; cp bin/* {{destdir}}/bin']
+mac = ['''Rscript -e "fn.sh <- system.file('extdata', 'scripts/install_tvc.sh', package = 'BioInstaller'); system(sprintf('sh %s {{destdir}} {{version}}', fn.sh))";''', 'mkdir {{destdir}}/bin; cp bin/* {{destdir}}/bin']
+windows = ['''Rscript -e "fn.sh <- system.file('extdata', 'scripts/install_tvc.sh', package = 'BioInstaller'); system(sprintf('sh %s {{destdir}} {{version}}', fn.sh))";''', 'mkdir {{destdir}}/bin; cp bin/* {{destdir}}/bin']
 
 [imagej]
 version_newest = "150"
@@ -634,13 +634,13 @@ after_success = "echo 'successful!'"
 
 make_dir = ["./"]
 
-bin_dir = ["{{download.dir}}/bin"]
+bin_dir = ["{{destdir}}/bin"]
 
 
 [mapsplice2.install]
-linux = "make"
-mac = "make"
-windows = "make"
+linux = ["make", "mkdir -p {{destdir}}/bin; cp {{download.dir}}/bin/* {{destdir}}/bin"]
+mac = ["make", "mkdir -p {{destdir}}/bin; cp {{download.dir}}/bin/* {{destdir}}/bin"]
+windows = ["make", "mkdir -p {{destdir}}/bin; cp {{download.dir}}/bin/* {{destdir}}/bin"]
 
 [bcl2fastq2]
 source_url = "https://support.illumina.com/content/dam/illumina-support/documents/downloads/software/bcl2fastq/bcl2fastq2-v{{version}}.tar.gz"
@@ -898,8 +898,6 @@ bin_dir = ["{{destdir}}/bin"]
 linux = ["./configure --prefix={{destdir}} --with-ssl && make -j3", "make install"]
 mac = ["./configure --prefix={{destdir}} --with-ssl && make -j3", "make install"]
 windows = ["./configure --prefix={{destdir}} --with-ssl && make -j3", "make install"]
-
-
 
 [r]
 version_newest = "3.4.0"
