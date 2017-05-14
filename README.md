@@ -6,7 +6,9 @@ BioInstaller package
 ## Introduction
 [Conda](https://conda.io/docs/intro.html) and [Bioconda](http://bioconda.github.io/) have made it easy to install many packages and bio-softwares conveniently. Yet, learning how to install and compile bioinformatics softwares were still necessary. Because, the experience will help you to  improve the ability of debugging.
 
-[BioInstaller](https://github.com/Miachol/BioInstaller) can be used to download/install bioinformatics tools, dependences and databases in R relatively easily. More detail can be founded in [Document](http://bioinfo.rjh.com.cn/labs/jhuang/tools/BioInstaller/) website.
+Especialy, when start a NGS analysis work in a new computer or system, you need costs so much time and energy to establish a complete set of softwares and dependce of a analysis pipeline and set the corresponding configuration file.
+
+[BioInstaller](https://github.com/Miachol/BioInstaller) can be used to download/install bioinformatics tools, dependences and databases in R relatively easily, and the information of installed softwares will be saved which can be used to generate configuration file. More detail can be founded in [Document](http://bioinfo.rjh.com.cn/labs/jhuang/tools/BioInstaller/) website.
 
 ## Installation
 
