@@ -62,3 +62,32 @@ test_that("set.makedir", {
   setwd(old.workdir)
   unlink(destdir, recursive=TRUE)
 })
+
+test_that("dependence",{
+  db <- sprintf('%s/.BioInstaller', tempdir())
+  unlink(db)
+  set.biosoftwares.db(db)
+  x <- change.info(name = "demo", installed = "yes", debug = TRUE, verbose = F, version = '1.0')
+  x <- check.need.install('demo', '1.0', db)
+  expect_that(x, equals(TRUE))
+  config.cfg <- system.file("extdata", "github.toml", package = "BioInstaller")
+  x <- get.need.install(eval.config(config = "bcftools", file = config.cfg), db)
+  expect_that(is.list(x), equals(TRUE))
+  expect_that(x[[1]][1], equals('htslib'))
+  destdir <- sprintf('%s/denpendence', tempdir())
+  x <- install.dependence('github_demo', 'master', destdir, destdir, F)
+  expect_that(x, equals(TRUE))
+  unlink(destdir, recursive=TRUE)
+  x <- process.dependence(eval.config(config = "github_demo", file = config.cfg), db, destdir, destdir, FALSE)
+  expect_that(x, equals(TRUE))
+  unlink(destdir, recursive=TRUE)
+})
+
+
+test_that("git.download",{
+  destdir <- sprintf('%s/denpendence', tempdir())
+  url <-  "https://github.com/Miachol/github_demo"
+  x <- git.download("github_demo", destdir, "master", url, FALSE, TRUE, FALSE)
+  expect_that(x, equals(TRUE))
+  unlink(destdir, recursive=TRUE)
+})

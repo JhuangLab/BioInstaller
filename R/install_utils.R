@@ -141,21 +141,23 @@ install.dependence <- function(need.install, need.install.version, download.dir,
   if (!is.null(fail.list) && fail.list != "") {
     stop(sprintf("Dependence Error:%s install fail.", paste0(fail.list, collapse = ", ")))
   }
+  return(TRUE)
 }
 
 # Dependence processor
 process.dependence <- function(config, db, download.dir, destdir, verbose) {
+  status <- TRUE
   if (is.setted.dependence(config)) {
     need.install <- get.need.install(config, db)$need.install
     need.install.version <- get.need.install(config, db)$need.install.version
     count <- 1
     if (is.need.dependence(need.install)) {
-      install.dependence(need.install, need.install.version, destdir = destdir, 
+      status <- install.dependence(need.install, need.install.version, destdir = destdir, 
         download.dir = download.dir, verbose = verbose)
     }
   }
+  return(status)
 }
-
 
 # Check wheather will download a dir
 is.download.dir <- function(config) {

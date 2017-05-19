@@ -35,19 +35,21 @@ install.bioinfo <- function(name = c(), download.dir = c(), destdir = c(), name.
   download.only = FALSE, decompress = TRUE, dependence.need = TRUE, showWarnings = FALSE, 
   verbose = TRUE, ...) {
   db.check(db)
-  info.msg(sprintf("Debug:name:%s", paste0(name, collapse = ", ")), verbose = verbose)
-  info.msg(sprintf("Debug:destdir:%s", paste0(destdir, collapse = ", ")), verbose = verbose)
-  info.msg(sprintf("Debug:version:%s", paste0(version, collapse = ", ")), verbose = verbose)
-  info.msg(sprintf("Debug:show.all.versions:%s", show.all.versions), verbose = verbose)
-  info.msg(sprintf("Debug:db:%s", db), verbose = verbose)
-  info.msg(sprintf("Debug:github.cfg:%s", github.cfg), verbose = verbose)
-  info.msg(sprintf("Debug:nongithub.cfg:%s", nongithub.cfg), verbose = verbose)
   github.names <- eval.config.sections(file = github.cfg)
   nongithub.names <- eval.config.sections(file = nongithub.cfg)
   all.names <- c(github.names, nongithub.names)
   all.names <- all.names[!(all.names %in% c("title", "debug", "demo"))]
   if (show.all.names) {
     return(all.names)
+  }
+  if (!show.all.versions) {
+    info.msg(sprintf("Debug:name:%s", paste0(name, collapse = ", ")), verbose = verbose)
+    info.msg(sprintf("Debug:destdir:%s", paste0(destdir, collapse = ", ")), verbose = verbose)
+    info.msg(sprintf("Debug:version:%s", paste0(version, collapse = ", ")), verbose = verbose)
+    info.msg(sprintf("Debug:show.all.versions:%s", show.all.versions), verbose = verbose)
+    info.msg(sprintf("Debug:db:%s", db), verbose = verbose)
+    info.msg(sprintf("Debug:github.cfg:%s", github.cfg), verbose = verbose)
+    info.msg(sprintf("Debug:nongithub.cfg:%s", nongithub.cfg), verbose = verbose)
   }
   install.success <- c()
   install.fail <- c()
@@ -274,7 +276,12 @@ install.github <- function(name = "", download.dir = NULL, destdir = NULL, versi
       status <- TRUE
     }
   }
-  return((is.logical(status)) || status == 0)
+  setwd(old.work.dir)
+  if (is.logical(status)) {
+    return(status)
+  } else {
+    return(status == 0)
+  }
 }
 
 #' Download and Install Software(Non-Github) in SIMut
@@ -460,5 +467,10 @@ install.nongithub <- function(name = "", download.dir = NULL, destdir = NULL, ve
       status <- TRUE
     }
   }
-  return(status)
+  setwd(old.work.dir)
+  if (is.logical(status)) {
+    return(status)
+  } else {
+    return(status == 0)
+  }
 }

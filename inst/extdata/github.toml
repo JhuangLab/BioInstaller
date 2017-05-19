@@ -1,5 +1,22 @@
 # Configuration file of install.softwares(Github)
 title = "Github Configuration File"
+[github_demo]
+github_url = "https://github.com/Miachol/github_demo"
+
+use_git2r = true
+
+version_newest = "master"
+
+version_available = "master"
+
+after_failure = "echo 'fail!'"
+
+after_success = ["echo 'successful!'"]
+
+make_dir = ["./"]
+
+bin_dir = ["./"]
+
 [bwa]
 github_url = "https://github.com/lh3/bwa"
 

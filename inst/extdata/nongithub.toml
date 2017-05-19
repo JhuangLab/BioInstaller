@@ -1,5 +1,22 @@
 # Configuration file of install.softwares(Non-Github)
 title = "Non-Github Configuration File"
+[demo]
+source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{version}}_MT_ensGene.txt"
+decompress = false
+url_all_download = false
+
+version_newest = "GRCh37"
+
+version_available = ["GRCh37"]
+
+after_failure = "echo 'fail!'"
+
+after_success = "echo 'successful!'"
+
+make_dir = ["./"]
+
+bin_dir = ["./"]
+
 [gmap]
 source_url = "http://research-pub.gene.com/gmap/src/{{version}}.tar.gz"
 
