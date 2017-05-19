@@ -1,3 +1,8 @@
+2017-05-19 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
+
+		* Unittest be added
+		* verbose default set TRUE, and log infomation be improved
+
 2017-05-09 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
 		
 		* Use environment variable BIO_DEPENDENCE_DIR to set the download.dir and

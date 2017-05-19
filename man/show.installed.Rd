@@ -6,14 +6,14 @@
 \usage{
 show.installed(db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE",
   system.file("extdata", "softwares_db_demo.yaml", package = "BioInstaller")),
-  only.installed = TRUE, verbose = FALSE)
+  only.installed = TRUE, verbose = TRUE)
 }
 \arguments{
 \item{db}{File of saving softwares infomation}
 
 \item{only.installed}{Logical wheather only show installed softwares in db}
 
-\item{verbose}{TRUE is debug mode}
+\item{verbose}{Ligical indicating wheather show the log message}
 }
 \value{
 Bool Value
@@ -22,6 +22,10 @@ Bool Value
 Show all installed bio-softwares in system
 }
 \examples{
-set.biosoftwares.db(sprintf('\%s/.BioInstaller', tempdir()))
+db <- sprintf('\%s/.BioInstaller', tempdir())
+set.biosoftwares.db(db)
+change.info(name = 'bwa', installed = 'yes', source.dir = '',
+bin.dir = '', excutable.files = c('demo'), others.customer = 'demo')
 show.installed()
+unlink(db)
 }

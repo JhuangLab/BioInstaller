@@ -7,18 +7,20 @@
 #' @param executable.files Executable files in bin.dir
 #' @param db File of saving softwares infomation
 #' @param ... Other key and value paired need be saved in BioInstaller
-#' @param verbose TRUE is debug mode
+#' @param verbose Ligical indicating wheather show the log message
 #' @export
 #' @return Bool Value
 #' @examples
-#' set.biosoftwares.db(sprintf('%s/.BioInstaller', tempdir()))
+#' db <- sprintf('%s/.BioInstaller', tempdir())
+#' set.biosoftwares.db(db)
 #' change.info(name = 'demo', installed = 'yes', source.dir = '',
 #' bin.dir = '', excutable.files = c('demo'), others.customer = 'demo')
+#' unlink(db)
 change.info <- function(name = "", installed = TRUE, source.dir = "", bin.dir = "", 
   executable.files = "", db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", system.file("extdata", 
-    "softwares_db_demo.yaml", package = "BioInstaller")), ..., verbose = FALSE) {
+    "softwares_db_demo.yaml", package = "BioInstaller")), ..., verbose = TRUE) {
   msg <- sprintf("Running change.info for %s and be saved to %s", name, db)
-  flog.info(msg)
+  info.msg(msg, verbose = verbose)
   source.dir <- normalizePath(source.dir, mustWork = F)
   bin.dir <- normalizePath(bin.dir, mustWork = F)
   db <- normalizePath(db, mustWork = F)
@@ -40,14 +42,18 @@ change.info <- function(name = "", installed = TRUE, source.dir = "", bin.dir = 
 #'
 #' @param name Software name
 #' @param db File of saving softwares infomation
-#' @param verbose TRUE is debug mode
+#' @param verbose Ligical indicating wheather show the log message
 #' @export
 #' @return Bool Value
 #' @examples
-#' set.biosoftwares.db(sprintf('%s/.BioInstaller', tempdir()))
+#' db <- sprintf('%s/.BioInstaller', tempdir())
+#' set.biosoftwares.db(db)
+#' change.info(name = 'bwa', installed = 'yes', source.dir = '',
+#' bin.dir = '', excutable.files = c('demo'), others.customer = 'demo')
 #' get.info('bwa')
+#' unlink(db)
 get.info <- function(name = "", db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", system.file("extdata", 
-  "softwares_db_demo.yaml", package = "BioInstaller")), verbose = FALSE) {
+  "softwares_db_demo.yaml", package = "BioInstaller")), verbose = TRUE) {
   db <- normalizePath(db, mustWork = FALSE)
   if (!db.check(db)) {
     return(FALSE)
@@ -70,14 +76,18 @@ get.info <- function(name = "", db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", syste
 #'
 #' @param name Software name
 #' @param db File of saving softwares infomation
-#' @param verbose TRUE is debug mode
+#' @param verbose Ligical indicating wheather show the log message
 #' @export
 #' @return Bool Value
 #' @examples
-#' set.biosoftwares.db(sprintf('%s/.BioInstaller', tempdir()))
+#' db <- sprintf('%s/.BioInstaller', tempdir())
+#' set.biosoftwares.db(db)
+#' change.info(name = 'bwa', installed = 'yes', source.dir = '',
+#' bin.dir = '', excutable.files = c('demo'), others.customer = 'demo')
 #' del.info('bwa')
+#' unlink(db)
 del.info <- function(name = "", db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", system.file("extdata", 
-  "softwares_db_demo.yaml", package = "BioInstaller")), verbose = FALSE) {
+  "softwares_db_demo.yaml", package = "BioInstaller")), verbose = TRUE) {
   db <- normalizePath(db, mustWork = FALSE)
   if (!db.check(db)) {
     return(FALSE)
@@ -100,15 +110,19 @@ del.info <- function(name = "", db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", syste
 #'
 #' @param db File of saving softwares infomation
 #' @param only.installed Logical wheather only show installed softwares in db
-#' @param verbose TRUE is debug mode
+#' @param verbose Ligical indicating wheather show the log message
 #' @export
 #' @return Bool Value
 #' @examples
-#' set.biosoftwares.db(sprintf('%s/.BioInstaller', tempdir()))
+#' db <- sprintf('%s/.BioInstaller', tempdir())
+#' set.biosoftwares.db(db)
+#' change.info(name = 'bwa', installed = 'yes', source.dir = '',
+#' bin.dir = '', excutable.files = c('demo'), others.customer = 'demo')
 #' show.installed()
+#' unlink(db)
 show.installed <- function(db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", system.file("extdata", 
   "softwares_db_demo.yaml", package = "BioInstaller")), only.installed = TRUE, 
-  verbose = FALSE) {
+  verbose = TRUE) {
   db <- normalizePath(db, mustWork = FALSE)
   if (!db.check(db)) {
     return(FALSE)

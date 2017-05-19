@@ -12,7 +12,7 @@ install.bioinfo(name = c(), download.dir = c(), destdir = c(),
   db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", system.file("extdata",
   "softwares_db_demo.yaml", package = "BioInstaller")), download.only = FALSE,
   decompress = TRUE, dependence.need = TRUE, showWarnings = FALSE,
-  verbose = FALSE, ...)
+  verbose = TRUE, ...)
 }
 \arguments{
 \item{name}{Software name}
@@ -47,7 +47,7 @@ system.file('extdata', 'softwares_db_demo.yaml', package = 'BioInstaller'))}
 
 \item{showWarnings}{Logical should the warnings on failure be shown?}
 
-\item{verbose}{TRUE is debug mode}
+\item{verbose}{Ligical indicating wheather show the log message}
 
 \item{...}{Other key and value paired need be saved in BioInstaller passed to \code{\link{change.info}}}
 }
@@ -58,6 +58,8 @@ Bool Value or a list
 Download and install biology software or database
 }
 \examples{
-set.biosoftwares.db(sprintf('\%s/.BioInstaller', tempdir()))
-install.bioinfo('bwa', download.dir = sprintf('\%s/bwa111', tempdir()), verbose = TRUE)
+db <- sprintf('\%s/.BioInstaller', tempdir())
+set.biosoftwares.db(db)
+install.bioinfo('bwa', show.all.versions = TRUE)
+unlink(db)
 }

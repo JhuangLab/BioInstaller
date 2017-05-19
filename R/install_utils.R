@@ -5,7 +5,6 @@ db.check <- function(db) {
   } else {
     file.create(db)
   }
-  
 }
 # Configuration file and install name initial
 config.and.name.initial <- function(config.cfg, name) {
@@ -26,6 +25,8 @@ config.and.name.initial <- function(config.cfg, name) {
 check.configfile.validate <- function(config.cfg) {
   if (is.list(read.config(config.cfg))) {
     return(TRUE)
+  } else {
+    return(FALSE)
   }
 }
 
@@ -47,7 +48,7 @@ check.install.name <- function(name, config.cfg) {
 }
 
 # Initial parameter version
-version.initial <- function(name, version, config) {
+version.initial <- function(name = "", version = NULL, config = "") {
   if (is.null(version)) {
     version <- config$version_newest
   }
@@ -73,7 +74,6 @@ set.makedir <- function(make.dir, destdir) {
   } else {
     dir.create(destdir, showWarnings = FALSE, recursive = TRUE)
     setwd(destdir)
-    
   }
   for (i in make.dir) {
     if (i != "./" && dir.exists(i)) {
@@ -123,8 +123,9 @@ get.need.install <- function(config, db) {
 
 # Install dependence
 install.dependence <- function(need.install, need.install.version, download.dir, 
-  destdir) {
-  flog.info(sprintf("Try install the dependence:%s", paste0(need.install, collapse = ", ")))
+  destdir, verbose) {
+  info.msg(sprintf("Try install the dependence:%s", paste0(need.install, collapse = ", ")), 
+    verbose = verbose)
   dest.path <- Sys.getenv("BIO_DEPENDENCE_DIR")
   if (dest.path != "") {
     dest.path <- normalizePath(dest.path, mustWork = F)
@@ -134,7 +135,8 @@ install.dependence <- function(need.install, need.install.version, download.dir,
   download.dir = sprintf("%s/%s", download.dir, str_replace_all(need.install, "@", 
     "_"))
   install.status <- install.bioinfo(name = need.install, download.dir = download.dir, 
-    destdir = rep(destdir, length(download.dir)), version = need.install.version)
+    destdir = rep(destdir, length(download.dir)), version = need.install.version, 
+    verbose = verbose)
   fail.list <- install.status$fail.list
   if (!is.null(fail.list) && fail.list != "") {
     stop(sprintf("Dependence Error:%s install fail.", paste0(fail.list, collapse = ", ")))
@@ -143,15 +145,13 @@ install.dependence <- function(need.install, need.install.version, download.dir,
 
 # Dependence processor
 process.dependence <- function(config, db, download.dir, destdir, verbose) {
-  if (verbose) {
-    sprintf("Debug:Check and install dependence step.")
-  } else if (is.setted.dependence(config)) {
+  if (is.setted.dependence(config)) {
     need.install <- get.need.install(config, db)$need.install
     need.install.version <- get.need.install(config, db)$need.install.version
     count <- 1
     if (is.need.dependence(need.install)) {
       install.dependence(need.install, need.install.version, destdir = destdir, 
-        download.dir = download.dir)
+        download.dir = download.dir, verbose = verbose)
     }
   }
 }
@@ -167,8 +167,12 @@ is.download.dir <- function(config) {
 # file to destfile
 download.dir.files <- function(config, source_url, destfile, showWarnings = FALSE, 
   url.all.download = TRUE) {
-  if (any(!file.exists(dirname(destfile)))) {
-    dir.create(dirname(destfile), showWarnings = FALSE, recursive = TRUE)
+  index <- !file.exists(dirname(destfile))
+  if (any(index)) {
+    need.create.dir <- dirname(destfile)[index]
+    sapply(need.create.dir, function(x) {
+      dir.create(x, showWarnings = showWarnings, recursive = TRUE)
+    })
   }
   is.dir <- is.download.dir(config)
   count <- 1
@@ -249,9 +253,10 @@ convert.bool <- function(flag) {
   }
 }
 
-git.download <- function(name, destdir, version, github_url, use_git2r, recursive_clone) {
-  msg <- sprintf("Now start to download %s in %s.", name, destdir)
-  flog.info(msg)
+git.download <- function(name, destdir, version, github_url, use_git2r, recursive_clone, 
+  verbose) {
+  msg <- sprintf("Now start to download %s in %s.", name, destdir, verbose)
+  info.msg(msg, verbose = verbose)
   use_git2r <- convert.bool(use_git2r)
   recursive_clone <- convert.bool(recursive_clone)
   if (use_git2r) {

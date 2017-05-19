@@ -10,7 +10,7 @@ install.nongithub(name = "", download.dir = NULL, destdir = NULL,
   "BioInstaller"), db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE",
   system.file("extdata", "softwares_db_demo.yaml", package = "BioInstaller")),
   download.only = FALSE, decompress = TRUE, dependence.need = TRUE,
-  showWarnings = FALSE, verbose = FALSE, ...)
+  showWarnings = FALSE, verbose = TRUE, ...)
 }
 \arguments{
 \item{name}{Software name}
@@ -40,7 +40,7 @@ system.file('extdata', 'softwares_db_demo.yaml', package = 'BioInstaller'))}
 
 \item{showWarnings}{Logical should the warnings on failure be shown?}
 
-\item{verbose}{TRUE is debug mode}
+\item{verbose}{Ligical indicating wheather show the log message}
 
 \item{...}{Other key and value paired need be saved in BioInstaller passed to \code{\link{change.info}}}
 }
@@ -51,6 +51,8 @@ Bool Value
 Download and Install Software(Non-Github) in SIMut
 }
 \examples{
-set.biosoftwares.db(sprintf('\%s/.BioInstaller', tempdir()))
-install.nongithub('gmap', download.dir = sprintf('\%s/gmap_example11', tempdir()), verbose = TRUE)
+db <- sprintf('\%s/.BioInstaller', tempdir())
+set.biosoftwares.db(db)
+install.nongithub('gmap', show.all.versions = TRUE)
+unlink(db)
 }

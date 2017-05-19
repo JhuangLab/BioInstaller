@@ -10,7 +10,7 @@ install.github(name = "", download.dir = NULL, destdir = NULL,
   "BioInstaller"), db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE",
   system.file("extdata", "softwares_db_demo.yaml", package = "BioInstaller")),
   download.only = FALSE, showWarnings = FALSE, dependence.need = TRUE,
-  verbose = FALSE, ...)
+  verbose = TRUE, ...)
 }
 \arguments{
 \item{name}{Software name}
@@ -38,7 +38,7 @@ system.file('extdata', 'softwares_db_demo.yaml', package = 'BioInstaller'))}
 
 \item{dependence.need}{Logical should the dependence should be installed}
 
-\item{verbose}{TRUE is debug mode}
+\item{verbose}{Ligical indicating wheather show the log message}
 
 \item{...}{Other key and value paired need be saved in BioInstaller passed to \code{\link{change.info}}}
 }
@@ -49,6 +49,8 @@ Bool Value
 Install from Github
 }
 \examples{
-set.biosoftwares.db(sprintf('\%s/.BioInstaller', tempdir()))
-install.github('bwa', download.dir = sprintf('\%s/bwa_example', tempdir()), verbose = TRUE)
+db <- sprintf('\%s/.BioInstaller', tempdir())
+set.biosoftwares.db(db)
+install.github('bwa', show.all.versions = TRUE)
+unlink(db)
 }

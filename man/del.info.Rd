@@ -6,14 +6,14 @@
 \usage{
 del.info(name = "", db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE",
   system.file("extdata", "softwares_db_demo.yaml", package = "BioInstaller")),
-  verbose = FALSE)
+  verbose = TRUE)
 }
 \arguments{
 \item{name}{Software name}
 
 \item{db}{File of saving softwares infomation}
 
-\item{verbose}{TRUE is debug mode}
+\item{verbose}{Ligical indicating wheather show the log message}
 }
 \value{
 Bool Value
@@ -22,6 +22,10 @@ Bool Value
 Delete biologly softwares infomation of system
 }
 \examples{
-set.biosoftwares.db(sprintf('\%s/.BioInstaller', tempdir()))
+db <- sprintf('\%s/.BioInstaller', tempdir())
+set.biosoftwares.db(db)
+change.info(name = 'bwa', installed = 'yes', source.dir = '',
+bin.dir = '', excutable.files = c('demo'), others.customer = 'demo')
 del.info('bwa')
+unlink(db)
 }

@@ -33,21 +33,20 @@ get.os <- function() {
   }
 }
 
-runcmd <- function(cmd, verbose = FALSE) {
-  if (verbose) {
-    flog.info(sprintf("Need to run CMD:%s", cmd))
-    return(0)
-  } else if (is.character(cmd) && cmd != "") {
+# Run shell cmd
+runcmd <- function(cmd, verbose = TRUE) {
+  if (is.character(cmd) && cmd != "") {
     cmd <- str_replace_all(cmd, fixed("-e \\\""), "-e \"")
     cmd <- str_replace_all(cmd, fixed(")\\\""), ")\"")
-    flog.info(sprintf("Running CMD:%s", cmd))
+    info.msg(sprintf("Running CMD:%s", cmd), verbose = verbose)
     system(cmd)
   } else {
     return(0)
   }
 }
 
-for_runcmd <- function(cmd_vector, verbose = FALSE) {
+# Run a group of cmd
+for_runcmd <- function(cmd_vector, verbose = TRUE) {
   status.vector <- NULL
   for (i in cmd_vector) {
     if (i != "") {
@@ -161,11 +160,12 @@ download.file.custom <- function(url = "", destfile = "", is.dir = FALSE, showWa
     filenames <- str_replace_all(filenames, "\r\n", "\n")
     filenames <- str_split(filenames, "\n")[[1]]
     filenames <- filenames[filenames != ""]
-    dir.create(destfile, showWarnings = F, recursive = TRUE)
+    dir.create(destfile, showWarnings = showWarnings, recursive = TRUE)
     for (i in filenames) {
       fn <- sprintf("%s/%s", destfile, i)
       tryCatch({
-        status.tmp <- download.file(url = sprintf("%s/%s", url, i), destfile = fn)
+        status.tmp <- download.file(url = sprintf("%s/%s", url, i), destfile = fn, 
+          ...)
         status <- c(status.tmp, status)
       }, error = function(e) {
         if (showWarnings) {
@@ -231,4 +231,16 @@ destdir.initial <- function(destdir, strict = TRUE, download.only = FALSE) {
 
 is.null.na <- function(value) {
   return(is.null(value) || is.na(value))
+}
+
+info.msg <- function(msg, verbose = TRUE, ...) {
+  if (verbose) {
+    flog.info(msg, ...)
+  }
+}
+
+print.vb <- function(x, verbose = TRUE, ...) {
+  if (verbose) {
+    print(x, ...)
+  }
 }
