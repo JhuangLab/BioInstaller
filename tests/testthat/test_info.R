@@ -19,7 +19,6 @@ test_that("info", {
  x <- change.info(name = "demo", installed = "yes", debug = TRUE, verbose = F)
  x <- change.info(name = "demo1", installed = "no", debug = TRUE, verbose = F)
  x <- show.installed()
- print(x)
  expect_that(as.character(x), equals('demo'))
 })
 

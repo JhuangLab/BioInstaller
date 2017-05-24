@@ -31,11 +31,10 @@ change.info <- function(name = "", installed = TRUE, source.dir = "", bin.dir = 
   if (!file.exists(config.cfg)) {
     file.create(config.cfg)
   }
-  Sys.setenv(R_CONFIGFILE_ACTIVE = config.cfg)
-  config <- configr::read.config()
+  config <- configr::read.config(file = config.cfg)
   config[[name]] = list(installed = installed, source.dir = source.dir, bin_dir = bin.dir, 
     executable_files = executable.files, ...)
-  configr::write.config(config.dat = config, write.type = "yaml")
+  configr::write.config(config.dat = config, file = config.cfg, write.type = "yaml")
 }
 
 #' Show biologly softwares infomation of system
@@ -62,13 +61,11 @@ get.info <- function(name = "", db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", syste
   if (!file.exists(config.cfg)) {
     file.create(config.cfg)
   }
-  Sys.setenv(R_CONFIGFILE_ACTIVE = config.cfg)
-  if (!(name %in% configr::eval.config.sections())) {
+  if (!(name %in% configr::eval.config.sections(file = db))) {
     warning(sprintf("%s not existed in BioInstaller database.", name))
     return(FALSE)
   }
-  Sys.setenv(R_CONFIG_ACTIVE = name)
-  config <- configr::eval.config()
+  config <- configr::eval.config(config = name, file = db)
   return(config)
 }
 
@@ -96,14 +93,13 @@ del.info <- function(name = "", db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", syste
   if (!file.exists(config.cfg)) {
     file.create(config.cfg)
   }
-  Sys.setenv(R_CONFIGFILE_ACTIVE = config.cfg)
-  if (!(name %in% configr::eval.config.sections())) {
+  if (!(name %in% configr::eval.config.sections(file = config.cfg))) {
     warning(sprintf("%s not existed in BioInstaller database.", name))
     return(FALSE)
   }
-  config <- configr::read.config(config = name)
+  config <- configr::read.config(config = name, file = config.cfg)
   config[[name]] <- NULL
-  configr::write.config(config.dat = config, write.type = "yaml")
+  configr::write.config(config.dat = config, file = config.cfg, write.type = "yaml")
 }
 
 #' Show all installed bio-softwares in system
@@ -132,11 +128,9 @@ show.installed <- function(db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", system.fil
     file.create(config.cfg)
   }
   softwares <- c()
-  Sys.setenv(R_CONFIGFILE_ACTIVE = config.cfg)
-  sections <- configr::eval.config.sections()
+  sections <- configr::eval.config.sections(file = config.cfg)
   for (i in sections) {
-    Sys.setenv(R_CONFIG_ACTIVE = i)
-    config <- eval.config()
+    config <- eval.config(config = i, file = config.cfg)
     if ("installed" %in% names(config)) {
       is.installed <- config[["installed"]] %in% c(TRUE, "yes", 1)
     } else {

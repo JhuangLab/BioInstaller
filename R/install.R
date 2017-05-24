@@ -177,12 +177,14 @@ install.github <- function(name = "", download.dir = NULL, destdir = NULL, versi
     return(FALSE)
   }
   
-  config <- eval.config()
+  config <- eval.config(config = name, file = config.cfg)
+  info.msg('Fetching Versions....', verbose = verbose)
+  all.versions <- show.avaliable.versions(config)
   if (show.all.versions) {
-    all.versions <- show.avaliable.versions(config)
     return(all.versions)
   }
-  version <- version.initial(name, version, config)
+  info.msg(sprintf("Avaliable versions:%s", paste0(all.versions, collapse = ", ")), verbose = verbose)
+  version <- version.initial(name, version, all.versions, config)
   processed.dir.list <- pre.process.dir(name, destdir, download.dir, 1)
   destdir <- processed.dir.list[["des.dir"]]
   download.dir <- processed.dir.list[["down.dir"]]
@@ -232,8 +234,7 @@ install.github <- function(name = "", download.dir = NULL, destdir = NULL, versi
   }
   if (dependence.need) {
     process.dependence(config, db, download.dir, destdir, verbose)
-    status <- config.and.name.initial(config.cfg, name)
-    config <- eval.config()
+    config <- eval.config(config = name, file = config.cfg)
     config <- configr::parse.extra(config = config, extra.list = args.all)
     config <- configr::parse.extra(config, other.config = db)
     config <- configr::parse.extra(config = config, rcmd.parse = T)
@@ -325,12 +326,14 @@ install.nongithub <- function(name = "", download.dir = NULL, destdir = NULL, ve
   if (!status) {
     return(FALSE)
   }
-  config <- eval.config()
+  config <- eval.config(config = name, file = config.cfg)
+  info.msg('Fetching Versions....', verbose = verbose)
+  all.versions <- show.avaliable.versions(config)
   if (show.all.versions) {
-    all.versions <- show.avaliable.versions(config)
     return(all.versions)
   }
-  version <- version.initial(name, version, config)
+  info.msg(sprintf("Avaliable versions:%s", paste0(all.versions, collapse = ", ")), verbose = verbose)
+  version <- version.initial(name, version, all.versions, config)
   processed.dir.list <- pre.process.dir(name, destdir, download.dir, 1)
   destdir <- processed.dir.list[["des.dir"]]
   download.dir <- processed.dir.list[["down.dir"]]
@@ -417,7 +420,7 @@ install.nongithub <- function(name = "", download.dir = NULL, destdir = NULL, ve
   if (dependence.need) {
     process.dependence(config, db, download.dir, destdir, verbose)
     status <- config.and.name.initial(config.cfg, name)
-    config <- eval.config()
+    config <- eval.config(config = name, file = config.cfg)
     config <- configr::parse.extra(config = config, extra.list = args.all)
     config <- configr::parse.extra(config = config, other.config = db)
     config <- configr::parse.extra(config = config, rcmd.parse = T)

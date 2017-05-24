@@ -12,18 +12,16 @@ config.and.name.initial <- function(config.cfg, name) {
   if (!status) {
     return(FALSE)
   }
-  Sys.setenv(R_CONFIGFILE_ACTIVE = config.cfg)
   status <- check.install.name(name, config.cfg)
   if (!status) {
     return(FALSE)
   }
-  Sys.setenv(R_CONFIG_ACTIVE = name)
   return(TRUE)
 }
 
 # Check configfile wheather is a valid format configuration file
 check.configfile.validate <- function(config.cfg) {
-  if (is.list(read.config(config.cfg))) {
+  if (is.list(read.config(file = config.cfg))) {
     return(TRUE)
   } else {
     return(FALSE)
@@ -36,7 +34,7 @@ check.install.name <- function(name, config.cfg) {
     warning("Parameter 'name' must be a character.")
     return(FALSE)
   }
-  if (!(name %in% eval.config.sections(config.cfg))) {
+  if (!(name %in% eval.config.sections(file = config.cfg))) {
     if (name == "") {
       warning("Parameter 'name' can not be empty!")
     } else {
@@ -48,14 +46,14 @@ check.install.name <- function(name, config.cfg) {
 }
 
 # Initial parameter version
-version.initial <- function(name = "", version = NULL, config = "") {
+version.initial <- function(name = "", version = NULL, versions = NULL, config = NULL) {
   if (is.null(version)) {
-    version <- config$version_newest
+    version <- version.newest(config, versions)
   }
   if (is.numeric(version)) {
     version <- as.character(version)
   }
-  if (!version %in% config$version_available) {
+  if (!version %in% versions) {
     stop(sprintf("%s version of %s are not available!", version, name))
   }
   return(version)
@@ -63,7 +61,13 @@ version.initial <- function(name = "", version = NULL, config = "") {
 
 # Check wheather show all avaliable version can be installed
 show.avaliable.versions <- function(config) {
-  return(config$version_available)
+  flag <- use.github.response(config)
+  if (flag){
+    versions <- as.character(get.github.version(config))
+  } else {
+    versions <- config$version_available
+  }
+  return(versions)
 }
 
 # Check wheather destdir is exist or not, if not will create it, and set workdir
