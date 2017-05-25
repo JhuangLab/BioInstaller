@@ -1,3 +1,6 @@
+if (!dir.exists(tempdir())) {
+  dir.create(tempdir())
+}
 db <- sprintf('%s/.BioInstaller', tempdir())
 unlink(db)
 set.biosoftwares.db(db)
@@ -22,3 +25,5 @@ test_that("info", {
  expect_that(as.character(x), equals('demo'))
 })
 
+temps <- list.files(tempdir(), ".*")
+unlink(sprintf("%s/%s", tempdir(), temps), recursive = TRUE, TRUE)

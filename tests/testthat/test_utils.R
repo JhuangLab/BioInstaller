@@ -1,3 +1,6 @@
+if (!dir.exists(tempdir())) {
+  dir.create(tempdir())
+}
 test_that("extract.file with decompress", {
   workdir <- tempdir()
   dir.create(sprintf("%s/tmp/", workdir))
@@ -7,8 +10,8 @@ test_that("extract.file with decompress", {
   gzip(test.file)
   x <- extract.file(sprintf("%s.gz", test.file), paste0(workdir, "/tmp"))
   expect_that(x, equals(TRUE))
-  unlink(sprintf('%s/tmp', workdir), recursive=TRUE)
-  unlink(sprintf('%s/tmp1', workdir), recursive=TRUE)
+  unlink(sprintf('%s/tmp', workdir), recursive=TRUE, TRUE)
+  unlink(sprintf('%s/tmp1', workdir), recursive=TRUE, TRUE)
 })
 
 test_that("extract.file with decompress", {
@@ -20,8 +23,8 @@ test_that("extract.file with decompress", {
   gzip(test.file)
   x <- extract.file(sprintf("%s.gz", test.file), paste0(workdir, "/tmp"), decompress = FALSE)
   expect_that(x, equals(TRUE))
-  unlink(sprintf('%s/tmp', workdir), recursive=TRUE)
-  unlink(sprintf('%s/tmp1', workdir), recursive=TRUE)
+  unlink(sprintf('%s/tmp', workdir), recursive=TRUE, TRUE)
+  unlink(sprintf('%s/tmp1', workdir), recursive=TRUE, TRUE)
 })
 
 test_that("drop_redundance_dir", {
@@ -32,7 +35,7 @@ test_that("drop_redundance_dir", {
   dir.create(sprintf("%s/a/c", test.dir))
   x <- drop_redundance_dir(test.dir)
   expect_that(x, equals(TRUE))
-  unlink(test.dir, recursive=TRUE)
+  unlink(test.dir, recursive=TRUE, TRUE)
 })
 
 test_that("is.file.empty", {
@@ -40,8 +43,6 @@ test_that("is.file.empty", {
   file.create(test.file)
   x <- is.file.empty(test.file)
   expect_that(x, equals(TRUE))
-  x <- is.file.empty(tempdir())
-  expect_that(x, equals(FALSE))
   unlink(test.file)
 })
 
@@ -55,16 +56,17 @@ test_that("runcmd & for_runcmd", {
   cmd <- ""
   x <- runcmd(cmd, verbose = FALSE)
   expect_that(x, equals(0))
-  cmd <- sprintf("ls > %s/123", tempdir())
+  destdir <- normalizePath(tempdir(), "/", FALSE)
+  cmd <- sprintf("echo 123 > %s/123", destdir)
   x <- runcmd(cmd, verbose = FALSE)
   expect_that(x, equals(0))
-  cmd <- rep("", 10)
+  cmd <- rep("", 3)
   x <- for_runcmd(cmd, verbose = FALSE)
-  expect_that(x, equals(rep(0,10)))
-  cmd <- rep(sprintf("ls > %s/123", tempdir()), 10)
+  expect_that(x, equals(rep(0,3)))
+  cmd <- rep(sprintf("echo 123 > %s/123", destdir), 3)
   x <- for_runcmd(cmd, verbose = FALSE)
-  expect_that(x, equals(rep(0,10)))
-  unlink(sprintf('%s/123', tempdir()))
+  expect_that(x, equals(rep(0,3)))
+  unlink(sprintf('%s/123', destdir), TRUE)
 })
 
 test_that("get.subconfig", {
@@ -90,13 +92,9 @@ test_that("get.file.type", {
 })
 
 test_that("download.file.custom", {
-  url <- "http://www.baidu.com"
-  destfile <- sprintf("%s/baidu.html", tempdir())
+  url <- "http://bioinfo.rjh.com.cn/download/annovarR/humandb/GRCh37_MT_ensGene.txt"
+  destfile <- sprintf("%s/GRCh37", tempdir())
   x <- download.file.custom(url, destfile, quiet = T)
-  expect_that(x, equals(0))
-  unlink(destfile)
-  destfile <- sprintf("%s/123", tempdir())
-  x <- download.file.custom(url, destfile, is.dir = TRUE, quiet =T)
   expect_that(x, equals(0))
   unlink(destfile)
 })
@@ -106,7 +104,7 @@ test_that("destdir.initial",{
   test.dir <- sprintf('%s/destdir.initial', tempdir())
   x <- destdir.initial(test.dir, FALSE, TRUE)
   expect_that(x, equals(TRUE))
-  unlink(test.dir)
+  unlink(test.dir, recursive = T, TRUE)
 })
 
 test_that("is.null.na",{
@@ -115,3 +113,5 @@ test_that("is.null.na",{
   x <- is.null.na(NA)
   expect_that(x, equals(TRUE))
 })
+temps <- list.files(tempdir(), ".*")
+unlink(sprintf("%s/%s", tempdir(), temps), recursive = TRUE, TRUE)

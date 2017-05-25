@@ -1,5 +1,9 @@
+if (!dir.exists(tempdir())) {
+  dir.create(tempdir())
+}
 test_that("db.check", {
   db <- sprintf('%s/config.db', tempdir())
+  db <- normalizePath(db, "/", FALSE)
   x <- db.check(db)
   expect_that(x, equals(TRUE))
   unlink(db)
@@ -49,6 +53,9 @@ test_that("set.makedir", {
   makedir.1 <- sprintf("%s/setmakedir/test_makedir1", tempdir())
   makedir.2 <- sprintf("%s/setmakedir/test_makedir2", tempdir())
   destdir <- sprintf("%s/setmakedir", tempdir())
+  destdir <- normalizePath(destdir, "/", FALSE)
+  makedir.1 <- normalizePath(makedir.1, "/", FALSE)
+  makedir.2 <- normalizePath(makedir.2, "/", FALSE)
   set.makedir(makedir.1, destdir)
   expect_that(getwd(), equals(destdir))
   dir.create(makedir.1)
@@ -57,7 +64,7 @@ test_that("set.makedir", {
   set.makedir(makedir.2, destdir)
   expect_that(getwd(), equals(destdir))
   setwd(old.workdir)
-  unlink(destdir, recursive=TRUE)
+  unlink(destdir, recursive = T, TRUE)
 })
 
 test_that("dependence",{
@@ -71,20 +78,26 @@ test_that("dependence",{
   x <- get.need.install(eval.config(config = "bcftools", file = config.cfg), db)
   expect_that(is.list(x), equals(TRUE))
   expect_that(x[[1]][1], equals('htslib'))
-  destdir <- sprintf('%s/denpendence', tempdir())
+  destdir <- sprintf('%s/', tempdir())
+  destdir <- normalizePath(destdir, "/", FALSE)
   x <- install.dependence('github_demo', 'master', destdir, destdir, F)
   expect_that(x, equals(TRUE))
-  unlink(destdir, recursive=TRUE)
+  unlink(destdir, recursive=TRUE, TRUE)
   x <- process.dependence(eval.config(config = "github_demo", file = config.cfg), db, destdir, destdir, FALSE)
   expect_that(x, equals(TRUE))
-  unlink(destdir, recursive=TRUE)
+  unlink(destdir, recursive=TRUE, TRUE)
 })
 
 
 test_that("git.download",{
-  destdir <- sprintf('%s/denpendence', tempdir())
+  destdir <- sprintf('%s/denpendence1', tempdir())
+  destdir <- normalizePath(destdir, "/", FALSE)
+  unlink(destdir, recursive = TRUE, TRUE)
   url <-  "https://github.com/Miachol/github_demo"
-  x <- git.download("github_demo", destdir, "master", url, FALSE, TRUE, FALSE)
+  x <- git.download("github_demo", destdir, "master", url, TRUE, FALSE, FALSE)
   expect_that(x, equals(TRUE))
-  unlink(destdir, recursive=TRUE)
+  unlink(destdir, recursive=TRUE, TRUE)
 })
+
+temps <- list.files(tempdir(), ".*")
+unlink(sprintf("%s/%s", tempdir(), temps), recursive = TRUE, TRUE)

@@ -178,12 +178,13 @@ install.github <- function(name = "", download.dir = NULL, destdir = NULL, versi
   }
   
   config <- eval.config(config = name, file = config.cfg)
-  info.msg('Fetching Versions....', verbose = verbose)
+  info.msg("Fetching Versions....", verbose = verbose)
   all.versions <- show.avaliable.versions(config)
   if (show.all.versions) {
     return(all.versions)
   }
-  info.msg(sprintf("Avaliable versions:%s", paste0(all.versions, collapse = ", ")), verbose = verbose)
+  info.msg(sprintf("Avaliable versions:%s", paste0(all.versions, collapse = ", ")), 
+    verbose = verbose)
   version <- version.initial(name, version, all.versions, config)
   processed.dir.list <- pre.process.dir(name, destdir, download.dir, 1)
   destdir <- processed.dir.list[["des.dir"]]
@@ -327,12 +328,13 @@ install.nongithub <- function(name = "", download.dir = NULL, destdir = NULL, ve
     return(FALSE)
   }
   config <- eval.config(config = name, file = config.cfg)
-  info.msg('Fetching Versions....', verbose = verbose)
+  info.msg("Fetching Versions....", verbose = verbose)
   all.versions <- show.avaliable.versions(config)
   if (show.all.versions) {
     return(all.versions)
   }
-  info.msg(sprintf("Avaliable versions:%s", paste0(all.versions, collapse = ", ")), verbose = verbose)
+  info.msg(sprintf("Avaliable versions:%s", paste0(all.versions, collapse = ", ")), 
+    verbose = verbose)
   version <- version.initial(name, version, all.versions, config)
   processed.dir.list <- pre.process.dir(name, destdir, download.dir, 1)
   destdir <- processed.dir.list[["des.dir"]]

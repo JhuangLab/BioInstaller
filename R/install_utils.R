@@ -62,7 +62,7 @@ version.initial <- function(name = "", version = NULL, versions = NULL, config =
 # Check wheather show all avaliable version can be installed
 show.avaliable.versions <- function(config) {
   flag <- use.github.response(config)
-  if (flag){
+  if (flag) {
     versions <- as.character(get.github.version(config))
   } else {
     versions <- config$version_available
@@ -266,6 +266,9 @@ git.download <- function(name, destdir, version, github_url, use_git2r, recursiv
   use_git2r <- convert.bool(use_git2r)
   recursive_clone <- convert.bool(recursive_clone)
   if (use_git2r) {
+    if (!dir.exists(dirname(destdir))) {
+      dir.create(dirname(destdir))
+    }
     repo <- git2r::clone(github_url, destdir)
     if (version != "master") {
       text <- sprintf("git2r::checkout(git2r::tags(repo)[['%s']])", version)
