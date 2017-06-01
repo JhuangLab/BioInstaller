@@ -88,7 +88,7 @@ get.novoalign.versions <- function() {
     versions <- str_extract(web, "[0-9][.0-9]*")
     versions_final <- c(versions_final, versions)
   }
-  versions_final <- paste0("V", web, c(".Linux3.0", ".Linux2.6", ".MacOSX"))
+  versions_final <- paste0("V", versions, c(".Linux3.0", ".Linux2.6", ".MacOSX"))
   return(versions_final)
 }
 
@@ -214,12 +214,12 @@ get.zlib.versions <- function() {
   versions_final <- NULL
   for (url in urls) {
     web <- read_html(url)
-versions <- web %>% html_nodes("#files_list") %>% html_table() %>% .[[1]]
-versions <- versions$Name
-versions <- str_extract(versions, "[0-9.]*")
-
-versions <- versions[!is.na(versions)]
-versions <- versions[versions != ""]
+    versions <- web %>% html_nodes("#files_list") %>% html_table() %>% .[[1]]
+    versions <- versions$Name
+    versions <- str_extract(versions, "[0-9.]*")
+    
+    versions <- versions[!is.na(versions)]
+    versions <- versions[versions != ""]
     versions_final <- c(versions_final, versions)
   }
   return(versions_final)
@@ -391,4 +391,102 @@ get.pcre.versions <- function() {
   }
   versions_final <- sort(versions_final, decreasing = T)
   return(versions_final)
+}
+
+get.ensemble_grch38_reffa.versions <- function() {
+  urls <- "ftp://ftp.ensembl.org/pub/"
+  versions_final <- NULL
+  for (url in urls) {
+    web <- read_html(url, encoding = "UTF-8")
+    files.txt <- web %>% html_nodes("p") %>% html_text()
+    files.row <- str_split(files.txt, "\n") %>% .[[1]] %>% as.character()
+    files.row <- str_split(files.row, " ")
+    files <- lapply(files.row, function(x) return(x[str_detect(x, "release")]))
+    files <- unlist(files)
+    versions <- str_extract(files, "[0-9][0-9]*")
+    versions <- versions[!is.na(versions)]
+    versions <- versions[versions > "75"]
+    versions <- unique(versions)
+    versions_final <- c(versions_final, versions)
+  }
+  versions_final <- sort(versions_final, decreasing = T)
+  return(versions_final)
+}
+
+get.ucsc_utils.versions <- function() {
+  urls <- "http://hgdownload.cse.ucsc.edu/admin/exe/"
+  versions_final <- NULL
+  for (url in urls) {
+    web <- read_html(url)
+    versions <- web %>% html_nodes("pre a") %>% html_attr(name = "href")
+    versions <- versions[str_detect(versions, "userApps")]
+    versions <- versions[str_detect(versions, ".v")]
+    versions <- str_extract(versions, "v[0-9]*")
+    versions <- versions[!is.na(versions)]
+    versions_final <- c(versions_final, versions)
+  }
+  versions_final <- sort(versions_final, decreasing = T)
+  return(versions_final)
+}
+
+get.sqlite.versions <- function() {
+  url <- "https://www.sqlite.org/chronology.html"
+  web <- read_html(url)
+  versions <- web %>% html_nodes("table") %>% html_table() %>% .[[1]]
+  versions <- versions$Version
+  
+  pos <- str_split(versions, fixed("."))
+  func <- function(version.number) {
+    op <- options()
+    options(scipen = 200)
+    
+    version.number <- as.numeric(version.number)
+    a <- version.number[1] * 1e+06
+    b <- version.number[2] * 10000
+    if (is.na(version.number[3])) {
+      result <- a + b
+      if (result < 3071506) {
+        return(NULL)
+      } else {
+        return(result)
+      }
+    } else {
+      c <- version.number[3] * 100
+    }
+    if (is.na(version.number[4])) {
+      result <- a + b + c
+    } else {
+      d <- version.number[4] * 1
+      result <- a + b + c + d
+    }
+    if (result < 3071506) {
+      return(NULL)
+    }
+    result <- as.character(result)
+    options(op)
+    
+    return(result)
+  }
+  versions <- unlist(lapply(pos, func))
+}
+
+get.sratools.versions <- function(){
+url <- "https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/"
+
+web <- read_html(url)
+versions <- web %>% html_nodes("pre a") %>% html_attr(name="href")
+versions <- versions[!str_detect(versions, "-prere")]
+versions <- str_extract(versions, "[0-9-.]*")
+versions <- versions[versions != ""]
+
+versions <- sort(versions, decreasing = T)
+}
+
+get.solexaqa.versions <- function(){
+url <- "https://sourceforge.net/projects/solexaqa/files/src/"
+web <- read_html(url)
+versions <- web %>% html_nodes("#files_list") %>% html_table() %>% .[[1]]
+versions <- versions$Name
+versions <- str_extract(versions, "[0-9][.0-9]+[0-9]")
+versions <- versions[!is.na(versions)]
 }

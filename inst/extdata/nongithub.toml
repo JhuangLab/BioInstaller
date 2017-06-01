@@ -181,7 +181,10 @@ bin_dir = ["{{download.dir}}"]
 
 [sqlite]
 source_url = ["http://www.sqlite.org/2017/sqlite-autoconf-{{version}}.tar.gz",
-              "http://www.sqlite.org/2016/sqlite-autoconf-{{version}}.tar.gz"]
+              "http://www.sqlite.org/2016/sqlite-autoconf-{{version}}.tar.gz",
+              "http://www.sqlite.org/2015/sqlite-autoconf-{{version}}.tar.gz",
+              "http://www.sqlite.org/2014/sqlite-autoconf-{{version}}.tar.gz",
+              "http://www.sqlite.org/2013/sqlite-autoconf-{{version}}.tar.gz"]
 url_all_download = false
 
 version_newest = "3180000"
@@ -233,6 +236,7 @@ source_url = ["http://bioinfo.rjh.com.cn/download/novocraft/download.php?filenam
 version_newest = "V3.07.01.Linux3.0"
 
 version_available = ["V3.07.01.Linux3.0", "V3.07.01.Linux2.6", "V3.07.01.MacOSX", "V3.07.00.Linux3.0", "V3.07.00.Linux2.6", "V3.07.00.MacOSX", "V3.06.05.Linux3.0", "V3.06.05.Linux2.6", "V3.06.05.MacOSX", "V3.06.04.Linux3.0", "V3.06.04.Linux2.6", "V3.06.04.MacOSX", "V3.06.03.Linux3.0", "V3.06.03.Linux2.6", "V3.06.03.MacOSX", "V3.06.02.Linux3.0", "V3.06.02.Linux2.6", "V3.06.02.MacOSX", "V3.06.01.Linux3.0", "V3.06.01.Linux2.6", "V3.06.01.MacOSX", "V3.06.00.Linux3.0", "V3.06.00.Linux2.6", "V3.06.00.MacOSX", "V3.05.01.Linux3.0", "V3.05.01.Linux2.6", "V3.05.01.MacOSX", "V3.04.06.Linux3.0", "V3.04.06.Linux2.6", "V3.04.06.MacOSX", "V3.04.04.Linux3.0", "V3.04.04.Linux2.6", "V3.04.04.MacOSX", "V3.04.02.Linux3.0", "V3.04.02.Linux2.6", "V3.04.02.MacOSX", "V3.04.01.Linux3.0", "V3.04.01.Linux2.6", "V3.04.01.MacOSX", "V3.03.02.Linux3.0", "V3.03.02.Linux2.6", "V3.03.02.MacOSX", "V3.03.01.Linux3.0", "V3.03.01.Linux2.6", "V3.03.01.MacOSX", "V3.03.00.Linux3.0", "V3.03.00.Linux2.6", "V3.03.00.MacOSX", "V3.02.13.Linux3.0", "V3.02.13.Linux2.6", "V3.02.13.MacOSX", "V3.02.13.Linux3.0", "V3.02.13.Linux2.6", "V3.02.13.MacOSX", "V3.02.12.Linux3.0", "V3.02.12.Linux2.6", "V3.02.12.MacOSX", "V3.02.12.Linux3.0", "V3.02.12.Linux2.6", "V3.02.12.MacOSX", "V3.02.12.Linux3.0", "V3.02.12.Linux2.6", "V3.02.12.MacOSX", "V3.02.11.Linux3.0", "V3.02.11.Linux2.6", "V3.02.11.MacOSX", "V3.02.10.Linux3.0", "V3.02.10.Linux2.6", "V3.02.10.MacOSX", "V3.02.09.Linux3.0", "V3.02.09.Linux2.6", "V3.02.09.MacOSX", "V3.02.08.Linux3.0", "V3.02.08.Linux2.6", "V3.02.08.MacOSX", "V3.02.07.Linux3.0", "V3.02.07.Linux2.6", "V3.02.07.MacOSX", "V3.02.06.Linux3.0", "V3.02.06.Linux2.6", "V3.02.06.MacOSX"]
+version_order_fixed = true
 
 after_failure = "echo 'fail!'"
 
