@@ -1,158 +1,95 @@
 library("RCurl")
 library("stringr")
+library("rvest")
 options(stringsAsFactors = F)
+
 # Get All Hisat2 ftp reffa url
-get.hisat2.reffa.url <- function() {
-  url <- "ftp://ftp.ccb.jhu.edu/pub/infphilo/hisat2/data/"
-  filenames <- getURL(url, ftp.use.epsv = FALSE, dirlistonly = TRUE)
-  filenames <- str_replace_all(filenames, "\r\n", "\n")
-  filenames <- str_split(filenames, "\n")[[1]]
-  filenames <- filenames[filenames != ""]
-  return(paste0(rep(url, length(filenames)), filenames))
-}
-
-# Get All Hisat2 ftp reffa name
-get.hisat2.reffa.name <- function() {
-  url <- "ftp://ftp.ccb.jhu.edu/pub/infphilo/hisat2/data/"
-  filenames <- getURL(url, ftp.use.epsv = FALSE, dirlistonly = TRUE)
-  filenames <- str_replace_all(filenames, "\r\n", "\n")
-  filenames <- str_split(filenames, "\n")[[1]]
-  filenames <- filenames[filenames != ""]
-  name <- str_replace_all(filenames, ".tar.gz", "")
-  name <- paste0("hisat2_", name)
-  return(name)
-}
-
-# Get All Hisat2 ftp reffa markdown table
-get.hisat2.reffa.md <- function(out.md) {
-  url <- "ftp://ftp.ccb.jhu.edu/pub/infphilo/hisat2/data/"
-  filenames <- getURL(url, ftp.use.epsv = FALSE, dirlistonly = TRUE)
-  filenames <- str_replace_all(filenames, "\r\n", "\n")
-  filenames <- str_split(filenames, "\n")[[1]]
-  filenames <- filenames[filenames != ""]
-  name <- str_replace_all(filenames, ".tar.gz", "")
-  name <- paste0("hisat2_", name)
-  filenames <- paste0(rep(url, length(filenames)), filenames)
-  writeLines(paste(name, filenames, sep = " | ", collapse = "\n"), out.md)
+get.hisat2_reffa.versions <- function() {
+  urls <- "ftp://ftp.ccb.jhu.edu/pub/infphilo/hisat2/data/"
+  versions_final <- NULL
+  for (url in urls) {
+    web <- read_html(url, encoding = "UTF-8")
+    files.txt <- web %>% html_nodes("p") %>% html_text()
+    files.row <- str_split(files.txt, "\n") %>% .[[1]] %>% as.character()
+    files.row <- str_split(files.row, " ")
+    files <- lapply(files.row, function(x) return(x[str_detect(x, "tar.gz")]))
+    versions <- str_extract(files, ".*tar.gz")
+    versions <- versions[!is.na(versions)]
+    versions <- str_extract(versions, ".*.tar")
+    versions <- str_replace(versions, ".tar$", "")
+    versions_final <- c(versions_final, versions)
+  }
+  return(versions_final)
 }
 
 # Function get GMAP-GSNAP all versions
 get.gmap.versions <- function() {
-  urls <- c("http://research-pub.gene.com/gmap/archive.html", "http://research-pub.gene.com/gmap/")
+  urls <- c("http://research-pub.gene.com/gmap/src/")
   versions_final <- NULL
   for (url in urls) {
-    h <- basicTextGatherer()
-    web <- getURL(url, headerfunction = h$update)
-    web <- str_split(web, "\n")
-    web <- web[[1]]
-    
-    web <- web[str_detect(web, "href")]
-    web <- web[str_detect(web, "gmap")]
-    
-    downlad_url <- str_extract(web, "href=.*z>")
-    downlad_url <- str_replace(downlad_url, "href=|>", "")
-    downlad_url <- paste0("http://research-pub.gene.com/gmap/", downlad_url)
-    
-    versions <- str_extract(downlad_url, "gmap-.*.tar")
+    web <- read_html(url, encoding = "UTF-8")
+    files.table <- web %>% html_nodes("table") %>% .[[1]] %>% html_table()
+    files <- files.table$Name
+    versions <- str_extract(files, "gmap-.*tar.gz")
+    versions <- versions[!is.na(versions)]
+    versions <- str_extract(versions, "gmap-.*.tar")
     versions <- str_replace(versions, ".tar$", "")
     versions_final <- c(versions_final, versions)
   }
   return(versions_final)
 }
-
-# Function get GMAP-GSNAP latest version
-get.gmap.newest.version <- function() {
-  urls <- c("http://research-pub.gene.com/gmap/")
-  versions_final <- NULL
-  for (url in urls) {
-    h <- basicTextGatherer()
-    web <- getURL(url, headerfunction = h$update)
-    web <- str_split(web, "\n")
-    web <- web[[1]]
-    
-    web <- web[str_detect(web, "href")]
-    web <- web[str_detect(web, "gmap")]
-    web <- web[str_detect(web, "Latest")]
-    
-    downlad_url <- str_extract(web, "href=.*z>")
-    downlad_url <- str_replace(downlad_url, "href=|>", "")
-    downlad_url <- paste0("http://research-pub.gene.com/gmap/", downlad_url)
-    
-    versions <- str_extract(downlad_url, "gmap-.*.tar")
-    versions <- str_replace(versions, ".tar$", "")
-    versions_final <- c(versions_final, versions)
-  }
-  return(versions_final)
-}
-
 
 # Function get Edena all versions
 get.edena.versions <- function() {
   urls <- c("http://www.genomic.ch/edena.php")
   versions_final <- NULL
   for (url in urls) {
-    h <- basicTextGatherer()
-    web <- getURL(url, headerfunction = h$update)
-    web <- str_split(web, "\n")
-    web <- web[[1]]
-    
-    web <- web[str_detect(web, "href")]
-    web <- web[str_detect(web, "Edena")]
-    
-    downlad_url <- str_extract(web, "href=\".*[zp]\"")
-    downlad_url <- str_replace_all(downlad_url, "href=\"|\"", "")
-    downlad_url <- str_replace(downlad_url, fixed("./"), "http://www.genomic.ch/")
-    
-    versions <- str_extract(downlad_url, "/[eE].*[(zip)(gz)]")
-    versions <- str_replace(versions, "/.*/", "")
-    versions <- str_replace(versions, ".tar.gz$", "")
-    versions <- str_replace(versions, ".zip$", "")
+    web <- read_html(url)
+    hrefs <- web %>% html_nodes(".txt a") %>% html_attr(name = "href")
+    hrefs <- hrefs[!is.na(hrefs)]
+    hrefs <- hrefs[str_detect(hrefs, ".tar.gz|.zip")]
+    versions <- basename(hrefs)
+    versions <- str_replace_all(versions, ".tar.gz|.zip", "")
     versions_final <- c(versions_final, versions)
   }
   return(versions_final)
 }
-# Function get Edena newest version
-get.edena.newest.version <- function() {
-  return(get.edena.versions()[1])
-}
-
 
 # Function get fastqc all versions
 get.fastqc.versions <- function() {
   urls <- c("http://www.bioinformatics.babraham.ac.uk/projects/fastqc/")
   versions_final <- NULL
   for (url in urls) {
-    h <- basicTextGatherer()
-    web <- getURL(url, headerfunction = h$update)
-    web <- str_split(web, "\n")
-    web <- web[[1]]
-    
-    web <- str_extract(web, "Version [0-9][.0-9]*")
-    web <- str_replace_all(web, "Version", "")
+    web <- read_html(url)
+    versions <- web %>% html_nodes("div ul li") %>% html_text()
+    versions <- versions[str_detect(versions, "Version")]
+    versions <- versions[str_detect(versions, "released")]
+    versions <- str_extract(versions, "Version [0-9][.0-9]*")
+    versions <- str_replace_all(versions, "Version ", "")
+    versions_final <- c(versions_final, versions)
   }
   return(versions_final)
-}
-# Function get fastqc newest version
-get.fastqc.newest.version <- function() {
-  return(get.fastqc.versions()[1])
 }
 
 # Function get Novoalign all versions
 get.novoalign.versions <- function() {
-  urls <- system.file("extdata", "html/novocraft.html", package = "BioInstaller")
+  urls <- "http://www.novocraft.com/support/download/"
   versions_final <- NULL
   for (url in urls) {
-    web <- readLines(url, warn = FALSE)
+    myheader <- c(`User-Agent` = "Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_0_1 like Mac OS X; ja-jp) AppleWebKit/532.9 (KHTML, like Gecko) Version/4.0.5 Mobile/8A306 Safari/6531.22.7", 
+      Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8", 
+      `Accept-Language` = "en-us", Connection = "keep-alive", `Accept-Charset` = "GB2312,utf-8;q=0.7,*;q=0.7")
+    
+    web <- getURL(url = "http://www.novocraft.com/support/download/", httpheader = myheader, 
+      verbose = F)
+    web <- str_split(web, "\n") %>% .[[1]]
     web <- web[str_detect(web, "download.php")]
     web <- web[str_detect(web, "tar.gz")]
-    web <- str_extract(web, "[0-9][.0-9]*")
+    versions <- str_extract(web, "[0-9][.0-9]*")
+    versions_final <- c(versions_final, versions)
   }
-  versions_final <- paste0("V", web, c(".Linux3.0", ".Linux2.6", ".MacOSX"))
+  versions_final <- paste0("V", versions, c(".Linux3.0", ".Linux2.6", ".MacOSX"))
   return(versions_final)
-}
-# Function get Novoalign newest version
-get.novoalign.newest.version <- function() {
-  return(get.novoalign.versions()[1])
 }
 
 # Function get ssaha2 all versions
@@ -160,101 +97,57 @@ get.ssaha2.versions <- function() {
   urls <- c("ftp://ftp.sanger.ac.uk/pub/resources/software/ssaha2/")
   versions_final <- NULL
   for (url in urls) {
-    h <- basicTextGatherer()
-    web <- getURL(url, headerfunction = h$update)
-    web <- str_split(web, "\n")
-    web <- web[[1]]
-    web <- web[str_detect(web, "tgz")]
-    web <- web[str_detect(web, "201[01 ]* ssaha2_v2.")]
-    web <- str_extract(web, "ssaha2.*gz")
-    web <- str_replace(web, "ssaha2_", "")
-    web <- str_replace(web, ".tgz", "")
+    web <- read_html(url, encoding = "UTF-8")
+    files.txt <- web %>% html_nodes("p") %>% html_text()
+    files.row <- str_split(files.txt, "\n") %>% .[[1]] %>% as.character()
+    files.row <- str_split(files.row, " ")
+    files <- lapply(files.row, function(x) return(x[str_detect(x, "tgz")]))
+    files <- unlist(files)
+    versions <- str_extract(files, "_v.*tgz")
+    versions <- versions[!is.na(versions)]
+    versions <- str_replace_all(versions, "^_|.tgz$", "")
+    versions_final <- c(versions_final, versions)
   }
-  versions_final <- web
   return(versions_final)
 }
-# Function get ssaha2 newest version
-get.ssaha2.newest.version <- function() {
-  versions <- get.ssaha2.versions()
-  return(versions[length(versions)])
-}
-
-
-# Function get breakdancer all versions
-get.breakdancer.versions <- function() {
-  urls <- c("https://sourceforge.net/projects/breakdancer/files/")
-  versions_final <- NULL
-  for (url in urls) {
-    h <- basicTextGatherer()
-    web <- getURL(url, headerfunction = h$update)
-    web <- str_split(web, "\n")
-    web <- web[[1]]
-    web <- web[str_detect(web, "/download")]
-    web <- web[str_detect(web, "href")]
-    web <- web[!str_detect(web, "source=files")]
-    web <- str_extract(web, "[0-9].*[pz]")
-    web <- str_replace(web, "(.zip)|(.tgz)|(.tar.gz)|(.gz)", "")
-  }
-  versions_final <- web
-  return(versions_final)
-}
-# Function get breakdancer newest version
-get.breakdancer.newest.version <- function() {
-  versions <- get.breakdancer.versions()
-  return(versions[1])
-}
-
 
 # Function get fusioncatcher all versions
 get.fusioncatcher.versions <- function() {
   urls <- c("https://sourceforge.net/projects/fusioncatcher/files/")
   versions_final <- NULL
   for (url in urls) {
-    h <- basicTextGatherer()
-    web <- getURL(url, headerfunction = h$update)
-    web <- str_split(web, "\n")
-    web <- web[[1]]
-    web <- web[str_detect(web, "/download")]
-    web <- web[str_detect(web, "href")]
-    web <- web[!str_detect(web, "source=files")]
-    web <- str_extract(web, "v[0-9].*[pz]")
-    web <- str_replace(web, "(.zip)|(.tgz)|(.tar.gz)|(.gz)", "")
-    web <- web[!is.na(web)]
+    web <- read_html(url)
+    versions <- web %>% html_nodes("#files_list") %>% html_table() %>% .[[1]]
+    versions <- versions$Name
+    versions <- str_extract(versions, ".*[(tgz)(tar.gz)(zip)]+$")
+    
+    versions <- versions[!is.na(versions)]
+    versions <- str_extract(versions, "v[0-9].*[pz]")
+    versions <- versions[!is.na(versions)]
+    versions <- str_replace(versions, "(.zip)|(.tgz)|(.tar.gz)|(.gz)", "")
+    versions_final <- c(versions_final, versions)
   }
-  versions_final <- web
   return(versions_final)
 }
-# Function get fusioncatcher newest version
-get.fusioncatcher.newest.version <- function() {
-  versions <- get.fusioncatcher.versions()
-  return(versions[1])
-}
-
 
 # Function get pigz all versions
 get.pigz.versions <- function() {
   urls <- c("http://cdn-fastly.deb.debian.org/debian/pool/main/p/pigz/")
   versions_final <- NULL
   for (url in urls) {
-    h <- basicTextGatherer()
-    web <- getURL(url, headerfunction = h$update)
-    web <- str_split(web, "\n")
-    web <- web[[1]]
-    web <- web[str_detect(web, "orig.tar.gz")]
-    web <- web[str_detect(web, "href")]
-    web <- str_extract(web, ">pigz_[0-9].*orig.tar.gz")
-    web <- str_replace_all(web, "pigz_|>|.orig.tar.gz", "")
-    web <- web[!is.na(web)]
+    web <- read_html(url)
+    versions <- web %>% html_nodes("table") %>% html_table() %>% .[[1]]
+    versions <- versions$Name
+    versions <- str_extract(versions, ".*orig.*[(tgz)(tar.gz)(zip)]+$")
+    
+    versions <- versions[!is.na(versions)]
+    versions <- str_extract(versions, "[0-9].*[pz]")
+    versions <- str_replace_all(versions, ".orig|(.zip)|(.tgz)|(.tar.gz)|(.gz)", 
+      "")
+    versions_final <- c(versions_final, versions)
   }
-  versions_final <- web
   return(versions_final)
 }
-# Function get pigz newest version
-get.pigz.newest.version <- function() {
-  versions <- get.pigz.versions()
-  return(versions[length(versions)])
-}
-
 
 # Function get velvet all versions
 get.velvet.versions <- function() {
@@ -268,19 +161,13 @@ get.velvet.versions <- function() {
     web <- web[str_detect(web, "href")]
     web <- web[str_detect(web, "velvet")]
     web <- web[str_detect(web, "tgz")]
-    web <- str_extract(web, "velvet_[0-9].*.tgz")
-    web <- str_replace_all(web, "velvet_|>|.tgz", "")
-    web <- web[!is.na(web)]
+    versions <- str_extract(web, "velvet_[0-9].*.tgz")
+    versions <- str_replace_all(versions, "velvet_|>|.tgz", "")
+    versions <- versions[!is.na(versions)]
+    versions_final <- c(versions_final, versions)
   }
-  versions_final <- web
   return(versions_final)
 }
-# Function get velvet newest version
-get.velvet.newest.version <- function() {
-  versions <- get.velvet.versions()
-  return(versions[1])
-}
-
 
 # Function get lzo all versions
 get.lzo.versions <- function() {
@@ -294,16 +181,11 @@ get.lzo.versions <- function() {
     web <- web[str_detect(web, "lzo")]
     web <- web[str_detect(web, "tar.gz")]
     web <- str_extract(web, ">lzo-[0-9].*.tar.gz")
-    web <- str_replace_all(web, "lzo-|>|.tar.gz", "")
-    web <- web[!is.na(web)]
+    versions <- str_replace_all(web, "lzo-|>|.tar.gz", "")
+    versions <- versions[!is.na(versions)]
+    versions_final <- c(versions_final, versions)
   }
-  versions_final <- web
   return(versions_final)
-}
-# Function get lzo newest version
-get.lzo.newest.version <- function() {
-  versions <- get.lzo.versions()
-  return(versions[1])
 }
 
 # Function get snpeff all versions
@@ -319,16 +201,11 @@ get.snpeff.versions <- function() {
     web <- web[str_detect(web, "href")]
     web <- web[!str_detect(web, "source=files")]
     web <- str_extract(web, "v[0-9].*_core.zip")
-    web <- str_replace(web, "(_core.zip)|snpEff_", "")
-    web <- web[!is.na(web)]
+    versions <- str_replace(web, "(_core.zip)|snpEff_", "")
+    versions <- versions[!is.na(versions)]
+    versions_final <- c(versions_final, versions)
   }
-  versions_final <- web
   return(versions_final)
-}
-# Function get snpeff newest version
-get.snpeff.newest.version <- function() {
-  versions <- get.snpeff.versions()
-  return(versions[1])
 }
 
 # Function get zlib all versions
@@ -336,25 +213,16 @@ get.zlib.versions <- function() {
   urls <- c("https://sourceforge.net/projects/libpng/files/zlib/")
   versions_final <- NULL
   for (url in urls) {
-    h <- basicTextGatherer()
-    web <- getURL(url, headerfunction = h$update)
-    web <- str_split(web, "\n")
-    web <- web[[1]]
-    web <- web[str_detect(web, "href")]
-    web <- web[!str_detect(web, "source=files")]
-    web <- web[str_detect(web, 'files\\/zlib\\/')]
-    web <- web[!str_detect(web, 'timeline')]
-    web <- str_extract(web, "[0-9.]*")
-    web <- str_extract(web, "[0-9][0-9.]*")
-    web <- web[!is.na(web)]
+    web <- read_html(url)
+    versions <- web %>% html_nodes("#files_list") %>% html_table() %>% .[[1]]
+    versions <- versions$Name
+    versions <- str_extract(versions, "[0-9.]*")
+    
+    versions <- versions[!is.na(versions)]
+    versions <- versions[versions != ""]
+    versions_final <- c(versions_final, versions)
   }
-  versions_final <- web
   return(versions_final)
-}
-# Function get zlib newest version
-get.zlib.newest.version <- function() {
-  versions <- get.zlib.versions()
-  return(versions[1])
 }
 
 # Function get armadillo all versions
@@ -368,19 +236,15 @@ get.armadillo.versions <- function() {
     web <- web[[1]]
     web <- web[str_detect(web, "href")]
     web <- web[!str_detect(web, "source=files")]
-    web <- web[str_detect(web, 'files\\/armadillo')]
-    web <- web[!str_detect(web, 'timeline')]
+    web <- web[str_detect(web, "files\\/armadillo")]
+    web <- web[!str_detect(web, "timeline")]
     web <- str_extract(web, "[0-9][0-9.]*")
-    web <- str_replace(web, ".$", "")
-    web <- web[!is.na(web)]
+    versions <- str_replace(web, ".$", "")
+    versions <- versions[!is.na(versions)]
+    versions_final <- c(versions_final, versions)
   }
-  versions_final <- web
+  versions_final <- c(versions_final, "4.600.1")
   return(versions_final)
-}
-# Function get armadillo newest version
-get.armadillo.newest.version <- function() {
-  versions <- get.armadillo.versions()
-  return(versions[1])
 }
 
 # Function get prinseq all versions
@@ -394,19 +258,14 @@ get.prinseq.versions <- function() {
     web <- web[[1]]
     web <- web[str_detect(web, "href")]
     web <- web[!str_detect(web, "source=files")]
-    web <- web[str_detect(web, 'files/standalone/prinseq-lite')]
-    web <- web[!str_detect(web, 'timeline')]
+    web <- web[str_detect(web, "files/standalone/prinseq-lite")]
+    web <- web[!str_detect(web, "timeline")]
     web <- str_extract(web, "[0-9][0-9.]*")
-    web <- str_replace(web, ".$", "")
-    web <- web[!is.na(web)]
+    versions <- str_replace(web, ".$", "")
+    versions <- versions[!is.na(versions)]
+    versions_final <- c(versions_final, versions)
   }
-  versions_final <- web
   return(versions_final)
-}
-# Function get prinseq newest version
-get.prinseq.newest.version <- function() {
-  versions <- get.prinseq.versions()
-  return(versions[1])
 }
 
 # Function get solexaqa all versions
@@ -420,20 +279,15 @@ get.solexaqa.versions <- function() {
     web <- web[[1]]
     web <- web[str_detect(web, "href")]
     web <- web[!str_detect(web, "source=files")]
-    web <- web[str_detect(web, 'files/src/SolexaQA')]
-    web <- web[!str_detect(web, 'timeline')]
+    web <- web[str_detect(web, "files/src/SolexaQA")]
+    web <- web[!str_detect(web, "timeline")]
     web <- str_extract(web, "[v.][0-9][0-9.]*")
     web <- str_replace(web, ".$", "")
-    web <- str_replace(web, "^[v.]", "")
-    web <- web[!is.na(web)]
+    versions <- str_replace(web, "^[v.]", "")
+    versions <- versions[!is.na(versions)]
+    versions_final <- c(versions_final, versions)
   }
-  versions_final <- web
   return(versions_final)
-}
-# Function get solexaqa newest version
-get.solexaqa.newest.version <- function() {
-  versions <- get.solexaqa.versions()
-  return(versions[1])
 }
 
 # Function get mapsplice2 all versions
@@ -447,16 +301,11 @@ get.mapsplice2.versions <- function() {
     web <- web[[1]]
     web <- web[str_detect(web, "href")]
     web <- web[str_detect(web, "download")]
-    web <- str_extract(web, "[0-9]\\.[0-9.]*")
-    web <- web[!is.na(web)]
+    versions <- str_extract(web, "[0-9]\\.[0-9.]*")
+    versions <- versions[!is.na(versions)]
+    versions_final <- c(versions_final, versions)
   }
-  versions_final <- web
   return(versions_final)
-}
-# Function get mapsplice2 newest version
-get.mapsplice2.newest.version <- function() {
-  versions <- get.mapsplice2.versions()
-  return(versions[1])
 }
 
 # Function get root all versions
@@ -471,17 +320,12 @@ get.root.versions <- function() {
     web <- web[str_detect(web, "href")]
     web <- web[str_detect(web, "Release")]
     web <- str_extract(web, "[0-9]\\.[0-9./]*")
-    web <- str_replace_all(web, fixed("/"), fixed("."))
-    web <- web[!is.na(web)]
+    versions <- str_replace_all(web, fixed("/"), fixed("."))
+    versions <- versions[!is.na(versions)]
+    versions_final <- c(versions_final, versions)
   }
-  versions_final <- web
-  versions_final <- sort(versions_final, decreasing=T)
+  versions_final <- sort(versions_final, decreasing = T)
   return(versions_final)
-}
-# Function get root newest version
-get.root.newest.version <- function() {
-  versions <- get.root.versions()
-  return(versions[1])
 }
 
 # Function get curl all versions
@@ -497,22 +341,17 @@ get.curl.versions <- function() {
     web <- web[str_detect(web, "curl-")]
     web <- str_extract(web, "[0-9]\\.[0-9./]*")
     web <- web[!is.na(web)]
-    web <- web[!duplicated(web)]
-    web <- str_replace(web, ".$", "")
+    versions <- web[!duplicated(web)]
+    versions <- str_replace(versions, ".$", "")
+    versions_final <- c(versions_final, versions)
   }
-  versions_final <- web
-  versions_final <- sort(versions_final, decreasing=T)
+  versions_final <- sort(versions_final, decreasing = T)
   return(versions_final)
-}
-# Function get curl newest version
-get.curl.newest.version <- function() {
-  versions <- get.curl.versions()
-  return(versions[1])
 }
 
 # Function get r all versions
 get.r.versions <- function() {
-  urls <- paste0("https://cran.r-project.org/src/base/R-", c(0,1,2,3), "/")
+  urls <- paste0("https://cran.r-project.org/src/base/R-", c(0, 1, 2, 3), "/")
   versions_final <- NULL
   for (url in urls) {
     h <- basicTextGatherer()
@@ -524,17 +363,12 @@ get.r.versions <- function() {
     web <- str_extract(web, "R.[0-9-a-z.]*.tgz|R.[0-9-a-z.]*.tar.gz")
     web <- str_replace(web, ".tar.gz|.tgz$", "")
     web <- str_replace(web, "R-", "")
-    web <- web[!is.na(web)]
-    web <- web[!duplicated(web)]
-    versions_final <- c(versions_final, web)
+    versions <- web[!is.na(web)]
+    versions <- versions[!duplicated(versions)]
+    versions_final <- c(versions_final, versions)
   }
-  versions_final <- sort(versions_final, decreasing=T)
+  versions_final <- sort(versions_final, decreasing = T)
   return(versions_final)
-}
-# Function get r newest version
-get.r.newest.version <- function() {
-  versions <- get.r.versions()
-  return(versions[1])
 }
 
 get.pcre.versions <- function() {
@@ -548,47 +382,111 @@ get.pcre.versions <- function() {
     web <- web[str_detect(web, "href")]
     web <- web[str_detect(web, "pcre")]
     web <- str_extract(web, "pcre[0-9-a-z.]*.tar.gz")
-    web <- web[!str_detect(web,"pcre2")]
+    web <- web[!str_detect(web, "pcre2")]
     web <- str_replace(web, ".tar.gz$", "")
     web <- str_replace(web, "pcre-", "")
-    web <- web[!is.na(web)]
-    web <- web[!duplicated(web)]
-    versions_final <- c(versions_final, web)
+    versions <- web[!is.na(web)]
+    versions <- versions[!duplicated(versions)]
+    versions_final <- c(versions_final, versions)
   }
-  versions_final <- sort(versions_final, decreasing=T)
+  versions_final <- sort(versions_final, decreasing = T)
   return(versions_final)
-}
-# Function get r newest version
-get.pcre.newest.version <- function() {
-  versions <- get.pcre.versions()
-  return(versions[1])
 }
 
-get.miniconda.versions <- function() {
-  urls <- "https://repo.continuum.io/miniconda/"
+get.ensemble_grch38_reffa.versions <- function() {
+  urls <- "ftp://ftp.ensembl.org/pub/"
   versions_final <- NULL
   for (url in urls) {
-    h <- basicTextGatherer()
-    web <- getURL(url, headerfunction = h$update)
-    web <- str_split(web, "\n")
-    web <- web[[1]]
-    web <- web[str_detect(web, "href")]
-    web <- web[str_detect(web, "Miniconda")]
-    web <- web[!str_detect(web, "latest")]
-    web <- str_extract(web, "Miniconda[0-9-a-zA-Z.-_]*.[(.sh)(.exe)$]")
-    web <- str_replace(web, ".tar.gz$", "")
-    web <- str_replace(web, ".exe$", "")
-    web <- str_replace(web, ".sh$", "")
-    web <- str_replace(web, "^Miniconda-|Miniconda", "")
-    web <- web[!is.na(web)]
-    web <- web[!duplicated(web)]
-    versions_final <- c(versions_final, web)
+    web <- read_html(url, encoding = "UTF-8")
+    files.txt <- web %>% html_nodes("p") %>% html_text()
+    files.row <- str_split(files.txt, "\n") %>% .[[1]] %>% as.character()
+    files.row <- str_split(files.row, " ")
+    files <- lapply(files.row, function(x) return(x[str_detect(x, "release")]))
+    files <- unlist(files)
+    versions <- str_extract(files, "[0-9][0-9]*")
+    versions <- versions[!is.na(versions)]
+    versions <- versions[versions > "75"]
+    versions <- unique(versions)
+    versions_final <- c(versions_final, versions)
   }
-  versions_final <- sort(versions_final, decreasing=T)
+  versions_final <- sort(versions_final, decreasing = T)
   return(versions_final)
 }
-# Function get r newest version
-get.miniconda.newest.version <- function() {
-  versions <- get.miniconda.versions()
-  return(versions[1])
+
+get.ucsc_utils.versions <- function() {
+  urls <- "http://hgdownload.cse.ucsc.edu/admin/exe/"
+  versions_final <- NULL
+  for (url in urls) {
+    web <- read_html(url)
+    versions <- web %>% html_nodes("pre a") %>% html_attr(name = "href")
+    versions <- versions[str_detect(versions, "userApps")]
+    versions <- versions[str_detect(versions, ".v")]
+    versions <- str_extract(versions, "v[0-9]*")
+    versions <- versions[!is.na(versions)]
+    versions_final <- c(versions_final, versions)
+  }
+  versions_final <- sort(versions_final, decreasing = T)
+  return(versions_final)
+}
+
+get.sqlite.versions <- function() {
+  url <- "https://www.sqlite.org/chronology.html"
+  web <- read_html(url)
+  versions <- web %>% html_nodes("table") %>% html_table() %>% .[[1]]
+  versions <- versions$Version
+  
+  pos <- str_split(versions, fixed("."))
+  func <- function(version.number) {
+    op <- options()
+    options(scipen = 200)
+    
+    version.number <- as.numeric(version.number)
+    a <- version.number[1] * 1e+06
+    b <- version.number[2] * 10000
+    if (is.na(version.number[3])) {
+      result <- a + b
+      if (result < 3071506) {
+        return(NULL)
+      } else {
+        return(result)
+      }
+    } else {
+      c <- version.number[3] * 100
+    }
+    if (is.na(version.number[4])) {
+      result <- a + b + c
+    } else {
+      d <- version.number[4] * 1
+      result <- a + b + c + d
+    }
+    if (result < 3071506) {
+      return(NULL)
+    }
+    result <- as.character(result)
+    options(op)
+    
+    return(result)
+  }
+  versions <- unlist(lapply(pos, func))
+}
+
+get.sratools.versions <- function(){
+url <- "https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/"
+
+web <- read_html(url)
+versions <- web %>% html_nodes("pre a") %>% html_attr(name="href")
+versions <- versions[!str_detect(versions, "-prere")]
+versions <- str_extract(versions, "[0-9-.]*")
+versions <- versions[versions != ""]
+
+versions <- sort(versions, decreasing = T)
+}
+
+get.solexaqa.versions <- function(){
+url <- "https://sourceforge.net/projects/solexaqa/files/src/"
+web <- read_html(url)
+versions <- web %>% html_nodes("#files_list") %>% html_table() %>% .[[1]]
+versions <- versions$Name
+versions <- str_extract(versions, "[0-9][.0-9]+[0-9]")
+versions <- versions[!is.na(versions)]
 }

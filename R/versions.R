@@ -39,13 +39,18 @@ use.github.response <- function(config) {
   return(flag1 || flag2)
 }
 
+nongithub2versions <- function(name) {
+  script <- system.file("extdata", "parse_version.R", package = "BioInstaller")
+  source(script)
+  text <- sprintf("get.%s.versions()", name)
+  tryCatch(eval(parse(text = text)), error = function(e) {
+    NULL
+  })
+}
+
 version.newest <- function(config, versions) {
-  if (use.github.response(config)) {
-    if (is.null(config$version_order_fixed)) {
-      versions <- versions[order(str_extract(versions, "[0-9.-].*"), decreasing = T)]
-    }
-    return(versions[1])
-  } else {
-    return(config$version_newest)
+  if (is.null(config$version_order_fixed)) {
+    versions <- versions[order(str_extract(versions, "[0-9.-].*"), decreasing = T)]
   }
+  return(versions[1])
 }
