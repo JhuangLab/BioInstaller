@@ -1,7 +1,8 @@
-library("RCurl")
-library("stringr")
-library("rvest")
-options(stringsAsFactors = F)
+op = options()
+options(stringsAsFactors = FALSE)
+suppressMessages(library(RCurl))
+suppressMessages(library(stringr))
+suppressMessages(library(rvest))
 
 # Get All Hisat2 ftp reffa url
 get.hisat2_reffa.versions <- function() {
