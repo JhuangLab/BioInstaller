@@ -60,12 +60,15 @@ version.initial <- function(name = "", version = NULL, versions = NULL, config =
 }
 
 # Check wheather show all avaliable version can be installed
-show.avaliable.versions <- function(config) {
+show.avaliable.versions <- function(config, name) {
   flag <- use.github.response(config)
   if (flag) {
     versions <- as.character(get.github.version(config))
   } else {
-    versions <- config$version_available
+    versions <- nongithub2versions(name)
+    if (is.null(versions)) {
+      versions <- config$version_available
+    }
   }
   return(versions)
 }

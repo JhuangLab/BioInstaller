@@ -45,8 +45,6 @@ install.bioinfo <- function(name = c(), download.dir = c(), destdir = c(), name.
   if (!show.all.versions) {
     info.msg(sprintf("Debug:name:%s", paste0(name, collapse = ", ")), verbose = verbose)
     info.msg(sprintf("Debug:destdir:%s", paste0(destdir, collapse = ", ")), verbose = verbose)
-    info.msg(sprintf("Debug:version:%s", paste0(version, collapse = ", ")), verbose = verbose)
-    info.msg(sprintf("Debug:show.all.versions:%s", show.all.versions), verbose = verbose)
     info.msg(sprintf("Debug:db:%s", db), verbose = verbose)
     info.msg(sprintf("Debug:github.cfg:%s", github.cfg), verbose = verbose)
     info.msg(sprintf("Debug:nongithub.cfg:%s", nongithub.cfg), verbose = verbose)
@@ -179,13 +177,12 @@ install.github <- function(name = "", download.dir = NULL, destdir = NULL, versi
   
   config <- eval.config(config = name, file = config.cfg)
   info.msg("Fetching Versions....", verbose = verbose)
-  all.versions <- show.avaliable.versions(config)
+  all.versions <- show.avaliable.versions(config, name)
   if (show.all.versions) {
     return(all.versions)
   }
-  info.msg(sprintf("Avaliable versions:%s", paste0(all.versions, collapse = ", ")), 
-    verbose = verbose)
   version <- version.initial(name, version, all.versions, config)
+  info.msg(sprintf("Install versions:%s", paste0(version, collapse = ", ")), verbose = verbose)
   processed.dir.list <- pre.process.dir(name, destdir, download.dir, 1)
   destdir <- processed.dir.list[["des.dir"]]
   download.dir <- processed.dir.list[["down.dir"]]
@@ -329,13 +326,12 @@ install.nongithub <- function(name = "", download.dir = NULL, destdir = NULL, ve
   }
   config <- eval.config(config = name, file = config.cfg)
   info.msg("Fetching Versions....", verbose = verbose)
-  all.versions <- show.avaliable.versions(config)
+  all.versions <- show.avaliable.versions(config, name)
   if (show.all.versions) {
     return(all.versions)
   }
-  info.msg(sprintf("Avaliable versions:%s", paste0(all.versions, collapse = ", ")), 
-    verbose = verbose)
   version <- version.initial(name, version, all.versions, config)
+  info.msg(sprintf("Install versions:%s", paste0(version, collapse = ", ")), verbose = verbose)
   processed.dir.list <- pre.process.dir(name, destdir, download.dir, 1)
   destdir <- processed.dir.list[["des.dir"]]
   download.dir <- processed.dir.list[["down.dir"]]
