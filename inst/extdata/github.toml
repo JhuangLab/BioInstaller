@@ -694,7 +694,35 @@ make_dir = ["./", "./src"]
 bin_dir = ["{{destdir}}/bin"]
 
 [cnvnator.install]
-
 linux = "source ~/.bashrc; ln -s {{cnvnator_samtools:source.dir}} ./samtools; make; mkdir -p {{destdir}}/bin; cp cnvnator cnvnator2VCF.pl {{destdir}}/bin"
 mac = "source ~/.bashrc; ln -s {{cnvnator_samtools:source.dir}} ./samtools; make; mkdir -p {{destdir}}/bin; cp cnvnator cnvnator2VCF.pl {{destdir}}/bin"
 windows = "source ~/.bashrc; ln -s {{cnvnator_samtools:source.dir}} ./samtools; make; mkdir -p {{destdir}}/bin; cp cnvnator cnvnator2VCF.pl {{destdir}}/bin"
+
+[asap]
+github_url = "https://github.com/DeplanckeLab/ASAP"
+
+[mdseq]
+github_url = "https://github.com/zjdaye/MDSeq"
+
+[mdseq.install]
+linux = 'Rscript -e "install.packages("./", repos=NULL, type="source")"'
+mac = 'Rscript -e "install.packages("./", repos=NULL, type="source")"'
+windows = 'Rscript -e "install.packages("./", repos=NULL, type="source")"'
+
+[sclvm]
+github_url = "https://github.com/PMBio/scLVM"
+
+version_newest_fixed = "master"
+
+[sclvm.install]
+linux = 'pip install .'
+mac = 'pip install .'
+windows = 'pip install .'
+
+[fsclvm]
+github_url = "https://github.com/PMBio/f-scLVM"
+
+[fsclvm.install]
+linux = 'pip install .'
+mac = 'pip install .'
+windows = 'pip install .'

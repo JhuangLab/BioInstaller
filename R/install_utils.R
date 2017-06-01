@@ -270,7 +270,7 @@ git.download <- function(name, destdir, version, github_url, use_git2r, recursiv
   recursive_clone <- convert.bool(recursive_clone)
   if (use_git2r) {
     if (!dir.exists(dirname(destdir))) {
-      dir.create(dirname(destdir))
+      dir.create(dirname(destdir), recursive = TRUE)
     }
     repo <- git2r::clone(github_url, destdir)
     if (version != "master") {

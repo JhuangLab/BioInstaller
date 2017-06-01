@@ -1,6 +1,7 @@
 2017-06-01 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
 
 		* Non-Github softwares versions can be parsed from cfg or a parse function
+		* version_newest_fixed can be added
 
 2017-05-24 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
 

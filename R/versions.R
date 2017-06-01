@@ -52,5 +52,8 @@ version.newest <- function(config, versions) {
   if (is.null(config$version_order_fixed)) {
     versions <- versions[order(str_extract(versions, "[0-9.-].*"), decreasing = T)]
   }
+  if (!is.null(config$version_newest_fixed)) {
+    return(config$version_newest_fixed)
+  }
   return(versions[1])
 }

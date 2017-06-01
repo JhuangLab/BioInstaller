@@ -379,7 +379,7 @@ install.nongithub <- function(name = "", download.dir = NULL, destdir = NULL, ve
   info.msg("Running before install steps.", verbose = verbose)
   if (need.download && !is.download.dir(config)) {
     extract_dir <- sprintf("%s/install_tmp/", tempdir())
-    dir.create(extract_dir, showWarnings = FALSE)
+    dir.create(extract_dir, showWarnings = FALSE, recursive = TRUE)
     destfile <- sprintf("%s/%s", extract_dir, filename)
     msg <- sprintf("Now start to download %s in %s.", name, download.dir)
     info.msg(msg, verbose = verbose)

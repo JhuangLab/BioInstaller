@@ -38,6 +38,7 @@ runcmd <- function(cmd, verbose = TRUE) {
   if (is.character(cmd) && cmd != "") {
     cmd <- str_replace_all(cmd, fixed("-e \\\""), "-e \"")
     cmd <- str_replace_all(cmd, fixed(")\\\""), ")\"")
+    cmd <- str_replace_all(cmd, fixed("%'%"), "\"")
     info.msg(sprintf("Running CMD:%s", cmd), verbose = verbose)
     system(cmd)
   } else {
