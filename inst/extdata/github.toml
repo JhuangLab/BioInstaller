@@ -726,3 +726,103 @@ github_url = "https://github.com/PMBio/f-scLVM"
 linux = 'pip install .'
 mac = 'pip install .'
 windows = 'pip install .'
+
+[bearscc]
+github_url = "https://github.com/Miachol/bearscc"
+
+make_dir = ["./package"]
+
+[bearscc.install]
+linux = 'Rscript -e "install.packages("./", repos=NULL, type="source")"'
+mac = 'Rscript -e "install.packages("./", repos=NULL, type="source")"'
+windows = 'Rscript -e "install.packages("./", repos=NULL, type="source")"'
+
+[singlesplice]
+github_url = "https://github.com/jw156605/SingleSplice"
+
+bin_dir = "./diffsplice/bin"
+
+[singlesplice.install]
+linux = 'make'
+mac = 'make'
+windows = 'make'
+
+[isop]
+github_url = "https://github.com/nghiavtr/ISOP"
+
+[isop.install]
+linux = 'Rscript -e "install.packages("./", repos=NULL, type="source")"'
+mac = 'Rscript -e "install.packages("./", repos=NULL, type="source")"'
+windows = 'Rscript -e "install.packages("./", repos=NULL, type="source")"'
+
+[brie]
+github_url = "https://github.com/huangyh09/brie"
+
+[brie.install]
+linux = 'pip install .'
+mac = 'pip install .'
+windows = 'pip install .'
+
+[outrigger]
+github_url = "https://github.com/YeoLab/outrigger"
+
+[outrigger.install]
+linux = 'pip install .'
+mac = 'pip install .'
+windows = 'pip install .'
+
+[raceid]
+github_url = "https://github.com/dgrun/RaceID"
+
+[backspin]
+github_url = "https://github.com/linnarsson-lab/BackSPIN"
+
+version_newest_fixed = "master"
+
+[backspin.install]
+linux = 'pip install .'
+mac = 'pip install .'
+windows = 'pip install .'
+
+[zifa]
+github_url = "https://github.com/epierson9/ZIFA"
+
+[zifa.install]
+linux = 'pip install .'
+mac = 'pip install .'
+windows = 'pip install .'
+
+[seurat]
+github_url = ""
+
+[seurat.install]
+linux = 'Rscript -e "library(devtools);install_github("satijalab/seurat")"'
+mac = 'Rscript -e "install.packages("./", repos=NULL, type="source")"'
+windows = 'Rscript -e "install.packages("./", repos=NULL, type="source")"'
+
+[rca]
+github_url = "https://github.com/GIS-SP-Group/RCA"
+
+[rca.install]
+linux = 'Rscript -e "install.packages("./", repos=NULL, type="source")"'
+mac = 'Rscript -e "install.packages("./", repos=NULL, type="source")"'
+windows = 'Rscript -e "install.packages("./", repos=NULL, type="source")"'
+
+[mimosca]
+github_url = "https://github.com/asncd/MIMOSCA"
+
+[tracer]
+github_url = "https://github.com/teichlab/tracer"
+
+[tracer.install]
+linux = 'pip install .'
+mac = 'pip install .'
+windows = 'pip install .'
+
+[scnorm]
+github_url = ""
+
+[scnorm.install]
+linux = 'Rscript -e "library(devtools);install_github("rhondabacher/SCnorm")"'
+mac = 'Rscript -e "library(devtools);install_github("rhondabacher/SCnorm")"'
+windows = 'Rscript -e "library(devtools);install_github("rhondabacher/SCnorm")"'
