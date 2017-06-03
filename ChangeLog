@@ -1,3 +1,9 @@
+2017-06-03 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
+		
+		* extra.list, rcmd.parse and bash.parse, save.to.db parameters be added in
+		R/install.R install.bioinfo, install.github, install.nongithub
+		* show.all.versions be improved
+
 2017-06-01 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
 
 		* Non-Github softwares versions can be parsed from cfg or a parse function

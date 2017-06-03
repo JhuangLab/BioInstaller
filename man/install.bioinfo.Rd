@@ -12,6 +12,7 @@ install.bioinfo(name = c(), download.dir = c(), destdir = c(),
   db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", system.file("extdata",
   "softwares_db_demo.yaml", package = "BioInstaller")), download.only = FALSE,
   decompress = TRUE, dependence.need = TRUE, showWarnings = FALSE,
+  extra.list = list(), rcmd.parse = TRUE, bash.parse = TRUE,
   verbose = TRUE, ...)
 }
 \arguments{
@@ -46,6 +47,12 @@ system.file('extdata', 'softwares_db_demo.yaml', package = 'BioInstaller'))}
 \item{dependence.need}{Logical should the dependence should be installed}
 
 \item{showWarnings}{Logical should the warnings on failure be shown?}
+
+\item{extra.list}{A list that can replace the configuration file '{{debug}}' by list(debug = TRUE), and {{debug}} will be setted to TRUE}
+
+\item{rcmd.parse}{Logical wheather parse '@>@str_replace('abc', 'b', 'c')@<@' in config to 'acc'}
+
+\item{bash.parse}{Logical wheather parse '#>#echo $HOME#<#' in config to your HOME PATH}
 
 \item{verbose}{Ligical indicating wheather show the log message}
 

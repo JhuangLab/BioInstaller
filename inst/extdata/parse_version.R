@@ -471,23 +471,41 @@ get.sqlite.versions <- function() {
   versions <- unlist(lapply(pos, func))
 }
 
-get.sratools.versions <- function(){
-url <- "https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/"
-
-web <- read_html(url)
-versions <- web %>% html_nodes("pre a") %>% html_attr(name="href")
-versions <- versions[!str_detect(versions, "-prere")]
-versions <- str_extract(versions, "[0-9-.]*")
-versions <- versions[versions != ""]
-
-versions <- sort(versions, decreasing = T)
+get.sratools.versions <- function() {
+  url <- "https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/"
+  
+  web <- read_html(url)
+  versions <- web %>% html_nodes("pre a") %>% html_attr(name = "href")
+  versions <- versions[!str_detect(versions, "-prere")]
+  versions <- str_extract(versions, "[0-9-.]*")
+  versions <- versions[versions != ""]
+  
+  versions <- sort(versions, decreasing = T)
 }
 
-get.solexaqa.versions <- function(){
-url <- "https://sourceforge.net/projects/solexaqa/files/src/"
-web <- read_html(url)
-versions <- web %>% html_nodes("#files_list") %>% html_table() %>% .[[1]]
-versions <- versions$Name
-versions <- str_extract(versions, "[0-9][.0-9]+[0-9]")
-versions <- versions[!is.na(versions)]
+get.solexaqa.versions <- function() {
+  url <- "https://sourceforge.net/projects/solexaqa/files/src/"
+  web <- read_html(url)
+  versions <- web %>% html_nodes("#files_list") %>% html_table() %>% .[[1]]
+  versions <- versions$Name
+  versions <- str_extract(versions, "[0-9][.0-9]+[0-9]")
+  versions <- versions[!is.na(versions)]
+}
+
+get.reditools.versions <- function() {
+  urls <- c("https://sourceforge.net/projects/reditools/files/")
+  versions_final <- NULL
+  for (url in urls) {
+    web <- read_html(url)
+    versions <- web %>% html_nodes("#files_list") %>% html_table() %>% .[[1]]
+    versions <- versions$Name
+    versions <- str_extract(versions, ".*[(tgz)(tar.gz)(zip)]+$")
+    
+    versions <- versions[!is.na(versions)]
+    versions <- str_extract(versions, "[0-9].*[pz]")
+    versions <- versions[!is.na(versions)]
+    versions <- str_replace(versions, "(.zip)|(.tgz)|(.tar.gz)|(.gz)", "")
+    versions_final <- c(versions_final, versions)
+  }
+  return(versions_final)
 }

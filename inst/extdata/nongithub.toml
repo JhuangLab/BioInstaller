@@ -970,3 +970,11 @@ paste(lib.flag, collapse=' ')
 @<@' \
 && make""", "make install"]
 windows=""
+
+[reditools]
+source_url = "https://nchc.dl.sourceforge.net/project/reditools/REDItools-{{version}}.tar.gz"
+
+[reditools.install]
+linux = "pip install ."
+mac = "pip install ."
+windows = "pip install ."

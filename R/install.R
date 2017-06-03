@@ -18,6 +18,9 @@
 #' @param decompress Logicol indicating wheather need to decompress the downloaded file, default is TRUE
 #' @param dependence.need Logical should the dependence should be installed
 #' @param showWarnings Logical should the warnings on failure be shown?
+#' @param extra.list A list that can replace the configuration file '{{debug}}' by list(debug = TRUE), and {{debug}} will be setted to TRUE
+#' @param rcmd.parse Logical wheather parse '@>@str_replace('abc', 'b', 'c')@<@' in config to 'acc'
+#' @param bash.parse Logical wheather parse '#>#echo $HOME#<#' in config to your HOME PATH
 #' @param verbose Ligical indicating wheather show the log message
 #' @param ... Other key and value paired need be saved in BioInstaller passed to \code{\link{change.info}}
 #' @export
@@ -33,7 +36,7 @@ install.bioinfo <- function(name = c(), download.dir = c(), destdir = c(), name.
   version = c(), show.all.versions = FALSE, show.all.names = FALSE, db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", 
     system.file("extdata", "softwares_db_demo.yaml", package = "BioInstaller")), 
   download.only = FALSE, decompress = TRUE, dependence.need = TRUE, showWarnings = FALSE, 
-  verbose = TRUE, ...) {
+  extra.list = list(), rcmd.parse = TRUE, bash.parse = TRUE, verbose = TRUE, ...) {
   db.check(db)
   github.names <- eval.config.sections(file = github.cfg)
   nongithub.names <- eval.config.sections(file = nongithub.cfg)
@@ -55,6 +58,7 @@ install.bioinfo <- function(name = c(), download.dir = c(), destdir = c(), name.
   count <- 1
   bygithub <- NULL
   bynongithub <- NULL
+  names.versions = list()
   for (i in name) {
     old_wd <- getwd()
     i <- tolower(i)
@@ -78,6 +82,7 @@ install.bioinfo <- function(name = c(), download.dir = c(), destdir = c(), name.
         github.cfg = github.cfg, name.saved = name.saved[count], version = version[count], 
         show.all.versions = show.all.versions, db = db, download.only = download.only, 
         verbose = verbose, showWarnings = showWarnings, dependence.need = dependence.need, 
+        extra.list = extra.list, rmcd.parse = rcmd.parse, bash.parse = bash.parse, 
         ...)
       bygithub <- c(bygithub, i)
     } else if (i %in% nongithub.names || (sf.name %in% nongithub.names && sf.name != 
@@ -91,7 +96,8 @@ install.bioinfo <- function(name = c(), download.dir = c(), destdir = c(), name.
         name.saved = name.saved[count], nongithub.cfg = nongithub.cfg, version = version[count], 
         show.all.versions = show.all.versions, db = db, download.only = download.only, 
         showWarnings = showWarnings, decompress = decompress, dependence.need = dependence.need, 
-        verbose = verbose, ...)
+        verbose = verbose, extra.list = extra.list, rcmd.parse = rcmd.parse, 
+        bash.parse = bash.parse, ...)
       bynongithub <- c(bynongithub, i)
     } else {
       warning(sprintf("%s not existed in install database, so can not be installed by BioInstaller package.", 
@@ -107,16 +113,21 @@ install.bioinfo <- function(name = c(), download.dir = c(), destdir = c(), name.
       info.msg(sprintf("%s downloaded fail!", name), verbose = verbose)
       return(FALSE)
     }
-    if (show.all.versions) {
-      return(status)
-    }
     if (status == TRUE && (name.saved[count] %in% show.installed(db))) {
       install.success <- c(install.success, name.saved[count])
     } else {
       install.fail <- c(install.fail, name.saved[count])
     }
     setwd(old_wd)
+    if (show.all.versions) {
+      names.versions[[i]] <- status
+    }
     count <- count + 1
+  }
+  if (show.all.versions && count == 2) {
+    return(status)
+  } else if (show.all.versions) {
+    return(names.versions)
   }
   info.msg(sprintf("Debug:Install by Github configuration file: %s", paste0(bygithub, 
     collapse = ", ")), verbose = verbose)
@@ -151,6 +162,10 @@ install.bioinfo <- function(name = c(), download.dir = c(), destdir = c(), name.
 #' @param download.only Logicol indicating wheather only download source or file (non-github)
 #' @param dependence.need Logical should the dependence should be installed
 #' @param showWarnings Logical should the warnings on failure be shown?
+#' @param extra.list A list that can replace the configuration file '{{debug}}' by list(debug = TRUE), and {{debug}} will be setted to TRUE
+#' @param rcmd.parse Logical wheather parse '@>@str_replace('abc', 'b', 'c')@<@' in config to 'acc'
+#' @param bash.parse Logical wheather parse '#>#echo $HOME#<#' in config to your HOME PATH
+#' @param save.to.db Ligical indicating wheather save the install infomation in db
 #' @param verbose Ligical indicating wheather show the log message
 #' @param ... Other key and value paired need be saved in BioInstaller passed to \code{\link{change.info}}
 #' @return Bool Value
@@ -164,8 +179,8 @@ install.github <- function(name = "", download.dir = NULL, destdir = NULL, versi
   show.all.versions = FALSE, name.saved = NULL, github.cfg = system.file("extdata", 
     "github.toml", package = "BioInstaller"), db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", 
     system.file("extdata", "softwares_db_demo.yaml", package = "BioInstaller")), 
-  download.only = FALSE, showWarnings = FALSE, dependence.need = TRUE, verbose = TRUE, 
-  ...) {
+  download.only = FALSE, showWarnings = FALSE, dependence.need = TRUE, extra.list = list(), 
+  rcmd.parse = TRUE, bash.parse = TRUE, save.to.db = TRUE, verbose = TRUE, ...) {
   old.work.dir <- getwd()
   config.cfg <- github.cfg
   name <- tolower(name)
@@ -176,7 +191,7 @@ install.github <- function(name = "", download.dir = NULL, destdir = NULL, versi
   }
   
   config <- eval.config(config = name, file = config.cfg)
-  info.msg("Fetching Versions....", verbose = verbose)
+  info.msg(sprintf("Fetching %s versions....", name), verbose = verbose)
   all.versions <- show.avaliable.versions(config, name)
   if (show.all.versions) {
     return(all.versions)
@@ -199,7 +214,8 @@ install.github <- function(name = "", download.dir = NULL, destdir = NULL, versi
   args.all <- args.all[names(args.all) != ""]
   config <- configr::parse.extra(config = config, extra.list = args.all)
   config <- configr::parse.extra(config = config, other.config = db)
-  config <- configr::parse.extra(config = config, rcmd.parse = T)
+  config <- configr::parse.extra(config = config, rcmd.parse = rcmd.parse)
+  config <- configr::parse.extra(config = config, bash.parse = bash.parse)
   
   github_url <- config$github_url
   use_git2r <- config$use_git2r
@@ -235,7 +251,8 @@ install.github <- function(name = "", download.dir = NULL, destdir = NULL, versi
     config <- eval.config(config = name, file = config.cfg)
     config <- configr::parse.extra(config = config, extra.list = args.all)
     config <- configr::parse.extra(config, other.config = db)
-    config <- configr::parse.extra(config = config, rcmd.parse = T)
+    config <- configr::parse.extra(config = config, rcmd.parse = rcmd.parse)
+    config <- configr::parse.extra(config = config, bash.parse = bash.parse)
   }
   set.makedir(make.dir, download.dir)
   before.cmd <- get.subconfig(config, "before_install")
@@ -261,9 +278,11 @@ install.github <- function(name = "", download.dir = NULL, destdir = NULL, versi
       if (!is.null(name.saved)) {
         name <- tolower(name.saved)
       }
-      change.info(name = name, installed = TRUE, source.dir = download.dir, 
-        install.dir = destdir, bin.dir = bin.dir, version = version, last.update.time = last.update.time, 
-        db = db, verbose = verbose, ...)
+      if (save.to.db) {
+        change.info(name = name, installed = TRUE, source.dir = download.dir, 
+          install.dir = destdir, bin.dir = bin.dir, version = version, last.update.time = last.update.time, 
+          db = db, verbose = verbose, ...)
+      }
     }
   } else {
     info.msg("Running after install fail steps.", verbose = verbose)
@@ -298,10 +317,14 @@ install.github <- function(name = "", download.dir = NULL, destdir = NULL, versi
 #' system.file('extdata', 'softwares_db_demo.yaml', package = 'BioInstaller'))
 #' @param download.only Logicol indicating wheather only download source or file (non-github)
 #' @param decompress Logicol indicating wheather need to decompress the downloaded file, default is TRUE
-#' @param ... Other key and value paired need be saved in BioInstaller passed to \code{\link{change.info}}
 #' @param dependence.need Logical should the dependence should be installed
 #' @param showWarnings Logical should the warnings on failure be shown?
+#' @param extra.list A list that can replace the configuration file '{{debug}}' by list(debug = TRUE), and {{debug}} will be setted to TRUE
+#' @param rcmd.parse Logical wheather parse '@>@str_replace('abc', 'b', 'c')@<@' in config to 'acc'
+#' @param bash.parse Logical wheather parse '#>#echo $HOME#<#' in config to your HOME PATH
+#' @param save.to.db Ligical indicating wheather save the install infomation in db
 #' @param verbose Ligical indicating wheather show the log message
+#' @param ... Other key and value paired need be saved in BioInstaller passed to \code{\link{change.info}}
 #' @return Bool Value
 #' @export
 #' @examples
@@ -314,6 +337,7 @@ install.nongithub <- function(name = "", download.dir = NULL, destdir = NULL, ve
     "nongithub.toml", package = "BioInstaller"), db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", 
     system.file("extdata", "softwares_db_demo.yaml", package = "BioInstaller")), 
   download.only = FALSE, decompress = TRUE, dependence.need = TRUE, showWarnings = FALSE, 
+  extra.list = list(), rcmd.parse = TRUE, bash.parse = TRUE, save.to.db = TRUE, 
   verbose = TRUE, ...) {
   old.work.dir <- getwd()
   config.cfg <- nongithub.cfg
@@ -325,7 +349,7 @@ install.nongithub <- function(name = "", download.dir = NULL, destdir = NULL, ve
     return(FALSE)
   }
   config <- eval.config(config = name, file = config.cfg)
-  info.msg("Fetching Versions....", verbose = verbose)
+  info.msg(sprintf("Fetching %s versions....", name), verbose = verbose)
   all.versions <- show.avaliable.versions(config, name)
   if (show.all.versions) {
     return(all.versions)
@@ -346,9 +370,11 @@ install.nongithub <- function(name = "", download.dir = NULL, destdir = NULL, ve
   args.all$download.dir <- download.dir
   args.all$os.version <- get.os()
   args.all <- args.all[names(args.all) != ""]
+  args.all <- configr::config.list.merge(args.all, extra.list)
   config <- configr::parse.extra(config = config, extra.list = args.all)
   config <- configr::parse.extra(config = config, other.config = db)
-  config <- configr::parse.extra(config = config, rcmd.parse = T)
+  config <- configr::parse.extra(config = config, rcmd.parse = rcmd.parse)
+  config <- configr::parse.extra(config = config, bash.parse = bash.parse)
   
   source_url <- source.url.initial(config)
   if (all(is.null(source_url)) | all(source_url == "")) {
@@ -421,7 +447,8 @@ install.nongithub <- function(name = "", download.dir = NULL, destdir = NULL, ve
     config <- eval.config(config = name, file = config.cfg)
     config <- configr::parse.extra(config = config, extra.list = args.all)
     config <- configr::parse.extra(config = config, other.config = db)
-    config <- configr::parse.extra(config = config, rcmd.parse = T)
+    config <- configr::parse.extra(config = config, rcmd.parse = rcmd.parse)
+    config <- configr::parse.extra(config = config, bash.parse = bash.parse)
   }
   make.dir <- config$make_dir
   files <- list.files(download.dir)
@@ -454,9 +481,11 @@ install.nongithub <- function(name = "", download.dir = NULL, destdir = NULL, ve
       if (!is.null(name.saved)) {
         name <- tolower(name.saved)
       }
-      change.info(name = name, installed = TRUE, source.dir = download.dir, 
-        install.dir = destdir, bin.dir = bin.dir, version = version, last.update.time = last.update.time, 
-        db = db, verbose = verbose, ...)
+      if (save.to.db) {
+        change.info(name = name, installed = TRUE, source.dir = download.dir, 
+          install.dir = destdir, bin.dir = bin.dir, version = version, last.update.time = last.update.time, 
+          db = db, verbose = verbose, ...)
+      }
     }
   } else {
     info.msg("Running after install fail steps.", verbose = verbose)
