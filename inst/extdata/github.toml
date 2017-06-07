@@ -40,7 +40,7 @@ after_failure = "echo 'fail!'"
 
 after_success = "echo 'successful!'"
 
-make_dir = ["source", "./"]
+make_dir = ['source', "./"]
 
 [star.bin_dir]
 linux = "{{destdir}}/bin"
@@ -705,9 +705,9 @@ github_url = "https://github.com/DeplanckeLab/ASAP"
 github_url = "https://github.com/zjdaye/MDSeq"
 
 [mdseq.install]
-linux = 'Rscript -e "install.packages("./", repos=NULL, type="source")"'
-mac = 'Rscript -e "install.packages("./", repos=NULL, type="source")"'
-windows = 'Rscript -e "install.packages("./", repos=NULL, type="source")"'
+linux = "#R#install.packages('./', repos=NULL, type='source')#R#"
+mac = "#R#install.packages('./', repos=NULL, type='source')#R#"
+windows = "#R#install.packages('./', repos=NULL, type='source')#R#"
 
 [sclvm]
 github_url = "https://github.com/PMBio/scLVM"
@@ -733,9 +733,9 @@ github_url = "https://github.com/Miachol/bearscc"
 make_dir = ["./package"]
 
 [bearscc.install]
-linux = 'Rscript -e "install.packages("./", repos=NULL, type="source")"'
-mac = 'Rscript -e "install.packages("./", repos=NULL, type="source")"'
-windows = 'Rscript -e "install.packages("./", repos=NULL, type="source")"'
+linux = "#R#install.packages('./', repos=NULL, type='source')#R#"
+mac = "#R#install.packages('./', repos=NULL, type='source')#R#"
+windows = "#R#install.packages('./', repos=NULL, type='source')#R#"
 
 [singlesplice]
 github_url = "https://github.com/jw156605/SingleSplice"
@@ -751,9 +751,9 @@ windows = 'make'
 github_url = "https://github.com/nghiavtr/ISOP"
 
 [isop.install]
-linux = 'Rscript -e "install.packages("./", repos=NULL, type="source")"'
-mac = 'Rscript -e "install.packages("./", repos=NULL, type="source")"'
-windows = 'Rscript -e "install.packages("./", repos=NULL, type="source")"'
+linux = "#R#install.packages('./', repos=NULL, type='source')#R#"
+mac = "#R#install.packages('./', repos=NULL, type='source')#R#"
+windows = "#R#install.packages('./', repos=NULL, type='source')#R#"
 
 [brie]
 github_url = "https://github.com/huangyh09/brie"
@@ -796,17 +796,18 @@ windows = 'pip install .'
 github_url = ""
 
 [seurat.install]
-linux = 'Rscript -e "library(devtools);install_github("satijalab/seurat")"'
-mac = 'Rscript -e "install.packages("./", repos=NULL, type="source")"'
-windows = 'Rscript -e "install.packages("./", repos=NULL, type="source")"'
+# %'% can be replace by "
+linux = "#R#library(devtools);install_github(%'%satijalab/seurat%'%)#R#"
+mac = "#R#library(devtools);install_github('satijalab/seurat')#R#"
+windows = "#R#library(devtools);install_github('satijalab/seurat')#R#"
 
 [rca]
 github_url = "https://github.com/GIS-SP-Group/RCA"
 
 [rca.install]
-linux = 'Rscript -e "install.packages("./", repos=NULL, type="source")"'
-mac = 'Rscript -e "install.packages("./", repos=NULL, type="source")"'
-windows = 'Rscript -e "install.packages("./", repos=NULL, type="source")"'
+linux = "#R#install.packages('./', repos=NULL, type='source')#R#"
+mac = "#R#install.packages('./', repos=NULL, type='source')#R#"
+windows = "#R#install.packages('./', repos=NULL, type='source')#R#"
 
 [mimosca]
 github_url = "https://github.com/asncd/MIMOSCA"
@@ -823,6 +824,6 @@ windows = 'pip install .'
 github_url = ""
 
 [scnorm.install]
-linux = 'Rscript -e "library(devtools);install_github("rhondabacher/SCnorm")"'
-mac = 'Rscript -e "library(devtools);install_github("rhondabacher/SCnorm")"'
-windows = 'Rscript -e "library(devtools);install_github("rhondabacher/SCnorm")"'
+linux = "#R#library(devtools);install_github('rhondabacher/SCnorm')#R#"
+mac = "#R#library(devtools);install_github('rhondabacher/SCnorm')#R#"
+windows = "#R#library(devtools);install_github('rhondabacher/SCnorm')#R#"

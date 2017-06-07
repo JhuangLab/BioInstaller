@@ -492,9 +492,9 @@ make_dir = ["./"]
 bin_dir = ["./bin"]
 
 [tvc.install]
-linux = ['''Rscript -e "fn.sh <- system.file('extdata', 'scripts/install_tvc.sh', package = 'BioInstaller'); system(sprintf('sh %s {{destdir}} {{version}}', fn.sh))";''', 'mkdir {{destdir}}/bin; cp bin/* {{destdir}}/bin']
-mac = ['''Rscript -e "fn.sh <- system.file('extdata', 'scripts/install_tvc.sh', package = 'BioInstaller'); system(sprintf('sh %s {{destdir}} {{version}}', fn.sh))";''', 'mkdir {{destdir}}/bin; cp bin/* {{destdir}}/bin']
-windows = ['''Rscript -e "fn.sh <- system.file('extdata', 'scripts/install_tvc.sh', package = 'BioInstaller'); system(sprintf('sh %s {{destdir}} {{version}}', fn.sh))";''', 'mkdir {{destdir}}/bin; cp bin/* {{destdir}}/bin']
+linux = ["#R#fn.sh <- system.file('extdata', 'scripts/install_tvc.sh', package = 'BioInstaller'); system(sprintf('sh %s {{destdir}} {{version}}', fn.sh));#R#", 'mkdir {{destdir}}/bin; cp bin/* {{destdir}}/bin']
+mac = ["#R#fn.sh <- system.file('extdata', 'scripts/install_tvc.sh', package = 'BioInstaller'); system(sprintf('sh %s {{destdir}} {{version}}', fn.sh));#R#", 'mkdir {{destdir}}/bin; cp bin/* {{destdir}}/bin']
+windows = ["#R#fn.sh <- system.file('extdata', 'scripts/install_tvc.sh', package = 'BioInstaller'); system(sprintf('sh %s {{destdir}} {{version}}', fn.sh));#R#", 'mkdir {{destdir}}/bin; cp bin/* {{destdir}}/bin']
 
 [imagej]
 version_newest = "150"

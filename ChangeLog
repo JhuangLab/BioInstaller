@@ -1,3 +1,7 @@
+2017-06-07 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
+
+		* #R# RCMD #R# can be run in configuration file
+
 2017-06-03 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
 		
 		* extra.list, rcmd.parse and bash.parse, save.to.db parameters be added in

@@ -33,14 +33,30 @@ get.os <- function() {
   }
 }
 
-# Run shell cmd
+# Run shell or R cmd
 runcmd <- function(cmd, verbose = TRUE) {
   if (is.character(cmd) && cmd != "") {
-    cmd <- str_replace_all(cmd, fixed("-e \\\""), "-e \"")
-    cmd <- str_replace_all(cmd, fixed(")\\\""), ")\"")
-    cmd <- str_replace_all(cmd, fixed("%'%"), "\"")
-    info.msg(sprintf("Running CMD:%s", cmd), verbose = verbose)
-    system(cmd)
+    if (str_detect(cmd, "^\\#R\\#") && str_detect(cmd, "\\#R\\#$")) {
+      cmd <- str_replace_all(cmd, "^\\#R\\#", "")
+      cmd <- str_replace_all(cmd, "\\#R\\#$", "")
+      cmd <- str_replace_all(cmd, fixed("%'%"), "\"")
+      info.msg(sprintf("Running R CMD:%s", cmd), verbose = verbose)
+      status <- -1
+      tryCatch(status <- eval(parse(text = cmd)), error = function(e) {
+        return(-1)
+      })
+      if (is.null(status) || is.na(status) || status != -1) {
+        return(0)
+      } else {
+        return(-1)
+      }
+    } else {
+      cmd <- str_replace_all(cmd, fixed("-e \\\""), "-e \"")
+      cmd <- str_replace_all(cmd, fixed(")\\\""), ")\"")
+      cmd <- str_replace_all(cmd, fixed("%'%"), "\"")
+      info.msg(sprintf("Running CMD:%s", cmd), verbose = verbose)
+      system(cmd)
+    }
   } else {
     return(0)
   }
