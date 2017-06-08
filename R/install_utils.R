@@ -48,7 +48,8 @@ check.install.name <- function(name, config.cfg) {
 # Initial parameter version
 version.initial <- function(name = "", version = NULL, versions = NULL, config = NULL) {
   if (is.null(version)) {
-    version <- version.newest(config, versions)
+    params <- list(config = config, versions = versions)
+    version <- do.call(version.newest, params)
   }
   if (is.numeric(version)) {
     version <- as.character(version)
@@ -76,15 +77,19 @@ show.avaliable.versions <- function(config, name) {
 # Check wheather destdir is exist or not, if not will create it, and set workdir
 # in make.dir
 set.makedir <- function(make.dir, destdir) {
+  destdir <- normalizePath(destdir, "/", mustWork = FALSE)
   if (dir.exists(destdir)) {
     setwd(destdir)
   } else {
     dir.create(destdir, showWarnings = FALSE, recursive = TRUE)
     setwd(destdir)
   }
-  for (i in make.dir) {
-    if (i != "./" && dir.exists(i)) {
-      setwd(i)
+  if (!is.null(make.dir)) {
+    make.dir <- normalizePath(make.dir, "/", mustWork = FALSE)
+    for (i in make.dir) {
+      if (i != "./" && dir.exists(i)) {
+        setwd(i)
+      }
     }
   }
 }

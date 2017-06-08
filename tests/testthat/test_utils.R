@@ -67,12 +67,9 @@ test_that("runcmd & for_runcmd", {
   x <- for_runcmd(cmd, verbose = FALSE)
   expect_that(x, equals(rep(0,3)))
   unlink(sprintf('%s/123', destdir), TRUE)
-  workdir.old <- getwd()
-  tmp.file <- tempfile()
-  cmd <- sprintf("#R#x<-'123';write.csv(x, '%s')#R#", tmp.file)
+  cmd <- "#R#Sys.setenv(R_TEST= 'rtest')#R#"
   runcmd(cmd, verbose = FALSE)
-  expect_that(file.size(tmp.file) > 0, equals(TRUE))
-  unlink(tmp.file)
+  expect_that(Sys.getenv("R_TEST") == "rtest", equals(TRUE))
 })
 
 test_that("get.subconfig", {

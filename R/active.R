@@ -10,9 +10,10 @@
 #' is.biosoftwares.db.active('config.cfg')
 #' @export
 is.biosoftwares.db.active <- function(biosoftwares.db) {
-  biosoftwares.db <- normalizePath(biosoftwares.db, mustWork = FALSE)
-  identical(biosoftwares.db, Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", system.file("extdata", 
-    "softwares_db_demo.yaml", package = "BioInstaller")))
+  biosoftwares.db <- normalizePath(biosoftwares.db, "/", mustWork = FALSE)
+  default <- system.file("extdata", "softwares_db_demo.yaml", package = "BioInstaller")
+  default <- normalizePath(default, "/", mustWork = FALSE)
+  identical(biosoftwares.db, Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", default))
 }
 
 #' Set BIO_SOFWARES_DB_ACTIVE as the BioInstaller db
@@ -24,7 +25,10 @@ is.biosoftwares.db.active <- function(biosoftwares.db) {
 #' set.biosoftwares.db(sprintf('%s/.BioInstaller', tempdir()))
 #' @export
 set.biosoftwares.db <- function(biosoftwares.db) {
-  biosoftwares.db <- normalizePath(biosoftwares.db, mustWork = FALSE)
+  biosoftwares.db <- normalizePath(biosoftwares.db, "/", mustWork = FALSE)
+  if (!dir.exists(dirname(biosoftwares.db))) {
+    dir.create(dirname(biosoftwares.db), recursive = TRUE)
+  }
   if (!file.exists(biosoftwares.db)) {
     file.create(biosoftwares.db)
   }
