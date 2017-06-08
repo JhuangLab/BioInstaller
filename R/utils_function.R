@@ -41,9 +41,9 @@ runcmd <- function(cmd, verbose = TRUE) {
       cmd <- str_replace_all(cmd, "\\#R\\#$", "")
       cmd <- str_replace_all(cmd, fixed("%'%"), "\"")
       cmd <- str_split(cmd, "\\\\n")[[1]]
-      cmd <- paste0(cmd, collapse = ';')
-      cmd <- str_replace_all(cmd, ';;', ';')
-      cmd <- str_replace_all(cmd, fixed('{;'), fixed('{'))
+      cmd <- paste0(cmd, collapse = ";")
+      cmd <- str_replace_all(cmd, ";;", ";")
+      cmd <- str_replace_all(cmd, fixed("{;"), fixed("{"))
       info.msg(sprintf("Running R CMD:%s", cmd), verbose = verbose)
       status <- -1
       tryCatch(status <- eval(parse(text = cmd)), error = function(e) {
