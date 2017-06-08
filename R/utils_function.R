@@ -170,6 +170,7 @@ drop_redundance_dir <- function(destdir) {
   }
 }
 
+# Download from url, if is.dir is TRUE, it will get filenames first and download them (FTP supported only)
 download.file.custom <- function(url = "", destfile = "", is.dir = FALSE, showWarnings = F, 
   ...) {
   status <- NULL
@@ -210,7 +211,12 @@ destdir.initial <- function(destdir, strict = TRUE, download.only = FALSE) {
     strict) {
     flag <- "y"
     flag.input <- "N"
+    count <- 1
     while (flag.input == "N" || !flag.input %in% c("y", "n", "Y", "N")) {
+      if (count > 3) {
+        cat('More than 3 counts input, default is not to overwrite.\n')
+        return(FALSE)
+      }
       if (flag.input != "N" && !(flag.input %in% c("y", "n", "Y", "N"))) {
         cat("Please input y/n/Y/N!\n")
       }
@@ -218,6 +224,7 @@ destdir.initial <- function(destdir, strict = TRUE, download.only = FALSE) {
         destdir))
       flag.input <- str_sub(flag.input, 1, 1)
       flag.input <- tolower(flag.input)
+      count <- count + 1
     }
     if (flag.input == "n") {
       return(FALSE)
@@ -228,7 +235,12 @@ destdir.initial <- function(destdir, strict = TRUE, download.only = FALSE) {
   } else if (!download.only && file.exists(destdir) && !strict) {
     flag <- "y"
     flag.input <- "N"
+    count <- 1
     while (flag.input == "N" || !flag.input %in% c("y", "n", "Y", "N")) {
+      if (count > 3) {
+        cat('More than 3 counts input, default is not to overwrite.\n')
+        return(FALSE)
+      }
       if (flag.input != "N" && !(flag.input %in% c("y", "n", "Y", "N"))) {
         cat("Please input y/n/Y/N!\n")
       }
@@ -236,6 +248,7 @@ destdir.initial <- function(destdir, strict = TRUE, download.only = FALSE) {
         destdir))
       flag.input <- str_sub(flag.input, 1, 1)
       flag.input <- tolower(flag.input)
+      count <- count + 1
     }
     if (flag.input == "n") {
       return(FALSE)
