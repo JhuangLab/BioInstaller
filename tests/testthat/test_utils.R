@@ -31,10 +31,14 @@ test_that("drop_redundance_dir", {
   test.dir <- sprintf("%s/test_drop", tempdir())
   dir.create(test.dir)
   dir.create(sprintf("%s/a", test.dir))
+  file.create(sprintf("%s/a/b1", test.dir))
   dir.create(sprintf("%s/a/b", test.dir))
   dir.create(sprintf("%s/a/c", test.dir))
   x <- drop_redundance_dir(test.dir)
   expect_that(x, equals(TRUE))
+  expect_that(file.exists(sprintf("%s/b1", test.dir)), equals(TRUE))
+  expect_that(dir.exists(sprintf("%s/b", test.dir)), equals(TRUE))
+  expect_that(dir.exists(sprintf("%s/c", test.dir)), equals(TRUE))
   unlink(test.dir, recursive=TRUE, TRUE)
 })
 
@@ -118,3 +122,5 @@ test_that("is.null.na",{
 })
 temps <- list.files(tempdir(), ".*")
 unlink(sprintf("%s/%s", tempdir(), temps), recursive = TRUE, TRUE)
+
+

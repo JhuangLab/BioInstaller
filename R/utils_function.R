@@ -148,6 +148,7 @@ extract.file <- function(file, destdir, decompress = TRUE) {
 }
 
 
+# Extract file and dirs if only one dir present after decomparessed
 drop_redundance_dir <- function(destdir) {
   files.parent <- list.files(destdir)
   if (length(files.parent) == 1) {
@@ -158,11 +159,7 @@ drop_redundance_dir <- function(destdir) {
     files.child <- list.files(files.parent)
     files.path <- sprintf("%s/%s", files.parent, files.child)
     destfiles.path <- sprintf("%s/%s", destdir, files.child)
-    if (sum(length(list.files(files.path))) == 0) {
-      status <- file.copy(files.path, destfiles.path)
-    } else {
-      status <- file.copy(files.path, destdir, recursive = T)
-    }
+    status <- file.copy(files.path, destdir, recursive = TRUE)
     unlink(files.parent, recursive = TRUE)
     files.parent <- list.files(destdir)
     if (length(files.parent) > 0) {

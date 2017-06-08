@@ -274,9 +274,9 @@ windows = "mkdir -p {{destdir}}/bin; fn=`ls -F |grep '*' | tr -d '*'`;cp $fn {{d
 [gatk]
 source_url = ["http://bioinfo.rjh.com.cn/download/gatk/download.php?filename=gatk{{version}}.zip"]
 
-version_newest = "3.7"
+version_newest = "3.7-0"
 
-version_available = ["3.7", "3.6", "3.5", "3.4-46"]
+version_available = ["3.7-0", "3.7", "3.6", "3.5", "3.4-46"]
 
 after_failure = "echo 'fail!'"
 
