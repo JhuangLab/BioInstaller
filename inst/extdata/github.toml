@@ -703,11 +703,13 @@ github_url = "https://github.com/DeplanckeLab/ASAP"
 
 [mdseq]
 github_url = "https://github.com/zjdaye/MDSeq"
+no.need.download = true
 
 [mdseq.install]
-linux = "#R#install.packages('./', repos=NULL, type='source')#R#"
-mac = "#R#install.packages('./', repos=NULL, type='source')#R#"
-windows = "#R#install.packages('./', repos=NULL, type='source')#R#"
+linux = """#R#source('http://bioconductor.org/biocLite.R'); biocLite(c('edgeR', 'cqn'));
+              library(devtools);install_github('zjdaye/MDSeq', ref = '{{version}}')#R#"""
+mac = "#R#library(devtools);install_github('zjdaye/MDSeq', ref = '{{version}}')#R#"
+windows = "#R#library(devtools);install_github('zjdaye/MDSeq', ref = '{{version}}')#R#"
 
 [sclvm]
 github_url = "https://github.com/PMBio/scLVM"
@@ -749,11 +751,12 @@ windows = 'make'
 
 [isop]
 github_url = "https://github.com/nghiavtr/ISOP"
+no.need.download = true
 
 [isop.install]
-linux = "#R#install.packages('./', repos=NULL, type='source')#R#"
-mac = "#R#install.packages('./', repos=NULL, type='source')#R#"
-windows = "#R#install.packages('./', repos=NULL, type='source')#R#"
+linux = "#R#library(devtools);install_github('nghiavtr/ISOP', ref='{{version}}')#R#"
+mac = "#R#library(devtools);install_github('nghiavtr/ISOP', ref='{{version}}')#R#"
+windows = "#R#library(devtools);install_github('nghiavtr/ISOP', ref='{{version}}')#R#"
 
 [brie]
 github_url = "https://github.com/huangyh09/brie"
@@ -793,21 +796,22 @@ mac = 'pip install .'
 windows = 'pip install .'
 
 [seurat]
-github_url = ""
+github_url = "https://github.com/satijalab/seurat"
+no.need.download = true
 
 [seurat.install]
-# %'% can be replace by "
-linux = "#R#library(devtools);install_github(%'%satijalab/seurat%'%)#R#"
+linux = "#R#library(devtools);install_github('satijalab/seurat')#R#"
 mac = "#R#library(devtools);install_github('satijalab/seurat')#R#"
 windows = "#R#library(devtools);install_github('satijalab/seurat')#R#"
 
 [rca]
 github_url = "https://github.com/GIS-SP-Group/RCA"
+no.need.download = true
 
 [rca.install]
-linux = "#R#install.packages('./', repos=NULL, type='source')#R#"
-mac = "#R#install.packages('./', repos=NULL, type='source')#R#"
-windows = "#R#install.packages('./', repos=NULL, type='source')#R#"
+linux = "#R#library(devtools);install_github('GIS-SP-Group/RCA', ref = '{{version}}')#R#"
+mac = "#R#library(devtools);install_github('GIS-SP-Group/RCA', ref = '{{version}}')#R#"
+windows = "#R#library(devtools);install_github('GIS-SP-Group/RCA', ref = '{{version}}')#R#"
 
 [mimosca]
 github_url = "https://github.com/asncd/MIMOSCA"
@@ -821,9 +825,19 @@ mac = 'pip install .'
 windows = 'pip install .'
 
 [scnorm]
-github_url = ""
+github_url = "https://github.com/rhondabacher/SCnorm"
+no.need.download = true
 
 [scnorm.install]
-linux = "#R#library(devtools);install_github('rhondabacher/SCnorm')#R#"
-mac = "#R#library(devtools);install_github('rhondabacher/SCnorm')#R#"
-windows = "#R#library(devtools);install_github('rhondabacher/SCnorm')#R#"
+linux = "#R#library(devtools);install_github('rhondabacher/SCnorm', ref = '{{version}}')#R#"
+mac = "#R#library(devtools);install_github('rhondabacher/SCnorm', ref = '{{version}}')#R#"
+windows = "#R#library(devtools);install_github('rhondabacher/SCnorm', ref = '{{version}}')#R#"
+
+[sleuth]
+github_url = "https://github.com/pachterlab/sleuth"
+no.need.download = true
+
+[sleuth.install]
+linux = "#R#source('http://bioconductor.org/biocLite.R'); biocLite('rhdf5'); library(devtools); devtools::install_github('pachterlab/sleuth', ref = '{{version}}')#R#"
+mac = "#R#source('http://bioconductor.org/biocLite.R'); biocLite('rhdf5'); library(devtools); devtools::install_github('pachterlab/sleuth', ref = '{{version}}')#R#"
+windows = "#R#source('http://bioconductor.org/biocLite.R'); biocLite('rhdf5'); library(devtools); devtools::install_github('pachterlab/sleuth', ref = '{{version}}')#R#"

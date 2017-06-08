@@ -17,4 +17,5 @@
 #' @importFrom RCurl getURL basicTextGatherer
 #' @importFrom R.utils gunzip gzip
 #' @importFrom utils unzip untar download.file
+#' @importFrom devtools install_github
 NULL

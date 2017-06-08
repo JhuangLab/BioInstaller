@@ -18,7 +18,8 @@ Imports:
     git2r (>= 0.0.3),
     R.utils (>= 2.5.0),
     RCurl (>= 1.95-4.8),
-    rvest (>= 0.3.2)
+    rvest (>= 0.3.2),
+    devtools (>= 1.13.2),
 RoxygenNote: 6.0.1
 Suggests: knitr,
     rmarkdown,

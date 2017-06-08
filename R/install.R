@@ -220,7 +220,8 @@ install.github <- function(name = "", download.dir = NULL, destdir = NULL, versi
   github_url <- config$github_url
   use_git2r <- config$use_git2r
   recursive_clone <- config$recursive_clone
-  if (is.null(github_url) || github_url == "") {
+  if ((all(is.null(github_url)) | all(github_url == "")) | (is.logical(config$no.need.download) && 
+    config$no.need.download == TRUE)) {
     need.download = FALSE
   } else {
     need.download = TRUE
@@ -377,7 +378,8 @@ install.nongithub <- function(name = "", download.dir = NULL, destdir = NULL, ve
   config <- configr::parse.extra(config = config, bash.parse = bash.parse)
   
   source_url <- source.url.initial(config)
-  if (all(is.null(source_url)) | all(source_url == "")) {
+  if ((all(is.null(source_url)) | all(source_url == "")) | (is.logical(config$no.need.download) && 
+    config$no.need.download == TRUE)) {
     need.download <- FALSE
   } else {
     need.download <- TRUE
