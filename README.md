@@ -1,4 +1,4 @@
-# [![Build Status](https://travis-ci.org/Miachol/BioInstaller.svg)](https://travis-ci.org/Miachol/BioInstaller) [![CRAN](http://www.r-pkg.org/badges/version/BioInstaller)](https://cran.r-project.org/package=BioInstaller) [![Downloads](http://cranlogs.r-pkg.org/badges/BioInstaller?color=brightgreen)](http://www.r-pkg.org/pkg/BioInstaller) [![codecov](https://codecov.io/github/Miachol/BioInstaller/branch/master/graphs/badge.svg)](https://codecov.io/github/Miachol/BioInstaller) 
+# [![Build Status](https://travis-ci.org/JhuangLab/BioInstaller.svg)](https://travis-ci.org/JhuangLab/BioInstaller) [![CRAN](http://www.r-pkg.org/badges/version/BioInstaller)](https://cran.r-project.org/package=BioInstaller) [![Downloads](http://cranlogs.r-pkg.org/badges/BioInstaller?color=brightgreen)](http://www.r-pkg.org/pkg/BioInstaller) [![codecov](https://codecov.io/github/JhuangLab/BioInstaller/branch/master/graphs/badge.svg)](https://codecov.io/github/JhuangLab/BioInstaller) 
 
 BioInstaller package
 ==============
@@ -8,7 +8,7 @@ BioInstaller package
 
 Especialy, when start a NGS analysis work in a new computer or system, you need costs so much time and energy to establish a complete set of softwares and dependce of a analysis pipeline and set the corresponding configuration file.
 
-[BioInstaller](https://github.com/Miachol/BioInstaller) can be used to download/install bioinformatics tools, dependences and databases in R relatively easily, and the information of installed softwares will be saved which can be used to generate configuration file. More detail can be founded in [Document](http://bioinfo.rjh.com.cn/labs/jhuang/tools/BioInstaller/) website.
+[BioInstaller](https://github.com/JhuangLab/BioInstaller) can be used to download/install bioinformatics tools, dependences and databases in R relatively easily, and the information of installed softwares will be saved which can be used to generate configuration file. More detail can be founded in [Document](http://bioinfo.rjh.com.cn/labs/jhuang/tools/BioInstaller/) website.
 
 ## Installation
 
@@ -23,7 +23,7 @@ install.packages('BioInstaller')
 # Install the cutting edge development version from Lab-GitHub:
 # Now only Jhuanglab members can get the source
 # install.packages("devtools")
-devtools::install_github("Miachol/BioInstaller")
+devtools::install_github("JhuangLab/BioInstaller")
 ```
 
 ## Support Summary

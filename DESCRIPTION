@@ -6,8 +6,8 @@ Description:
     Can be used to install and download massive bioinformatics analysis softwares and databases, such as NGS reads mapping tools with its required databases.
 Depends:
     R (>= 3.3.0)
-URL: https://github.com/Miachol/BioInstaller, http://bioinfo.rjh.com.cn/labs/jhuang/tools/BioInstaller
-BugReports: https://github.com/Miachol/BioInstaller/issues
+URL: https://github.com/JhuangLab/BioInstaller, http://bioinfo.rjh.com.cn/labs/jhuang/tools/BioInstaller
+BugReports: https://github.com/JhuangLab/BioInstaller/issues
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
