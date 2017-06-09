@@ -51,9 +51,10 @@ test_that("initial",{
 
 test_that("set.makedir", {
   old.workdir <- getwd()
-  makedir.1 <- sprintf("%s/setmakedir/test_makedir1", tempdir())
-  makedir.2 <- sprintf("%s/setmakedir/test_makedir2", tempdir())
-  destdir <- sprintf("%s/setmakedir", tempdir())
+  tmp.dir <- normalizePath(tempdir(), "/")
+  makedir.1 <- sprintf("%s/setmakedir/test_makedir1", tmp.dir)
+  makedir.2 <- sprintf("%s/setmakedir/test_makedir2", tmp.dir)
+  destdir <- sprintf("%s/setmakedir", tmp.dir)
   destdir <- normalizePath(destdir, "/", FALSE)
   makedir.1 <- normalizePath(makedir.1, "/", FALSE)
   makedir.2 <- normalizePath(makedir.2, "/", FALSE)
