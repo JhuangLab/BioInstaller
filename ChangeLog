@@ -1,3 +1,7 @@
+2017-06-09 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
+
+		* Reduce the redundant step of extra files copy
+
 2017-06-08 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
 
 		* multiple line of #R# CMD can be parsed

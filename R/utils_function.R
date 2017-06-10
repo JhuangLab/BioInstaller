@@ -121,11 +121,7 @@ extract.file <- function(file, destdir, decompress = TRUE) {
     files <- list.files(dirname(file))
     files.path <- sprintf("%s/%s", dirname(file), files)
     destfiles.path <- sprintf("%s/%s", destdir, files)
-    if (sum(length(list.files(files.path))) == 0) {
-      status <- file.copy(files.path, destfiles.path)
-    } else {
-      status <- file.copy(files.path, destdir, recursive = T)
-    }
+    status <- file.rename(files.path, destfiles.path)
     status <- all(status)
     return(status)
   }
@@ -159,7 +155,7 @@ drop_redundance_dir <- function(destdir) {
     files.child <- list.files(files.parent)
     files.path <- sprintf("%s/%s", files.parent, files.child)
     destfiles.path <- sprintf("%s/%s", destdir, files.child)
-    status <- file.copy(files.path, destdir, recursive = TRUE)
+    status <- file.rename(files.path, destfiles.path)
     unlink(files.parent, recursive = TRUE)
     files.parent <- list.files(destdir)
     if (length(files.parent) > 0) {
@@ -170,7 +166,8 @@ drop_redundance_dir <- function(destdir) {
   }
 }
 
-# Download from url, if is.dir is TRUE, it will get filenames first and download them (FTP supported only)
+# Download from url, if is.dir is TRUE, it will get filenames first and download
+# them (FTP supported only)
 download.file.custom <- function(url = "", destfile = "", is.dir = FALSE, showWarnings = F, 
   ...) {
   status <- NULL
@@ -214,7 +211,7 @@ destdir.initial <- function(destdir, strict = TRUE, download.only = FALSE) {
     count <- 1
     while (flag.input == "N" || !flag.input %in% c("y", "n", "Y", "N")) {
       if (count > 3) {
-        cat('More than 3 counts input, default is not to overwrite.\n')
+        cat("More than 3 counts input, default is not to overwrite.\n")
         return(FALSE)
       }
       if (flag.input != "N" && !(flag.input %in% c("y", "n", "Y", "N"))) {
@@ -238,7 +235,7 @@ destdir.initial <- function(destdir, strict = TRUE, download.only = FALSE) {
     count <- 1
     while (flag.input == "N" || !flag.input %in% c("y", "n", "Y", "N")) {
       if (count > 3) {
-        cat('More than 3 counts input, default is not to overwrite.\n')
+        cat("More than 3 counts input, default is not to overwrite.\n")
         return(FALSE)
       }
       if (flag.input != "N" && !(flag.input %in% c("y", "n", "Y", "N"))) {

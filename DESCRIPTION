@@ -1,6 +1,6 @@
 Package: BioInstaller 
 Title: Lightweight Biology Software Installer
-Version: 0.1.1.4
+Version: 0.1.1.5
 Authors@R: person("Jianfeng", "Li", email = "lee_jianfeng@sjtu.edu.cn", role = c("aut", "cre"))
 Description: 
     Can be used to install and download massive bioinformatics analysis softwares and databases, such as NGS reads mapping tools with its required databases.
@@ -20,6 +20,7 @@ Imports:
     RCurl (>= 1.95-4.8),
     rvest (>= 0.3.2),
     devtools (>= 1.13.2),
+    stringi (>= 1.1.5),
 RoxygenNote: 6.0.1
 Suggests: knitr,
     rmarkdown,

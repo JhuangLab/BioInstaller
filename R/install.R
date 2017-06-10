@@ -406,9 +406,10 @@ install.nongithub <- function(name = "", download.dir = NULL, destdir = NULL, ve
   info.msg(msg, verbose = verbose)
   info.msg("Running before install steps.", verbose = verbose)
   if (need.download && !is.download.dir(config)) {
-    extract_dir <- sprintf("%s/install_tmp/", tempdir())
-    dir.create(extract_dir, showWarnings = FALSE, recursive = TRUE)
-    destfile <- sprintf("%s/%s", extract_dir, filename)
+    tmp.dir <- sprintf("%s/%s", dirname(download.dir), stri_rand_strings(1, 10))
+    dir.create(tmp.dir, recursive = TRUE)
+    tmp.dir <- normalizePath(tmp.dir, "/")
+    destfile <- sprintf("%s/%s", tmp.dir, filename)
     msg <- sprintf("Now start to download %s in %s.", name, download.dir)
     info.msg(msg, verbose = verbose)
     status <- download.dir.files(config, source_url, destfile, showWarnings, 
@@ -432,6 +433,7 @@ install.nongithub <- function(name = "", download.dir = NULL, destdir = NULL, ve
       status <- extract.file(fn, download.dir, decompress[count])
       count <- count + 1
     }
+    unlink(tmp.dir, recursive = TRUE, force = TRUE)
     if (!all(status)) {
       return(FALSE)
     }
@@ -453,12 +455,14 @@ install.nongithub <- function(name = "", download.dir = NULL, destdir = NULL, ve
     config <- configr::parse.extra(config = config, bash.parse = bash.parse)
   }
   make.dir <- config$make_dir
-  files <- list.files(download.dir)
+  all.files <- list.files(download.dir)
   set.makedir(make.dir, download.dir)
-  if ((length(files) == 1) && (length(list.files(files)) != 0)) {
-    file.copy(sprintf("%s/%s", files, list.files(files)), "./", recursive = T, 
-      copy.mode = TRUE)
-    unlink(files, recursive = TRUE, force = TRUE)
+  all.files.sub <- list.files(all.files, ".*")
+  if ((length(all.files) == 1) && (length(all.files.sub) != 0)) {
+    file.rename(sprintf("%s/%s", all.files, all.files.sub, sprintf("./", all.files.sub)))
+    if (all.files.sub == 0) {
+      unlink(all.files, recursive = TRUE, force = TRUE)
+    }
   }
   before.cmd <- get.subconfig(config, "before_install")
   status <- for_runcmd(before.cmd, verbose = verbose)
