@@ -1,0 +1,20 @@
+[blast]
+ftp = "ftp://ftp.ncbi.nih.gov/blast/db/"
+
+[uniprot]
+ftp = "ftp://ftp.uniprot.org/pub/databases/uniprot"
+
+[kegg]
+ftp = "ftp://ftp.genome.jp/pub"
+
+[ncbi]
+ftp = "ftp://ftp.ncbi.nih.gov/pub"
+
+[ensembl]
+ftp = "ftp://ftp.ensembl.org/pub/"
+
+[tcga_gdc]
+portal = "https://portal.gdc.cancer.gov/search/s?facetTab=cases&filters=%7B%22op%22:%22and%22,%22content%22:%5B%7B%22op%22:%22in%22,%22content%22:%7B%22field%22:%22cases.project.program.name%22,%22value%22:%5B%22TCGA%22%5D%7D%7D%5D%7D"
+
+[cbioportal]
+portal = 'http://www.cbioportal.org/index.do'

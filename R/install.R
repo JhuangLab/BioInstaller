@@ -21,6 +21,9 @@
 #' @param extra.list A list that can replace the configuration file '{{debug}}' by list(debug = TRUE), and {{debug}} will be setted to TRUE
 #' @param rcmd.parse Logical wheather parse '@>@str_replace('abc', 'b', 'c')@<@' in config to 'acc'
 #' @param bash.parse Logical wheather parse '#>#echo $HOME#<#' in config to your HOME PATH
+#' @param glue.parse Logical wheather parse '!!glue{1:5}' in config to ['1','2','3','4','5']; 
+#' ['nochange', '!!glue(1:5)', 'nochange'] => ['nochange', '1', '2', '3', '4', '5', 'nochange']
+#' @param glue.flag A character flage indicating wheater run glue() function to parse (Default is !!glue) 
 #' @param verbose Ligical indicating wheather show the log message
 #' @param ... Other key and value paired need be saved in BioInstaller passed to \code{\link{change.info}}
 #' @export
@@ -36,7 +39,8 @@ install.bioinfo <- function(name = c(), download.dir = c(), destdir = c(), name.
   version = c(), show.all.versions = FALSE, show.all.names = FALSE, db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", 
     system.file("extdata", "softwares_db_demo.yaml", package = "BioInstaller")), 
   download.only = FALSE, decompress = TRUE, dependence.need = TRUE, showWarnings = FALSE, 
-  extra.list = list(), rcmd.parse = TRUE, bash.parse = TRUE, verbose = TRUE, ...) {
+  extra.list = list(), rcmd.parse = TRUE, bash.parse = TRUE, glue.parse = TRUE, 
+  glue.flag = "!!glue", verbose = TRUE, ...) {
   db.check(db)
   github.names <- eval.config.sections(file = github.cfg)
   nongithub.names <- eval.config.sections(file = nongithub.cfg)
@@ -83,7 +87,7 @@ install.bioinfo <- function(name = c(), download.dir = c(), destdir = c(), name.
         show.all.versions = show.all.versions, db = db, download.only = download.only, 
         verbose = verbose, showWarnings = showWarnings, dependence.need = dependence.need, 
         extra.list = extra.list, rmcd.parse = rcmd.parse, bash.parse = bash.parse, 
-        ...)
+        glue.parse = glue.parse, glue.flag = glue.flag, ...)
       bygithub <- c(bygithub, i)
     } else if (i %in% nongithub.names || (sf.name %in% nongithub.names && sf.name != 
       i)) {
@@ -97,7 +101,8 @@ install.bioinfo <- function(name = c(), download.dir = c(), destdir = c(), name.
         show.all.versions = show.all.versions, db = db, download.only = download.only, 
         showWarnings = showWarnings, decompress = decompress, dependence.need = dependence.need, 
         verbose = verbose, extra.list = extra.list, rcmd.parse = rcmd.parse, 
-        bash.parse = bash.parse, ...)
+        bash.parse = bash.parse, glue.parse = glue.parse, glue.flag = glue.flag, 
+        ...)
       bynongithub <- c(bynongithub, i)
     } else {
       warning(sprintf("%s not existed in install database, so can not be installed by BioInstaller package.", 
@@ -165,6 +170,9 @@ install.bioinfo <- function(name = c(), download.dir = c(), destdir = c(), name.
 #' @param extra.list A list that can replace the configuration file '{{debug}}' by list(debug = TRUE), and {{debug}} will be setted to TRUE
 #' @param rcmd.parse Logical wheather parse '@>@str_replace('abc', 'b', 'c')@<@' in config to 'acc'
 #' @param bash.parse Logical wheather parse '#>#echo $HOME#<#' in config to your HOME PATH
+#' @param glue.parse Logical wheather parse '!!glue{1:5}' in config to ['1','2','3','4','5']; 
+#' ['nochange', '!!glue(1:5)', 'nochange'] => ['nochange', '1', '2', '3', '4', '5', 'nochange']
+#' @param glue.flag A character flage indicating wheater run glue() function to parse (Default is !!glue) 
 #' @param save.to.db Ligical indicating wheather save the install infomation in db
 #' @param verbose Ligical indicating wheather show the log message
 #' @param ... Other key and value paired need be saved in BioInstaller passed to \code{\link{change.info}}
@@ -180,7 +188,8 @@ install.github <- function(name = "", download.dir = NULL, destdir = NULL, versi
     "github.toml", package = "BioInstaller"), db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", 
     system.file("extdata", "softwares_db_demo.yaml", package = "BioInstaller")), 
   download.only = FALSE, showWarnings = FALSE, dependence.need = TRUE, extra.list = list(), 
-  rcmd.parse = TRUE, bash.parse = TRUE, save.to.db = TRUE, verbose = TRUE, ...) {
+  rcmd.parse = TRUE, bash.parse = TRUE, glue.parse = TRUE, glue.flag = "!!glue", 
+  save.to.db = TRUE, verbose = TRUE, ...) {
   old.work.dir <- getwd()
   config.cfg <- github.cfg
   name <- tolower(name)
@@ -213,9 +222,8 @@ install.github <- function(name = "", download.dir = NULL, destdir = NULL, versi
   args.all$os.version <- get.os()
   args.all <- args.all[names(args.all) != ""]
   config <- configr::parse.extra(config = config, extra.list = args.all)
-  config <- configr::parse.extra(config = config, other.config = db)
-  config <- configr::parse.extra(config = config, rcmd.parse = rcmd.parse)
-  config <- configr::parse.extra(config = config, bash.parse = bash.parse)
+  config <- configr::parse.extra(config = config, other.config = db, rcmd.parse = rcmd.parse, 
+    bash.parse = bash.parse, glue.parse = glue.parse, glue.flag = glue.flag)
   
   github_url <- config$github_url
   use_git2r <- config$use_git2r
@@ -251,9 +259,8 @@ install.github <- function(name = "", download.dir = NULL, destdir = NULL, versi
     process.dependence(config, db, download.dir, destdir, verbose)
     config <- eval.config(config = name, file = config.cfg)
     config <- configr::parse.extra(config = config, extra.list = args.all)
-    config <- configr::parse.extra(config, other.config = db)
-    config <- configr::parse.extra(config = config, rcmd.parse = rcmd.parse)
-    config <- configr::parse.extra(config = config, bash.parse = bash.parse)
+    config <- configr::parse.extra(config = config, other.config = db, rcmd.parse = rcmd.parse, 
+      bash.parse = bash.parse, glue.parse = glue.parse, glue.flag = glue.flag)
   }
   set.makedir(make.dir, download.dir)
   before.cmd <- get.subconfig(config, "before_install")
@@ -323,6 +330,9 @@ install.github <- function(name = "", download.dir = NULL, destdir = NULL, versi
 #' @param extra.list A list that can replace the configuration file '{{debug}}' by list(debug = TRUE), and {{debug}} will be setted to TRUE
 #' @param rcmd.parse Logical wheather parse '@>@str_replace('abc', 'b', 'c')@<@' in config to 'acc'
 #' @param bash.parse Logical wheather parse '#>#echo $HOME#<#' in config to your HOME PATH
+#' @param glue.parse Logical wheather parse '!!glue{1:5}' in config to ['1','2','3','4','5']; 
+#' ['nochange', '!!glue(1:5)', 'nochange'] => ['nochange', '1', '2', '3', '4', '5', 'nochange']
+#' @param glue.flag A character flage indicating wheater run glue() function to parse (Default is !!glue) 
 #' @param save.to.db Ligical indicating wheather save the install infomation in db
 #' @param verbose Ligical indicating wheather show the log message
 #' @param ... Other key and value paired need be saved in BioInstaller passed to \code{\link{change.info}}
@@ -338,8 +348,8 @@ install.nongithub <- function(name = "", download.dir = NULL, destdir = NULL, ve
     "nongithub.toml", package = "BioInstaller"), db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", 
     system.file("extdata", "softwares_db_demo.yaml", package = "BioInstaller")), 
   download.only = FALSE, decompress = TRUE, dependence.need = TRUE, showWarnings = FALSE, 
-  extra.list = list(), rcmd.parse = TRUE, bash.parse = TRUE, save.to.db = TRUE, 
-  verbose = TRUE, ...) {
+  extra.list = list(), rcmd.parse = TRUE, bash.parse = TRUE, glue.parse = TRUE, 
+  glue.flag = "!!glue", save.to.db = TRUE, verbose = TRUE, ...) {
   old.work.dir <- getwd()
   config.cfg <- nongithub.cfg
   name <- tolower(name)
@@ -373,9 +383,8 @@ install.nongithub <- function(name = "", download.dir = NULL, destdir = NULL, ve
   args.all <- args.all[names(args.all) != ""]
   args.all <- configr::config.list.merge(args.all, extra.list)
   config <- configr::parse.extra(config = config, extra.list = args.all)
-  config <- configr::parse.extra(config = config, other.config = db)
-  config <- configr::parse.extra(config = config, rcmd.parse = rcmd.parse)
-  config <- configr::parse.extra(config = config, bash.parse = bash.parse)
+  config <- configr::parse.extra(config = config, other.config = db, rcmd.parse = rcmd.parse, 
+    bash.parse = bash.parse, glue.parse = glue.parse, glue.flag = glue.flag)
   
   source_url <- source.url.initial(config)
   if ((all(is.null(source_url)) | all(source_url == "")) | (is.logical(config$no.need.download) && 
@@ -450,9 +459,8 @@ install.nongithub <- function(name = "", download.dir = NULL, destdir = NULL, ve
     status <- config.and.name.initial(config.cfg, name)
     config <- eval.config(config = name, file = config.cfg)
     config <- configr::parse.extra(config = config, extra.list = args.all)
-    config <- configr::parse.extra(config = config, other.config = db)
-    config <- configr::parse.extra(config = config, rcmd.parse = rcmd.parse)
-    config <- configr::parse.extra(config = config, bash.parse = bash.parse)
+    config <- configr::parse.extra(config = config, other.config = db, rcmd.parse = rcmd.parse, 
+      bash.parse = bash.parse, glue.parse = glue.parse, glue.flag = glue.flag)
   }
   make.dir <- config$make_dir
   all.files <- list.files(download.dir)

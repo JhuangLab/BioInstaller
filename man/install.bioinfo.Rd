@@ -13,7 +13,7 @@ install.bioinfo(name = c(), download.dir = c(), destdir = c(),
   "softwares_db_demo.yaml", package = "BioInstaller")), download.only = FALSE,
   decompress = TRUE, dependence.need = TRUE, showWarnings = FALSE,
   extra.list = list(), rcmd.parse = TRUE, bash.parse = TRUE,
-  verbose = TRUE, ...)
+  glue.parse = TRUE, glue.flag = "!!glue", verbose = TRUE, ...)
 }
 \arguments{
 \item{name}{Software name}
@@ -53,6 +53,11 @@ system.file('extdata', 'softwares_db_demo.yaml', package = 'BioInstaller'))}
 \item{rcmd.parse}{Logical wheather parse '@>@str_replace('abc', 'b', 'c')@<@' in config to 'acc'}
 
 \item{bash.parse}{Logical wheather parse '#>#echo $HOME#<#' in config to your HOME PATH}
+
+\item{glue.parse}{Logical wheather parse '!!glue{1:5}' in config to ['1','2','3','4','5']; 
+['nochange', '!!glue(1:5)', 'nochange'] => ['nochange', '1', '2', '3', '4', '5', 'nochange']}
+
+\item{glue.flag}{A character flage indicating wheater run glue() function to parse (Default is !!glue)}
 
 \item{verbose}{Ligical indicating wheather show the log message}
 

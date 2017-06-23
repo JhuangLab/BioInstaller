@@ -1,3 +1,9 @@
+2017-06-22 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
+
+		* Use v0.3.0 configr: glue parse be supported
+		* inst/extdata/nongithub_databases_blast.toml be added
+		* inst/extdata/nongithub_databases_meta.toml be added
+
 2017-06-09 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
 
 		* Reduce the redundant step of extra files copy

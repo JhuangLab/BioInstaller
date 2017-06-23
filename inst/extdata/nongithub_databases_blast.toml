@@ -1,0 +1,238 @@
+# Configuration file of install.softwares(Non-Github)
+title = "Non-Github Configuration File (Databases): blast FTP sets (ftp://ftp.ncbi.nih.gov/blast/db/)"
+[blast_env_nr]
+source_url = "!!glue ftp://ftp.ncbi.nih.gov/blast/db/env_nr.{ids=sprintf('%02d', 0:23);rep(ids, 2)}.tar.gz{c(rep('', length(ids)), rep('.md5', length(ids)))}"
+version_available = ["newest"]
+after_failure = "echo 'fail!'"
+after_success = "echo 'successful!'"
+make_dir = ["./"]
+bin_dir = ["./"]
+
+[blast_est_human]
+source_url = "!!glue ftp://ftp.ncbi.nih.gov/blast/db/est_human.{ids=sprintf('%02d', 0:1);rep(ids, 2)}.tar.gz{c(rep('', length(ids)), rep('.md5', length(ids)))}"
+version_available = ["newest"]
+after_failure = "echo 'fail!'"
+after_success = "echo 'successful!'"
+make_dir = ["./"]
+bin_dir = ["./"]
+
+[blast_est_mouse]
+source_url = "!!glue ftp://ftp.ncbi.nih.gov/blast/db/est_mouse.{ids=sprintf('%02d', 0:1);rep(ids, 2)}.tar.gz{c(rep('', length(ids)), rep('.md5', length(ids)))}"
+version_available = ["newest"]
+after_failure = "echo 'fail!'"
+after_success = "echo 'successful!'"
+make_dir = ["./"]
+bin_dir = ["./"]
+
+[blast_est_others]
+source_url = "!!glue ftp://ftp.ncbi.nih.gov/blast/db/est_others.{ids=sprintf('%02d', 0:10);rep(ids, 2)}.tar.gz{c(rep('', length(ids)), rep('.md5', length(ids)))}"
+version_available = ["newest"]
+after_failure = "echo 'fail!'"
+after_success = "echo 'successful!'"
+make_dir = ["./"]
+bin_dir = ["./"]
+
+[blast_gss]
+source_url = ["!!glue ftp://ftp.ncbi.nih.gov/blast/db/gss.{ids=sprintf('%02d', 0:6);rep(ids, 2)}.tar.gz{c(rep('', length(ids)), rep('.md5', length(ids)))}",
+              "ftp://ftp.ncbi.nih.gov/blast/db/gss_annot.00.tar.gz{c('', '.md5')}"]
+version_available = ["newest"]
+after_failure = "echo 'fail!'"
+after_success = "echo 'successful!'"
+make_dir = ["./"]
+bin_dir = ["./"]
+
+
+[blast_htgs]
+source_url = ["!!glue ftp://ftp.ncbi.nih.gov/blast/db/htgs.{ids=sprintf('%02d', 0:10);rep(ids, 2)}.tar.gz{c(rep('', length(ids)), rep('.md5', length(ids)))}"]
+version_available = ["newest"]
+after_failure = "echo 'fail!'"
+after_success = "echo 'successful!'"
+make_dir = ["./"]
+bin_dir = ["./"]
+
+[blast_human_genomic]
+source_url = ["!!glue ftp://ftp.ncbi.nih.gov/blast/db/human_genomic.{ids=sprintf('%02d', 0:21);rep(ids, 2)}.tar.gz{c(rep('', length(ids)), rep('.md5', length(ids)))}",
+              "ftp://ftp.ncbi.nih.gov/blast/db/human_genomic_transcript.tar.gz{c('', '.md5')}"]
+version_available = ["newest"]
+after_failure = "echo 'fail!'"
+after_success = "echo 'successful!'"
+make_dir = ["./"]
+bin_dir = ["./"]
+
+[blast_landmark]
+source_url = ["!!glue ftp://ftp.ncbi.nih.gov/blast/db/landmark.tar.gz{c('', '.md5')}"]
+version_available = ["newest"]
+after_failure = "echo 'fail!'"
+after_success = "echo 'successful!'"
+make_dir = ["./"]
+bin_dir = ["./"]
+
+[blast_mouse_genomic]
+source_url = ["!!glue ftp://ftp.ncbi.nih.gov/blast/db/mouse_genomic_transcript.tar.gz{c('', '.md5')}"]
+version_available = ["newest"]
+after_failure = "echo 'fail!'"
+after_success = "echo 'successful!'"
+make_dir = ["./"]
+bin_dir = ["./"]
+
+[blast_nr]
+source_url = ["!!glue ftp://ftp.ncbi.nih.gov/blast/db/nr.{ids=sprintf('%02d', 0:68);rep(ids, 2)}.tar.gz{c(rep('', length(ids)), rep('.md5', length(ids)))}"]
+version_available = ["newest"]
+after_failure = "echo 'fail!'"
+after_success = "echo 'successful!'"
+make_dir = ["./"]
+bin_dir = ["./"]
+
+[blast_nt]
+source_url = ["!!glue ftp://ftp.ncbi.nih.gov/blast/db/nt.{ids=sprintf('%02d', 0:47);rep(ids, 2)}.tar.gz{c(rep('', length(ids)), rep('.md5', length(ids)))}"]
+version_available = ["newest"]
+after_failure = "echo 'fail!'"
+after_success = "echo 'successful!'"
+make_dir = ["./"]
+bin_dir = ["./"]
+
+[blast_other_genomic]
+source_url = ["!!glue ftp://ftp.ncbi.nih.gov/blast/db/other_genomic.{ids=sprintf('%02d', 0:99);rep(ids, 2)}.tar.gz{c(rep('', length(ids)), rep('.md5', length(ids)))}", 
+              "!!glue ftp://ftp.ncbi.nih.gov/blast/db/other_genomic.{ids=sprintf('%d', 100:178);rep(ids, 2)}.tar.gz{c(rep('', length(ids)), rep('.md5', length(ids)))}"]
+version_available = ["newest"]
+after_failure = "echo 'fail!'"
+after_success = "echo 'successful!'"
+make_dir = ["./"]
+bin_dir = ["./"]
+
+[blast_pataa]
+source_url = ["!!glue ftp://ftp.ncbi.nih.gov/blast/db/pataa.tar.gz{c('', '.md5')}"]
+version_available = ["newest"]
+after_failure = "echo 'fail!'"
+after_success = "echo 'successful!'"
+make_dir = ["./"]
+bin_dir = ["./"]
+
+[blast_patnt]
+source_url = ["!!glue ftp://ftp.ncbi.nih.gov/blast/db/patnt.{ids=sprintf('%02d', 0:4);rep(ids, 2)}.tar.gz{c(rep('', length(ids)), rep('.md5', length(ids)))}"]
+version_available = ["newest"]
+after_failure = "echo 'fail!'"
+after_success = "echo 'successful!'"
+make_dir = ["./"]
+bin_dir = ["./"]
+
+[blast_pdbaa]
+source_url = ["!!glue ftp://ftp.ncbi.nih.gov/blast/db/pdbaa.tar.gz{c('', '.md5')}"]
+version_available = ["newest"]
+after_failure = "echo 'fail!'"
+after_success = "echo 'successful!'"
+make_dir = ["./"]
+bin_dir = ["./"]
+
+[blast_pdbnt]
+source_url = ["!!glue ftp://ftp.ncbi.nih.gov/blast/db/pdbnt.{ids=sprintf('%02d', 0:47);rep(ids, 2)}.tar.gz{c(rep('', length(ids)), rep('.md5', length(ids)))}"]
+version_available = ["newest"]
+after_failure = "echo 'fail!'"
+after_success = "echo 'successful!'"
+make_dir = ["./"]
+bin_dir = ["./"]
+
+[blast_ref_prok_rep_genomes]
+source_url = ["!!glue ftp://ftp.ncbi.nih.gov/blast/db/ref_prok_rep_genomes.{ids=sprintf('%02d', 0:5);rep(ids, 2)}.tar.gz{c(rep('', length(ids)), rep('.md5', length(ids)))}"]
+version_available = ["newest"]
+after_failure = "echo 'fail!'"
+after_success = "echo 'successful!'"
+make_dir = ["./"]
+bin_dir = ["./"]
+
+[blast_ref_viroids_rep_genomes]
+source_url = ["!!glue ftp://ftp.ncbi.nih.gov/blast/db/ref_viroids_rep_genomes.tar.gz{c('', '.md5')}"]
+version_available = ["newest"]
+after_failure = "echo 'fail!'"
+after_success = "echo 'successful!'"
+make_dir = ["./"]
+bin_dir = ["./"]
+
+[blast_ref_viruses_rep_genomes]
+source_url = ["!!glue ftp://ftp.ncbi.nih.gov/blast/db/ref_viruses_rep_genomes.tar.gz{c('', '.md5')}"]
+version_available = ["newest"]
+after_failure = "echo 'fail!'"
+after_success = "echo 'successful!'"
+make_dir = ["./"]
+bin_dir = ["./"]
+
+[blast_refseq_genomic]
+source_url = ["!!glue ftp://ftp.ncbi.nih.gov/blast/db/refseq_genomic.{ids=sprintf('%02d', 0:99);rep(ids, 2)}.tar.gz{c(rep('', length(ids)), rep('.md5', length(ids)))}", 
+              "!!glue ftp://ftp.ncbi.nih.gov/blast/db/refseq_genomic.{ids=sprintf('%d', 100:270);rep(ids, 2)}.tar.gz{c(rep('', length(ids)), rep('.md5', length(ids)))}"]
+version_available = ["newest"]
+after_failure = "echo 'fail!'"
+after_success = "echo 'successful!'"
+make_dir = ["./"]
+bin_dir = ["./"]
+
+[blast_refseq_protein]
+source_url = ["!!glue ftp://ftp.ncbi.nih.gov/blast/db/refseq_protein.{ids=sprintf('%02d', 0:32);rep(ids, 2)}.tar.gz{c(rep('', length(ids)), rep('.md5', length(ids)))}"]
+version_available = ["newest"]
+after_failure = "echo 'fail!'"
+after_success = "echo 'successful!'"
+make_dir = ["./"]
+bin_dir = ["./"]
+
+[blast_refseq_rna]
+source_url = ["!!glue ftp://ftp.ncbi.nih.gov/blast/db/refseq_rna.{ids=sprintf('%02d', 0:11);rep(ids, 2)}.tar.gz{c(rep('', length(ids)), rep('.md5', length(ids)))}"]
+version_available = ["newest"]
+after_failure = "echo 'fail!'"
+after_success = "echo 'successful!'"
+make_dir = ["./"]
+bin_dir = ["./"]
+
+[blast_refseqgene]
+source_url = ["!!glue ftp://ftp.ncbi.nih.gov/blast/db/refseqgene.tar.gz{c('', '.md5')}"]
+version_available = ["newest"]
+after_failure = "echo 'fail!'"
+after_success = "echo 'successful!'"
+make_dir = ["./"]
+bin_dir = ["./"]
+
+[blast_sts]
+source_url = ["!!glue ftp://ftp.ncbi.nih.gov/blast/db/sts.tar.gz{c('', '.md5')}"]
+version_available = ["newest"]
+after_failure = "echo 'fail!'"
+after_success = "echo 'successful!'"
+make_dir = ["./"]
+bin_dir = ["./"]
+
+[blast_swissprot]
+source_url = ["!!glue ftp://ftp.ncbi.nih.gov/blast/db/swissprot.tar.gz{c('', '.md5')}"]
+version_available = ["newest"]
+after_failure = "echo 'fail!'"
+after_success = "echo 'successful!'"
+make_dir = ["./"]
+bin_dir = ["./"]
+
+[blast_taxdb]
+source_url = ["!!glue ftp://ftp.ncbi.nih.gov/blast/db/taxdb.tar.gz{c('', '.md5')}"]
+version_available = ["newest"]
+after_failure = "echo 'fail!'"
+after_success = "echo 'successful!'"
+make_dir = ["./"]
+bin_dir = ["./"]
+
+[blast_tsa_nr]
+source_url = ["!!glue ftp://ftp.ncbi.nih.gov/blast/db/tsa_nr.tar.gz{c('', '.md5')}"]
+version_available = ["newest"]
+after_failure = "echo 'fail!'"
+after_success = "echo 'successful!'"
+make_dir = ["./"]
+bin_dir = ["./"]
+
+[blast_tsa_nt]
+source_url = ["!!glue ftp://ftp.ncbi.nih.gov/blast/db/tsa_nt{ids=sprintf('%02d', 0:15);rep(ids, 2)}.tar.gz{c(rep('', length(ids)), rep('.md5', length(ids)))}"]
+version_available = ["newest"]
+after_failure = "echo 'fail!'"
+after_success = "echo 'successful!'"
+make_dir = ["./"]
+bin_dir = ["./"]
+
+[blast_vector]
+source_url = ["!!glue ftp://ftp.ncbi.nih.gov/blast/db/vector{ids=sprintf('%02d', 0:15);rep(ids, 2)}.tar.gz{c(rep('', length(ids)), rep('.md5', length(ids)))}"]
+version_available = ["newest"]
+after_failure = "echo 'fail!'"
+after_success = "echo 'successful!'"
+make_dir = ["./"]
+bin_dir = ["./"]
