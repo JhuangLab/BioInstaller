@@ -1,0 +1,93 @@
+---
+title: "Examples of Templet Configuration File"
+author: "Jianfeng Li"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Examples of Templet Configuration File}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(comment = "#>", collapse = TRUE)
+```
+
+BioInstaller using [configr](https://github.com/Miachol/configr) to parse all of configuration files, so you can use some of `code` to set all of item in configuration file which can be parsed by `configr` package. Example of `code` can be found below.
+
+## github.toml and nongithub.toml
+
+Built-in configuration files: `github.toml` and `nongithub.toml` let us to download/install several softwares/dependence by default parameters of BioInstaller. `install.bioinfo(show.all.names = TRUE)` can found all of avaliable softwares, dependence in github.toml and nongithub.toml.
+
+### Github Softwares
+Github softwares version control can be done `git2r` package. Source url be setted by `github_url`.
+
+If `use_git2r` be setted to `false`, BioInstaller will use the [git](https://en.wikipedia.org/wiki/Git) of your system.
+
+In addition, when `use_git2r` be setted to `false` and `recursive_clone` be setted to `true`, the behaviour is like that `git clone --recursive https://path/repo`
+
+```toml
+[bwa]
+github_url = "https://github.com/lh3/bwa"
+after_failure = "echo 'fail!'"
+after_success = "echo 'successful!'"
+make_dir = ["./"]
+bin_dir = ["./"]
+
+[bwa.before_install]
+linux = ""
+mac = ""
+
+[bwa.install]
+linux = "make"
+mac = "make"
+```
+
+### Non-Github Softwares or Databases
+
+Non-Github softwares version control need to write a function parsing URL and use `{{version}}` to replace in the `source_url`.
+
+`url_all_download` be setted to `true` if need to download mulitple files. [rvest](https://cran.r-project.org/package=rvest) and [RCurl](https://cran.r-project.org/package=RCurl) packages can be used to parse the version infomation of non-github softwares or databases.
+`version_order_fixed` can be setted to `true` if you don't want to using the built-in version reorder function.
+
+If you set `url_all_download` to `false`, which can let us using multiple mirror to avoid one of invalid URL.
+
+```toml
+[gmap]
+# {{version}} will be parsed to your install.bioinfo `version` parameter
+# or the newest version parsed from fetched data.
+source_url = "http://research-pub.gene.com/gmap/src/{{version}}.tar.gz"
+after_failure = "echo 'fail!'"
+after_success = "echo 'successful!'"
+make_dir = ["./"]
+bin_dir = ["./"]
+
+[gmap.before_install]
+linux = ""
+mac = ""
+
+[gmap.install]
+linux = "./configure --prefix=`pwd` && make && make install"
+mac = ["sed -i s/\"## CFLAGS='-O3 -m64' .*\"/\"CFLAGS='-O3 -m64'\"/ config.site",
+"./configure --prefix=`pwd` && make && make install"]
+```
+
+## nongithub_databases_blast.toml
+
+The configuration file can be used to download NCBI blast database. You can use this file: `install.bioinfo(nongithub.cfg = system.file('extdata', 'nongithub_databases_blast.toml', package = 'BioInstaller'), show.all.names = TRUE)`.
+
+BioInstaller using [configr](https://github.com/Miachol/configr) `glue` to reduce the length of files name. That can let us using less word to storage more files name. More usefile databases FTP url can be accessed in the future. I hope you can set your own configuration file not only using the BioInstaller built-in configuration files.
+
+```{r}
+library(configr)
+library(BioInstaller)
+blast.databases <- system.file('extdata', 
+  'nongithub_databases_blast.toml', package = 'BioInstaller')
+
+read.config(blast.databases)$blast_nr$source_url
+read.config(blast.databases, glue.parse = TRUE)$blast_nr$source_url
+mask.github <- tempfile()
+file.create(mask.github)
+install.bioinfo(nongithub.cfg = blast.databases, github.cfg = mask.github,
+  show.all.names = TRUE)
+```
