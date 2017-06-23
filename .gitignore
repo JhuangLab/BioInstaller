@@ -25,3 +25,4 @@ vignettes/*.pdf
 *.knit.md
 inst/extdata/softwares_db_demo.yaml
 .Rproj.user
+inst/doc

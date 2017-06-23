@@ -217,8 +217,8 @@ install.github <- function(name = "", download.dir = NULL, destdir = NULL, versi
   
   args.all <- as.list(match.call())
   args.all$version <- version
-  args.all$destdir <- destdir
-  args.all$download.dir <- download.dir
+  args.all$destdir <- normalizePath(destdir, "/", FALSE)
+  args.all$download.dir <- normalizePath(download.dir, "/", FALSE)
   args.all$os.version <- get.os()
   args.all <- args.all[names(args.all) != ""]
   config <- configr::parse.extra(config = config, extra.list = args.all)
@@ -377,8 +377,8 @@ install.nongithub <- function(name = "", download.dir = NULL, destdir = NULL, ve
   
   args.all <- as.list(match.call())
   args.all$version <- version
-  args.all$destdir <- destdir
-  args.all$download.dir <- download.dir
+  args.all$destdir <- normalizePath(destdir, "/", FALSE)
+  args.all$download.dir <- normalizePath(download.dir, "/", FALSE)
   args.all$os.version <- get.os()
   args.all <- args.all[names(args.all) != ""]
   args.all <- configr::config.list.merge(args.all, extra.list)

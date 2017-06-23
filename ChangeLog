@@ -1,3 +1,7 @@
+2017-06-23 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
+
+		* Cancel windows install step (Download still work)
+
 2017-06-22 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
 
 		* Use v0.3.0 configr: glue parse be supported

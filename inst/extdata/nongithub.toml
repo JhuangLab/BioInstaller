@@ -35,7 +35,6 @@ bin_dir = ["{{destdir}}/bin"]
 [gmap.install]
 linux = ["./configure --prefix={{destdir}} && make", "make install"]
 mac = ["sed -i s/\"## CFLAGS='-O3 -m64' .*\"/\"CFLAGS='-O3 -m64'\"/ config.site && ./configure --prefix={{destdir}} && make", "make install"]
-windows = ["./configure --prefix={{destdir}} && make", "make install"]
 
 [annovar]
 source_url = "http://www.openbioinformatics.org/annovar/download/0wgxR2rIVP/annovar.{{version}}.tar.gz"
@@ -128,6 +127,7 @@ url_all_download = false
 version_newest = "EdenaV3.131028"
 
 version_available = ["EdenaV3.131028", "EdenaV3.130110", "EdenaV3.121122", "Edena3dev120926_linux64", "Edena3Dev120626_linux64", "Edena3Dev120626_linux32", "Edena3Dev120615_linux64", "Edena3Dev120615_linux32", "Edena3Dev110920_linux64", "Edena3Dev110920_linux32", "Edena3Dev110815_linux64", "Edena3Dev110815_linux32", "Edena3Dev110814_linux64", "Edena3Dev110814_linux32", "Edena3Dev110705_linux64", "Edena3Dev110705_linux32", "edena2.1.1_linux32", "edena2.1.1_linux64", "edena2.1.1_windows"]
+
 version_order_fixed = true
 
 after_failure = "echo 'fail!'"
@@ -141,7 +141,6 @@ bin_dir = ["{{destdir}}/bin"]
 [edena.install]
 linux = ["make", "mkdir -p {{destdir}}/bin; cp {{download.dir}}/bin/* {{destdir}}/bin"]
 mac = ["make", "mkdir -p {{destdir}}/bin; cp {{download.dir}}/bin/* {{destdir}}/bin"]
-windows = ["make", "mkdir -p {{destdir}}/bin; cp {{download.dir}}/bin/* {{destdir}}/bin"]
 
 [ucsc_utils]
 source_url = "http://hgdownload.cse.ucsc.edu/admin/exe/userApps.{{version}}.src.tgz"
@@ -161,7 +160,6 @@ bin_dir = ["{{destdir}}/bin"]
 [ucsc_utils.install]
 linux = ["make", "mkdir -p {{destdir}}/bin; cp {{download.dir}}/bin/* {{destdir}}/bin"]
 mac = ["make", "mkdir -p {{destdir}}/bin; cp {{download.dir}}/bin/* {{destdir}}/bin"]
-windows = ["make", "mkdir -p {{destdir}}/bin; cp {{download.dir}}/bin/* {{destdir}}/bin"]
 
 [fastqc]
 source_url = ["http://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v{{version}}.zip"]
@@ -202,13 +200,10 @@ bin_dir = ["{{destdir}}/bin"]
 [sqlite.before_install]
 linux = "autoreconf -ivf"
 mac = "autoreconf -ivf"
-windows = "autoreconf -ivf"
 
 [sqlite.install]
 linux = ["./configure --prefix={{destdir}} && make", "make install"]
 mac = ["./configure --prefix={{destdir}} && make ", "make install"]
-windows = ["./configure --prefix={{destdir}} && make", "make install"]
-
 
 [cesa]
 source_url = ["http://liulab.dfci.harvard.edu/CEAS/src/CEAS-Package-{{version}}.tar.gz"]
@@ -228,7 +223,6 @@ bin_dir = ["{{download.dir}}/bin"]
 [cesa.install]
 linux = "python setup.py install"
 mac = "python setup.py install"
-windows = "python setup.py install"
 
 [novoalign]
 source_url = ["http://bioinfo.rjh.com.cn/download/novocraft/download.php?filename=novocraft{{version}}.tar.gz"]
@@ -249,7 +243,6 @@ bin_dir = ["{{destdir}}/bin"]
 [novoalign.install]
 linux = "mkdir -p {{destdir}}/bin; fn=`ls -F |grep '*' | tr -d '*'`;cp $fn {{destdir}}/bin"
 mac = "mkdir -p {{destdir}}/bin; fn=`ls -F |grep '*' | tr -d '*'`;cp $fn {{destdir}}/bin"
-windows = "mkdir -p {{destdir}}/bin; fn=`ls -F |grep '*' | tr -d '*'`;cp $fn {{destdir}}/bin"
 
 [ssaha2]
 source_url = ["ftp://ftp.sanger.ac.uk/pub/resources/software/ssaha2/ssaha2_{{version}}.tgz"]
@@ -269,7 +262,6 @@ bin_dir = ["{{destdir}}/bin"]
 [ssaha2.install]
 linux = "mkdir -p {{destdir}}/bin; fn=`ls -F |grep '*' | tr -d '*'`;cp $fn {{destdir}}/bin"
 mac = "mkdir -p {{destdir}}/bin; fn=`ls -F |grep '*' | tr -d '*'`;cp $fn {{destdir}}/bin"
-windows = "mkdir -p {{destdir}}/bin; fn=`ls -F |grep '*' | tr -d '*'`;cp $fn {{destdir}}/bin"
 
 [gatk]
 source_url = ["http://bioinfo.rjh.com.cn/download/gatk/download.php?filename=gatk{{version}}.zip"]
@@ -289,7 +281,6 @@ bin_dir = ["{{destdir}}/bin"]
 [gatk.install]
 linux = "mkdir -p {{destdir}}/bin; cp *.jar {{destdir}}/bin"
 mac = "mkdir -p {{destdir}}/bin; cp *.jar {{destdir}}/bin"
-windows = "mkdir -p {{destdir}}/bin; cp *.jar {{destdir}}/bin"
 
 [mutect]
 source_url = ["http://bioinfo.rjh.com.cn/download/gatk/download.php?filename=mutect{{version}}.zip"]
@@ -309,8 +300,6 @@ bin_dir = ["{{download.dir}}"]
 [mutect.install]
 linux = "mkdir -p {{destdir}}/bin; cp *.jar {{destdir}}/bin"
 mac = "mkdir -p {{destdir}}/bin; cp *.jar {{destdir}}/bin"
-windows = "mkdir -p {{destdir}}/bin; cp *.jar {{destdir}}/bin"
-
 
 [sratools]
 version_newest = "2.8.2-1"
@@ -327,13 +316,12 @@ bin_dir = ["{{download.dir}}/bin"]
 
 [sratools.source_url]
 linux = "https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/{{version}}/sratoolkit.@>@if('{{os.version}}' == 'centos') {'{{version}}-centos_linux64'} else if ('{{os.version}}' == 'ubuntu') {'{{version}}-ubuntu64'}@<@.tar.gz"
-windows = "https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/{{version}}/sratoolkit.{{version}}-win64.zip"
+
 mac = "https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/{{version}}/sratoolkit.{{version}}-mac64.zip"
 
 [sratools.install]
 linux = ["mkdir -p {{destdir}}/bin; fn=`ls -F bin|grep '*' | tr -d '*'` ;cd bin;", " cp $fn {{destdir}}/bin"]
 mac = ["mkdir -p {{destdir}}/bin; fn=`ls -F bin|grep '*' | tr -d '*'` ;cd bin;", " cp $fn {{destdir}}/bin"]
-windows = ["mkdir -p {{destdir}}/bin; fn=`ls -F bin|grep '*' | tr -d '*'` ;cd bin;", " cp $fn {{destdir}}/bin"]
 
 [fusioncatcher]
 source_url = ["https://sourceforge.net/projects/fusioncatcher/files/fusioncatcher_{{version}}.zip", 
@@ -358,7 +346,6 @@ bin_dir = ["{{destdir}}/bin/fusioncatcher"]
 [fusioncatcher.install]
 linux = ["mkdir {{destdir}}/bin/fusioncatcher; chmod +x bin/*; ", "cp bin/* {{destdir}}/bin/fusioncatcher"]
 mac = ["mkdir {{destdir}}/bin/fusioncatcher; chmod +x bin/*; ", "cp bin/* {{destdir}}/bin/fusioncatcher"]
-windows = ["mkdir {{destdir}}/bin/fusioncatcher; chmod +x bin/*; ", "cp bin/* {{destdir}}/bin/fusioncatcher"]
 
 [pigz]
 source_url = "http://cdn-fastly.deb.debian.org/debian/pool/main/p/pigz/pigz_{{version}}.orig.tar.gz"
@@ -378,7 +365,6 @@ bin_dir = ["{{download.dir}}"]
 [pigz.install]
 linux = "make; mkdir -p {{destdir}}/bin; fn=`ls -F |grep '*' | tr -d '*'`;cp $fn {{destdir}}/bin"
 mac = "make; mkdir -p {{destdir}}/bin; fn=`ls -F |grep '*' | tr -d '*'`;cp $fn {{destdir}}/bin"
-windows = "make; mkdir -p {{destdir}}/bin; fn=`ls -F |grep '*' | tr -d '*'`;cp $fn {{destdir}}/bin"
 
 [velvet]
 source_url = "http://www.ebi.ac.uk/~zerbino/velvet/velvet_{{version}}.tgz"
@@ -398,7 +384,6 @@ bin_dir = ["{{destdir}}/bin"]
 [velvet.install]
 linux = "make && mkdir -p {{destdir}}/bin; fn=`ls -F |grep '*' | tr -d '*'` ;cp $fn {{destdir}}/bin"
 mac = "make && mkdir -p {{destdir}}/bin; fn=`ls -F |grep '*' | tr -d '*'` ;cp $fn {{destdir}}/bin"
-windows = "make && mkdir -p {{destdir}}/bin; fn=`ls -F |grep '*' | tr -d '*'` ;cp $fn {{destdir}}/bin"
 
 [lzo]
 source_url = "http://www.oberhumer.com/opensource/lzo/download/lzo-{{version}}.tar.gz"
@@ -418,7 +403,6 @@ bin_dir = ["{{destdir}}/lib"]
 [lzo.install]
 linux = ["./configure --prefix={{destdir}} --enable-shared && make", " make install"]
 mac = ["./configure --prefix={{destdir}} --enable-shared && make", " make install"]
-windows = ["./configure --prefix={{destdir}} --enable-shared && make", " make install"]
 
 [lzop]
 source_url = "http://www.lzop.org/download/lzop-{{version}}.tar.gz"
@@ -442,7 +426,6 @@ bin_dir = ["{{destdir}}/lib"]
 [lzop.install]
 linux = ["export CPPFLAGS='-I{{lzo:install.dir}}/include';export LDFLAGS='-L{{lzo:install.dir}}/lib'; ./configure --prefix={{destdir}}&& make", "make install"]
 mac = ["export CPPFLAGS='-I{{lzo:install.dir}}/include';export LDFLAGS='-L{{lzo:install.dir}}/lib'; ./configure --prefix={{destdir}}&& make", "make install"]
-windows = ["export CPPFLAGS='-I{{lzo:install.dir}}/include';export LDFLAGS='-L{{lzo:install.dir}}/lib'; ./configure --prefix={{destdir}}&& make", "make install"]
 
 [fusioncatcher_reffa]
 source_url = ["https://sourceforge.net/projects/fusioncatcher/files/data/ensembl_v{{version}}.tar.gz.aa",
@@ -494,7 +477,6 @@ bin_dir = ["./bin"]
 [tvc.install]
 linux = ["#R#fn.sh <- system.file('extdata', 'scripts/install_tvc.sh', package = 'BioInstaller'); system(sprintf('sh %s {{destdir}} {{version}}', fn.sh));#R#", 'mkdir {{destdir}}/bin; cp bin/* {{destdir}}/bin']
 mac = ["#R#fn.sh <- system.file('extdata', 'scripts/install_tvc.sh', package = 'BioInstaller'); system(sprintf('sh %s {{destdir}} {{version}}', fn.sh));#R#", 'mkdir {{destdir}}/bin; cp bin/* {{destdir}}/bin']
-windows = ["#R#fn.sh <- system.file('extdata', 'scripts/install_tvc.sh', package = 'BioInstaller'); system(sprintf('sh %s {{destdir}} {{version}}', fn.sh));#R#", 'mkdir {{destdir}}/bin; cp bin/* {{destdir}}/bin']
 
 [imagej]
 version_newest = "150"
@@ -512,7 +494,6 @@ bin_dir = ["{{download.dir}}"]
 [imagej.source_url]
 linux = "http://wsr.imagej.net/distros/linux/ij{{version}}-linux64-java8.zip"
 mac = "http://wsr.imagej.net/distros/osx/ij{{version}}-osx-java8.zip"
-windows = "http://wsr.imagej.net/distros/win/ij{{version}}-win-java8.zip"
 
 [zlib]
 version_newest = "1.2.11"
@@ -530,12 +511,10 @@ bin_dir = ["{{destdir}}/lib"]
 [zlib.source_url] 
 linux = ["https://sourceforge.net/projects/libpng/files/zlib/{{version}}/zlib-{{version}}.tar.gz"]
 mac = ["https://sourceforge.net/projects/libpng/files/zlib/{{version}}/zlib-{{version}}.tar.gz"]
-windows = ["https://sourceforge.net/projects/libpng/files/zlib/{{version}}/zlib@>@str_replace_all('{{version}}', fixed('.'), '')@<@.zip"]
 
 [zlib.install]
 linux = ["./configure --prefix={{destdir}} && make", "make install"]
 mac = ["./configure --prefix={{destdir}} && make", "make install"]
-windows = ""
 
 [bzip2]
 source_url = "http://www.bzip.org/{{version}}/bzip2-{{version}}.tar.gz"
@@ -554,7 +533,6 @@ bin_dir = ["{{destdir}}/bin"]
 [bzip2.install]
 linux = ["sed -i 's;CC=gcc;CC=gcc -fPIC;' Makefile; make -f Makefile-libbz2_so && make clean && make","make install PREFIX={{destdir}}"]
 mac = ["sed -i 's;CC=gcc;CC=gcc -fPIC;' Makefile; make -f Makefile-libbz2_so && make clean && make", "make install PREFIX={{destdir}}"]
-windows = ["sed -i 's;CC=gcc;CC=gcc -fPIC;' Makefile; make -f Makefile-libbz2_so && make clean && make", "make install PREFIX={{destdir}}"]
 
 [armadillo]
 source_url = ["@>@ if('{{version}}' != '4.600.1') {'https://sourceforge.net/projects/arma/files/armadillo-{{version}}.tar.xz'} else {'http://updates.iontorrent.com/updates/software/external/armadillo-{{version}}.tar.gz'}@<@"]
@@ -574,7 +552,6 @@ bin_dir = ["{{destdir}}/lib"]
 [armadillo.install]
 linux = ["@>@if('{{version}}' != '4.600.1'){' cmake .; make; make install DESTDIR={{destdir}}'} else {%'%sed -i 's:^// #define ARMA_USE_LAPACK$:#define ARMA_USE_LAPACK:g' include/armadillo_bits/config.hpp; sed -i 's:^// #define ARMA_USE_BLAS$:#define ARMA_USE_BLAS:g' include/armadillo_bits/config.hpp && cmake . && make -j4; make install DESTDIR={{destdir}}%'%}@<@"]
 mac = ["@>@if('{{version}}' != '4.600.1'){' cmake .; make; make install DESTDIR={{destdir}}'} else {%'%sed -i 's:^// #define ARMA_USE_LAPACK$:#define ARMA_USE_LAPACK:g' include/armadillo_bits/config.hpp; sed -i 's:^// #define ARMA_USE_BLAS$:#define ARMA_USE_BLAS:g' include/armadillo_bits/config.hpp && cmake . && make -j4; make install DESTDIR={{destdir}}%'%}@<@"]
-windows = ["@>@if('{{version}}' != '4.600.1'){' cmake .; make; make install DESTDIR={{destdir}}'} else {%'%sed -i 's:^// #define ARMA_USE_LAPACK$:#define ARMA_USE_LAPACK:g' include/armadillo_bits/config.hpp; sed -i 's:^// #define ARMA_USE_BLAS$:#define ARMA_USE_BLAS:g' include/armadillo_bits/config.hpp && cmake . && make -j4; make install DESTDIR={{destdir}}%'%}@<@"]
 
 [samstat]
 source_url = "https://sourceforge.net/projects/samstat/files/samstat-{{version}}.tar.gz"
@@ -594,12 +571,10 @@ bin_dir = ["{{destdir}}/bin"]
 [samstat.before_install]
 linux = "autoreconf -ivf"
 mac = "autoreconf -ivf"
-windows = "autoreconf -ivf"
 
 [samstat.install]
 linux = ["./configure --prefix={{destdir}} && make", "make install"]
 mac = ["./configure --prefix={{destdir}} && make", "make install"]
-windows = ["./configure --prefix={{destdir}} && make", "make install"]
 
 [prinseq]
 source_url = "https://sourceforge.net/projects/prinseq/files/standalone/prinseq-lite-{{version}}.tar.gz"
@@ -619,7 +594,6 @@ bin_dir = ["{{destdir}}/bin"]
 [prinseq.install]
 linux = "chmod +x *.pl && mkdir -p {{destdir}}/bin; fn=`ls -F |grep '*' | tr -d '*'` ;cp $fn {{destdir}}/bin"
 mac = "chmod +x *.pl && mkdir -p {{destdir}}/bin; fn=`ls -F |grep '*' | tr -d '*'` ;cp $fn {{destdir}}/bin"
-windows = "chmod +x *.pl && mkdir -p {{destdir}}/bin; fn=`ls -F |grep '*' | tr -d '*'` ;cp $fn {{destdir}}/bin"
 
 [solexaqa]
 source_url = ["https://sourceforge.net/projects/solexaqa/files/src/SolexaQA++_v{{version}}.zip",
@@ -641,7 +615,6 @@ bin_dir = ["{{destdir}}/bin"]
 [solexaqa.install]
 linux = "chmod -R +x {{download.dir}}/Linux_x64/*; mkdir -p {{destdir}}/bin; cp {{download.dir}}/Linux_x64/* {{destdir}}/bin"
 mac = "chmod -R +x {{download.dir}}/MacOs_10.7+/*; mkdir -p {{destdir}}/bin; cp {{download.dir}}/MacOs_10.7+/* {{destdir}}/bin"
-windows = "chmod -R +x {{download.dir}}/SolexaQA++.exe/*; mkdir -p {{destdir}}/bin; cp {{download.dir}}/SolexaQA++.exe/* {{destdir}}/bin"
 
 [mapsplice2]
 source_url = "http://protocols.netlab.uky.edu/~zeng/MapSplice-v{{version}}.zip"
@@ -658,11 +631,9 @@ make_dir = ["./"]
 
 bin_dir = ["{{destdir}}/bin"]
 
-
 [mapsplice2.install]
 linux = ["make", "mkdir -p {{destdir}}/bin; cp {{download.dir}}/bin/* {{destdir}}/bin"]
 mac = ["make", "mkdir -p {{destdir}}/bin; cp {{download.dir}}/bin/* {{destdir}}/bin"]
-windows = ["make", "mkdir -p {{destdir}}/bin; cp {{download.dir}}/bin/* {{destdir}}/bin"]
 
 [bcl2fastq2]
 source_url = "https://support.illumina.com/content/dam/illumina-support/documents/downloads/software/bcl2fastq/bcl2fastq2-v{{version}}.tar.gz"
@@ -682,7 +653,6 @@ bin_dir = ["{{destdir}}/bin"]
 [bcl2fastq2.install]
 linux = ["mkdir build; cd build; ../src/configure --prefix={{destdir}} && make", "make install"]
 mac = ["mkdir build; cd build; ../src/configure --prefix={{destdir}} && make", "make install"]
-windows = ["mkdir build; cd build; ../src/configure --prefix={{destdir}} && make","make install"]
 
 [blat]
 decompress = false
@@ -701,12 +671,10 @@ bin_dir = ["{{destdir}}/bin"]
 [blat.source_url]
 linux = "http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/blat/blat"
 mac = "http://hgdownload.soe.ucsc.edu/admin/exe/macOSX.x86_64/blat/blat"
-windows = "http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/blat/blat"
 
 [blat.install]
 linux = "chmod +x blat; mkdir -p {{destidr}}/bin; cp blat {{destdir}}/bin"
 mac = "chmod +x blat; mkdir -p {{destidr}}/bin; cp blat {{destdir}}/bin"
-windows = "chmod +x blat; mkdir -p {{destidr}}/bin; cp blat {{destdir}}/bin"
 
 [fatotwobit]
 decompress = false
@@ -725,12 +693,10 @@ bin_dir = ["{{destdir}}/bin"]
 [fatotwobit.source_url]
 linux = "http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/faToTwoBit"
 mac = "http://hgdownload.soe.ucsc.edu/admin/exe/macOSX.x86_64/faToTwoBit"
-windows = "http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/faToTwoBit"
 
 [fatotwobit.install]
 linux = "chmod +x faToTwoBit; mkdir -p {{destidr}}/bin; cp faToTwoBit {{destdir}}/bin"
 mac = "chmod +x faToTwoBit; mkdir -p {{destidr}}/bin; cp faToTwoBit {{destdir}}/bin"
-windows = "chmod +x faToTwoBit; mkdir -p {{destidr}}/bin; cp faToTwoBit {{destdir}}/bin"
 
 [liftover]
 decompress = false
@@ -749,12 +715,10 @@ bin_dir = ["{{destdir}}/bin"]
 [liftover.source_url]
 linux = "http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/liftOver"
 mac = "http://hgdownload.soe.ucsc.edu/admin/exe/macOSX.x86_64/liftOver"
-windows = "http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/liftOver"
 
 [liftover.install]
 linux = "chmod +x liftOver; mkdir -p {{destdir}}/bin; cp liftOver {{destdir}}/bin"
 mac = "chmod +x liftOver; mkdir -p {{destidr}}/bin; cp liftOver {{destdir}}/bin"
-windows = "chmod +x liftOver; mkdir -p {{destidr}}/bin; cp liftOver {{destdir}}/bin"
 
 [svtoolkit]
 source_url = "http://bioinfo.rjh.com.cn/download/svtoolkit/download.php?filename=svtoolkit_{{version}}.tar.gz"
@@ -774,7 +738,6 @@ bin_dir = ["{{download.dir}}/lib"]
 [svtoolkit.install]
 linux = ""
 mac = ""
-windows = ""
 
 [root]
 source_url = "https://root.cern.ch/download/root_v{{version}}.source.tar.gz"
@@ -794,7 +757,6 @@ bin_dir = ["{{download.dir}}/build/bin"]
 [root.install]
 linux = ["mkdir build; cd build && cmake .. && make -j8"]
 mac = ["mkdir build; cd build && cmake .. && make -j8"]
-windows = ["md build; cd build && cmake .. && make -j8"]
 
 [cnvnator_samtools]
 source_url = "http://bioinfo.rjh.com.cn/download/svtoolkit/download.php?filename=cnvnator_samtools_{{version}}.tar.gz"
@@ -814,7 +776,6 @@ bin_dir = ["{{download.dir}}"]
 [cnvnator_samtools.install]
 linux = "make"
 mac = "make"
-windows = "make"
 
 [htslib]
 source_url = "https://github.com/samtools/htslib/archive/{{version}}.tar.gz"
@@ -829,7 +790,7 @@ bin_dir = ["{{destdir}}/bin"]
 
 [htslib.install]
 linux = ["autoheader; autoconf; ./configure --prefix={{destdir}}; make;", " make install"]
-windows = ["autoheader; autoconf; ./configure --prefix={{destdir}}; make;", " make install"]
+
 mac = ["autoheader; autoconf; ./configure --prefix={{destdir}}; make;", " make install"]
 
 [samtools]
@@ -850,7 +811,6 @@ bin_dir = ["{{destdir}}/bin"]
 [samtools.install]
 linux = ["autoconf -Wno-syntax; sed -i 's;HTSDIR = ../htslib;HTSDIR = {{htslib:source.dir}};' config.mk; ./configure --prefix={{destdir}}; make ", "make install prefix={{destdir}}"]
 mac = ["autoconf -Wno-syntax; sed -i 's;HTSDIR = ../htslib;HTSDIR = {{htslib:source.dir}};' config.mk; ./configure --prefix={{destdir}}; make ", "make install prefix={{destdir}}"]
-windows = ["autoconf -Wno-syntax; sed -i 's;HTSDIR = ../htslib;HTSDIR = {{htslib:source.dir}};' config.mk; ./configure --prefix={{destdir}}; make", "make install prefix={{destdir}}"]
 
 [pcre]
 source_url = "https://ftp.pcre.org/pub/pcre/pcre-{{version}}.tar.gz"
@@ -870,7 +830,6 @@ bin_dir = ["{{destdir}}/bin"]
 [pcre.install]
 linux = ["autoreconf -ivf && ./configure --enable-utf8 --prefix={{destdir}} && make -j3", "make install"]
 mac = ["./configure --enable-utf8 --prefix={{destdir}} && make -j3", "make install"]
-windows = ["./configure --enable-utf8 --prefix={{destdir}} && make -j3", "make install"]
 
 [xz]
 source_url = "http://tukaani.org/xz/xz-{{version}}.tar.gz"
@@ -891,7 +850,6 @@ bin_dir = ["{{destdir}}/bin"]
 [xz.install]
 linux = ["tar -xzvf xz-{{version}}.tar.gz && cd xz-{{version}} && ./configure --prefix={{destdir}} && make -j3", "make install"]
 mac = ["tar -xzvf xz-{{version}}.tar.gz && cd xz-{{version}} && ./configure --prefix={{destdir}} && make -j3", "make install"]
-windows = ["tar -xzvf xz-{{version}}.tar.gz && cd xz-{{version}} && ./configure --prefix={{destdir}} && make -j3", "make install"]
 
 [curl]
 source_url = "https://curl.haxx.se/download/curl-{{version}}.tar.gz"
@@ -911,7 +869,6 @@ bin_dir = ["{{destdir}}/bin"]
 [curl.install]
 linux = ["./configure --prefix={{destdir}} --with-ssl && make -j3", "make install"]
 mac = ["./configure --prefix={{destdir}} --with-ssl && make -j3", "make install"]
-windows = ["./configure --prefix={{destdir}} --with-ssl && make -j3", "make install"]
 
 [r]
 version_newest = "3.4.0"
@@ -937,8 +894,6 @@ linux = ["https://cran.r-project.org/src/base/R-3/R-{{version}}.tar.gz",
               "https://cran.r-project.org/src/base/R-0/R-{{version}}.tgz"]
 mac = ["https://cran.r-project.org/bin/macosx/R-{{version}}.pkg", 
        "https://cran.r-project.org/bin/macosx/old/R-{{version}}.pkg"]
-windows = ["https://cran.r-project.org/bin/windows/base/R-{{version}}-win.exe",
-           "https://cran.r-project.org/bin/windows/base/old/{{version}}/R-{{version}}-win.exe"]
 
 [r.install]
 linux = ["""./configure --enable-R-shlib --prefix={{destdir}} CFLAGS='\
@@ -969,7 +924,6 @@ lib.flag <- lib.flag[!str_detect(lib.flag, ':')]
 paste(lib.flag, collapse=' ') 
 @<@' \
 && make""", "make install"]
-windows=""
 
 [reditools]
 source_url = "https://nchc.dl.sourceforge.net/project/reditools/REDItools-{{version}}.tar.gz"
@@ -977,4 +931,4 @@ source_url = "https://nchc.dl.sourceforge.net/project/reditools/REDItools-{{vers
 [reditools.install]
 linux = "pip install ."
 mac = "pip install ."
-windows = "pip install ."
+
