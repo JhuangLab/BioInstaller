@@ -1,3 +1,7 @@
+2017-06-24 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
+
+		* Fix windows install status
+
 2017-06-23 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
 
 		* Cancel windows install step (Download still work)

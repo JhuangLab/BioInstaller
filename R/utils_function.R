@@ -68,6 +68,9 @@ runcmd <- function(cmd, verbose = TRUE) {
 
 # Run a group of cmd
 for_runcmd <- function(cmd_vector, verbose = TRUE) {
+  if (is.null(cmd_vector)) {
+    return(0)
+  }
   status.vector <- NULL
   for (i in cmd_vector) {
     if (i != "") {
