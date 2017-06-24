@@ -1,0 +1,10 @@
+[gmap]
+title = "GMAP: A Genomic Mapping and Alignment Program for mRNA and EST Sequences, and GSNAP: Genomic Short-read Nucleotide Alignment Program"
+description = "The programs GMAP and GSNAP, for aligning RNA-Seq and DNA-Seq datasets to genomes, have evolved along with advances in biological methodology to handle longer reads, larger volumes of data, and new types of biological assays. The genomic representation has been improved to include linear genomes that can compare sequences using single-instruction multiple-data (SIMD) instructions, compressed genomic hash tables with fast access using SIMD instructions, handling of large genomes with more than four billion bp, and enhanced suffix arrays (ESAs) with novel data structures for fast access. Improvements to the algorithms have included a greedy match-and-extend algorithm using suffix arrays, segment chaining using genomic hash tables, diagonalization using segmental hash tables, and nucleotide-level dynamic programming procedures that use SIMD instructions and eliminate the need for F-loop calculations. Enhancements to the functionality of the programs include standardization of indel positions, handling of ambiguous splicing, clipping and merging of overlapping paired-end reads, and alignments to circular chromosomes and alternate scaffolds. The programs have been adapted for use in pipelines by integrating their usage into R/Bioconductor packages such as gmapR and HTSeqGenie, and these pipelines have facilitated the discovery of numerous biological phenomena."
+publication = [
+"Wu T D, Watanabe C K. GMAP: a genomic mapping and alignment program for mRNA and EST sequences[J]. Bioinformatics, 2005, 21(9): 1859-1875.",
+"Wu T D, Reeder J, Lawrence M, et al. GMAP and GSNAP for genomic sequence alignment: enhancements to speed, accuracy, and functionality[J]. Statistical Genomics: Methods and Protocols, 2016: 283-334."]
+publication_doi = ["10.1093/bioinformatics/bti310", "10.1007/978-1-4939-3578-9_15"]
+publication_date = [2005, 2016]
+tag = ["Genomics", "NGS", "Genomic alignment", "DNA-seq", "RNA-seq", "mRNA", "Whole Transcriptome Sequencing", 
+"EST"]

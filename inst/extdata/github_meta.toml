@@ -1,0 +1,11 @@
+[bwa]
+title = "Burrow-Wheeler Aligner for pairwise alignment between DNA sequences"
+description = "BWA is a software package for mapping DNA sequences against a large reference genome, such as the human genome. It consists of three algorithms: BWA-backtrack, BWA-SW and BWA-MEM. The first algorithm is designed for Illumina sequence reads up to 100bp, while the rest two for longer sequences ranged from 70bp to a few megabases. BWA-MEM and BWA-SW share similar features such as the support of long reads and chimeric alignment, but BWA-MEM, which is the latest, is generally recommended as it is faster and more accurate. BWA-MEM also has better performance than BWA-backtrack for 70-100bp Illumina reads."
+publication = [
+"Li H. and Durbin R. (2009) Fast and accurate short read alignment with Burrows-Wheeler transform. Bioinformatics, 25, 1754-1760. [PMID: 19451168]",
+"Li H. and Durbin R. (2010) Fast and accurate long-read alignment with Burrows-Wheeler transform. Bioinformatics, 26, 589-595. [PMID: 20080505]", 
+"Li H. (2013) Aligning sequence reads, clone sequences and assembly contigs with BWA-MEM. arXiv:1303.3997v2 [q-bio.GN]"]
+publication_doi = ["10.1093/bioinformatics/btp324", "10.1093/bioinformatics/btp698", ""]
+publication_date = [2009, 2010, 2013]
+tag = ["Genomics", "NGS", "Genomic alignment", "DNA-seq", "Whole exome sequencing", "WES", 
+"Whole genome sequencing", "WGS"]

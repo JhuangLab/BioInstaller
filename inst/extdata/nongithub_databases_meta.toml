@@ -1,4 +1,6 @@
-[blast]
+[blast_db]
+title = "Basic Local Alignment Search Tool Databases"
+description = "All of blast required databases"
 ftp = "ftp://ftp.ncbi.nih.gov/blast/db/"
 
 [uniprot]
