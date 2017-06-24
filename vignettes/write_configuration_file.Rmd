@@ -13,18 +13,18 @@ vignette: >
 knitr::opts_chunk$set(comment = "#>", collapse = TRUE)
 ```
 
-BioInstaller using [configr](https://github.com/Miachol/configr) to parse all of configuration files, so you can use some of `code` to set all of item in configuration file which can be parsed by `configr` package. Example of `code` can be found below.
+Templet configuration files in BioInstaller are important. You need cost some of time to find out how it is parsed.
+
+Most of configuration files parsed step were done by [configr](https://github.com/Miachol/configr). '#R# R CMD #R#' is a different point which can be used to mark those R format command. 
 
 ## github.toml and nongithub.toml
 
-Built-in configuration files: `github.toml` and `nongithub.toml` let us to download/install several softwares/dependence by default parameters of BioInstaller. `install.bioinfo(show.all.names = TRUE)` can found all of avaliable softwares, dependence in github.toml and nongithub.toml.
+Built-in configuration files: `github.toml` and `nongithub.toml` support us to download and install several software and database using BioInstaller. `install.bioinfo(show.all.names = TRUE)` can get all of avaliable softwares and databases in github.toml and nongithub.toml.
 
 ### Github Softwares
 Github softwares version control can be done `git2r` package. Source url be setted by `github_url`.
 
-If `use_git2r` be setted to `false`, BioInstaller will use the [git](https://en.wikipedia.org/wiki/Git) of your system.
-
-In addition, when `use_git2r` be setted to `false` and `recursive_clone` be setted to `true`, the behaviour is like that `git clone --recursive https://path/repo`
+If `use_git2r` be setted to `false`, BioInstaller will use the [git](https://en.wikipedia.org/wiki/Git) of your system. In addition, when `use_git2r` be setted to `false` and `recursive_clone` be setted to `true`, the behaviour is like that `git clone --recursive https://path/repo`
 
 ```toml
 [bwa]
@@ -47,10 +47,9 @@ mac = "make"
 
 Non-Github softwares version control need to write a function parsing URL and use `{{version}}` to replace in the `source_url`.
 
-`url_all_download` be setted to `true` if need to download mulitple files. [rvest](https://cran.r-project.org/package=rvest) and [RCurl](https://cran.r-project.org/package=RCurl) packages can be used to parse the version infomation of non-github softwares or databases.
-`version_order_fixed` can be setted to `true` if you don't want to using the built-in version reorder function.
+`url_all_download` be setted to `true` if you want to download mulitple files. [rvest](https://cran.r-project.org/package=rvest) and [RCurl](https://cran.r-project.org/package=RCurl) packages can be used to parse the version infomation of non-github softwares or databases.
 
-If you set `url_all_download` to `false`, which can let us using multiple mirror to avoid one of invalid URL.
+`version_order_fixed` can be setted to `true` if you don't want to use the built-in version reorder function. If you set `url_all_download` to `false`, which can let us using multiple mirror to avoid one of invalid URL.
 
 ```toml
 [gmap]
@@ -74,9 +73,9 @@ mac = ["sed -i s/\"## CFLAGS='-O3 -m64' .*\"/\"CFLAGS='-O3 -m64'\"/ config.site"
 
 ## nongithub_databases_blast.toml
 
-The configuration file can be used to download NCBI blast database. You can use this file: `install.bioinfo(nongithub.cfg = system.file('extdata', 'nongithub_databases_blast.toml', package = 'BioInstaller'), show.all.names = TRUE)`.
+This configuration file can be used to download NCBI blast database: `install.bioinfo(nongithub.cfg = system.file('extdata', 'nongithub_databases_blast.toml', package = 'BioInstaller'), show.all.names = TRUE)`.
 
-BioInstaller using [configr](https://github.com/Miachol/configr) `glue` to reduce the length of files name. That can let us using less word to storage more files name. More usefile databases FTP url can be accessed in the future. I hope you can set your own configuration file not only using the BioInstaller built-in configuration files.
+BioInstaller use [configr](https://github.com/Miachol/configr) `glue` to reduce the length of files name. That using less word to storage more files name. More useful databases FTP url can be accessed in the future. I hope you can set your own configuration file not only use the BioInstaller built-in configuration files.
 
 ```{r}
 library(configr)
@@ -91,3 +90,16 @@ file.create(mask.github)
 install.bioinfo(nongithub.cfg = blast.databases, github.cfg = mask.github,
   show.all.names = TRUE)
 ```
+
+## Automatic parse from BioInstall BIO_SOFTWARES_DB_ACTIVE database
+To resolve the dependence and its path, BioInstall can automatic recogniztion the `{{key:value}}` format expression and get its real value from BioInstall `BIO_SOFWARES_DB_ACTIVE` database which were be setted by environment variable BIO_SOFTWARES_DB_ACTIVE and parameter `db`.
+
+For example, Pindel need the `htslib` to finish its install, and we use `./INSTALL {{htslib:source.dir}}` as the install step of Pindel that the value be setted in `system.file("extdata", "github.toml", package = "BioInstaller")` file Pindel section. In R, the `{{htslib:source.dir}}` will be replaced by the value that were stored in BIO_SOFTWARES_DB_ACTIVE or `db`, a parameter of `install.bioinfo` function, which indicating the BioInstall Database PATH. More example can be founded in [configr](https://github.com/Miachol/configr) `parse.extra` 'other.config' parameter.
+
+## Automatic parse from install.bioinfo parameter extra.list
+To improve the flexibility of configuration templet, BioInstall can automatic recogniztion the `{{parameters}}` format expression and get its value if its existed in `install.bioinfo` extra.list parameter and `name`, `version`, `os.version`, `destdir` were default be setted.
+
+For example, GMAP source_url need to point the `version` value, and we use `source_url = "http://research-pub.gene.com/gmap/src/{{version}}.tar.gz"` as the download URL and can be used to install different version GMAP that the value be setted in `system.file("extdata", "nongithub.toml", package = "BioInstaller")` file gmap section. In R, the `{{version}}` will be replaced by the `version` parameter value of `install.bioinfo` (if version were `NULL`, it will be setted to be the newst version). More example can be founded in [configr](https://github.com/Miachol/configr) `parse.extra` 'extra.list' parameter.
+
+## Automatic parse from R CMD
+For example, `@>@ str_replace('{{version}}', '-linux64', '') @<@`. If this expression `{{version}}` be parsed to `1.2.0-linux64` in configuration file, the full expression will be parsed to `1.2.0`. So, you can write yourself install scripts or config file conveniently. More example can be founded in [configr](https://github.com/Miachol/configr) 'rcmd.parse' parameter.

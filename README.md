@@ -4,13 +4,31 @@ BioInstaller package
 ==============
 
 ## Introduction
-[Conda](https://conda.io/docs/intro.html) and [Bioconda](http://bioconda.github.io/) have made us easy to install many packages and bio-softwares conveniently. Yet, learning how to install and compile bioinformatics softwares were still necessary. Because, the experience will help you to  improve the ability of debugging.
 
-Especialy, when start a NGS analysis work in a new computer or system, you need costs so much time and energy to establish a complete set of softwares and dependce of a analysis pipeline and set the corresponding configuration file.
+BioInstaller is a downloader and installer of bio-softwares and bio-databases. The inspiration for this project comes from various types of convenient package manager, such as [pip](https://pypi.python.org/pypi/pip) for Python package, `install.packages` for R package, biocLite for [Bioconductor](http://www.bioconductor.org) R package, etc.
 
-[BioInstaller](https://github.com/JhuangLab/BioInstaller) can be used to download/install bioinformatics tools, dependences and databases in R relatively easily, and the information of installed softwares will be saved which can be used to generate configuration file. More detail can be founded in [Document](http://bioinfo.rjh.com.cn/labs/jhuang/tools/BioInstaller/) website.
+**Why we do not have an integrated bioinformatics database and software package manager?**
 
-Moreover, BioInstaller provide a different way to provide softwares download/install for others.
+In fact, there are already some tools can complete part of the work:
+
+[Conda](https://conda.io/docs/intro.html) and [BioConda](http://bioconda.github.io) have done a lot of work and we can use them to conveniently install some of bioinformatics softwares. But there are still many problems with these package managers, such as version updating not timely, incompatible to some precompiled programs, little support for the database and other non-software files.
+
+[docker](https://www.docker.com/) is another kind very promising tool to complete the migration of the analytical environment. But the root authority is required that it's difficult for you to always get root privileges.
+
+Futhermore, learning how to install and compile bioinformatics softwares is still necessary, because these 'unpleasant' experience will help you to improve the ability to debug and modify programs.
+
+As for me, when starting some NGS analysis work in a new computer or operating system, I have to spend much time and energy to
+establish a complete set of softwares and dependent files and set the corresponding configuration file.
+
+BioInstaller can help us to download, install and manage a variety of bioinformatics tools and databases more easily and systematically.
+
+What's more, BioInstaller provides a different way to download and install your files, softwares and databases for others, more detail can be found in another vignette [Examples of Templet Configuration File](https://cran.r-project.org/web/packages/BioInstaller/vignettes/write_configuration_file.html).
+
+**Feature**:
+
+- Extendible
+- Craw the source code and version information from the original site
+- One step installation or download softwares and databases (Partial dependence supported)
 
 ## Installation
 
