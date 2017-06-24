@@ -6,9 +6,9 @@
 #' @seealso
 #' Useful links:
 #'
-#' \url{https://github.com/Miachol/BioInstaller}
+#' \url{https://github.com/JhuangLab/BioInstaller}
 #'
-#' Report bugs at \url{https://github.com/Miachol/BioInstaller/issues}
+#' Report bugs at \url{https://github.com/JhuangLab/BioInstaller/issues}
 #'
 #' @docType package
 #' @name BioInstaller

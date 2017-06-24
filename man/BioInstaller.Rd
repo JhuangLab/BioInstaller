@@ -13,9 +13,9 @@ softwares and databases, such as NGS reads mapping tools with its required datab
 \seealso{
 Useful links:
 
-\url{https://github.com/Miachol/BioInstaller}
+\url{https://github.com/JhuangLab/BioInstaller}
 
-Report bugs at \url{https://github.com/Miachol/BioInstaller/issues}
+Report bugs at \url{https://github.com/JhuangLab/BioInstaller/issues}
 }
 \author{
 Li Jianfeng \url{lee_jianfeng@sjtu.edu.cn}
