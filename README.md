@@ -62,7 +62,7 @@ devtools::install_github("JhuangLab/BioInstaller")
 
 **Variant Annotation:** 
 
-- ANNOVAR, SnpEff
+- ANNOVAR, SnpEff, VEP
 
 **Utils:** 
 

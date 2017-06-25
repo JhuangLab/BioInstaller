@@ -794,3 +794,10 @@ mac = "pip install numpy && pip install pyvcf"
 [oncotator.install]
 linux = 'pip install .'
 mac = 'pip install .'
+
+[vep]
+github_url = "https://github.com/Ensembl/ensembl-vep"
+make_dir = "ensembl-vep"
+[vep.install]
+linux = 'perl INSTALL.pl'
+mac = 'perl INSTALL.pl'
