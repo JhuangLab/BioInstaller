@@ -13,18 +13,24 @@ vignette: >
 knitr::opts_chunk$set(comment = "#>", collapse = TRUE)
 ```
 
-Templet configuration files in BioInstaller are important. You need cost some of time to find out how it is parsed.
+Templet configuration files in BioInstaller are important. All of softwares and databases source URL, install script and other information were stored in these configuration files. 
 
-Most of configuration files parsed step were done by [configr](https://github.com/Miachol/configr). '#R# R CMD #R#' is a different point which can be used to mark those R format command. 
+Most of configuration files be parsed by [configr](https://github.com/Miachol/configr). Compared with original configr package `#R# R CMD #R#` is a different point which can be used to mark those R format command. 
 
 ## github.toml and nongithub.toml
 
-Built-in configuration files: `github.toml` and `nongithub.toml` support us to download and install several software and database using BioInstaller. `install.bioinfo(show.all.names = TRUE)` can get all of avaliable softwares and databases in github.toml and nongithub.toml.
+Built-in configuration files: `github.toml` and `nongithub.toml` can be used to download and install several software and database. `install.bioinfo(show.all.names = TRUE)` can be used to get all of avaliable softwares and databases existed in github.toml and nongithub.toml.
 
 ### Github Softwares
-Github softwares version control can be done `git2r` package. Source url be setted by `github_url`.
 
-If `use_git2r` be setted to `false`, BioInstaller will use the [git](https://en.wikipedia.org/wiki/Git) of your system. In addition, when `use_git2r` be setted to `false` and `recursive_clone` be setted to `true`, the behaviour is like that `git clone --recursive https://path/repo`
+Some of item in github configuration file can be used to control the BioInstaller behavior:
+
+- `use_git2r` be setted to `false`, BioInstaller will use the [git](https://en.wikipedia.org/wiki/Git) of your system.
+- `use_git2r` be setted to `false` and `recursive_clone` be setted to `true`, BioInstaller will do that `git clone --recursive https://path/repo`
+- `before_install` can be used to finish some pre-process step
+- `install` is the mainly item to control the install step. Moreover, you can use your install script saved in a file and run it by `#R# system('/path/yourscript')#R#`
+- `make_dir` is the compile directory of softwares which depend on your install script, workdir of R default be setted to `download.dir` and will be changed to `make_dir` when running install step.
+- `bin_dir` will be saved when finish install step
 
 ```toml
 [bwa]
@@ -43,13 +49,15 @@ linux = "make"
 mac = "make"
 ```
 
+Github softwares version control can be done by `git2r` package and github tag [API](https://developer.github.com/v3). Source url of softwares or files deposited in github can be found by `github_url` in `github.toml`.
+
 ### Non-Github Softwares or Databases
 
-Non-Github softwares version control need to write a function parsing URL and use `{{version}}` to replace in the `source_url`.
-
-`url_all_download` be setted to `true` if you want to download mulitple files. [rvest](https://cran.r-project.org/package=rvest) and [RCurl](https://cran.r-project.org/package=RCurl) packages can be used to parse the version infomation of non-github softwares or databases.
-
-`version_order_fixed` can be setted to `true` if you don't want to use the built-in version reorder function. If you set `url_all_download` to `false`, which can let us using multiple mirror to avoid one of invalid URL.
+Configuration file of non-github softwares and databases are similar to githubs:
+- `github_url` be replaced by `source_url` 
+- `url_all_download` be setted to `true` if you want to download mulitple files. 
+- [rvest](https://cran.r-project.org/package=rvest) and [RCurl](https://cran.r-project.org/package=RCurl) packages can be used to parse the version infomation of non-github softwares or databases.
+- `version_order_fixed` can be setted to `true` if you don't want to use the built-in version reorder function. If you set `url_all_download` to `false`, which can let us using multiple mirror to avoid one of invalid URL.
 
 ```toml
 [gmap]
@@ -71,6 +79,8 @@ mac = ["sed -i s/\"## CFLAGS='-O3 -m64' .*\"/\"CFLAGS='-O3 -m64'\"/ config.site"
 "./configure --prefix=`pwd` && make && make install"]
 ```
 
+Version control of non-github softwares and databases need a function parsing URL and use `{{version}}` to replace in the `source_url`.
+
 ## nongithub_databases_blast.toml
 
 This configuration file can be used to download NCBI blast database: `install.bioinfo(nongithub.cfg = system.file('extdata', 'nongithub_databases_blast.toml', package = 'BioInstaller'), show.all.names = TRUE)`.
@@ -91,7 +101,7 @@ install.bioinfo(nongithub.cfg = blast.databases, github.cfg = mask.github,
   show.all.names = TRUE)
 ```
 
-## Automatic parse from BioInstall BIO_SOFTWARES_DB_ACTIVE database
+## Automatic parse from BIO_SOFTWARES_DB_ACTIVE database
 To resolve the dependence and its path, BioInstall can automatic recogniztion the `{{key:value}}` format expression and get its real value from BioInstall `BIO_SOFWARES_DB_ACTIVE` database which were be setted by environment variable BIO_SOFTWARES_DB_ACTIVE and parameter `db`.
 
 For example, Pindel need the `htslib` to finish its install, and we use `./INSTALL {{htslib:source.dir}}` as the install step of Pindel that the value be setted in `system.file("extdata", "github.toml", package = "BioInstaller")` file Pindel section. In R, the `{{htslib:source.dir}}` will be replaced by the value that were stored in BIO_SOFTWARES_DB_ACTIVE or `db`, a parameter of `install.bioinfo` function, which indicating the BioInstall Database PATH. More example can be founded in [configr](https://github.com/Miachol/configr) `parse.extra` 'other.config' parameter.

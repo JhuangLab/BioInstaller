@@ -73,7 +73,7 @@ install.bioinfo('demo', download.dir = download.dir, destdir = destdir)
 
 It takes time to find the routes of the softwares and databases after downloading and installing them, what’s worse is that you would be in really dire straits if you didn't save the useful information. 
 
-Fortunately, version, path, source code path and update time will be saved in BIO_SOFWARES_DB_ACTIVE database, a TOML format file, if you did that work with BioInstaller.
+Fortunately, version, path, source code path and update time will be saved in BIO_SOFWARES_DB_ACTIVE database, a YAML format file, if you did that work with BioInstaller.
 
 ```{r}
 temp.db <- tempfile()
