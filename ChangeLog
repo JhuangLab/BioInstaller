@@ -1,3 +1,8 @@
+2017-06-25 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
+
+		* oncotator be supported
+		* `decompress` in configuration file be processed by as.logical
+
 2017-06-24 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
 
 		* Fix windows install status

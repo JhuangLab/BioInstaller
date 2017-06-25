@@ -430,6 +430,7 @@ install.nongithub <- function(name = "", download.dir = NULL, destdir = NULL, ve
     destfile <- attributes(status)$success
     if (!is.null(config$decompress)) {
       decompress <- unlist(config$decompress)
+      decompress <- as.logical(decompress)
     }
     if (length(decompress) < length(destfile)) {
       len <- length(destfile) - length(decompress)

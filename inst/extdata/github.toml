@@ -783,3 +783,14 @@ no.need.download = true
 [sleuth.install]
 linux = "#R#source('http://bioconductor.org/biocLite.R'); biocLite('rhdf5'); library(devtools); devtools::install_github('pachterlab/sleuth', ref = '{{version}}')#R#"
 mac = "#R#source('http://bioconductor.org/biocLite.R'); biocLite('rhdf5'); library(devtools); devtools::install_github('pachterlab/sleuth', ref = '{{version}}')#R#"
+
+[oncotator]
+github_url = "https://github.com/broadinstitute/oncotator"
+
+[oncotator.before_install]
+linux = "pip install numpy && pip install pyvcf" 
+mac = "pip install numpy && pip install pyvcf" 
+
+[oncotator.install]
+linux = 'pip install .'
+mac = 'pip install .'
