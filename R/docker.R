@@ -29,7 +29,7 @@ docker.search <- function(name, docker.db = system.file("extdata", "docker.toml"
 #' @examples
 #' docker.bin <- unname(Sys.which('docker'))
 #' if (docker.bin != '') {
-#'   docker.pull(repo = 'learn', versiono = 'tutorial')
+#'   docker.pull(repo = 'learn', name = 'tutorial')
 #' }
 docker.pull <- function(repo, name, version = NULL, docker.bin = NULL, all.tags = FALSE, 
   disable.content.trust = TRUE, verbose = TRUE) {

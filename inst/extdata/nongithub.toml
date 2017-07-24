@@ -268,7 +268,7 @@ linux = "mkdir -p {{destdir}}/bin; fn=`ls -F |grep '*' | tr -d '*'`;cp $fn {{des
 mac = "mkdir -p {{destdir}}/bin; fn=`ls -F |grep '*' | tr -d '*'`;cp $fn {{destdir}}/bin"
 
 [gatk]
-source_url = ["http://bioinfo.rjh.com.cn/download/gatk/gatk{{version}}.zip"]
+source_url = ["http://bioinfo.rjh.com.cn/download/gatk/gatk{{version}}.tar.gz"]
 
 version_newest = "3.7-0"
 
