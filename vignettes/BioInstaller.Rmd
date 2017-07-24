@@ -94,4 +94,17 @@ get.info('demo')
 del.info('demo')
 ```
 
+## Install softwares from local source
+
+BioInstaller can be used to install softwares from local source. To install github softwares, a cloned directory were required, and nongithub softwares can be installed from decompressed directory or a compressed archive.
+
+```{r}
+download.dir <- sprintf('%s/github_demo_local', tempdir())
+install.bioinfo('github_demo', download.dir = download.dir, download.only = TRUE, verbose = FALSE)
+install.bioinfo('github_demo', local.source = download.dir)
+
+download.dir <- sprintf('%s/demo_local', tempdir())
+install.bioinfo('demo_2', download.dir = download.dir, download.only = TRUE, verbose = FALSE)
+install.bioinfo('demo_2', download.dir = download.dir, local.source = sprintf('%s/GRCh37_MT_ensGene.txt.gz', download.dir), decompress = TRUE)
+```
 

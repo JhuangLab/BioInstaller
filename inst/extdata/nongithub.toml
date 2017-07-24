@@ -4,17 +4,21 @@ title = "Non-Github Configuration File"
 source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{version}}_MT_ensGene.txt"
 decompress = false
 url_all_download = false
-
 version_newest = "GRCh37"
-
 version_available = ["GRCh37"]
-
 after_failure = "echo 'fail!'"
-
 after_success = "echo 'successful!'"
-
 make_dir = ["./"]
+bin_dir = ["./"]
 
+[demo_2]
+source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{version}}_MT_ensGene.txt.gz"
+url_all_download = false
+version_newest = "GRCh37"
+version_available = ["GRCh37"]
+after_failure = "echo 'fail!'"
+after_success = "echo 'successful!'"
+make_dir = ["./"]
 bin_dir = ["./"]
 
 [gmap]

@@ -269,7 +269,7 @@ install.github <- function(name = "", download.dir = NULL, destdir = NULL, versi
       recursive_clone, verbose)
   } else {
     if (is.null(local.source)) {
-      dir.create(download.dir, recursive = T)
+      dir.create(download.dir, recursive = T, showWarnings = FALSE)
     }
   }
   
@@ -437,7 +437,7 @@ install.nongithub <- function(name = "", download.dir = NULL, destdir = NULL, ve
   info.msg("Running before install steps.", verbose = verbose)
   if (need.download && !is.download.dir(config)) {
     tmp.dir <- sprintf("%s/%s", dirname(download.dir), stri_rand_strings(1, 10))
-    dir.create(tmp.dir, recursive = TRUE)
+    dir.create(tmp.dir, recursive = TRUE, showWarnings = FALSE)
     tmp.dir <- normalizePath(tmp.dir, "/")
     destfile <- sprintf("%s/%s", tmp.dir, filename)
     msg <- sprintf("Now start to download %s in %s.", name, download.dir)
@@ -485,7 +485,7 @@ install.nongithub <- function(name = "", download.dir = NULL, destdir = NULL, ve
       bash.parse = bash.parse, glue.parse = glue.parse, glue.flag = glue.flag)
   }
   if (!is.null(local.source)) {
-    dir.create(download.dir, recursive = TRUE)
+    dir.create(download.dir, recursive = TRUE, showWarnings = FALSE)
     extract.file(file = local.source, destdir = download.dir, decompress = decompress)
   }
   make.dir <- config$make_dir
