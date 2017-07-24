@@ -2,12 +2,12 @@
 % Please edit documentation in R/install.R
 \name{install.github}
 \alias{install.github}
-\title{Install from Github}
+\title{Install or download softwares from Github}
 \usage{
 install.github(name = "", download.dir = NULL, destdir = NULL,
-  version = NULL, show.all.versions = FALSE, name.saved = NULL,
-  github.cfg = system.file("extdata", "github.toml", package =
-  "BioInstaller"), db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE",
+  version = NULL, local.source = NULL, show.all.versions = FALSE,
+  name.saved = NULL, github.cfg = system.file("extdata", "github.toml",
+  package = "BioInstaller"), db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE",
   system.file("extdata", "softwares_db_demo.yaml", package = "BioInstaller")),
   download.only = FALSE, showWarnings = FALSE, dependence.need = TRUE,
   extra.list = list(), rcmd.parse = TRUE, bash.parse = TRUE,
@@ -22,6 +22,8 @@ install.github(name = "", download.dir = NULL, destdir = NULL,
 \item{destdir}{A string, point the install path}
 
 \item{version}{Software version}
+
+\item{local.source}{Install from local source, github softwares need a cloned dir}
 
 \item{show.all.versions}{Logical wheather show all avaliable version can be install}
 
@@ -61,7 +63,7 @@ system.file('extdata', 'softwares_db_demo.yaml', package = 'BioInstaller'))}
 Bool Value
 }
 \description{
-Install from Github
+Install or download softwares from Github
 }
 \examples{
 db <- sprintf('\%s/.BioInstaller', tempdir())

@@ -8,12 +8,13 @@ install.bioinfo(name = c(), download.dir = c(), destdir = c(),
   name.saved = NULL, github.cfg = system.file("extdata", "github.toml",
   package = "BioInstaller"), nongithub.cfg = system.file("extdata",
   "nongithub.toml", package = "BioInstaller"), version = c(),
-  show.all.versions = FALSE, show.all.names = FALSE,
+  local.source = NULL, show.all.versions = FALSE, show.all.names = FALSE,
   db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", system.file("extdata",
   "softwares_db_demo.yaml", package = "BioInstaller")), download.only = FALSE,
   decompress = TRUE, dependence.need = TRUE, showWarnings = FALSE,
   extra.list = list(), rcmd.parse = TRUE, bash.parse = TRUE,
-  glue.parse = TRUE, glue.flag = "!!glue", verbose = TRUE, ...)
+  glue.parse = TRUE, glue.flag = "!!glue", save.to.db = TRUE,
+  verbose = TRUE, ...)
 }
 \arguments{
 \item{name}{Software name}
@@ -32,6 +33,10 @@ default is system.file('extdata', 'github.toml', package='BioInstaller')}
 default is system.file('extdata', 'nongithub.toml', package='BioInstaller')}
 
 \item{version}{Software version}
+
+\item{local.source}{Install from local source, github softwares need a cloned dir, 
+and nongithub softwares can be installed from a compressed file 
+(if it is a dir, you need set decompress to FALSE)}
 
 \item{show.all.versions}{Logical wheather show all avaliable versions can be install}
 
@@ -58,6 +63,8 @@ system.file('extdata', 'softwares_db_demo.yaml', package = 'BioInstaller'))}
 ['nochange', '!!glue(1:5)', 'nochange'] => ['nochange', '1', '2', '3', '4', '5', 'nochange']}
 
 \item{glue.flag}{A character flage indicating wheater run glue() function to parse (Default is !!glue)}
+
+\item{save.to.db}{Ligical indicating wheather save the install infomation in db}
 
 \item{verbose}{Ligical indicating wheather show the log message}
 

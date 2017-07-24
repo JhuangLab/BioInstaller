@@ -509,3 +509,37 @@ get.reditools.versions <- function() {
   }
   return(versions_final)
 }
+
+get.miniconda2.versions <- function() {
+  urls <- c("https://repo.continuum.io/miniconda/")
+  versions_final <- NULL
+  for (url in urls) {
+    web <- read_html(url)
+    versions <- web %>% html_table() %>% .[[1]]
+    versions <- versions$Filename
+    versions <- versions[str_detect(versions, "Miniconda2")]
+    versions <- str_replace(versions, "-Linux.*|-Windows.*|-MacOSX.*", "")
+    versions <- str_extract(versions, "-[0-9.(latest)]*")
+    versions <- unique(str_replace(versions, "^-", ""))
+    versions <- versions[!is.na(versions)]
+    versions_final <- c(versions_final, versions)
+  }
+  return(versions_final)
+}
+
+get.miniconda3.versions <- function() {
+  urls <- c("https://repo.continuum.io/miniconda/")
+  versions_final <- NULL
+  for (url in urls) {
+    web <- read_html(url)
+    versions <- web %>% html_table() %>% .[[1]]
+    versions <- versions$Filename
+    versions <- versions[str_detect(versions, "Miniconda3")]
+    versions <- str_replace(versions, "-Linux.*|-Windows.*|-MacOSX.*", "")
+    versions <- str_extract(versions, "-[0-9.(latest)]*")
+    versions <- unique(str_replace(versions, "^-", ""))
+    versions <- versions[!is.na(versions)]
+    versions_final <- c(versions_final, versions)
+  }
+  return(versions_final)
+}

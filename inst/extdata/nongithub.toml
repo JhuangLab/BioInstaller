@@ -225,7 +225,7 @@ linux = "python setup.py install"
 mac = "python setup.py install"
 
 [novoalign]
-source_url = ["http://bioinfo.rjh.com.cn/download/novocraft/download.php?filename=novocraft{{version}}.tar.gz"]
+source_url = ["http://bioinfo.rjh.com.cn/download/novocraft/novocraft{{version}}.tar.gz"]
 
 version_newest = "V3.07.01.Linux3.0"
 
@@ -264,7 +264,7 @@ linux = "mkdir -p {{destdir}}/bin; fn=`ls -F |grep '*' | tr -d '*'`;cp $fn {{des
 mac = "mkdir -p {{destdir}}/bin; fn=`ls -F |grep '*' | tr -d '*'`;cp $fn {{destdir}}/bin"
 
 [gatk]
-source_url = ["http://bioinfo.rjh.com.cn/download/gatk/download.php?filename=gatk{{version}}.zip"]
+source_url = ["http://bioinfo.rjh.com.cn/download/gatk/gatk{{version}}.zip"]
 
 version_newest = "3.7-0"
 
@@ -283,7 +283,7 @@ linux = "mkdir -p {{destdir}}/bin; cp *.jar {{destdir}}/bin"
 mac = "mkdir -p {{destdir}}/bin; cp *.jar {{destdir}}/bin"
 
 [mutect]
-source_url = ["http://bioinfo.rjh.com.cn/download/gatk/download.php?filename=mutect{{version}}.zip"]
+source_url = ["http://bioinfo.rjh.com.cn/download/gatk/mutect{{version}}.zip"]
 
 version_newest = "1.1.7"
 
@@ -316,8 +316,9 @@ bin_dir = ["{{download.dir}}/bin"]
 
 [sratools.source_url]
 linux = "https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/{{version}}/sratoolkit.@>@if('{{os.version}}' == 'centos') {'{{version}}-centos_linux64'} else if ('{{os.version}}' == 'ubuntu') {'{{version}}-ubuntu64'}@<@.tar.gz"
+mac = "https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/{{version}}/sratoolkit.{{version}}-mac64.tar.gz"
+windows = "https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/{{version}}/sratoolkit.{{version}}-win64.zip"
 
-mac = "https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/{{version}}/sratoolkit.{{version}}-mac64.zip"
 
 [sratools.install]
 linux = ["mkdir -p {{destdir}}/bin; fn=`ls -F bin|grep '*' | tr -d '*'` ;cd bin;", " cp $fn {{destdir}}/bin"]
@@ -494,6 +495,7 @@ bin_dir = ["{{download.dir}}"]
 [imagej.source_url]
 linux = "http://wsr.imagej.net/distros/linux/ij{{version}}-linux64-java8.zip"
 mac = "http://wsr.imagej.net/distros/osx/ij{{version}}-osx-java8.zip"
+windows = "http://wsr.imagej.net/distros/win/is{{version}}-win-java8.zip"
 
 [zlib]
 version_newest = "1.2.11"
@@ -721,7 +723,7 @@ linux = "chmod +x liftOver; mkdir -p {{destdir}}/bin; cp liftOver {{destdir}}/bi
 mac = "chmod +x liftOver; mkdir -p {{destidr}}/bin; cp liftOver {{destdir}}/bin"
 
 [svtoolkit]
-source_url = "http://bioinfo.rjh.com.cn/download/svtoolkit/download.php?filename=svtoolkit_{{version}}.tar.gz"
+source_url = "http://bioinfo.rjh.com.cn/download/svtoolkit/svtoolkit_{{version}}.tar.gz"
 
 version_newest = "2.00.1747"
 
@@ -759,7 +761,7 @@ linux = ["mkdir build; cd build && cmake .. && make -j8"]
 mac = ["mkdir build; cd build && cmake .. && make -j8"]
 
 [cnvnator_samtools]
-source_url = "http://bioinfo.rjh.com.cn/download/svtoolkit/download.php?filename=cnvnator_samtools_{{version}}.tar.gz"
+source_url = "http://bioinfo.rjh.com.cn/download/svtoolkit/cnvnator_samtools_{{version}}.tar.gz"
 
 version_newest = "1.3.1"
 
@@ -894,6 +896,8 @@ linux = ["https://cran.r-project.org/src/base/R-3/R-{{version}}.tar.gz",
               "https://cran.r-project.org/src/base/R-0/R-{{version}}.tgz"]
 mac = ["https://cran.r-project.org/bin/macosx/R-{{version}}.pkg", 
        "https://cran.r-project.org/bin/macosx/old/R-{{version}}.pkg"]
+windows = ["https://cran.r-project.org/bin/windows/base/R-{{version}}-win.exe", 
+           "https://cran.r-project.org/bin/windows/base/old/{{versions}}/R-{{version}}-win.exe"]
 
 [r.install]
 linux = ["""./configure --enable-R-shlib --prefix={{destdir}} CFLAGS='\
@@ -932,3 +936,34 @@ source_url = "https://nchc.dl.sourceforge.net/project/reditools/REDItools-{{vers
 linux = "pip install ."
 mac = "pip install ."
 
+[miniconda2]
+decompress = false
+url_all_download = false
+
+[miniconda2.source_url] 
+windows = ["https://repo.continuum.io/miniconda/Miniconda2-{{version}}-Windows-x86_64.exe", 
+           "http://bioinfo.rjh.com.cn/download/miniconda/Miniconda2-{{version}}-Windows-x86_64.exe"]
+mac = ["https://repo.continuum.io/miniconda/Miniconda2-{{version}}-MacOSX-x86_64.sh",
+       "http://bioinfo.rjh.com.cn/download/miniconda/Miniconda2-{{version}}-MacOSX-x86_64.sh"]
+linux = ["https://repo.continuum.io/miniconda/Miniconda2-{{version}}-Linux-x86_64.sh",
+         "http://bioinfo.rjh.com.cn/download/miniconda/Miniconda2-{{version}}-Linux-x86_64.sh"]
+
+[miniconda2.install]
+linux = "sh Miniconda2-{{version}}-Linux-x86_64.sh"
+mac = "sh Miniconda2-{{version}}-MacOSX-x86_64.sh"
+
+[miniconda3]
+decompress = false
+url_all_download = false
+
+[miniconda3.source_url]
+windows = ["https://repo.continuum.io/miniconda/Miniconda3-{{version}}-Windows-x86_64.exe", 
+           "http://bioinfo.rjh.com.cn/download/miniconda/Miniconda3-{{version}}-Windows-x86_64.exe"]
+mac = ["https://repo.continuum.io/miniconda/Miniconda3-{{version}}-MacOSX-x86_64.sh",
+       "http://bioinfo.rjh.com.cn/download/miniconda/Miniconda3-{{version}}-MacOSX-x86_64.sh"]
+linux = ["https://repo.continuum.io/miniconda/Miniconda3-{{version}}-Linux-x86_64.sh",
+         "https://repo.continuum.io/miniconda/Miniconda3-{{version}}-Linux-x86_64.sh"]
+
+[miniconda3.install]
+linux = "sh Miniconda3-{{version}}-Linux-x86_64.sh"
+mac = "sh Miniconda3-{{version}}-MacOSX-x86_64.sh"

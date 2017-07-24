@@ -206,7 +206,10 @@ download.file.custom <- function(url = "", destfile = "", is.dir = FALSE, showWa
 }
 
 # Check destdir and decide wheather overwrite
-destdir.initial <- function(destdir, strict = TRUE, download.only = FALSE) {
+destdir.initial <- function(destdir, strict = TRUE, download.only = FALSE, local.source = NULL) {
+  if (!is.null(local.source)) {
+    return(TRUE)
+  }
   if (!download.only && file.exists(destdir) && length(list.files(destdir) != 0) && 
     strict) {
     flag <- "y"

@@ -10,6 +10,9 @@
 #' @param nongithub.cfg Configuration file of installed by non github url,
 #' default is system.file('extdata', 'nongithub.toml', package='BioInstaller')
 #' @param version Software version
+#' @param local.source Install from local source, github softwares need a cloned dir, 
+#' and nongithub softwares can be installed from a compressed file 
+#' (if it is a dir, you need set decompress to FALSE)
 #' @param show.all.versions Logical wheather show all avaliable versions can be install
 #' @param show.all.names Logical wheather show all avaliable names can be install
 #' @param db File of saving softwares infomation, default is Sys.getenv('BIO_SOFTWARES_DB_ACTIVE',
@@ -24,6 +27,7 @@
 #' @param glue.parse Logical wheather parse '!!glue{1:5}' in config to ['1','2','3','4','5']; 
 #' ['nochange', '!!glue(1:5)', 'nochange'] => ['nochange', '1', '2', '3', '4', '5', 'nochange']
 #' @param glue.flag A character flage indicating wheater run glue() function to parse (Default is !!glue) 
+#' @param save.to.db Ligical indicating wheather save the install infomation in db
 #' @param verbose Ligical indicating wheather show the log message
 #' @param ... Other key and value paired need be saved in BioInstaller passed to \code{\link{change.info}}
 #' @export
@@ -36,11 +40,11 @@
 install.bioinfo <- function(name = c(), download.dir = c(), destdir = c(), name.saved = NULL, 
   github.cfg = system.file("extdata", "github.toml", package = "BioInstaller"), 
   nongithub.cfg = system.file("extdata", "nongithub.toml", package = "BioInstaller"), 
-  version = c(), show.all.versions = FALSE, show.all.names = FALSE, db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", 
-    system.file("extdata", "softwares_db_demo.yaml", package = "BioInstaller")), 
-  download.only = FALSE, decompress = TRUE, dependence.need = TRUE, showWarnings = FALSE, 
-  extra.list = list(), rcmd.parse = TRUE, bash.parse = TRUE, glue.parse = TRUE, 
-  glue.flag = "!!glue", verbose = TRUE, ...) {
+  version = c(), local.source = NULL, show.all.versions = FALSE, show.all.names = FALSE, 
+  db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", system.file("extdata", "softwares_db_demo.yaml", 
+    package = "BioInstaller")), download.only = FALSE, decompress = TRUE, dependence.need = TRUE, 
+  showWarnings = FALSE, extra.list = list(), rcmd.parse = TRUE, bash.parse = TRUE, 
+  glue.parse = TRUE, glue.flag = "!!glue", save.to.db = TRUE, verbose = TRUE, ...) {
   db.check(db)
   github.names <- eval.config.sections(file = github.cfg)
   nongithub.names <- eval.config.sections(file = nongithub.cfg)
@@ -66,17 +70,18 @@ install.bioinfo <- function(name = c(), download.dir = c(), destdir = c(), name.
   for (i in name) {
     old_wd <- getwd()
     i <- tolower(i)
-    if (!show.all.versions) {
-      processed.dir.list <- pre.process.dir(i, destdir, download.dir, count)
-      destdir[count] <- processed.dir.list[["des.dir"]]
-      download.dir[count] <- processed.dir.list[["down.dir"]]
-    }
     sf.name = str_split(i, "@")[[1]][1]
     sf.version = str_split(i, "@")[[1]][2]
     if (is.null(name.saved[count]) || is.na(name.saved[count])) {
       name.saved[count] <- str_replace(i, "@", "_")
     }
     if (i %in% github.names || (sf.name %in% github.names && (sf.name != i))) {
+      if (!show.all.versions) {
+        processed.dir.list <- pre.process.dir(i, destdir, download.dir, count, 
+          local.source = local.source[count], is.nongithub = FALSE)
+        destdir[count] <- processed.dir.list[["des.dir"]]
+        download.dir[count] <- processed.dir.list[["down.dir"]]
+      }
       if (sf.name %in% github.names && sf.name != i) {
         name.saved[count] <- str_replace(i, "@", "_")
         i <- sf.name
@@ -84,13 +89,20 @@ install.bioinfo <- function(name = c(), download.dir = c(), destdir = c(), name.
       }
       status <- install.github(name = i, destdir = destdir[count], download.dir = download.dir[count], 
         github.cfg = github.cfg, name.saved = name.saved[count], version = version[count], 
-        show.all.versions = show.all.versions, db = db, download.only = download.only, 
-        verbose = verbose, showWarnings = showWarnings, dependence.need = dependence.need, 
-        extra.list = extra.list, rmcd.parse = rcmd.parse, bash.parse = bash.parse, 
-        glue.parse = glue.parse, glue.flag = glue.flag, ...)
+        local.source = local.source[count], show.all.versions = show.all.versions, 
+        db = db, download.only = download.only, verbose = verbose, showWarnings = showWarnings, 
+        dependence.need = dependence.need, extra.list = extra.list, rmcd.parse = rcmd.parse, 
+        bash.parse = bash.parse, glue.parse = glue.parse, glue.flag = glue.flag, 
+        save.to.db = save.to.db, ...)
       bygithub <- c(bygithub, i)
     } else if (i %in% nongithub.names || (sf.name %in% nongithub.names && sf.name != 
       i)) {
+      if (!show.all.versions) {
+        processed.dir.list <- pre.process.dir(i, destdir, download.dir, count, 
+          local.source = local.source, is.nongithub = TRUE)
+        destdir[count] <- processed.dir.list[["des.dir"]]
+        download.dir[count] <- processed.dir.list[["down.dir"]]
+      }
       if (sf.name %in% nongithub.names && sf.name != i) {
         name.saved[count] <- str_replace(i, "@", "_")
         i <- sf.name
@@ -98,10 +110,11 @@ install.bioinfo <- function(name = c(), download.dir = c(), destdir = c(), name.
       }
       status <- install.nongithub(name = i, destdir = destdir[count], download.dir = download.dir[count], 
         name.saved = name.saved[count], nongithub.cfg = nongithub.cfg, version = version[count], 
-        show.all.versions = show.all.versions, db = db, download.only = download.only, 
-        showWarnings = showWarnings, decompress = decompress, dependence.need = dependence.need, 
-        verbose = verbose, extra.list = extra.list, rcmd.parse = rcmd.parse, 
-        bash.parse = bash.parse, glue.parse = glue.parse, glue.flag = glue.flag, 
+        local.source = local.source[count], show.all.versions = show.all.versions, 
+        db = db, download.only = download.only, showWarnings = showWarnings, 
+        decompress = decompress, dependence.need = dependence.need, verbose = verbose, 
+        extra.list = extra.list, rcmd.parse = rcmd.parse, bash.parse = bash.parse, 
+        glue.parse = glue.parse, glue.flag = glue.flag, save.to.db = save.to.db, 
         ...)
       bynongithub <- c(bynongithub, i)
     } else {
@@ -151,12 +164,13 @@ install.bioinfo <- function(name = c(), download.dir = c(), destdir = c(), name.
   return(list(fail.list = fail.list, success.list = success.list))
 }
 
-#' Install from Github
+#' Install or download softwares from Github
 #'
 #' @param name Software name
 #' @param download.dir A string, point the source code download destdir
 #' @param destdir A string, point the install path
 #' @param version Software version
+#' @param local.source Install from local source, github softwares need a cloned dir
 #' @param show.all.versions Logical wheather show all avaliable version can be install
 #' @param name.saved Software name when you want to install different version, you
 #' can use this to point the installed softwares name like 'GATK-3.7'
@@ -184,7 +198,7 @@ install.bioinfo <- function(name = c(), download.dir = c(), destdir = c(), name.
 #' install.github('bwa', show.all.versions = TRUE)
 #' unlink(db)
 install.github <- function(name = "", download.dir = NULL, destdir = NULL, version = NULL, 
-  show.all.versions = FALSE, name.saved = NULL, github.cfg = system.file("extdata", 
+  local.source = NULL, show.all.versions = FALSE, name.saved = NULL, github.cfg = system.file("extdata", 
     "github.toml", package = "BioInstaller"), db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", 
     system.file("extdata", "softwares_db_demo.yaml", package = "BioInstaller")), 
   download.only = FALSE, showWarnings = FALSE, dependence.need = TRUE, extra.list = list(), 
@@ -207,10 +221,11 @@ install.github <- function(name = "", download.dir = NULL, destdir = NULL, versi
   }
   version <- version.initial(name, version, all.versions, config)
   info.msg(sprintf("Install versions:%s", paste0(version, collapse = ", ")), verbose = verbose)
-  processed.dir.list <- pre.process.dir(name, destdir, download.dir, 1)
+  processed.dir.list <- pre.process.dir(name, destdir, download.dir, 1, local.source = local.source, 
+    is.nongithub = FALSE)
   destdir <- processed.dir.list[["des.dir"]]
   download.dir <- processed.dir.list[["down.dir"]]
-  status <- destdir.initial(download.dir, strict = FALSE, download.only)
+  status <- destdir.initial(download.dir, strict = FALSE, download.only, local.source = local.source)
   if (status == FALSE) {
     return(FALSE)
   }
@@ -229,10 +244,10 @@ install.github <- function(name = "", download.dir = NULL, destdir = NULL, versi
   use_git2r <- config$use_git2r
   recursive_clone <- config$recursive_clone
   if ((all(is.null(github_url)) | all(github_url == "")) | (is.logical(config$no.need.download) && 
-    config$no.need.download == TRUE)) {
-    need.download = FALSE
+    config$no.need.download == TRUE) | !is.null(local.source)) {
+    need.download <- FALSE
   } else {
-    need.download = TRUE
+    need.download <- TRUE
   }
   make.dir <- config$make_dir
   
@@ -253,8 +268,11 @@ install.github <- function(name = "", download.dir = NULL, destdir = NULL, versi
     status <- git.download(name, download.dir, version, github_url, use_git2r, 
       recursive_clone, verbose)
   } else {
-    dir.create(download.dir, recursive = T)
+    if (is.null(local.source)) {
+      dir.create(download.dir, recursive = T)
+    }
   }
+  
   if (dependence.need) {
     process.dependence(config, db, download.dir, destdir, verbose)
     config <- eval.config(config = name, file = config.cfg)
@@ -310,12 +328,14 @@ install.github <- function(name = "", download.dir = NULL, destdir = NULL, versi
   }
 }
 
-#' Download and Install Software(Non-Github) in SIMut
+#' Install or download softwares from non-Github Web site
 #'
 #' @param name Software name
 #' @param download.dir A string, point the source code download destdir
 #' @param destdir A string, point the install path
 #' @param version Software version
+#' @param local.source Install from local source (a compressed file,
+#' if it is a dir, you need set decompress to FALSE)
 #' @param show.all.versions Logical wheather show all avaliable version can be install
 #' @param name.saved Software name when you want to install different version, you
 #' can use this to point the installed softwares name like 'GATK-3.7'
@@ -344,7 +364,7 @@ install.github <- function(name = "", download.dir = NULL, destdir = NULL, versi
 #' install.nongithub('gmap', show.all.versions = TRUE)
 #' unlink(db)
 install.nongithub <- function(name = "", download.dir = NULL, destdir = NULL, version = NULL, 
-  show.all.versions = FALSE, name.saved = NULL, nongithub.cfg = system.file("extdata", 
+  local.source = NULL, show.all.versions = FALSE, name.saved = NULL, nongithub.cfg = system.file("extdata", 
     "nongithub.toml", package = "BioInstaller"), db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", 
     system.file("extdata", "softwares_db_demo.yaml", package = "BioInstaller")), 
   download.only = FALSE, decompress = TRUE, dependence.need = TRUE, showWarnings = FALSE, 
@@ -367,10 +387,11 @@ install.nongithub <- function(name = "", download.dir = NULL, destdir = NULL, ve
   }
   version <- version.initial(name, version, all.versions, config)
   info.msg(sprintf("Install versions:%s", paste0(version, collapse = ", ")), verbose = verbose)
-  processed.dir.list <- pre.process.dir(name, destdir, download.dir, 1)
+  processed.dir.list <- pre.process.dir(name, destdir, download.dir, 1, local.source = local.source, 
+    is.nongithub = TRUE)
   destdir <- processed.dir.list[["des.dir"]]
   download.dir <- processed.dir.list[["down.dir"]]
-  status <- destdir.initial(download.dir, strict = FALSE, download.only)
+  status <- destdir.initial(download.dir, strict = FALSE, download.only, local.source = local.source)
   if (status == FALSE) {
     return(FALSE)
   }
@@ -388,7 +409,7 @@ install.nongithub <- function(name = "", download.dir = NULL, destdir = NULL, ve
   
   source_url <- source.url.initial(config)
   if ((all(is.null(source_url)) | all(source_url == "")) | (is.logical(config$no.need.download) && 
-    config$no.need.download == TRUE)) {
+    config$no.need.download == TRUE) | !is.null(local.source)) {
     need.download <- FALSE
   } else {
     need.download <- TRUE
@@ -462,6 +483,10 @@ install.nongithub <- function(name = "", download.dir = NULL, destdir = NULL, ve
     config <- configr::parse.extra(config = config, extra.list = args.all)
     config <- configr::parse.extra(config = config, other.config = db, rcmd.parse = rcmd.parse, 
       bash.parse = bash.parse, glue.parse = glue.parse, glue.flag = glue.flag)
+  }
+  if (!is.null(local.source)) {
+    dir.create(download.dir, recursive = TRUE)
+    extract.file(file = local.source, destdir = download.dir, decompress = decompress)
   }
   make.dir <- config$make_dir
   all.files <- list.files(download.dir)

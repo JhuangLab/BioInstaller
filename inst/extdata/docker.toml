@@ -1,0 +1,9 @@
+Title = "This is a docker hub simplified search database built-in BioInstaller R Package"
+[bwa]
+repo = ["life2cloud"]
+name = "bwa"
+version_newest = "latest"
+version_available = ["latest"]
+short_description = """Burrows-Wheeler Aligner Docker Image"""
+full_description = """BWA is a software package for mapping low-divergent sequences against a large reference genome, such as the human genome. It consists of three algorithms: BWA-backtrack, BWA-SW and BWA-MEM. The first algorithm is designed for Illumina sequence reads up to 100bp, while the rest two for longer sequences ranged from 70bp to 1Mbp. BWA-MEM and BWA-SW share similar features such as long-read support and split alignment, but BWA-MEM, which is the latest, is generally recommended for high-quality queries as it is faster and more accurate. BWA-MEM also has better performance than BWA-backtrack for 70-100bp Illumina reads.
+Dockerfile can be founded from https://github.com/JhuangLab/BioInstaller-docker-repo/tree/master/bwa"""

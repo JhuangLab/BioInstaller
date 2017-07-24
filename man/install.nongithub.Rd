@@ -2,17 +2,18 @@
 % Please edit documentation in R/install.R
 \name{install.nongithub}
 \alias{install.nongithub}
-\title{Download and Install Software(Non-Github) in SIMut}
+\title{Install or download softwares from non-Github Web site}
 \usage{
 install.nongithub(name = "", download.dir = NULL, destdir = NULL,
-  version = NULL, show.all.versions = FALSE, name.saved = NULL,
-  nongithub.cfg = system.file("extdata", "nongithub.toml", package =
-  "BioInstaller"), db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE",
-  system.file("extdata", "softwares_db_demo.yaml", package = "BioInstaller")),
-  download.only = FALSE, decompress = TRUE, dependence.need = TRUE,
-  showWarnings = FALSE, extra.list = list(), rcmd.parse = TRUE,
-  bash.parse = TRUE, glue.parse = TRUE, glue.flag = "!!glue",
-  save.to.db = TRUE, verbose = TRUE, ...)
+  version = NULL, local.source = NULL, show.all.versions = FALSE,
+  name.saved = NULL, nongithub.cfg = system.file("extdata",
+  "nongithub.toml", package = "BioInstaller"),
+  db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", system.file("extdata",
+  "softwares_db_demo.yaml", package = "BioInstaller")), download.only = FALSE,
+  decompress = TRUE, dependence.need = TRUE, showWarnings = FALSE,
+  extra.list = list(), rcmd.parse = TRUE, bash.parse = TRUE,
+  glue.parse = TRUE, glue.flag = "!!glue", save.to.db = TRUE,
+  verbose = TRUE, ...)
 }
 \arguments{
 \item{name}{Software name}
@@ -22,6 +23,9 @@ install.nongithub(name = "", download.dir = NULL, destdir = NULL,
 \item{destdir}{A string, point the install path}
 
 \item{version}{Software version}
+
+\item{local.source}{Install from local source (a compressed file,
+if it is a dir, you need set decompress to FALSE)}
 
 \item{show.all.versions}{Logical wheather show all avaliable version can be install}
 
@@ -63,7 +67,7 @@ system.file('extdata', 'softwares_db_demo.yaml', package = 'BioInstaller'))}
 Bool Value
 }
 \description{
-Download and Install Software(Non-Github) in SIMut
+Install or download softwares from non-Github Web site
 }
 \examples{
 db <- sprintf('\%s/.BioInstaller', tempdir())

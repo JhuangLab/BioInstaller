@@ -311,7 +311,8 @@ git.download <- function(name, destdir, version, github_url, use_git2r, recursiv
 }
 
 
-pre.process.dir <- function(name, destdir, download.dir, count) {
+pre.process.dir <- function(name, destdir, download.dir, count, local.source = NULL, 
+  is.nongithub = FALSE) {
   if (is.null.na(destdir[count]) && !is.null.na(download.dir[count])) {
     download.dir[count] <- normalizePath(download.dir[count], mustWork = FALSE)
     destdir[count] <- download.dir[count]
@@ -326,5 +327,8 @@ pre.process.dir <- function(name, destdir, download.dir, count) {
     destdir[count] <- normalizePath(destdir[count], mustWork = FALSE)
   }
   processed.dirs <- list(des.dir = destdir[count], down.dir = download.dir[count])
+  if (!is.null(local.source) && !is.nongithub) {
+    processed.dirs$down.dir = normalizePath(local.source, mustWork = FALSE)
+  }
   return(processed.dirs)
 }
