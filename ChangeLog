@@ -1,4 +1,8 @@
 2017-07-24 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
+
+		* picard/mutect be added in inst/extdata/docker.toml
+
+2017-07-24 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
 		
 		* craw.all.versions be add in R/craw.R
 		* local.source be supported

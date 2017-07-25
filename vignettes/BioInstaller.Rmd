@@ -32,7 +32,7 @@ establish a complete set of softwares and dependent files and set the correspond
 
 BioInstaller can help us to download, install and manage a variety of bioinformatics tools and databases more easily and systematically.
 
-What's more, BioInstaller provides a different way to download and install your files, softwares and databases for others, more detail can be found in another vignette [Examples of Templet Configuration File](https://cran.r-project.org/web/packages/BioInstaller/vignettes/write_configuration_file.html).
+What's more, BioInstaller provides a different way to download and install your files, softwares and databases for others, more detail can be found in another vignette [Examples of Templet Configuration File](https://CRAN.R-project.org/package=BioInstaller/vignettes/write_configuration_file.html).
 
 **Feature**:
 
@@ -108,3 +108,11 @@ install.bioinfo('demo_2', download.dir = download.dir, download.only = TRUE, ver
 install.bioinfo('demo_2', download.dir = download.dir, local.source = sprintf('%s/GRCh37_MT_ensGene.txt.gz', download.dir), decompress = TRUE)
 ```
 
+## Craw all versions of softwares or databases
+
+BioInstaller provide a `craw.all.version` function to try download all avaliable URL files in nongithub part.
+
+```{r}
+download.dir <- sprintf('%s/craw_all_versions', tempdir())
+craw.all.versions('demo', download.dir = download.dir)
+```

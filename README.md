@@ -22,7 +22,7 @@ establish a complete set of softwares and dependent files and set the correspond
 
 BioInstaller can help us to download, install and manage a variety of bioinformatics tools and databases more easily and systematically.
 
-What's more, BioInstaller provides a different way to download and install your files, softwares and databases for others, more detail can be found in another vignette [Examples of Templet Configuration File](https://cran.r-project.org/web/packages/BioInstaller/vignettes/write_configuration_file.html).
+What's more, BioInstaller provides a different way to download and install your files, softwares and databases for others, more detail can be found in another vignette [Examples of Templet Configuration File](https://CRAN.R-project.org/package=BioInstaller/vignettes/write_configuration_file.html).
 
 **Feature**:
 

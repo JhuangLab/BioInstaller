@@ -19,3 +19,17 @@ name = "samtools"
 version_newest = "latest"
 version_available = ["latest"]
 short_description = """samtools:Tools (written in C using htslib) for manipulating next-generation sequencing data"""
+
+[picard]
+repo = ["life2cloud"]
+name = "picard"
+version_newest = "latest"
+version_available = ["latest"]
+short_description = """picard:A set of command line tools (in Java) for manipulating high-throughput sequencing (HTS) data and formats such as SAM/BAM/CRAM and VCF."""
+
+[mutect]
+repo = ["life2cloud"]
+name = "mutect"
+version_newest = "latest"
+version_available = ["latest"]
+short_description = """mutect:Accurate and sensitive cancer mutation detection"""
