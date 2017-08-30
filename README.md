@@ -5,30 +5,30 @@ BioInstaller package
 
 ## Introduction
 
-BioInstaller is a downloader and installer of bio-softwares and bio-databases. The inspiration for this project comes from various types of convenient package manager, such as [pip](https://pypi.python.org/pypi/pip) for Python package, `install.packages` for R package, biocLite for [Bioconductor](http://www.bioconductor.org) R package, etc.
+BioInstaller is a downloader and installer of bio-software and bio-databases. The inspiration for this project comes from the various types package manager, such as [pip](https://pypi.python.org/pypi/pip) for Python package, `install.packages` for R package, biocLite for [Bioconductor](http://www.bioconductor.org) R package, etc.
 
 **Why we do not have an integrated bioinformatics database and software package manager?**
 
 In fact, there are already some tools can complete part of the work:
 
-[Conda](https://conda.io/docs/intro.html) and [BioConda](http://bioconda.github.io) have done a lot of work and we can use them to conveniently install some of bioinformatics softwares. But there are still many problems with these package managers, such as version updating not timely, incompatible to some precompiled programs, little support for the database and other non-software files.
+[Conda](https://conda.io/docs/intro.html) and [BioConda](http://bioconda.github.io) have done a lot of work and we can use them to conveniently install some of the bioinformatics software. But there are still many problems with these package managers, such as version updating not timely, incompatible to some pre-compiled programs, little support for the database and other non-software files.
 
 [docker](https://www.docker.com/) is another kind very promising tool to complete the migration of the analytical environment. But the root authority is required that it's difficult for you to always get root privileges.
 
-Futhermore, learning how to install and compile bioinformatics softwares is still necessary, because these 'unpleasant' experience will help you to improve the ability to debug and modify programs.
+Furthermore, learning how to install and compile bioinformatics software is still necessary, because these 'unpleasant' experience will help you to improve the ability to debug and modify programs.
 
-As for me, when starting some NGS analysis work in a new computer or operating system, I have to spend much time and energy to
-establish a complete set of softwares and dependent files and set the corresponding configuration file.
+As for me, when starting some NGS analysis work on a new computer or operating system, I have to spend much time and energy to
+establish a complete set of software and dependent files and set the corresponding configuration file.
 
 BioInstaller can help us to download, install and manage a variety of bioinformatics tools and databases more easily and systematically.
 
-What's more, BioInstaller provides a different way to download and install your files, softwares and databases for others, more detail can be found in another vignette [Examples of Templet Configuration File](https://CRAN.R-project.org/package=BioInstaller/vignettes/write_configuration_file.html).
+What's more, BioInstaller provides a different way to download and install your files, software, and databases for others, more detail can be found in another vignette [Examples of Templet Configuration File](https://CRAN.R-project.org/package=BioInstaller/vignettes/write_configuration_file.html).
 
 **Feature**:
 
 - Extendible
 - Craw the source code and version information from the original site
-- One step installation or download softwares and databases (Partial dependence supported)
+- One step installation or download software and databases (Partial dependence supported)
 
 ## Installation
 
@@ -78,4 +78,4 @@ devtools::install_github("JhuangLab/BioInstaller")
 
 **Others:** 
 
-- sparsehash, sqlite, pigz, lzo, lzop, bzip2, zlib, armadillo, pxz, ROOT, curl, xz, pcre, R, gatk_bundle, ImageJ, igraph
+- sparsehash, SQLite, pigz, lzo, lzop, bzip2, zlib, armadillo, pxz, ROOT, curl, xz, pcre, R, gatk_bundle, ImageJ, igraph
