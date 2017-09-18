@@ -99,7 +99,7 @@ test_that("get.file.type", {
 })
 
 test_that("download.file.custom", {
-  url <- "http://bioinfo.rjh.com.cn/download/annovarR/humandb/GRCh37_MT_ensGene.txt"
+  url <- "https://github.com/Miachol/ftp/blob/master/files/GRCh37_MT_ensGene.txt"
   destfile <- sprintf("%s/GRCh37", tempdir())
   x <- download.file.custom(url, destfile, quiet = T)
   expect_that(x, equals(0))

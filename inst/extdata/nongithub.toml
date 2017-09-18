@@ -1,7 +1,7 @@
 # Configuration file of install.softwares(Non-Github)
 title = "Non-Github Configuration File"
 [demo]
-source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{version}}_MT_ensGene.txt"
+source_url = "https://github.com/Miachol/ftp/blob/master/files/{{version}}_MT_ensGene.txt"
 decompress = false
 url_all_download = false
 version_newest = "GRCh37"
@@ -12,7 +12,7 @@ make_dir = ["./"]
 bin_dir = ["./"]
 
 [demo_2]
-source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{version}}_MT_ensGene.txt.gz"
+source_url = "https://github.com/Miachol/ftp/blob/master/files/{{version}}_MT_ensGene.txt.gz"
 url_all_download = false
 version_newest = "GRCh37"
 version_available = ["GRCh37"]
@@ -229,7 +229,7 @@ linux = "python setup.py install"
 mac = "python setup.py install"
 
 [novoalign]
-source_url = ["http://bioinfo.rjh.com.cn/download/novocraft/novocraft{{version}}.tar.gz"]
+source_url = ["https://github.com/Miachol/novocraft_releases/raw/master/novocraft{{version}}.tar.gz"]
 
 version_newest = "V3.07.01.Linux3.0"
 
@@ -268,11 +268,11 @@ linux = "mkdir -p {{destdir}}/bin; fn=`ls -F |grep '*' | tr -d '*'`;cp $fn {{des
 mac = "mkdir -p {{destdir}}/bin; fn=`ls -F |grep '*' | tr -d '*'`;cp $fn {{destdir}}/bin"
 
 [gatk]
-source_url = ["http://bioinfo.rjh.com.cn/download/gatk/gatk{{version}}.tar.gz"]
+source_url = ["https://github.com/Miachol/gatk_releases/raw/master/gatk{{version}}.tar.gz"]
 
-version_newest = "3.7-0"
+version_newest = "3.8-0"
 
-version_available = ["3.7-0", "3.7", "3.6", "3.5", "3.4-46"]
+version_available = ["3.8-0", "3.7-0", "3.7", "3.6", "3.5", "3.4-46"]
 
 after_failure = "echo 'fail!'"
 
@@ -287,7 +287,7 @@ linux = "mkdir -p {{destdir}}/bin; cp *.jar {{destdir}}/bin"
 mac = "mkdir -p {{destdir}}/bin; cp *.jar {{destdir}}/bin"
 
 [mutect]
-source_url = ["http://bioinfo.rjh.com.cn/download/gatk/mutect{{version}}.zip"]
+source_url = ["https://github.com/Miachol/gatk_releases/raw/master/mutect{{version}}.zip"]
 
 version_newest = "1.1.7"
 

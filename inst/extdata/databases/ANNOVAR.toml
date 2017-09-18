@@ -1,0 +1,393 @@
+title = "ANNOVAR download configuration file"
+
+[raw_ucsc_refgene]
+source_url = "http://hgdownload.cse.ucsc.edu/goldenPath/{{buildver}}/database/refGene.txt.gz"
+version_newest = "refgene"
+version_available = ["refgene"]
+buildver_available = ["hg38", "hg19", "hg18"]
+description = "UCSC goldenPath/{{buildver}}/database/refGene.txt.gz"
+after_success = "mv refGene.txt ucsc_{{buildver}}_refGene.txt"
+
+[raw_ucsc_knowngene]
+source_url = ["http://hgdownload.cse.ucsc.edu/goldenPath/{{buildver}}/database/knownGene.txt.gz", 
+              "http://hgdownload.cse.ucsc.edu/goldenPath/{{buildver}}/database/kgXref.txt.gz"]
+decompress = "!!glue {rep(TRUE, 2)}"
+version_newest = "knowngene"
+version_available = ["knowngene"]
+buildver_available = ["hg38", "hg19", "hg18"]
+description = "UCSC goldenPath/{{buildver}}/database/knownGene.txt.gz and kgXref.txt.gz"
+after_success = ["mv knownGene.txt ucsc_{{buildver}}_knownGene.txt", 
+                 "mv kgXref.txt ucsc_{{buildver}}_kgXref.txt"]
+
+[raw_ucsc_ensgene]
+source_url = "http://hgdownload.cse.ucsc.edu/goldenPath/{{buildver}}/database/ensGene.txt.gz"
+version_newest = "ensgene"
+version_available = ["ensgene"]
+buildver_available = ["hg19", "hg18"]
+description = "UCSC goldenPath/{{buildver}}/database/ensGene.txt.gz"
+after_success = "mv ensGene.txt ucsc_{{buildver}}_ensGene.txt"
+
+[raw_ucsc_dnase_clustered]
+source_url = "http://hgdownload.cse.ucsc.edu/goldenPath/{{buildver}}/encodeDCC/wgEncodeRegDnaseClustered/wgEncodeRegDnaseClustered{{version}}.bed.gz"
+version_newest = "V3"
+version_available = ["V3"]
+buildver_available = ["hg19"]
+description = "UCSC DNaseI Hypersensitivity Clusters in 125 cell types from ENCODE"
+after_success = "mv wgEncodeRegDnaseClustered{{version}}.bed ucsc_{{buildver}}_wgEncodeRegDnaseClustered{{version}}.bed"
+
+[raw_ucsc_tfbs_clustered]
+source_url = "http://hgdownload.cse.ucsc.edu/goldenPath/{{buildver}}/encodeDCC/wgEncodeRegTfbsClustered/wgEncodeRegTfbsClustered{{version}}.bed.gz"
+version_newest = "V3"
+version_available = ["V3"]
+buildver_available = ["hg19"]
+description = "UCSC Transcription Factor ChIP-seq (161 factors) from ENCODE with Factorbook Motifs"
+after_success = "mv wgEncodeRegTfbsClustered{{version}}.bed ucsc_{{buildver}}_wgEncodeRegTfbsClustered{{version}}.bed"
+
+[raw_annovar_refgene]
+source_url = ["http://www.openbioinformatics.org/annovar/download/{{buildver}}_refGene.txt.gz", 
+              "http://www.openbioinformatics.org/annovar/download/{{buildver}}_refGeneMrna.fa.gz", 
+              "http://www.openbioinformatics.org/annovar/download/{{buildver}}_refGeneVersion.txt.gz"]
+decompress = [true, true, true]
+version_newest = "refgene"
+version_available = ["refgene"]
+buildver_available = ["hg38", "hg19"]
+description = "FASTA sequences for all annotated transcripts in RefSeq Gene"
+after_success = ["mv {{buildver}}_refGene.txt annovar_{{buildver}}_refGene.txt", 
+                 "mv {{buildver}}_refGeneMrna.fa annovar_{{buildver}}_refGeneMrna.fa",
+                 "mv {{buildver}}_refGeneVersion.txt annovar_{{buildver}}_refGeneVersion.txt"]
+
+[raw_annovar_knowngene]
+source_url = ["http://www.openbioinformatics.org/annovar/download/{{buildver}}_knownGene.txt.gz", 
+              "http://www.openbioinformatics.org/annovar/download/{{buildver}}_knownGeneMrna.fa.gz", 
+              "http://www.openbioinformatics.org/annovar/download/{{buildver}}_kgXref.txt.gz"]
+decompress = [true, true, true]
+version_newest = "knowngene"
+version_available = ["knowngene"]
+buildver_available = ["hg19", "hg18"]
+description = "FASTA sequences for all annotated transcripts in UCSC Known Gene"
+after_success = ["mv {{buildver}}_knownGene.txt annovar_{{buildver}}_knownGene.txt", 
+                 "mv {{buildver}}_knownGeneMrna.fa annovar_{{buildver}}_knownGeneMrna.fa",
+                 "mv {{buildver}}_xgXref.txt annovar_{{buildver}}_xgXref.txt"]
+
+[raw_annovar_ensgene]
+source_url = ["http://www.openbioinformatics.org/annovar/download/{{buildver}}_ensGene.txt.gz", 
+              "http://www.openbioinformatics.org/annovar/download/{{buildver}}_ensGeneMrna.fa.gz"]
+decompress = [true, true]
+version_newest = "ensgene"
+version_available = ["ensgene"]
+buildver_available = ["hg19"]
+description = "FASTA sequences for all annotated transcripts in ENSEMBL Gene"
+after_success = ["mv {{buildver}}_ensGene.txt annovar_{{buildver}}_ensGene.txt", 
+                 "mv {{buildver}}_ensGeneMrna.fa annovar_{{buildver}}_ensGeneMrna.fa"]
+
+[raw_annovar_avsnp]
+source_url = ["http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.gz", 
+              "http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.idx.gz"]
+decompress = [true, true]
+version_newest = "avsnp147"
+version_available = ["avsnp147", "avsnp144", "avsnp142", "avsnp138"]
+[raw_annovar_avsnp.buildver_available]
+avsnp147 = ["hg38", "hg19"]
+avsnp144 = ["hg38", "hg19"]
+avsnp142 = ["hg38", "hg19"]
+avsnp138 = ["hg19"]
+[raw_annovar_avsnp.description]
+avsnp147 = "dbSNP147 with allelic splitting and left-normalization"
+avsnp144 = "dbSNP144 with allelic splitting and left-normalization (http://annovar.openbioinformatics.org/en/latest/articles/dbSNP/#additional-discussions)"
+avsnp142 = "dbSNP142 with allelic splitting and left-normalization"
+avsnp138 = "dbSNP138 with allelic splitting and left-normalization"
+
+[raw_annovar_avsift]
+source_url = ["http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.gz",
+              "http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.idx.gz"]
+decompress = [true, true]
+version_newest = "avsift"
+version_available = "avsift"
+buildver_available = ["hg19", "hg18"]
+description = "whole-exome SIFT scores for non-synonymous variants (obselete and should not be uesd any more)"
+
+[raw_annovar_ljb26_all]
+source_url = ["http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.gz",
+              "http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.idx.gz"]
+decompress = [true, true]
+version_newest = "ljb26_all"
+version_available = "ljb26_all"
+buildver_available = ["hg38", "hg19", "hg18"]
+description = "whole-exome SIFT, PolyPhen2 HDIV, PolyPhen2 HVAR, LRT, MutationTaster, MutationAssessor, FATHMM, MetaSVM, MetaLR, VEST, CADD, GERP++, PhyloP and SiPhy scores from dbNSFP version 2.6"
+
+[raw_annovar_dbnsfp]
+source_url = ["http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.gz",
+              "http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.idx.gz"]
+decompress = [true, true]
+version_newest = "dbnsfp33a"
+version_available = ["dbnsfp30a", "dbnsfp31a_interpro", "dbnsfp33a"]
+[raw_annovar_dbnsfp.buildver_available]
+dbnsfp30a = ["hg38", "hg19", "hg18"]
+dbnsfp31a_interpro = ["hg38", "hg19"]
+dbnsfp33a = ["hg38", "hg19", "hg18"]
+[raw_annovar_dbnsfp.description]
+dbnsfp30a = "whole-exome SIFT, PolyPhen2 HDIV, PolyPhen2 HVAR, LRT, MutationTaster, MutationAssessor, FATHMM, MetaSVM, MetaLR, VEST, CADD, GERP++, DANN, fitCons, PhyloP and SiPhy scores from dbNSFP version 3.0a"
+dbnsfp31a_interpro = "protein domain for variants"
+dbnsfp33a = "whole-exome SIFT, PolyPhen2 HDIV, PolyPhen2 HVAR, LRT, MutationTaster, MutationAssessor, FATHMM, PROVEAN, MetaSVM, MetaLR, VEST, M-CAP, CADD, GERP++, DANN, fathmm-MKL, Eigen, GenoCanyon, fitCons, PhyloP and SiPhy scores from dbNSFP version 3.3a"
+
+[raw_annovar_intervar]
+source_url = ["http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.gz",
+              "http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.idx.gz"]
+decompress = [true, true]
+version_newest = "intervar_20170202"
+version_available = "intervar_20170202"
+buildver_available = ["hg19"]
+description = "InterVar: clinical interpretation of missense variants"
+
+[raw_annovar_cg]
+source_url = ["http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.gz",
+              "http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.idx.gz"]
+decompress = [true, true]
+version_newest = "cg69"
+version_available = ["cg69", "cg46"]
+buildver_available = ["hg19", "hg18"]
+[raw_annovar_cg.description]
+cg69 = "allele frequency in 69 human subjects sequenced by Complete Genomics"
+cg46 = "alternative allele frequency in 46 unrelated human subjects sequenced by Complete Genomics"
+
+[raw_annovar_cosmic]
+source_url = ["http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.gz",
+              "http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.idx.gz"]
+decompress = [true, true]
+version_newest = "cosmic70"
+version_available = ["cosmic70", "cosmic68wgs", "cosmic68", "cosmic67wgs", "cosmic67", "cosmic65", "cosmic64"]
+[raw_annovar_cosmic.buildver_available]
+cosmic70 = ["hg38", "hg19"]
+other = "hg19"
+
+[raw_annovar_cosmic.description]
+csomic = "COSMIC database version"
+cosmic_wgs = "COSMIC database version on WGS data"
+
+[raw_annovar_esp6500siv2]
+source_url = ["http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.gz",
+              "http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.idx.gz"]
+decompress = [true, true]
+version_newest = "esp6500siv2_all"
+version_available = ["esp6500siv2_ea", "esp6500siv2_aa", "esp6500siv2_all"]
+buildver_available = ["hg38", "hg19", "hg18"]
+[raw_annovar_esp6500siv2.description]
+esp6500siv2_ea = "alternative allele frequency in European American subjects in the NHLBI-ESP project with 6500 exomes, including the indel calls and the chrY calls. This is lifted over from hg19 by myself"
+esp6500siv2_aa = "alternative allele frequency in African American subjects in the NHLBI-ESP project with 6500 exomes, including the indel calls and the chrY calls. This is lifted over from hg19 by myself."
+esp6500siv2_all = "alternative allele frequency in All subjects in the NHLBI-ESP project with 6500 exomes, including the indel calls and the chrY calls. This is lifted over from hg19 by myself."
+
+[raw_annovar_exac03]
+source_url = ["http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.gz",
+              "http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.idx.gz"]
+decompress = [true, true]
+version_newest = "exac03notcga"
+version_available = ["exac03nontcga", "exac03nonpsych", "exac03"]
+[raw_annovar_exac03.buildver_available]
+exac03nontcga = ["hg38", "hg19"]
+exac03nonpsych = ["hg38", "hg19"]
+exac03 = ["hg38", "hg19", "hg18"]
+[raw_annovar_exac03.description]
+exac03nontcga = "ExAC on non-TCGA samples (updated header)"
+exac03nonpsych = "ExAC on non-Psychiatric disease samples (updated header)"
+exac03 = "ExAC 65000 exome allele frequency data for ALL, AFR (African), AMR (Admixed American), EAS (East Asian), FIN (Finnish), NFE (Non-finnish European), OTH (other), SAS (South Asian)). version 0.3. Left normalization done."
+
+[raw_annovar_gnomad]
+source_url = ["http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.gz",
+              "http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.idx.gz"]
+decompress = [true, true]
+version_newest = "gnomad_genome"
+version_available = ["gnomad_exome", "gnomad_genome"]
+buildver_available = ["hg38", "hg19"]
+[raw_annovar_gnomad.description]
+gnomad_exome = "gnomAD exome collection"
+gnomad_genome = "gnomAD genome collection"
+
+[raw_annovar_kaviar]
+source_url = ["http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.gz",
+              "http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.idx.gz"]
+decompress = [true, true]
+version_newest = "kaviar_20150923"
+version_available = ["kaviar_20150923"]
+buildver_available = ["hg38", "hg19"]
+description = "170 million Known VARiants from 13K genomes and 64K exomes in 34 projects"
+
+[raw_annovar_hrcr1]
+source_url = ["http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.gz",
+              "http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.idx.gz"]
+decompress = [true, true]
+version_newest = "hrcr1"
+version_available = ["hrcr1"]
+buildver_available = ["hg38", "hg19"]
+description = "40 million variants from 32K samples in haplotype reference consortium"
+
+[raw_annovar_gme]
+source_url = ["http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.gz",
+              "http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.idx.gz"]
+decompress = [true, true]
+version_newest = "gme"
+version_available = ["gme"]
+buildver_available = ["hg38", "hg19"]
+description = "Great Middle East allele frequency including NWA (northwest Africa), NEA (northeast Africa), AP (Arabian peninsula), Israel, SD (Syrian desert), TP (Turkish peninsula) and CA (Central Asia)"
+
+[raw_annovar_mcap]
+source_url = ["http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.gz",
+              "http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.idx.gz"]
+decompress = [true, true]
+version_newest = "mcap"
+version_available = ["mcap"]
+buildver_available = ["hg38", "hg19"]
+description = "M-CAP scores for non-synonymous variants"
+
+[raw_annovar_revel]
+source_url = ["http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.gz",
+              "http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.idx.gz"]
+decompress = [true, true]
+version_newest = "revel"
+version_available = ["revel"]
+buildver_available = ["hg38", "hg19"]
+description = "REVEL scores for non-synonymous variants"
+
+[raw_annovar_snp]
+source_url = ["http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.gz",
+              "http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.idx.gz"]
+decompress = [true, true]
+version_newest = "snp138"
+version_available = ["snp138", "snp137", "snp135", "snp132", "snp131", "snp130", "snp129", "snp128"]
+description = "dbSNP with ANNOVAR index files"
+[raw_annovar_snp.buildver_available]
+snp128 = "hg18"
+snp137 = "hg19"
+other = ["hg19", "hg18"]
+
+[raw_annovar_nci60]
+source_url = ["http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.gz",
+              "http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.idx.gz"]
+decompress = [true, true]
+version_newest = "nci60"
+version_available = ["nci60"]
+buildver_available = ["hg38", "hg19", "hg18"]
+description = "NCI-60 human tumor cell line panel exome sequencing allele frequency data"
+
+[raw_annovar_icgc21]
+source_url = ["http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.gz",
+              "http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.idx.gz"]
+decompress = [true, true]
+version_newest = "icgc21"
+version_available = ["icgc21"]
+buildver_available = ["hg19"]
+description = "International Cancer Genome Consortium version 21"
+
+[raw_annovar_clinvar]
+source_url = ["http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.gz",
+              "http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.idx.gz"]
+decompress = [true, true]
+version_newest = "clinvar_20170130"
+version_available = ["clinvar_20131105", "clinvar_20140211", "clinvar_20140303",
+                     "clinvar_20140702", "clinvar_20140902", "clinvar_20140929",
+                     "clinvar_20150330", "clinvar_20150629", "clinvar_20151201",
+                     "clinvar_20160302", "clinvar_20161128", "clinvar_20170130"]
+description = "CLINVAR database with Variant Clinical Significance (unknown, untested, non-pathogenic, probable-non-pathogenic, probable-pathogenic, pathogenic, drug-response, histocompatibility, other) and Variant disease name"
+[raw_annovar_clinvar.buildver_available]
+clinvar_20140929 = "hg19"
+clinvar_20140211 = "hg19"
+clinvar_20140303 = "hg19"
+other = ["hg38", "hg19"]
+
+[raw_annovar_popfreq]
+source_url = ["http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.gz",
+              "http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.idx.gz"]
+decompress = [true, true]
+version_newest = "popfreq_all_20150413"
+version_available = ["popfreq_max_20150413", "popfreq_all_20150413"]
+buildver_available = ["hg19"]
+[raw_annovar_popfreq.description]
+popfreq_max_20150413 = "A database containing the maximum allele frequency from 1000G, ESP6500, ExAC and CG46" 
+popfreq_all_20150413 = "A database containing all allele frequency from 1000G, ESP6500, ExAC and CG46"
+
+[raw_annovar_mitimpact]
+source_url = ["http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.gz",
+              "http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.idx.gz"]
+decompress = [true, true]
+version_newest = "mitimpact24"
+version_available = ["mitimpact2", "mitimpact24"]
+buildver_available = ["hg19"]
+description = "pathogenicity predictions of human mitochondrial missense variants (http://www.ncbi.nlm.nih.gov/m/pubmed/25516408/)"
+
+[raw_annovar_gerp]
+source_url = ["http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.gz",
+              "http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.idx.gz"]
+decompress = [true, true]
+version_newest = "gerp++elem"
+version_available = ["gerp++elem", "gerp++gt2"]
+[raw_annovar_gerp.buildver_available]
+grep++elem = ["hg19", "hg18", "mm9"]
+gerp++gt2 = ["hg19", "hg18"]
+
+[raw_annovar_cadd]
+source_url = ["http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.gz",
+              "http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.idx.gz"]
+decompress = [true, true]
+version_newest = "cadd13"
+version_available = ["cadd", "caddgt10", "caddgt20", "cadd13", "cadd13gt10", "cadd13gt20"]
+buildver_available = "hg19"
+description = "CADD score; 13-version 1.3; gt10-score>10; gt20-score>20"
+
+[raw_annovar_fathmm]
+source_url = ["http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.gz",
+              "http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.idx.gz"]
+decompress = [true, true]
+version_newest = "fathmm"
+version_available = ["fathmm"]
+buildver_available = "hg19"
+description = "whole-genome FATHMM_coding and FATHMM_noncoding scores (noncoding and coding scores in the 2015 version was reversed)"
+
+[raw_annovar_gwava]
+source_url = ["http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.gz",
+              "http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.idx.gz"]
+decompress = [true, true]
+version_newest = "gwava"
+version_available = ["gwava"]
+buildver_available = "hg19"
+description = "whole genome GWAVA_region_score GWAVA_tss_score GWAVA_unmatched_score, see ref (http://www.nature.com/nmeth/journal/v11/n3/abs/nmeth.2832.html)"
+
+[raw_annovar_eigen]
+source_url = ["http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.gz",
+              "http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.idx.gz"]
+decompress = [true, true]
+version_newest = "eigen"
+version_available = ["eigen"]
+buildver_available = "hg19"
+description = "whole-genome Eigen scores, see ref (http://www.ncbi.nlm.nih.gov/pubmed/26727659)"
+
+[raw_annovar_1000g]
+source_url = "http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.zip"
+version_newest = "1000g2015aug"
+version_available = ["1000g2015aug", "1000g2014oct", "1000g2014sep", "1000g2014aug", "1000g2012apr", "1000g2012feb",
+                     "1000g2011may", "1000g2010nov", "1000g2012apr", "1000g2010jul", "1000g2010", "1000g"]
+description = "alternative allele frequency data in 1000 Genomes Project"
+[raw_annovar_1000g.buildver_available]
+1000g2015aug = ["hg38", "hg19"]
+1000g2014oct = ["hg38", "hg19", "hg18"]
+1000g2012apr = ["hg19", "hg18"]
+1000g2012jul = "hg18"
+1000g2010 = "hg18"
+1000g = "hg18"
+other = "hg19"
+
+[raw_annovar_dbscsnv11]
+source_url = ["http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.gz",
+              "http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.idx.gz"]
+decompress = [true, true]
+version_newest = "dbscsnv11"
+version_available = ["dbscsnv11"]
+buildver_available = ["hg38", "hg19"]
+description = "dbscSNV version 1.1 for splice site prediction by AdaBoost and Random Forest"
+
+[raw_annovar_regsnpintron]
+source_url = ["http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.gz",
+              "http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.idx.gz"]
+decompress = [true, true]
+version_newest = "regsnpintron"
+version_available = ["regsnpintron"]
+buildver_available = ["hg19"]
+description = "prioritize the disease-causing probability of intronic SNVs"
