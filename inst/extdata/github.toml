@@ -801,3 +801,17 @@ make_dir = "ensembl-vep"
 [vep.install]
 linux = 'perl INSTALL.pl'
 mac = 'perl INSTALL.pl'
+
+[dart]
+github_url = "https://github.com/hsinnan75/DART"
+
+[dart.install]
+linux = "make"
+mac = "make"
+
+[fastq_tools]
+github_url = "https://github.com/dcjones/fastq-tools"
+
+[fastq_tools.install]
+linux = ["sh autogen.sh && ./configure --prefix={{destdir}} && make", "make install"]
+mac = ["sh autogen.sh && ./configure --prefix={{destdir}} && make", "make install"]

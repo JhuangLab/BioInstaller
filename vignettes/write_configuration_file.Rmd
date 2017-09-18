@@ -83,7 +83,7 @@ Version control of non-github softwares and databases need a function parsing UR
 
 ## nongithub_databases_blast.toml
 
-This configuration file can be used to download NCBI blast database: `install.bioinfo(nongithub.cfg = system.file('extdata', 'nongithub_databases_blast.toml', package = 'BioInstaller'), show.all.names = TRUE)`.
+This configuration file can be used to download NCBI blast database: `install.bioinfo(nongithub.cfg = system.file('extdata', 'databases/blast.toml', package = 'BioInstaller'), show.all.names = TRUE)`.
 
 BioInstaller use [configr](https://github.com/Miachol/configr) `glue` to reduce the length of files name. That using less word to storage more files name. More useful databases FTP url can be accessed in the future. I hope you can set your own configuration file not only use the BioInstaller built-in configuration files.
 
@@ -91,7 +91,7 @@ BioInstaller use [configr](https://github.com/Miachol/configr) `glue` to reduce 
 library(configr)
 library(BioInstaller)
 blast.databases <- system.file('extdata', 
-  'nongithub_databases_blast.toml', package = 'BioInstaller')
+  'databases/blast.toml', package = 'BioInstaller')
 
 read.config(blast.databases)$blast_db_nr$source_url
 read.config(blast.databases, glue.parse = TRUE)$blast_db_nr$source_url

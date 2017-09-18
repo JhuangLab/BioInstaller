@@ -1,3 +1,11 @@
+2017-09-18 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
+
+		* fix invalid test link
+		* ANNOVAR databases can be download use
+		inst/extdata/databases/ANNOVAR.toml
+		* Move databases toml file to inst/extdata/databases/
+		* DRAT and fastq-tools be added
+
 2017-07-24 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
 
 		* picard/mutect be added in inst/extdata/docker.toml
