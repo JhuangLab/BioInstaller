@@ -1,3 +1,9 @@
+2017-10-09 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
+
+		* strelka be added 
+		* mm9/mm10 be added in ucsc_reffa
+		* fix samtools-1.6 fail
+
 2017-09-18 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
 
 		* fix invalid test link

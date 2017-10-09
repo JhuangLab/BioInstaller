@@ -90,7 +90,7 @@ url_all_download = false
 
 version_newest = "hg38"
 
-version_available = ["hg19", "hg38"]
+version_available = ["hg19", "hg38", "mm9", "mm10"]
 
 after_failure = "echo 'fail!'"
 
@@ -114,9 +114,9 @@ make_dir = ["./"]
 [ensemble_grch38_reffa]
 source_url = "ftp://ftp.ensembl.org/pub/release-{{version}}/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.primary_assembly.fa.gz"
 
-version_newest = "87"
+version_newest = "90"
 
-version_available = ["76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87"]
+version_available = ["76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90"]
 
 after_failure = "echo 'fail!'"
 
@@ -815,8 +815,8 @@ make_dir = ["./"]
 bin_dir = ["{{destdir}}/bin"]
 
 [samtools.install]
-linux = ["autoconf -Wno-syntax; sed -i 's;HTSDIR = ../htslib;HTSDIR = {{htslib:source.dir}};' config.mk; ./configure --prefix={{destdir}}; make ", "make install prefix={{destdir}}"]
-mac = ["autoconf -Wno-syntax; sed -i 's;HTSDIR = ../htslib;HTSDIR = {{htslib:source.dir}};' config.mk; ./configure --prefix={{destdir}}; make ", "make install prefix={{destdir}}"]
+linux = ["autoconf -Wno-syntax;","sed -i 's;HTSDIR = ../htslib;HTSDIR = {{htslib:source.dir}};' config.mk; ", "./configure --with-htslib={{htslib:source.dir}} --prefix={{destdir}}; make ", "make install prefix={{destdir}}"]
+mac = ["autoconf -Wno-syntax;","sed -i 's;HTSDIR = ../htslib;HTSDIR = {{htslib:source.dir}};' config.mk; ", "./configure --with-htslib={{htslib:source.dir}} --prefix={{destdir}}; make ", "make install prefix={{destdir}}"]
 
 [pcre]
 source_url = "https://ftp.pcre.org/pub/pcre/pcre-{{version}}.tar.gz"
@@ -971,3 +971,13 @@ linux = ["https://repo.continuum.io/miniconda/Miniconda3-{{version}}-Linux-x86_6
 [miniconda3.install]
 linux = "sh Miniconda3-{{version}}-Linux-x86_64.sh"
 mac = "sh Miniconda3-{{version}}-MacOSX-x86_64.sh"
+
+[strelka]
+source_url = "ftp://strelka@ftp.illumina.com/v1-branch/v{{version}}/strelka_workflow-{{version}}.tar.gz"
+version_order_fixed = true
+version_available = ["1.0.15", "1.0.4", "1.0.5", "1.0.6", "1.0.7", "1.0.10", 
+                     "1.0.11", "1.0.12", "1.0.13", "1.0.14"]
+
+[strelka.install]
+linux = ["./configure --prefix={{destdir}} && make", "make install"]
+mac = ["./configure --prefix={{destdir}} && make", "make install"]
