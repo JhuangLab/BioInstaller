@@ -1,0 +1,6 @@
+title = "CSCD: a database for cancer-specific circular RNAs"
+
+[raw_cscd]
+source_url="http://gb.whu.edu.cn/CSCD/public/static/download/{{version}}.tar.gz"
+
+version_available = ["hg19-cancer-circrna", "hg19-cancer-circrna-mre", "hg19-cancer-circrna-rbp", "hg19-cancer-circrna-orf", "hg19-normal-circrna", "hg19-normal-circrna-mre", "hg19-normal-circrna-rbp", "hg19-normal-circrna-orf", "hg19-common-circrna", "hg19-common-circrna-mre", "hg19-common-circrna-rbp", "hg19-common-circrna-orf", "hg38-cancer-circrna", "hg38-cancer-circrna-mre", "hg38-cancer-circrna-rbp", "hg38-cancer-circrna-orf", "hg38-normal-circrna", "hg38-normal-circrna-mre", "hg38-normal-circrna-rbp", "hg38-normal-circrna-orf", "hg38-common-circrna", "hg38-common-circrna-mre", "hg38-common-circrna-rbp", "hg38-common-circrna-orf"]

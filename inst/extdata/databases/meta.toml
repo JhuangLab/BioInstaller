@@ -20,3 +20,8 @@ portal = "https://portal.gdc.cancer.gov/search/s?facetTab=cases&filters=%7B%22op
 
 [cbioportal]
 portal = 'http://www.cbioportal.org/index.do'
+
+[cscd]
+url = "http://gb.whu.edu.cn/CSCD/"
+description = "Circular RNA (circRNA) is a large group of RNA family extensively existed in cells and tissues. High-throughput sequencing provides a way to view circRNAs across different samples, especially in various diseases. However, there is still no comprehensive database for exploring the cancer-specific circRNAs. Researchers at Wuhan University collected 228 total RNA or polyA(-) RNA-seq samples from both cancer and normal cell lines, and identified 272 152 cancer-specific circRNAs. A total of 950 962 circRNAs were identified in normal samples only, and 170 909 circRNAs were identified in both tumor and normal samples, which could be further used as non-tumor background. The researchers constructed a cancer-specific circRNA database. To understand the functional effects of circRNAs, they predicted the microRNA response element sites and RNA binding protein sites for each circRNA. They further predicted potential open reading frames to highlight translatable circRNAs. To understand the association between the linear splicing and the back-splicing, the researchers also predicted the splicing events in linear transcripts of each circRNA. As the first comprehensive cancer-specific circRNA database, they believe CSCD could significantly contribute to the research for the function and regulation of cancer-associated circRNAs."
+publication = "XiaS , Feng J, Chen K, Ma Y, Gong J, Cai FF, Jin Y, Gao Y, Xia L, Chang H, Wei L, Han L, He C. (2017) CSCD: a database for cancer-specific circular RNAs. Nucleic Acids Research"

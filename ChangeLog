@@ -1,3 +1,8 @@
+2017-10-12 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
+
+		* CSCD database be supported
+		(/inst/extdata/databases/cscd.toml)
+
 2017-10-09 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
 
 		* strelka be added 
