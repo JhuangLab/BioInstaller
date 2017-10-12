@@ -62,11 +62,11 @@ devtools::install_github("JhuangLab/BioInstaller")
 
 **Variant Annotation:** 
 
-- ANNOVAR, SnpEff, VEP
+- ANNOVAR, SnpEff, VEP, oncotator
 
 **Utils:** 
 
-- htslib, samtools, bcftools, bedtools, bamtools, vcftools, sratools, picard, HTSeq, seqtk, UCSC Utils(blat, liftOver), bamUtil, jvarkit, bcl2fastq2
+- htslib, samtools, bcftools, bedtools, bamtools, vcftools, sratools, picard, HTSeq, seqtk, UCSC Utils(blat, liftOver), bamUtil, jvarkit, bcl2fastq2, fastq_tools
 
 **Genome:**
 
@@ -79,3 +79,7 @@ devtools::install_github("JhuangLab/BioInstaller")
 **Others:** 
 
 - sparsehash, SQLite, pigz, lzo, lzop, bzip2, zlib, armadillo, pxz, ROOT, curl, xz, pcre, R, gatk_bundle, ImageJ, igraph
+
+**Databases:**
+
+- ANNOVAR, blast, CSCD, GATK_Bundle
