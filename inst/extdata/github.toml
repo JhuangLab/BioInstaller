@@ -815,3 +815,22 @@ github_url = "https://github.com/dcjones/fastq-tools"
 [fastq_tools.install]
 linux = ["sh autogen.sh && ./configure --prefix={{destdir}} && make", "make install"]
 mac = ["sh autogen.sh && ./configure --prefix={{destdir}} && make", "make install"]
+
+[arnapipe]
+github_url = "https://github.com/HudsonAlpha/aRNAPipe"
+
+[trimgalore]
+github_url = "https://github.com/FelixKrueger/TrimGalore"
+#fastqc needed
+[trimgalore.before_install]
+linux = "pip install cutadapt" 
+mac = "pip install cutadapt" 
+[trimgalore.install]
+linux = "mkdir -p {{destdir}}/bin; cp {{download.dir}}/trim_galore {{destdir}}/bin"
+mac = "mkdir -p {{destdir}}/bin; cp {{download.dir}}/trim_galore {{destdir}}/bin"
+
+[multiqc]
+github_url = "https://github.com/ewels/MultiQC"
+[multiqc.install]
+linux = "pip install ."
+mac = "pip install ."

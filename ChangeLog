@@ -1,3 +1,7 @@
+2017-10-31 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
+
+		* aRNApipe, trim_galore, multiqc, ngs_qc_toolkit be supported 
+
 2017-10-12 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
 
 		* CSCD database be supported

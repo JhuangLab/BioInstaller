@@ -9,3 +9,19 @@ publication_doi = ["10.1093/bioinformatics/btp324", "10.1093/bioinformatics/btp6
 publication_date = [2009, 2010, 2013]
 tag = ["Genomics", "NGS", "Genomic alignment", "DNA-seq", "Whole exome sequencing", "WES", 
 "Whole genome sequencing", "WGS"]
+
+[arnapipe]
+title = "a project-oriented pipeline for processing of RNA-seq data in high performance cluster environments"
+tag = ["QC", "RNA-seq"]
+
+[ngs_qc_toolkit]
+title = "A toolkit for the quality control (QC) of next generation sequencing (NGS) data"
+tag = ["QC", "NGS"]
+
+[trimgalore]
+title = "A wrapper around Cutadapt and FastQC to consistently apply adapter and quality trimming to FastQ files, with extra functionality for RRBS data"
+tag = ["QC", "NGS"]
+
+[multiqc]
+title = "Aggregate results from bioinformatics analyses across many samples into a single report."
+tag = ["QC", "NGS"]

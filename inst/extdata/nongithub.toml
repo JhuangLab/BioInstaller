@@ -981,3 +981,8 @@ version_available = ["1.0.15", "1.0.4", "1.0.5", "1.0.6", "1.0.7", "1.0.10",
 [strelka.install]
 linux = ["./configure --prefix={{destdir}} && make", "make install"]
 mac = ["./configure --prefix={{destdir}} && make", "make install"]
+
+[ngs_qc_toolkit]
+source_url = "http://14.139.61.3:8080/ngsqctoolkit/NGSQCToolkit_{{version}}.zip"
+version_order_fixed = true
+version_available = ["v2.3.3", "v2.3.2", "v2.3.1"]
