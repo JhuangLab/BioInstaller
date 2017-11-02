@@ -1,3 +1,0 @@
-[oncotator_default_datasource]
-source_url = "ftp://gsapubftp-anonymous@ftp.broadinstitute.org/bundle/oncotator/oncotator_{{version}}.tar.gz"
-version_available = ["v1_ds_April052016"]

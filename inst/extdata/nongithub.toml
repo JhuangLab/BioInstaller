@@ -986,3 +986,7 @@ mac = ["./configure --prefix={{destdir}} && make", "make install"]
 source_url = "http://14.139.61.3:8080/ngsqctoolkit/NGSQCToolkit_{{version}}.zip"
 version_order_fixed = true
 version_available = ["v2.3.3", "v2.3.2", "v2.3.1"]
+
+[srnanalyzer]
+source_url = "http://srnanalyzer.systemsbiology.net/downloads/sRNAnalyzer.tar.gz"
+version_available = "latest"

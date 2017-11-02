@@ -1,0 +1,20 @@
+Title = "BioInstaller databases main repo."
+
+[db_oncotator]
+source_url = "ftp://gsapubftp-anonymous@ftp.broadinstitute.org/bundle/oncotator/oncotator_{{version}}.tar.gz"
+version_available = ["v1_ds_April052016"]
+
+[db_srnanalyzer]
+source_url = "http://srnanalyzer.systemsbiology.net/downloads/{{version}}.tar.gz"
+version_available = ["sRNA_DBs", "MainDBs", "NCBI_NonHuman"]
+version_description = ["small RNA Databases", "Human and Exogenous Databases", "NCBI Non-Human Databases"]
+
+[db_cscd]
+source_url="http://gb.whu.edu.cn/CSCD/public/static/download/{{version}}.tar.gz"
+
+version_available = ["hg19-cancer-circrna", "hg19-cancer-circrna-mre", "hg19-cancer-circrna-rbp", "hg19-cancer-circrna-orf", "hg19-normal-circrna", "hg19-normal-circrna-mre", "hg19-normal-circrna-rbp", "hg19-normal-circrna-orf", "hg19-common-circrna", "hg19-common-circrna-mre", "hg19-common-circrna-rbp", "hg19-common-circrna-orf", "hg38-cancer-circrna", "hg38-cancer-circrna-mre", "hg38-cancer-circrna-rbp", "hg38-cancer-circrna-orf", "hg38-normal-circrna", "hg38-normal-circrna-mre", "hg38-normal-circrna-rbp", "hg38-normal-circrna-orf", "hg38-common-circrna", "hg38-common-circrna-mre", "hg38-common-circrna-rbp", "hg38-common-circrna-orf"]
+
+[db_differentialnet]
+source_url = "http://netbio.bgu.ac.il/diffnet-interactomes/@>@str_replace('{{version}}', '_.*', '')@<@/@>@str_replace('{{version}}', '.*_', '')@<@.tsv"
+decompress = false
+version_available = ["HPA_Adrenal", "HPA_Appendix", "HPA_Bonemarrow", "HPA_Brain", "HPA_Colon", "HPA_Endometrium", "HPA_Esophagus", "HPA_FallopianTube", "HPA_Fat", "HPA_Gallbladder", "HPA_Heart", "HPA_Kidney", "HPA_Liver", "HPA_Lung", "HPA_LymphNode", "HPA_Ovary", "HPA_Placenta", "HPA_Prostate", "HPA_Rectum", "HPA_SalivaryGland", "HPA_SkeletalMuscle", "HPA_Skin", "HPA_SmallIntestine", "HPA_SmoothMuscle", "HPA_Spleen", "HPA_Stomach", "HPA_Testis", "HPA_Thyroid", "HPA_Tonsil", "GTEx_Adipose - Subcutaneous", "GTEx_Adipose - Visceral (Omentum)", "GTEx_Artery - Aorta", "GTEx_Artery - Coronary", "GTEx_Artery - Tibial", "GTEx_Brain - Amygdala", "GTEx_Brain - Anterior cingulate cortex (BA24)", "GTEx_Brain - Caudate (basal ganglia)", "GTEx_Brain - Cerebellar Hemisphere", "GTEx_Brain - Cerebellum", "GTEx_Brain - Cortex", "GTEx_Brain - Frontal Cortex (BA9)", "GTEx_Brain - Hippocampus", "GTEx_Brain - Hypothalamus", "GTEx_Brain - Nucleus accumbens (basal ganglia)", "GTEx_Brain - Putamen (basal ganglia)", "GTEx_Brain - Spinal cord (cervical c-1)", "GTEx_Brain - Substantia nigra", "GTEx_Breast - Mammary Tissue", "GTEx_Cells - EBV-transformed lymphocytes", "GTEx_Cells - Transformed fibroblasts", "GTEx_Colon - Sigmoid", "GTEx_Esophagus - Gastroesophageal Junction", "GTEx_Esophagus - Mucosa", "GTEx_Esophagus - Muscularis", "GTEx_Heart - Atrial Appendage", "GTEx_Heart - Left Ventricle", "GTEx_Liver", "GTEx_Lung", "GTEx_Minor Salivary Gland", "GTEx_Muscle - Skeletal", "GTEx_Nerve - Tibial", "GTEx_Ovary", "GTEx_Pituitary", "GTEx_Prostate", "GTEx_Skin - Not Sun Exposed (Suprapubic)", "GTEx_Skin - Sun Exposed (Lower leg)", "GTEx_Stomach", "GTEx_Testis", "GTEx_Thyroid", "GTEx_Uterus", "GTEx_Vagina", "GTEx_Whole Blood", "GTEx_Whole Brain"]

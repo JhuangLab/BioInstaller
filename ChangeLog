@@ -1,3 +1,20 @@
+2017-11-02 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
+
+		* inst/extdata/web/web_meta.toml be added
+		* Function get.meta.files and get.meta be added in 
+		R/meta.R
+
+2017-11-01 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
+
+		* URLencode be used
+		* filenames in inst/extdata/databases changed, ANNOVAR.toml => db_annovar.toml, blast.toml =>
+		db_blast.toml, meta.toml => db_meta.toml, main.toml => db_main.toml
+		* prefix of database rename to db_.*, e.g. raw_ucsc_refseq =>
+		db_ucsc_refseq in inst/extdata/databases/db_annovar.toml
+		* inst/extdata/databases/CSCD.toml merged with db_main.toml
+		* sRNAnalyzer, db_sRNAnalyzer, db_differentialnet be supported
+		in db_main.toml
+
 2017-10-31 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
 
 		* aRNApipe, trim_galore, multiqc, ngs_qc_toolkit be supported 

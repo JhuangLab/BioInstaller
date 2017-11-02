@@ -1,0 +1,19 @@
+Title = "A library of useful WEB URL resource."
+
+[web.item.uniprot]
+url = "ftp://ftp.uniprot.org/pub/databases/uniprot"
+
+[web.item.kegg]
+url = "ftp://ftp.genome.jp/pub"
+
+[web.item.ncbi]
+url = "ftp://ftp.ncbi.nih.gov/pub"
+
+[web.item.ensembl]
+url = "ftp://ftp.ensembl.org/pub/"
+
+[web.item.tcga_gdc]
+url = "https://portal.gdc.cancer.gov/search/s?facetTab=cases&filters=%7B%22op%22:%22and%22,%22content%22:%5B%7B%22op%22:%22in%22,%22content%22:%7B%22field%22:%22cases.project.program.name%22,%22value%22:%5B%22TCGA%22%5D%7D%7D%5D%7D"
+
+[web.item.cbioportal]
+url = 'http://www.cbioportal.org/index.do'

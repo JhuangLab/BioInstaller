@@ -183,8 +183,8 @@ download.file.custom <- function(url = "", destfile = "", is.dir = FALSE, showWa
     for (i in filenames) {
       fn <- sprintf("%s/%s", destfile, i)
       tryCatch({
-        status.tmp <- download.file(url = sprintf("%s/%s", url, i), destfile = fn, 
-          ...)
+        url.encode <- URLencode(sprintf("%s/%s", url, i))
+        status.tmp <- download.file(url = url.encode, destfile = fn, ...)
         status <- c(status.tmp, status)
       }, error = function(e) {
         if (showWarnings) {
@@ -200,7 +200,8 @@ download.file.custom <- function(url = "", destfile = "", is.dir = FALSE, showWa
       status <- 0
     }
   } else {
-    status <- download.file(url = url, destfile = destfile, ...)
+    url.encode <- URLencode(url)
+    status <- download.file(url = url.encode, destfile = destfile, ...)
   }
   return(status)
 }

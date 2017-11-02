@@ -123,6 +123,31 @@ craw.all.versions('demo', download.dir = download.dir)
 download.dir <- sprintf('%s/ANNOVAR', tempdir())
 config.toml <- system.file("extdata", "databases/ANNOVAR.toml", 
   package = "BioInstaller")
-install.bioinfo('raw_ucsc_refgene', download.dir = download.dir, 
+install.bioinfo('db_ucsc_refgene', download.dir = download.dir, 
   nongithub.cfg = config.toml, extra.list = list(buildver = "hg19"))
+```
+
+## Get meta information of softwares and databases
+
+```{r}
+# Get all meta source files
+meta_files <- get.meta.files()
+meta_files
+
+# Get all of meta informaton in BioInstaller
+meta <- get.meta()
+meta
+
+# Examples of get.meta
+db_cfg_meta <- get.meta(config = 'db', value = 'cfg_meta')
+db_cfg_meta
+
+db_cfg_meta <- get.meta(config = 'github', value = 'item')
+db_cfg_meta$bwa
+
+# Get databases meta file
+db_meta_file <- get.meta(config = 'db_meta_file')
+db_meta_file
+db_meta_file <- meta_files[["db_meta_file"]]
+db_meta_file
 ```
