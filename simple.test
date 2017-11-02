@@ -1,7 +1,0 @@
-#!/bin/bash
-if [ $1 == "1" ]
-then
-    Rscript -e "library(BioInstaller);cat(install.bioinfo(show.all.names=T), sep = '\n')"
-else
-    Rscript -e "library('BioInstaller');install.bioinfo('$1', sprintf('/tmp/test_BioInstaller/%s/%s', basename(tempdir()), '$1'), '~/test_src')"
-fi

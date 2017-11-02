@@ -1,4 +1,4 @@
-Package: BioInstaller 
+Package: BioInstaller
 Title: Lightweight Biology Software Installer
 Version: 0.3.0
 Authors@R: person("Jianfeng", "Li", email = "lee_jianfeng@sjtu.edu.cn", role = c("aut", "cre"))

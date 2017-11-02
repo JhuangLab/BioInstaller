@@ -3,6 +3,7 @@
 		* inst/extdata/web/web_meta.toml be added
 		* Function get.meta.files and get.meta be added in 
 		R/meta.R
+		* Makefile be added
 
 2017-11-01 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
 
