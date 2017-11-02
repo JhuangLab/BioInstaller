@@ -4,6 +4,7 @@
 		* Function get.meta.files and get.meta be added in 
 		R/meta.R
 		* Makefile be added
+		* blast be supported
 
 2017-11-01 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
 

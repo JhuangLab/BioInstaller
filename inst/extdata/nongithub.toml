@@ -990,3 +990,12 @@ version_available = ["v2.3.3", "v2.3.2", "v2.3.1"]
 [srnanalyzer]
 source_url = "http://srnanalyzer.systemsbiology.net/downloads/sRNAnalyzer.tar.gz"
 version_available = "latest"
+
+[blast]
+version_available = ["2.7.1", "2.6.0", "2.5.0", "2.4.0", "2.3.0"]
+[blast.source_url]
+linux = "ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/{{version}}/ncbi-blast-{{version}}+-x64-linux.tar.gz"
+mac = ["ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/{{version}}/ncbi-blast-{{version}}+-x64-macosx.tar.gz", 
+       "ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/{{version}}/ncbi-blast-{{version}}+.dmg"]
+win = ["ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/{{version}}/ncbi-blast-{{version}}+-x64-win64.tar.gz",
+       "ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/{{version}}/ncbi-blast-{{version}}+-win64.exe"]

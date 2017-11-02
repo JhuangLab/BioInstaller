@@ -543,3 +543,19 @@ get.miniconda3.versions <- function() {
   }
   return(versions_final)
 }
+
+get.blast.versions <- function() {
+  urls <- "https://anaconda.org/bioconda/blast/files"
+  versions_final <- NULL
+  for (url in urls) {
+    web <- read_html(url, encoding = "UTF-8")
+    files.table <- web %>% html_nodes("table") %>% .[[1]] %>% html_table()
+    files <- files.table$Name
+    versions <- str_extract(files, "blast-[0-9]+[.0-9]*")
+    versions <- str_replace(versions, "blast-", "")
+    versions <- versions[!is.na(versions)]
+    versions_final <- c(versions_final, versions)
+  }
+  versions_final <- unique(versions_final)
+  versions_final <- sort(versions_final, decreasing = T)
+}
