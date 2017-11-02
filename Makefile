@@ -31,7 +31,13 @@ check_cran: build
 
 clean:
 	cd ..;\
-	$(RM) -r $(PKGNAME).Rcheck/
+	$(RM) -r $(PKGNAME).Rcheck/;\
+
+cleanall:
+	cd ..;\
+	$(RM) -r $(PKGNAME).Rcheck/;\
+	$(RM) -ri $(DOWNLOAD_DIR);\
+	$(RM) -ri $(DEST_DIR)
 
 show_names:
 	cd .;\
