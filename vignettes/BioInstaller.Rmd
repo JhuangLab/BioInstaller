@@ -139,8 +139,11 @@ meta <- get.meta()
 meta
 
 # Examples of get.meta
-db_cfg_meta <- get.meta(config = 'db', value = 'cfg_meta')
+db_cfg_meta <- get.meta(value = "cfg_meta", config = 'db')
 db_cfg_meta
+
+db_cfg_meta_parsed <- get.meta(value = 'cfg_meta', config = 'db', read.config.params = list(rcmd.parse = TRUE))
+db_cfg_meta_parsed
 
 db_cfg_meta <- get.meta(config = 'github', value = 'item')
 db_cfg_meta$bwa

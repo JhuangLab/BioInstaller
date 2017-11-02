@@ -2,6 +2,7 @@ Title = "Meta information of databases"
 [db.cfg_meta]
 avaliable_cfg = ["db_annovar.toml", "db_blast.toml", "db_main.toml"]
 prefix_url = "https://raw.githubusercontent.com/JhuangLab/BioInstaller/master/inst/extdata/databases/"
+cfg_dir = "@>@system.file('extdata', 'databases', package = 'BioInstaller')@<@"
 
 [db.item.db_blast]
 title = "Basic Local Alignment Search Tool Databases"

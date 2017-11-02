@@ -33,6 +33,7 @@ get.meta.files <- function(db.meta = system.file("extdata", "databases/db_meta.t
 #' @param config Avaliable option: `db`, `db_meta_file`, `github`, `github_meta_file`,
 #' `nongithub`, `nongithub_meta_file`, `web`, `web_meta_file`
 #' @param get.meta.files.params Params pass to \code{\link{get.meta.files}}
+#' @param read.config.params Params pass to \code{\link[configr]{read.config}}
 #' @return
 #' List contain the meta files path of BioInstaller collected sources
 #' @export
@@ -41,7 +42,9 @@ get.meta.files <- function(db.meta = system.file("extdata", "databases/db_meta.t
 #' meta <- get.meta()
 #' db_cfg_meta <- get.meta(config = 'db', value = 'cfg_meta')
 #' db_meta_file <- get.meta(config = 'db_meta_file')
-get.meta <- function(value = NULL, config = NULL, get.meta.files.params = NULL) {
+#' db_cfg_meta_parsed <- get.meta(value = 'cfg_meta', config = 'db', 
+#' read.config.params = list(rcmd.parse = TRUE))
+get.meta <- function(value = NULL, config = NULL, get.meta.files.params = NULL, read.config.params = NULL) {
   if (is.null(get.meta.files.params)) {
     meta_files <- get.meta.files()
   } else {
@@ -49,7 +52,12 @@ get.meta <- function(value = NULL, config = NULL, get.meta.files.params = NULL) 
   }
   config.list <- list()
   for (i in meta_files) {
-    config.list.tmp <- read.config(file = i)
+    if (!is.null(read.config.params)) {
+      params <- config.list.merge(list(file = i), read.config.params)
+      config.list.tmp <- do.call("read.config", params)
+    } else {
+      config.list.tmp <- read.config(file = i)
+    }
     config.list.tmp$Title <- NULL
     config.list <- config.list.merge(config.list, config.list.tmp)
   }

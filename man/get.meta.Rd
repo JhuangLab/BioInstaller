@@ -5,7 +5,8 @@
 \title{Get meta information of BioInstaller collected sources, such as database, 
 GitHub source, non-GitHub source, web source}
 \usage{
-get.meta(value = NULL, config = NULL, get.meta.files.params = NULL)
+get.meta(value = NULL, config = NULL, get.meta.files.params = NULL,
+  read.config.params = NULL)
 }
 \arguments{
 \item{value}{Avaliable option for `db`, `github`, `nongithub`: `cfg_meta`, `item`; 
@@ -15,6 +16,8 @@ for web: `item`}
 `nongithub`, `nongithub_meta_file`, `web`, `web_meta_file`}
 
 \item{get.meta.files.params}{Params pass to \code{\link{get.meta.files}}}
+
+\item{read.config.params}{Params pass to \code{\link[configr]{read.config}}}
 }
 \value{
 List contain the meta files path of BioInstaller collected sources
@@ -27,4 +30,6 @@ GitHub source, non-GitHub source, web source
 meta <- get.meta()
 db_cfg_meta <- get.meta(config = 'db', value = 'cfg_meta')
 db_meta_file <- get.meta(config = 'db_meta_file')
+db_cfg_meta_parsed <- get.meta(value = 'cfg_meta', config = 'db', 
+read.config.params = list(rcmd.parse = TRUE))
 }
