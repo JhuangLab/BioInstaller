@@ -24,11 +24,15 @@ BioInstaller can help us to download, install and manage a variety of bioinforma
 
 What's more, BioInstaller provides a different way to download and install your files, software, and databases for others, more detail can be found in another vignette [Examples of Templet Configuration File](https://CRAN.R-project.org/package=BioInstaller/vignettes/write_configuration_file.html).
 
+A simple guild can be found in [here](https://cran.r-project.org/web/packages/BioInstaller/vignettes/BioInstaller.html).
+
 **Feature**:
 
+- More attention for those software and database resource that not be included in the other software warehouse
 - Extendible
 - Craw the source code and version information from the original site
 - One step installation or download software and databases (Partial dependence supported)
+- A software and database resources pool
 
 ## Installation
 
@@ -45,6 +49,16 @@ install.packages('BioInstaller')
 # install.packages("devtools")
 devtools::install_github("JhuangLab/BioInstaller")
 ```
+
+## Contributed Resources
+
+- [GitHub resource](https://github.com/JhuangLab/BioInstaller/blob/master/inst/extdata/config/github/github.toml) 
+- GitHub resource [meta information](https://github.com/JhuangLab/BioInstaller/blob/master/inst/extdata/config/github/github_meta.toml)
+- [Non GitHub resource](https://github.com/JhuangLab/BioInstaller/blob/master/inst/extdata/config/nongithub/nongithub.toml)
+- Non Github resource [meta infrmation](https://github.com/JhuangLab/BioInstaller/blob/master/inst/extdata/config/nongithub/nongithub_meta.toml)
+- [Database](https://github.com/JhuangLab/BioInstaller/tree/master/inst/extdata/config/db)
+- [Web Service](https://github.com/JhuangLab/BioInstaller/blob/master/inst/extdata/config/web/web_meta.toml)
+- [Docker](https://github.com/JhuangLab/BioInstaller/blob/master/inst/extdata/config/docker/docker.toml)
 
 ## Support Summary
 
@@ -83,3 +97,16 @@ devtools::install_github("JhuangLab/BioInstaller")
 **Databases:**
 
 - ANNOVAR, blast, CSCD, GATK_Bundle
+
+
+## How to contribute?
+
+Please fork the [GitHub BioInstaller repository](https://github.com/JhuangLab/BioInstaller), modify it, and submit a pull request to us. Especialy, the files list in `contributed section` should be modified when you see a tool or database that not be included in the other software warehouse.
+
+## Maintainer
+
+[Jianfeng Li](https://github.com/Miachol)
+
+## License
+
+[MIT](https://en.wikipedia.org/wiki/MIT_License)
