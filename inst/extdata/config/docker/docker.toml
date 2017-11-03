@@ -1,34 +1,34 @@
 Title = "This is a docker hub simplified search database built-in BioInstaller R Package"
 [bwa]
-repo = ["life2cloud"]
+repo = ["bioinstaller"]
 name = "bwa"
 version_newest = "latest"
 version_available = ["latest"]
 short_description = """Burrows-Wheeler Aligner"""
 
 [gatk3]
-repo = ["life2cloud"]
+repo = ["bioinstaller"]
 name = "gatk3"
 version_newest = "latest"
 version_available = ["latest"]
 short_description = """Genome Analysis Toolkit"""
 
 [samtools]
-repo = ["life2cloud"]
+repo = ["bioinstaller"]
 name = "samtools"
 version_newest = "latest"
 version_available = ["latest"]
 short_description = """samtools:Tools (written in C using htslib) for manipulating next-generation sequencing data"""
 
 [picard]
-repo = ["life2cloud"]
+repo = ["bioinstaller"]
 name = "picard"
 version_newest = "latest"
 version_available = ["latest"]
 short_description = """picard:A set of command line tools (in Java) for manipulating high-throughput sequencing (HTS) data and formats such as SAM/BAM/CRAM and VCF."""
 
 [mutect]
-repo = ["life2cloud"]
+repo = ["bioinstaller"]
 name = "mutect"
 version_newest = "latest"
 version_available = ["latest"]
