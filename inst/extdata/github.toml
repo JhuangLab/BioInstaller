@@ -631,6 +631,8 @@ make_dir = ["./"]
 
 bin_dir = ["{{destdir}}/bin/speedseq"]
 
+version_newest_fixed = "master"
+
 [speedseq.install]
 linux = "source ~/.bashrc; make; mkdir {{destdir}}/bin/speedseq; fn=`ls -F bin|grep '*' | tr -d '*'` fn=`echo $fn | tr ' ' '\n' |grep -v '.h' | grep -v '.cpp'|sort -u`;cd bin; cp $fn {{destdir}}/bin/speedseq"
 mac = "source ~/.bashrc; make; mkdir {{destdir}}/bin/speedseq; fn=`ls -F bin|grep '*' | tr -d '*'` fn=`echo $fn | tr ' ' '\n' |grep -v '.h' | grep -v '.cpp'|sort -u`;cd bin; cp $fn {{destdir}}/bin/speedseq"
