@@ -6,9 +6,9 @@
 #' @param name.saved Software name when you want to install different version, you
 #' can use this to point the installed softwares name like 'GATK-3.7'
 #' @param github.cfg Configuration file of installed by github url,
-#' default is system.file('extdata', 'github.toml', package='BioInstaller')
+#' default is system.file('extdata', 'config/github/github.toml', package='BioInstaller')
 #' @param nongithub.cfg Configuration file of installed by non github url,
-#' default is system.file('extdata', 'nongithub.toml', package='BioInstaller')
+#' default is system.file('extdata', 'config/nongithub/nongithub.toml', package='BioInstaller')
 #' @param version Software version
 #' @param local.source Install from local source, github softwares need a cloned dir, 
 #' and nongithub softwares can be installed from a compressed file 
@@ -16,7 +16,7 @@
 #' @param show.all.versions Logical wheather show all avaliable versions can be install
 #' @param show.all.names Logical wheather show all avaliable names can be install
 #' @param db File of saving softwares infomation, default is Sys.getenv('BIO_SOFTWARES_DB_ACTIVE',
-#' system.file('extdata', 'softwares_db_demo.yaml', package = 'BioInstaller'))
+#' system.file('extdata', 'demo/softwares_db_demo.yaml', package = 'BioInstaller'))
 #' @param download.only Logicol indicating wheather only download source or file (non-github)
 #' @param decompress Logicol indicating wheather need to decompress the downloaded file, default is TRUE
 #' @param dependence.need Logical should the dependence should be installed
@@ -38,10 +38,10 @@
 #' install.bioinfo('bwa', show.all.versions = TRUE)
 #' unlink(db)
 install.bioinfo <- function(name = c(), download.dir = c(), destdir = c(), name.saved = NULL, 
-  github.cfg = system.file("extdata", "github.toml", package = "BioInstaller"), 
-  nongithub.cfg = system.file("extdata", "nongithub.toml", package = "BioInstaller"), 
+  github.cfg = system.file("extdata", "config/github/github.toml", package = "BioInstaller"), 
+  nongithub.cfg = system.file("extdata", "config/nongithub/nongithub.toml", package = "BioInstaller"), 
   version = c(), local.source = NULL, show.all.versions = FALSE, show.all.names = FALSE, 
-  db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", system.file("extdata", "softwares_db_demo.yaml", 
+  db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", system.file("extdata", "demo/softwares_db_demo.yaml", 
     package = "BioInstaller")), download.only = FALSE, decompress = TRUE, dependence.need = TRUE, 
   showWarnings = FALSE, extra.list = list(), rcmd.parse = TRUE, bash.parse = TRUE, 
   glue.parse = TRUE, glue.flag = "!!glue", save.to.db = TRUE, verbose = TRUE, ...) {
@@ -175,9 +175,9 @@ install.bioinfo <- function(name = c(), download.dir = c(), destdir = c(), name.
 #' @param name.saved Software name when you want to install different version, you
 #' can use this to point the installed softwares name like 'GATK-3.7'
 #' @param github.cfg Configuration file of installed by github url,
-#' default is system.file('extdata', 'github.toml', package='BioInstaller')
+#' default is system.file('extdata', 'config/github/github.toml', package='BioInstaller')
 #' @param db File of saving softwares infomation, default is Sys.getenv('BIO_SOFTWARES_DB_ACTIVE',
-#' system.file('extdata', 'softwares_db_demo.yaml', package = 'BioInstaller'))
+#' system.file('extdata', 'demo/softwares_db_demo.yaml', package = 'BioInstaller'))
 #' @param download.only Logicol indicating wheather only download source or file (non-github)
 #' @param dependence.need Logical should the dependence should be installed
 #' @param showWarnings Logical should the warnings on failure be shown?
@@ -199,8 +199,8 @@ install.bioinfo <- function(name = c(), download.dir = c(), destdir = c(), name.
 #' unlink(db)
 install.github <- function(name = "", download.dir = NULL, destdir = NULL, version = NULL, 
   local.source = NULL, show.all.versions = FALSE, name.saved = NULL, github.cfg = system.file("extdata", 
-    "github.toml", package = "BioInstaller"), db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", 
-    system.file("extdata", "softwares_db_demo.yaml", package = "BioInstaller")), 
+    "config/github/github.toml", package = "BioInstaller"), db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", 
+    system.file("extdata", "demo/softwares_db_demo.yaml", package = "BioInstaller")), 
   download.only = FALSE, showWarnings = FALSE, dependence.need = TRUE, extra.list = list(), 
   rcmd.parse = TRUE, bash.parse = TRUE, glue.parse = TRUE, glue.flag = "!!glue", 
   save.to.db = TRUE, verbose = TRUE, ...) {
@@ -340,9 +340,9 @@ install.github <- function(name = "", download.dir = NULL, destdir = NULL, versi
 #' @param name.saved Software name when you want to install different version, you
 #' can use this to point the installed softwares name like 'GATK-3.7'
 #' @param nongithub.cfg Configuration file of installed by non github url,
-#' default is system.file('extdata', 'nongithub.toml', package='BioInstaller')
+#' default is system.file('extdata', 'config/nongithub/nongithub.toml', package='BioInstaller')
 #' @param db File of saving softwares infomation, default is Sys.getenv('BIO_SOFTWARES_DB_ACTIVE',
-#' system.file('extdata', 'softwares_db_demo.yaml', package = 'BioInstaller'))
+#' system.file('extdata', 'demo/softwares_db_demo.yaml', package = 'BioInstaller'))
 #' @param download.only Logicol indicating wheather only download source or file (non-github)
 #' @param decompress Logicol indicating wheather need to decompress the downloaded file, default is TRUE
 #' @param dependence.need Logical should the dependence should be installed
@@ -365,8 +365,8 @@ install.github <- function(name = "", download.dir = NULL, destdir = NULL, versi
 #' unlink(db)
 install.nongithub <- function(name = "", download.dir = NULL, destdir = NULL, version = NULL, 
   local.source = NULL, show.all.versions = FALSE, name.saved = NULL, nongithub.cfg = system.file("extdata", 
-    "nongithub.toml", package = "BioInstaller"), db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", 
-    system.file("extdata", "softwares_db_demo.yaml", package = "BioInstaller")), 
+    "config/nongithub/nongithub.toml", package = "BioInstaller"), db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", 
+    system.file("extdata", "demo/softwares_db_demo.yaml", package = "BioInstaller")), 
   download.only = FALSE, decompress = TRUE, dependence.need = TRUE, showWarnings = FALSE, 
   extra.list = list(), rcmd.parse = TRUE, bash.parse = TRUE, glue.parse = TRUE, 
   glue.flag = "!!glue", save.to.db = TRUE, verbose = TRUE, ...) {

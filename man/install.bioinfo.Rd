@@ -5,16 +5,17 @@
 \title{Download and install biology software or database}
 \usage{
 install.bioinfo(name = c(), download.dir = c(), destdir = c(),
-  name.saved = NULL, github.cfg = system.file("extdata", "github.toml",
-  package = "BioInstaller"), nongithub.cfg = system.file("extdata",
-  "nongithub.toml", package = "BioInstaller"), version = c(),
-  local.source = NULL, show.all.versions = FALSE, show.all.names = FALSE,
+  name.saved = NULL, github.cfg = system.file("extdata",
+  "config/github/github.toml", package = "BioInstaller"),
+  nongithub.cfg = system.file("extdata", "config/nongithub/nongithub.toml",
+  package = "BioInstaller"), version = c(), local.source = NULL,
+  show.all.versions = FALSE, show.all.names = FALSE,
   db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", system.file("extdata",
-  "softwares_db_demo.yaml", package = "BioInstaller")), download.only = FALSE,
-  decompress = TRUE, dependence.need = TRUE, showWarnings = FALSE,
-  extra.list = list(), rcmd.parse = TRUE, bash.parse = TRUE,
-  glue.parse = TRUE, glue.flag = "!!glue", save.to.db = TRUE,
-  verbose = TRUE, ...)
+  "demo/softwares_db_demo.yaml", package = "BioInstaller")),
+  download.only = FALSE, decompress = TRUE, dependence.need = TRUE,
+  showWarnings = FALSE, extra.list = list(), rcmd.parse = TRUE,
+  bash.parse = TRUE, glue.parse = TRUE, glue.flag = "!!glue",
+  save.to.db = TRUE, verbose = TRUE, ...)
 }
 \arguments{
 \item{name}{Software name}
@@ -27,10 +28,10 @@ install.bioinfo(name = c(), download.dir = c(), destdir = c(),
 can use this to point the installed softwares name like 'GATK-3.7'}
 
 \item{github.cfg}{Configuration file of installed by github url,
-default is system.file('extdata', 'github.toml', package='BioInstaller')}
+default is system.file('extdata', 'config/github/github.toml', package='BioInstaller')}
 
 \item{nongithub.cfg}{Configuration file of installed by non github url,
-default is system.file('extdata', 'nongithub.toml', package='BioInstaller')}
+default is system.file('extdata', 'config/nongithub/nongithub.toml', package='BioInstaller')}
 
 \item{version}{Software version}
 
@@ -43,7 +44,7 @@ and nongithub softwares can be installed from a compressed file
 \item{show.all.names}{Logical wheather show all avaliable names can be install}
 
 \item{db}{File of saving softwares infomation, default is Sys.getenv('BIO_SOFTWARES_DB_ACTIVE',
-system.file('extdata', 'softwares_db_demo.yaml', package = 'BioInstaller'))}
+system.file('extdata', 'demo/softwares_db_demo.yaml', package = 'BioInstaller'))}
 
 \item{download.only}{Logicol indicating wheather only download source or file (non-github)}
 

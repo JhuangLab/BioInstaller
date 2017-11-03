@@ -5,8 +5,8 @@
 \title{A function can be used to craw all source code from nongithub.cfg stored information}
 \usage{
 craw.all.versions(name, download.dir = "./",
-  nongithub.cfg = system.file("extdata", "nongithub.toml", package =
-  "BioInstaller"), ...)
+  nongithub.cfg = system.file("extdata", "config/nongithub/nongithub.toml",
+  package = "BioInstaller"), ...)
 }
 \arguments{
 \item{name}{Software name}
@@ -16,7 +16,7 @@ craw.all.versions(name, download.dir = "./",
 \item{nongithub.cfg}{Configuration file of installed by non github url,}
 
 \item{...}{Other parameters pass to \code{\link[configr]{parse.extra}}
-default is system.file('extdata', 'nongithub.toml', package='BioInstaller')}
+default is system.file('extdata', 'config/nongithub/nongithub.toml', package='BioInstaller')}
 }
 \description{
 A function can be used to craw all source code from nongithub.cfg stored information

@@ -1,3 +1,8 @@
+2017-11-03 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
+
+		* big change on path of toml files
+		* move files from inst/extdata to inst/extdata/config, demo, scripts
+
 2017-11-02 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
 
 		* inst/extdata/web/web_meta.toml be added

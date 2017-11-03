@@ -45,8 +45,8 @@ What's more, BioInstaller provides a different way to download and install your 
 ```{r}
 library(BioInstaller)
 
-# Show all avaliable softwares/dependece in default inst/extdata/github.toml 
-# and inst/extdata/nongithub.toml
+# Show all avaliable softwares/dependece in default inst/extdata/config/github/github.toml 
+# and inst/extdata/config/nongithub/nongithub.toml
 install.bioinfo(show.all.names = TRUE)
 
 # Fetching versions of softwares
@@ -121,7 +121,7 @@ craw.all.versions('demo', download.dir = download.dir)
 
 ```{r}
 download.dir <- sprintf('%s/ANNOVAR', tempdir())
-config.toml <- system.file("extdata", "databases/ANNOVAR.toml", 
+config.toml <- system.file("extdata", "config/db/db_annovar.toml", 
   package = "BioInstaller")
 install.bioinfo('db_ucsc_refgene', download.dir = download.dir, 
   nongithub.cfg = config.toml, extra.list = list(buildver = "hg19"))

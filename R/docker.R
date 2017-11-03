@@ -1,12 +1,13 @@
 #' Search softwares docker infomation in BioInstaller docker database 
 #'
 #' @param name Software name, e.g bwa
-#' @param docker.db A list including docker repo infomation, default to use built-in docker.toml
+#' @param docker.db A list including docker repo infomation, 
+#' default to use built-in config/docker/docker.toml
 #' @export
 #' @return A list 
 #' @examples
 #' docker.search('bwa')
-docker.search <- function(name, docker.db = system.file("extdata", "docker.toml", 
+docker.search <- function(name, docker.db = system.file("extdata", "config/docker/docker.toml", 
   package = "BioInstaller")) {
   docker.db.dat <- configr::read.config(file = docker.db)
   docker.db.dat.names <- names(docker.db.dat)

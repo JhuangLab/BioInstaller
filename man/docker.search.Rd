@@ -4,13 +4,14 @@
 \alias{docker.search}
 \title{Search softwares docker infomation in BioInstaller docker database}
 \usage{
-docker.search(name, docker.db = system.file("extdata", "docker.toml", package
-  = "BioInstaller"))
+docker.search(name, docker.db = system.file("extdata",
+  "config/docker/docker.toml", package = "BioInstaller"))
 }
 \arguments{
 \item{name}{Software name, e.g bwa}
 
-\item{docker.db}{A list including docker repo infomation, default to use built-in docker.toml}
+\item{docker.db}{A list including docker repo infomation, 
+default to use built-in config/docker/docker.toml}
 }
 \value{
 A list

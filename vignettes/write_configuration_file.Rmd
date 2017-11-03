@@ -91,7 +91,7 @@ BioInstaller use [configr](https://github.com/Miachol/configr) `glue` to reduce 
 library(configr)
 library(BioInstaller)
 blast.databases <- system.file('extdata', 
-  'databases/db_blast.toml', package = 'BioInstaller')
+  'config/db/db_blast.toml', package = 'BioInstaller')
 
 read.config(blast.databases)$db_blast_nr$source_url
 read.config(blast.databases, glue.parse = TRUE)$db_blast_nr$source_url

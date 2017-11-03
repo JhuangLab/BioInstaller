@@ -2,23 +2,23 @@
 #' GitHub source, non-GitHub source, web source
 #'
 #' @param db.meta Database source meta file path, default is 
-#' system.file('extdata', 'databases/db_meta.toml', package = 'BioInstaller')
+#' system.file('extdata', 'config/db/db_meta.toml', package = 'BioInstaller')
 #' @param github.meta Github source meta file path, default is 
-#' system.file('extdata', 'github_meta.toml', package = 'BioInstaller')
+#' system.file('extdata', 'config/github/github_meta.toml', package = 'BioInstaller')
 #' @param nongithub.meta non-Github source meta file path, default is 
-#' system.file('extdata', 'github_meta.toml', package = 'BioInstaller')
+#' system.file('extdata', 'config/nongithub/nongithub_meta.toml', package = 'BioInstaller')
 #' @param web.meta Web source meta file path, default is 
-#' system.file('extdata', 'web/web_meta.toml', package = 'BioInstaller')
+#' system.file('extdata', 'config/web/web_meta.toml', package = 'BioInstaller')
 #' @return
 #' List contain the meta files path of BioInstaller collected sources
 #' @export
 #'
 #' @examples
 #' get.meta.files()
-get.meta.files <- function(db.meta = system.file("extdata", "databases/db_meta.toml", 
-  package = "BioInstaller"), github.meta = system.file("extdata", "github_meta.toml", 
-  package = "BioInstaller"), nongithub.meta = system.file("extdata", "nongithub_meta.toml", 
-  package = "BioInstaller"), web.meta = system.file("extdata", "web/web_meta.toml", 
+get.meta.files <- function(db.meta = system.file("extdata", "config/db/db_meta.toml", 
+  package = "BioInstaller"), github.meta = system.file("extdata", "config/github/github_meta.toml", 
+  package = "BioInstaller"), nongithub.meta = system.file("extdata", "config/nongithub/nongithub_meta.toml", 
+  package = "BioInstaller"), web.meta = system.file("extdata", "config/web/web_meta.toml", 
   package = "BioInstaller")) {
   meta_files <- list(db_meta_file = db.meta, github_meta_file = github.meta, nongithub_meta_file = nongithub.meta, 
     web_meta_file = web.meta)

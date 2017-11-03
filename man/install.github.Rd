@@ -6,9 +6,10 @@
 \usage{
 install.github(name = "", download.dir = NULL, destdir = NULL,
   version = NULL, local.source = NULL, show.all.versions = FALSE,
-  name.saved = NULL, github.cfg = system.file("extdata", "github.toml",
-  package = "BioInstaller"), db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE",
-  system.file("extdata", "softwares_db_demo.yaml", package = "BioInstaller")),
+  name.saved = NULL, github.cfg = system.file("extdata",
+  "config/github/github.toml", package = "BioInstaller"),
+  db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", system.file("extdata",
+  "demo/softwares_db_demo.yaml", package = "BioInstaller")),
   download.only = FALSE, showWarnings = FALSE, dependence.need = TRUE,
   extra.list = list(), rcmd.parse = TRUE, bash.parse = TRUE,
   glue.parse = TRUE, glue.flag = "!!glue", save.to.db = TRUE,
@@ -31,10 +32,10 @@ install.github(name = "", download.dir = NULL, destdir = NULL,
 can use this to point the installed softwares name like 'GATK-3.7'}
 
 \item{github.cfg}{Configuration file of installed by github url,
-default is system.file('extdata', 'github.toml', package='BioInstaller')}
+default is system.file('extdata', 'config/github/github.toml', package='BioInstaller')}
 
 \item{db}{File of saving softwares infomation, default is Sys.getenv('BIO_SOFTWARES_DB_ACTIVE',
-system.file('extdata', 'softwares_db_demo.yaml', package = 'BioInstaller'))}
+system.file('extdata', 'demo/softwares_db_demo.yaml', package = 'BioInstaller'))}
 
 \item{download.only}{Logicol indicating wheather only download source or file (non-github)}
 

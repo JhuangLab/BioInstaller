@@ -40,7 +40,7 @@ use.github.response <- function(config) {
 }
 
 nongithub2versions <- function(name) {
-  script <- system.file("extdata", "parse_version.R", package = "BioInstaller")
+  script <- system.file("extdata", "scripts/parse_version.R", package = "BioInstaller")
   source(script)
   text <- sprintf("get.%s.versions()", name)
   tryCatch(eval(parse(text = text)), error = function(e) {

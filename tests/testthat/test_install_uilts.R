@@ -9,7 +9,7 @@ test_that("db.check", {
   unlink(db)
 })
 test_that("config.and.name.initial", {
-  config.cfg <- system.file("extdata", "github.toml", package = "BioInstaller")
+  config.cfg <- system.file("extdata", "config/github/github.toml", package = "BioInstaller")
   x <- config.and.name.initial(config.cfg, "bwa")
   expect_that(x, equals(TRUE))
   x <- check.configfile.validate(config.cfg)
@@ -25,7 +25,7 @@ test_that("config.and.name.initial", {
 
 
 test_that("initial",{
-  config.cfg <- system.file("extdata", "github.toml", package = "BioInstaller")
+  config.cfg <- system.file("extdata", "config/github/github.toml", package = "BioInstaller")
   x <- NULL
   tryCatch({
     x <- check.install.name(NULL, config.cfg)
@@ -33,7 +33,7 @@ test_that("initial",{
     x <- FALSE
   })
   expect_that(x, equals(NULL))
-  config.cfg <- system.file("extdata", "github.toml", package = "BioInstaller")
+  config.cfg <- system.file("extdata", "config/github/github.toml", package = "BioInstaller")
   x <- config.and.name.initial(config.cfg, "bwa")
   config <- eval.config(config = "bwa", file = config.cfg)
   versions <- show.avaliable.versions(config)
@@ -79,7 +79,7 @@ test_that("dependence",{
   x <- change.info(name = "demo", installed = "yes", debug = TRUE, verbose = F, version = '1.0')
   x <- check.need.install('demo', '1.0', db)
   expect_that(x, equals(TRUE))
-  config.cfg <- system.file("extdata", "github.toml", package = "BioInstaller")
+  config.cfg <- system.file("extdata", "config/github/github.toml", package = "BioInstaller")
   x <- get.need.install(eval.config(config = "bcftools", file = config.cfg), db)
   expect_that(is.list(x), equals(TRUE))
   expect_that(x[[1]][1], equals('htslib'))

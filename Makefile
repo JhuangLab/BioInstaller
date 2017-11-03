@@ -65,3 +65,7 @@ test2:
 	@echo "name:$(name), version:$(version)"
 	cd .;\
     Rscript -e "BioInstaller::install.bioinfo(name='$(name)', download.dir=sprintf('$(DOWNLOAD_DIR)/%s/%s', basename(tempdir()), '$(name)'), dest.dir='$(DEST_DIR)', version='$(version)')";
+
+format:
+	cd .;\
+	Rscript -e "library(formatR);options('formatR.indent'=2);tidy_dir('./R');tidy_dir('./BioInstaller/inst/extdata/')"

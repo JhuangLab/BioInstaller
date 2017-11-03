@@ -11,7 +11,7 @@
 #' @export
 is.biosoftwares.db.active <- function(biosoftwares.db) {
   biosoftwares.db <- normalizePath(biosoftwares.db, "/", mustWork = FALSE)
-  default <- system.file("extdata", "softwares_db_demo.yaml", package = "BioInstaller")
+  default <- system.file("extdata", "demo/softwares_db_demo.yaml", package = "BioInstaller")
   default <- normalizePath(default, "/", mustWork = FALSE)
   identical(biosoftwares.db, Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", default))
 }

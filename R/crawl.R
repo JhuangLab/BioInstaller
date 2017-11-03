@@ -3,12 +3,12 @@
 #' @param download.dir Source code stored dir
 #' @param nongithub.cfg Configuration file of installed by non github url,
 #' @param ... Other parameters pass to \code{\link[configr]{parse.extra}}
-#' default is system.file('extdata', 'nongithub.toml', package='BioInstaller')
+#' default is system.file('extdata', 'config/nongithub/nongithub.toml', package='BioInstaller')
 #' @export
 #' @examples
 #' craw.all.versions('demo')
 craw.all.versions <- function(name, download.dir = "./", nongithub.cfg = system.file("extdata", 
-  "nongithub.toml", package = "BioInstaller"), ...) {
+  "config/nongithub/nongithub.toml", package = "BioInstaller"), ...) {
   
   versions <- install.bioinfo(name, show.all.versions = TRUE)
   

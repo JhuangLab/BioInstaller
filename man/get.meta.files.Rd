@@ -5,25 +5,26 @@
 \title{Get all BioInstaller meta files path, such as database, 
 GitHub source, non-GitHub source, web source}
 \usage{
-get.meta.files(db.meta = system.file("extdata", "databases/db_meta.toml",
+get.meta.files(db.meta = system.file("extdata", "config/db/db_meta.toml",
   package = "BioInstaller"), github.meta = system.file("extdata",
-  "github_meta.toml", package = "BioInstaller"),
-  nongithub.meta = system.file("extdata", "nongithub_meta.toml", package =
-  "BioInstaller"), web.meta = system.file("extdata", "web/web_meta.toml",
-  package = "BioInstaller"))
+  "config/github/github_meta.toml", package = "BioInstaller"),
+  nongithub.meta = system.file("extdata",
+  "config/nongithub/nongithub_meta.toml", package = "BioInstaller"),
+  web.meta = system.file("extdata", "config/web/web_meta.toml", package =
+  "BioInstaller"))
 }
 \arguments{
 \item{db.meta}{Database source meta file path, default is 
-system.file('extdata', 'databases/db_meta.toml', package = 'BioInstaller')}
+system.file('extdata', 'config/db/db_meta.toml', package = 'BioInstaller')}
 
 \item{github.meta}{Github source meta file path, default is 
-system.file('extdata', 'github_meta.toml', package = 'BioInstaller')}
+system.file('extdata', 'config/github/github_meta.toml', package = 'BioInstaller')}
 
 \item{nongithub.meta}{non-Github source meta file path, default is 
-system.file('extdata', 'github_meta.toml', package = 'BioInstaller')}
+system.file('extdata', 'config/nongithub/nongithub_meta.toml', package = 'BioInstaller')}
 
 \item{web.meta}{Web source meta file path, default is 
-system.file('extdata', 'web/web_meta.toml', package = 'BioInstaller')}
+system.file('extdata', 'config/web/web_meta.toml', package = 'BioInstaller')}
 }
 \value{
 List contain the meta files path of BioInstaller collected sources
