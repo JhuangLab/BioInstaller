@@ -1,8 +1,8 @@
-Title = "Github resources library"
+title = "Github resources library"
 [github.cfg_meta]
 avaliable_cfg = ["github.toml"]
-prefix_url = "https://raw.githubusercontent.com/JhuangLab/BioInstaller/master/inst/extdata/"
-cfg_dir = "@>@system.file('extdata', '', package = 'BioInstaller')@<@"
+prefix_url = "https://raw.githubusercontent.com/JhuangLab/BioInstaller/master/inst/extdata/config/github"
+cfg_dir = "@>@system.file('extdata', 'config/github', package = 'BioInstaller')@<@"
 
 [github.item.bwa]
 title = "Burrow-Wheeler Aligner for pairwise alignment between DNA sequences"

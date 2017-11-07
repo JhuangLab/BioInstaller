@@ -785,6 +785,7 @@ mac = "make"
 
 [htslib]
 source_url = "https://github.com/samtools/htslib/archive/{{version}}.tar.gz"
+use_github_versions = true
 
 after_failure = "echo 'fail!'"
 
@@ -801,6 +802,7 @@ mac = ["autoheader; autoconf; ./configure --prefix={{destdir}}; make;", " make i
 
 [samtools]
 source_url = "https://github.com/samtools/samtools/archive/{{version}}.tar.gz"
+use_github_versions = true
 
 dependence = ["htslib"]
 
@@ -999,3 +1001,10 @@ mac = ["ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/{{version}}/ncbi-bla
        "ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/{{version}}/ncbi-blast-{{version}}+.dmg"]
 win = ["ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/{{version}}/ncbi-blast-{{version}}+-x64-win64.tar.gz",
        "ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/{{version}}/ncbi-blast-{{version}}+-win64.exe"]
+
+[gridss]
+source_url = "https://github.com/PapenfussLab/gridss/releases/download/{{version}}/gridss-@>@str_replace('{{version}}', 'v', '')@<@-jar-with-dependencies.jar"
+use_github_versions = true
+[gridss.install]
+linux = "mkdir -p {{destdir}}/bin; cp {{download.dir}}/*.jar {{destdir}}/bin"
+mac = "mkdir -p {{destdir}}/bin; cp {{download.dir}}/*.jar {{destdir}}/bin"

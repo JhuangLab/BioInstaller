@@ -1,3 +1,10 @@
+2017-11-07 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
+
+		* use_git_versions can be used in nongithub.toml to use github
+		release versions
+		* gridss, db_pancanqtl, db_seecancer and db_diseaseenhancer be supported
+		* fix cfg_dir and prefix_url in inst/config/ meta files
+
 2017-11-03 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
 
 		* big change on path of toml files

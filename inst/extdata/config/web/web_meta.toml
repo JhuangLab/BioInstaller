@@ -1,4 +1,4 @@
-Title = "A library of useful WEB URL resource."
+title = "A library of useful WEB URL resource."
 
 [web.item.uniprot]
 url = "http://www.uniprot.org/"

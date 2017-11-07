@@ -117,16 +117,6 @@ download.dir <- sprintf('%s/craw_all_versions', tempdir())
 craw.all.versions('demo', download.dir = download.dir)
 ```
 
-## Download ANNOVAR databases
-
-```{r}
-download.dir <- sprintf('%s/ANNOVAR', tempdir())
-config.toml <- system.file("extdata", "config/db/db_annovar.toml", 
-  package = "BioInstaller")
-install.bioinfo('db_ucsc_refgene', download.dir = download.dir, 
-  nongithub.cfg = config.toml, extra.list = list(buildver = "hg19"))
-```
-
 ## Get meta information of softwares and databases
 
 ```{r}
@@ -153,4 +143,31 @@ db_meta_file <- get.meta(config = 'db_meta_file')
 db_meta_file
 db_meta_file <- meta_files[["db_meta_file"]]
 db_meta_file
+```
+
+## Download databases
+
+```{r}
+# all databases config 
+db_cfg_meta <- get.meta(config = 'db', value = 'cfg_meta', 
+                        read.config.params=list(rcmd.parse = TRUE))
+cfg_dir <- db_cfg_meta$cfg_dir
+cfg_dir
+avaliable_cfg <- db_cfg_meta$avaliable_cfg
+avaliable_cfg
+sprintf("%s/%s", cfg_dir, avaliable_cfg)
+
+# ANNOVAR
+download.dir <- sprintf('%s/db_annovar', tempdir())
+config.toml <- system.file("extdata", "config/db/db_annovar.toml", 
+  package = "BioInstaller")
+#install.bioinfo('db_ucsc_refgene', download.dir = download.dir, 
+#  nongithub.cfg = config.toml, extra.list = list(buildver = "hg19"))
+
+# db_main
+download.dir <- sprintf('%s/db_main', tempdir())
+config.toml <- system.file("extdata", "config/db/db_main.toml", 
+  package = "BioInstaller")
+install.bioinfo('db_diseaseenhancer', download.dir = download.dir, 
+  nongithub.cfg = config.toml)
 ```

@@ -1,4 +1,4 @@
-Title = "BioInstaller databases main repo."
+title = "BioInstaller databases main repo."
 
 [db_oncotator]
 source_url = "ftp://gsapubftp-anonymous@ftp.broadinstitute.org/bundle/oncotator/oncotator_{{version}}.tar.gz"
@@ -18,3 +18,33 @@ version_available = ["hg19-cancer-circrna", "hg19-cancer-circrna-mre", "hg19-can
 source_url = "http://netbio.bgu.ac.il/diffnet-interactomes/@>@str_replace('{{version}}', '_.*', '')@<@/@>@str_replace('{{version}}', '.*_', '')@<@.tsv"
 decompress = false
 version_available = ["HPA_Adrenal", "HPA_Appendix", "HPA_Bonemarrow", "HPA_Brain", "HPA_Colon", "HPA_Endometrium", "HPA_Esophagus", "HPA_FallopianTube", "HPA_Fat", "HPA_Gallbladder", "HPA_Heart", "HPA_Kidney", "HPA_Liver", "HPA_Lung", "HPA_LymphNode", "HPA_Ovary", "HPA_Placenta", "HPA_Prostate", "HPA_Rectum", "HPA_SalivaryGland", "HPA_SkeletalMuscle", "HPA_Skin", "HPA_SmallIntestine", "HPA_SmoothMuscle", "HPA_Spleen", "HPA_Stomach", "HPA_Testis", "HPA_Thyroid", "HPA_Tonsil", "GTEx_Adipose - Subcutaneous", "GTEx_Adipose - Visceral (Omentum)", "GTEx_Artery - Aorta", "GTEx_Artery - Coronary", "GTEx_Artery - Tibial", "GTEx_Brain - Amygdala", "GTEx_Brain - Anterior cingulate cortex (BA24)", "GTEx_Brain - Caudate (basal ganglia)", "GTEx_Brain - Cerebellar Hemisphere", "GTEx_Brain - Cerebellum", "GTEx_Brain - Cortex", "GTEx_Brain - Frontal Cortex (BA9)", "GTEx_Brain - Hippocampus", "GTEx_Brain - Hypothalamus", "GTEx_Brain - Nucleus accumbens (basal ganglia)", "GTEx_Brain - Putamen (basal ganglia)", "GTEx_Brain - Spinal cord (cervical c-1)", "GTEx_Brain - Substantia nigra", "GTEx_Breast - Mammary Tissue", "GTEx_Cells - EBV-transformed lymphocytes", "GTEx_Cells - Transformed fibroblasts", "GTEx_Colon - Sigmoid", "GTEx_Esophagus - Gastroesophageal Junction", "GTEx_Esophagus - Mucosa", "GTEx_Esophagus - Muscularis", "GTEx_Heart - Atrial Appendage", "GTEx_Heart - Left Ventricle", "GTEx_Liver", "GTEx_Lung", "GTEx_Minor Salivary Gland", "GTEx_Muscle - Skeletal", "GTEx_Nerve - Tibial", "GTEx_Ovary", "GTEx_Pituitary", "GTEx_Prostate", "GTEx_Skin - Not Sun Exposed (Suprapubic)", "GTEx_Skin - Sun Exposed (Lower leg)", "GTEx_Stomach", "GTEx_Testis", "GTEx_Thyroid", "GTEx_Uterus", "GTEx_Vagina", "GTEx_Whole Blood", "GTEx_Whole Brain"]
+
+[db_seecancer]
+source_url = "http://biocc.hrbmu.edu.cn/SEECancer/download/{{version}}.txt"
+decompress = false
+version_available = ["early_events", "late_events", "relapse_events", "metastasis_events", 
+                     "drug_resistant_events", "drug_induced_events", "temporal_sequence"]
+
+[db_diseaseenhancer]
+source_url = "http://biocc.hrbmu.edu.cn/DiseaseEnhancer/RFunctions/diseaseEnh5.1.txt"
+version_available = ["diseaseEnh5.1", "enhInfo", "enh2target"]
+
+[db_pancanqtl]
+source_url = "http://bioinfo.life.hust.edu.cn/PancanQTL/static/download/{{version}}.xls"
+version_available = ["ACC_tumor.cis_eQTL", "BLCA_tumor.cis_eQTL", "BRCA_tumor.cis_eQTL", 
+"CESC_tumor.cis_eQTL", "CHOL_tumor.cis_eQTL", "COAD_tumor.cis_eQTL", "DLBC_tumor.cis_eQTL", 
+"ESCA_tumor.cis_eQTL", "GBM_tumor.cis_eQTL", "HNSC_tumor.cis_eQTL", "KICH_tumor.cis_eQTL", 
+"KIRC_tumor.cis_eQTL", "KIRP_tumor.cis_eQTL", "LAML_tumor.cis_eQTL", "LGG_tumor.cis_eQTL", 
+"LIHC_tumor.cis_eQTL", "LUAD_tumor.cis_eQTL", "LUSC_tumor.cis_eQTL", "MESO_tumor.cis_eQTL", 
+"OV_tumor.cis_eQTL", "PAAD_tumor.cis_eQTL", "PCPG_tumor.cis_eQTL", "PRAD_tumor.cis_eQTL", 
+"READ_tumor.cis_eQTL", "SARC_tumor.cis_eQTL", "SKCM_tumor.cis_eQTL", "STAD_tumor.cis_eQTL", 
+"TGCT_tumor.cis_eQTL", "THCA_tumor.cis_eQTL", "THYM_tumor.cis_eQTL", "UCEC_tumor.cis_eQTL", 
+"UCS_tumor.cis_eQTL", "UVM_tumor.cis_eQTL", "ACC_tumor.trans_eQTL", "BLCA_tumor.trans_eQTL", 
+"BRCA_tumor.trans_eQTL", "CESC_tumor.trans_eQTL", "CHOL_tumor.trans_eQTL", "COAD_tumor.trans_eQTL", 
+"DLBC_tumor.trans_eQTL", "ESCA_tumor.trans_eQTL", "GBM_tumor.trans_eQTL", "HNSC_tumor.trans_eQTL", 
+"KICH_tumor.trans_eQTL", "KIRC_tumor.trans_eQTL", "KIRP_tumor.trans_eQTL", "LAML_tumor.trans_eQTL", 
+"LGG_tumor.trans_eQTL", "LIHC_tumor.trans_eQTL", "LUAD_tumor.trans_eQTL", "LUSC_tumor.trans_eQTL", 
+"MESO_tumor.trans_eQTL", "OV_tumor.trans_eQTL", "PAAD_tumor.trans_eQTL", "PCPG_tumor.trans_eQTL", 
+"PRAD_tumor.trans_eQTL", "READ_tumor.trans_eQTL", "SARC_tumor.trans_eQTL", "SKCM_tumor.trans_eQTL", 
+"STAD_tumor.trans_eQTL", "TGCT_tumor.trans_eQTL", "THCA_tumor.trans_eQTL", "THYM_tumor.trans_eQTL", 
+"UCEC_tumor.trans_eQTL", "UCS_tumor.trans_eQTL", "UVM_tumor.trans_eQTL"]

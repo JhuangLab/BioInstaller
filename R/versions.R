@@ -35,7 +35,7 @@ github2versions <- function(github.url) {
 
 use.github.response <- function(config) {
   flag1 <- (!is.null(config$github_url)) && is.null(config$version_fixed)
-  flag2 <- (!is.null(config$source_url)) && str_detect(config$source_url, fixed("github.com/samtools"))
+  flag2 <- (!is.null(config$source_url)) && !is.null(config$use_github_versions)
   return(flag1 || flag2)
 }
 

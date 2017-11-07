@@ -1,4 +1,4 @@
-Title = "This is a docker hub simplified search database built-in BioInstaller R Package"
+title = "This is a docker hub simplified search database built-in BioInstaller R Package"
 [bwa]
 repo = ["bioinstaller"]
 name = "bwa"
