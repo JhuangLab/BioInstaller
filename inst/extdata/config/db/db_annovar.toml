@@ -84,9 +84,10 @@ after_success = ["mv {{buildver}}_ensGene.txt annovar_{{buildver}}_ensGene.txt",
 source_url = ["http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.gz", 
               "http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.idx.gz"]
 decompress = [true, true]
-version_newest = "avsnp147"
-version_available = ["avsnp147", "avsnp144", "avsnp142", "avsnp138"]
+version_newest = "avsnp150"
+version_available = ["avsnp150", "avsnp147", "avsnp144", "avsnp142", "avsnp138"]
 [db_annovar_avsnp.buildver_available]
+avsnp150 = ["hg38", "hg19"]
 avsnp147 = ["hg38", "hg19"]
 avsnp144 = ["hg38", "hg19"]
 avsnp142 = ["hg38", "hg19"]
@@ -281,11 +282,12 @@ description = "International Cancer Genome Consortium version 21"
 source_url = ["http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.gz",
               "http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.idx.gz"]
 decompress = [true, true]
-version_newest = "clinvar_20170130"
+version_newest = "clinvar_20170905"
 version_available = ["clinvar_20131105", "clinvar_20140211", "clinvar_20140303",
                      "clinvar_20140702", "clinvar_20140902", "clinvar_20140929",
                      "clinvar_20150330", "clinvar_20150629", "clinvar_20151201",
-                     "clinvar_20160302", "clinvar_20161128", "clinvar_20170130"]
+                     "clinvar_20160302", "clinvar_20161128", "clinvar_20170130", 
+                     "clinvar_20170501", "clinvar_20170905"]
 description = "CLINVAR database with Variant Clinical Significance (unknown, untested, non-pathogenic, probable-non-pathogenic, probable-pathogenic, pathogenic, drug-response, histocompatibility, other) and Variant disease name"
 [db_annovar_clinvar.buildver_available]
 clinvar_20140929 = "hg19"
@@ -391,3 +393,93 @@ version_newest = "regsnpintron"
 version_available = ["regsnpintron"]
 buildver_available = ["hg19"]
 description = "prioritize the disease-causing probability of intronic SNVs"
+
+[db_annovar_avsnp_sqlite]
+source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{buildver}}_{{version}}.sqlite.sql.gz"
+version_newest = "avsnp147"
+version_available = ["avsnp147", "avsnp147.common", "avsnp144", "avsnp142", "avsnp138"]
+buildver_available = "hg19"
+install = "#R#sql2sqlite('{{buildver}}_{{version}}.sqlite.sql', sqlite.path = '{{buildver}}_{{version}}.sqlite')#R#"
+
+[db_annovar_cosmic_sqlite]
+source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{buildver}}_{{version}}.sqlite.sql.gz"
+version_newest = "cosmic81"
+version_available = ["cosmic70", "cosmic81"]
+buildver_available = "hg19"
+install = "#R#sql2sqlite('{{buildver}}_{{version}}.sqlite.sql', sqlite.path = '{{buildver}}_{{version}}.sqlite')#R#"
+
+[db_annovar_1000g_sqlite]
+source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{buildver}}_{{version}}.tar.gz"
+version_newest = "1000g2015aug"
+version_available = ["1000g2015aug"]
+buildver_available = "hg19"
+install = """#R#
+for(i in c('all', 'afr', 'eas', 'eur', 'sas', 'amr')) {
+  x <- set.1000g.db(sprintf('{{version}}_%s', i), '{{buildver}}', "sql");
+  params <- list(sql.file = x, sqlite.path = str_replace(x, '.sql$', ''));
+  do.call(sql2sqlite, params)
+}
+#R#"""
+
+[db_annovar_radar_sqlite]
+source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{buildver}}_{{version}}.sqlite.sql.gz"
+version_newest = "RADAR2"
+version_available = ["RADAR2"]
+buildver_available = "hg19"
+install = "#R#sql2sqlite('{{buildver}}_{{version}}.sqlite.sql', sqlite.path = '{{buildver}}_{{version}}.sqlite')#R#"
+
+[db_annovar_darned_sqlite]
+source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{buildver}}_{{version}}.sqlite.sql.gz"
+version_newest = "DARNED"
+version_available = ["DARNED"]
+buildver_available = "hg19"
+install = "#R#sql2sqlite('{{buildver}}_{{version}}.sqlite.sql', sqlite.path = '{{buildver}}_{{version}}.sqlite')#R#"
+
+[db_annovar_clinvar_sqlite]
+source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{buildver}}_{{version}}.sqlite.sql.gz"
+version_newest = "clinvar_20170130"
+version_available = ["clinvar_20170130"]
+buildver_available = "hg19"
+install = "#R#sql2sqlite('{{buildver}}_{{version}}.sqlite.sql', sqlite.path = '{{buildver}}_{{version}}.sqlite')#R#"
+
+[db_annovar_intervar_sqlite]
+source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{buildver}}_{{version}}.sqlite.sql.gz"
+version_newest = "intervar_20170202"
+version_available = ["intervar_20170202"]
+buildver_available = "hg19"
+install = "#R#sql2sqlite('{{buildver}}_{{version}}.sqlite.sql', sqlite.path = '{{buildver}}_{{version}}.sqlite')#R#"
+
+[db_annovar_cadd_sqlite]
+source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{buildver}}_{{version}}.sqlite.sql.gz"
+version_newest = "cadd13"
+version_available = ["cadd13", "cadd13gt10", "cadd13gt20", "cadd", "caddgt10", "caddgt20"]
+buildver_available = "hg19"
+install = "#R#sql2sqlite('{{buildver}}_{{version}}.sqlite.sql', sqlite.path = '{{buildver}}_{{version}}.sqlite')#R#"
+
+[db_annovar_nci60_sqlite]
+source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{buildver}}_{{version}}.sqlite.sql.gz"
+version_newest = "nci60"
+version_available = "nci60"
+buildver_available = "hg19"
+install = "#R#sql2sqlite('{{buildver}}_{{version}}.sqlite.sql', sqlite.path = '{{buildver}}_{{version}}.sqlite')#R#"
+
+[db_annovar_icgc_sqlite]
+source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{buildver}}_{{version}}.sqlite.sql.gz"
+version_newest = "icgc21"
+version_available = "icgc21"
+buildver_available = "hg19"
+install = "#R#sql2sqlite('{{buildver}}_{{version}}.sqlite.sql', sqlite.path = '{{buildver}}_{{version}}.sqlite')#R#"
+
+[db_annovar_dbnsfp_sqlite]
+source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{buildver}}_{{version}}.sqlite.sql.gz"
+version_newest = "dbnsfp33a"
+version_available = ["dbnsfp33a", "dbnsfp31a_interpro", "dbnsfp30a"]
+buildver_available = "hg19"
+install = "#R#sql2sqlite('{{buildver}}_{{version}}.sqlite.sql', sqlite.path = '{{buildver}}_{{version}}.sqlite')#R#"
+
+[db_annovar_normal_pool]
+source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{buildver}}_normal{{version}}.txt"
+decompress = false
+version_newest = "2016sih_wes_ball"
+version_available = ['2016sih_wes_ball', '2016sih_wes_tall', '2016sih_wes_nkt', '2016sih_wgs_nkt', '2016sih_wgs_dlbcl']
+buildver_available = "hg19"
