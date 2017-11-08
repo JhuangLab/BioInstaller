@@ -48,3 +48,11 @@ version_available = ["ACC_tumor.cis_eQTL", "BLCA_tumor.cis_eQTL", "BRCA_tumor.ci
 "PRAD_tumor.trans_eQTL", "READ_tumor.trans_eQTL", "SARC_tumor.trans_eQTL", "SKCM_tumor.trans_eQTL", 
 "STAD_tumor.trans_eQTL", "TGCT_tumor.trans_eQTL", "THCA_tumor.trans_eQTL", "THYM_tumor.trans_eQTL", 
 "UCEC_tumor.trans_eQTL", "UCS_tumor.trans_eQTL", "UVM_tumor.trans_eQTL"]
+
+[db_msdd]
+source_url = "http://www.bio-bigdata.com/msdd/download/{{version}}.zip"
+version_available = "msdd"
+
+[db_mndr]
+source_url = "http://www.rna-society.org/mndr/php/download.php?file={{version}}.zip"
+version_available = ["All ncRNA-disease", "miRNA-disease", "lncRNA-disease"]

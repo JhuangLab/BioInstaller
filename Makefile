@@ -66,6 +66,11 @@ test2:
 	cd .;\
     Rscript -e "BioInstaller::install.bioinfo(name='$(name)', download.dir=sprintf('$(DOWNLOAD_DIR)/%s/%s', basename(tempdir()), '$(name)'), dest.dir='$(DEST_DIR)', version='$(version)')";
 
+test3:
+	@echo "name:$(name), version:$(version)"
+	cd .;\
+    Rscript -e "BioInstaller::install.bioinfo(name='$(name)', download.dir=sprintf('$(DOWNLOAD_DIR)/%s/%s', basename(tempdir()), '$(name)'), dest.dir='$(DEST_DIR)', version='$(version)', nongithub.cfg = './inst/extdata/config/db/db_main.toml')";
+
 format:
 	cd .;\
 	Rscript -e "library(formatR);options('formatR.indent'=2);tidy_dir('./R');tidy_dir('./BioInstaller/inst/extdata/')"

@@ -1,3 +1,8 @@
+2017-11-08 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
+
+		* fix a bug in R/utils_function.R drop_redundance_dir
+		* db_msdd, db_mndr be added in db/db_main.toml
+
 2017-11-07 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
 
 		* use_git_versions can be used in nongithub.toml to use github

@@ -34,3 +34,14 @@ publication = "Zhang G, Shi J, Zhu S, et al. DiseaseEnhancer: a resource of huma
 url = "http://bioinfo.life.hust.edu.cn/PancanQTL"
 description = "Expression quantitative trait loci (eQTLs) are regions of the genome containing DNA sequence variants that influence the expression level of one or more genes. PancanQTL aims to comprehensively provide cis-eQTLs (SNPs affect local gene expression) and trans-eQTLs (SNPs affect distant gene expression) in 33 cancer types from The Cancer Genome Atlas (TCGA)."
 publication = "Gong J, Mei S, Liu C, et al. PancanQTL: systematic identification of cis-eQTLs and trans-eQTLs in 33 cancer types[J]. Nucleic Acids Research, 2017."
+
+[db.item.msdd]
+url = "http://www.bio-bigdata.com/msdd"
+description = "MSDD provides two maps that enable users to download data by clicking on the appropriate area. The left map classifies data according to the organ and the right map displays the hotspot data."
+publication = "Yue M, Zhou D, Zhi H, et al. MSDD: a manually curated database of experimentally supported associations among miRNAs, SNPs and human diseases[J]. Nucleic Acids Research, 2017."
+
+[db.item.mndr]
+url = "http://www.rna-society.org/mndr"
+description = "Accumulated evidences suggest diverse non-coding RNAs (ncRNAs) involved in a wide variety of diseases progression. Hence, we have updated the MNDR v2.0 database by integrating experimental and prediction diverse ncRNA-disease associations from manual literatures curation and other resources under one common framework. The new developments in MNDR v2.0 include (1) over 220-fold ncRNA-disease associations enhancement than previous version (including lncRNA, miRNA, piRNA, snoRNA and more than 1,400 diseases); (2) integrating experimental and prediction evidence from 14 resources and prediction algorithms for each ncRNA-disease association; (3) mapping disease name to the Disease Ontology and Medical Subject Headings (MeSH); (4) providing a confidence score for each ncRNA-disease association; and (5) an increase of species coverage to 6 mammals."
+publication = ["Cui T, Zhang L, Huang Y, et al. MNDR v2. 0: an updated resource of ncRNA–disease associations in mammals[J]. Nucleic Acids Research, 2017.", 
+               "Wang Y, Chen L, Chen B, et al. Mammalian ncRNA-disease repository: a global view of ncRNA-mediated disease network[J]. Cell death & disease, 2013, 4(8): e765."]

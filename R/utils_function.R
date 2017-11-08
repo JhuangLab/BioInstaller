@@ -151,6 +151,10 @@ extract.file <- function(file, destdir, decompress = TRUE) {
 drop_redundance_dir <- function(destdir) {
   files.parent <- list.files(destdir)
   if (length(files.parent) == 1) {
+    dirs.parent <- list.dirs(destdir)
+    if (length(dirs.parent) == 1) {
+      return(TRUE)
+    }
     file.rename(sprintf("%s/%s", destdir, files.parent), sprintf("%s/tmp00", 
       destdir))
     unlink(sprintf("%s/%s", destdir, files.parent), recursive = TRUE)
