@@ -21,3 +21,8 @@ url = "https://portal.gdc.cancer.gov/search/s?facetTab=cases&filters=%7B%22op%22
 
 [web.item.cbioportal]
 url = 'http://www.cbioportal.org/index.do'
+
+[web.item.rsnp3]
+url = "http://rsnp3.psych.ac.cn/index.do"
+ftp = "ftp://rv.psych.ac.cn/pub/rsnp3/"
+

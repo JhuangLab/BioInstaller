@@ -56,3 +56,7 @@ version_available = "msdd"
 [db_mndr]
 source_url = "http://www.rna-society.org/mndr/php/download.php?file={{version}}.zip"
 version_available = ["All ncRNA-disease", "miRNA-disease", "lncRNA-disease"]
+
+[db_rsnp3]
+source_url = "ftp://rv.psych.ac.cn/pub/rsnp3/rSNP_info_{{version}}.tar.gz"
+version_available = "all"
