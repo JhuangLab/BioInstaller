@@ -1,6 +1,12 @@
+2017-11-22 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
+
+		* use configr fetch.config to merge multiple github.cfg and
+		nongithub.cfg
+
 2017-11-21 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
 
 		* db_ecodrug, db_medreaders, db_superdrug2, db_varcards be added
+		* db_civic be added (only nightly)
 
 2017-11-08 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
 

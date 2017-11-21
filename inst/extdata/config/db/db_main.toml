@@ -79,3 +79,8 @@ version_available = ["all_drugs_2D_structures", "all_drugs_3D_structures", "all_
 [db_varcards]
 source_url = "http://159.226.67.237/sun/varcards/resource/download/variant/{{version}}.variant.annotation.xls.gz"
 version_available = ["chr1", "chr2", "chr3", "chr4", "chr5", "chr6", "chr7", "chr8", "chr9", "chr10", "chr11", "chr12", "chr13", "chr14", "chr15", "chr16", "chr17", "chr18", "chr19", "chr20", "chr21", "chr22", "chrX", "chrY"]
+
+[db_civic]
+source_url = "https://civic.genome.wustl.edu/downloads/nightly/nightly-{{version}}.tsv"
+decompress = false
+version_available = ["GeneSummaries", "VariantSummaries", "VariantGroupSummaries", "ClinicalEvidenceSummaries"]

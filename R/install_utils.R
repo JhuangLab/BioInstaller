@@ -21,7 +21,7 @@ config.and.name.initial <- function(config.cfg, name) {
 
 # Check configfile wheather is a valid format configuration file
 check.configfile.validate <- function(config.cfg) {
-  if (is.list(read.config(file = config.cfg))) {
+  if (is.list(fetch.config(config.cfg))) {
     return(TRUE)
   } else {
     return(FALSE)
@@ -34,7 +34,7 @@ check.install.name <- function(name, config.cfg) {
     warning("Parameter 'name' must be a character.")
     return(FALSE)
   }
-  if (!(name %in% eval.config.sections(file = config.cfg))) {
+  if (!(name %in% names(fetch.config(config.cfg)))) {
     if (name == "") {
       warning("Parameter 'name' can not be empty!")
     } else {
@@ -135,7 +135,12 @@ get.need.install <- function(config, db) {
 
 # Install dependence
 install.dependence <- function(need.install, need.install.version, download.dir, 
-  destdir, verbose) {
+  destdir, verbose, github.cfg = system.file("extdata", "config/github/github.toml", 
+    package = "BioInstaller"), nongithub.cfg = c(system.file("extdata", "config/nongithub/nongithub.toml", 
+    package = "BioInstaller"), system.file("extdata", "config/db/db_main.toml", 
+    package = "BioInstaller"), system.file("extdata", "config/db/db_annovar.toml", 
+    package = "BioInstaller"), system.file("extdata", "config/db/db_blast.toml", 
+    package = "BioInstaller"))) {
   info.msg(sprintf("Try install the dependence:%s", paste0(need.install, collapse = ", ")), 
     verbose = verbose)
   dest.path <- Sys.getenv("BIO_DEPENDENCE_DIR")
@@ -148,7 +153,7 @@ install.dependence <- function(need.install, need.install.version, download.dir,
     "_"))
   install.status <- install.bioinfo(name = need.install, download.dir = download.dir, 
     destdir = rep(destdir, length(download.dir)), version = need.install.version, 
-    verbose = verbose)
+    verbose = verbose, github.cfg = github.cfg, nongithub.cfg = nongithub.cfg)
   fail.list <- install.status$fail.list
   if (!is.null(fail.list) && fail.list != "") {
     stop(sprintf("Dependence Error:%s install fail.", paste0(fail.list, collapse = ", ")))
@@ -157,7 +162,8 @@ install.dependence <- function(need.install, need.install.version, download.dir,
 }
 
 # Dependence processor
-process.dependence <- function(config, db, download.dir, destdir, verbose) {
+process.dependence <- function(config, db, download.dir, destdir, verbose, github.cfg = "", 
+  nongithub.cfg = "") {
   status <- TRUE
   if (is.setted.dependence(config)) {
     need.install <- get.need.install(config, db)$need.install
@@ -165,7 +171,8 @@ process.dependence <- function(config, db, download.dir, destdir, verbose) {
     count <- 1
     if (is.need.dependence(need.install)) {
       status <- install.dependence(need.install, need.install.version, destdir = destdir, 
-        download.dir = download.dir, verbose = verbose)
+        download.dir = download.dir, verbose = verbose, github.cfg = github.cfg, 
+        nongithub.cfg = nongithub.cfg)
     }
   }
   return(status)

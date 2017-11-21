@@ -71,3 +71,7 @@ url = "http://varcards.biols.ac.cn"
 description = "VarCards: an integrated genetic and clinical database for coding variants in the human genome"
 publication = "Li J, Shi L, Zhang K, et al. VarCards: an integrated genetic and clinical database for coding variants in the human genome[J]. Nucleic Acids Research, 2017."
 
+[db.item.civic]
+url = "https://civic.genome.wustl.edu/home"
+description = "Realizing precision medicine will require this information to be centralized, debated and interpreted for application in the clinic. CIViC is an open access, open source, community-driven web resource for Clinical Interpretation of Variants in Cancer. Our goal is to enable precision medicine by providing an educational forum for dissemination of knowledge and active discussion of the clinical significance of cancer genome alterations. For more details refer to the 2017 CIViC publication in Nature Genetics."
+publication = 'Griffith, Malachi, et al. "CIViC is a community knowledgebase for expert crowdsourcing the clinical interpretation of variants in cancer." Nature genetics 49.2 (2017): 170-174.'

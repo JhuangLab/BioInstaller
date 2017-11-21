@@ -8,7 +8,10 @@
 #' @param github.cfg Configuration file of installed by github url,
 #' default is system.file('extdata', 'config/github/github.toml', package='BioInstaller')
 #' @param nongithub.cfg Configuration file of installed by non github url,
-#' default is system.file('extdata', 'config/nongithub/nongithub.toml', package='BioInstaller')
+#' default is c(system.file('extdata', 'config/nongithub/nongithub.toml', package = 'BioInstaller'),
+#' system.file('extdata', 'config/db/db_main.toml', package = 'BioInstaller'), 
+#' system.file('extdata', 'config/db/db_annovar.toml', package = 'BioInstaller'), 
+#' system.file('extdata', 'config/db/db_blast.toml', package = 'BioInstaller'))
 #' @param version Software version
 #' @param local.source Install from local source, github softwares need a cloned dir, 
 #' and nongithub softwares can be installed from a compressed file 
@@ -39,15 +42,21 @@
 #' unlink(db)
 install.bioinfo <- function(name = c(), download.dir = c(), destdir = c(), name.saved = NULL, 
   github.cfg = system.file("extdata", "config/github/github.toml", package = "BioInstaller"), 
-  nongithub.cfg = system.file("extdata", "config/nongithub/nongithub.toml", package = "BioInstaller"), 
+  nongithub.cfg = c(system.file("extdata", "config/nongithub/nongithub.toml", package = "BioInstaller"), 
+    system.file("extdata", "config/db/db_main.toml", package = "BioInstaller"), 
+    system.file("extdata", "config/db/db_annovar.toml", package = "BioInstaller"), 
+    system.file("extdata", "config/db/db_blast.toml", package = "BioInstaller")), 
   version = c(), local.source = NULL, show.all.versions = FALSE, show.all.names = FALSE, 
   db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", system.file("extdata", "demo/softwares_db_demo.yaml", 
     package = "BioInstaller")), download.only = FALSE, decompress = TRUE, dependence.need = TRUE, 
   showWarnings = FALSE, extra.list = list(), rcmd.parse = TRUE, bash.parse = TRUE, 
   glue.parse = TRUE, glue.flag = "!!glue", save.to.db = TRUE, verbose = TRUE, ...) {
+  github.cfg.env <- paste0(github.cfg, collapse = ",")
+  nongithub.cfg.env <- paste0(nongithub.cfg, collapse = ",") 
+  Sys.setenv(github.cfg = github.cfg.env, nongithub.cfg = nongithub.cfg.env)
   db.check(db)
-  github.names <- eval.config.sections(file = github.cfg)
-  nongithub.names <- eval.config.sections(file = nongithub.cfg)
+  github.names <- names(fetch.config(github.cfg))
+  nongithub.names <- names(fetch.config(nongithub.cfg))
   all.names <- c(github.names, nongithub.names)
   all.names <- all.names[!(all.names %in% c("title", "debug", "demo"))]
   if (show.all.names) {
@@ -212,8 +221,7 @@ install.github <- function(name = "", download.dir = NULL, destdir = NULL, versi
   if (!status) {
     return(FALSE)
   }
-  
-  config <- eval.config(config = name, file = config.cfg)
+  config <- fetch.config(config.cfg)[[name]]
   info.msg(sprintf("Fetching %s versions....", name), verbose = verbose)
   all.versions <- show.avaliable.versions(config, name)
   if (show.all.versions) {
@@ -274,8 +282,9 @@ install.github <- function(name = "", download.dir = NULL, destdir = NULL, versi
   }
   
   if (dependence.need) {
-    process.dependence(config, db, download.dir, destdir, verbose)
-    config <- eval.config(config = name, file = config.cfg)
+    process.dependence(config, db, download.dir, destdir, verbose, github.cfg = config.cfg, 
+      nongithub.cfg = str_split(Sys.getenv("nongithub.cfg"), ",")[[1]])
+    config <- fetch.config(config.cfg)[[name]]
     config <- configr::parse.extra(config = config, extra.list = args.all)
     config <- configr::parse.extra(config = config, other.config = db, rcmd.parse = rcmd.parse, 
       bash.parse = bash.parse, glue.parse = glue.parse, glue.flag = glue.flag)
@@ -340,7 +349,10 @@ install.github <- function(name = "", download.dir = NULL, destdir = NULL, versi
 #' @param name.saved Software name when you want to install different version, you
 #' can use this to point the installed softwares name like 'GATK-3.7'
 #' @param nongithub.cfg Configuration file of installed by non github url,
-#' default is system.file('extdata', 'config/nongithub/nongithub.toml', package='BioInstaller')
+#' default is c(system.file('extdata', 'config/nongithub/nongithub.toml', package = 'BioInstaller'),
+#' system.file('extdata', 'config/db/db_main.toml', package = 'BioInstaller'), 
+#' system.file('extdata', 'config/db/db_annovar.toml', package = 'BioInstaller'), 
+#' system.file('extdata', 'config/db/db_blast.toml', package = 'BioInstaller'))
 #' @param db File of saving softwares infomation, default is Sys.getenv('BIO_SOFTWARES_DB_ACTIVE',
 #' system.file('extdata', 'demo/softwares_db_demo.yaml', package = 'BioInstaller'))
 #' @param download.only Logicol indicating wheather only download source or file (non-github)
@@ -364,8 +376,11 @@ install.github <- function(name = "", download.dir = NULL, destdir = NULL, versi
 #' install.nongithub('gmap', show.all.versions = TRUE)
 #' unlink(db)
 install.nongithub <- function(name = "", download.dir = NULL, destdir = NULL, version = NULL, 
-  local.source = NULL, show.all.versions = FALSE, name.saved = NULL, nongithub.cfg = system.file("extdata", 
-    "config/nongithub/nongithub.toml", package = "BioInstaller"), db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", 
+  local.source = NULL, show.all.versions = FALSE, name.saved = NULL, nongithub.cfg = c(system.file("extdata", 
+    "config/nongithub/nongithub.toml", package = "BioInstaller"), system.file("extdata", 
+    "config/db/db_main.toml", package = "BioInstaller"), system.file("extdata", 
+    "config/db/db_annovar.toml", package = "BioInstaller"), system.file("extdata", 
+    "config/db/db_blast.toml", package = "BioInstaller")), db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", 
     system.file("extdata", "demo/softwares_db_demo.yaml", package = "BioInstaller")), 
   download.only = FALSE, decompress = TRUE, dependence.need = TRUE, showWarnings = FALSE, 
   extra.list = list(), rcmd.parse = TRUE, bash.parse = TRUE, glue.parse = TRUE, 
@@ -379,7 +394,7 @@ install.nongithub <- function(name = "", download.dir = NULL, destdir = NULL, ve
   if (!status) {
     return(FALSE)
   }
-  config <- eval.config(config = name, file = config.cfg)
+  config <- fetch.config(config.cfg)[[name]]
   info.msg(sprintf("Fetching %s versions....", name), verbose = verbose)
   all.versions <- show.avaliable.versions(config, name)
   if (show.all.versions) {
@@ -477,9 +492,10 @@ install.nongithub <- function(name = "", download.dir = NULL, destdir = NULL, ve
     status <- TRUE
   }
   if (dependence.need) {
-    process.dependence(config, db, download.dir, destdir, verbose)
+    process.dependence(config, db, download.dir, destdir, verbose, github.cfg = str_split(Sys.getenv("github.cfg"), ",")[[1]], 
+      nongithub.cfg = config.cfg)
     status <- config.and.name.initial(config.cfg, name)
-    config <- eval.config(config = name, file = config.cfg)
+    config <- fetch.config(config.cfg)[[name]]
     config <- configr::parse.extra(config = config, extra.list = args.all)
     config <- configr::parse.extra(config = config, other.config = db, rcmd.parse = rcmd.parse, 
       bash.parse = bash.parse, glue.parse = glue.parse, glue.flag = glue.flag)

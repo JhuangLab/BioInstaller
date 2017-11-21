@@ -14,7 +14,7 @@ LazyData: true
 Imports:
     stringr (>= 1.2.0),
     futile.logger (>= 1.4.1),
-    configr (>= 0.3.0),
+    configr (>= 0.3.1.1),
     git2r (>= 0.0.3),
     R.utils (>= 2.5.0),
     RCurl (>= 1.95-4.8),

@@ -147,7 +147,15 @@ db_meta_file
 
 ## Download databases
 
+You can use `install.bioinfo` directly download the supported databases (since v0.3.0) or use the `inst/config/db` files (exclude db_meta.toml) as the `nongithub.cfg` parameter value.
+
 ```{r}
+# get all database name
+library(stringr)
+x <- install.bioinfo(show.all.names = T)
+x <- x[str_detect(x, "^db_")]
+x
+
 # all databases config 
 db_cfg_meta <- get.meta(config = 'db', value = 'cfg_meta', 
                         read.config.params=list(rcmd.parse = TRUE))

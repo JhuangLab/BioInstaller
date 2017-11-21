@@ -6,8 +6,11 @@
 \usage{
 install.nongithub(name = "", download.dir = NULL, destdir = NULL,
   version = NULL, local.source = NULL, show.all.versions = FALSE,
-  name.saved = NULL, nongithub.cfg = system.file("extdata",
+  name.saved = NULL, nongithub.cfg = c(system.file("extdata",
   "config/nongithub/nongithub.toml", package = "BioInstaller"),
+  system.file("extdata", "config/db/db_main.toml", package = "BioInstaller"),
+  system.file("extdata", "config/db/db_annovar.toml", package = "BioInstaller"),
+  system.file("extdata", "config/db/db_blast.toml", package = "BioInstaller")),
   db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", system.file("extdata",
   "demo/softwares_db_demo.yaml", package = "BioInstaller")),
   download.only = FALSE, decompress = TRUE, dependence.need = TRUE,
@@ -33,7 +36,10 @@ if it is a dir, you need set decompress to FALSE)}
 can use this to point the installed softwares name like 'GATK-3.7'}
 
 \item{nongithub.cfg}{Configuration file of installed by non github url,
-default is system.file('extdata', 'config/nongithub/nongithub.toml', package='BioInstaller')}
+default is c(system.file("extdata", "config/nongithub/nongithub.toml", package = "BioInstaller"),
+system.file("extdata", "config/db/db_main.toml", package = "BioInstaller"), 
+system.file("extdata", "config/db/db_annovar.toml", package = "BioInstaller"), 
+system.file("extdata", "config/db/db_blast.toml", package = "BioInstaller"))}
 
 \item{db}{File of saving softwares infomation, default is Sys.getenv('BIO_SOFTWARES_DB_ACTIVE',
 system.file('extdata', 'demo/softwares_db_demo.yaml', package = 'BioInstaller'))}
