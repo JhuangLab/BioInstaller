@@ -1,3 +1,7 @@
+2017-11-21 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
+
+		* db_ecodrug, db_medreaders, db_superdrug2, db_varcards be added
+
 2017-11-08 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
 
 		* fix a bug in R/utils_function.R drop_redundance_dir

@@ -50,3 +50,24 @@ publication = ["Cui T, Zhang L, Huang Y, et al. MNDR v2. 0: an updated resource 
 url = "http://rsnp3.psych.ac.cn/index.do"
 description = "SNP related regulatory elements, element-gene pairs & SNP-based regulatory network"
 publication = "Guo L, Wang J. rSNPBase 3.0: an updated database of SNP-related regulatory elements, element-gene pairs and SNP-based gene regulatory networks[J]. Nucleic Acids Research, 2017."
+
+[db.item.ecodrug]
+url = "http://www.ecodrug.org/"
+description = "The ECOdrug database contains information on the Evolutionary Conservation Of human Drug targets in over 600 eukaryotic species The interface allows users to identify human drug targets to 1000+ legacy drugs and explore integrated orthologue predictions for the drug targets, transparently showing the confidence in the predictions both across methods and taxonomic groups."
+publication = "Verbruggen B, Gunnarsson L, Kristiansson E, et al. ECOdrug: a database connecting drugs and conservation of their targets across species[J]. Nucleic Acids Research, 2017."
+
+[db.item.medreaders]
+url = "http://medreader.org"
+description = "MeDReaders: A database for transcription factors that bind to methylated DNA"
+publication = "Wang G, Luo X, Wang J, et al. MeDReaders: a database for transcription factors that bind to methylated DNA[J]. Nucleic Acids Research, 2017."
+
+[db.item.superdrug2]
+url = "http://cheminfo.charite.de/superdrug2"
+description = 'SuperDRUG2 database is a unique, one-stop resource for approved/marketed drugs, containing more than 4,500 active pharmaceutical ingredients. We annotated drugs with regulatory details, chemical structures (2D and 3D), dosage, biological targets, physicochemical properties, external identifiers, side-effects and pharmacokinetic data. Different search mechanisms allow navigation through the chemical space of approved drugs. A 2D chemical structure search is provided in addition to a 3D superposition feature that superposes a drug with ligands already known to be found in the experimentally determined protein-ligand complexes. For the first time, we introduced simulation of "physiologically-based" pharmacokinetics of drugs. Our interaction check feature not only identifies potential drug-drug interactions but also provides alternative recommendations for elderly patients.'
+publication = "GB/T 7714 Siramshetty V B, Eckert O A, Gohlke B O, et al. SuperDRUG2: a one stop resource for approved/marketed drugs[J]. Nucleic Acids Research, 2017."
+
+[db.item.varcards]
+url = "http://varcards.biols.ac.cn"
+description = "VarCards: an integrated genetic and clinical database for coding variants in the human genome"
+publication = "Li J, Shi L, Zhang K, et al. VarCards: an integrated genetic and clinical database for coding variants in the human genome[J]. Nucleic Acids Research, 2017."
+

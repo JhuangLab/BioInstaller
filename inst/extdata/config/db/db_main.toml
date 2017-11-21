@@ -60,3 +60,22 @@ version_available = ["All ncRNA-disease", "miRNA-disease", "lncRNA-disease"]
 [db_rsnp3]
 source_url = "ftp://rv.psych.ac.cn/pub/rsnp3/rSNP_info_{{version}}.tar.gz"
 version_available = "all"
+
+[db_ecodrug]
+source_url = "http://bioinfo.rjh.com.cn/download/bioinstaller/ecodrug/ECOdrug_{{version}}.csv.gz"
+version_available = ["eggnog", "ensembl", "inparanoid", "majority_vote"]
+
+[db_medreaders]
+source_url = ["http://bioinfo.rjh.com.cn/download/bioinstaller/medreader/paper.TF.PWM.tar.gz", 
+              "http://bioinfo.rjh.com.cn/download/bioinstaller/medreader/paper.TF.summary.xlsx.gz"]
+version_available = "newst"
+
+[db_superdrug2]
+source_url = ["http://bioinfo.rjh.com.cn/download/bioinstaller/superdrug2/{{version}}.csv.zip", 
+              "http://bioinfo.rjh.com.cn/download/bioinstaller/superdrug2/{{version}}.zip"]
+url_all_download = false
+version_available = ["all_drugs_2D_structures", "all_drugs_3D_structures", "all_drugs_chemical_structure_identifiers", "all_drugs_extlinks", "all_drugs_molecular_properties", "approved_drugs_chemical_structure_identifiers", "approved_drugs_extlinks", "approved_drugs_molecular_properties"]
+
+[db_varcards]
+source_url = "http://159.226.67.237/sun/varcards/resource/download/variant/{{version}}.variant.annotation.xls.gz"
+version_available = ["chr1", "chr2", "chr3", "chr4", "chr5", "chr6", "chr7", "chr8", "chr9", "chr10", "chr11", "chr12", "chr13", "chr14", "chr15", "chr16", "chr17", "chr18", "chr19", "chr20", "chr21", "chr22", "chrX", "chrY"]
