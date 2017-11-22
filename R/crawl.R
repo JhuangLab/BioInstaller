@@ -7,14 +7,12 @@
 #' @export
 #' @examples
 #' craw.all.versions('demo')
-craw.all.versions <- function(name, download.dir = "./", 
-  nongithub.cfg = c(system.file("extdata", "config/nongithub/nongithub.toml", package = "BioInstaller"), 
-    system.file("extdata", "config/db/db_main.toml", package = "BioInstaller"), 
-    system.file("extdata", "config/db/db_annovar.toml", package = "BioInstaller"), 
-    system.file("extdata", "config/db/db_blast.toml", package = "BioInstaller")), 
-                              parse.extra.params = list(rcmd.parse = TRUE, 
-                                                        bash.parse = TRUE, 
-                                                        glue.parse = TRUE)) {
+craw.all.versions <- function(name, download.dir = "./", nongithub.cfg = c(system.file("extdata", 
+  "config/nongithub/nongithub.toml", package = "BioInstaller"), system.file("extdata", 
+  "config/db/db_main.toml", package = "BioInstaller"), system.file("extdata", "config/db/db_annovar.toml", 
+  package = "BioInstaller"), system.file("extdata", "config/db/db_blast.toml", 
+  package = "BioInstaller")), parse.extra.params = list(rcmd.parse = TRUE, bash.parse = TRUE, 
+  glue.parse = TRUE)) {
   
   versions <- install.bioinfo(name, show.all.versions = TRUE)
   if (!dir.exists(download.dir)) {
@@ -35,13 +33,13 @@ craw.all.versions <- function(name, download.dir = "./",
       dest.name = basename(j)
       if (!file.exists(dest.name)) {
         tryCatch({
-            fn <- sprintf("%s/%s", download.dir, dest.name)
-            download.file(j, fn)
+          fn <- sprintf("%s/%s", download.dir, dest.name)
+          download.file(j, fn)
         }, error = function(e) {
         }, warning = function(w) {
-            if (file.size(fn) == 0) {
-              file.remove(fn)
-            }
+          if (file.size(fn) == 0) {
+          file.remove(fn)
+          }
         })
       }
     }

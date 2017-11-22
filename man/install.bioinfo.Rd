@@ -34,10 +34,10 @@ can use this to point the installed softwares name like 'GATK-3.7'}
 default is system.file('extdata', 'config/github/github.toml', package='BioInstaller')}
 
 \item{nongithub.cfg}{Configuration file of installed by non github url,
-default is c(system.file("extdata", "config/nongithub/nongithub.toml", package = "BioInstaller"),
-system.file("extdata", "config/db/db_main.toml", package = "BioInstaller"), 
-system.file("extdata", "config/db/db_annovar.toml", package = "BioInstaller"), 
-system.file("extdata", "config/db/db_blast.toml", package = "BioInstaller"))}
+default is c(system.file('extdata', 'config/nongithub/nongithub.toml', package = 'BioInstaller'),
+system.file('extdata', 'config/db/db_main.toml', package = 'BioInstaller'), 
+system.file('extdata', 'config/db/db_annovar.toml', package = 'BioInstaller'), 
+system.file('extdata', 'config/db/db_blast.toml', package = 'BioInstaller'))}
 
 \item{version}{Software version}
 

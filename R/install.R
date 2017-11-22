@@ -52,7 +52,7 @@ install.bioinfo <- function(name = c(), download.dir = c(), destdir = c(), name.
   showWarnings = FALSE, extra.list = list(), rcmd.parse = TRUE, bash.parse = TRUE, 
   glue.parse = TRUE, glue.flag = "!!glue", save.to.db = TRUE, verbose = TRUE, ...) {
   github.cfg.env <- paste0(github.cfg, collapse = ",")
-  nongithub.cfg.env <- paste0(nongithub.cfg, collapse = ",") 
+  nongithub.cfg.env <- paste0(nongithub.cfg, collapse = ",")
   Sys.setenv(github.cfg = github.cfg.env, nongithub.cfg = nongithub.cfg.env)
   db.check(db)
   github.names <- names(fetch.config(github.cfg))
@@ -492,8 +492,8 @@ install.nongithub <- function(name = "", download.dir = NULL, destdir = NULL, ve
     status <- TRUE
   }
   if (dependence.need) {
-    process.dependence(config, db, download.dir, destdir, verbose, github.cfg = str_split(Sys.getenv("github.cfg"), ",")[[1]], 
-      nongithub.cfg = config.cfg)
+    process.dependence(config, db, download.dir, destdir, verbose, github.cfg = str_split(Sys.getenv("github.cfg"), 
+      ",")[[1]], nongithub.cfg = config.cfg)
     status <- config.and.name.initial(config.cfg, name)
     config <- fetch.config(config.cfg)[[name]]
     config <- configr::parse.extra(config = config, extra.list = args.all)
