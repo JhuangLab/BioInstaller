@@ -1,23 +1,31 @@
 #' A function can be used to craw all source code from nongithub.cfg stored information
 #' @param name Software name
-#' @param download.dir Source code stored dir
+#' @param download.dir Download destdir
 #' @param nongithub.cfg Configuration file of installed by non github url,
-#' @param ... Other parameters pass to \code{\link[configr]{parse.extra}}
+#' @param parse.extra.params Other parameters pass to \code{\link[configr]{parse.extra}}
 #' default is system.file('extdata', 'config/nongithub/nongithub.toml', package='BioInstaller')
 #' @export
 #' @examples
 #' craw.all.versions('demo')
-craw.all.versions <- function(name, download.dir = "./", nongithub.cfg = system.file("extdata", 
-  "config/nongithub/nongithub.toml", package = "BioInstaller"), ...) {
+craw.all.versions <- function(name, download.dir = "./", 
+  nongithub.cfg = c(system.file("extdata", "config/nongithub/nongithub.toml", package = "BioInstaller"), 
+    system.file("extdata", "config/db/db_main.toml", package = "BioInstaller"), 
+    system.file("extdata", "config/db/db_annovar.toml", package = "BioInstaller"), 
+    system.file("extdata", "config/db/db_blast.toml", package = "BioInstaller")), 
+                              parse.extra.params = list(rcmd.parse = TRUE, 
+                                                        bash.parse = TRUE, 
+                                                        glue.parse = TRUE)) {
   
   versions <- install.bioinfo(name, show.all.versions = TRUE)
+  if (!dir.exists(download.dir)) {
+    dir.create(download.dir, recursive = TRUE)
+  }
   
   for (i in versions) {
-    parse.extra.params <- list(...)
-    parse.extra.params <- config.list.merge(parse.extra.params, list(config = name, 
-      file = nongithub.cfg))
+    config <- fetch.config(nongithub.cfg)[[name]]
+    parse.extra.params <- config.list.merge(parse.extra.params, list(config = config))
     parse.extra.params$extra.list$version = i
-    config <- do.call(configr::eval.config, parse.extra.params)
+    config <- do.call(configr::parse.extra, parse.extra.params)
     urls <- config$source_url
     if (is.download.all.urls(config$url_all_download)) {
       urls <- lapply(urls, function(x) return(x[1]))
@@ -26,8 +34,14 @@ craw.all.versions <- function(name, download.dir = "./", nongithub.cfg = system.
     for (j in urls) {
       dest.name = basename(j)
       if (!file.exists(dest.name)) {
-        tryCatch(download.file(j, dest.name), error = function(e) {
+        tryCatch({
+            fn <- sprintf("%s/%s", download.dir, dest.name)
+            download.file(j, fn)
+        }, error = function(e) {
         }, warning = function(w) {
+            if (file.size(fn) == 0) {
+              file.remove(fn)
+            }
         })
       }
     }
