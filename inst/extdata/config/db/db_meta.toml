@@ -75,3 +75,14 @@ publication = "Li J, Shi L, Zhang K, et al. VarCards: an integrated genetic and 
 url = "https://civic.genome.wustl.edu/home"
 description = "Realizing precision medicine will require this information to be centralized, debated and interpreted for application in the clinic. CIViC is an open access, open source, community-driven web resource for Clinical Interpretation of Variants in Cancer. Our goal is to enable precision medicine by providing an educational forum for dissemination of knowledge and active discussion of the clinical significance of cancer genome alterations. For more details refer to the 2017 CIViC publication in Nature Genetics."
 publication = 'Griffith, Malachi, et al. "CIViC is a community knowledgebase for expert crowdsourcing the clinical interpretation of variants in cancer." Nature genetics 49.2 (2017): 170-174.'
+[db.item.expression_atlas]
+url = "https://www.ebi.ac.uk/gxa/home/"
+description = "Expression Atlas is an open science resource that gives users a powerful way to find information about gene and protein expression across species and biological conditions such as different tissues, cell types, developmental stages and diseases among others. Expression Atlas aims to help answering questions such as ‘where is a certain gene expressed?’ or ‘how does its expression change in a disease?’"
+publication = "Papatheodorou, I., et al. Expression Atlas: gene and protein expression across multiple studies and organisms. Nucleic Acids Res 2017."
+
+[db.item.remap2]
+url = "http://tagc.univ-mrs.fr/remap/"
+description = "ReMap, an integrative analysis of transcriptional regulators ChIP-seq experiments from both Public and Encode datasets. The ReMap atlas consits of 80 million peaks from 485 transcription factors (TFs), transcription coactivators (TCAs) and chromatin-remodeling factors (CRFs). The atlas is available to browse or download either for a given TF or cell line, or for the entire dataset. "
+publication = [
+               "Integrative analysis of public ChIP-seq experiments reveals a complex multi-cell regulatory landscape.Griffon, A., Barbier, Q., Dalino, J., van Helden, J., Spicuglia, S., Ballester, B. Nucleic Acids Research, Volume 43, Issue 4, 27 February 2015 ", 
+               "ReMap 2018: An updated regulatory regions atlas from an integrative analysis of DNA-binding ChIP-seq experiments. Cheneby J., Gheorghe M., Artufel M., Mathelier A., Ballester, B. Nucleic Acids Research, gkx1092, https://doi.org/10.1093/nar/gkx1092"]
