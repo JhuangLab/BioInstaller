@@ -77,7 +77,9 @@ url_all_download = false
 version_available = ["all_drugs_2D_structures", "all_drugs_3D_structures", "all_drugs_chemical_structure_identifiers", "all_drugs_extlinks", "all_drugs_molecular_properties", "approved_drugs_chemical_structure_identifiers", "approved_drugs_extlinks", "approved_drugs_molecular_properties"]
 
 [db_varcards]
-source_url = "http://159.226.67.237/sun/varcards/resource/download/variant/{{version}}.variant.annotation.xls.gz"
+source_url = ["http://159.226.67.237/sun/varcards/resource/download/variant/{{version}}.variant.annotation.xls.gz",
+              "http://bioinfo.rjh.com.cn/download/bioinstaller/varcards/{{version}}.variant.annotation.xls.gz"]
+url_all_download = false
 version_available = ["chr1", "chr2", "chr3", "chr4", "chr5", "chr6", "chr7", "chr8", "chr9", "chr10", "chr11", "chr12", "chr13", "chr14", "chr15", "chr16", "chr17", "chr18", "chr19", "chr20", "chr21", "chr22", "chrX", "chrY"]
 
 [db_civic]
@@ -113,3 +115,52 @@ version_available = ["archive_all", "archive_nr", "filPeaks_public", "filPeaks_a
 [db_funcoup]
 source_url = "http://funcoup.sbc.su.se/downloads/download.action?type=network&instanceID=7617155&fileName={{version}}.gz"
 version_available = ["FC4.0_A.thaliana_full", "FC4.0_B.subtilis_full", "FC4.0_B.taurus_full", "FC4.0_C.elegans_full", "FC4.0_C.familiaris_full", "FC4.0_C.intestinalis_full", "FC4.0_D.melanogaster_full", "FC4.0_D.rerio_full", "FC4.0_E.coli_full", "FC4.0_G.gallus_full", "FC4.0_H.sapiens_full", "FC4.0_M.musculus_full", "FC4.0_O.sativa_full", "FC4.0_P.falciparum_full", "FC4.0_R.norvegicus_full", "FC4.0_S.cerevisiae_full", "FC4.0_S.pombe_full", "FC4.0_A.thaliana_compact", "FC4.0_B.subtilis_compact", "FC4.0_B.taurus_compact", "FC4.0_C.elegans_compact", "FC4.0_C.familiaris_compact", "FC4.0_C.intestinalis_compact", "FC4.0_D.melanogaster_compact", "FC4.0_D.rerio_compact", "FC4.0_E.coli_compact", "FC4.0_G.gallus_compact", "FC4.0_H.sapiens_compact", "FC4.0_M.musculus_compact", "FC4.0_O.sativa_compact", "FC4.0_P.falciparum_compact", "FC4.0_R.norvegicus_compact", "FC4.0_S.cerevisiae_compact", "FC4.0_S.pombe_compact"]
+
+[db_proteinatlas]
+source_url = ["https://www.proteinatlas.org/download/{{version}}.tsv.zip",
+              "https://www.proteinatlas.org/download/{{version}}.gz",
+              "https://www.proteinatlas.org/images_static/{{version}}"]
+decompress = [true, true, false]
+url_all_download = false
+version_available = ["normal_tissue", "pathology", "subcellular_location", 
+                     "rna_tissue", "transcript_rna_tissue", "transcript_rna_celline", 
+                     "proteinatlas", "proteinatlas.xml", "proteinatlas.trig", "cell.svg"]
+
+[db_dgidb]
+source_url = "http://www.dgidb.org/data/{{version}}"
+version_available = ["interactions.tsv", "genes.tsv", "drugs.tsv", 
+                      "categories.tsv", "data/dGene_04-16-2013_2257.tsv", 
+                      "data.sql"]
+
+[db_drugbank]
+source_url = "http://bioinfo.rjh.com.cn/download/bioinstaller/drugbank/{{version}}.xml.zip"
+version_available = "drugbank_all_full_database"
+
+[db_interpro]
+source_url = "ftp://ftp.ebi.ac.uk/pub/databases/interpro/{{version}}"
+version_available = ["entry.list", "interpro.xml.gz", "match_complete.xml.gz", 
+                     "uniparc_match.tar.gz", "protein2ipr.dat.gz", "ParentChildTreeFile.txt", 
+                     "interpro2go", "release_notes.txt"]
+
+[db_inbiomap]
+source_url = "https://www.intomics.com/inbio/map/api/get_data?file=InBio_Map_core_{{version}}.tar.gz"
+version_available = ["2016_09_12", "2016_05_31", "2016_02_05", "2015_11_02"]
+
+[db_omim]
+source_url = [
+             "https://omim.org/static/omim/data/{{version}}.txt"
+             ]
+version_available = ["mim2gene"]
+
+[db_biosystems]
+source_url = ["ftp://ftp.ncbi.nih.gov/pub/biosystems/biosystems.{{version}}/"]
+source_is.dir = true
+version_available = ["20170414", "20170421"]
+
+[db_denovo_db]
+source_url = "http://denovo-db.gs.washington.edu/denovo-db.variants.v.{{version}}.tsv.gz"
+version_available = "1.5"
+
+[db_hpo]
+source_url = "http://compbio.charite.de/jenkins/job/hpo.annotations.monthly/{{version}}/artifact/annotation/*zip*/annotation.zip"
+version_available = "lastStableBuild"

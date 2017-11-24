@@ -120,10 +120,14 @@ extract.file <- function(file, destdir, decompress = TRUE) {
     status <- FALSE
   }
   dir.create(destdir, showWarnings = F, recursive = TRUE)
-  if (!decompress) {
+  if (!decompress || filetype == "other") {
     files <- list.files(dirname(file))
     files.path <- sprintf("%s/%s", dirname(file), files)
-    destfiles.path <- sprintf("%s/%s", destdir, files)
+    
+    rm.index <- file.size(files.path) == 0
+    file.remove(files.path[rm.index])
+    files.path <- files.path[!rm.index]
+    destfiles.path <- sprintf("%s/%s", destdir, basename(files.path))
     status <- file.rename(files.path, destfiles.path)
     status <- all(status)
     return(status)

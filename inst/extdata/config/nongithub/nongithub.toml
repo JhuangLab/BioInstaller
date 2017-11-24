@@ -1008,3 +1008,14 @@ use_github_versions = true
 [gridss.install]
 linux = "mkdir -p {{destdir}}/bin; cp {{download.dir}}/*.jar {{destdir}}/bin"
 mac = "mkdir -p {{destdir}}/bin; cp {{download.dir}}/*.jar {{destdir}}/bin"
+
+[interproscan]
+source_url = [
+              "ftp://ftp.ebi.ac.uk/pub/software/unix/iprscan/5/{{version}}/interproscan-{{version}}-64-bit.tar.gz", 
+              "http://bioinfo.rjh.com.cn/download/bioinstaller/interproscan/interproscan-{{version}}-64-bit.tar.gz"
+]
+url_all_download = false
+version_available = "5.27-66.0"
+[interproscan.install]
+linux = ""
+mac = ""

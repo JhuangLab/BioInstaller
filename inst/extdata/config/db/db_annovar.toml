@@ -494,3 +494,8 @@ buildver_available = "hg19"
 source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{buildver}}_{{version}}.txt.gz"
 version_available = ["cscd_cancer_circrna", "cscd_common_circrna", "cscd_normal_circrna"]
 buildver_available = ["hg19", "hg38"]
+
+[db_annovar_varcards]
+source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{buildver}}_{{version}}.txt.gz"
+version_available = "varcards"
+buildver_available = "hg19"

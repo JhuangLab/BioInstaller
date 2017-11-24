@@ -109,4 +109,10 @@ Please fork the [GitHub BioInstaller repository](https://github.com/JhuangLab/Bi
 
 ## License
 
+R package:
+
 [MIT](https://en.wikipedia.org/wiki/MIT_License)
+
+Related Other Resources
+
+[Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License](https://creativecommons.org/licenses/by-nc-nd/4.0/)

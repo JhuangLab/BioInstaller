@@ -2,6 +2,11 @@
 
 		* db_expression_atlas,db_remap and db_remap2 be added
 		* db_annovar_epi_genes, db_annovar_cscd be added
+		* fix undecompressed filetype not move to destdir if set decompress to
+		TRUE
+		* interproscan be added
+		* db_funcoup, db_proteinatlas, db_dgidb, db_drugbank, db_interpro,
+		db_inbiomap, db_omim, db_biosystems, db_denovo_db and db_hpo be added
 
 2017-11-22 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
 

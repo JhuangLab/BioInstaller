@@ -18,3 +18,8 @@ tag = ["Genomics", "NGS", "Genomic alignment", "DNA-seq", "RNA-seq", "mRNA", "Wh
 [nongithub.item.gridss]
 title = "GRIDSS: sensitive and specific genomic rearrangement detection using positional de Bruijn graph assembly."
 tag = ["NGS", "SV"]
+
+[nongithub.item.interproscan]
+title = "Protein sequence analysis & classification"
+description = "InterProScan is the software package that allows sequences (protein and nucleic) to be scanned against InterPro's signatures. Signatures are predictive models, provided by several different databases, that make up the InterPro consortium."
+tag = ["Protein", "Classification"]
