@@ -483,3 +483,14 @@ decompress = false
 version_newest = "2016sih_wes_ball"
 version_available = ['2016sih_wes_ball', '2016sih_wes_tall', '2016sih_wes_nkt', '2016sih_wgs_nkt', '2016sih_wgs_dlbcl']
 buildver_available = "hg19"
+
+[db_annovar_epi_genes]
+source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{buildver}}_epi_genes_{{version}}.txt"
+decompress = false
+version_available = "v1"
+buildver_available = "hg19"
+
+[db_annovar_cscd]
+source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{buildver}}_{{version}}.txt.gz"
+version_available = ["cscd_cancer_circrna", "cscd_common_circrna", "cscd_normal_circrna"]
+buildver_available = ["hg19", "hg38"]

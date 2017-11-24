@@ -109,3 +109,7 @@ source_url = ["http://tagc.univ-mrs.fr/remap/download/remap1/ReMap2015_TF_{{vers
               "http://tagc.univ-mrs.fr/remap/download/remap1/All/{{version}}.bed.gz"]
 version_available = ["archive_all", "archive_nr", "filPeaks_public", "filPeaks_all", "nrPeaks_public", "nrPeaks_all", 
                      "hg38_allPeaks", "hg38_nrPeaks"]
+
+[db_funcoup]
+source_url = "http://funcoup.sbc.su.se/downloads/download.action?type=network&instanceID=7617155&fileName={{version}}.gz"
+version_available = ["FC4.0_A.thaliana_full", "FC4.0_B.subtilis_full", "FC4.0_B.taurus_full", "FC4.0_C.elegans_full", "FC4.0_C.familiaris_full", "FC4.0_C.intestinalis_full", "FC4.0_D.melanogaster_full", "FC4.0_D.rerio_full", "FC4.0_E.coli_full", "FC4.0_G.gallus_full", "FC4.0_H.sapiens_full", "FC4.0_M.musculus_full", "FC4.0_O.sativa_full", "FC4.0_P.falciparum_full", "FC4.0_R.norvegicus_full", "FC4.0_S.cerevisiae_full", "FC4.0_S.pombe_full", "FC4.0_A.thaliana_compact", "FC4.0_B.subtilis_compact", "FC4.0_B.taurus_compact", "FC4.0_C.elegans_compact", "FC4.0_C.familiaris_compact", "FC4.0_C.intestinalis_compact", "FC4.0_D.melanogaster_compact", "FC4.0_D.rerio_compact", "FC4.0_E.coli_compact", "FC4.0_G.gallus_compact", "FC4.0_H.sapiens_compact", "FC4.0_M.musculus_compact", "FC4.0_O.sativa_compact", "FC4.0_P.falciparum_compact", "FC4.0_R.norvegicus_compact", "FC4.0_S.cerevisiae_compact", "FC4.0_S.pombe_compact"]
