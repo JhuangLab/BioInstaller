@@ -148,9 +148,10 @@ version_available = ["2016_09_12", "2016_05_31", "2016_02_05", "2015_11_02"]
 
 [db_omim]
 source_url = [
-             "https://omim.org/static/omim/data/{{version}}.txt"
+             "https://omim.org/static/omim/data/{{version}}.txt",
+             "https://raw.githubusercontent.com/macarthur-lab/omim/master/data/{{version}}.txt"
              ]
-version_available = ["mim2gene"]
+version_available = ["mim2gene", "full_omim_table", "gene_symbol_thesaurus", "use_omim_table"]
 
 [db_biosystems]
 source_url = ["ftp://ftp.ncbi.nih.gov/pub/biosystems/biosystems.{{version}}/"]
@@ -164,3 +165,13 @@ version_available = "1.5"
 [db_hpo]
 source_url = "http://compbio.charite.de/jenkins/job/hpo.annotations.monthly/{{version}}/artifact/annotation/*zip*/annotation.zip"
 version_available = "lastStableBuild"
+
+[db_tumorfusions]
+source_url = "http://www.tumorfusions.org/downloads/{{version}}.txt.gz"
+version_available = "pancanfus"
+
+[db_gtex]
+source_url = "http://bioinfo.rjh.com.cn/download/bioinstaller/gtex/v7/{{version}}"
+version_available = [
+                     "GTEx_Analysis_2016-01-15_v7_RNASeQCv1.1.8_exon_reads.txt.gz", "GTEx_Analysis_2016-01-15_v7_RNASeQCv1.1.8_gene_median_tpm.gct.gz", "GTEx_Analysis_2016-01-15_v7_RNASeQCv1.1.8_gene_reads.gct.gz", "GTEx_Analysis_2016-01-15_v7_RNASeQCv1.1.8_gene_tpm.gct.gz", "GTEx_Analysis_2016-01-15_v7_RSEMv1.2.22_transcript_expected_count.txt.gz", "GTEx_Analysis_2016-01-15_v7_RSEMv1.2.22_transcript_tpm.txt.gz", "GTEx_Analysis_2016-01-15_v7_STARv2.4.2a_junctions.gct.gz", "GTEx_Analysis_2016-01-15_v7_WholeGenomeSeq_635Ind_PASS_AB02_GQ20_HETX_MISS15_PLINKQC.lookup_table.txt.gz", "GTEx_Analysis_v7_Annotations_SampleAttributesDD.xlsx.gz", "GTEx_Analysis_v7_Annotations_SubjectPhenotypesDD.xlsx.gz", "GTEx_Analysis_v7_eQTL_covariates.tar.gz", "GTEx_Analysis_v7_eQTL_expression_matrices.tar.gz", "GTEx_Analysis_v7_eQTL.tar.gz", "GTEx_Analysis_v7.metasoft.txt.gz", "GTEx_droncseq_hip_pcf.tar.gz", "GTEx_v7_Annotations_SampleAttributesDS.txt", "GTEx_v7_Annotations_SubjectPhenotypesDS.txt", "Homo_sapiens_assembly19.fasta.gz", "biobank_collection_20171126_031201.txt.gz", "gencode.v19.genes.patched_contigs_exons.txt.gz", "gencode.v19.genes.v7.patched_contigs.gtf.gz", "gencode.v19.transcripts.patched_contigs.gtf.gz"
+                     ]
