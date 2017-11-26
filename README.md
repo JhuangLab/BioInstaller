@@ -24,7 +24,7 @@ BioInstaller can help us to download, install and manage a variety of bioinforma
 
 What's more, BioInstaller provides a different way to download and install your files, software, and databases for others, more detail can be found in another vignette [Examples of Templet Configuration File](https://CRAN.R-project.org/package=BioInstaller/vignettes/write_configuration_file.html).
 
-A simple guide can be found in [here](https://cran.r-project.org/web/packages/BioInstaller/vignettes/BioInstaller.html).
+A simple guide can be found in [here](https://CRAN.R-project.org/package=BioInstaller/vignettes/BioInstaller.html).
 
 **Feature**:
 
