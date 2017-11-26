@@ -96,8 +96,16 @@ devtools::install_github("JhuangLab/BioInstaller")
 
 **Databases:**
 
-- ANNOVAR, blast, CSCD, GATK_Bundle
+- ANNOVAR, blast, CSCD, GATK_Bundle, biosystems, civic, denovo_db, dgidb, diseaseenhancer, drugbank, ecodrug, expression_atlas, funcoup, gtex, hpo, inbiomap, interpro, medreaders, mndr, msdd, omim, pancanqtl, proteinatlas, remap2, rsnp3, seecancer, srnanalyzer, superdrug2, tumorfusions, varcards
 
+## Docker
+
+You can use the BioInstaller in Docker since v0.3.0.
+
+```bash
+docker pull bioinstaller/bioinstaller:develop
+docker run -it -v /tmp/download:/tmp/download bioinstaller/bioinstaller:develop R
+```
 
 ## How to contribute?
 
