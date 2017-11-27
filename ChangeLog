@@ -1,3 +1,7 @@
+2017-11-27 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
+
+		* db_annovar_varcards_sqlite be added
+
 2017-11-26 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
 
 		* db_tumorfusions and db_gtex be added
