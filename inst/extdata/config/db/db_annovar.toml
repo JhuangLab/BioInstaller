@@ -505,3 +505,8 @@ source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{buildver}}_{
 version_available = "varcards"
 buildver_available = "hg19"
 install = "#R#sql2sqlite('{{buildver}}_{{version}}.sqlite.sql', sqlite.path = '{{buildver}}_{{version}}.sqlite')#R#"
+
+[db_annovar_hgnc]
+source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{buildver}}_{{version}}.txt.gz"
+version_available = "hgnc_coding"
+buildver_available = "hg19"

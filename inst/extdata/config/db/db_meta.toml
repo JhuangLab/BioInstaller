@@ -4,12 +4,12 @@ avaliable_cfg = ["db_annovar.toml", "db_blast.toml", "db_main.toml"]
 prefix_url = "https://raw.githubusercontent.com/JhuangLab/BioInstaller/master/inst/extdata/config/db/"
 cfg_dir = "@>@system.file('extdata', 'config/db', package = 'BioInstaller')@<@"
 
-[db.item.db_blast]
+[db.item.blast]
 title = "Basic Local Alignment Search Tool Databases"
 description = "All of blast required databases"
 url = "ftp://ftp.ncbi.nih.gov/blast/db/"
 
-[db.item.db_cscd]
+[db.item.cscd]
 url = "http://gb.whu.edu.cn/CSCD/"
 description = "Circular RNA (circRNA) is a large group of RNA family extensively existed in cells and tissues. High-throughput sequencing provides a way to view circRNAs across different samples, especially in various diseases. However, there is still no comprehensive database for exploring the cancer-specific circRNAs. Researchers at Wuhan University collected 228 total RNA or polyA(-) RNA-seq samples from both cancer and normal cell lines, and identified 272 152 cancer-specific circRNAs. A total of 950 962 circRNAs were identified in normal samples only, and 170 909 circRNAs were identified in both tumor and normal samples, which could be further used as non-tumor background. The researchers constructed a cancer-specific circRNA database. To understand the functional effects of circRNAs, they predicted the microRNA response element sites and RNA binding protein sites for each circRNA. They further predicted potential open reading frames to highlight translatable circRNAs. To understand the association between the linear splicing and the back-splicing, the researchers also predicted the splicing events in linear transcripts of each circRNA. As the first comprehensive cancer-specific circRNA database, they believe CSCD could significantly contribute to the research for the function and regulation of cancer-associated circRNAs."
 publication = "XiaS , Feng J, Chen K, Ma Y, Gong J, Cai FF, Jin Y, Gao Y, Xia L, Chang H, Wei L, Han L, He C. (2017) CSCD: a database for cancer-specific circular RNAs. Nucleic Acids Research"
@@ -171,4 +171,12 @@ description = "Correlations between genotype and tissue-specific gene expression
 publication = [
                "Consortium G. Human genomics. The Genotype-Tissue Expression (GTEx) pilot analysis: multitissue gene regulation in humans[J]. Science, 2015, 348(6235):648-60.", 
                "Consortium G, Battle A, Brown C D, et al. Genetic effects on gene expression across human tissues[J]. Nature, 2017, 550(7675):204."
+               ]
+
+[db.item.hgnc]
+url = "https://www.genenames.org/"
+description = "HGNC is responsible for approving unique symbols and names for human loci, including protein coding genes, ncRNA genes and pseudogenes, to allow unambiguous scientific communication. genenames.org is a curated online repository of HGNC-approved gene nomenclature, gene families and associated resources including links to genomic, proteomic and phenotypic information."
+publication = [
+               "Gray KA, Yates B, Seal RL, Wright MW, Bruford EA. genenames.org: the HGNC resources in 2015. Nucleic Acids Res. 2015 Jan;43(Database issue):D1079-85. doi: 10.1093/nar/gku1071. PMID:25361968",
+               "HGNC Database, HUGO Gene Nomenclature Committee (HGNC), EMBL Outstation - Hinxton, European Bioinformatics Institute, Wellcome Trust Genome Campus, Hinxton, Cambridgeshire, CB10 1SD, UK www.genenames.org."
                ]
