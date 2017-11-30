@@ -836,3 +836,11 @@ github_url = "https://github.com/ewels/MultiQC"
 [multiqc.install]
 linux = "pip install ."
 mac = "pip install ."
+
+[strawberry]
+github_url = "https://github.com/ruolin/strawberry"
+use_git2r = false
+recursive_clone = true
+[strawberry.install]
+linux = "sh cmake.sh && cd build && make"
+mac = "sh cmake.sh && cd build && make"

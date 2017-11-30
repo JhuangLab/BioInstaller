@@ -487,7 +487,7 @@ buildver_available = "hg19"
 [db_annovar_epi_genes]
 source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{buildver}}_epi_genes_{{version}}.txt"
 decompress = false
-version_available = "v1"
+version_available = ["v1", "v1.1"]
 buildver_available = "hg19"
 
 [db_annovar_cscd]
@@ -510,3 +510,12 @@ install = "#R#sql2sqlite('{{buildver}}_{{version}}.sqlite.sql', sqlite.path = '{
 source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{buildver}}_{{version}}.txt.gz"
 version_available = "hgnc_coding"
 buildver_available = "hg19"
+
+[db_annovar_b_all_rnaseq]
+source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{buildver}}_{{version}}.txt.gz"
+version_available = ["b_all_rnaseq_v1_core", "b_all_rnaseq_v1_extra"]
+buildver_available = "hg19"
+note = "not available now"
+[db_annovar_b_all_rnaseq.description]
+b_all_rnaseq_v1_core = "Integrated 1285 cases B-cell acute lymphoblastic leukemia (B-ALL) from public data portal. Variant calling result, using GATK (Haplotypecaller, UnifiedGenotyper), Lofreq and Varscan2, be merged (bases with baseQ/BAQ >13;minimum coverge>=10; maximum alt allele frequency >= 0.04; alt allel read number >= 3; only the varinats that mutation type is missense, nonsense, frameshift del, frameshift del, nonframeshift del, nonframeshift del, stoploss, nonsense and unknown be included)"
+b_all_rnaseq_v1_extra = "Complementary set of core, such as Synonymous mutation, intron, intergenic, UTR3 and UTR5, .etc"
