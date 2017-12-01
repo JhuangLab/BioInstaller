@@ -180,3 +180,33 @@ publication = [
                "Gray KA, Yates B, Seal RL, Wright MW, Bruford EA. genenames.org: the HGNC resources in 2015. Nucleic Acids Res. 2015 Jan;43(Database issue):D1079-85. doi: 10.1093/nar/gku1071. PMID:25361968",
                "HGNC Database, HUGO Gene Nomenclature Committee (HGNC), EMBL Outstation - Hinxton, European Bioinformatics Institute, Wellcome Trust Genome Campus, Hinxton, Cambridgeshire, CB10 1SD, UK www.genenames.org."
                ]
+
+[db.item.atcircdb]
+url = "http://genome.sdau.edu.cn/circRNA/index.php"
+description = """Circular RNA not only functions as a potential competitive target for miRNA, but also regulates transcription and interacts with RNA-binding proteins. Because of the structural stability of the circular form, these molecules are promising candidates for intervening in a number of biological pathways, and may be a high value tool for pharmaceutical research in human and photosynthesis in plant.
+Based on our previous research, we systematically investigated 622 RNA-Seq samples from 87 indepedent studies hosted at NCBI SRA, and extracted all related circular RNAs. To improve the prediction accuracy, we not only applied a straightforward metric to screen and rank the circular RNA, but also incorporated exon boundaries as well as circular RNA candidates from previous studies into this resource to provide robust evidence for experimental biologists. In regards of the interaction between miRNA and circular RNAs, we utilized psRNAtarget and TAPIR to evaluate the statistical significance. Together, this database will host all predicted and validated Arabidopsis circular RNAs, and provide valuable and comprehensive information for studying this newly emerging non-coding RNA."""
+publication = [
+               "Ye J, Wang L, Li S, Zhang Q, Zhang Q, Tang W, Wang K, Song K, Sablok G, Sun X*, Zhao H*; AtCircDB: a tissue-specific database for Arabidopsis circular RNAs. Brief Bioinform 2017 bbx089. doi: 10.1093/bib/bbx089.",
+               "Sun X, Wang L, Ding J, Wang Y, Wang J, Zhang X, Che Y, Liu Z, Zhang X, Ye J, Wang J, Sablok G, Deng Z, Zhao H. Integrative analysis of Arabidopsis thaliana transcriptomics reveals intuitive splicing mechanism for circular RNA. FEBS Lett. 2016. 590(20):3510-3516. "]
+
+[db.item.circnet]
+url = "http://circnet.mbc.nctu.edu.tw/"
+description = "Circular RNAs (circRNAs) represent a new type of regulatory noncoding RNA that only recently has been identified and cataloged. Emerging evidence indicates that circRNAs exert a new layer of post-transcriptional regulation of gene expression. In this study, we utilized transcriptome sequencing datasets to systematically identify the expression of circRNAs (including known and newly identified ones by our pipeline) in 464 RNA-seq samples, and then constructed the CircNet database (http://circnet.mbc.nctu.edu.tw/) that provides the following resources: (i) novel circRNAs, (ii) integrated miRNA-target networks, (iii) expression profiles of circRNA isoforms, (iv) genomic annotations of circRNA isoforms (e.g., 282,948 exon positions), and (v) sequences of circRNA isoforms. The CircNet database is to our knowledge the first public database that provides tissue-specific circRNA expression profiles and circRNA-miRNA-gene regulatory networks. It not only extends the most up to date catalog of circRNAs but also provides a thorough expression analysis of both previously reported and novel circRNAs. Furthermore, it generates an integrated regulatory network that illustrates the regulation between circRNAs, miRNAs and genes."
+publication = "Liu Y C, Li J R, Sun C H, et al. CircNet: a database of circular RNAs derived from transcriptome sequencing data[J]. Nucleic acids research, 2016, 44(D1): D209-D215."
+
+[db.item.circbase]
+url = "http://circrna.org/"
+description = "Recently, several laboratories have reported thousands of circular RNAs (circRNAs) in animals. Numerous circRNAs are highly stable and have specific spatiotemporal expression patterns. Even though a function for circRNAs is unknown, these features make circRNAs an interesting class of RNAs as possible biomarkers and for further research. We developed a database and website, “circBase,” where merged and unified data sets of circRNAs and the evidence supporting their expression can be accessed, downloaded, and browsed within the genomic context. circBase also provides scripts to identify known and novel circRNAs in sequencing data. The database is freely accessible through the web server at http://www.circbase.org/."
+publication = "Glažar P, Papavasileiou P, Rajewsky N. circBase: a database for circular RNAs[J]. Rna, 2014, 20(11): 1666-1670."
+
+[db.item.circrnadb]
+url = "http://202.195.183.4:8000/circrnadb/circRNADb.php"
+description = "circRNADb (version1.0.0), circular RNA (or circRNA) Database, is a comprehensive database for human circular RNAs with protein-coding annotations. It is freely available for non-commercial use. The latest version of this circRNA database contains 32,914 exonic circRNAs with 16,328 protein-coding annotations, of which 46 circRNAs from 37 genes were found to have their corresponding proteins expressed according mass spectrometry. circRNADb can be a valuable resource for large-scale studies of circRNA in humans."
+publication = "Chen X, Han P, Zhou T, et al. circRNADb: a comprehensive database for human circular RNAs with protein-coding annotations[J]. Scientific reports, 2016, 6."
+
+[db.item.exorbase]
+url = "http://www.exorbase.org/exoRBase/toIndex"
+description = """exoRBase is a repository of circular RNA (circRNA), long non-coding RNA (lncRNA) and messenger RNA (mRNA) derived from RNA-seq data analyses of human blood exosomes. Experimental validations from published literature are also included.
+exoRBase features the integration and visualization of RNA expression profiles based on normalized RNA-seq data spanning both normal individuals and patients with different diseases.
+exoRBase aims to collect and characterize all long RNA species in human blood exosomes. The annotation, expression level and possible original tissues are provided. exoRBase will aid researchers in identifying molecular signatures in blood exosomes and will trigger new circulating biomarker discovery and functional implication for human diseases."""
+publication = "Li S, Li Y, Chen B, et al. exoRBase: a database of circRNA, lncRNA and mRNA in human blood exosomes[J]. Nucleic Acids Research, 2017."

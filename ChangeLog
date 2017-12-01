@@ -1,3 +1,8 @@
+2017-12-01 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
+
+		* db_atcircdb, db_circnet, db_circbase, db_circrnadb, 
+		and db_exorbase be added
+
 2017-11-30 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
 
 		* 1285 cases B-ALL RNA-seq variants database be added (resource not

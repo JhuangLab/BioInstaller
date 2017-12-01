@@ -196,3 +196,32 @@ version_available = ["protein-coding_gene", "non-coding_RNA", "phenotype",
                      "non-coding_RNA_alt_loci", "pseudogene_alt_loci", 
                      "other_alt_loci", "genefamilies"]
 url_all_download = false
+
+[db_atcircdb]
+source_url = "http://genome.sdau.edu.cn/circRNAdata/{{version}}"
+version_available = ["sw_final_circ_web_final.xlsx", "enrich_circ.csv", "SRRList_622samples_website.csv", 
+                     "SRRList_150samples_CIRI2_validation.xlsx", "psTarget.csv", 
+                     "TAPIR.csv", "Sun.xls", "Ye.csv"]
+
+[db_circnet]
+source_url = "http://140.120.203.41/{{version}}.zip"
+version_available = "CircNetData"
+
+[db_circbase]
+source_url = "http://circrna.org/download/{{version}}"
+version_available = ["hsa_hg19_circRNA.txt", "hsa_hg19_circRNA.xlsx", 
+                     "hsa_hg19_circRNA.bed", "hsa_graph.png", 
+                     "ce6_circID_to_name.txt", "mm9_circID_to_name.txt", 
+                     "hg19_circID_to_name.txt", "find_circ.tar.gz", 
+                     "mouse_mm9_circRNAs_putative_spliced_sequence.fa.gz", 
+                     "human_hg19_circRNAs_putative_spliced_sequence.fa.gz"]
+
+[db_circrnadb]
+source_url = "http://202.195.183.4:8000/circrnadb/doc/{{version}}.zip"
+version_available = ["circRNADb", "genes.gtf", "Protein_features", 
+                     "Protein_expression_evidence", "circRNA_parentalgene-diseases"]
+
+[db_exorbase]
+source_url = "http://www.exorbase.org/exoRBase/download/download?file={{version}}.txt"
+version_available = ["Normal_circRNA_RPM", "CHD_circRNA_RPM", "CRC_circRNA_RPM", "HCC_circRNA_RPM", "PAAD_circRNA_RPM", "WhB_circRNA_RPM", "Samples_combined_circRNA_RPM", "Normal_lncRNA_TPM", "CHD_lncRNA_TPM", "CRC_lncRNA_TPM", "HCC_lncRNA_TPM", "PAAD_lncRNA_TPM", "WhB_lncRNA_TPM", "Samples_combined_lncRNA_TPM", "Normal_mRNA_TPM", "CHD_mRNA_TPM", "CRC_mRNA_TPM", "HCC_mRNA_TPM", "PAAD_mRNA_TPM", "WhB_mRNA_TPM", "Samples_combined_mRNA_TPM", "circRNA_ann", "lncRNA_ann", "mRNA_ann", 
+"Experimental_revised"]
