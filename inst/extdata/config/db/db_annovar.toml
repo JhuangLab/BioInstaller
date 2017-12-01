@@ -511,11 +511,11 @@ source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{buildver}}_{
 version_available = "hgnc_coding"
 buildver_available = "hg19"
 
-[db_annovar_b_all_rnaseq]
+[db_annovar_brvar]
 source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{buildver}}_{{version}}.txt.gz"
-version_available = ["b_all_rnaseq_v1_core", "b_all_rnaseq_v1_extra"]
+version_available = ["brvar_v1_core", "brvar_v1_extra"]
 buildver_available = "hg19"
 note = "not available now"
-[db_annovar_b_all_rnaseq.description]
-b_all_rnaseq_v1_core = "Integrated 1285 cases B-cell acute lymphoblastic leukemia (B-ALL) from public data portal. Variant calling result, using GATK (Haplotypecaller, UnifiedGenotyper), Lofreq and Varscan2, be merged (bases with baseQ/BAQ >13;minimum coverge>=10; maximum alt allele frequency >= 0.04; alt allel read number >= 3; only the varinats that mutation type is missense, nonsense, frameshift del, frameshift del, nonframeshift del, nonframeshift del, stoploss, nonsense and unknown be included)"
-b_all_rnaseq_v1_extra = "Complementary set of core, such as Synonymous mutation, intron, intergenic, UTR3 and UTR5, .etc"
+[db_annovar_brvar.description]
+brvar_v1_core = "Integrated 1285 cases B-cell acute lymphoblastic leukemia (B-ALL) from public data portal. Variant calling result, using GATK (Haplotypecaller, UnifiedGenotyper), Lofreq and Varscan2, be merged (bases with baseQ/BAQ >13;minimum coverge>=10; maximum alt allele frequency >= 0.04; alt allel read number >= 3; only the varinats that mutation type is missense, nonsense, frameshift del, frameshift del, nonframeshift del, nonframeshift del, stoploss, nonsense and unknown be included)"
+brvar_v1_extra = "Complementary set of core, such as Synonymous mutation, intron, intergenic, UTR3 and UTR5, .etc"
