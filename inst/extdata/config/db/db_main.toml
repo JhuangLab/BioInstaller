@@ -225,3 +225,29 @@ version_available = ["circRNADb", "genes.gtf", "Protein_features",
 source_url = "http://www.exorbase.org/exoRBase/download/download?file={{version}}.txt"
 version_available = ["Normal_circRNA_RPM", "CHD_circRNA_RPM", "CRC_circRNA_RPM", "HCC_circRNA_RPM", "PAAD_circRNA_RPM", "WhB_circRNA_RPM", "Samples_combined_circRNA_RPM", "Normal_lncRNA_TPM", "CHD_lncRNA_TPM", "CRC_lncRNA_TPM", "HCC_lncRNA_TPM", "PAAD_lncRNA_TPM", "WhB_lncRNA_TPM", "Samples_combined_lncRNA_TPM", "Normal_mRNA_TPM", "CHD_mRNA_TPM", "CRC_mRNA_TPM", "HCC_mRNA_TPM", "PAAD_mRNA_TPM", "WhB_mRNA_TPM", "Samples_combined_mRNA_TPM", "circRNA_ann", "lncRNA_ann", "mRNA_ann", 
 "Experimental_revised"]
+
+[db_exsnp]
+source_url = "http://www.exsnp.org/data/{{version}}.txt"
+versions_available = ["raw_eQTL", "GSexSNP_allc_allp_ld8", "GSexSNP_allc_allp_ld5", 
+            "GSexSNP_allc_allp_ld3", "WTCCC_DZ_allc_allp_GSeQTL_0.05cM_list_BD", 
+            "WTCCC_DZ_allc_allp_GSeQTL_0.05cM_list_CAD", "WTCCC_DZ_allc_allp_GSeQTL_0.05cM_list_CD", 
+            "WTCCC_DZ_allc_allp_GSeQTL_0.05cM_list_HT", "WTCCC_DZ_allc_allp_GSeQTL_0.05cM_list_RA", 
+            "WTCCC_DZ_allc_allp_GSeQTL_0.05cM_list_T1D", "WTCCC_DZ_allc_allp_GSeQTL_0.05cM_list_T2D"]
+tag = ["eqtl"]
+
+[db_rvarbase]
+source_url = "ftp://rv.psych.ac.cn/pub/rv/{{version}}.txt.gz"
+versions_available = ["dbsnp_info1", "dbvar_info"]
+tag = ["eqtl"]
+
+[db_seeqtl]
+source_url = ["http://www.bios.unc.edu/research/genomic_software/seeQTL/data/{{version}}.tar.gz", 
+              "http://www.bios.unc.edu/research/genomic_software/seeQTL/data/{{version}}.txt"]
+url_all_download = false
+versions_available = [
+                     "pca_genotype", "genotype_expression_data",
+                     "eQTL_Qvalue_cutoff_hapmap3_cis_hg19", "eQTL_Qvalue_cutoff_hapmap3_trans_hg19", 
+                     "eQTL_Qvalue_cutoff_Myers_cis_hg19", "eQTL_Qvalue_cutoff_Myers_trans_hg19", 
+                     "data.montgomery", "data.argonne", "data.yale"
+                     ]
+tag = ["eqtl"]
