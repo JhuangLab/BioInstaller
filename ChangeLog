@@ -1,3 +1,11 @@
+2017-12-03 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
+
+		* db_annovar_rediportal_sqlite, db_annovar_gme_sqlite,
+		db_annovar_hrcr1_sqlite, db_annovar_revel_sqlite,
+		db_annovar_mcap_sqlite, db_annovar_exac03_sqlite,
+		db_annovar_gnomad_sqlite, db_annovar_popfreq_sqlite,
+		db_annovar_gwava_sqlite, db_annovar_eigen_sqlite be added
+
 2017-12-02 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
 
 		* db_annovar_loftool_score, db_annovar_rvis_esv_score, 
