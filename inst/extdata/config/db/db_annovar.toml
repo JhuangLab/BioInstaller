@@ -512,7 +512,7 @@ version_available = "hgnc_coding"
 buildver_available = "hg19"
 
 [db_annovar_brvar]
-source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{buildver}}_{{version}}.txt.gz"
+source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{licence}}/{{buildver}}_{{version}}.txt.gz"
 version_available = ["brvar_v1_core", "brvar_v1_extra"]
 buildver_available = "hg19"
 note = "not available now"
