@@ -58,7 +58,7 @@ bin_dir = ["{{download.dir}}"]
 [gatk_bundle]
 source_url = "ftp://gsapubftp-anonymous@ftp.broadinstitute.org/bundle/{{version}}/"
 
-source_is.dir = true
+source_is_dir = true
 
 version_newest = "hg38"
 

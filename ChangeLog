@@ -6,6 +6,8 @@
 		db_annovar_gnomad_sqlite, db_annovar_popfreq_sqlite,
 		db_annovar_gwava_sqlite, db_annovar_eigen_sqlite be added
 		* db_exsnp, db_rvarbase and db_seeqtl be added
+		* rename source_is.dir to source_is_dir
+		* add dir download support for html page (previous only for ftp)
 
 2017-12-02 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
 

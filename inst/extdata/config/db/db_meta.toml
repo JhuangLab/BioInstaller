@@ -226,3 +226,8 @@ publication = "Guo, L., Du, Y., Qu, S., & Wang, J. (2015). rVarBase: an updated 
 url = "http://www.bios.unc.edu/research/genomic_software/seeQTL/"
 description = "seeQTL is a comprehensive and versatile eQTL database, including various eQTL studies and a meta-analysis of HapMap eQTL information. The database presents eQTL association results in a convenient browser, using both segmented local-association plots and genome-wide Manhattan plots."
 publication = "Xia K, Shabalin A A, Huang S, et al. seeQTL: a searchable database for human eQTLs[J]. Bioinformatics, 2011, 28(3): 451-452. PMID:22171328"
+
+[db.item.fantom]
+url = "http://fantom.gsc.riken.jp"
+description = "FANTOM is an international research consortium established by Dr. Hayashizaki and his colleagues in 2000 to assign functional annotations to the full-length cDNAs that were collected during the Mouse Encyclopedia Project at RIKEN. FANTOM has since developed and expanded over time to encompass the fields of transcriptome analysis. The object of the project is moving steadily up the layers in the system of life, progressing thus from an understanding of the ‘elements’ - the transcripts - to an understanding of the ‘system’ - the transcriptional regulatory network, in other words the ‘system’ of an individual life form."
+publication = ["Andersson R, Gebhard C, Miguel-Escalada I, et al. An atlas of active enhancers across human cell types and tissues[J]. Nature, 2014, 507(7493): 455-461. MLA", "Fantom Consortium. A promoter-level mammalian expression atlas[J]. Nature, 2014, 507(7493): 462-470."]

@@ -179,7 +179,7 @@ drop_redundance_dir <- function(destdir) {
 
 # Download from url, if is.dir is TRUE, it will get filenames first and download
 # them (FTP supported only)
-download.file.custom <- function(url = "", destfile = "", is.dir = FALSE, showWarnings = F, 
+download.file.custom <- function(url = "", destfile = "", is.dir = FALSE, showWarnings = FALSE, 
   ...) {
   status <- NULL
   if (is.dir) {
@@ -187,6 +187,16 @@ download.file.custom <- function(url = "", destfile = "", is.dir = FALSE, showWa
     filenames <- str_replace_all(filenames, "\r\n", "\n")
     filenames <- str_split(filenames, "\n")[[1]]
     filenames <- filenames[filenames != ""]
+    if (!str_detect(url, "ftp://")) {
+      filenames <- str_extract(filenames, "href=.*\">.*</a>")
+      filenames <- str_split(filenames, "\"")
+      filenames <- sapply(filenames, function(x) {
+        return(x[2])
+      })
+      filenames <- filenames[!is.na(filenames)]
+      dirs <- filenames[str_detect(filenames, "/$")]
+      filenames <- filenames[!str_detect(filenames, ";|/")]
+    }
     dir.create(destfile, showWarnings = showWarnings, recursive = TRUE)
     for (i in filenames) {
       fn <- sprintf("%s/%s", destfile, i)

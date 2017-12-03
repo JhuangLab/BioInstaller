@@ -180,11 +180,11 @@ process.dependence <- function(config, db, download.dir, destdir, verbose, githu
 
 # Check wheather will download a dir
 is.download.dir <- function(config) {
-  return(!is.null(config$source_is.dir) && config$source_is.dir)
+  return(!is.null(config$source_is_dir) && config$source_is_dir)
 }
 
 
-# According the config$source_is.dir decide wheather need to download a dir or a
+# According the config$source_is_dir decide wheather need to download a dir or a
 # file to destfile
 download.dir.files <- function(config, source_url, destfile, showWarnings = FALSE, 
   url.all.download = TRUE) {

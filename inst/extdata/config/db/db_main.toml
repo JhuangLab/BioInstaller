@@ -166,7 +166,7 @@ version_available = ["mim2gene", "genemap2", "genemap", "mimTitles", "morbidmap"
 
 [db_biosystems]
 source_url = ["ftp://ftp.ncbi.nih.gov/pub/biosystems/biosystems.{{version}}/"]
-source_is.dir = true
+source_is_dir = true
 version_available = ["20170414", "20170421"]
 
 [db_denovo_db]
@@ -228,7 +228,7 @@ version_available = ["Normal_circRNA_RPM", "CHD_circRNA_RPM", "CRC_circRNA_RPM",
 
 [db_exsnp]
 source_url = "http://www.exsnp.org/data/{{version}}.txt"
-versions_available = ["raw_eQTL", "GSexSNP_allc_allp_ld8", "GSexSNP_allc_allp_ld5", 
+version_available = ["raw_eQTL", "GSexSNP_allc_allp_ld8", "GSexSNP_allc_allp_ld5", 
             "GSexSNP_allc_allp_ld3", "WTCCC_DZ_allc_allp_GSeQTL_0.05cM_list_BD", 
             "WTCCC_DZ_allc_allp_GSeQTL_0.05cM_list_CAD", "WTCCC_DZ_allc_allp_GSeQTL_0.05cM_list_CD", 
             "WTCCC_DZ_allc_allp_GSeQTL_0.05cM_list_HT", "WTCCC_DZ_allc_allp_GSeQTL_0.05cM_list_RA", 
@@ -237,17 +237,48 @@ tag = ["eqtl"]
 
 [db_rvarbase]
 source_url = "ftp://rv.psych.ac.cn/pub/rv/{{version}}.txt.gz"
-versions_available = ["dbsnp_info1", "dbvar_info"]
+version_available = ["dbsnp_info1", "dbvar_info"]
 tag = ["eqtl"]
 
 [db_seeqtl]
 source_url = ["http://www.bios.unc.edu/research/genomic_software/seeQTL/data/{{version}}.tar.gz", 
               "http://www.bios.unc.edu/research/genomic_software/seeQTL/data/{{version}}.txt"]
 url_all_download = false
-versions_available = [
+version_available = [
                      "pca_genotype", "genotype_expression_data",
                      "eQTL_Qvalue_cutoff_hapmap3_cis_hg19", "eQTL_Qvalue_cutoff_hapmap3_trans_hg19", 
                      "eQTL_Qvalue_cutoff_Myers_cis_hg19", "eQTL_Qvalue_cutoff_Myers_trans_hg19", 
                      "data.montgomery", "data.argonne", "data.yale"
                      ]
 tag = ["eqtl"]
+
+[db_fantom_cage_peaks]
+source_url = "http://fantom.gsc.riken.jp/5/datafiles/latest/extra/{{version}}/"
+source_is_dir = true
+version_available = "CAGE_peaks"
+
+[db_fantom_co_expression_clusters]
+source_url = "http://fantom.gsc.riken.jp/5/datafiles/phase1.3/extra/{{version}}/"
+source_is_dir = true
+version_available = "Co-expression_clusters"
+
+[db_fantom_enhancers]
+source_url = "http://fantom.gsc.riken.jp/5/datafiles/latest/extra/{{version}}/"
+source_is_dir = true
+version_available = "Enhancers"
+
+[db_fantom_motifs]
+source_url = "http://fantom.gsc.riken.jp/5/datafiles/phase1.3/extra/Motifs/{{version}}/"
+source_is_dir = true
+version_available = ["/", "TFBS", "jaspar_Significance_of_the_correlation_with_CAGE_expression", 
+                      "novel_GREAT_analysis_results", "novel_Significance_of_the_correlation_with_CAGE_expression"]
+
+[db_fantom_ontology]
+source_url = "http://fantom.gsc.riken.jp/5/datafiles/latest/extra/{{version}}/"
+source_is_dir = true
+version_available = ["Ontology"]
+
+[db_fantom_tss_classifier]
+source_url = "http://fantom.gsc.riken.jp/5/datafiles/phase1.3/extra/{{version}}/"
+source_is_dir = true
+version_available = ["TSS_classifier"]
