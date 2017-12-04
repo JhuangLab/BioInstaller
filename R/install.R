@@ -222,12 +222,14 @@ install.github <- function(name = "", download.dir = NULL, destdir = NULL, versi
     return(FALSE)
   }
   config <- fetch.config(config.cfg)[[name]]
+  config.parsed <- parse.extra(config, rcmd.parse = rcmd.parse, bash.parse = bash.parse, 
+                               glue.parse = glue.parse, glue.flag = glue.flag)
   info.msg(sprintf("Fetching %s versions....", name), verbose = verbose)
-  all.versions <- show.avaliable.versions(config, name)
+  all.versions <- show.avaliable.versions(config.parsed, name)
   if (show.all.versions) {
     return(all.versions)
   }
-  version <- version.initial(name, version, all.versions, config)
+  version <- version.initial(name, version, all.versions, config.parsed)
   info.msg(sprintf("Install versions:%s", paste0(version, collapse = ", ")), verbose = verbose)
   processed.dir.list <- pre.process.dir(name, destdir, download.dir, 1, local.source = local.source, 
     is.nongithub = FALSE)
@@ -395,12 +397,14 @@ install.nongithub <- function(name = "", download.dir = NULL, destdir = NULL, ve
     return(FALSE)
   }
   config <- fetch.config(config.cfg)[[name]]
+  config.parsed <- parse.extra(config, rcmd.parse = rcmd.parse, bash.parse = bash.parse, 
+                               glue.parse = glue.parse, glue.flag = glue.flag)
   info.msg(sprintf("Fetching %s versions....", name), verbose = verbose)
-  all.versions <- show.avaliable.versions(config, name)
+  all.versions <- show.avaliable.versions(config.parsed, name)
   if (show.all.versions) {
     return(all.versions)
   }
-  version <- version.initial(name, version, all.versions, config)
+  version <- version.initial(name, version, all.versions, config.parsed)
   info.msg(sprintf("Install versions:%s", paste0(version, collapse = ", ")), verbose = verbose)
   processed.dir.list <- pre.process.dir(name, destdir, download.dir, 1, local.source = local.source, 
     is.nongithub = TRUE)

@@ -1,3 +1,9 @@
+2017-12-04 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
+
+		* db_snipa3 be added
+		* db_annovar_seeqtl be added
+		* db_annovar_eqtl_egenes be added
+
 2017-12-03 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
 
 		* db_annovar_rediportal_sqlite, db_annovar_gme_sqlite,

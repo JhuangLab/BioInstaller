@@ -282,3 +282,11 @@ version_available = ["Ontology"]
 source_url = "http://fantom.gsc.riken.jp/5/datafiles/phase1.3/extra/{{version}}/"
 source_is_dir = true
 version_available = ["TSS_classifier"]
+
+[db_snipa3]
+source_url = [
+              "http://snipa.helmholtz-muenchen.de/snipa3/data/annotation/grch37/ensembl87/{{version}}.tabix.gz", 
+              "http://snipa.helmholtz-muenchen.de/snipa3/data/annotation/grch37/ensembl87/{{version}}.tabix.gz.tbi"
+              ]
+version_available = ["!!glue {sprintf('chr%s', 1:22)}", "chrX"]
+
