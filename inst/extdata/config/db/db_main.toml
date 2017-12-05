@@ -154,14 +154,15 @@ source_url = [
 version_available = ["mim2gene", "full_omim_table", "gene_symbol_thesaurus", "use_omim_table"]
 
 [db_omim_private]
-# {{licence}} is omim.org granted
+# {{license}} is omim.org granted
 # if you want to download the data using JhuangLab URL and only for academic purpose, 
 # you can contact lee_jianfeng@sjtu.edu.cn
 source_url = [
-             "https://data.omim.org/downloads/{{licence}}/{{version}}.txt",
-             "http://bioinfo.rjh.com.cn/download/bioinstaller/omim/{{licence}}/{{version}}.txt",
+             "https://data.omim.org/downloads/{{license}}/{{version}}.txt",
+             "http://bioinfo.rjh.com.cn/download/bioinstaller/omim/{{license}}/{{version}}.txt",
              "https://omim.org/static/omim/data/{{version}}.txt"
              ]
+url_all_download = false
 version_available = ["mim2gene", "genemap2", "genemap", "mimTitles", "morbidmap"]
 
 [db_biosystems]
@@ -290,3 +291,14 @@ source_url = [
               ]
 version_available = ["!!glue {sprintf('chr%s', 1:22)}", "chrX"]
 
+
+[db_rddpred]
+source_url = "http://epigenomics.snu.ac.kr/RDDpred/prior_data/{{version}}.MES.txt.gz"
+version_available = ["Human", "Mouse", "Drosophila", "Arabidopsis"]
+
+[db_lncediting]
+source_url = "http://bioinfo.life.hust.edu.cn/LNCediting/static/human/download/{{version}}"
+
+version_available = ["table1_lncrna_info", "table2_edit_sequence", "table3_edit_site_info", 
+                     "table4_mirna_info", "table5_mirna_profile", "table7_function_gain", 
+                     "table8_function_loss"]

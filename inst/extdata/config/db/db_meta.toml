@@ -236,3 +236,18 @@ publication = ["Andersson R, Gebhard C, Miguel-Escalada I, et al. An atlas of ac
 url = "http://snipa.helmholtz-muenchen.de/snipa3"
 description = "SNiPA offers both functional annotations and linkage disequilibrium information for bi-allelic genomic variants (SNPs and SNVs). SNiPA combines LD data based on the 1000 Genomes Project with various annotation layers, such as gene annotations, phenotypic trait associations, and expression-/metabolic quantitative trait loci. See the documentation for all data sources integrated into SNiPA. For information on updates and new releases, see the Release Notes."
 publication = "Arnold, M., Raffler, J., Pfeufer, A., Suhre, K., & Kastenmüller, G. (2014). SNiPA: an interactive, genetic variant-centered annotation browser. Bioinformatics, 31(8), 1334-1336."
+
+[db.item.rddpred]
+url = "http://epigenomics.snu.ac.kr/RDDpred/prior_data"
+description = """RDDpred: A condition-specific RNA-editing prediction model from RNA-seq data 
+1) RDDpred deduces condition-specific training examples without any experimental validations to construct a predictor. 
+2) As far as we know, RDDpred is the very first machine-learning based automated pipeline for RNA-editing prediction. 
+3) RDDpred successfully reproduced the results of two previous studies (95%, 90%), 
+with showing significant NPV (84%, 75%) and the prediction procedures are finished in reasonable time (18 hrs). 
+"""
+publication = "Kim M, Hur B, Kim S. RDDpred: a condition-specific RNA-editing prediction model from RNA-seq data[J]. BMC genomics, 2016, 17(Suppl 1)."
+
+[db.item.lncediting]
+url = "http://bioinfo.life.hust.edu.cn/LNCediting"
+description = "RNA editing is a widespread post-transcriptional mechanism that can make discrete changes to specific nucleotide sequences within a RNA transcripts. RNA editing events can result in missense codon changes in mRNA, modulation of alternative splicing in mRNA, or modification of regulatory RNAs and their binding sites in small noncoding RNA, such as miRNA. Recent studies have developed computational methods to accurately detect more than 2 million A-to-I RNA editing from next-generation sequencing data in different species. However, the vast majority of these RNA sites are in noncoding regions of the genome and have unknown functional relevance. LNCediting provides a comprehensive resource for the functional prediction of RNA editing in long noncoding RNAs (lncRNAs)."
+publication = "Jing Gong†, Chunjie Liu†, Wei Liu, Yu Xiang, Lixia Diao, An-Yuan Guo∗ and Leng Han∗. Nucl. Acids Res. (2016). doi: 10.1093/nar/gkw835."

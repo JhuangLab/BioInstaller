@@ -512,7 +512,7 @@ version_available = "hgnc_coding"
 buildver_available = "hg19"
 
 [db_annovar_brvar]
-source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{licence}}/{{buildver}}_{{version}}.txt.gz"
+source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{license}}/{{buildver}}_{{version}}.txt.gz"
 version_available = ["brvar_v1_core", "brvar_v1_extra"]
 buildver_available = "hg19"
 note = "not available now"
@@ -631,3 +631,22 @@ source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{buildver}}_g
 version_available = ["adipose_subcutaneous", "adipose_visceral_omentum", "adrenal_gland", "artery_aorta", "artery_coronary", "artery_tibial", "brain_amygdala", "brain_anterior_cingulate_cortex_ba24", "brain_caudate_basal_ganglia", "brain_cerebellar_hemisphere", "brain_cerebellum", "brain_cortex", "brain_frontal_cortex_ba9", "brain_hippocampus", "brain_hypothalamus", "brain_nucleus_accumbens_basal_ganglia", "brain_putamen_basal_ganglia", "brain_spinal_cord_cervical_c_1", "brain_substantia_nigra", "breast_mammary_tissue", "cells_ebv_transformed_lymphocytes", "cells_transformed_fibroblasts", "colon_sigmoid", "colon_transverse", "esophagus_gastroesophageal_junction", "esophagus_mucosa", "esophagus_muscularis", "heart_atrial_appendage", "heart_left_ventricle", "liver", "lung", "minor_salivary_gland", "muscle_skeletal", "nerve_tibial", "ovary", "pancreas", "pituitary", "prostate", "skin_not_sun_exposed_suprapubic", "skin_sun_exposed_lower_leg", "small_intestine_terminal_ileum", "spleen", "stomach", "testis", "thyroid", "uterus", "vagina", "whole_blood"]
 buildver_available = "hg19"
 description = "eQTLs of GTEx significant variant gene paris."
+
+[db_annovar_rddpred_sqlite]
+source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{buildver}}_{{version}}.sqlite.sql.gz"
+version_available = "rddpred_mes"
+buildver_available = "hg19"
+install = "#R#sql2sqlite('{{buildver}}_{{version}}.sqlite.sql', sqlite.path = '{{buildver}}_{{version}}.sqlite')#R#"
+
+[db_annovar_lncediting_sqlite]
+source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{buildver}}_{{version}}.sqlite.sql.gz"
+version_available = "lncediting"
+buildver_available = "hg19"
+install = "#R#sql2sqlite('{{buildver}}_{{version}}.sqlite.sql', sqlite.path = '{{buildver}}_{{version}}.sqlite')#R#"
+
+[db_annovar_civic_gene_summaries]
+source_url = "https://civic.genome.wustl.edu/downloads/{{version}}/{{version}}-GeneSummaries.tsv"
+version_available = "nightly"
+buildver_available = ["hg19", "hg38"]
+install = "#R#file.rename('{{version}}-GeneSummaries.tsv', '{{version}}_civic_gene_summaries.txt')#R#"
+

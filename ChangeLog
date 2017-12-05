@@ -1,3 +1,9 @@
+2017-12-05 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
+
+		* fix a bug in craw.all.versions
+		* db_rddpred, db_lncediting and its sqlite version be added
+		* rename licence to license, add license paramter
+
 2017-12-04 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
 
 		* db_snipa3 be added

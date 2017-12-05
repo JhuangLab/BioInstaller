@@ -31,6 +31,7 @@
 #' ['nochange', '!!glue(1:5)', 'nochange'] => ['nochange', '1', '2', '3', '4', '5', 'nochange']
 #' @param glue.flag A character flage indicating wheater run glue() function to parse (Default is !!glue) 
 #' @param save.to.db Ligical indicating wheather save the install infomation in db
+#' @param license The BioInstaller download license code. 
 #' @param verbose Ligical indicating wheather show the log message
 #' @param ... Other key and value paired need be saved in BioInstaller passed to \code{\link{change.info}}
 #' @export
@@ -50,7 +51,7 @@ install.bioinfo <- function(name = c(), download.dir = c(), destdir = c(), name.
   db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", system.file("extdata", "demo/softwares_db_demo.yaml", 
     package = "BioInstaller")), download.only = FALSE, decompress = TRUE, dependence.need = TRUE, 
   showWarnings = FALSE, extra.list = list(), rcmd.parse = TRUE, bash.parse = TRUE, 
-  glue.parse = TRUE, glue.flag = "!!glue", save.to.db = TRUE, verbose = TRUE, ...) {
+  glue.parse = TRUE, glue.flag = "!!glue", save.to.db = TRUE, license = "", verbose = TRUE, ...) {
   github.cfg.env <- paste0(github.cfg, collapse = ",")
   nongithub.cfg.env <- paste0(nongithub.cfg, collapse = ",")
   Sys.setenv(github.cfg = github.cfg.env, nongithub.cfg = nongithub.cfg.env)
@@ -59,6 +60,7 @@ install.bioinfo <- function(name = c(), download.dir = c(), destdir = c(), name.
   nongithub.names <- names(fetch.config(nongithub.cfg))
   all.names <- c(github.names, nongithub.names)
   all.names <- all.names[!(all.names %in% c("title", "debug", "demo"))]
+  extra.list <- config.list.merge(extra.list, list(license = license))
   if (show.all.names) {
     return(all.names)
   }

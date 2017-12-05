@@ -9,18 +9,20 @@ craw.all.versions(name, download.dir = "./",
   package = "BioInstaller"), system.file("extdata", "config/db/db_main.toml",
   package = "BioInstaller"), system.file("extdata", "config/db/db_annovar.toml",
   package = "BioInstaller"), system.file("extdata", "config/db/db_blast.toml",
-  package = "BioInstaller")), parse.extra.params = list(rcmd.parse = TRUE,
-  bash.parse = TRUE, glue.parse = TRUE))
+  package = "BioInstaller")), parse.extra.params = list(extra.list = list(),
+  rcmd.parse = TRUE, bash.parse = TRUE, glue.parse = TRUE), license = "")
 }
 \arguments{
 \item{name}{Software name}
 
 \item{download.dir}{Download destdir}
 
-\item{nongithub.cfg}{Configuration file of installed by non github url,}
-
-\item{parse.extra.params}{Other parameters pass to \code{\link[configr]{parse.extra}}
+\item{nongithub.cfg}{Configuration file of installed by non github url,
 default is system.file('extdata', 'config/nongithub/nongithub.toml', package='BioInstaller')}
+
+\item{parse.extra.params}{Other parameters pass to \code{\link[configr]{parse.extra}}}
+
+\item{license}{The BioInstaller download license code.}
 }
 \description{
 A function can be used to craw all source code from nongithub.cfg stored information
