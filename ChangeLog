@@ -1,3 +1,7 @@
+2017-12-06 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
+
+		* add db_annovar_tall_somatic_genes
+
 2017-12-05 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
 
 		* fix a bug in craw.all.versions

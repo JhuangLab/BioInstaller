@@ -650,3 +650,12 @@ version_available = "nightly"
 buildver_available = ["hg19", "hg38"]
 install = "#R#file.rename('{{version}}-GeneSummaries.tsv', '{{version}}_civic_gene_summaries.txt')#R#"
 
+[db_annovar_omim_genemap2]
+source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{version}}.txt.gz"
+version_available = ["omim_genemap2"]
+buildver_available = "hg19"
+
+[db_annovar_tall_somatic_genes]
+source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/tall_somatic_genes_{{version}}.txt"
+version_available = "20171206"
+buildver_available = ["hg19", "hg38"]
