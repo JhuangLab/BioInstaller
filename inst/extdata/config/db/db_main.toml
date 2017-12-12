@@ -302,3 +302,12 @@ source_url = "http://bioinfo.life.hust.edu.cn/LNCediting/static/human/download/{
 version_available = ["table1_lncrna_info", "table2_edit_sequence", "table3_edit_site_info", 
                      "table4_mirna_info", "table5_mirna_profile", "table7_function_gain", 
                      "table8_function_loss"]
+
+[db_eggnog]
+source_url = ["http://eggnogdb.embl.de/download/eggnog_4.5/data/{{version}}/{{version}}.members.tsv.gz", 
+              "http://eggnogdb.embl.de/download/eggnog_4.5/data/{{version}}/{{version}}.annotations.tsv.gz", 
+              "http://eggnogdb.embl.de/download/eggnog_4.5/data/{{version}}/{{version}}.trees.tsv.gz", 
+              "http://eggnogdb.embl.de/download/eggnog_4.5/data/{{version}}/{{version}}.raw_algs.tsv.gz", 
+              "http://eggnogdb.embl.de/download/eggnog_4.5/data/{{version}}/{{version}}.trimmed_algs.tsv.gz", 
+              "http://eggnogdb.embl.de/download/eggnog_4.5/data/{{version}}/{{version}}.hmm.tsv.gz"]
+version_available = ["NOG", "aciNOG", "acidNOG", "acoNOG", "actNOG", "agaNOG", "agarNOG", "apiNOG", "aproNOG", "aquNOG", "arNOG", "arcNOG", "artNOG", "arthNOG", "ascNOG", "aveNOG", "bacNOG", "bactNOG", "bacteNOG", "basNOG", "bctoNOG", "biNOG", "bproNOG", "braNOG", "carNOG", "chaNOG", "chlNOG", "chlaNOG", "chloNOG", "chlorNOG", "chloroNOG", "chorNOG", "chrNOG", "cloNOG", "cocNOG", "creNOG", "cryNOG", "cyaNOG", "cytNOG", "debNOG", "defNOG", "dehNOG", "deiNOG", "delNOG", "dipNOG", "dotNOG", "dproNOG", "droNOG", "eproNOG", "eryNOG", "euNOG", "eurNOG", "euroNOG", "eurotNOG", "fiNOG", "firmNOG", "flaNOG", "fuNOG", "fusoNOG", "gproNOG", "haeNOG", "halNOG", "homNOG", "hymNOG", "hypNOG", "inNOG", "kinNOG", "lepNOG", "lilNOG", "maNOG", "magNOG", "meNOG", "metNOG", "methNOG", "methaNOG", "necNOG", "negNOG", "nemNOG", "onyNOG", "opiNOG", "perNOG", "plaNOG", "pleNOG", "poaNOG", "prNOG", "proNOG", "rhaNOG", "roNOG", "sacNOG", "saccNOG", "sorNOG", "sordNOG", "sphNOG", "spiNOG", "spriNOG", "strNOG", "synNOG", "tenNOG", "thaNOG", "theNOG", "therNOG", "thermNOG", "treNOG", "veNOG", "verNOG", "verrNOG", "virNOG"]

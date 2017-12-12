@@ -1019,3 +1019,20 @@ version_available = "5.27-66.0"
 [interproscan.install]
 linux = ""
 mac = ""
+
+[subread]
+source_url = "https://sourceforge.net/projects/subread/files/subread-{{version}}/subread-{{version}}-source.tar.gz"
+version_available = "1.6.0"
+make_dir = ["./src"]
+[subread.install]
+linux = "make -f Makefile.Linux"
+mac = "make -f Makefile.MacOS"
+
+[vcfanno.source_url] 
+linux = "https://github.com/brentp/vcfanno/releases/download/{{version}}/vcfanno_linux64"
+mac = "https://github.com/brentp/vcfanno/releases/download/{{version}}/vcfanno_osx"
+[vcfanno]
+use_github_versions = true
+[vcfanno.install]
+linux = "mkdir -p {{destdir}}/bin; chmod a+x {{download.dir}}/vcfanno_linux64; cp {{download.dir}}/vcfanno_linux64 {{destdir}}/bin"
+mac = "mkdir -p {{destdir}}/bin; chmod a+x {{download.dir}}/vcfanno_osx; cp {{download.dir}}/vcfanno_osx {{destdir}}/bin"

@@ -23,3 +23,15 @@ tag = ["NGS", "SV"]
 title = "Protein sequence analysis & classification"
 description = "InterProScan is the software package that allows sequences (protein and nucleic) to be scanned against InterPro's signatures. Signatures are predictive models, provided by several different databases, that make up the InterPro consortium."
 tag = ["Protein", "Classification"]
+
+[nongithub.item.subread]
+title = "High-performance read alignment, quantification and mutation discovery"
+description = "The Subread software package is a tool kit for processing next-gen sequencing data. It includes Subread aligner, Subjunc exon-exon junction detector and featureCounts read summarization program. Subread aligner can be used to align both gDNA-seq and RNA-seq reads. Subjunc aligner was specified designed for the detection of exon-exon junction. For the mapping of RNA-seq reads, Subread performs local alignments and Subjunc performs global alignments."
+publication = """Yang Liao, Gordon K Smyth and Wei Shi. "The Subread aligner: fast, accurate and scalable read mapping by seed-and-vote", Nucleic Acids Research, 2013, 41(10):e108"""
+tag = ["NGS", "aligner"]
+
+[nongithub.item.vcfanno]
+title = "annotate a VCF with other VCFs/BEDs/tabixed files"
+description = "vcfanno allows you to quickly annotate your VCF with any number of INFO fields from any number of VCFs or BED files. It uses a simple conf file to allow the user to specify the source annotation files and fields and how they will be added to the info of the query VCF."
+publication = "Pedersen B S, Layer R M, Quinlan A R. Vcfanno: fast, flexible annotation of genetic variants[J]. Genome Biology, 2016, 17(1):1-9."
+tag = ["NGS", "annotation"]
