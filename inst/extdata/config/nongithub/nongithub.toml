@@ -641,12 +641,12 @@ bin_dir = ["{{destdir}}/bin"]
 linux = ["make", "mkdir -p {{destdir}}/bin; cp {{download.dir}}/bin/* {{destdir}}/bin"]
 mac = ["make", "mkdir -p {{destdir}}/bin; cp {{download.dir}}/bin/* {{destdir}}/bin"]
 
-[bcl2fastq2]
-source_url = "https://support.illumina.com/content/dam/illumina-support/documents/downloads/software/bcl2fastq/bcl2fastq2-v{{version}}.tar.gz"
+[bcl2fastq]
+source_url = "http://bioinfo.rjh.com.cn/download/bioinstaller/bcl2fastq/bcl2fastq2-v{{version}}.tar.gz"
 
-version_newest = "2.19.0"
+version_newest = "2.20.0"
 
-version_available = ["2.19.0"]
+version_available = ["2.20.0", "2.19.1"]
 
 after_failure = "echo 'fail!'"
 
@@ -656,9 +656,9 @@ make_dir = ["./"]
 
 bin_dir = ["{{destdir}}/bin"]
 
-[bcl2fastq2.install]
-linux = ["mkdir build; cd build; ../src/configure --prefix={{destdir}} && make", "make install"]
-mac = ["mkdir build; cd build; ../src/configure --prefix={{destdir}} && make", "make install"]
+[bcl2fastq.install]
+linux = ["mkdir build; cd build; ../src/configure --prefix={{destdir}} && make", "cd build && make install"]
+mac = ["mkdir build; cd build; ../src/configure --prefix={{destdir}} && make", "cd build && make install"]
 
 [blat]
 decompress = false
