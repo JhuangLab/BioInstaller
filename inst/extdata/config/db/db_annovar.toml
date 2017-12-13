@@ -376,7 +376,7 @@ description = "alternative allele frequency data in 1000 Genomes Project"
 1000g = "hg18"
 other = "hg19"
 
-[db_annovar_dbscsnv11]
+[db_annovar_dbscsnv]
 source_url = ["http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.gz",
               "http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.idx.gz"]
 decompress = [true, true]
@@ -384,6 +384,16 @@ version_newest = "dbscsnv11"
 version_available = ["dbscsnv11"]
 buildver_available = ["hg38", "hg19"]
 description = "dbscSNV version 1.1 for splice site prediction by AdaBoost and Random Forest"
+
+[db_annovar_dbscsnv_sqlite]
+source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{buildver}}_{{version}}.sqlite.sql.gz"
+decompress = [true, true]
+version_newest = "dbscsnv11"
+version_available = ["dbscsnv11"]
+buildver_available = ["hg38", "hg19"]
+description = "dbscSNV version 1.1 for splice site prediction by AdaBoost and Random Forest"
+buildver_available = "hg19"
+install = "#R#sql2sqlite('{{buildver}}_{{version}}.sqlite.sql', sqlite.path = '{{buildver}}_{{version}}.sqlite')#R#"
 
 [db_annovar_regsnpintron]
 source_url = ["http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.gz",

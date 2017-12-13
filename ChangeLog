@@ -1,6 +1,7 @@
 2017-12-13 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
 
 		* update bcl2fastq source_url
+		* add db_annovar_dbscsnv_sqlite
 
 2017-12-12 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
 
