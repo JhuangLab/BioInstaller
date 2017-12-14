@@ -844,3 +844,9 @@ recursive_clone = true
 [strawberry.install]
 linux = "sh cmake.sh && cd build && make"
 mac = "sh cmake.sh && cd build && make"
+
+[fastp]
+github_url = "https://github.com/OpenGene/fastp"
+[fastp.install]
+linux = "make; mkdir -p {{destdir}}/bin; cp {{download.dir}}/fastp {{destdir}}/bin"
+mac = "make; mkdir -p {{destdir}}/bin; cp {{download.dir}}/fastp {{destdir}}/bin"
