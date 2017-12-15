@@ -51,7 +51,8 @@ install.bioinfo <- function(name = c(), download.dir = c(), destdir = c(), name.
   db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", system.file("extdata", "demo/softwares_db_demo.yaml", 
     package = "BioInstaller")), download.only = FALSE, decompress = TRUE, dependence.need = TRUE, 
   showWarnings = FALSE, extra.list = list(), rcmd.parse = TRUE, bash.parse = TRUE, 
-  glue.parse = TRUE, glue.flag = "!!glue", save.to.db = TRUE, license = "", verbose = TRUE, ...) {
+  glue.parse = TRUE, glue.flag = "!!glue", save.to.db = TRUE, license = "", verbose = TRUE, 
+  ...) {
   github.cfg.env <- paste0(github.cfg, collapse = ",")
   nongithub.cfg.env <- paste0(nongithub.cfg, collapse = ",")
   Sys.setenv(github.cfg = github.cfg.env, nongithub.cfg = nongithub.cfg.env)
@@ -225,7 +226,7 @@ install.github <- function(name = "", download.dir = NULL, destdir = NULL, versi
   }
   config <- fetch.config(config.cfg)[[name]]
   config.parsed <- parse.extra(config, rcmd.parse = rcmd.parse, bash.parse = bash.parse, 
-                               glue.parse = glue.parse, glue.flag = glue.flag)
+    glue.parse = glue.parse, glue.flag = glue.flag)
   info.msg(sprintf("Fetching %s versions....", name), verbose = verbose)
   all.versions <- show.avaliable.versions(config.parsed, name)
   if (show.all.versions) {
@@ -400,7 +401,7 @@ install.nongithub <- function(name = "", download.dir = NULL, destdir = NULL, ve
   }
   config <- fetch.config(config.cfg)[[name]]
   config.parsed <- parse.extra(config, rcmd.parse = rcmd.parse, bash.parse = bash.parse, 
-                               glue.parse = glue.parse, glue.flag = glue.flag)
+    glue.parse = glue.parse, glue.flag = glue.flag)
   info.msg(sprintf("Fetching %s versions....", name), verbose = verbose)
   all.versions <- show.avaliable.versions(config.parsed, name)
   if (show.all.versions) {

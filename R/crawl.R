@@ -12,15 +12,16 @@ craw.all.versions <- function(name, download.dir = "./", nongithub.cfg = c(syste
   "config/nongithub/nongithub.toml", package = "BioInstaller"), system.file("extdata", 
   "config/db/db_main.toml", package = "BioInstaller"), system.file("extdata", "config/db/db_annovar.toml", 
   package = "BioInstaller"), system.file("extdata", "config/db/db_blast.toml", 
-  package = "BioInstaller")), parse.extra.params = list(extra.list = list(), rcmd.parse = TRUE, bash.parse = TRUE, 
-  glue.parse = TRUE), license = "") {
+  package = "BioInstaller")), parse.extra.params = list(extra.list = list(), rcmd.parse = TRUE, 
+  bash.parse = TRUE, glue.parse = TRUE), license = "") {
   
   name <- tolower(name)
   versions <- install.bioinfo(name, show.all.versions = TRUE)
   if (!dir.exists(download.dir)) {
     dir.create(download.dir, recursive = TRUE)
   }
-  parse.extra.params$extra.list <- config.list.merge(parse.extra.params$extra.list, list(license=license))
+  parse.extra.params$extra.list <- config.list.merge(parse.extra.params$extra.list, 
+    list(license = license))
   for (i in versions) {
     config <- fetch.config(nongithub.cfg)[[name]]
     parse.extra.params <- config.list.merge(parse.extra.params, list(config = config))

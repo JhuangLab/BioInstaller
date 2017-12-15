@@ -1,5 +1,9 @@
 2017-12-13 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
 
+		* reduce blank rows in config files
+
+2017-12-13 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
+
 		* update bcl2fastq source_url
 		* add db_annovar_dbscsnv_sqlite
 

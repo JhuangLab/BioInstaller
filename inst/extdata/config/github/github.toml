@@ -2,28 +2,14 @@
 title = "Github Configuration File"
 [github_demo]
 github_url = "https://github.com/Miachol/github_demo"
-
 use_git2r = true
-
-after_failure = "echo 'fail!'"
-
-after_success = ["echo 'successful!'"]
-
 make_dir = ["./"]
-
 bin_dir = ["./"]
 
 [bwa]
 github_url = "https://github.com/lh3/bwa"
-
-after_failure = "echo 'fail!'"
-
 version_order_fixed = true
-
-after_success = ["echo 'successful!'"]
-
 make_dir = ["./"]
-
 bin_dir = ["{{destdir}}/bin"]
 
 [bwa.install]
@@ -32,13 +18,6 @@ mac = "make && mkdir -p {{destdir}}/bin; cp {{download.dir}}/bwa {{destdir}}/bin
 
 [star]
 github_url = "https://github.com/alexdobin/STAR"
-
-supported.os = ["linux", "mac"]
-
-after_failure = "echo 'fail!'"
-
-after_success = "echo 'successful!'"
-
 make_dir = ['source', "./"]
 
 [star.bin_dir]
@@ -51,19 +30,10 @@ mac = "make && mkdir -p {{destdir}}/bin; cp {{download.dir}}/bin/MacOSX_x86_64/*
 
 [samtools_old]
 github_url = "https://github.com/samtools/samtools"
-
 version_newest = "0.1.9"
-
 version_available = ["0.1.1", "0.1.10", "0.1.11", "0.1.12", "0.1.12a", "0.1.13", "0.1.14", "0.1.15", "0.1.16", "0.1.17", "0.1.18", "0.1.19", "0.1.2-svntag", "0.1.2-tarball", "0.1.20", "0.1.3", "0.1.4", "0.1.5", "0.1.5a", "0.1.5b", "0.1.5c", "0.1.6", "0.1.7", "0.1.7a", "0.1.8", "0.1.9"]
-
 version_fixed = true
-
-after_failure = "echo 'fail!'"
-
-after_success = ""
-
 make_dir = ["./"]
-
 bin_dir = ["{{destdir}}/bin"]
 
 [samtools_old.install]
@@ -72,17 +42,9 @@ mac = "make && mkdir -p {{destdir}}/bin; cp samtools {{destdir}}/bin/samtools_{{
 
 [bcftools]
 github_url = "https://github.com/samtools/bcftools"
-
 dependence = ["htslib"]
-
 dependence_version = ["{{version}}"]
-
-after_failure = "echo 'fail!'"
-
-after_success = "echo 'successful!'"
-
 make_dir = ["./"]
-
 bin_dir = ["{{destdir}}/bin"]
 
 [bcftools.install]
@@ -91,13 +53,7 @@ mac = "sed -i 's;HTSDIR = ../htslib;HTSDIR = {{htslib:source.dir}};' Makefile; m
 
 [bowtie]
 github_url = "https://github.com/BenLangmead/bowtie"
-
-after_failure = "echo 'fail!'"
-
-after_success = "echo 'successful!'"
-
 make_dir = ["./"]
-
 bin_dir = ["{{destdir}}/bin"]
 
 [bowtie.install]
@@ -107,13 +63,7 @@ mac = "make && mkdir -p {{destdir}}/bin; fn=`ls -F |grep '*' | tr -d '*'` fn=`ec
 
 [bowtie2]
 github_url = "https://github.com/BenLangmead/bowtie2"
-
-after_failure = "echo 'fail!'"
-
-after_success = "echo 'successful!'"
-
 make_dir = ["./"]
-
 bin_dir = ["{{destdir}}/bin"]
 
 [bowtie2.install]
@@ -122,13 +72,7 @@ mac = "make && mkdir -p {{destdir}}/bin; fn=`ls -F |grep '*' | tr -d '*'` fn=`ec
 
 [tophat2]
 github_url = "https://github.com/infphilo/tophat"
-
-after_failure = "echo 'fail!'"
-
-after_success = "echo 'successful!'"
-
 make_dir = ["./"]
-
 bin_dir = ["{{destdir}}/bin"]
 
 [tophat2.install]
@@ -137,13 +81,7 @@ mac = "sh autogen.sh && ./configure --prefix={{destdir}} && make && make install
 
 [varscan2]
 github_url = "https://github.com/Miachol/varscan"
-
-after_failure = "echo 'fail!'"
-
-after_success = "echo 'successful!'"
-
 make_dir = ["./"]
-
 bin_dir = ["{{destdir}}/bin"]
 
 [varscan2.install]
@@ -152,13 +90,7 @@ mac = "mkdir -p {{destdir}}/bin; cp `ls *.jar` {{destdir}}/bin"
 
 [picard]
 github_url = "https://github.com/broadinstitute/picard"
-
-after_failure = "echo 'fail!'"
-
-after_success = "echo 'successful!'"
-
 make_dir = ["./"]
-
 bin_dir = ["{{destdir}}/bin"]
 
 [picard.install]
@@ -167,13 +99,7 @@ mac = "{{download.dir}}/gradlew shadowJar && mkdir {{destdir}}/bin; cp {{downloa
 
 [vcftools]
 github_url = "https://github.com/vcftools/vcftools"
-
-after_failure = "echo 'fail!'"
-
-after_success = "echo 'successful!'"
-
 make_dir = ["./"]
-
 bin_dir = ["{{destdir}}/bin"]
 
 [vcftools.install]
@@ -182,17 +108,9 @@ mac = "./autogen.sh && ./configure --prefix={{destdir}} && make && make install"
 
 [pindel]
 github_url = "https://github.com/genome/pindel"
-
 dependence = ["htslib"]
-
 dependence_version = ["1.3.2"]
-
-after_failure = "echo 'fail!'"
-
-after_success = "echo 'successful!'"
-
 make_dir = ["./"]
-
 bin_dir = ["{{destdir}}/bin"]
 
 [pindel.install]
@@ -201,13 +119,7 @@ mac = "./INSTALL {{htslib:source.dir}}; mkdir {{destdir}}/bin; cp `ls -F {{downl
 
 [lofreq]
 github_url = "https://github.com/Miachol/lofreq"
-
-after_failure = "echo 'fail!'"
-
-after_success = "echo 'successful!'"
-
 make_dir = ["./"]
-
 bin_dir = ["{{destdir}}/bin/"]
 
 [lofreq.install]
@@ -216,13 +128,7 @@ mac = "mkdir -p {{destdir}}/bin; bindir={{download.dir}}/lofreq_star-2.1.2_linux
 
 [hisat2]
 github_url = "https://github.com/infphilo/hisat2"
-
-after_failure = "echo 'fail!'"
-
-after_success = "echo 'successful!'"
-
 make_dir = ["./"]
-
 bin_dir = ["{{download.dir}}"]
 
 [hisat2.install]
@@ -231,16 +137,9 @@ mac = "make && mkdir -p {{destdir}}/bin; fn=`ls -F |grep '*' | tr -d '*'` fn=`ec
 
 [freebayes]
 github_url = "https://github.com/ekg/freebayes"
-
 use_git2r = false
 recursive_clone = true
-
-after_failure = "echo 'fail'"
-
-after_success = "echo 'successful!'"
-
 make_dir = ["./"]
-
 bin_dir = ["{{destdir}}/bin"]
 
 [freebayes.install]
@@ -249,13 +148,7 @@ mac = ["make", "mkdir -p {{destdir}}/bin; cp {{download.dir}}/bin/* {{destdir}}/
 
 [macs]
 github_url = "https://github.com/taoliu/MACS/"
-
-after_failure = "echo 'fail!'"
-
-after_success = "echo 'successful!'"
-
 make_dir = ["./"]
-
 bin_dir = ["{{download.dir}}/bin"]
 
 [macs.before_install]
@@ -268,13 +161,7 @@ mac = "if [ -f setup_w_cython.py ]; then python setup_w_cython.py install; else 
 
 [bedtools]
 github_url = "https://github.com/arq5x/bedtools2"
-
-after_failure = "echo 'fail!'"
-
-after_success = "echo 'successful!'"
-
 make_dir = ["./"]
-
 bin_dir = ["{{destdir}}/bin"]
 
 [bedtools.install]
@@ -283,13 +170,7 @@ mac = ["make", "mkdir -p {{destdir}}/bin; cp {{download.dir}}/bin/* {{destdir}}/
 
 [sparsehash]
 github_url = "https://github.com/sparsehash/sparsehash"
-
-after_failure = "echo 'fail!'"
-
-after_success = "echo 'successful!'"
-
 make_dir = ["./"]
-
 bin_dir = ["{{destdir}}/bin"]
 
 [sparsehash.install]
@@ -298,17 +179,9 @@ mac = "sh autogen.sh && ./configure --prefix={{destdir}} && make && make install
 
 [abyss]
 github_url = "https://github.com/bcgsc/abyss"
-
 dependence = ["sparsehash", "sqlite"]
-
 dependence_version = ["sparsehash-2.0.3", "3170000"]
-
-after_failure = "echo 'fail!'"
-
-after_success = "echo 'successful!'"
-
 make_dir = ["./"]
-
 bin_dir = ["{{destdir}}/bin"]
 
 [abyss.install]
@@ -317,13 +190,7 @@ mac = "sh autogen.sh && ./configure --enable-maxk=96 --prefix={{destdir}} --with
 
 [bamtools]
 github_url = "https://github.com/pezmaster31/bamtools"
-
-after_failure = "echo 'fail!'"
-
-after_success = "echo 'successful!'"
-
 make_dir = ["./"]
-
 bin_dir = ["{{destdir}}/bin"]
 
 [bamtools.before_install]
@@ -337,13 +204,7 @@ mac = ["cd build && make", "mkdir -p {{destdir}}/bin; cp {{download.dir}}/bin/* 
 [breakdancer]
 github_url = "https://github.com/genome/breakdancer"
 use_git2r = false
-
-after_failure = "echo 'fail!'"
-
-after_success = "echo 'successful!'"
-
 make_dir = ["./"]
-
 bin_dir = ["{{download.dir}}/build/bin"]
 
 [breakdancer.before_install]
@@ -356,13 +217,7 @@ mac = "cd build && make && make install"
 
 [htseq]
 github_url = "https://github.com/simon-anders/htseq"
-
-after_failure = "echo 'fail!'"
-
-after_success = "echo 'successful!'"
-
 make_dir = ["./"]
-
 bin_dir = ["{{download.dir}}/scripts"]
 
 [htseq.before_install]
@@ -375,13 +230,7 @@ mac = "pip install ."
 
 [seqtk]
 github_url = "https://github.com/ndaniel/seqtk"
-
-after_failure = "echo 'fail!'"
-
-after_success = "echo 'successful!'"
-
 make_dir = ["./"]
-
 bin_dir = ["{{destdir}}/bin"]
 
 [seqtk.install]
@@ -392,13 +241,7 @@ mac = "make && mkdir -p {{destdir}}/bin; cp {{download.dir}}/seqtk {{destdir}}/b
 github_url = "https://github.com/dellytools/delly"
 use_git2r = false
 recursive_clone = true
-
-after_failure = "echo 'fail!'"
-
-after_success = "echo 'successful!'"
-
 make_dir = ["./"]
-
 bin_dir = ["{{destdir}}/bin"]
 
 [delly.install]
@@ -408,13 +251,7 @@ mac = "make all; mkdir -p {{destdir}}/bin; fn=`ls -F src|grep '*' | tr -d '*'` f
 [tmap]
 github_url = "git://github.com/iontorrent/TMAP"
 use_git2r = false
-
-after_failure = "echo 'fail!'"
-
-after_success = "echo 'successful!'"
-
 make_dir = ["./"]
-
 bin_dir = ["{{destdir}}/bin"]
 
 [tmap.before_install]
@@ -429,13 +266,7 @@ mac = ["git checkout -b {{version}} tmap.{{version}}", "git submodule update",
 
 [somaticsniper]
 github_url = "https://github.com/genome/somatic-sniper"
-
-after_failure = "echo 'fail!'"
-
-after_success = "echo 'successful!'"
-
 make_dir = ["./"]
-
 bin_dir = ["{{destdir}}/bin"]
 
 [somaticsniper.install]
@@ -444,13 +275,7 @@ mac = "mkdir build; cd build && cmake ../ && make deps && make -j && make test; 
 
 [bamutil]
 github_url = "https://github.com/statgen/bamUtil"
-
-after_failure = "echo 'fail!'"
-
-after_success = "echo 'successful!'"
-
 make_dir = ["./"]
-
 bin_dir = ["{{destdir}}/bin"]
 
 [bamutil.install]
@@ -461,13 +286,7 @@ mac = "make cloneLib && make && make install INSTALLDIR={{destdir}}"
 github_url = "https://github.com/vcflib/vcflib"
 use_git2r = false
 recursive_clone = true
-
-after_failure = "echo 'fail!'"
-
-after_success = "echo 'successful!'"
-
 make_dir = ["./"]
-
 bin_dir = ["{{destdir}}/bin"]
 
 [vcflib.install]
@@ -476,13 +295,7 @@ mac = ["make", "mkdir -p {{destdir}}/bin; cp {{download.dir}}/bin/* {{destdir}}/
 
 [jvarkit]
 github_url = "https://github.com/lindenb/jvarkit/"
-
-after_failure = "echo 'fail!'"
-
-after_success = "echo 'successful!'"
-
 make_dir = ["./"]
-
 bin_dir = ["{{download.dir}}/dist"]
 
 [jvarkit.install]
@@ -491,17 +304,9 @@ mac = ["make all", "mkdir -p {{destdir}}/bin; cp {{download.dir}}/dist/* {{destd
 
 [fastx_toolkit]
 github_url = "https://github.com/agordon/fastx_toolkit"
-
 dependence = ["libgtextutils"]
-
 dependence_version = ["0.7"]
-
-after_failure = "echo 'fail!'"
-
-after_success = "echo 'successful!'"
-
 make_dir = ["./"]
-
 bin_dir = ["{{destdir}}/bin"]
 
 [fastx_toolkit.install]
@@ -510,13 +315,7 @@ mac = "export PKG_CONFIG_PATH=PKG_CONFIG_PATH:{{libgtextutils:source.dir}}; ./re
 
 [libgtextutils]
 github_url = "https://github.com/agordon/libgtextutils"
-
-after_failure = "echo 'fail!'"
-
-after_success = "echo 'successful!'"
-
 make_dir = ["./"]
-
 bin_dir = ["{{destdir}}/lib"]
 
 [libgtextutils.install]
@@ -525,13 +324,7 @@ mac = "./reconf && ./configure --prefix={{destdir}} && make && make install"
 
 [trinityrnaseq]
 github_url = "https://github.com/trinityrnaseq/trinityrnaseq"
-
-after_failure = "echo 'fail!'"
-
-after_success = "echo 'successful!'"
-
 make_dir = ["./"]
-
 bin_dir = ["{{destdir}}/bin"]
 
 [trinityrnaseq.install]
@@ -542,13 +335,7 @@ mac = "make && mkdir -p {{destdir}}/bin; fn=`ls -F |grep '*' | tr -d '*'` fn=`ec
 github_url = "https://github.com/dzerbino/oases"
 use_git2r = false
 recursive_clone = true
-
-after_failure = "echo 'fail!'"
-
-after_success = "echo 'successful!'"
-
 make_dir = ["./"]
-
 bin_dir = ["{{destdir}}/bin"]
 
 [oases.install]
@@ -557,13 +344,7 @@ mac = "make && mkdir -p {{destdir}}/bin; fn=`ls -F |grep '*' | tr -d '*'` fn=`ec
 
 [rum]
 github_url = "https://github.com/itmat/rum"
-
-after_failure = "echo 'fail!'"
-
-after_success = "echo 'successful!'"
-
 make_dir = ["./"]
-
 bin_dir = ["{{destdir}}/bin"]
 
 [rum.install]
@@ -572,13 +353,7 @@ mac = ["cpan -i autodie", "cpan -i Log::Log4perl", "perl Makefile.PL INSTALL_BAS
 
 [igraph]
 github_url = "https://github.com/igraph/igraph"
-
-after_failure = "echo 'fail!'"
-
-after_success = "echo 'successful!'"
-
 make_dir = ["./"]
-
 bin_dir = ["{{destdir}}/lib"]
 
 [igraph.install]
@@ -587,13 +362,7 @@ mac = "sh bootstrap.sh;./configure --prefix={{destdir}} && make && make install"
 
 [pxz]
 github_url = "https://github.com/jnovy/pxz"
-
-after_failure = "echo 'fail!'"
-
-after_success = "echo 'successful!'"
-
 make_dir = ["./"]
-
 bin_dir = ["{{destdir}}/bin"]
 
 [pxz.install]
@@ -602,13 +371,7 @@ mac = "make && mkdir -p {{destdir}}/bin; fn=`ls -F |grep '*' | tr -d '*'` fn=`ec
 
 [cnvkit]
 github_url = "https://github.com/etal/cnvkit"
-
-after_failure = "echo 'fail!'"
-
-after_success = "echo 'successful!'"
-
 make_dir = ["./"]
-
 bin_dir = ["{{download.dir}}"]
 
 [cnvkit.install]
@@ -619,18 +382,10 @@ mac = "pip install ."
 github_url = "https://github.com/hall-lab/speedseq"
 use_git2r = false
 recursive_clone = true
-
 dependence = ["root@6.03.04"]
 dependence_version = ["6.03.04"]
-
-after_failure = "echo 'fail!'"
-
-after_success = "echo 'successful!'"
-
 make_dir = ["./"]
-
 bin_dir = ["{{destdir}}/bin/speedseq"]
-
 version_newest_fixed = "master"
 
 [speedseq.install]
@@ -640,17 +395,9 @@ mac = "source ~/.bashrc; make; mkdir {{destdir}}/bin/speedseq; fn=`ls -F bin|gre
 [cnvnator]
 
 github_url = "https://github.com/abyzovlab/CNVnator"
-
 dependence = ["cnvnator_samtools", "root@6.03.04"]
-
 dependence_version = ["1.3.1", "6.03.04"]
-
-after_failure = "echo 'fail!'"
-
-after_success = "echo 'successful!'"
-
 make_dir = ["./", "./src"]
-
 bin_dir = ["{{destdir}}/bin"]
 
 [cnvnator.install]
@@ -671,7 +418,6 @@ mac = "#R#library(devtools);install_github('zjdaye/MDSeq', ref = '{{version}}')#
 
 [sclvm]
 github_url = "https://github.com/PMBio/scLVM"
-
 version_newest_fixed = "master"
 
 [sclvm.install]
@@ -687,7 +433,6 @@ mac = 'pip install .'
 
 [bearscc]
 github_url = "https://github.com/Miachol/bearscc"
-
 make_dir = ["./package"]
 
 [bearscc.install]
@@ -696,7 +441,6 @@ mac = "#R#install.packages('./', repos=NULL, type='source')#R#"
 
 [singlesplice]
 github_url = "https://github.com/jw156605/SingleSplice"
-
 bin_dir = "./diffsplice/bin"
 
 [singlesplice.install]
@@ -730,7 +474,6 @@ github_url = "https://github.com/dgrun/RaceID"
 
 [backspin]
 github_url = "https://github.com/linnarsson-lab/BackSPIN"
-
 version_newest_fixed = "master"
 
 [backspin.install]
