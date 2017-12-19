@@ -1,4 +1,8 @@
-2017-12-13 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
+2017-12-19 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
+
+		* fix a bug if set save.to.db to FALSE
+
+2017-12-15 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
 
 		* reduce blank rows in config files
 
