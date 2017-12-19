@@ -468,6 +468,7 @@ install.nongithub <- function(name = "", download.dir = NULL, destdir = NULL, ve
       url.all.download)
     status[is.null(status)] <- FALSE
     if (all(!status)) {
+      unlink(tmp.dir, recursive = TRUE, force = TRUE)
       return(FALSE)
     }
     destfile <- attributes(status)$success
