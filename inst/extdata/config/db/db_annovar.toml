@@ -492,22 +492,26 @@ decompress = false
 version_newest = "2016sih_wes_ball"
 version_available = ['2016sih_wes_ball', '2016sih_wes_tall', '2016sih_wes_nkt', '2016sih_wgs_nkt', '2016sih_wgs_dlbcl']
 buildver_available = "hg19"
+description = "Variants called from normal control samples (SIH)"
 
 [db_annovar_epi_genes]
 source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{buildver}}_epi_genes_{{version}}.txt"
 decompress = false
-version_available = ["v1", "v1.1"]
+version_available = ["v1.1"]
 buildver_available = "hg19"
+description = "Epigenetic genes defined in 'The landscape of somatic mutations in epigenetic regulators across 1,000 paediatric cancer genomes', doi:10.1038/ncomms4630"
 
 [db_annovar_cscd]
 source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{buildver}}_{{version}}.txt.gz"
 version_available = ["cscd_cancer_circrna", "cscd_common_circrna", "cscd_normal_circrna"]
 buildver_available = ["hg19", "hg38"]
+description = "Download from http://gb.whu.edu.cn/CSCD/, Cancer specific circRNA database."
 
 [db_annovar_varcards]
 source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{buildver}}_{{version}}.txt.gz"
 version_available = "varcards"
 buildver_available = "hg19"
+description = "Variants data download from http://varcards.biols.ac.cn, Varcards is an integrated genetic and clinical database for coding variants in the human genome. doi:10.1093/nar/gkx1039"
 
 [db_annovar_varcards_sqlite]
 source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{buildver}}_{{version}}.sql.gz"
@@ -519,6 +523,7 @@ install = "#R#sql2sqlite('{{buildver}}_{{version}}.sqlite.sql', sqlite.path = '{
 source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{buildver}}_{{version}}.txt.gz"
 version_available = "hgnc_coding"
 buildver_available = "hg19"
+description = "HGNC is responsible for approving unique symbols and names for human loci, including protein coding genes, ncRNA genes and pseudogenes, to allow unambiguous scientific communication. hg19_hgnc_coding is the ftp://ftp.ebi.ac.uk/pub/databases/genenames/new/tsv/hgnc_complete_set.txt"
 
 [db_annovar_brvar]
 source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{license}}/{{buildver}}_{{version}}.txt.gz"
@@ -663,8 +668,10 @@ install = "#R#file.rename('{{version}}-GeneSummaries.tsv', '{{version}}_civic_ge
 source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{version}}.txt.gz"
 version_available = ["omim_genemap2"]
 buildver_available = "hg19"
+description = "omim genemap2 txt file, download from http://www.omim.org/"
 
 [db_annovar_tall_somatic_genes]
 source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/tall_somatic_genes_{{version}}.txt"
 version_available = "20171206"
 buildver_available = ["hg19", "hg38"]
+description = "Collected from recently published papers, 1) Recurrent SPI1 (PU.1) fusions in high-risk pediatric T cell acute lymphoblastic leukemia 2) The genomic landscape of pediatric and young adult T-lineage acute lymphoblastic leukemia 3) Identification of fusion genes and characterization of transcriptome features in T-cell acute lymphoblastic leukemia"

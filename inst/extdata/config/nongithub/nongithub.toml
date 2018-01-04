@@ -1,7 +1,7 @@
 # Configuration file of install.softwares(Non-Github)
 title = "Non-Github Configuration File"
 [demo]
-source_url = "https://github.com/Miachol/ftp/blob/master/files/{{version}}_MT_ensGene.txt"
+source_url = "https://raw.githubusercontent.com/Miachol/ftp/master/files/{{version}}_MT_ensGene.txt"
 decompress = false
 url_all_download = false
 version_newest = "GRCh37"
@@ -10,7 +10,7 @@ make_dir = ["./"]
 bin_dir = ["./"]
 
 [demo_2]
-source_url = "https://github.com/Miachol/ftp/blob/master/files/{{version}}_MT_ensGene.txt.gz"
+source_url = "https://raw.githubusercontent.com/Miachol/ftp/master/files/{{version}}_MT_ensGene.txt.gz"
 url_all_download = false
 version_newest = "GRCh37"
 version_available = ["GRCh37"]

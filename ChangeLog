@@ -1,3 +1,7 @@
+2018-01-05 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
+
+		* fix CRAN warning, demo source_url modified 
+
 2018-01-03 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
 
 		* added db_rbp_var, db_docm, db_cancer_hotspot, 
