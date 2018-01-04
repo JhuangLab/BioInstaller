@@ -1,3 +1,8 @@
+2018-01-03 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
+
+		* added db_rbp_var, db_docm, db_cancer_hotspot, 
+		db_intogen, db_disgenet, db_cgi
+
 2017-12-19 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
 
 		* fix a bug if set save.to.db to FALSE

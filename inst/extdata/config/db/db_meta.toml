@@ -256,3 +256,45 @@ publication = "Jing Gong†, Chunjie Liu†, Wei Liu, Yu Xiang, Lixia Diao, An-Y
 url = "http://eggnogdb.embl.de/#/app/home"
 description = "eggNOG is a public resource that provides Orthologous Groups (OGs) of proteins at different taxonomic levels, each with integrated and summarized functional annotations. Developments since the latest public release include changes to the algorithm for creating OGs across taxonomic levels, making nested groups hierarchically consistent. This allows for a better propagation of functional terms across nested OGs and led to the novel annotation of 95 890 previously uncharacterized OGs, increasing overall annotation coverage from 67% to 72%. The functional annotations of OGs have been expanded to also provide Gene Ontology terms, KEGG pathways and SMART/Pfam domains for each group. Moreover, eggNOG now provides pairwise orthology relationships within OGs based on analysis of phylogenetic trees. We have also incorporated a framework for quickly mapping novel sequences to OGs based on precomputed HMM profiles. Finally, eggNOG version 4.5 incorporates a novel data set spanning 2605 viral OGs, covering 5228 proteins from 352 viral proteomes. All data are accessible for bulk downloading, as a web-service, and through a completely redesigned web interface. The new access points provide faster searches and a number of new browsing and visualization capabilities, facilitating the needs of both experts and less experienced users. eggNOG v4.5 is available at http://eggnog.embl.de."
 publication = """eggNOG 4.5: a hierarchical orthology framework with improved functional annotations for eukaryotic, prokaryotic and viral sequences. Jaime Huerta-Cepas, Damian Szklarczyk, Kristoffer Forslund, Helen Cook, Davide Heller, Mathias C. Walter, Thomas Rattei, Daniel R. Mende, Shinichi Sunagawa, Michael Kuhn, Lars Juhl Jensen, Christian von Mering, and Peer Bork. Nucl. Acids Res. (04 January 2016) 44 (D1): D286-D293. doi: 10.1093/nar/gkv1248"""
+
+[db.item.rbp_var]
+title = "RBP-Var2: A platform for exploring functional variants involved in post-transcriptional regulation mediated by RNA-binding proteins"
+description = "RBP-Var is a database for annotation of functional variants which potentially influence RNA-protein interactions by changing RNA structure in the H. sapiens genome. It contains dbSNPs and RNA editing events in RBP bindig sites (rbSNVs), the change of RNA secondary structure induced by rbSNV, the rbSNV-induced gain/loss of binding sites of miRNA and potential functional rbSNVs which could impact RBP binding. In addition, RBP-Var also integrates GWAS data, eQTL data, ClinVar data, RNA expression and COSMIC data into selection of functional SNVs for genetic association studies."
+publication = "Mao F, Xiao L, Li X, et al. RBP-Var: a database of functional variants involved in regulation mediated by RNA-binding proteins[J]. Nucleic Acids Research, 2016, 44(Database issue):D154-D163."
+tag = ["NGS", "database"]
+
+[db.item.docm]
+title = "the Database of Curated Mutations"
+description = "DoCM, the Database of Curated Mutations, is a highly curated database of known, disease-causing mutations that provides easily explorable variant lists with direct links to source citations for easy verification."
+publication = "A correspondence describing DoCM has been published in Nature Methods: DoCM: a database of curated mutations in cancer. Nature Methods (2016) doi:10.1038/nmeth.4000."
+tag = ["NGS", "database"]
+
+[db.item.cancer_hotspot]
+title = "A RESOURCE FOR STATISTICALLY SIGNIFICANT MUTATIONS IN CANCER"
+description = "This resource is maintained by the Kravis Center for Molecular Oncology at Memorial Sloan Kettering Cancer Center. It provides information about statistically significantly recurrent mutations identified in large scale cancer genomics data."
+publication = ["Chang et al., Accelerating discovery of functional mutant alleles in cancer. Cancer Discovery, 10.1158/2159-8290.CD-17-0321 (2017)", 
+               "Chang et al., Identifying recurrent mutations in cancer reveals widespread lineage diversity and mutational specificity. Nature Biotechnology 34, 155–163 (2016)"]
+tag = ["NGS", "database"]
+
+[db.item.intogen]
+title = "Integrative Onco Genomics"
+description = "IntOGen-mutations platform (http://www.intogen.org/mutations/) summarizes somatic mutations, genes and pathways involved in tumorigenesis. It identifies and visualizes cancer drivers, analyzing 4,623 exomes from 13 cancer sites. It provides support to cancer researchers, aids the identification of drivers across tumor cohorts and helps rank mutations for better clinical decision-making."
+publication = ["Rubio-Perez, C., Tamborero, D., Schroeder, MP., Antolín, AA., Deu-Pons,J., Perez-Llamas, C., Mestres, J., Gonzalez-Perez, A., Lopez-Bigas, N. In silico prescription of anticancer drugs to cohorts of 28 tumor types reveals novel targeting opportunities. Cancer Cell 27 (2015), pp. 382-396", 
+               "Gonzalez-Perez A, Perez-Llamas C, Deu-Pons J, Tamborero D, Schroeder MP, Jene-Sanz A, Santos A & Lopez-Bigas N IntOGen-mutations identifies cancer Nature Methods 2013; doi:10.1038/nmeth.2642"]
+tag = ["NGS", "database"]
+
+[db.item.disgenet]
+title = "a database of gene-disease associations"
+description = """DisGeNET is a discovery platform containing one of the largest publicly available collections of genes and variants associated to human diseases. DisGeNET integrates data from expert curated repositories, GWAS catalogues, animal models and the scientific literature. DisGeNET data are homogeneously annotated with controlled vocabularies and community-driven ontologies. Additionally, several original metrics are provided to assist the prioritization of genotype–phenotype relationships.
+
+The current version of DisGeNET (v5.0) contains 561,119 gene-disease associations (GDAs), between 17,074 genes and 20,370 diseases, disorders, traits, and clinical or abnormal human phenotypes, and 135,588 variant-disease associations (VDAs), between 83,002 SNPs and 9,169 diseases and phenotypes."""
+publication = ["DisGeNET: a comprehensive platform integrating information on human disease-associated genes and variants, Nucleic Acids Research, Volume 45, Issue D1, 4 January 2017, Pages D833–D839, https://doi.org/10.1093/nar/gkw943"]
+tag = ["NGS", "database"]
+
+[db.item.cgi]
+title = "Cancer Genome Interpreter"
+description = """Cancer Genome Interpreter is designed to support the identification of tumor alterations that drive the disease and detect those that may be therapeutically actionable. CGI relies on existing knowledge collected from several resources and on computational methods that annotate the alterations in a tumor according to distinct levels of evidence.
+
+With a list of genomic alterations and the cancer type as input, the CGI identifies validated driver alterations and annotates and classifies the remaining variants of unknown significance. Then, alterations that are biomarkers of drug response or interact with existing chemical compounds are identified according to current knowledge."""
+publication = "Cancer Genome Interpreter Annotates The Biological And Clinical Relevance Of Tumor Alterations. bioRxiv 140475; doi: https://doi.org/10.1101/140475"
+tag = ["NGS", "database"]

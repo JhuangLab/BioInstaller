@@ -311,3 +311,31 @@ source_url = ["http://eggnogdb.embl.de/download/eggnog_4.5/data/{{version}}/{{ve
               "http://eggnogdb.embl.de/download/eggnog_4.5/data/{{version}}/{{version}}.trimmed_algs.tsv.gz", 
               "http://eggnogdb.embl.de/download/eggnog_4.5/data/{{version}}/{{version}}.hmm.tsv.gz"]
 version_available = ["NOG", "aciNOG", "acidNOG", "acoNOG", "actNOG", "agaNOG", "agarNOG", "apiNOG", "aproNOG", "aquNOG", "arNOG", "arcNOG", "artNOG", "arthNOG", "ascNOG", "aveNOG", "bacNOG", "bactNOG", "bacteNOG", "basNOG", "bctoNOG", "biNOG", "bproNOG", "braNOG", "carNOG", "chaNOG", "chlNOG", "chlaNOG", "chloNOG", "chlorNOG", "chloroNOG", "chorNOG", "chrNOG", "cloNOG", "cocNOG", "creNOG", "cryNOG", "cyaNOG", "cytNOG", "debNOG", "defNOG", "dehNOG", "deiNOG", "delNOG", "dipNOG", "dotNOG", "dproNOG", "droNOG", "eproNOG", "eryNOG", "euNOG", "eurNOG", "euroNOG", "eurotNOG", "fiNOG", "firmNOG", "flaNOG", "fuNOG", "fusoNOG", "gproNOG", "haeNOG", "halNOG", "homNOG", "hymNOG", "hypNOG", "inNOG", "kinNOG", "lepNOG", "lilNOG", "maNOG", "magNOG", "meNOG", "metNOG", "methNOG", "methaNOG", "necNOG", "negNOG", "nemNOG", "onyNOG", "opiNOG", "perNOG", "plaNOG", "pleNOG", "poaNOG", "prNOG", "proNOG", "rhaNOG", "roNOG", "sacNOG", "saccNOG", "sorNOG", "sordNOG", "sphNOG", "spiNOG", "spriNOG", "strNOG", "synNOG", "tenNOG", "thaNOG", "theNOG", "therNOG", "thermNOG", "treNOG", "veNOG", "verNOG", "verrNOG", "virNOG"]
+
+[db_rbp_var]
+source_url = "http://159.226.67.237/sun/RBP-Var/res/{{version}}.RBP-Var.score.p.txt.gz"
+version_available = ["RNAedit", "dbSNP"]
+
+[db_docm]
+source_url = "http://bioinfo.rjh.com.cn/download/bioinstaller/docm/docm_{{version}}.txt.gz"
+version_available = ["3.2", "3_clinvar_export"]
+
+[db_cancer_hotspot]
+source_url = "http://bioinfo.rjh.com.cn/download/bioinstaller/cancer_hotspot/cancer_hotspot_{{version}}.txt.gz"
+version_available = ["v1_sheet1", "v1_sheet2", "v2_sheet1", "v2_sheet2"]
+
+[db_intogen]
+source_url = ["http://bioinfo.rjh.com.cn/download/bioinstaller/intogen/intogen_cancer_{{version}}.zip", 
+              "http://bioinfo.rjh.com.cn/download/bioinstaller/intogen/intogen_{{version}}.zip"]
+url_all_download = false
+version_available = ["drivers-2014.12", "drivers_actionability-2014.12", "driver_mutations_catalog-2016.5"]
+
+[db_disgenet]
+source_url = ["http://bioinfo.rjh.com.cn/download/bioinstaller/disgenet/{{version}}.tsv.gz", 
+              "http://bioinfo.rjh.com.cn/download/bioinstaller/disgenet/{{version}}.tar.gz"]
+url_all_download = false
+version_available = ["all_gene_disease_associations", "all_gene_disease_pmid_associations", "all_variant_disease_associations", "all_variant_disease_pmid_associations", "befree_gene_disease_associations", "befree_variant_disease_associations", "curated_gene_disease_associations", "curated_variant_disease_associations", "pubannotator", "pubannotator_variant_disease"]
+
+[db_cgi]
+source_url = ["http://bioinfo.rjh.com.cn/download/bioinstaller/cgi/{{version}}_latest.zip"]
+version_available = ["cancer_bioactivities", "catalog_of_cancer_genes", "catalog_of_validated_oncogenic_mutations", "cgi_biomarkers"]
