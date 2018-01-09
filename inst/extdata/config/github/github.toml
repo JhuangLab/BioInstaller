@@ -547,13 +547,6 @@ make_dir = "ensembl-vep"
 linux = 'perl INSTALL.pl'
 mac = 'perl INSTALL.pl'
 
-[dart]
-github_url = "https://github.com/hsinnan75/DART"
-
-[dart.install]
-linux = "make"
-mac = "make"
-
 [fastq_tools]
 github_url = "https://github.com/dcjones/fastq-tools"
 
@@ -593,3 +586,28 @@ github_url = "https://github.com/OpenGene/fastp"
 [fastp.install]
 linux = "make; mkdir -p {{destdir}}/bin; cp {{download.dir}}/fastp {{destdir}}/bin"
 mac = "make; mkdir -p {{destdir}}/bin; cp {{download.dir}}/fastp {{destdir}}/bin"
+
+[olego]
+github_url = "https://github.com/chaolinzhanglab/olego"
+[olego.install]
+linux = "make; mkdir -p {{destdir}}/bin; cd {{download.dir}}; cp olego olegoindex bed2junc.pl qualfa2fq.pl mergePEsam.pl sam2junctionread.pl xa2multi.pl solid2fastq.pl {{destdir}}/bin"
+mac = "make; mkdir -p {{destdir}}/bin; cd {{download.dir}}; cp olego olegoindex bed2junc.pl qualfa2fq.pl mergePEsam.pl sam2junctionread.pl xa2multi.pl solid2fastq.pl {{destdir}}/bin"
+
+[chronqc]
+github_url = "https://github.com/nilesh-tawari/ChronQC"
+[chronqc.install]
+linux = "pip install -r requirements.txt && pip install --editable ."
+mac = "pip install -r requirements.txt && pip install --editable ."
+
+[dart]
+github_url = "https://github.com/hsinnan75/DART"
+[dart.install]
+linux = "make; mkdir -p {{destdir}}/bin; cd {{download.dir}}; cp dart bwa_index {{destdir}}/bin"
+mac = "make; mkdir -p {{destdir}}/bin; cd {{download.dir}}; cp dart bwa_index {{destdir}}/bin"
+
+[rhat]
+github_url = "https://github.com/HIT-Bioinformatics/rHAT"
+make_dir = ["./src"]
+[rhat.install]
+linux = "make; mkdir -p {{destdir}}/bin; cp rHAT-aligner rHAT-indexer {{destdir}}/bin"
+mac = "make; mkdir -p {{destdir}}/bin; cp rHAT-aligner rHAT-indexer {{destdir}}/bin"

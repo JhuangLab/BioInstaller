@@ -44,7 +44,7 @@ What's more, BioInstaller provides a different way to download and install your 
 
 ```{r}
 library(BioInstaller)
-
+set.biosoftwares.db(tempfile())
 # Show all avaliable softwares/dependece in default inst/extdata/config/github/github.toml 
 # and inst/extdata/config/nongithub/nongithub.toml
 install.bioinfo(show.all.names = TRUE)
