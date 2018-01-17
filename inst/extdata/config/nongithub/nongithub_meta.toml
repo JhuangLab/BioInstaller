@@ -35,3 +35,30 @@ title = "annotate a VCF with other VCFs/BEDs/tabixed files"
 description = "vcfanno allows you to quickly annotate your VCF with any number of INFO fields from any number of VCFs or BED files. It uses a simple conf file to allow the user to specify the source annotation files and fields and how they will be added to the info of the query VCF."
 publication = "Pedersen B S, Layer R M, Quinlan A R. Vcfanno: fast, flexible annotation of genetic variants[J]. Genome Biology, 2016, 17(1):1-9."
 tag = ["NGS", "annotation"]
+
+[nongithub.item.absolute]
+title = "ABSOLUTE can estimate purity/ploidy, and from that compute absolute copy-number and mutation multiplicities."
+description = "When DNA is extracted from an admixed population of cancer and normal cells, the information on absolute copy number per cancer cell is lost in the mixing.  The purpose of ABSOLUTE is to re-extract these data from the mixed DNA population.  This process begins by generation of segmented copy number data, which is input to the ABSOLUTE algorithm together with pre-computed models of recurrent cancer karyotypes and, optionally, allelic fraction values for somatic point mutations.  The output of ABSOLUTE then provides re-extracted information on the absolute cellular copy number of local DNA segments and, for point mutations, the number of mutated alleles."
+publication = "Carter S L, Cibulskis K, Helman E, et al. Absolute quantification of somatic DNA alterations in human cancer[J]. Nature biotechnology, 2012, 30(5): 413-421."
+
+[nongithub.item.hapseg]
+title = "A probabilistic method to interpret bi-allelic marker data in cancer samples."
+description = "The HAPSEG module takes single nucleotide polymorphism (SNP) microarray data and outputs copy number data segmented by haplotype.  The output data is suitable for use as input data for the ABSOLUTE module. More detail see http://software.broadinstitute.org/cancer/software/genepattern/modules/docs/HAPSEG/1"
+publication = "Carter SL, Meyerson M, Getz G. Accurate estimation of homologue-specific DNA concentration-ratios in cancer samples allows long-range haplotyping. Available from Nature Precedings; 2011."
+
+[nongithub.item.atlas2]
+title = "Atlas2, next-generation sequencing suite of variant analysis tools specializing in the separation of true SNPs and insertions and deletions (indels)"
+description = "Atlas2 is a next-generation sequencing suite of variant analysis tools specializing in the separation of true SNPs and insertions and deletions (indels) from sequencing and mapping errors in Whole Exome Capture Sequencing (WECS) data."
+publication = "Challis D. etc. An integrative variant analysis suite for whole exome next-generation sequencing data. BMC Bioinformatics 2012, 13:8 doi:10.1186/1471-2105-13-8"
+
+[nongithub.item.beagle]
+title = "Beagle, a software package that performs genotype calling, genotype phasing, imputation of ungenotyped markers, and identity-by-descent segment detection."
+description = """Beagle version 4.1 has a more accurate genotype phasing algorithm and a very fast and accurate genotype imputation algorithm. Version 4.1 also has several changes to the command line arguments which are described in the release notes. The "ped" argument has no effect in version 4.1. If your data contains nuclear families and you want to model the parent-offspring relationships when phasing genotypes, please use version 4.0."""
+publication = ["S R Browning and B L Browning (2007) Rapid and accurate haplotype phasing and missing data inference for whole genome association studies by use of localized haplotype clustering. Am J Hum Genet 81:1084-1097. doi:10.1086/521987", 
+               "B L Browning and S R Browning (2013). Improving the accuracy and efficiency of identity-by-descent detection in population data. Genetics 194(2):459-71. doi:10.1534/genetics.113.150029",
+               "B L Browning and S R Browning (2016). Genotype imputation with millions of reference samples. Am J Hum Genet 98:116-126. doi:10.1016/j.ajhg.2015.11.020"]
+
+[nongithub.item.contest]
+title = "ContEst is a tool (and method) for estimating the amount of cross-sample contamination in next generation sequencing data.  Using a Bayesian framework, contamination levels are estimated from array based genotypes and sequencing reads."
+description = "Here, we present ContEst, a tool for estimating the level of cross-individual contamination in next-generation sequencing data. We demonstrate the accuracy of ContEst across a range of contamination levels, sources and read depths using sequencing data mixed in silico at known concentrations. We applied our tool to published cancer sequencing datasets and report their estimated contamination levels."
+publication = "Cibulskis K, Mckenna A, Fennell T, et al. ContEst: estimating cross-contamination of human samples in next-generation sequencing data[J]. Bioinformatics, 2011, 27(18):2601-2602."

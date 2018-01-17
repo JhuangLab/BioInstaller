@@ -59,7 +59,7 @@ show_versions:
 
 test:
 	cd .;\
-    Rscript -e "devtools::test()"
+    Rscript -e "devtools::test(reporter = 'summary')"
 
 test2:
 	@echo "name:$(name), version:$(version)"

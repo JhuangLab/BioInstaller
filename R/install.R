@@ -143,7 +143,8 @@ install.bioinfo <- function(name = c(), download.dir = c(), destdir = c(), name.
       info.msg(sprintf("%s downloaded fail!", name), verbose = verbose)
       return(FALSE)
     }
-    if (status == TRUE && (name.saved[count] %in% show.installed(db)) || (status == TRUE && !save.to.db)) {
+    if (status == TRUE && (name.saved[count] %in% show.installed(db)) || (status == 
+      TRUE && !save.to.db)) {
       install.success <- c(install.success, name.saved[count])
     } else {
       install.fail <- c(install.fail, name.saved[count])

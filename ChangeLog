@@ -1,3 +1,9 @@
+2018-01-10 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
+
+		* added GIGGLE (genomic search engine)
+		* added absolute, hapseg, atlas2, beagle, contest 
+		in nongithub
+
 2018-01-09 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
 
 		* added olego, chronqc and rHAT

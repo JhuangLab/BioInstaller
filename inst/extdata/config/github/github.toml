@@ -611,3 +611,15 @@ make_dir = ["./src"]
 [rhat.install]
 linux = "make; mkdir -p {{destdir}}/bin; cp rHAT-aligner rHAT-indexer {{destdir}}/bin"
 mac = "make; mkdir -p {{destdir}}/bin; cp rHAT-aligner rHAT-indexer {{destdir}}/bin"
+
+[giggle]
+github_url = "https://github.com/ryanlayer/giggle"
+[giggle.install]
+linux = ["make", "mkdir -p {{destdir}}/bin; cp bin/* {{destdir}}/bin"]
+mac = ["make", "mkdir -p {{destdir}}/bin; cp bin/* {{destdir}}/bin"]
+
+[facets]
+github_url = "https://github.com/mskcc/facets"
+[facets.install]
+linux = "#R#devtools::install('.', build_vignettes = TRUE);devtools::install_github('mskcc/pctGCdata')#R#"
+mac = "#R#devtools::install('.', build_vignettes = TRUE);devtools::install_github('mskcc/pctGCdata')#R#"
