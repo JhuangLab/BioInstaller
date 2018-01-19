@@ -623,3 +623,13 @@ github_url = "https://github.com/mskcc/facets"
 [facets.install]
 linux = "#R#devtools::install('.', build_vignettes = TRUE);devtools::install_github('mskcc/pctGCdata')#R#"
 mac = "#R#devtools::install('.', build_vignettes = TRUE);devtools::install_github('mskcc/pctGCdata')#R#"
+
+[resm]
+github_url = "https://github.com/deweylab/RSEM"
+[resm.install]
+linux = "make;make ebseq; make install DESTDIR={{destdir}} prefix=''"
+mac = "make;make ebseq; make install DESTDIR={{destdir}} prefix=''"
+windows = "make cygwin=true; make ebseq; make install DESTDIR={{destdir}} prefix=''"
+
+[radia]
+github_url = "https://github.com/aradenbaugh/radia/"

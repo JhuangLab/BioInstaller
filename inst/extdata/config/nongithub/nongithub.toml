@@ -717,3 +717,36 @@ version_available = "1.0.24530"
 [contest.install]
 linux = "mkdir -p {{destdir}}/bin; cp {{download.dir}}/*.jar {{destdir}}/bin"
 mac = "mkdir -p {{destdir}}/bin; cp {{download.dir}}/*.jar {{destdir}}/bin"
+
+[rmats]
+source_url = "https://sourceforge.net/projects/rnaseq-mats/files/MATS/rMATS.{{version}}.tgz"
+version_available = ["4.0.1", "3.2.5"]
+
+[rmats_reffa]
+source_url = "http://rmaps.cecsresearch.org/{{version}}/{{version}}index.tgz"
+version_available = "STAR"
+
+[prada]
+source_url = "https://sourceforge.net/projects/prada/files/pyPRADA/pyPRADA_{{version}}.tar.gz"
+version_available = "1.2"
+
+[igv]
+source_url = "http://data.broadinstitute.org/igv/projects/downloads/2.4/IGV_{{version}}.zip"
+version_available = "2.4.6"
+
+[marina]
+source_url = "http://bioinfo.rjh.com.cn/download/bioinstaller/marina_matlab/marina_matlab-{{version}}.tar.gz"
+version_available = "4"
+
+[paradigm]
+source_url = "http://paradigm.five3genomics.com/five3_paradigm_webapi.py"
+version_available = "latest"
+
+[meerkat]
+source_url = "http://bioinfo.rjh.com.cn/download/bioinstaller/meerkat/meerkat.{{version}}.tar.gz"
+version_available = "0.189"
+
+[vadir]
+source_url = ["http://bioinfo.rjh.com.cn/download/bioinstaller/vadir/VaDiR.tar.gz", 
+              "ftp://penguin.genomics.cn/pub/10.5524/100001_101000/100360/VaDiR.tar.gz"]
+version_available = "latest"

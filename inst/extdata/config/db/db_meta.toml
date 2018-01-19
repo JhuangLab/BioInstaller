@@ -269,7 +269,7 @@ description = "DoCM, the Database of Curated Mutations, is a highly curated data
 publication = "A correspondence describing DoCM has been published in Nature Methods: DoCM: a database of curated mutations in cancer. Nature Methods (2016) doi:10.1038/nmeth.4000."
 tag = ["NGS", "database"]
 
-[db.item.cancer_hotspot]
+[db.item.cancer_hotspots]
 title = "A RESOURCE FOR STATISTICALLY SIGNIFICANT MUTATIONS IN CANCER"
 description = "This resource is maintained by the Kravis Center for Molecular Oncology at Memorial Sloan Kettering Cancer Center. It provides information about statistically significantly recurrent mutations identified in large scale cancer genomics data."
 publication = ["Chang et al., Accelerating discovery of functional mutant alleles in cancer. Cancer Discovery, 10.1158/2159-8290.CD-17-0321 (2017)", 

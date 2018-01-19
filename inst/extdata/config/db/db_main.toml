@@ -320,8 +320,8 @@ version_available = ["RNAedit", "dbSNP"]
 source_url = "http://bioinfo.rjh.com.cn/download/bioinstaller/docm/docm_{{version}}.txt.gz"
 version_available = ["3.2", "3_clinvar_export"]
 
-[db_cancer_hotspot]
-source_url = "http://bioinfo.rjh.com.cn/download/bioinstaller/cancer_hotspot/cancer_hotspot_{{version}}.txt.gz"
+[db_cancer_hotspots]
+source_url = "http://bioinfo.rjh.com.cn/download/bioinstaller/cancer_hotspots/cancer_hotspots_{{version}}.txt.gz"
 version_available = ["v1_sheet1", "v1_sheet2", "v2_sheet1", "v2_sheet2"]
 
 [db_intogen]

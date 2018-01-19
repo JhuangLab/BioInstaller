@@ -62,3 +62,63 @@ publication = ["S R Browning and B L Browning (2007) Rapid and accurate haplotyp
 title = "ContEst is a tool (and method) for estimating the amount of cross-sample contamination in next generation sequencing data.  Using a Bayesian framework, contamination levels are estimated from array based genotypes and sequencing reads."
 description = "Here, we present ContEst, a tool for estimating the level of cross-individual contamination in next-generation sequencing data. We demonstrate the accuracy of ContEst across a range of contamination levels, sources and read depths using sequencing data mixed in silico at known concentrations. We applied our tool to published cancer sequencing datasets and report their estimated contamination levels."
 publication = "Cibulskis K, Mckenna A, Fennell T, et al. ContEst: estimating cross-contamination of human samples in next-generation sequencing data[J]. Bioinformatics, 2011, 27(18):2601-2602."
+
+[nongithub.item.rmats]
+title = "Multivariate Analysis of Transcript Splicing (MATS)"
+description = "MATS is a computational tool to detect differential alternative splicing events from RNA-Seq data. The statistical model of MATS calculates the P-value and false discovery rate that the difference in the isoform ratio of a gene between two conditions exceeds a given user-defined threshold. From the RNA-Seq data, MATS can automatically detect and analyze alternative splicing events corresponding to all major types of alternative splicing patterns. MATS handles replicate RNA-Seq data from both paired and unpaired study design."
+publication = ["Shen S., Park JW., Lu ZX., Lin L., Henry MD., Wu YN., Zhou Q., Xing Y. rMATS: Robust and Flexible Detection of Differential Alternative Splicing from Replicate RNA-Seq Data. PNAS, 111(51):E5593-601. doi: 10.1073/pnas.1419161111", 
+            "Park JW., Tokheim C., Shen S., Xing Y. Identifying differential alternative splicing events from RNA sequencing data using RNASeq-MATS. Methods in Molecular Biology: Deep Sequencing Data Analysis, 2013;1038:171-179 doi: 10.1007/978-1-62703-514-9_10", 
+            "Shen S., Park JW., Huang J., Dittmar KA., Lu ZX., Zhou Q., Carstens RP., Xing Y. MATS: A Bayesian Framework for Flexible Detection of Differential Alternative Splicing from RNA-Seq Data. Nucleic Acids Research, 2012;40(8):e61 doi: 10.1093/nar/gkr1291"]
+
+[nongithub.item.prada]
+title = "PRADA : Pipeline for RNA-Sequencing Data Analysis"
+description = """Massively parallel sequencing of cDNA reverse transcribed from RNA (RNASeq) provides an accurate estimate of the quantity and composition of mRNAs. To characterize the transcriptome through the analysis of RNA-seq data, we developed PRADA. PRADA focuses on the processing and analysis of gene expression estimates, supervised and unsupervised gene fusion identification, and supervised intragenic deletion identification. 
+PRADA currently supports 7 modules to process and identify abnormalities from RNAseq data:
+preprocess: Generates aligned and recalibrated BAM files.
+expression: Generates gene expression (RPKM) and quality metrics.
+fusion: Identifies candidate gene fusions.
+guess-ft: Supervised search for fusion transcripts.
+guess-if: Supervised search for intragenic fusions.
+homology: Calculates homology between given two genes.
+frame: Predicts functional consequence of fusion transcript"""
+publication = "PRADA: pipeline for RNA sequencing data analysis[J]. Bioinformatics, 2014, 30(15): 2224-2226. https://doi.org/10.1093/bioinformatics/btu169"
+
+[nongithub.item.igv]
+title = "The Integrative Genomics Viewer (IGV)"
+description = "The Integrative Genomics Viewer (IGV) is a high-performance visualization tool for interactive exploration of large, integrated genomic datasets. It supports a wide variety of data types, including array-based and next-generation sequence data, and genomic annotations."
+publication = ["Integrative Genomics Viewer. Nature Biotechnology 29, 24–26 (2011)", 
+               "Integrative Genomics Viewer (IGV): high-performance genomics data visualization and exploration. Briefings in Bioinformatics 14, 178-192 (2013)."]
+
+
+[nongithub.item.marina]
+title = "Master Regulator Inference Algorithm"
+description = "MARINA (Master Regulator Inference Algorithm) MAster Regulator INference algorithm (MARINa), designed to infer transcription factors (TFs) controlling the transition between the two phenotypes, A and B, and the maintenance of the latter phenotype. Expression at the mRNA level is often a poor predictor of a TF's regulatory activity and an even worst predictor of its biological relevance in regulating phenotype-specific programs. To obviate this problem, MARINa infers TF activity from the global transcriptional activation of its regulon (i.e. its activated and repressed targets) and its biological relevance by TF-regulon overlap with phenotype-specific programs."
+publication = "Lefebvre C, Rajbhandari P, Alvarez MJ, Bandaru P, Lim WK, Sato M, Wang K, Sumazin P, Kustagi M, Bisikirska BC, Basso K, Beltrao P, Krogan N, Gautier J, Dalla-Favera R, Califano A. A human B-cell interactome identifies MYB and FOXM1 as master regulators of proliferation in germinal centers. Mol Syst Biol. 2010 Jun 8;6:377."
+
+[nongithub.item.paradigm]
+title = "PAthway Representation and Analysis by Direct Inference on Graphical Models"
+description = "High-dimensional ‘-omics’ profiling provides a detailed molecular view of individual cancers; however, understanding the mechanisms by which tumors evade cellular defenses requires deep knowledge of the underlying cellular pathways within each cancer sample. We extended the PARADIGM algorithm (Vaske et al., 2010, Bioinformatics, 26, i237–i245), a pathway analysis method for combining multiple ‘-omics’ data types, to learn the strength and direction of 9139 gene and protein interactions curated from the literature. Using genomic and mRNA expression data from 1936 samples in The Cancer Genome Atlas (TCGA) cohort, we learned interactions that provided support for and relative strength of 7138 (78%) of the curated links. Gene set enrichment found that genes involved in the strongest interactions were significantly enriched for transcriptional regulation, apoptosis, cell cycle regulation and response to tumor cells. Within the TCGA breast cancer cohort, we assessed different interaction strengths between breast cancer subtypes, and found interactions associated with the MYC pathway and the ER alpha network to be among the most differential between basal and luminal A subtypes. PARADIGM with the Naive Bayesian assumption produced gene activity predictions that, when clustered, found groups of patients with better separation in survival than both the original version of PARADIGM and a version without the assumption. We found that this Naive Bayes assumption was valid for the vast majority of co-regulators, indicating that most co-regulators act independently on their shared target."
+publication = "Sedgewick A J, Benz S C, Rabizadeh S, et al. Learning subgroup-specific regulatory interactions and regulator independence with PARADIGM[J]. Bioinformatics, 2013, 29(13): i62-i70. https://doi.org/10.1093/bioinformatics/btt229"
+
+[nongithub.item.meerkat]
+title = "http://dx.doi.org/10.1016/j.cell.2013.04.010"
+description = "Identification of somatic rearrangements in cancer genomes has accelerated through analysis of high-throughput sequencing data. However, characterization of complex structural alterations and their underlying mechanisms remains inadequate. Here, applying an algorithm to predict structural variations from short reads, we report a comprehensive catalog of somatic structural variations and the mechanisms generating them, using high-coverage whole-genome sequencing data from 140 patients across ten tumor types. We characterize the relative contributions of different types of rearrangements and their mutational mechanisms, find that ∼20% of the somatic deletions are complex deletions formed by replication errors, and describe the differences between the mutational mechanisms in somatic and germline alterations. Importantly, we provide detailed reconstructions of the events responsible for loss of CDKN2A/B and gain of EGFR in glioblastoma, revealing that these alterations can result from multiple mechanisms even in a single genome and that both DNA double-strand breaks and replication errors drive somatic rearrangements."
+publication = "Yang L, Luquette L J, Gehlenborg N, et al. Diverse Mechanisms of Somatic Structural Variations in Human Cancer Genomes[J]. Cell, 2013, 153(4):919-29."
+
+[nongithub.item.vadir]
+title = "VaDiR: an integrated approach to Variant Detection in RNA"
+description = """Advances in next-generation DNA sequencing technologies are now enabling detailed
+characterization of sequence variations in cancer genomes. With whole genome sequencing, variations in
+coding and non-coding sequences can be discovered. But the cost associated with it is currently limiting its
+general use in research. Whole exome sequencing is used to characterize sequence variations in coding regions,
+but the cost associated with capture reagents and biases in capture rate limit its full use in research. Additional
+limitations include uncertainty in assigning the functional signicance of the mutations when these mutations
+are observed in the non-coding region or in genes that are not expressed in cancer tissue.
+We investigated the feasibility of uncovering mutations from expressed genes using RNA sequencing
+datasets with a method called VaDiR: Variant Detection in RNA" that integrate three variant callers, namely:
+SNPiR, RVBoost and MuTect2. The combination of all three methods, which we called Tier1 variants,
+produced the highest precision with true positive mutations from RNA-seq that could be validated at the DNA
+level. We also found that the integration of Tier1 variants with those called by MuTect2 and SNPiR produced
+the highest recall with acceptable precision. Finally, we observed higher rate of mutation discovery in genes
+that are expressed at higher levels."""
+publication = "Neums L, Suenaga S, Beyerlein P, et al. VaDiR: an integrated approach to Variant Detection in RNA[J]. GigaScience, 2017. https://doi.org/10.1093/gigascience/gix122"

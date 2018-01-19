@@ -675,3 +675,28 @@ source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/tall_somatic_g
 version_available = "20171206"
 buildver_available = ["hg19", "hg38"]
 description = "Collected from recently published papers, 1) Recurrent SPI1 (PU.1) fusions in high-risk pediatric T cell acute lymphoblastic leukemia 2) The genomic landscape of pediatric and young adult T-lineage acute lymphoblastic leukemia 3) Identification of fusion genes and characterization of transcriptome features in T-cell acute lymphoblastic leukemia"
+
+[db_annovar_docm]
+source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{buildver}}_{{version}}.txt.gz"
+version_available = "docm_3.2"
+buildver_available = ["hg19"]
+description = "DoCM, the Database of Curated Mutations, is a highly curated database of known, disease-causing mutations that provides easily explorable variant lists with direct links to source citations for easy verification. http://docm.genome.wustl.edu/about"
+
+[db_annovar_intogen]
+source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{buildver}}_{{version}}.sqlite.sql.gz"
+version_available = "intogen_20180119"
+buildver_available = ["hg19"]
+description = "Merged intogen table intogen_mutations_catalog [Driver or passenger mutations]. https://www.intogen.org/downloads"
+install = "#R#sql2sqlite('{{buildver}}_{{version}}.sqlite.sql', sqlite.path = '{{buildver}}_{{version}}.sqlite')#R#"
+
+[db_annovar_disgenet]
+source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{version}}.txt.gz"
+version_available = ["disgenet_befree_gene_disease", "disgenet_befree_rs_disease", "disgenet_curated_gene_disease", "disgenet_curated_variant_disease", "disgenet_gene_disease", "disgenet_pubannotator_variant_disease", "disgenet_rs_disease"]
+buildver_available = ["hg19", "hg38"]
+description = "See http://www.disgenet.org/web/DisGeNET/menu/downloads"
+
+[db_annovar_cancer_hotspots]
+source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{version}}.txt.gz"
+version_available = ["cancer_hotspots_v2"]
+buildver_available = ["hg19", "hg38"]
+description = "See http://cancerhotspots.org/#/home Hotspot Results V2 sheet1"
