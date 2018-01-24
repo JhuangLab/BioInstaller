@@ -4,12 +4,11 @@
 \alias{show.installed}
 \title{Show all installed bio-softwares in system}
 \usage{
-show.installed(db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE",
-  system.file("extdata", "demo/softwares_db_demo.yaml", package =
-  "BioInstaller")), only.installed = TRUE, verbose = TRUE)
+show.installed(db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", tempfile()),
+  only.installed = TRUE, verbose = TRUE)
 }
 \arguments{
-\item{db}{File of saving softwares infomation}
+\item{db}{File saving softwares infomation}
 
 \item{only.installed}{Logical wheather only show installed softwares in db}
 

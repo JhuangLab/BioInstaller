@@ -198,7 +198,7 @@ linux = ["mkdir -p {{destdir}}/bin; fn=`ls -F bin|grep '*' | tr -d '*'` ;cd bin;
 mac = ["mkdir -p {{destdir}}/bin; fn=`ls -F bin|grep '*' | tr -d '*'` ;cd bin;", " cp $fn {{destdir}}/bin"]
 
 [fusioncatcher]
-source_url = ["https://sourceforge.net/projects/fusioncatcher/files/fusioncatcher_{{version}}.zip", 
+source_url = ["https://sourceforge.net/projects/fusioncatcher/files/fusioncatcher_{{version}}.zip",
               "https://sourceforge.net/projects/fusioncatcher/files/bootstrap.py"]
 decompress = [true, false]
 #dependence = ["bwa", "blat", "faToTwoBit", "bowtie", "bowtie2", "star", "sratools", "velvet", "lzo", "pigz", "seqtk", "picard", "samtools_old", "pxz", "liftover"]
@@ -304,7 +304,7 @@ version_available = ["1.2.11", "1.2.10", "1.2.9", "1.2.7", "1.2.8", "1.2.6", "1.
 make_dir = ["./"]
 bin_dir = ["{{destdir}}/lib"]
 
-[zlib.source_url] 
+[zlib.source_url]
 linux = ["https://sourceforge.net/projects/libpng/files/zlib/{{version}}/zlib-{{version}}.tar.gz"]
 mac = ["https://sourceforge.net/projects/libpng/files/zlib/{{version}}/zlib-{{version}}.tar.gz"]
 
@@ -543,18 +543,18 @@ bin_dir = ["{{destdir}}/bin"]
 url_all_download = false
 
 [r.source_url]
-linux = ["https://cran.r-project.org/src/base/R-3/R-{{version}}.tar.gz", 
-              "https://cran.r-project.org/src/base/R-2/R-{{version}}.tar.gz", 
-              "https://cran.r-project.org/src/base/R-1/R-{{version}}.tgz", 
+linux = ["https://cran.r-project.org/src/base/R-3/R-{{version}}.tar.gz",
+              "https://cran.r-project.org/src/base/R-2/R-{{version}}.tar.gz",
+              "https://cran.r-project.org/src/base/R-1/R-{{version}}.tgz",
               "https://cran.r-project.org/src/base/R-0/R-{{version}}.tgz"]
-mac = ["https://cran.r-project.org/bin/macosx/R-{{version}}.pkg", 
+mac = ["https://cran.r-project.org/bin/macosx/R-{{version}}.pkg",
        "https://cran.r-project.org/bin/macosx/old/R-{{version}}.pkg"]
-windows = ["https://cran.r-project.org/bin/windows/base/R-{{version}}-win.exe", 
+windows = ["https://cran.r-project.org/bin/windows/base/R-{{version}}-win.exe",
            "https://cran.r-project.org/bin/windows/base/old/{{versions}}/R-{{version}}-win.exe"]
 
 [r.install]
 linux = ["""./configure --enable-R-shlib --prefix={{destdir}} CFLAGS='\
-@>@ 
+@>@
 library(stringr)
 include.flag <- unique(c('-I{{zlib:install.dir}}/include', '-I{{bzip2:install.dir}}/include', '-I{{xz:install.dir}}/include', '-I{{pcre:install.dir}}/include', '-I{{curl:install.dir}}/include'))
 include.flag <- include.flag[!str_detect(include.flag, ':')]
@@ -564,11 +564,11 @@ LDFLAGS='\
 @>@
 lib.flag <- unique(c('-I{{zlib:install.dir}}/lib', '-I{{bzip2:install.dir}}/lib', '-I{{xz:install.dir}}/lib', '-I{{pcre:install.dir}}/lib', '-I{{curl:install.dir}}/lib'))
 lib.flag <- lib.flag[!str_detect(lib.flag, ':')]
-paste(lib.flag, collapse=' ') 
+paste(lib.flag, collapse=' ')
 @<@' \
 && make""", "make install"]
 mac = ["""./configure --enable-R-shlib --prefix={{destdir}} CFLAGS='\
-@>@ 
+@>@
 library(stringr)
 include.flag <- unique(c('-I{{zlib:install.dir}}/include', '-I{{bzip2:install.dir}}/include', '-I{{xz:install.dir}}/include', '-I{{pcre:install.dir}}/include', '-I{{curl:install.dir}}/include'))
 include.flag <- include.flag[!str_detect(include.flag, ':')]
@@ -578,7 +578,7 @@ LDFLAGS='\
 @>@
 lib.flag <- unique(c('-I{{zlib:install.dir}}/lib', '-I{{bzip2:install.dir}}/lib', '-I{{xz:install.dir}}/lib', '-I{{pcre:install.dir}}/lib', '-I{{curl:install.dir}}/lib'))
 lib.flag <- lib.flag[!str_detect(lib.flag, ':')]
-paste(lib.flag, collapse=' ') 
+paste(lib.flag, collapse=' ')
 @<@' \
 && make""", "make install"]
 
@@ -593,8 +593,8 @@ mac = "pip install ."
 decompress = false
 url_all_download = false
 
-[miniconda2.source_url] 
-windows = ["https://repo.continuum.io/miniconda/Miniconda2-{{version}}-Windows-x86_64.exe", 
+[miniconda2.source_url]
+windows = ["https://repo.continuum.io/miniconda/Miniconda2-{{version}}-Windows-x86_64.exe",
            "http://bioinfo.rjh.com.cn/download/miniconda/Miniconda2-{{version}}-Windows-x86_64.exe"]
 mac = ["https://repo.continuum.io/miniconda/Miniconda2-{{version}}-MacOSX-x86_64.sh",
        "http://bioinfo.rjh.com.cn/download/miniconda/Miniconda2-{{version}}-MacOSX-x86_64.sh"]
@@ -610,7 +610,7 @@ decompress = false
 url_all_download = false
 
 [miniconda3.source_url]
-windows = ["https://repo.continuum.io/miniconda/Miniconda3-{{version}}-Windows-x86_64.exe", 
+windows = ["https://repo.continuum.io/miniconda/Miniconda3-{{version}}-Windows-x86_64.exe",
            "http://bioinfo.rjh.com.cn/download/miniconda/Miniconda3-{{version}}-Windows-x86_64.exe"]
 mac = ["https://repo.continuum.io/miniconda/Miniconda3-{{version}}-MacOSX-x86_64.sh",
        "http://bioinfo.rjh.com.cn/download/miniconda/Miniconda3-{{version}}-MacOSX-x86_64.sh"]
@@ -624,7 +624,7 @@ mac = "sh Miniconda3-{{version}}-MacOSX-x86_64.sh"
 [strelka]
 source_url = "ftp://strelka@ftp.illumina.com/v1-branch/v{{version}}/strelka_workflow-{{version}}.tar.gz"
 version_order_fixed = true
-version_available = ["1.0.15", "1.0.4", "1.0.5", "1.0.6", "1.0.7", "1.0.10", 
+version_available = ["1.0.15", "1.0.4", "1.0.5", "1.0.6", "1.0.7", "1.0.10",
                      "1.0.11", "1.0.12", "1.0.13", "1.0.14"]
 
 [strelka.install]
@@ -644,7 +644,7 @@ version_available = "latest"
 version_available = ["2.7.1", "2.6.0", "2.5.0", "2.4.0", "2.3.0"]
 [blast.source_url]
 linux = "ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/{{version}}/ncbi-blast-{{version}}+-x64-linux.tar.gz"
-mac = ["ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/{{version}}/ncbi-blast-{{version}}+-x64-macosx.tar.gz", 
+mac = ["ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/{{version}}/ncbi-blast-{{version}}+-x64-macosx.tar.gz",
        "ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/{{version}}/ncbi-blast-{{version}}+.dmg"]
 win = ["ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/{{version}}/ncbi-blast-{{version}}+-x64-win64.tar.gz",
        "ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/{{version}}/ncbi-blast-{{version}}+-win64.exe"]
@@ -658,7 +658,7 @@ mac = "mkdir -p {{destdir}}/bin; cp {{download.dir}}/*.jar {{destdir}}/bin"
 
 [interproscan]
 source_url = [
-              "ftp://ftp.ebi.ac.uk/pub/software/unix/iprscan/5/{{version}}/interproscan-{{version}}-64-bit.tar.gz", 
+              "ftp://ftp.ebi.ac.uk/pub/software/unix/iprscan/5/{{version}}/interproscan-{{version}}-64-bit.tar.gz",
               "http://bioinfo.rjh.com.cn/download/bioinstaller/interproscan/interproscan-{{version}}-64-bit.tar.gz"
 ]
 url_all_download = false
@@ -675,7 +675,7 @@ make_dir = ["./src"]
 linux = "make -f Makefile.Linux"
 mac = "make -f Makefile.MacOS"
 
-[vcfanno.source_url] 
+[vcfanno.source_url]
 linux = "https://github.com/brentp/vcfanno/releases/download/{{version}}/vcfanno_linux64"
 mac = "https://github.com/brentp/vcfanno/releases/download/{{version}}/vcfanno_osx"
 [vcfanno]
@@ -706,11 +706,11 @@ version_available = ["1.4.3", "1.4.1"]
 
 [beagle]
 source_url = "http://faculty.washington.edu/browning/beagle/{{version}}"
-version_available = ["beagle.08Jun17.d8b.jar", "beagle_4.1_21Jan17.pdf", "run.beagle.08Jun17.d8b.example", 
+version_available = ["beagle.08Jun17.d8b.jar", "beagle_4.1_21Jan17.pdf", "run.beagle.08Jun17.d8b.example",
                      "release_notes", "beagle.170608.zip"]
 
 [contest]
-source_url = ["http://bioinfo.rjh.com.cn/download/bioinstaller/contest/contest-{{version}}-bin.zip", 
+source_url = ["http://bioinfo.rjh.com.cn/download/bioinstaller/contest/contest-{{version}}-bin.zip",
               "hg19_population_stratified_af_hapmap_3.3.vcf.gz"]
 url_all_download = true
 version_available = "1.0.24530"
@@ -747,6 +747,18 @@ source_url = "http://bioinfo.rjh.com.cn/download/bioinstaller/meerkat/meerkat.{{
 version_available = "0.189"
 
 [vadir]
-source_url = ["http://bioinfo.rjh.com.cn/download/bioinstaller/vadir/VaDiR.tar.gz", 
+source_url = ["http://bioinfo.rjh.com.cn/download/bioinstaller/vadir/VaDiR.tar.gz",
               "ftp://penguin.genomics.cn/pub/10.5524/100001_101000/100360/VaDiR.tar.gz"]
 version_available = "latest"
+
+[mutsig]
+source_url = "http://bioinfo.rjh.com.cn/download/bioinstaller/mutsig/MutSigCV_{{version}}.zip"
+version_available = ["1.41"]
+
+[mutsig_dependence]
+source_url = "http://bioinfo.rjh.com.cn/download/bioinstaller/mutsig/{{version}}.zip"
+version_available = ["exome_full192.coverage", "mutation_type_dictionary_file.txt"]
+
+[mutsig_reffa]
+source_url = "http://bioinfo.rjh.com.cn/download/bioinstaller/mutsig/{{version}}.zip"
+version_available = ["hg19.fa"]

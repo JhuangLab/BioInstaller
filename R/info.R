@@ -5,7 +5,7 @@
 #' @param source.dir Directorie of softwares source code
 #' @param bin.dir Directorie of softwares bin
 #' @param executable.files Executable files in bin.dir
-#' @param db File of saving softwares infomation
+#' @param db File saving softwares infomation
 #' @param ... Other key and value paired need be saved in BioInstaller
 #' @param verbose Ligical indicating wheather show the log message
 #' @export
@@ -17,8 +17,7 @@
 #' bin.dir = '', excutable.files = c('demo'), others.customer = 'demo')
 #' unlink(db)
 change.info <- function(name = "", installed = TRUE, source.dir = "", bin.dir = "", 
-  executable.files = "", db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", system.file("extdata", 
-    "demo/softwares_db_demo.yaml", package = "BioInstaller")), ..., verbose = TRUE) {
+  executable.files = "", db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", tempfile()), ..., verbose = TRUE) {
   msg <- sprintf("Running change.info for %s and be saved to %s", name, db)
   info.msg(msg, verbose = verbose)
   source.dir <- normalizePath(source.dir, mustWork = F)
@@ -40,7 +39,7 @@ change.info <- function(name = "", installed = TRUE, source.dir = "", bin.dir = 
 #' Show biologly softwares infomation of system
 #'
 #' @param name Software name
-#' @param db File of saving softwares infomation
+#' @param db File saving softwares infomation
 #' @param verbose Ligical indicating wheather show the log message
 #' @export
 #' @return Bool Value
@@ -51,8 +50,7 @@ change.info <- function(name = "", installed = TRUE, source.dir = "", bin.dir = 
 #' bin.dir = '', excutable.files = c('demo'), others.customer = 'demo')
 #' get.info('bwa')
 #' unlink(db)
-get.info <- function(name = "", db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", system.file("extdata", 
-  "demo/softwares_db_demo.yaml", package = "BioInstaller")), verbose = TRUE) {
+get.info <- function(name = "", db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", tempfile()), verbose = TRUE) {
   db <- normalizePath(db, mustWork = FALSE)
   if (!db.check(db)) {
     return(FALSE)
@@ -72,7 +70,7 @@ get.info <- function(name = "", db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", syste
 #' Delete biologly softwares infomation of system
 #'
 #' @param name Software name
-#' @param db File of saving softwares infomation
+#' @param db File saving softwares infomation
 #' @param verbose Ligical indicating wheather show the log message
 #' @export
 #' @return Bool Value
@@ -83,8 +81,7 @@ get.info <- function(name = "", db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", syste
 #' bin.dir = '', excutable.files = c('demo'), others.customer = 'demo')
 #' del.info('bwa')
 #' unlink(db)
-del.info <- function(name = "", db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", system.file("extdata", 
-  "demo/softwares_db_demo.yaml", package = "BioInstaller")), verbose = TRUE) {
+del.info <- function(name = "", db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", tempfile()), verbose = TRUE) {
   db <- normalizePath(db, mustWork = FALSE)
   if (!db.check(db)) {
     return(FALSE)
@@ -104,7 +101,7 @@ del.info <- function(name = "", db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", syste
 
 #' Show all installed bio-softwares in system
 #'
-#' @param db File of saving softwares infomation
+#' @param db File saving softwares infomation
 #' @param only.installed Logical wheather only show installed softwares in db
 #' @param verbose Ligical indicating wheather show the log message
 #' @export
@@ -116,8 +113,7 @@ del.info <- function(name = "", db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", syste
 #' bin.dir = '', excutable.files = c('demo'), others.customer = 'demo')
 #' show.installed()
 #' unlink(db)
-show.installed <- function(db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", system.file("extdata", 
-  "demo/softwares_db_demo.yaml", package = "BioInstaller")), only.installed = TRUE, 
+show.installed <- function(db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", tempfile()), only.installed = TRUE, 
   verbose = TRUE) {
   db <- normalizePath(db, mustWork = FALSE)
   if (!db.check(db)) {

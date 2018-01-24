@@ -122,3 +122,10 @@ level. We also found that the integration of Tier1 variants with those called by
 the highest recall with acceptable precision. Finally, we observed higher rate of mutation discovery in genes
 that are expressed at higher levels."""
 publication = "Neums L, Suenaga S, Beyerlein P, et al. VaDiR: an integrated approach to Variant Detection in RNA[J]. GigaScience, 2017. https://doi.org/10.1093/gigascience/gix122"
+
+[nongithub.item.mutsig]
+title = "Mutational heterogeneity in cancer and the search for new cancer-associated genes"
+description = """
+MutSig (for "Mutation Significance") is a package of tools for analyzing mutation data.  It operates on a cohort of patients and identifies mutations, genes, and other genomic elements predicted to be driver candidates.
+"""
+publication = "Lawrence, M. et al. Mutational heterogeneity in cancer and the search for new cancer-associated genes. Nature 499, 214-218 (2013) http://dx.doi.org/10.1038/nature12213"

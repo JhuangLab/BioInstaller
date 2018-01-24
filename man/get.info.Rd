@@ -4,14 +4,13 @@
 \alias{get.info}
 \title{Show biologly softwares infomation of system}
 \usage{
-get.info(name = "", db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE",
-  system.file("extdata", "demo/softwares_db_demo.yaml", package =
-  "BioInstaller")), verbose = TRUE)
+get.info(name = "", db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", tempfile()),
+  verbose = TRUE)
 }
 \arguments{
 \item{name}{Software name}
 
-\item{db}{File of saving softwares infomation}
+\item{db}{File saving softwares infomation}
 
 \item{verbose}{Ligical indicating wheather show the log message}
 }

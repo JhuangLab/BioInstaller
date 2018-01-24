@@ -6,8 +6,7 @@
 \usage{
 change.info(name = "", installed = TRUE, source.dir = "", bin.dir = "",
   executable.files = "", db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE",
-  system.file("extdata", "demo/softwares_db_demo.yaml", package =
-  "BioInstaller")), ..., verbose = TRUE)
+  tempfile()), ..., verbose = TRUE)
 }
 \arguments{
 \item{name}{Software name}
@@ -20,7 +19,7 @@ change.info(name = "", installed = TRUE, source.dir = "", bin.dir = "",
 
 \item{executable.files}{Executable files in bin.dir}
 
-\item{db}{File of saving softwares infomation}
+\item{db}{File saving softwares infomation}
 
 \item{...}{Other key and value paired need be saved in BioInstaller}
 

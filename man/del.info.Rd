@@ -4,14 +4,13 @@
 \alias{del.info}
 \title{Delete biologly softwares infomation of system}
 \usage{
-del.info(name = "", db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE",
-  system.file("extdata", "demo/softwares_db_demo.yaml", package =
-  "BioInstaller")), verbose = TRUE)
+del.info(name = "", db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", tempfile()),
+  verbose = TRUE)
 }
 \arguments{
 \item{name}{Software name}
 
-\item{db}{File of saving softwares infomation}
+\item{db}{File saving softwares infomation}
 
 \item{verbose}{Ligical indicating wheather show the log message}
 }
