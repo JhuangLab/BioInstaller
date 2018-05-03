@@ -12,6 +12,9 @@ os:
   - linux
   - osx
 
+apt_packages:
+  - libcurl4-openssl-dev
+
 r_packages:
   - covr
   - devtools
