@@ -762,3 +762,7 @@ version_available = ["exome_full192.coverage", "mutation_type_dictionary_file.tx
 [mutsig_reffa]
 source_url = "http://bioinfo.rjh.com.cn/download/bioinstaller/mutsig/{{version}}.zip"
 version_available = ["hg19.fa"]
+
+[jaffa_reffa]
+source_url = "http://bioinfo.rjh.com.cn/download/bioinstaller/jaffa/JAFFA_REFERENCE_FILES_{{version}}.tar.gz"
+version_available = ["HG19_GENCODE19", "HG38_GENCODE22"]

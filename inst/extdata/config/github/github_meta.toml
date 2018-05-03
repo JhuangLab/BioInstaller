@@ -70,3 +70,75 @@ description = """RADIA identifies RNA and DNA variants in BAM files. RADIA is ty
 
 The DNA Only Method (DOM) uses just the tumor/normal pairs of DNA (ignoring the RNA), while the Triple BAM Method (TBM) uses all three datasets from the same patient to detect somatic mutations. The mutations from the TBM are further categorized into 2 sub-groups: RNA Confirmation and RNA Rescue calls. RNA Confirmation calls are those that are made by both the DOM and the TBM due to the strong read support in both the DNA and RNA. RNA Rescue calls are those that had very little DNA support, hence not called by the DOM, but strong RNA support, and thus called by the TBM. RNA Rescue calls are typically missed by traditional methods that only interrogate the DNA."""
 publication = "Radenbaugh AJ, Ma S, Ewing A, Stuart JM, Collisson EA, Zhu J, Haussler D. (2014) RADIA: RNA and DNA Integrated Analysis for Somatic Mutation Detection. PLoS ONE 9(11): e111516. doi:10.1371/journal.pone.0111516"
+
+[github.item.manta]
+title = "Manta: rapid detection of structural variants and indels for germline and cancer sequencing applications"
+description = """Manta calls structural variants (SVs) and indels from mapped paired-end sequencing reads. It is optimized for analysis of germline variation in small sets of individuals and somatic variation in tumor/normal sample pairs. Manta discovers, assembles and scores large-scale SVs, medium-sized indels and large insertions within a single efficient workflow. The method is designed for rapid analysis on standard compute hardware: NA12878 at 50x genomic coverage is analyzed in less than 20 minutes on a 20 core server, and most WGS tumor/normal analyses can be completed within 2 hours. Manta combines paired and split-read evidence during SV discovery and scoring to improve accuracy, but does not require split-reads or successful breakpoint assemblies to report a variant in cases where there is strong evidence otherwise. It provides scoring models for germline variants in small sets of diploid samples and somatic variants in matched tumor/normal sample pairs. There is experimental support for analysis of unmatched tumor samples as well. Manta accepts input read mappings from BAM or CRAM files and reports all SV and indel inferences in VCF 4.1 format. See the user guide for a full description of capabilities and limitations.
+"""
+publication = "Chen, X. et al. (2016) Manta: rapid detection of structural variants and indels for germline and cancer sequencing applications. Bioinformatics, 32, 1220-1222. doi:10.1093/bioinformatics/btv710"
+
+[github.item.jaffa]
+title = "JAFFA is a multi-step pipeline that takes either raw RNA-Seq reads, or pre-assembled transcripts, then searches for gene fusions"
+description = """JAFFA is a multi-step pipeline that takes either raw RNA-Seq reads, or pre-assembled transcripts, then searches for gene fusions. It will output the names and locations of candidate gene fusions along with the cDNA sequence of their breakpoints. JAFFA is based on the idea of comparing a transcriptome (e.g. in a cancer sample) against a reference transcriptome. In this way, it is a transcript-centric approach rather than a genome-centric approach like other fusion finders. In validation studies, JAFFA performed well over a range of read lengths - from 50bp to full-length transcripts and on single and paired-end reads.
+"""
+publication = "Davidson N M, Majewski I J, Oshlack A. JAFFA: High sensitivity transcriptome-focused fusion gene detection[J]. Genome Medicine,7,1(2015-05-11), 2015, 7(1):1-12. doi:10.1186/s13073-015-0167-x"
+
+[github.item.marvel]
+title = "The MARVEL assembler"
+description = """MARVEL consists of a set of tools that facilitate the overlapping, patching, correction and assembly of noisy (not so noisy ones as well) long reads."""
+publication = ""
+
+[github.item.picky]
+title = "Structural Variants Pipeline for Long Reads"
+description = """Picky is a structural variant pipeline for long reads developed by Genome Technologies, The Jackson Laboratory. Picky was initially designed for Oxford Nanopore long reads, but will also work for PacBio reads. Picky uses LAST to generate all possible High-scoring Segment Pairs (HSPs) for a read, and 'pick'-and-stitch the segments into the representative alignments with a greedy algorithm instead of using last-split. Picky's picking does not assume colinearity nor mandate that each read base must only be aligned to at most a single genomic location."""
+publication = """(Gong et al., 2017) Nanopore Sequencing Reveals High-Resolution Structural Variation in the Cancer Genome.  BioRxiv. 
+DOI: 10.1101/209718"""
+
+[github.item.freec]
+title = "Control-FREEC: Copy number and genotype annotation in whole genome and whole exome sequencing data"
+description = """Control-FREEC is a tool for detection of copy-number changes and allelic imbalances (including LOH) using deep-sequencing data originally developed by the Bioinformatics Laboratory of Institut Curie (Paris). Since 2016, the project has moved to Insitut Cochin, INSERM U1016 (Paris).
+
+Control-FREEC automatically computes, normalizes, segments copy number and beta allele frequency (BAF) profiles, then calls copy number alterations and LOH. The control (matched normal) sample is optional for whole genome sequencing data but mandatory for whole exome or targeted sequencing data. For whole genome sequencing data analysis, the program can also use mappability data (files created by GEM).
+
+Starting from version 8.0, we provide a possibility to detect subclonal gains and losses and evaluate the likeliest average ploidy of the sample. Also, the evaluation procedure for the level of contamination by normal cells has been improved."""
+
+publication = """Boeva V, Zinovyev A, Bleakley K, Vert JP, Janoueix-Lerosey I, Delattre O, Barillot E. (2011) Control-free calling of copy number alterations in deep-sequencing data using GC-content normalization. Bioinformatics 2011; 27(2):268-9. PMID: 21081509.
+
+Boeva V, Popova T, Bleakley K, Chiche P, Cappo J, Schleiermacher G, Janoueix-Lerosey I, Delattre O, Barillot E. (2011) Control-FREEC: a tool for assessing copy number and allelic content using next generation sequencing data. Bioinformatics. 2011 Dec 6. [Epub ahead of print] PubMed PMID: 22155870."""
+
+[github.item.oncodriveclust]
+title = "OncodriveCLUST: a method aimed to identify genes whose mutations are biased towards a large spatial clustering"
+description = """This method is designed to exploit the feature that mutations in cancer genes, especially oncogenes, often cluster in particular positions of the protein. We consider this as a sign that mutations in these regions change the function of these proteins in a manner that provides an adaptive advantage to cancer cells and consequently are positively selected during clonal evolution of tumours, and this property can thus be used to nominate novel candidate driver genes.
+
+The method does not assume that the baseline mutation probability is homogeneous across all gene positions but it creates a background model using silent mutations. Coding silent mutations are supposed to be under no positive selection and may reflect the baseline clustering of somatic mutations. Given recent evidences of non-random mutation processes along the genome, the assumption of homogenous mutation probabilities is likely an oversimplication introducing bias in the detection of meaningful events."""
+publication = "Tamborero D, Gonzalez-Perez A and Lopez-Bigas N. OncodriveCLUST: exploiting the positional clustering of somatic mutations to identify cancer genes. Bioinformatics. 2013; doi: 10.1093/bioinformatics/btt395s"
+
+[github.item.sequenza]
+title = "Sequenza: allele-specific copy number and mutation profiles from tumor sequencing data"
+description = """Sequenza is a novel set of tools providing a fast python script to genotype cancer samples, and an R package to estimate cancer cellularity, ploidy, genome wide copy number profile and infer for mutated alleles."""
+publication = """F. Favero, T. Joshi,A. M. Marquard, N. J. Birkbak, M. Krzystanek, Q. Li, Z. Szallasi, and A. C. Eklund. “Sequenza: allele-specific copy number and mutation profiles from tumor sequencing data”. Annals of Oncology, 2015, vol. 26, issue 1, 64-70."""
+
+[github.item.taxmaps]
+title = "Ultra-efficient taxonomic mapping of NGS data"
+description = "taxMaps is an ultra-efficient, customizable and fully scalable taxonomic classification tool for short-read data designed to deal with large DNA/RNA metagenomics samples. Its performance and comprehensiveness makes it highly suitable for unbiased contamination detection in large-scale sequencing operations, microbiome studies comprising a large number of samples, and for applications where the analysis delivery time is a critical factor, such as pathogen identification from clinical or environmental samples."
+publication = "Corvelo A, Clarke W E, Robine N, et al. taxMaps: Comprehensive and highly accurate taxonomic classification of short-read data in reasonable time.[J]. Genome Research, 2018. doi: 10.1101/gr.225276.117"
+
+[github.item.svaba]
+title = "Structural variation and indel detection by local assembly"
+description = """
+SvABA is a method for detecting structural variants in sequencing data using genome-wide local assembly. Under the hood, SvABA uses a custom implementation of SGA (String Graph Assembler) by Jared Simpson, and BWA-MEM by Heng Li. Contigs are assembled for every 25kb window (with some small overlap) for every region in the genome. The default is to use only clipped, discordant, unmapped and indel reads, although this can be customized to any set of reads at the command line using VariantBam rules. These contigs are then immediately aligned to the reference with BWA-MEM and parsed to identify variants. Sequencing reads are then realigned to the contigs with BWA-MEM, and variants are scored by their read support.
+
+SvABA is currently configured to provide indel and rearrangement calls (and anything "in between"). It can jointly call any number of BAM/CRAM/SAM files, and has built-in support for case-control experiments (e.g. tumor/normal, or trios or quads). In case/control mode, any number of cases and controls (but min of 1 case) can be input, and will jointly assemble all sequences together. If both a case and control are present, variants are output separately in "somatic" and "germline" VCFs. If only a single BAM is present (input with the -t flag), a single SV and a single indel VCF will be emitted.
+"""
+publication = "Wala J A, Bandopadhayay P, Greenwald N F, et al. SvABA: genome-wide detection of structural variants and indels by local assembly[J]. Genome research, 2018, 28(4): 581-591. doi: 10.1101/gr.221028.117"
+
+[github.item.rop]
+title = "The Read Origin Protocol (ROP) is a computational protocol that aims to discover the source of all reads, including those originating from repeat sequences, recombinant B and T cell receptors, and microbial communities."
+description = """ROP is a computational protocol aimed to discover the source of all unmapped, which originate from complex RNA molecules, recombinant B and T cell receptors and microbial communities. We have tested ROP on 1 trillion reads from 10641 RNA-Seq samples across at least 54 tissues and 2630 individuals. The ROP accounts for 99.9% of all reads, compared to 82.9% by conventional mapping-based protocols. ROP is able to profile:
+- repeats
+- hyper-edited RNAs
+- circRNAs, gene fusions, trans-splicing events
+- recombined B and T cell receptor repertoires
+- microbial communities
+The 'dumpster diving' profile of unmapped reads output by our method is not limited to RNA-Seq technology and may be applied to whole-exome and whole-genome sequencing."""
+publication = "Mangul S, Yang H T, Strauli N, et al. ROP: dumpster diving in RNA-sequencing to find the source of 1 trillion reads across diverse adult human tissues[J]. Genome Biology, 2018, 19(1):36. doi: 10.1186/s13059-018-1403-7"

@@ -633,3 +633,49 @@ windows = "make cygwin=true; make ebseq; make install DESTDIR={{destdir}} prefix
 
 [radia]
 github_url = "https://github.com/aradenbaugh/radia/"
+
+[manta]
+github_url = "https://github.com/Illumina/manta"
+install = "mkdir build; cd build; ./configure --prefix `pwd`; make -C `pwd`; make install"
+
+[jaffa]
+github_url = "https://github.com/Oshlack/JAFFA"
+install = "./install_linux64.sh"
+
+[marvel]
+github_url = "https://github.com/schloi/MARVEL"
+install = ["autoreconf && ./configure --prefix={{destdir}} && make", 
+           "make install && echo 'export PYTHONPATH=$PYTHONPATH:{{destdir}}/lib.python' >> ~/.bashrc"]
+
+[picky]
+github_url = "https://github.com/TheJacksonLaboratory/Picky"
+
+[freec]
+github_url = "https://github.com/BoevaLab/FREEC"
+make_dir = ["./src"]
+install = "make; mkdir -p {{destdir}}/bin; cd {{download.dir}}; cp freec {{destdir}}/bin"
+
+[oncodriveclust]
+github_url = "https://bitbucket.org/bbglab/oncodriveclust/"
+version_available = ["master"]
+version_fixed = true
+install = "pip install ."
+
+[sequenza]
+github_url = "https://bitbucket.org/sequenza_tools/sequenza-utils"
+version_available = ["master"]
+version_fixed = true
+before_install = "#R#source('http://bioconductor.org/biocLite.R'); biocLite('copynumber'); install.packages('sequenza')#R#"
+install = "pip install ."
+
+[taxmaps]
+github_url = "https://github.com/nygenome/taxmaps"
+
+[svaba]
+github_url = "https://github.com/walaj/svaba"
+recursive_clone = true
+install = ["./configure --prefix={{destdir}} && make", "make install"]
+
+[rop]
+github_url = "https://github.com/smangul1/rop"
+install = "./install.sh"

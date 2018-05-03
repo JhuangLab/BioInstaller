@@ -1,3 +1,20 @@
+2018-04-29 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
+
+		* add picky, freec, oncodriveclust, sequenza, taxmaps, 
+		svaba, rop in github.toml
+		* add jaffa_reffa in nongithub.toml 
+
+2018-04-29 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
+
+		* change db_annovar sql2sqlite parameter names
+		* add manta and JAFFA in github.toml
+		* add JAFFA reffa in nongithub.toml
+		* update vignettes theme using prettydoc
+
+2018-03-13 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
+
+		* add db_annovar_abraom
+
 2018-01-20 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
 
 		* added mutsig in nongithub

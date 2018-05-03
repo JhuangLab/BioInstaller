@@ -392,7 +392,7 @@ version_newest = "dbscsnv11"
 version_available = ["dbscsnv11"]
 description = "dbscSNV version 1.1 for splice site prediction by AdaBoost and Random Forest"
 buildver_available = "hg19"
-install = "#R#sql2sqlite('{{buildver}}_{{version}}.sqlite.sql', sqlite.path = '{{buildver}}_{{version}}.sqlite')#R#"
+install = "#R#sql2sqlite('{{buildver}}_{{version}}.sqlite.sql', dbname = '{{buildver}}_{{version}}.sqlite')#R#"
 
 [db_annovar_regsnpintron]
 source_url = ["http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.gz",
@@ -408,14 +408,14 @@ source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{buildver}}_{
 version_newest = "avsnp147"
 version_available = ["avsnp147", "avsnp147.common", "avsnp144", "avsnp142", "avsnp138"]
 buildver_available = "hg19"
-install = "#R#sql2sqlite('{{buildver}}_{{version}}.sqlite.sql', sqlite.path = '{{buildver}}_{{version}}.sqlite')#R#"
+install = "#R#sql2sqlite('{{buildver}}_{{version}}.sqlite.sql', dbname = '{{buildver}}_{{version}}.sqlite')#R#"
 
 [db_annovar_cosmic_sqlite]
 source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{buildver}}_{{version}}.sqlite.sql.gz"
 version_newest = "cosmic81"
 version_available = ["cosmic70", "cosmic81"]
 buildver_available = "hg19"
-install = "#R#sql2sqlite('{{buildver}}_{{version}}.sqlite.sql', sqlite.path = '{{buildver}}_{{version}}.sqlite')#R#"
+install = "#R#sql2sqlite('{{buildver}}_{{version}}.sqlite.sql', dbname = '{{buildver}}_{{version}}.sqlite')#R#"
 
 [db_annovar_1000g_sqlite]
 source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{buildver}}_{{version}}.tar.gz"
@@ -425,7 +425,7 @@ buildver_available = "hg19"
 install = """#R#
 for(i in c('all', 'afr', 'eas', 'eur', 'sas', 'amr')) {
   x <- set.1000g.db(sprintf('{{version}}_%s', i), '{{buildver}}', "sql");
-  params <- list(sql.file = x, sqlite.path = str_replace(x, '.sql$', ''));
+  params <- list(sql.file = x, dbname = str_replace(x, '.sql$', ''));
   do.call(sql2sqlite, params)
 }
 #R#"""
@@ -435,64 +435,71 @@ source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{buildver}}_{
 version_newest = "RADAR2"
 version_available = ["RADAR2"]
 buildver_available = "hg19"
-install = "#R#sql2sqlite('{{buildver}}_{{version}}.sqlite.sql', sqlite.path = '{{buildver}}_{{version}}.sqlite')#R#"
+install = "#R#sql2sqlite('{{buildver}}_{{version}}.sqlite.sql', dbname = '{{buildver}}_{{version}}.sqlite')#R#"
 
 [db_annovar_darned_sqlite]
 source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{buildver}}_{{version}}.sqlite.sql.gz"
 version_newest = "DARNED"
 version_available = ["DARNED"]
 buildver_available = "hg19"
-install = "#R#sql2sqlite('{{buildver}}_{{version}}.sqlite.sql', sqlite.path = '{{buildver}}_{{version}}.sqlite')#R#"
+install = "#R#sql2sqlite('{{buildver}}_{{version}}.sqlite.sql', dbname = '{{buildver}}_{{version}}.sqlite')#R#"
 
 [db_annovar_clinvar_sqlite]
 source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{buildver}}_{{version}}.sqlite.sql.gz"
 version_newest = "clinvar_20170130"
 version_available = ["clinvar_20170130"]
 buildver_available = "hg19"
-install = "#R#sql2sqlite('{{buildver}}_{{version}}.sqlite.sql', sqlite.path = '{{buildver}}_{{version}}.sqlite')#R#"
+install = "#R#sql2sqlite('{{buildver}}_{{version}}.sqlite.sql', dbname = '{{buildver}}_{{version}}.sqlite')#R#"
 
 [db_annovar_intervar_sqlite]
 source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{buildver}}_{{version}}.sqlite.sql.gz"
 version_newest = "intervar_20170202"
 version_available = ["intervar_20170202"]
 buildver_available = "hg19"
-install = "#R#sql2sqlite('{{buildver}}_{{version}}.sqlite.sql', sqlite.path = '{{buildver}}_{{version}}.sqlite')#R#"
+install = "#R#sql2sqlite('{{buildver}}_{{version}}.sqlite.sql', dbname = '{{buildver}}_{{version}}.sqlite')#R#"
 
 [db_annovar_cadd_sqlite]
 source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{buildver}}_{{version}}.sqlite.sql.gz"
 version_newest = "cadd13"
 version_available = ["cadd13", "cadd13gt10", "cadd13gt20", "cadd", "caddgt10", "caddgt20"]
 buildver_available = "hg19"
-install = "#R#sql2sqlite('{{buildver}}_{{version}}.sqlite.sql', sqlite.path = '{{buildver}}_{{version}}.sqlite')#R#"
+install = "#R#sql2sqlite('{{buildver}}_{{version}}.sqlite.sql', dbname = '{{buildver}}_{{version}}.sqlite')#R#"
 
 [db_annovar_nci60_sqlite]
 source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{buildver}}_{{version}}.sqlite.sql.gz"
 version_newest = "nci60"
 version_available = "nci60"
 buildver_available = "hg19"
-install = "#R#sql2sqlite('{{buildver}}_{{version}}.sqlite.sql', sqlite.path = '{{buildver}}_{{version}}.sqlite')#R#"
+install = "#R#sql2sqlite('{{buildver}}_{{version}}.sqlite.sql', dbname = '{{buildver}}_{{version}}.sqlite')#R#"
 
 [db_annovar_icgc_sqlite]
 source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{buildver}}_{{version}}.sqlite.sql.gz"
 version_newest = "icgc21"
 version_available = "icgc21"
 buildver_available = "hg19"
-install = "#R#sql2sqlite('{{buildver}}_{{version}}.sqlite.sql', sqlite.path = '{{buildver}}_{{version}}.sqlite')#R#"
+install = "#R#sql2sqlite('{{buildver}}_{{version}}.sqlite.sql', dbname = '{{buildver}}_{{version}}.sqlite')#R#"
 
 [db_annovar_dbnsfp_sqlite]
 source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{buildver}}_{{version}}.sqlite.sql.gz"
 version_newest = "dbnsfp33a"
 version_available = ["dbnsfp33a", "dbnsfp31a_interpro", "dbnsfp30a"]
 buildver_available = "hg19"
-install = "#R#sql2sqlite('{{buildver}}_{{version}}.sqlite.sql', sqlite.path = '{{buildver}}_{{version}}.sqlite')#R#"
+install = "#R#sql2sqlite('{{buildver}}_{{version}}.sqlite.sql', dbname = '{{buildver}}_{{version}}.sqlite')#R#"
 
 [db_annovar_normal_pool]
-source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{buildver}}_normal{{version}}.txt"
-decompress = false
+source_url = ["http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{buildver}}_normal{{version}}.txt.gz"]
 version_newest = "2016sih_wes_ball"
-version_available = ['2016sih_wes_ball', '2016sih_wes_tall', '2016sih_wes_nkt', '2016sih_wgs_nkt', '2016sih_wgs_dlbcl']
+version_available = ['2016sih_wes_ball', '2016sih_wes_tall', '2016sih_wes_nkt', '2016sih_wgs_nkt', '2016sih_wgs_dlbcl', '2018sih_wgs_nkt_full']
 buildver_available = "hg19"
 description = "Variants called from normal control samples (SIH)"
+
+[db_annovar_normal_pool_sqlite]
+source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{buildver}}_normal{{version}}.sql.gz"
+version_newest = "2018sih_wgs_nkt_full_sqlite"
+version_available = ['2018sih_wgs_nkt_full_sqlite']
+buildver_available = "hg19"
+install = "#R#sql2sqlite('{{buildver}}_normal{{version}}.sql', dbname = '{{buildver}}_normal{{version}}.sqlite')#R#"
+description = "Variants called from normal control samples (SIH), big files"
 
 [db_annovar_epi_genes]
 source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{buildver}}_epi_genes_{{version}}.txt"
@@ -517,7 +524,7 @@ description = "Variants data download from http://varcards.biols.ac.cn, Varcards
 source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{buildver}}_{{version}}.sql.gz"
 version_available = "varcards"
 buildver_available = "hg19"
-install = "#R#sql2sqlite('{{buildver}}_{{version}}.sqlite.sql', sqlite.path = '{{buildver}}_{{version}}.sqlite')#R#"
+install = "#R#sql2sqlite('{{buildver}}_{{version}}.sqlite.sql', dbname = '{{buildver}}_{{version}}.sqlite')#R#"
 
 [db_annovar_hgnc]
 source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{buildver}}_{{version}}.txt.gz"
@@ -566,61 +573,61 @@ tmcsnpdb="TMC-SNPDB: SNP database from whole exome data of 62 normal samples der
 source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{buildver}}_{{version}}.sqlite.sql.gz"
 version_available = ["REDIportal"]
 buildver_available = "hg19"
-install = "#R#sql2sqlite('{{buildver}}_{{version}}.sqlite.sql', sqlite.path = '{{buildver}}_{{version}}.sqlite')#R#"
+install = "#R#sql2sqlite('{{buildver}}_{{version}}.sqlite.sql', dbname = '{{buildver}}_{{version}}.sqlite')#R#"
 
 [db_annovar_gme_sqlite]
 source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{buildver}}_{{version}}.sqlite.sql.gz"
 version_available = ["gme"]
 buildver_available = "hg19"
-install = "#R#sql2sqlite('{{buildver}}_{{version}}.sqlite.sql', sqlite.path = '{{buildver}}_{{version}}.sqlite')#R#"
+install = "#R#sql2sqlite('{{buildver}}_{{version}}.sqlite.sql', dbname = '{{buildver}}_{{version}}.sqlite')#R#"
 
 [db_annovar_hrcr1_sqlite]
 source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{buildver}}_{{version}}.sqlite.sql.gz"
 version_available = ["hrcr1"]
 buildver_available = "hg19"
-install = "#R#sql2sqlite('{{buildver}}_{{version}}.sqlite.sql', sqlite.path = '{{buildver}}_{{version}}.sqlite')#R#"
+install = "#R#sql2sqlite('{{buildver}}_{{version}}.sqlite.sql', dbname = '{{buildver}}_{{version}}.sqlite')#R#"
 
 [db_annovar_revel_sqlite]
 source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{buildver}}_{{version}}.sqlite.sql.gz"
 version_available = ["revel"]
 buildver_available = "hg19"
-install = "#R#sql2sqlite('{{buildver}}_{{version}}.sqlite.sql', sqlite.path = '{{buildver}}_{{version}}.sqlite')#R#"
+install = "#R#sql2sqlite('{{buildver}}_{{version}}.sqlite.sql', dbname = '{{buildver}}_{{version}}.sqlite')#R#"
 
 [db_annovar_mcap_sqlite]
 source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{buildver}}_{{version}}.sqlite.sql.gz"
 version_available = ["mcap"]
 buildver_available = "hg19"
-install = "#R#sql2sqlite('{{buildver}}_{{version}}.sqlite.sql', sqlite.path = '{{buildver}}_{{version}}.sqlite')#R#"
+install = "#R#sql2sqlite('{{buildver}}_{{version}}.sqlite.sql', dbname = '{{buildver}}_{{version}}.sqlite')#R#"
 
 [db_annovar_exac03_sqlite]
 source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{buildver}}_{{version}}.sqlite.sql.gz"
 version_available = ["exac03", "exac03nonpsych", "exac03nontcga"]
 buildver_available = "hg19"
-install = "#R#sql2sqlite('{{buildver}}_{{version}}.sqlite.sql', sqlite.path = '{{buildver}}_{{version}}.sqlite')#R#"
+install = "#R#sql2sqlite('{{buildver}}_{{version}}.sqlite.sql', dbname = '{{buildver}}_{{version}}.sqlite')#R#"
 
 [db_annovar_gnomad_sqlite]
 source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{buildver}}_{{version}}.sqlite.sql.gz"
 version_available = ["gnomad_exome", "gnomad_genome"]
 buildver_available = "hg19"
-install = "#R#sql2sqlite('{{buildver}}_{{version}}.sqlite.sql', sqlite.path = '{{buildver}}_{{version}}.sqlite')#R#"
+install = "#R#sql2sqlite('{{buildver}}_{{version}}.sqlite.sql', dbname = '{{buildver}}_{{version}}.sqlite')#R#"
 
 [db_annovar_popfreq_sqlite]
 source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{buildver}}_{{version}}.sqlite.sql.gz"
 version_available = ["popfreq_all_20150413", "popfreq_max_20150413"]
 buildver_available = "hg19"
-install = "#R#sql2sqlite('{{buildver}}_{{version}}.sqlite.sql', sqlite.path = '{{buildver}}_{{version}}.sqlite')#R#"
+install = "#R#sql2sqlite('{{buildver}}_{{version}}.sqlite.sql', dbname = '{{buildver}}_{{version}}.sqlite')#R#"
 
 [db_annovar_gwava_sqlite]
 source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{buildver}}_{{version}}.sqlite.sql.gz"
 version_available = ["gwava"]
 buildver_available = "hg19"
-install = "#R#sql2sqlite('{{buildver}}_{{version}}.sqlite.sql', sqlite.path = '{{buildver}}_{{version}}.sqlite')#R#"
+install = "#R#sql2sqlite('{{buildver}}_{{version}}.sqlite.sql', dbname = '{{buildver}}_{{version}}.sqlite')#R#"
 
 [db_annovar_eigen_sqlite]
 source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{buildver}}_{{version}}.sqlite.sql.gz"
 version_available = ["eigen"]
 buildver_available = "hg19"
-install = "#R#sql2sqlite('{{buildver}}_{{version}}.sqlite.sql', sqlite.path = '{{buildver}}_{{version}}.sqlite')#R#"
+install = "#R#sql2sqlite('{{buildver}}_{{version}}.sqlite.sql', dbname = '{{buildver}}_{{version}}.sqlite')#R#"
 
 [db_annovar_dhs_gene_connectivity]
 source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{buildver}}_{{version}}.txt.gz"
@@ -650,13 +657,13 @@ description = "eQTLs of GTEx significant variant gene paris."
 source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{buildver}}_{{version}}.sqlite.sql.gz"
 version_available = "rddpred_mes"
 buildver_available = "hg19"
-install = "#R#sql2sqlite('{{buildver}}_{{version}}.sqlite.sql', sqlite.path = '{{buildver}}_{{version}}.sqlite')#R#"
+install = "#R#sql2sqlite('{{buildver}}_{{version}}.sqlite.sql', dbname = '{{buildver}}_{{version}}.sqlite')#R#"
 
 [db_annovar_lncediting_sqlite]
 source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{buildver}}_{{version}}.sqlite.sql.gz"
 version_available = "lncediting"
 buildver_available = "hg19"
-install = "#R#sql2sqlite('{{buildver}}_{{version}}.sqlite.sql', sqlite.path = '{{buildver}}_{{version}}.sqlite')#R#"
+install = "#R#sql2sqlite('{{buildver}}_{{version}}.sqlite.sql', dbname = '{{buildver}}_{{version}}.sqlite')#R#"
 
 [db_annovar_civic_gene_summaries]
 source_url = "https://civic.genome.wustl.edu/downloads/{{version}}/{{version}}-GeneSummaries.tsv"
@@ -687,7 +694,7 @@ source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{buildver}}_{
 version_available = "intogen_20180119"
 buildver_available = ["hg19"]
 description = "Merged intogen table intogen_mutations_catalog [Driver or passenger mutations]. https://www.intogen.org/downloads"
-install = "#R#sql2sqlite('{{buildver}}_{{version}}.sqlite.sql', sqlite.path = '{{buildver}}_{{version}}.sqlite')#R#"
+install = "#R#sql2sqlite('{{buildver}}_{{version}}.sqlite.sql', dbname = '{{buildver}}_{{version}}.sqlite')#R#"
 
 [db_annovar_disgenet]
 source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{version}}.txt.gz"
@@ -700,3 +707,9 @@ source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{version}}.tx
 version_available = ["cancer_hotspots_v2"]
 buildver_available = ["hg19", "hg38"]
 description = "See http://cancerhotspots.org/#/home Hotspot Results V2 sheet1"
+
+[db_annovar_abraom]
+source_url = ["http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.gz"]
+version_available = ["abraom"]
+buildver_available = ["hg19", "hg38"]
+description = "abraom: 2.3 million [Brazilian genomic variants](https://www.ncbi.nlm.nih.gov/pubmed/28332257)"
