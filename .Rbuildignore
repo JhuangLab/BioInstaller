@@ -4,5 +4,7 @@
 ^.*\.test
 ^data-raw$
 .travis.yml
+_pkgdown.yml
+README.Rmd
 Makefile
 Dockerfile
