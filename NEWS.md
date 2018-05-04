@@ -1,13 +1,56 @@
-# BioInstaller v0.3.3
+# BioInstaller 0.3.3
 
-## Softwares
+## New features
 
-- Supported 148 softwares
+* Supported 148 softwares
 
-## Databases
+* Supported 169 databases
 
-- Supported 169 databases
+* Multiple resources file be supported
 
-## Bug Fixed
+* Adjust and set db, github, nongithub, web and docker in inst/extdata/config
 
-- Fixed a bug when set save.to.db to FALSE. It can raise installed fail
+* Meta information of software and database be added in newly supported items
+
+* Decompress can be auto-recognized
+
+* Docker supported
+
+
+## Minor bugs fixed
+
+* change.info default is to write tempfile() now
+
+* Fixed a bug when set save.to.db to FALSE. It can raise installed fail
+
+# BioInstaller 0.2.1
+
+## New features
+
+* ANNOVAR databases can be download using inst/extdata/databases/ANNOVAR.toml
+
+* Move databases toml file to inst/extdata/databases/
+
+* `local.source` be supported (Don't need download the source code again when it were download already)
+
+* Function `docker.pull` and `docker.search` be added to download and search docker repo
+
+* Function `craw.all.versions` be added to crawl source code of all version (Sotwares or databases)
+
+# BioInstaller 0.1.2
+
+## New features
+
+* #R# CMD #R# marked the R CMD need to be runed
+
+* glue parse be supported
+
+* Softwares versions of github.cfg be fetched from github API
+
+* destdir and download.dir can be setted respectively
+
+* `verbose` default is TRUE, show log infomation
+
+## Minor bugs fixed
+
+* Fix `unlink()` clean tests files fail on windows (force = TRUE)

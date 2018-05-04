@@ -30,6 +30,9 @@ r_packages:
   - rvest
   - prettydoc
 
+r_github_packages:
+  - ropensci/git2r
+
 after_failure:
   - ./travis-tool.sh dump_logs
 

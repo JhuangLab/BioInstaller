@@ -1,3 +1,8 @@
+2018-05-04 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
+
+		* design the BioInstaller logo
+		* use pkgdown to generate document html site
+
 2018-04-29 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
 
 		* add picky, freec, oncodriveclust, sequenza, taxmaps, 

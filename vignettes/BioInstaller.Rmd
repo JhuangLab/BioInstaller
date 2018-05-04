@@ -4,15 +4,16 @@ author: "Jianfeng Li"
 date: "`r Sys.Date()`"
 output:
   prettydoc::html_pretty:
-      toc: true
-      theme: cayman
-      highlight: github
-      pdf_document:
-  toc: true
+    toc: true
+    theme: cayman
+    highlight: github
+  pdf_document:
+    toc: true
 vignette: >
   %\VignetteIndexEntry{Introduction to BioInstaller}
   %\VignetteEngine{knitr::rmarkdown}
   \usepackage[utf8]{inputenc}
+  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r, echo = FALSE}
@@ -184,4 +185,12 @@ config.toml <- system.file("extdata", "config/db/db_main.toml",
   package = "BioInstaller")
 install.bioinfo('db_diseaseenhancer', download.dir = download.dir, 
   nongithub.cfg = config.toml)
+```
+
+## Session info
+
+Here is the output of `sessionInfo()` on the system on which this document was compiled:
+
+```{r echo=FALSE}
+sessionInfo()
 ```
