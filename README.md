@@ -11,48 +11,12 @@ Status](https://travis-ci.org/JhuangLab/BioInstaller.svg)](https://travis-ci.org
 
 ## Introduction
 
-BioInstaller is a downloader and installer of bio-software and
-bio-databases. The inspiration for this project comes from the various
-types package manager, such as [pip](https://pypi.python.org/pypi/pip)
-for Python package, `install.packages` for R package, biocLite for
+[BioInstaller](https://life2cloud.com/tools/bioinstaller) is a
+downloader and installer of bio-software and bio-databases. The
+inspiration for this project comes from the various types package
+manager, such as [pip](https://pypi.python.org/pypi/pip) for Python
+package, `install.packages` for R package, biocLite for
 [Bioconductor](http://www.bioconductor.org) R package, etc.
-
-**Why we do not have an integrated bioinformatics database and software
-package manager?**
-
-In fact, there are already some tools can complete part of the work:
-
-[Conda](https://conda.io/docs/intro.html) and
-[BioConda](http://bioconda.github.io) have done a lot of work and we can
-use them to conveniently install some of the bioinformatics software.
-But there are still many problems with these package managers, such as
-version updating not timely, incompatible to some pre-compiled programs,
-little support for the database and other non-software files.
-
-[docker](https://www.docker.com/) is another kind very promising tool to
-complete the migration of the analytical environment. But the root
-authority is required that it’s difficult for you to always get root
-privileges.
-
-Furthermore, learning how to install and compile bioinformatics software
-is still necessary, because these ‘unpleasant’ experience will help you
-to improve the ability to debug and modify programs.
-
-As for me, when starting some NGS analysis work on a new computer or
-operating system, I have to spend much time and energy to establish a
-complete set of software and dependent files and set the corresponding
-configuration file.
-
-BioInstaller can help us to download, install and manage a variety of
-bioinformatics tools and databases more easily and systematically.
-
-What’s more, BioInstaller provides a different way to download and
-install your files, software, and databases for others, more detail can
-be found in another vignette [Examples of Templet Configuration
-File](https://CRAN.R-project.org/package=BioInstaller/vignettes/write_configuration_file.html).
-
-A simple guide can be found in
-[here](https://CRAN.R-project.org/package=BioInstaller/vignettes/BioInstaller.html).
 
 **Feature**:
 
@@ -100,42 +64,38 @@ devtools::install_github("JhuangLab/BioInstaller")
 
 **Quality Control:**
 
-  - FastQC, PRINSEQ, SolexaQA, FASTX-Toolkit
+  - FastQC, PRINSEQ, SolexaQA, FASTX-Toolkit …
 
 **Alignment and Assembly:**
 
   - BWA, STAR, TMAP, Bowtie, Bowtie2, tophat2, hisat2, GMAP-GSNAP,
     ABySS, SSAHA2, Velvet, Edean, Trinity, oases, RUM, MapSplice2,
-    NovoAlign
+    NovoAlign …
 
 **Variant Detection:**
 
   - GATK, Mutect, VarScan2, FreeBayes, LoFreq, TVC, SomaticSniper,
     Pindel, Delly, BreakDancer, FusionCatcher, Genome STRiP, CNVnator,
-    CNVkit, SpeedSeq
+    CNVkit, SpeedSeq …
 
 **Variant Annotation:**
 
-  - ANNOVAR, SnpEff, VEP, oncotator
+  - ANNOVAR, SnpEff, VEP, oncotator …
 
 **Utils:**
 
   - htslib, samtools, bcftools, bedtools, bamtools, vcftools, sratools,
     picard, HTSeq, seqtk, UCSC Utils(blat, liftOver), bamUtil, jvarkit,
-    bcl2fastq2, fastq\_tools
+    bcl2fastq2, fastq\_tools …
 
 **Genome:**
 
-  - hisat2\_reffa, ucsc\_reffa, ensemble\_reffa
-
-**CHIP-seq Analysis:**
-
-  - MACS, CEAS
+  - hisat2\_reffa, ucsc\_reffa, ensemble\_reffa …
 
 **Others:**
 
   - sparsehash, SQLite, pigz, lzo, lzop, bzip2, zlib, armadillo, pxz,
-    ROOT, curl, xz, pcre, R, gatk\_bundle, ImageJ, igraph
+    ROOT, curl, xz, pcre, R, gatk\_bundle, ImageJ, igraph …
 
 **Databases:**
 
@@ -143,7 +103,7 @@ devtools::install_github("JhuangLab/BioInstaller")
     dgidb, diseaseenhancer, drugbank, ecodrug, expression\_atlas,
     funcoup, gtex, hpo, inbiomap, interpro, medreaders, mndr, msdd,
     omim, pancanqtl, proteinatlas, remap2, rsnp3, seecancer,
-    srnanalyzer, superdrug2, tumorfusions, varcards
+    srnanalyzer, superdrug2, tumorfusions, varcards …
 
 ## Docker
 

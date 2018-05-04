@@ -2,6 +2,7 @@
 
 		* design the BioInstaller logo
 		* use pkgdown to generate document html site
+		* update README.md and improve vignettes
 
 2018-04-29 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
 

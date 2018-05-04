@@ -9,13 +9,13 @@ navbar:
   title: ~
   type: default
   left:
+  - text: Get started
+    href: articles/BioInstaller.html
   - text: Reference
     href: reference/index.html
   - text: Articles
     menu:
-    - text: Introduction to BioInstaller
-      href: articles/BioInstaller.html
-    - text: Custom you configuration files
+    - text: Write Your Own Configuration File
       href: articles/write_configuration_file.html
   - text: News
     href: news/index.html
