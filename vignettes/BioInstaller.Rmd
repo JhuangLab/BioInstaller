@@ -39,15 +39,19 @@ establish a complete set of software and dependent files with the corresponding 
 
 BioInstaller can help us to download, install and manage a variety of bioinformatics tools and databases.
 
-What's more, BioInstaller provides a different way to download and install your files, softwares, and databases. More detail can be found in another vignette [Examples of Templet Configuration File](https://CRAN.R-project.org/package=BioInstaller/vignettes/write_configuration_file.html).
+What's more, BioInstaller provides a different way to download and install your files, softwares, and databases. More detail can be found in another vignette [Write Your Own Configuration File](https://life2cloud.com/tools/bioinstaller/articles/write_configuration_file.html).
 
 **Feature**:
 
+- More attention for those software and database resource that not be
+  included in the other software warehouse
 - Extendible
-- Craw the source code and version information from the original site
-- One step installation or download softwares and databases (Partial dependence supported)
+- Download the source code and version information from the original site
+- One step installation or download software and databases (Partial
+  dependence supported)
+- A software and database resources pool
 
-## Core Functions
+## Core functions
 
 Function `set.biosoftwares.db()` can be used to set a database file saving the information of installed software and database.
 
@@ -59,13 +63,14 @@ set.biosoftwares.db(tempfile())
 # Show all avaliable softwares/dependece in default inst/extdata/config/github/github.toml 
 # and inst/extdata/config/nongithub/nongithub.toml
 x <- install.bioinfo(show.all.names = TRUE)
-
+```
+```{r echo = FALSE}
 suppressWarnings(
-  knitr::kable(col.names = c("", "", ""), matrix(x, ncol=3), caption = sprintf("Softwares and databases supported by BioInstaller (n=%s)", length(x)))
+  DT::datatable(matrix(x, ncol=3), caption = sprintf("Sotware and database supported by BioInstaller (n=%s)", length(x)))
 )
 ```
 
-If you known the `name` of software/database, the followed command can to get its available versions.
+When setting the `show.all.versions` to `TRUE`, the versions of software and database will be returned.
 
 ```{r}
 # Fetching versions of softwares
@@ -74,7 +79,7 @@ install.bioinfo(name = 'samtools', show.all.versions = TRUE)
 
 Parameter `verbose` in `install.bioinfo` can be used to show the extra debug information. 
 
-Besdes, if you only want to download the source code or raw database files to a specific directory, the parameter `download.dir` and `download.only`are required. 
+Besides, if you only want to download the source code or raw database files to a specific directory, the parameter `download.dir` and `download.only`are required. 
 
 ```{r}
 # Install 'demo' with debug infomation
@@ -87,7 +92,13 @@ install.bioinfo('demo', download.dir = download.dir,
   download.only = TRUE, verbose = TRUE)
 ```
 
-After the download step finished, commonly you need to install the softwares by several commands or a script. BioInstaller provides `destdir` to simulate `./configure --prefix={{destdir}}; make; make install` for compiling C program. It will create `bin` directory in the `destdir`, and copy the executable files. If you want to download in `A` and install to `B`, it is required to simultaneously set the parameters `destdir` and `download.dir`.
+After finishing the download step, typically, you need to install the software by running several commands or an installation script. BioInstaller stores the related installation script or commands in the configuration files, and you can one-click to install the related software or database.
+
+Besides, BioInstaller will pass several parameters to installation command or script. Just like `destdir` of `./configure --prefix={{destdir}}; make; make install` for compiling C program.
+
+It is optional to create `bin` directory in the `destdir`, and copy all the executable files in it. The `bin` in `destdir` can be set in the variable `PATH` for re-use in any other working directory.
+
+If you want to download the source code in `A` directory and install it to `B` directory, you need to simultaneously set the parameters `destdir` and `download.dir`in function `install.bioinfo`.
 
 ```{r}
 # Set download.dir and destdir (destdir like /usr/local 
@@ -100,7 +111,7 @@ install.bioinfo('demo', download.dir = download.dir, destdir = destdir)
 
 ## Saved informations after installation
 
-It is important to save related inforamtion of instaltion, and can help you to use the softwares or database in the other pipeline. So, after installed the softwares and database, BioInstaller will save the informations, such as softwares name, version, path, update time, in the database file setted by function `set.biosoftwares.db()`, which also defeind by environment variable `BIO_SOFWARES_DB_ACTIVE`. 
+It is important to save related information of installation. This step can help you to use the software or database in the other pipeline. So, after installed the software and database, BioInstaller will save the information, such as software name, version, path, update time, in the database file set by function `set.biosoftwares.db()`, which also defined by environment variable `BIO_SOFWARES_DB_ACTIVE`.
 
 ```{r}
 temp.db <- tempfile()
@@ -112,9 +123,9 @@ download.dir <- sprintf('%s/demo_1', tempdir())
 install.bioinfo('demo', download.dir = download.dir, verbose = FALSE)
 ```
 
-Function `get.info()` can be used to get the saved informations of installed softwares and databases. 
+Function `get.info()` can be used to get the saved information of installed software and databases.
 
-When you want to delete the saved inforamtion, you can use function `del.info`.
+When you want to delete the saved information, you can use function `del.info`.
 
 ```{r}
 config <- get.info('demo')
@@ -130,11 +141,11 @@ del.info('demo')
 
 ## Local mode
 
-Local mode of BioInstaller was userful when you have download the source code or database file, and have not run the install steps. softwawre. 
+Local mode of BioInstaller was useful when you have downloaded the source code or database file, and have not run the install steps.
 
-Tips about local mode:
+Tips:
 
-- Github software/database: a cloned directory were required 
+- Github software/database: a cloned directory were required
 - Non-github software/database: a decompressed directory or a compressed archive.
 
 ```{r}
@@ -149,7 +160,7 @@ install.bioinfo('demo_2', download.dir = download.dir, local.source = sprintf('%
 
 ## Download all versions
 
-Function `craw.all.version` is the simplest method to download all avaliable URL files in nongithub or datatabase files.
+Function `craw.all.version` is the simplest method to download all available URL files in nongithub or database files.
 
 ```{r}
 download.dir <- sprintf('%s/craw_all_versions', tempdir())
@@ -158,7 +169,7 @@ craw.all.versions('demo', download.dir = download.dir)
 
 ## Meta information of software and database
 
-Function `get.meta` can be used to get all softwares and databases meta inforamtion, such as description and publication, supported by BioInstaller. 
+Function `get.meta` can be used to get all software and databases meta information, such as description and publication, supported by BioInstaller.
 
 ```{r}
 # Get all meta source files
@@ -191,15 +202,15 @@ db_meta_file
 
 ## Download database
 
-Database files are required for almost all bioinformatics data analysis pipeline, especialy for sequnce mapping and annotation steps. We hope BioInstaller can help you to access these resources easily in R, and you can use function `install.bioinfo` directly download the supported databases.
+Database files are required for almost all bioinformatics data analysis pipeline, especially for sequence mapping and annotation steps. We hope BioInstaller can help you to access these resources easily in R, and you can use the function `install.bioinfo` directly download the supported databases.
 
 ```{r}
 # get all database name
 library(stringr)
 x <- install.bioinfo(show.all.names = T)
-x <- x[str_detect(x, "^db_|reffa")]
+x <- x[str_detect(x, "^db_|reffa|bundle")]
 suppressWarnings(
-  knitr::kable(col.names = c("", "", ""), matrix(x, ncol=3), caption = sprintf("Softwares and databases supported by BioInstaller (n=%s)", length(x)))
+  DT::datatable(matrix(x, ncol=3), caption = sprintf("Database supported by BioInstaller (n=%s)", length(x)))
 )
 
 # all databases config 

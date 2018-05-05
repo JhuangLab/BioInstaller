@@ -26,5 +26,6 @@ RoxygenNote: 6.0.1
 Suggests: knitr,
     rmarkdown,
     testthat,
-    prettydoc
+    prettydoc,
+    DT
 VignetteBuilder: knitr

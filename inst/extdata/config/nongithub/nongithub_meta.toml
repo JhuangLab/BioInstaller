@@ -7,21 +7,20 @@ cfg_dir = "@>@system.file('extdata', 'config/nongithub', package = 'BioInstaller
 [nongithub.item.gmap]
 title = "GMAP: A Genomic Mapping and Alignment Program for mRNA and EST Sequences, and GSNAP: Genomic Short-read Nucleotide Alignment Program"
 description = "The programs GMAP and GSNAP, for aligning RNA-Seq and DNA-Seq datasets to genomes, have evolved along with advances in biological methodology to handle longer reads, larger volumes of data, and new types of biological assays. The genomic representation has been improved to include linear genomes that can compare sequences using single-instruction multiple-data (SIMD) instructions, compressed genomic hash tables with fast access using SIMD instructions, handling of large genomes with more than four billion bp, and enhanced suffix arrays (ESAs) with novel data structures for fast access. Improvements to the algorithms have included a greedy match-and-extend algorithm using suffix arrays, segment chaining using genomic hash tables, diagonalization using segmental hash tables, and nucleotide-level dynamic programming procedures that use SIMD instructions and eliminate the need for F-loop calculations. Enhancements to the functionality of the programs include standardization of indel positions, handling of ambiguous splicing, clipping and merging of overlapping paired-end reads, and alignments to circular chromosomes and alternate scaffolds. The programs have been adapted for use in pipelines by integrating their usage into R/Bioconductor packages such as gmapR and HTSeqGenie, and these pipelines have facilitated the discovery of numerous biological phenomena."
-publication = [
-"Wu T D, Watanabe C K. GMAP: a genomic mapping and alignment program for mRNA and EST sequences[J]. Bioinformatics, 2005, 21(9): 1859-1875.",
-"Wu T D, Reeder J, Lawrence M, et al. GMAP and GSNAP for genomic sequence alignment: enhancements to speed, accuracy, and functionality[J]. Statistical Genomics: Methods and Protocols, 2016: 283-334."]
-publication_doi = ["10.1093/bioinformatics/bti310", "10.1007/978-1-4939-3578-9_15"]
-publication_date = [2005, 2016]
+publication = """Wu T D, Watanabe C K. GMAP: a genomic mapping and alignment program for mRNA and EST sequences[J]. Bioinformatics, 2005, 21(9): 1859-1875. doi: 10.1093/bioinformatics/bti310; Wu T D, Reeder J, Lawrence M, et al. GMAP and GSNAP for genomic sequence alignment: enhancements to speed, accuracy, and functionality[J]. Statistical Genomics: Methods and Protocols, 2016: 283-334. doi: 10.1007/978-1-4939-3578-9_15"""
 tag = ["Genomics", "NGS", "Genomic alignment", "DNA-seq", "RNA-seq", "mRNA", "Whole Transcriptome Sequencing", 
 "EST"]
 
 [nongithub.item.gridss]
 title = "GRIDSS: sensitive and specific genomic rearrangement detection using positional de Bruijn graph assembly."
+description = "The identification of genomic rearrangements with high sensitivity and specificity using massively parallel sequencing remains a major challenge, particularly in precision medicine and cancer research. Here, we describe a new method for detecting rearrangements, GRIDSS (Genome Rearrangement IDentification Software Suite). GRIDSS is a multithreaded structural variant (SV) caller that performs efficient genome-wide break-end assembly prior to variant calling using a novel positional de Bruijn graph-based assembler. By combining assembly, split read, and read pair evidence using a probabilistic scoring, GRIDSS achieves high sensitivity and specificity on simulated, cell line, and patient tumor data, recently winning SV subchallenge #5 of the ICGC-TCGA DREAM8.5 Somatic Mutation Calling Challenge. On human cell line data, GRIDSS halves the false discovery rate compared to other recent methods while matching or exceeding their sensitivity. GRIDSS identifies nontemplate sequence insertions, microhomologies, and large imperfect homologies, estimates a quality score for each breakpoint, stratifies calls into high or low confidence, and supports multisample analysis."
+publication = "Cameron D L, Schroeder J, Penington J S, et al. GRIDSS: sensitive and specific genomic rearrangement detection using positional de Bruijn graph assembly[J]. Genome Research, 2017, 27(12). doi: 10.1101/gr.222109.117"
 tag = ["NGS", "SV"]
 
 [nongithub.item.interproscan]
 title = "Protein sequence analysis & classification"
 description = "InterProScan is the software package that allows sequences (protein and nucleic) to be scanned against InterPro's signatures. Signatures are predictive models, provided by several different databases, that make up the InterPro consortium."
+publication = "Zdobnov E M, Apweiler R. InterProScan – an integration platform for the signature-recognition methods in InterPro[J]. Bioinformatics, 2001, 17(9):847-848. doi: PMID: 11590104"
 tag = ["Protein", "Classification"]
 
 [nongithub.item.subread]
@@ -54,9 +53,7 @@ publication = "Challis D. etc. An integrative variant analysis suite for whole e
 [nongithub.item.beagle]
 title = "Beagle, a software package that performs genotype calling, genotype phasing, imputation of ungenotyped markers, and identity-by-descent segment detection."
 description = """Beagle version 4.1 has a more accurate genotype phasing algorithm and a very fast and accurate genotype imputation algorithm. Version 4.1 also has several changes to the command line arguments which are described in the release notes. The "ped" argument has no effect in version 4.1. If your data contains nuclear families and you want to model the parent-offspring relationships when phasing genotypes, please use version 4.0."""
-publication = ["S R Browning and B L Browning (2007) Rapid and accurate haplotype phasing and missing data inference for whole genome association studies by use of localized haplotype clustering. Am J Hum Genet 81:1084-1097. doi:10.1086/521987", 
-               "B L Browning and S R Browning (2013). Improving the accuracy and efficiency of identity-by-descent detection in population data. Genetics 194(2):459-71. doi:10.1534/genetics.113.150029",
-               "B L Browning and S R Browning (2016). Genotype imputation with millions of reference samples. Am J Hum Genet 98:116-126. doi:10.1016/j.ajhg.2015.11.020"]
+publication = """S R Browning and B L Browning (2007) Rapid and accurate haplotype phasing and missing data inference for whole genome association studies by use of localized haplotype clustering. Am J Hum Genet 81:1084-1097. doi:10.1086/521987; B L Browning and S R Browning (2013). Improving the accuracy and efficiency of identity-by-descent detection in population data. Genetics 194(2):459-71. doi:10.1534/genetics.113.150029; B L Browning and S R Browning (2016). Genotype imputation with millions of reference samples. Am J Hum Genet 98:116-126. doi:10.1016/j.ajhg.2015.11.020"""
 
 [nongithub.item.contest]
 title = "ContEst is a tool (and method) for estimating the amount of cross-sample contamination in next generation sequencing data.  Using a Bayesian framework, contamination levels are estimated from array based genotypes and sequencing reads."
@@ -66,9 +63,7 @@ publication = "Cibulskis K, Mckenna A, Fennell T, et al. ContEst: estimating cro
 [nongithub.item.rmats]
 title = "Multivariate Analysis of Transcript Splicing (MATS)"
 description = "MATS is a computational tool to detect differential alternative splicing events from RNA-Seq data. The statistical model of MATS calculates the P-value and false discovery rate that the difference in the isoform ratio of a gene between two conditions exceeds a given user-defined threshold. From the RNA-Seq data, MATS can automatically detect and analyze alternative splicing events corresponding to all major types of alternative splicing patterns. MATS handles replicate RNA-Seq data from both paired and unpaired study design."
-publication = ["Shen S., Park JW., Lu ZX., Lin L., Henry MD., Wu YN., Zhou Q., Xing Y. rMATS: Robust and Flexible Detection of Differential Alternative Splicing from Replicate RNA-Seq Data. PNAS, 111(51):E5593-601. doi: 10.1073/pnas.1419161111", 
-            "Park JW., Tokheim C., Shen S., Xing Y. Identifying differential alternative splicing events from RNA sequencing data using RNASeq-MATS. Methods in Molecular Biology: Deep Sequencing Data Analysis, 2013;1038:171-179 doi: 10.1007/978-1-62703-514-9_10", 
-            "Shen S., Park JW., Huang J., Dittmar KA., Lu ZX., Zhou Q., Carstens RP., Xing Y. MATS: A Bayesian Framework for Flexible Detection of Differential Alternative Splicing from RNA-Seq Data. Nucleic Acids Research, 2012;40(8):e61 doi: 10.1093/nar/gkr1291"]
+publication = """Shen S., Park JW., Lu ZX., Lin L., Henry MD., Wu YN., Zhou Q., Xing Y. rMATS: Robust and Flexible Detection of Differential Alternative Splicing from Replicate RNA-Seq Data. PNAS, 111(51):E5593-601. doi: 10.1073/pnas.1419161111; Park JW., Tokheim C., Shen S., Xing Y. Identifying differential alternative splicing events from RNA sequencing data using RNASeq-MATS. Methods in Molecular Biology: Deep Sequencing Data Analysis, 2013;1038:171-179 doi: 10.1007/978-1-62703-514-9_10; Shen S., Park JW., Huang J., Dittmar KA., Lu ZX., Zhou Q., Carstens RP., Xing Y. MATS: A Bayesian Framework for Flexible Detection of Differential Alternative Splicing from RNA-Seq Data. Nucleic Acids Research, 2012;40(8):e61 doi: 10.1093/nar/gkr1291"""
 
 [nongithub.item.prada]
 title = "PRADA : Pipeline for RNA-Sequencing Data Analysis"
@@ -86,8 +81,7 @@ publication = "PRADA: pipeline for RNA sequencing data analysis[J]. Bioinformati
 [nongithub.item.igv]
 title = "The Integrative Genomics Viewer (IGV)"
 description = "The Integrative Genomics Viewer (IGV) is a high-performance visualization tool for interactive exploration of large, integrated genomic datasets. It supports a wide variety of data types, including array-based and next-generation sequence data, and genomic annotations."
-publication = ["Integrative Genomics Viewer. Nature Biotechnology 29, 24–26 (2011)", 
-               "Integrative Genomics Viewer (IGV): high-performance genomics data visualization and exploration. Briefings in Bioinformatics 14, 178-192 (2013)."]
+publication = """Integrative Genomics Viewer. Nature Biotechnology 29, 24–26 (2011); Integrative Genomics Viewer (IGV): high-performance genomics data visualization and exploration. Briefings in Bioinformatics 14, 178-192 (2013)."""
 
 
 [nongithub.item.marina]

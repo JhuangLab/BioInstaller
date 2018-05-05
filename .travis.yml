@@ -29,6 +29,7 @@ r_packages:
   - RCurl
   - rvest
   - prettydoc
+  - DT
 
 r_github_packages:
   - ropensci/git2r

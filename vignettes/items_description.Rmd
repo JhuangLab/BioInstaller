@@ -1,0 +1,68 @@
+---
+title: "Description of software and database"
+author: "Jianfeng Li"
+date: "`r Sys.Date()`"
+output:
+  prettydoc::html_pretty:
+    toc: true
+    theme: cayman
+    highlight: github
+  pdf_document:
+    toc: true
+vignette: >
+  %\VignetteIndexEntry{Description of software and database}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(comment = "#>", collapse = TRUE)
+get_dt <- function(item) {
+  Name <- names(item)
+  Description <- unname(unlist(lapply(item, function(x){
+    if (is.na(x["description"])) return("")
+    return(x["description"])}))
+  )
+  Publication <- unname(unlist(lapply(item, function(x){
+    if (is.na(x["publication"])) return("")
+    return(x["publication"])}))
+  )
+  data.frame(Name, Description)
+}
+```
+
+## Description of software and database
+
+Meta information of software and database were saved in the followed files. You can get the file list by command `unname(unlist(get.meta()[1:4]))`.
+
+```{r}
+library(BioInstaller)
+meta_info <- get.meta(read.config.params = list(rcmd.parse = TRUE))
+unname(unlist(meta_info[1:4]))
+```
+
+The followed tables show partial items description have been collected in BioInstaller package including `Github items`, `Non-github items` and `Database items`.
+
+### Github items
+
+```{r echo = FALSE}
+DT::datatable(get_dt(meta_info$github$item), escape = FALSE)
+```
+
+### Non-github items
+
+```{r echo = FALSE}
+DT::datatable(get_dt(meta_info$nongithub$item), escape = FALSE)
+```
+
+### Database items
+
+```{r echo = FALSE}
+DT::datatable(get_dt(meta_info$db$item), escape = FALSE)
+```
+
+## A curated list of resources for learning bioinformatics
+
+BioInstaller also provides a simplified and curated list of resources for learning bioinformatics, such as sequencing method, web service, command-line tools and database resources. You can get it from [here](https://github.com/JhuangLab/Bioinformatics-Resources).
+

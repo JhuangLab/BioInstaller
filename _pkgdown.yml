@@ -15,6 +15,8 @@ navbar:
     href: reference/index.html
   - text: Articles
     menu:
+    - text: Description of software and database
+      href: articles/items_description.html
     - text: Write Your Own Configuration File
       href: articles/write_configuration_file.html
   - text: News

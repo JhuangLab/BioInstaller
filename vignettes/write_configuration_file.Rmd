@@ -20,9 +20,9 @@ vignette: >
 knitr::opts_chunk$set(comment = "#>", collapse = TRUE)
 ```
 
-Configuration files in BioInstaller are important. We used these configuration files to stored the software and databases URL, script of installation, and other userful informations. 
+Configuration files in BioInstaller are important. We used these configuration files to stored the software and databases URL, the script of installation, and other useful information.
 
-Most of configuration files be parsed by [configr](https://github.com/Miachol/configr). Compared with original configr package syntex `#R# R CMD #R#` is a different point. It can be used to mark those R format command. 
+Most of the configuration files are parsed by [configr](https://github.com/Miachol/configr). Compared with original configr package syntax `#R# R CMD #R#` is a different point. It can be used to mark those R format command.
 
 ## github.toml, nongithub.toml and db.toml
 
@@ -30,13 +30,13 @@ Built-in configuration files: `github.toml`, `nongithub.toml` and `db.toml (db_a
 
 ### Softwares and databases deposited on Github 
 
-Variables to control the download and installation steps of softwares and databases deposited on github:
+Variables to control the download and installation steps of software and databases deposited on github:
 
 - If you set `use_git2r` to `false`, BioInstaller will use the [git](https://en.wikipedia.org/wiki/Git) of your system.
 - If you set `use_git2r` to `false` and setted `recursive_clone` to `true`, BioInstaller will run this command `git clone --recursive https://path/repo`
 - You can use the `before_install` stored the pre-installation steps
 - The `install` mainly be used to store the installation steps. Besides, you can use your own installation script and setted it to `#R# system('/path/yourscript')#R#`
-- The `make_dir` is the compile directory of software and database. Because the workdir of R default will be setted to `download.dir`, and need be changed to `make_dir` finish `install` steps.
+- The `make_dir` is the compile directory of software and database. Because the workdir of R default will be set to `download.dir`, and need be changed to `make_dir` finish `install` steps.
 
 ```toml
 [bwa]
@@ -55,16 +55,16 @@ linux = "make"
 mac = "make"
 ```
 
-Github softwares version control can be done by `git2r` package and github tag [API](https://developer.github.com/v3). Source url of softwares or files deposited in github can be found by `github_url` in `github.toml`.
+Github software version control can be done by `git2r` package and github tag [API](https://developer.github.com/v3). Source URL of software or files deposited in github can be found by `github_url` in `github.toml`.
 
 ### Softwares and databases of non-github
 
-Variables to control the download and installation steps of softwares and databases not be deposited on github:
+Variables to control the download and installation steps of software and databases not be deposited on github:
 
-- `github_url` be replaced by `source_url` 
-- If you want to download mulitple files in the source_url, you need to set `url_all_download` to `true`.
-- [rvest](https://cran.r-project.org/package=rvest) and [RCurl](https://cran.r-project.org/package=RCurl) packages can be used to parse the version infomation of softwares or databases of non-github.
-- If you don't want to use the built-in version reorder function, you need to set `version_order_fixed` to `true` . Optional, if the file count of source code was only one, you can set `url_all_download` to `false` and writing multiple URL. It will help you to avoid the invalid URL caused download fail.
+- `github_url` be replaced by `source_url`
+- If you want to download multiple files in the source_url, you need to set `url_all_download` to `true`.
+- [rvest](https://cran.r-project.org/package=rvest) and [RCurl](https://cran.r-project.org/package=RCurl) packages can be used to parse the version information of software or databases of non-github.
+- If you don't want to use the built-in version reorder function, you need to set `version_order_fixed` to `true`. Optional, if the file count of source code was only one, you can set `url_all_download` to `false` and writing multiple URL. It will help you to avoid the invalid URL caused download fail.
 
 ```toml
 [gmap]
@@ -86,9 +86,9 @@ mac = ["sed -i s/\"## CFLAGS='-O3 -m64' .*\"/\"CFLAGS='-O3 -m64'\"/ config.site"
 "./configure --prefix=`pwd` && make && make install"]
 ```
 
-Version control of non-github softwares and databases need a function parsing URL and use `{{version}}` to replace in the `source_url`.
+Version control of non-github software and databases need a function parsing URL and use `{{version}}` to replace in the `source_url`.
 
-Besides, BioInstaller use [configr](https://github.com/Miachol/configr) `glue` to reduce the length of files name. It can help you to use less word to storage more files name.
+Besides, BioInstaller uses [configr](https://github.com/Miachol/configr) `glue` to reduce the length of files name. It can help you to use less word to store more files name.
 
 ```{r}
 library(configr)
@@ -108,16 +108,16 @@ install.bioinfo(nongithub.cfg = blast.databases, github.cfg = mask.github,
 
 ## Reading from BIO_SOFTWARES_DB_ACTIVE database
 
-To resolve the some softwares dependence, BioInstall using the `{{key:value}}` format expression, and get its value from BioInstall `BIO_SOFWARES_DB_ACTIVE` database.
+To resolve some software dependence, BioInstaller using the `{{key:value}}` format expression, and get its value from B`BIO_SOFWARES_DB_ACTIVE` database.
 
-For example, `htslib` is the dependce of Pindel, and we use `./INSTALL {{htslib:source.dir}}` as the install step of Pindel. In the session of R, the value of `{{htslib:source.dir}}` will be replaced by the real value stored in `BIO_SOFTWARES_DB_ACTIVE` or `db` in `install.bioinfo` function.
+For example, `htslib` is the dependence of Pindel, and we use `./INSTALL {{htslib:source.dir}}` as the install step of Pindel. In the session of R, the value of `{{htslib:source.dir}}` will be replaced by the real value stored in `BIO_SOFTWARES_DB_ACTIVE` or `db` in `install.bioinfo` function.
 
 ## Parsing from `install.bioinfo` parameter `extra.list`
 
 To improve the flexibility of configuration templet, BioInstall using the `{{parameters}}` format expression to get the function `install.bioinfo` parameter `extra.list`. Noteably,  the `name`, `version`, `os.version`, `destdir` were default pass to `extra.list`.
 
-For example, source_url of `GMAP` need the `version` value, and we use `source_url = "http://research-pub.gene.com/gmap/src/{{version}}.tar.gz"` as the download URL. In the session of R, the `{{version}}` will be replaced by the `version` parameter value of `install.bioinfo` (if version were `NULL`, it will be setted to be the newst version).
+For example, source_url of `GMAP` need the `version` value, and we use `source_url = "http://research-pub.gene.com/gmap/src/{{version}}.tar.gz"` as the download URL. In the session of R, the `{{version}}` will be replaced by the `version` parameter value of `install.bioinfo` (if the version were `NULL`, it will be set to be the newest version).
 
 ## More operation of configuration file
 
-[configr](https://github.com/Miachol/configr) was another package to parse the configuration file. More examples, can be found in [here](https://github.com/Miachol/configr).
+[configr](https://github.com/Miachol/configr) was another package to parse the configuration file. More examples can be found in [here](https://github.com/Miachol/configr).

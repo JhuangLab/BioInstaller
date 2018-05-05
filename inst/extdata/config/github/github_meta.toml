@@ -24,6 +24,8 @@ publication = "Patel R K, Jain M. NGS QC Toolkit: a toolkit for quality control 
 
 [github.item.trimgalore]
 title = "A wrapper around Cutadapt and FastQC to consistently apply adapter and quality trimming to FastQ files, with extra functionality for RRBS data"
+description = "Trim Galore! is a wrapper script to automate quality and adapter trimming as well as quality control, with some added functionality to remove biased methylation positions for RRBS sequence files (for directional, non-directional (or paired-end) sequencing)."
+publication = ""
 
 [github.item.multiqc]
 title = "Aggregate results from bioinformatics analyses across many samples into a single report."

@@ -23,11 +23,10 @@ package, `install.packages` for R package, biocLite for
   - More attention for those software and database resource that not be
     included in the other software warehouse
   - Extendible
-  - Craw the source code and version information from the original site
+  - Download the source code and version information from the original site
   - One step installation or download software and databases (Partial
     dependence supported)
-  - A software and database resources
-pool
+  - A software and database resources pool
 
 ## Installation
 
