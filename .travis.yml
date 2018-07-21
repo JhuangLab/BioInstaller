@@ -15,6 +15,9 @@ os:
 apt_packages:
   - libcurl4-openssl-dev
 
+brew_packages:
+  - libgit2
+
 r_packages:
   - covr
   - devtools

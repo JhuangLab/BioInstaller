@@ -1,0 +1,60 @@
+[CEMiTool.ui.sections]
+order = ["readfiles"]
+[CEMiTool.ui.sections.ui_basic]
+readfiles = "title = 'Input files', status = 'primary', width = 12, collapsed = FALSE, collapsible = TRUE"
+
+[CEMiTool.paramters.readfiles]
+# For reading annovarR shiny APP CEMiTool tool input files
+section_type = "input"
+rcmd_last = """
+if (exp_dat != "") {
+  expr0 <- fread(exp_dat)
+} else {
+  data(expr0)
+}
+data(sample_annot)
+
+int_fname <- system.file("extdata", "interactions.tsv", package = "CEMiTool")
+int_df <- read.delim(int_fname)
+
+gmt_fname <- system.file("extdata", "pathways.gmt", package = "CEMiTool")
+gmt_in <- read_gmt(gmt_fname)
+
+out_dir <- sprintf("~/.annovarR/output/%s", qqkey)
+out_dir = normalizePath(out_dir, mustWork = FALSE)
+dir.create(out_dir, recursive = TRUE)
+setwd(out_dir)
+
+cem <- cemitool(expr0, sample_annot, gmt_in, interactions=int_df,
+                filter=TRUE, plot=TRUE, verbose=TRUE)
+
+
+
+generate_report(cem, directory= sprintf("%s/Report", out_dir),
+                output_format=c("pdf_document", "html_document"))
+write_files(cem, directory=sprintf("%s/Tables", out_dir), force=TRUE)
+save_plots(cem, "all", directory=sprintf("%s/Plots", out_dir))
+
+"""
+progressbar_message = ""
+render_id = "CEMiTool_readfiles"
+
+#!!!!! input_ui_order required related section
+input_ui_order = ["single_input", "start_analysis"]
+
+[CEMiTool.paramters.readfiles.input.single_input]
+title = "Single sample anlayais:"
+title_control = "class = 'input-section-p'"
+varname = ["exp_dat"]
+input_id = ["input_exp_dat"]
+type = ["shiny::selectInput"]
+label = ["Gene expression matrix"]
+[CEMiTool.paramters.readfiles.input.single_input.choices]
+exp_dat = "!!glue {c('', featch_files()$file_path)}"
+[CEMiTool.paramters.readfiles.input.single_input.selected]
+exp_dat = ""
+
+[CEMiTool.paramters.readfiles.input.start_analysis]
+input_id = "start_CEMiTool_analysis"
+type = "shiny::actionButton"
+label = "Submit"

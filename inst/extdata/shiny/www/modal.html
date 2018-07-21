@@ -1,0 +1,25 @@
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        {{task_title}}
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <h4>Submit success! </h4>
+                    <p>Please copy and backup the followed messages. It is required to access the output or run in your command line client.</p>
+                    <p>You can access the result via input key in the dashbord page: <pre>{{task_key}}</pre> </p>
+                    <p>Commands and paramters:<pre>{{task_msg}}</pre></p>
+                    <p>Note: qqcomand is the main command. qqcommand_type is the command type, such as R, bash, python, and etc. qqkey is the key to download the output</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+</div>

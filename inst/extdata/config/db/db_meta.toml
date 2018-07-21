@@ -298,3 +298,14 @@ description = """Cancer Genome Interpreter is designed to support the identifica
 With a list of genomic alterations and the cancer type as input, the CGI identifies validated driver alterations and annotates and classifies the remaining variants of unknown significance. Then, alterations that are biomarkers of drug response or interact with existing chemical compounds are identified according to current knowledge."""
 publication = "Cancer Genome Interpreter Annotates The Biological And Clinical Relevance Of Tumor Alterations. bioRxiv 140475; doi: https://doi.org/10.1101/140475"
 tag = ["NGS", "database"]
+
+[db.item.oncokb]
+title = "Precision Oncology Knowledge Base"
+description = """To date, > 3,000 unique mutations, fusions, and copy number alterations in 418 cancerassociated
+genes have been annotated. To test the utility of OncoKB, we annotated all genomic
+events in 5,983 primary tumor samples in 19 cancer types. Forty-one percent of samples harbored
+at least one potentially actionable alteration, of which 7.5% were predictive of clinical
+benefit from a standard treatment. OncoKB annotations are available through a public Web
+resource (http://oncokb.org) and are incorporated into the cBioPortal for Cancer Genomics to
+facilitate the interpretation of genomic alterations by physicians and researchers."""
+publication = "Chakravarty D, Gao J, Phillips S M, et al. OncoKB: A Precision Oncology Knowledge Base.[J]. Jco Precision Oncology, 2017, 2017."

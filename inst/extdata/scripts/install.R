@@ -1,0 +1,2 @@
+library(BioInstaller)
+install.bioinfo()

@@ -339,3 +339,7 @@ version_available = ["all_gene_disease_associations", "all_gene_disease_pmid_ass
 [db_cgi]
 source_url = ["http://bioinfo.rjh.com.cn/download/bioinstaller/cgi/{{version}}_latest.zip"]
 version_available = ["cancer_bioactivities", "catalog_of_cancer_genes", "catalog_of_validated_oncogenic_mutations", "cgi_biomarkers"]
+
+[db_oncokb]
+source_url = "http://oncokb.org/api/v1/utils/{{version}}.txt"
+version_available = ["allAnnotatedVariants", "allActionableVariants"]
