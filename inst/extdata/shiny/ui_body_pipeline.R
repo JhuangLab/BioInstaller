@@ -6,8 +6,8 @@ get_pipeline_tabItem_ui <- function() {
 
   body_pipeline_tabItem <- tabItem("pipeline",
                                    tabsetPanel(type = 'pills',
-                                               tabPanel('CEMiTool',
-                                                        fluidRow(eval(parse(text = paste0(unname(CEMiTool_boxes), collapse = ",")))))
+                                               tabPanel('Easy project',
+                                                        fluidRow(eval(parse(text = paste0(unname(easy_project_boxes[1]), collapse = ","))))                                                        )
                                    )
   )
 }

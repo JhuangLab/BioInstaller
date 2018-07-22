@@ -294,7 +294,7 @@ generate_submit_server_object <- function(input, output, ui_server_config, tooln
     msg <- jsonlite::toJSON(params)
     queue <- liteq::ensure_queue(shiny_queue_name, db = queue_db)
     while(TRUE) {
-      tryCatch({liteq::publish(queue, title = "Annotation", message = msg);break},
+      tryCatch({liteq::publish(queue, title = "Tasks", message = msg);break},
                  error = function(e) {})
     }
     output <- dashbord_section_server(input, output)
@@ -304,7 +304,7 @@ generate_submit_server_object <- function(input, output, ui_server_config, tooln
         assign("html_text_task_submit_modal", html_text, envir = globalenv())
         return(html_text)
       })
-      html_text <- stringr::str_replace_all(html_text, '\\{\\{task_title\\}\\}', "Downloader")
+      html_text <- stringr::str_replace_all(html_text, '\\{\\{task_title\\}\\}', "Message")
       html_text <- stringr::str_replace_all(html_text, '\\{\\{task_key\\}\\}', params$qqkey)
       html_text <- stringr::str_replace_all(html_text, '\\{\\{task_msg\\}\\}', encodeString(msg))
       html_text <- sprintf("%s<script>$('#myModal').modal('show')</script>", html_text)
@@ -316,6 +316,6 @@ generate_submit_server_object <- function(input, output, ui_server_config, tooln
 }
 
 
-CEMiTool_server <- function(input, output){
-  output <- generate_submit_server_object(input, output, config.CEMiTool, "CEMiTool", "CEMiTool")
+easy_project_server <- function(input, output){
+  output <- generate_submit_server_object(input, output, config.easy_project, "easy_project")
 }

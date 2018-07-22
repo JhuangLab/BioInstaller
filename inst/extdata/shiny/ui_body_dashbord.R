@@ -57,6 +57,14 @@ get_dashbord_tabItem_ui <- function() {
           collapsible = TRUE,
           collapsed = TRUE,
           withSpinner(DT::dataTableOutput("r_env_info_monitor"), type = 8)
+        ),
+        box(
+          title = "Files in the PATH",
+          width = 12,
+          status = "primary",
+          collapsible = TRUE,
+          collapsed = TRUE,
+          withSpinner(DT::dataTableOutput("files_of_path_monitor"), type = 8)
         )
       )
   )

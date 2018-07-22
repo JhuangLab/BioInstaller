@@ -1,0 +1,42 @@
+[easy_project.ui.sections]
+order = ["new_proj"]
+[easy_project.ui.sections.ui_basic]
+new_proj = "title = 'New bioinformatics analysis project', status = 'primary', width = 12, collapsed = FALSE, collapsible = TRUE"
+
+[easy_project.paramters.new_proj]
+# For reading annovarR shiny APP easy_project tool input files
+section_type = "input"
+rcmd_last = """
+parent_dir <- normalizePath(parent_dir, mustWork = FALSE)
+project_dir <- normalizePath(file.path(parent_dir, project_name), mustWork = FALSE)
+analysis_dirs <- c(paste0("rnaseq/", c("exp", "fusion", "splicing", "mutation")),
+                   paste0("dnaseq/", c("wes/mutation", "wgs/mutation", "chip/peak")))
+data_dirs <- c("fastq", "fasta", "bam", "vcf", "meta")
+meta_json <- list(project_dir = project_dir, project_name = project_name,
+  create_time = format(Sys.time(), "%Y-%m-%d %H:%M:%S"),
+creator = Sys.getenv("USER"))
+meta_json$project_id <- git2r::hash(sprintf("%s,%s",
+                                    meta_json$project_name, meta_json$create_time))
+sapply(sprintf("%s/%s", project_dir, c(file.path("analysis", analysis_dirs),
+                                       file.path("data", data_dirs))),
+                                       function(x) {dir.create(x, recursive = TRUE)})
+configr::write.config(meta_json, file.path(project_dir, "project.json"), write.type = "json")
+"""
+progressbar_message = ""
+render_id = "easy_project_new_proj"
+
+#!!!!! input_ui_order required related section
+input_ui_order = ["single_input", "start_analysis"]
+
+[easy_project.paramters.new_proj.input.single_input]
+title = "Parameters:"
+title_control = "class = 'input-section-p'"
+varname = ["project_name", "parent_dir"]
+input_id = ["input_project_name", "input_parent_dir"]
+type = ["shiny::textInput", "shiny::textInput"]
+label = ["Project Name", "Project parent dir"]
+
+[easy_project.paramters.new_proj.input.start_analysis]
+input_id = "start_easy_project_analysis"
+type = "shiny::actionButton"
+label = "Submit"

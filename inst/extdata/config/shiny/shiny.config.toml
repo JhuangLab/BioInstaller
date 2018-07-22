@@ -52,7 +52,7 @@ supported_genome_version = ["hg19", "hg38", "mm10", "mm9"]
 upload_dir = "~/.annovarR/upload"
 
 [shiny_download]
-download_dir = "~/.annovarR/db"
+download_dir = "~/.BioInstaller/download"
 
 [shiny_queue]
 name = "BioInstaller_shiny"
@@ -60,7 +60,7 @@ queue_db = "~/.BioInstaller/BioInstaller.shiny.queue.sqlite"
 log_dir = "~/.BioInstaller/log"
 
 [shiny_tools]
-pipeline = ["CEMiTool"]
+pipeline = ["easy_project"]
 
 [shiny_output]
 out_dir = "~/.BioInstaller/output"

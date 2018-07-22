@@ -183,6 +183,13 @@ dashbord_section_server <- function(input, output) {
   output <- custom_render_DT(output, "r_packages_info_monitor", "installed.packages()")
   output <- custom_render_DT(output, "r_env_info_monitor", "x <- Sys.getenv(); y <- unname(x); attributes(y) <- NULL; data.frame(var=names(x), value=y)")
 
+  output <- custom_render_DT(output, "files_of_path_monitor",
+"result <- NULL; for(x in str_split(Sys.getenv('PATH'), ':')[[1]]) {
+  files <- list.files(x)
+  files <- file.path(x, files)
+  result <- rbind(result, data.frame(files, file.info(files)))
+  row.names(result) <- NULL
+}; result[,c(1:3, 5:ncol(result))]")
   render_task_table <- function() {
     req(input$task_table_key)
     con <- DBI::dbConnect(RSQLite::SQLite(), db_path)

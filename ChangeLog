@@ -1,3 +1,8 @@
+2018-07-22 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
+
+		* Add easy_project plugin in pipeline
+		* Add files_of_path_monitor plugin in dashbord
+
 2018-07-21 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
 
 		* Initial Shiny application
