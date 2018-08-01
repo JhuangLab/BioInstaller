@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# BioInstaller <img src="man/figures/logo.png" align="right" />
+# BioInstaller <img src="https://github.com/JhuangLab/BioInstaller/raw/master/man/figures/logo.png" align="right" />
 
 [![Build
 Status](https://travis-ci.org/JhuangLab/BioInstaller.svg)](https://travis-ci.org/JhuangLab/BioInstaller)

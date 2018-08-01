@@ -17,7 +17,7 @@ description = "UCSC goldenPath/{{buildver}}/database/cytoBand.txt.gz"
 after_success = "#R#file.rename('cytoBand.txt', '{{buildver}}_cytoBand.txt')#R#"
 
 [db_ucsc_knowngene]
-source_url = ["http://hgdownload.cse.ucsc.edu/goldenPath/{{buildver}}/database/knownGene.txt.gz", 
+source_url = ["http://hgdownload.cse.ucsc.edu/goldenPath/{{buildver}}/database/knownGene.txt.gz",
               "http://hgdownload.cse.ucsc.edu/goldenPath/{{buildver}}/database/kgXref.txt.gz"]
 decompress = "!!glue {rep(TRUE, 2)}"
 version_newest = "knowngene"
@@ -52,8 +52,8 @@ description = "UCSC Transcription Factor ChIP-seq (161 factors) from ENCODE with
 after_success = "#R#file.rename('wgEncodeRegTfbsClustered{{version}}.bed', '{{buildver}}_wgEncodeRegTfbsClustered{{version}}.bed')#R#"
 
 [db_annovar_refgene]
-source_url = ["http://www.openbioinformatics.org/annovar/download/{{buildver}}_refGene.txt.gz", 
-              "http://www.openbioinformatics.org/annovar/download/{{buildver}}_refGeneMrna.fa.gz", 
+source_url = ["http://www.openbioinformatics.org/annovar/download/{{buildver}}_refGene.txt.gz",
+              "http://www.openbioinformatics.org/annovar/download/{{buildver}}_refGeneMrna.fa.gz",
               "http://www.openbioinformatics.org/annovar/download/{{buildver}}_refGeneVersion.txt.gz"]
 decompress = [true, true, true]
 version_newest = "refgene"
@@ -62,8 +62,8 @@ buildver_available = ["hg38", "hg19"]
 description = "FASTA sequences for all annotated transcripts in RefSeq Gene"
 
 [db_annovar_knowngene]
-source_url = ["http://www.openbioinformatics.org/annovar/download/{{buildver}}_knownGene.txt.gz", 
-              "http://www.openbioinformatics.org/annovar/download/{{buildver}}_knownGeneMrna.fa.gz", 
+source_url = ["http://www.openbioinformatics.org/annovar/download/{{buildver}}_knownGene.txt.gz",
+              "http://www.openbioinformatics.org/annovar/download/{{buildver}}_knownGeneMrna.fa.gz",
               "http://www.openbioinformatics.org/annovar/download/{{buildver}}_kgXref.txt.gz"]
 decompress = [true, true, true]
 version_newest = "knowngene"
@@ -72,7 +72,7 @@ buildver_available = ["hg19", "hg18"]
 description = "FASTA sequences for all annotated transcripts in UCSC Known Gene"
 
 [db_annovar_ensgene]
-source_url = ["http://www.openbioinformatics.org/annovar/download/{{buildver}}_ensGene.txt.gz", 
+source_url = ["http://www.openbioinformatics.org/annovar/download/{{buildver}}_ensGene.txt.gz",
               "http://www.openbioinformatics.org/annovar/download/{{buildver}}_ensGeneMrna.fa.gz"]
 decompress = [true, true]
 version_newest = "ensgene"
@@ -81,7 +81,7 @@ buildver_available = ["hg19"]
 description = "FASTA sequences for all annotated transcripts in ENSEMBL Gene"
 
 [db_annovar_avsnp]
-source_url = ["http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.gz", 
+source_url = ["http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.gz",
               "http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.idx.gz"]
 decompress = [true, true]
 version_newest = "avsnp150"
@@ -286,8 +286,8 @@ version_newest = "clinvar_20170905"
 version_available = ["clinvar_20131105", "clinvar_20140211", "clinvar_20140303",
                      "clinvar_20140702", "clinvar_20140902", "clinvar_20140929",
                      "clinvar_20150330", "clinvar_20150629", "clinvar_20151201",
-                     "clinvar_20160302", "clinvar_20161128", "clinvar_20170130", 
-                     "clinvar_20170501", "clinvar_20170905"]
+                     "clinvar_20160302", "clinvar_20161128", "clinvar_20170130",
+                     "clinvar_20170501", "clinvar_20170905", "clinvar_20180603"]
 description = "CLINVAR database with Variant Clinical Significance (unknown, untested, non-pathogenic, probable-non-pathogenic, probable-pathogenic, pathogenic, drug-response, histocompatibility, other) and Variant disease name"
 [db_annovar_clinvar.buildver_available]
 clinvar_20140929 = "hg19"
@@ -303,7 +303,7 @@ version_newest = "popfreq_all_20150413"
 version_available = ["popfreq_max_20150413", "popfreq_all_20150413"]
 buildver_available = ["hg19"]
 [db_annovar_popfreq.description]
-popfreq_max_20150413 = "A database containing the maximum allele frequency from 1000G, ESP6500, ExAC and CG46" 
+popfreq_max_20150413 = "A database containing the maximum allele frequency from 1000G, ESP6500, ExAC and CG46"
 popfreq_all_20150413 = "A database containing all allele frequency from 1000G, ESP6500, ExAC and CG46"
 
 [db_annovar_mitimpact]
@@ -446,8 +446,8 @@ install = "#R#sql2sqlite('{{buildver}}_{{version}}.sqlite.sql', dbname = '{{buil
 
 [db_annovar_clinvar_sqlite]
 source_url = "http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{buildver}}_{{version}}.sqlite.sql.gz"
-version_newest = "clinvar_20170130"
-version_available = ["clinvar_20170130"]
+version_newest = "clinvar_20180603"
+version_available = ["clinvar_20170130", "clinvar_20170501", "clinvar_20170905", "clinvar_20180603"]
 buildver_available = "hg19"
 install = "#R#sql2sqlite('{{buildver}}_{{version}}.sqlite.sql', dbname = '{{buildver}}_{{version}}.sqlite')#R#"
 

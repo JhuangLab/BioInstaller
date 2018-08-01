@@ -3,9 +3,6 @@
 [shiny_db]
 db_type = "sqlite"
 db_path = "~/.BioInstaller/BioInstaller.shiny.sqlite"
-db_username = ""
-db_password = ""
-db_port = 3306
 
 [shiny_db_table]
 # user_table for storing users information, e.g username, passsword, uid

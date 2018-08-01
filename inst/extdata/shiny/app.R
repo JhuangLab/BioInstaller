@@ -1,6 +1,7 @@
 pkgs.shiny <- c("shinycssloaders", "Cairo", "shinydashboard", "configr",
                 "data.table", "shinyjs", "liteq", "DT", "ggplot2", "benchmarkme",
-                "stringr")
+                "stringr", "R.utils", 
+                "RSQLite")
 sapply(pkgs.shiny, function(x) {
   require(x, character.only = TRUE)
 })
@@ -15,7 +16,7 @@ get_tabItems <- function () {
   source("config.R")
   items <- c("introduction", "dashbord",
              "file_viewer", "pipeline",
-             "upload", "download")
+             "upload", "download", "setting")
   body_items <- sprintf("get_%s_tabItem_ui()", items)
   cmd <- sprintf("tabItems(%s)", paste0(body_items, collapse = ", "))
   eval(parse(text = cmd))
@@ -33,6 +34,7 @@ sidebar <- dashboardSidebar(
     menuItem("File Viewer", tabName = "file_viewer", icon = icon("file")),
     menuItem("Upload", tabName = "upload", icon = icon("cloud-upload")),
     menuItem("Installer", icon = icon("cloud-download"), tabName = "download"),
+    menuItem("Setting", icon = icon("gears"), tabName = "setting"),
     menuItem("Source code for app", icon = icon("file-code-o"),
              href = "https://github.com/JhuangLab/BioInstaller/blob/master/inst/extdata/tools/shiny/R/app.R")
   )
@@ -58,9 +60,10 @@ server <- function(input, output, session) {
     source(i, encoding = "UTF-8")
   }
   output <- render_input_box_ui(input, output)
-  for(tool in unlist(annovarR_shiny_tools_list)) {
+  for(tool in unlist(shiny_tools_list)) {
     eval(parse(text = sprintf('output <- %s_server(input, output)', tool)))
   }
+  output <- setting_server(input, output)
   out <- server_upload_file(input, output, session)
   output <- out$output
   session <- out$session

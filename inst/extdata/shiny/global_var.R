@@ -2,9 +2,19 @@ skin <- Sys.getenv("DASHBOARD_SKIN")
 skin <- tolower(skin)
 
 # Read configuration file and set the environment vars
-config.file <- Sys.getenv("BIOINSTALLER_SHINY_CONFIG", system.file("extdata", "config/shiny/shiny.config.toml",
+config.file.template <- Sys.getenv("BIOINSTALLER_SHINY_CONFIG", system.file("extdata", "config/shiny/shiny.config.yaml",
                                                                package = "BioInstaller"))
-config <- read.config(config.file, file.type = "toml")
+if (!file.exists(config.file.template)) config.file.template <- system.file("extdata", "config/shiny/shiny.config.yaml",
+                                                               package = "BioInstaller")
+config <- read.config(config.file.template, file.type = "yaml")
+db_dirname<- dirname(config$shiny_db$db_path)
+config.file <- sprintf("%s/shiny.config.yaml", db_dirname)
+if (!dir.exists(db_dirname)) {
+  dir.create(db_dirname)
+}
+if (!file.exists(config.file)) file.copy(config.file.template, sprintf("%s/shiny.config.yaml", db_dirname))
+Sys.setenv(BIOINSTALLER_SHINY_CONFIG = sprintf("%s/shiny.config.yaml", db_dirname))
+
 db_type <- config$shiny_db$db_type
 db_path <- normalizePath(config$shiny_db$db_path, mustWork = FALSE)
 if (!dir.exists(dirname(db_path))) dir.create(dirname(db_path), recursive = TRUE)
@@ -29,9 +39,9 @@ output_file_table_name <- config$shiny_db_table$output_file_table_name
 
 shiny_preview <- config$shiny_preview
 
-annovarR_shiny_tools <- unname(unlist(config$shiny_tools))
-annovarR_shiny_tools_list <- config$shiny_tools
-annovarR_shiny_tools_path <- config$shiny_tools_path
+shiny_tools <- unname(unlist(config$shiny_tools))
+shiny_tools_list <- config$shiny_tools
+shiny_tools_path <- config$shiny_tools_path
 
 options(shiny.maxRequestSize = 30000 * 1024^2)
 
@@ -57,7 +67,7 @@ featch_files <- function(file_types = NULL) {
 
 update_configuration_files <- function(){
 
-  for(toolname in annovarR_shiny_tools) {
+  for(toolname in shiny_tools) {
     config <-  configr::read.config(system.file("extdata", sprintf("config/shiny/shiny.%s.parameters.toml", toolname),
                                                 package = "BioInstaller"), rcmd.parse = TRUE, glue.parse = TRUE, file.type = "toml")
     assign(sprintf("config.%s", toolname), config, envir = globalenv())
@@ -65,7 +75,7 @@ update_configuration_files <- function(){
 }
 
 render_input_box_ui <- function(input, output) {
-  for(tool_name in annovarR_shiny_tools) {
+  for(tool_name in shiny_tools) {
     config <- get(sprintf("config.%s", tool_name), envir = globalenv())
     items <- config[[tool_name]]$ui$sections$order
     for(item in items) {
@@ -261,7 +271,7 @@ set_preview <- function(id, id_prefix = "files_view_", dt_id = "file_preview_DT"
         DBI::dbDisconnect(con)
         file_content <- fread(upload_table_data$file_path)
         return(file_content)
-      }, rownames = FALSE, editable = FALSE, caption = "All files stored in annovarR shinyapp Web service",
+      }, rownames = FALSE, editable = FALSE, caption = "All files stored in shinyapp Web service",
       escape = FALSE, extensions = c("Buttons", "Scroller"), options = list(dom = "Bfrtlip",
       searchHighlight = TRUE, scrollX = TRUE, buttons = c("copy", "csv",
       "excel", "pdf", "print"), lengthMenu = list(list(5, 10, 25, 50, -1),
@@ -320,5 +330,43 @@ update_ui_coices <- function() {
 
       }
     }
+  }
+}
+
+sql2sqlite <- function (sql.file = "", statements = "", dbname = "", verbose = FALSE,
+          ...)
+{
+  out.sqlite <- dbname
+  if (sql.file != "") {
+    info.msg(sprintf("Converting %s to %s sqlite database.",
+                     sql.file, out.sqlite), verbose = verbose)
+  }
+  else {
+    info.msg(sprintf("Converting sql to %s sqlite database.",
+                     out.sqlite), verbose = verbose)
+  }
+  if (statements != "") {
+    con <- do.call(dbConnect, list(SQLite(), out.sqlite))
+    statements <- str_split(statements, ";\n")[[1]]
+    func <- function(line) {
+      print.vb(line, verbose = verbose)
+      print.vb(rs, verbose = verbose)
+      rs <- dbSendQuery(con, line, ...)
+      dbClearResult(rs)
+    }
+    sapply(statements, func)
+    dbDisconnect(con)
+  }
+  else {
+    sqlite <- Sys.which(c("sqlite3", "sqlite"))
+    sqlite <- sqlite[sqlite != ""][1]
+    sqlite <- unname(sqlite)
+    if (is.na(sqlite)) {
+      return(FALSE)
+    }
+    sqlite <- normalizePath(sqlite, "/")
+    cmd <- sprintf("%s %s < %s", sqlite, out.sqlite, sql.file)
+    info.msg(sprintf("Running CMD:%s", cmd), verbose = verbose)
+    system2(sqlite, args = out.sqlite, stdin = sql.file)
   }
 }

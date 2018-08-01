@@ -188,6 +188,7 @@ dashbord_section_server <- function(input, output) {
   files <- list.files(x)
   files <- file.path(x, files)
   result <- rbind(result, data.frame(files, file.info(files)))
+  result <- result[!is.na(result[,2]),]
   row.names(result) <- NULL
 }; result[,c(1:3, 5:ncol(result))]")
   render_task_table <- function() {
