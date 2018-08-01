@@ -18,7 +18,8 @@ install.bioinfo(name = c(), download.dir = c(), destdir = c(),
   download.only = FALSE, decompress = TRUE, dependence.need = TRUE,
   showWarnings = FALSE, extra.list = list(), rcmd.parse = TRUE,
   bash.parse = TRUE, glue.parse = TRUE, glue.flag = "!!glue",
-  save.to.db = TRUE, license = "", verbose = TRUE, ...)
+  save.to.db = TRUE, license = "", overwrite = FALSE, verbose = TRUE,
+  ...)
 }
 \arguments{
 \item{name}{Software name}
@@ -74,6 +75,8 @@ system.file('extdata', 'demo/softwares_db_demo.yaml', package = 'BioInstaller'))
 \item{save.to.db}{Ligical indicating wheather save the install infomation in db}
 
 \item{license}{The BioInstaller download license code.}
+
+\item{overwrite}{Force delete the destdir or download dir without a interactive message (careful)}
 
 \item{verbose}{Ligical indicating wheather show the log message}
 

@@ -7,8 +7,8 @@
 #' @param license The BioInstaller download license code. 
 #' @export
 #' @examples
-#' craw.all.versions('demo')
-craw.all.versions <- function(name, download.dir = "./", nongithub.cfg = c(system.file("extdata", 
+#' crawl.all.versions('demo')
+crawl.all.versions <- function(name, download.dir = "./", nongithub.cfg = c(system.file("extdata", 
   "config/nongithub/nongithub.toml", package = "BioInstaller"), system.file("extdata", 
   "config/db/db_main.toml", package = "BioInstaller"), system.file("extdata", "config/db/db_annovar.toml", 
   package = "BioInstaller"), system.file("extdata", "config/db/db_blast.toml", 

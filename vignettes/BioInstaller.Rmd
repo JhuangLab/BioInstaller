@@ -163,8 +163,8 @@ install.bioinfo('demo_2', download.dir = download.dir, local.source = sprintf('%
 Function `craw.all.version` is the simplest method to download all available URL files in nongithub or database files.
 
 ```{r}
-download.dir <- sprintf('%s/craw_all_versions', tempdir())
-craw.all.versions('demo', download.dir = download.dir)
+download.dir <- sprintf('%s/crawl.all.versions', tempdir())
+crawl.all.versions('demo', download.dir = download.dir)
 ```
 
 ## Meta information of software and database

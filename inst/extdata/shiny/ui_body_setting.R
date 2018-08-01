@@ -25,7 +25,7 @@ setting_server <- function(input, output) {
       section_names <- names(config)
       for(section in section_names) {
         config.section <- config[[section]]
-        if (html_string != "") html_string <- paste0(html_string, hr())
+        html_string <- paste0(html_string, h4(sprintf("%s", section)))
         for(subsection in names(config.section)) {
           if (is.numeric(config.section[[subsection]]) && length(config.section[[subsection]]) == 1) {
             html_string <- paste0(html_string, numericInput(sprintf("setting_%s_%s", section, subsection), label = subsection,
@@ -47,7 +47,9 @@ setting_server <- function(input, output) {
   }
   output <- update_setting_default_ui(input, output)
   observeEvent(input$setting_confirmed, {
+    section_names <- names(config)
     for(section in section_names) {
+      config.section <- config[[section]]
       for(subsection in names(config.section)) {
         input_id <- sprintf("setting_%s_%s", section, subsection)
         print(input_id)

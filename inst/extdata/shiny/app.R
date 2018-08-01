@@ -1,9 +1,9 @@
 pkgs.shiny <- c("shinycssloaders", "Cairo", "shinydashboard", "configr",
-                "data.table", "shinyjs", "liteq", "DT", "ggplot2", "benchmarkme",
-                "stringr", "R.utils", 
+                "data.table", "shinyjs", "liteq", "DT", "benchmarkme",
+                "stringr", "R.utils",
                 "RSQLite")
 sapply(pkgs.shiny, function(x) {
-  require(x, character.only = TRUE)
+  suppressMessages(require(x, character.only = TRUE))
 })
 # source UI required code config.R sourced in the body_upload_ui.R
 files <- list.files(".", "^ui_")

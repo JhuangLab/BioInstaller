@@ -22,7 +22,8 @@ get_upload_tabItem_ui <- function() {
                 width = 12,
                 status = "primary",
                 DT::dataTableOutput("upload_file_preview_DT"),
-                textOutput("upload_file_preview")
+                textOutput("upload_file_preview"),
+                uiOutput("upload_file_preview_ui")
                 )
             )
     )

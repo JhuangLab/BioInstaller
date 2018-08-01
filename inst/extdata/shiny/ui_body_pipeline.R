@@ -1,5 +1,5 @@
 get_pipeline_tabItem_ui <- function() {
-  for(tool in annovarR_shiny_tools_list$pipeline) {
+  for(tool in shiny_tools_list$pipeline) {
     assign(sprintf("%s_boxes", tool),
            generate_boxes_object(get(sprintf("config.%s", tool)), tool))
   }

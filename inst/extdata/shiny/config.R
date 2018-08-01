@@ -20,6 +20,7 @@ if (!output_file_table_name %in% DBI::dbListTables(con)) {
 DBI::dbDisconnect(con)
 addResourcePath('output', shiny_output_dir)
 addResourcePath('upload', upload_dir)
+addResourcePath('tmp', shiny_output_tmp_dir)
 update_configuration_files()
 
 

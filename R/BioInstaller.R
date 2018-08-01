@@ -19,4 +19,5 @@
 #' @importFrom R.utils gunzip gzip
 #' @importFrom utils unzip untar download.file URLencode
 #' @importFrom devtools install_github
+#' @importFrom shiny runApp
 NULL

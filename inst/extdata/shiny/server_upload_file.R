@@ -29,7 +29,7 @@ server_upload_file <- function(input, output, session) {
                         Action, info[,1], info[,1], paths)
       info <- cbind(info[1], Action, info[2:ncol(info)])
       return(info)
-    }, rownames = FALSE, editable = FALSE, caption = "All files stored in annovarR shinyapp Web service",
+    }, rownames = FALSE, editable = FALSE, caption = "All files stored in shinyapp Web service",
     escape = FALSE, extensions = c("Buttons", "FixedColumns", "Scroller"),
     options = list(autoWidth = TRUE, dom = "Bfrtlip", deferRender = TRUE,
                    searchHighlight = TRUE, scrollX = TRUE, lengthMenu = list(list(5,
@@ -70,6 +70,23 @@ server_upload_file <- function(input, output, session) {
     # head of that data file by default, or all rows if selected, will be shown.
     req(input$upload.file)
     shinyjs::enable(id = "upload_save")
+    if (input$upload.file.type %in% shiny_preview$browser) {
+      tmp_file <- git2r::hash(paste0(basename(input$upload.file$datapath), Sys.time()))
+      prefix <- str_extract(basename(input$upload.file$datapath), "\\.[0-9a-zA-Z]*$")
+      tmp_file <- sprintf("%s/%s%s", shiny_output_tmp_dir, tmp_file, prefix)
+      tmp_file <- normalizePath(tmp_file, mustWork = FALSE)
+      file.copy(input$upload.file$datapath, tmp_file, overwrite = TRUE)
+      output$upload_file_preview <- renderText(tmp_file)
+      output$upload_file_preview_ui <- renderUI({
+        div(
+        br(),
+        a(href = sprintf("/tmp/%s", basename(tmp_file)), target = "_blank", class = "btn btn-primary", "View")
+        )
+      }
+      )
+    } else if (!input$upload.file.type %in% c(shiny_preview$fread, shiny_preview$browser)) {
+      output$upload_file_preview <- renderText(input$upload.file$datapath)
+    }
     if (input$upload.file.type %in% shiny_preview$fread) {
       df <- fread(input$upload.file$datapath)
       return(df)
@@ -79,12 +96,6 @@ server_upload_file <- function(input, output, session) {
       "pdf", "print"), initComplete = JS("function(settings, json) {", "$(this.api().table().header()).css({'background-color': '#487ea5', 'color': '#fff'});",
       "}")), selection = "none")
 
-  output$upload_file_preview <- renderText({
-    req(input$upload.file)
-    if (!input$upload.file.type %in% c(shiny_preview$fread)) {
-      return(input$upload.file$datapath)
-    }
-  })
   # shinyjs::addClass(class='btn btn-primary', id='upload_save')
   observeEvent(input$upload_save, {
     req(input$upload.file)

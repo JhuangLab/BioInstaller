@@ -33,7 +33,9 @@ shiny_queue_name <- config$shiny_queue$name
 log_dir = config$shiny_queue$log_dir
 if (!dir.exists(log_dir)) dir.create(log_dir, recursive = TRUE)
 shiny_output_dir <- config$shiny_output$out_dir
+shiny_output_tmp_dir <- config$shiny_output$tmp_dir
 if (!dir.exists(shiny_output_dir)) dir.create(shiny_output_dir, recursive = TRUE)
+if (!dir.exists(shiny_output_tmp_dir)) dir.create(shiny_output_tmp_dir, recursive = TRUE)
 shiny_output_dir <- normalizePath(shiny_output_dir, mustWork = FALSE)
 output_file_table_name <- config$shiny_db_table$output_file_table_name
 
@@ -333,24 +335,23 @@ update_ui_coices <- function() {
   }
 }
 
-sql2sqlite <- function (sql.file = "", statements = "", dbname = "", verbose = FALSE,
+sql2sqlite <- function (sql.file = "", statements = "", dbname = "",
           ...)
 {
   out.sqlite <- dbname
   if (sql.file != "") {
-    info.msg(sprintf("Converting %s to %s sqlite database.",
-                     sql.file, out.sqlite), verbose = verbose)
+    message(sprintf("Converting SQL file %s to %s sqlite database.",
+                     sql.file, out.sqlite))
   }
   else {
-    info.msg(sprintf("Converting sql to %s sqlite database.",
-                     out.sqlite), verbose = verbose)
+    message(sprintf("Converting SQL statements to %s sqlite database.",
+                     out.sqlite))
+    message(statements)
   }
   if (statements != "") {
     con <- do.call(dbConnect, list(SQLite(), out.sqlite))
     statements <- str_split(statements, ";\n")[[1]]
     func <- function(line) {
-      print.vb(line, verbose = verbose)
-      print.vb(rs, verbose = verbose)
       rs <- dbSendQuery(con, line, ...)
       dbClearResult(rs)
     }
@@ -366,7 +367,7 @@ sql2sqlite <- function (sql.file = "", statements = "", dbname = "", verbose = F
     }
     sqlite <- normalizePath(sqlite, "/")
     cmd <- sprintf("%s %s < %s", sqlite, out.sqlite, sql.file)
-    info.msg(sprintf("Running CMD:%s", cmd), verbose = verbose)
+    message(sprintf("Running CMD:%s", cmd))
     system2(sqlite, args = out.sqlite, stdin = sql.file)
   }
 }

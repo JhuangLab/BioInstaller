@@ -13,7 +13,7 @@ install.github(name = "", download.dir = NULL, destdir = NULL,
   download.only = FALSE, showWarnings = FALSE, dependence.need = TRUE,
   extra.list = list(), rcmd.parse = TRUE, bash.parse = TRUE,
   glue.parse = TRUE, glue.flag = "!!glue", save.to.db = TRUE,
-  verbose = TRUE, ...)
+  overwrite = FALSE, verbose = TRUE, ...)
 }
 \arguments{
 \item{name}{Software name}
@@ -55,6 +55,8 @@ system.file('extdata', 'demo/softwares_db_demo.yaml', package = 'BioInstaller'))
 \item{glue.flag}{A character flage indicating wheater run glue() function to parse (Default is !!glue)}
 
 \item{save.to.db}{Ligical indicating wheather save the install infomation in db}
+
+\item{overwrite}{Force delete the destdir or download dir without a interactive message (careful)}
 
 \item{verbose}{Ligical indicating wheather show the log message}
 

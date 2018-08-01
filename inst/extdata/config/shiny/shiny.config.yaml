@@ -24,11 +24,18 @@ shiny_download:
   download_dir: ~/.BioInstaller/download
 shiny_output:
   out_dir: ~/.BioInstaller/output
+  tmp_dir: ~/.BioInstaller/tmp
 shiny_preview:
   fread:
   - csv
   - txt
   - avinput
+  browser:
+  - pdf
+  - png
+  - jpg
+  - jpeg
+  - zip
 shiny_queue:
   log_dir: ~/.BioInstaller/log
   name: BioInstaller_shiny
@@ -36,6 +43,12 @@ shiny_queue:
 shiny_tools:
   pipeline: easy_project
 shiny_upload:
+  upload_dir: ~/.BioInstaller/upload
+  supported_genome_version:
+  - hg19
+  - hg38
+  - mm10
+  - mm9
   supported_file_type:
   - auto
   - ab1
@@ -362,9 +375,3 @@ shiny_upload:
   - xml
   - xpm
   - zip
-  supported_genome_version:
-  - hg19
-  - hg38
-  - mm10
-  - mm9
-  upload_dir: ~/.annovarR/upload
