@@ -8,24 +8,44 @@ Status](https://travis-ci.org/JhuangLab/BioInstaller.svg)](https://travis-ci.org
 
 ## Introduction
 
-[BioInstaller](https://life2cloud.com/tools/bioinstaller) is a
-downloader and installer of bio-software and bio-databases. The
-inspiration for this project comes from the various types package
-manager, such as [pip](https://pypi.python.org/pypi/pip) for Python
-package, `install.packages` for R package, biocLite for
-[Bioconductor](http://www.bioconductor.org) R package, etc.
+[BioInstaller](https://life2cloud.com/tools/bioinstaller) is a comprehensive R package 
+to manage bioinformatics software/script and database based on the R, Shiny web application and 
+the GitHub forum. Hundreds of bioinformatics tool/script and database has been included in BioInstaller.
 
 **Feature**:
 
-  - More attention for those software and database resource that not be
-    included in the other software warehouse
-  - Extendible
-  - Download the source code and version information from the original
-    site
-  - One step installation or download software and databases (Partial
-    dependence supported)
-  - A software and database resources
-pool
+  - Easy-to-use
+  - User-friendly Shiny application
+  - Integrative platform of Databases and bioinformatics resources
+  - Open source and completely free
+  - One-click to download and install bioinformatics resources (via R, Shiny or Opencpu REST APIs)
+  - More attention for those software and database resource that have not been
+    by other tools
+  - Logging
+  - System monitor
+  - Task submitting system
+  - Parallel tasks
+
+**Field**
+
+  - Quality Control
+  - Alignment And Assembly
+  - Alternative Splicing
+  - ChIP-seq analysis
+  - Gene Expression Data Analysis
+  - Variant Detection
+  - Variant Annotation
+  - Virus Related
+  - Statistical and Visualization
+  - Noncoding RNA Related Database
+  - Cancer Genomics Database
+  - Regulator Related Database
+  - eQTL Related Database
+  - Clinical Annotation
+  - Drugs Database
+  - Proteomic Database
+  - Software Dependence Database 
+  - ......
 
 ## Installation
 
@@ -60,9 +80,11 @@ devtools::install_github("JhuangLab/BioInstaller")
 
 ## Support Summary
 
+<img src="https://raw.githubusercontent.com/JhuangLab/BioInstaller/develop/man/figures/design_of_bioInstaller.jpg" align="center" />
+
 **Quality Control:**
 
-  - FastQC, PRINSEQ, SolexaQA, FASTX-Toolkit …
+  - FastQC, PRINSEQ, SolexaQA, FASTX-Toolkit ...
 
 **Alignment and Assembly:**
 
@@ -78,7 +100,7 @@ devtools::install_github("JhuangLab/BioInstaller")
 
 **Variant Annotation:**
 
-  - ANNOVAR, SnpEff, VEP, oncotator …
+  - ANNOVAR, SnpEff, VEP, oncotator ...
 
 **Utils:**
 

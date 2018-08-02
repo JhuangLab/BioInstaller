@@ -35,7 +35,7 @@ sidebar <- dashboardSidebar(
     menuItem("Installer", icon = icon("cloud-download"), tabName = "download"),
     menuItem("Setting", icon = icon("gears"), tabName = "setting"),
     menuItem("Source code for app", icon = icon("file-code-o"),
-             href = "https://github.com/JhuangLab/BioInstaller/blob/master/inst/extdata/tools/shiny/app.R")
+             href = "https://github.com/JhuangLab/BioInstaller/blob/master/inst/extdata/shiny/app.R")
   )
 )
 

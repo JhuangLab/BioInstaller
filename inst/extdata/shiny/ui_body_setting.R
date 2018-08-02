@@ -90,7 +90,7 @@ setting_server <- function(input, output) {
     }
     configr::write.config(config.dat = config, file.path = config.file, write.type = "yaml")
     config <- configr::read.config(config.file, file.type = "yaml")
-    source("global_var.R")
+    source("global_var.R", encoding = "UTF-8")
     output <- update_setting_yaml_ui(input, output)
     shinyjs::alert("Update successful!")
   })
@@ -101,7 +101,7 @@ setting_server <- function(input, output) {
       js$get_setting_yaml_input()
       req(input$setting_yaml_input_value)
       writeLines(input$setting_yaml_input_value, config.file)
-      source("global_var.R")
+      source("global_var.R", encoding = "UTF-8")
       output <- update_setting_default_ui(input, output)
       output <- update_setting_yaml_ui(input, output)
     })
