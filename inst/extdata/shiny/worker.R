@@ -1,8 +1,8 @@
 shiny_config_file =
-  Sys.getenv("BIOINSTALLER_SHINY_CONFIG", system.file("extdata", "config/shiny/shiny.config.toml",
+  Sys.getenv("BIOINSTALLER_SHINY_CONFIG", system.file("extdata", "config/shiny/shiny.config.yaml",
                                                   package = "BioInstaller"))
 
-config <- configr::read.config(shiny_config_file, file.type = "toml")
+config <- configr::read.config(shiny_config_file)
 db_type <- config$shiny_db$db_type
 db_path <- normalizePath(config$shiny_db$db_path, mustWork = FALSE)
 queue_db <- normalizePath(config$shiny_queue$queue_db, mustWork = FALSE)

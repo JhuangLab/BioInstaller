@@ -234,9 +234,20 @@ render_input_command <- function (input, output, params, item){
   req_eval <- !is.null(check_sprintf) && check_sprintf
   cmd <- clean_parsed_item(params[[item]][["rcmd_last"]], req_eval)
   label = "R commands for task"
+  text_area_js <- sprintf("<script type='text/javascript'>var %s_editor = CodeMirror.fromTextArea(%s, {
+    lineNumbers: true,
+  keyMap: 'sublime',
+  theme:'monokai',
+  indentUnit: 2,
+  gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter'],
+  mode: 'r'
+});</script>", paste0("lastcmd_", render_id), paste0("lastcmd_", render_id))
   output[[paste0("lastcmd_ui_", render_id)]] <- renderUI({
-    shiny::textAreaInput(inputId = paste0("lastcmd_", render_id), label = label,
-                         value = cmd, rows = stringr::str_count(cmd, "\n") * 1.5, resize = "vertical")
+    HTML(paste0(shiny::textAreaInput(inputId = paste0("lastcmd_", render_id), label = label,
+                         value = cmd, rows = stringr::str_count(cmd, "\n") * 1.5, resize = "vertical"),
+                text_area_js
+        )
+    )
   })
   check_sprintf_2 <- params[[item]][["rcmd_preprocess_sprintf"]]
   req_eval_2 <- !is.null(check_sprintf_2) && check_sprintf_2
@@ -264,52 +275,40 @@ generate_submit_server_object <- function(input, output, ui_server_config, tooln
       progress$set(message = msg, value = i/100)
       Sys.sleep(0.02)
     }
-    needed.var <- c()
-    needed.input_id <- c()
-    for(box in ui.sections$order) {
-      for(input_section in names(ui_params[[box]]$input)) {
-        needed.var <- c(needed.var, ui_params[[box]]$input[[input_section]]$varname)
-        needed.input_id <- c(needed.input_id, ui_params[[box]]$input[[input_section]]$input_id)
+    observe({
+      req(input[[start_trigger]])
+      needed.var <- c()
+      needed.input_id <- c()
+      for(box in ui.sections$order) {
+        for(input_section in names(ui_params[[box]]$input)) {
+          needed.var <- c(needed.var, ui_params[[box]]$input[[input_section]]$varname)
+          needed.input_id <- c(needed.input_id, ui_params[[box]]$input[[input_section]]$input_id)
+        }
       }
-    }
-    names(needed.input_id) <- needed.var
-    needed.input_id <- needed.input_id[!is.na(names(needed.input_id))]
-    params.1 <- as.list(needed.input_id)
-    params.2 <- reactiveValuesToList(input)
-    params.2 <- params.2[names(params.2) %in% needed.input_id]
-    params <- configr::config.list.merge(list(input2var = params.1),
-                                         list(input=params.2))
-    on.exit(progress$close())
-    params$req_pkgs <- pkgs
-    params$qqcommand <- ""
-    params$qqkey <- stringi::stri_rand_strings(1, 50)
-    params$qqcommand_type <- "R"
-    params$boxes <- ui.sections$order
-    params$toolname <- ui.sections$toolname
-    for(box in ui.sections$order) {
-      if (!is.null(input[[sprintf("lastcmd_%s_%s", toolname, box)]]))
-        params$last_cmd[[box]] <- input[[sprintf("lastcmd_%s_%s", toolname, box)]]
-    }
-
-    msg <- jsonlite::toJSON(params)
-    queue <- liteq::ensure_queue(shiny_queue_name, db = queue_db)
-    while(TRUE) {
-      tryCatch({liteq::publish(queue, title = "Tasks", message = msg);break},
-                 error = function(e) {})
-    }
-    output <- dashbord_section_server(input, output)
-    output$task_submit_modal <- renderUI({
-      html_text <- tryCatch(get("html_text_task_submit_modal", envir = globalenv()), error = function(e) {
-        html_text <- paste0(readLines("www/modal.html"), collapse = "\n")
-        assign("html_text_task_submit_modal", html_text, envir = globalenv())
-        return(html_text)
-      })
-      html_text <- stringr::str_replace_all(html_text, '\\{\\{task_title\\}\\}', "Message")
-      html_text <- stringr::str_replace_all(html_text, '\\{\\{task_key\\}\\}', params$qqkey)
-      html_text <- stringr::str_replace_all(html_text, '\\{\\{task_msg\\}\\}', encodeString(msg))
-      html_text <- sprintf("%s<script>$('#myModal').modal('show')</script>", html_text)
-      HTML(html_text)
+      names(needed.input_id) <- needed.var
+      needed.input_id <- needed.input_id[!is.na(names(needed.input_id))]
+      params.1 <- as.list(needed.input_id)
+      params.2 <- reactiveValuesToList(input)
+      params.2 <- params.2[names(params.2) %in% needed.input_id]
+      params <- configr::config.list.merge(list(input2var = params.1),
+                                           list(input=params.2))
+      on.exit(progress$close())
+      params$req_pkgs <- pkgs
+      params$qqcommand <- ""
+      params$qqkey <- stringi::stri_rand_strings(1, 50)
+      params$qqcommand_type <- "R"
+      params$boxes <- ui.sections$order
+      params$toolname <- ui.sections$toolname
+      for(box in ui.sections$order) {
+        id <- sprintf("lastcmd_%s_%s", toolname, box)
+        eval(parse(text = sprintf("js$get_%s_input()", id)))
+        req(input[[sprintf("%s_input_value", id)]])
+        if (!is.null(input[[sprintf("lastcmd_%s_%s", toolname, box)]]))
+          params$last_cmd[[box]] <- input[[sprintf("%s_input_value", id)]]
+      }
+      assign("params", params, envir = globalenv())
     })
+    output <- submit_task_modal(input, output, params)
 
   })
   return(output)

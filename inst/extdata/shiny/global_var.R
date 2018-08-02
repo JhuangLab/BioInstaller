@@ -12,7 +12,7 @@ config.file <- sprintf("%s/shiny.config.yaml", db_dirname)
 if (!dir.exists(db_dirname)) {
   dir.create(db_dirname)
 }
-if (!file.exists(config.file)) file.copy(config.file.template, sprintf("%s/shiny.config.yaml", db_dirname))
+if (!file.exists(config.file) || !configr::is.yaml.file(config.file)) file.copy(config.file.template, sprintf("%s/shiny.config.yaml", db_dirname))
 Sys.setenv(BIOINSTALLER_SHINY_CONFIG = sprintf("%s/shiny.config.yaml", db_dirname))
 
 db_type <- config$shiny_db$db_type
@@ -370,4 +370,27 @@ sql2sqlite <- function (sql.file = "", statements = "", dbname = "",
     message(sprintf("Running CMD:%s", cmd))
     system2(sqlite, args = out.sqlite, stdin = sql.file)
   }
+}
+
+submit_task_modal <- function(input, output, params) {
+  msg <- jsonlite::toJSON(params)
+  queue <- liteq::ensure_queue(shiny_queue_name, db = queue_db)
+  while(TRUE) {
+    tryCatch({liteq::publish(queue, title = "Tasks", message = msg);break},
+             error = function(e) {})
+  }
+  output <- dashbord_section_server(input, output)
+  output$task_submit_modal <- renderUI({
+    html_text <- tryCatch(get("html_text_task_submit_modal", envir = globalenv()), error = function(e) {
+      html_text <- paste0(readLines("www/modal.html"), collapse = "\n")
+      assign("html_text_task_submit_modal", html_text, envir = globalenv())
+      return(html_text)
+    })
+    html_text <- stringr::str_replace_all(html_text, '\\{\\{task_title\\}\\}', "Message")
+    html_text <- stringr::str_replace_all(html_text, '\\{\\{task_key\\}\\}', params$qqkey)
+    html_text <- stringr::str_replace_all(html_text, '\\{\\{task_msg\\}\\}', encodeString(msg))
+    html_text <- sprintf("%s<script>$('#myModal').modal('show')</script>", html_text)
+    HTML(html_text)
+  })
+  return(output)
 }

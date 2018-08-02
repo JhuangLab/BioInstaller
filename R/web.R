@@ -103,7 +103,7 @@ set_shiny_workers <- function(n, shiny_config_file =
   config <- configr::read.config(shiny_config_file)
   log_dir <- config$shiny_queue$log_dir
   if(!dir.exists(log_dir)) {dir.create(log_dir, recursive = TRUE)}
-  worker_script <- system.file('extdata', 'tools/shiny/R/worker.R', package = 'BioInstaller')
+  worker_script <- system.file('extdata', 'shiny/worker.R', package = 'BioInstaller')
 
   for(i in 1:n) {
     system(sprintf("Rscript %s & > %s/worker_%s.log &", worker_script, log_dir, stringi::stri_rand_strings(1, 20)))

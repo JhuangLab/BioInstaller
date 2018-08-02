@@ -35,15 +35,47 @@ sidebar <- dashboardSidebar(
     menuItem("Installer", icon = icon("cloud-download"), tabName = "download"),
     menuItem("Setting", icon = icon("gears"), tabName = "setting"),
     menuItem("Source code for app", icon = icon("file-code-o"),
-             href = "https://github.com/JhuangLab/BioInstaller/blob/master/inst/extdata/tools/shiny/R/app.R")
+             href = "https://github.com/JhuangLab/BioInstaller/blob/master/inst/extdata/tools/shiny/app.R")
   )
 )
 
+set_extend_shinyjs <- function (id) {
+  js_code <- sprintf('shinyjs.get_%s_input = function(params) {
+      var input_value = %s_editor.getValue();
+  Shiny.onInputChange("%s_input_value", input_value);
+}', id, id, id)
+}
+setting_js_code <- set_extend_shinyjs("setting_yaml")
+config$shiny_tools$pipeline
+
+
 body <- dashboardBody(
   shinyjs::useShinyjs(),
+  {
+    id <- sprintf("lastcmd_%s_%s", names(config.easy_project),
+            names(config.easy_project$easy_project$paramters))
+    json_code <- set_extend_shinyjs(id)
+    extendShinyjs(text = json_code, functions = sprintf("get_%s_input", id))
+  },
+  extendShinyjs(text = setting_js_code, functions = "get_setting_yaml_input"),
   tags$head(
     tags$link(rel = "stylesheet", type = "text/css", href = "custom.css"),
-    tags$link(type = "text/javascript", src = "custom.js")),
+    tags$link(rel = "stylesheet", type = "text/css", href = "codemirror/lib/codemirror.css"),
+    tags$link(rel = "stylesheet", type = "text/css", href = "codemirror/addon/dialog/dialog.css"),
+    tags$link(rel = "stylesheet", type = "text/css", href = "codemirror/theme/monokai.css"),
+    tags$link(rel = "stylesheet", type = "text/css", href = "codemirror/addon/fold/foldgutter.css"),
+    tags$script(type = "text/javascript", src = "codemirror/lib/codemirror.js"),
+    tags$script(type = "text/javascript", src = "codemirror/addon/search/search.js"),
+    tags$script(type = "text/javascript", src = "codemirror/addon/search/searchcursor.js"),
+    tags$script(type = "text/javascript", src = "codemirror/addon/search/jump-to-line.js"),
+    tags$script(type = "text/javascript", src = "codemirror/addon/dialog/dialog.js"),
+    tags$script(type = "text/javascript", src = "codemirror/keymap/sublime.js"),
+    tags$script(type = "text/javascript", src = "codemirror/addon/fold/foldcode.js"),
+    tags$script(type = "text/javascript", src = "codemirror/addon/fold/brace-fold.js"),
+    tags$script(type = "text/javascript", src = "codemirror/mode/yaml/yaml.js"),
+    tags$script(type = "text/javascript", src = "codemirror/mode/r/r.js"),
+    tags$script(type = "text/javascript", src = "custom.js")
+    ),
   shiny::uiOutput("task_submit_modal"),
   shiny::actionButton("dashbord_auto_update", label = "dashbord_auto_update",
                         style = "display:none;"),
