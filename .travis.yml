@@ -33,6 +33,8 @@ r_packages:
   - rvest
   - prettydoc
   - DT
+  - shiny
+  - liteq
 
 r_github_packages:
   - ropensci/git2r

@@ -1,7 +1,4 @@
-
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-
-# BioInstaller <img src="man/figures/logo.png" align="right" />
+# BioInstaller <img src="https://raw.githubusercontent.com/JhuangLab/BioInstaller/master/man/figures/logo.png" align="right" />
 
 [![Build
 Status](https://travis-ci.org/JhuangLab/BioInstaller.svg)](https://travis-ci.org/JhuangLab/BioInstaller)
@@ -71,13 +68,13 @@ devtools::install_github("JhuangLab/BioInstaller")
 
   - BWA, STAR, TMAP, Bowtie, Bowtie2, tophat2, hisat2, GMAP-GSNAP,
     ABySS, SSAHA2, Velvet, Edean, Trinity, oases, RUM, MapSplice2,
-    NovoAlign …
+    NovoAlign ...
 
 **Variant Detection:**
 
   - GATK, Mutect, VarScan2, FreeBayes, LoFreq, TVC, SomaticSniper,
     Pindel, Delly, BreakDancer, FusionCatcher, Genome STRiP, CNVnator,
-    CNVkit, SpeedSeq …
+    CNVkit, SpeedSeq ...
 
 **Variant Annotation:**
 
@@ -87,16 +84,16 @@ devtools::install_github("JhuangLab/BioInstaller")
 
   - htslib, samtools, bcftools, bedtools, bamtools, vcftools, sratools,
     picard, HTSeq, seqtk, UCSC Utils(blat, liftOver), bamUtil, jvarkit,
-    bcl2fastq2, fastq\_tools …
+    bcl2fastq2, fastq\_tools ...
 
 **Genome:**
 
-  - hisat2\_reffa, ucsc\_reffa, ensemble\_reffa …
+  - hisat2\_reffa, ucsc\_reffa, ensemble\_reffa ...
 
 **Others:**
 
   - sparsehash, SQLite, pigz, lzo, lzop, bzip2, zlib, armadillo, pxz,
-    ROOT, curl, xz, pcre, R, gatk\_bundle, ImageJ, igraph …
+    ROOT, curl, xz, pcre, R, gatk\_bundle, ImageJ, igraph ...
 
 **Databases:**
 
@@ -104,7 +101,7 @@ devtools::install_github("JhuangLab/BioInstaller")
     dgidb, diseaseenhancer, drugbank, ecodrug, expression\_atlas,
     funcoup, gtex, hpo, inbiomap, interpro, medreaders, mndr, msdd,
     omim, pancanqtl, proteinatlas, remap2, rsnp3, seecancer,
-    srnanalyzer, superdrug2, tumorfusions, varcards …
+    srnanalyzer, superdrug2, tumorfusions, varcards ...
 
 ## Docker
 

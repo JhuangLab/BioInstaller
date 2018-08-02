@@ -1,7 +1,6 @@
 pkgs.shiny <- c("shinycssloaders", "Cairo", "shinydashboard", "configr",
                 "data.table", "shinyjs", "liteq", "DT", "benchmarkme",
-                "stringr", "R.utils",
-                "RSQLite")
+                "stringr", "R.utils", "shiny", "RSQLite")
 sapply(pkgs.shiny, function(x) {
   suppressMessages(require(x, character.only = TRUE))
 })
