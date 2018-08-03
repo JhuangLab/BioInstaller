@@ -168,6 +168,8 @@ mac = "mkdir -p {{destdir}}/bin; cp *.jar {{destdir}}/bin"
 [gatk4_jhuang_mirror]
 source_url = "http://bioinfo.rjh.com.cn/download/bioinstaller/gatk/gatk-{{version}}.zip"
 version_available = ["4.0.6.0", "4.0.0.0"]
+make_dir = ["./"]
+bin_dir = ["{{destdir}}/bin"]
 [gatk4_jhuang_mirror.install]
 linux = "mkdir -p {{destdir}}/bin; cp gatk *.jar {{destdir}}/bin"
 mac = "mkdir -p {{destdir}}/bin; cp gatk *.jar {{destdir}}/bin"

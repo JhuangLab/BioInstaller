@@ -35,7 +35,7 @@ generate_server_object <- function(input, output, ui_server_config, toolname, pk
           input_section <- params[[item]]$input[[ui_section]]
           if (!is.null(input_section$varname)) {
             for (var_idx in 1:length(input_section$varname)) {
-              assign(input_section$varname[var_idx], input[[input_section$input_id[var_idx]]], envir = globalenv())
+                assign(input_section$varname[var_idx], input[[input_section$input_id[var_idx]]], envir = globalenv())
             }
           }
         }
@@ -61,7 +61,8 @@ generate_server_object <- function(input, output, ui_server_config, toolname, pk
         }
       }
       render_type <- params[[item]]$render_type
-      cmd <- clean_parsed_item(input[[paste0("lastcmd_", params[[item]]$render_id)]], FALSE)
+
+        cmd <- clean_parsed_item(input[[paste0("lastcmd_", params[[item]]$render_id)]], FALSE)
       if (!is.null(render_type) && render_type == "DT::renderDataTable") {
         render_tool_DT <- function(item) {
           DT_opt <- set_DT_opt(params, item)
@@ -107,6 +108,7 @@ generate_server_object <- function(input, output, ui_server_config, toolname, pk
       shinyjs::enable(paste0("update_", params[[item]]$render_id))
       shinyjs::enable(paste0("export_", params[[item]]$render_id))
     }
+
   })
   return(output)
 }
@@ -228,7 +230,7 @@ update_hander_from_params <- function(input, output, toolname = "maftools", para
   return(output)
 }
 
-render_input_command <- function (input, output, params, item){
+render_input_command <- function (input, output, params, item, use_codemirror = FALSE){
   render_id <- params[[item]]$render_id
   check_sprintf <- params[[item]][["rcmd_last_sprintf"]]
   req_eval <- !is.null(check_sprintf) && check_sprintf
@@ -242,6 +244,8 @@ render_input_command <- function (input, output, params, item){
   gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter'],
   mode: 'r'
 });</script>", paste0("lastcmd_", render_id), paste0("lastcmd_", render_id))
+  if (!use_codemirror) text_area_js <- ""
+  if (cmd != "")
   output[[paste0("lastcmd_ui_", render_id)]] <- renderUI({
     HTML(paste0(shiny::textAreaInput(inputId = paste0("lastcmd_", render_id), label = label,
                          value = cmd, rows = stringr::str_count(cmd, "\n") * 1.5, resize = "vertical"),
@@ -265,9 +269,10 @@ generate_submit_server_object <- function(input, output, ui_server_config, tooln
   ui_params <- ui_server_config[[toolname]]$paramters
   total_box_num <- length(ui.sections$order)
   for(item in ui.sections$order) {
-    output <- render_input_command(input, output, ui_params, item)
+    output <- render_input_command(input, output, ui_params, item, TRUE)
   }
   start_trigger <- sprintf("start_%s_analysis", toolname)
+  observe({
   observeEvent(input[[start_trigger]], {
     progress <- shiny::Progress$new()
     msg <- sprintf("Submiting task.")
@@ -275,8 +280,6 @@ generate_submit_server_object <- function(input, output, ui_server_config, tooln
       progress$set(message = msg, value = i/100)
       Sys.sleep(0.02)
     }
-    observe({
-      req(input[[start_trigger]])
       needed.var <- c()
       needed.input_id <- c()
       for(box in ui.sections$order) {
@@ -293,28 +296,44 @@ generate_submit_server_object <- function(input, output, ui_server_config, tooln
       params <- configr::config.list.merge(list(input2var = params.1),
                                            list(input=params.2))
       on.exit(progress$close())
+      if (is.null(pkgs)) pkgs <- ""
       params$req_pkgs <- pkgs
       params$qqcommand <- ""
       params$qqkey <- stringi::stri_rand_strings(1, 50)
       params$qqcommand_type <- "R"
       params$boxes <- ui.sections$order
       params$toolname <- ui.sections$toolname
-      for(box in ui.sections$order) {
-        id <- sprintf("lastcmd_%s_%s", toolname, box)
-        eval(parse(text = sprintf("js$get_%s_input()", id)))
-        req(input[[sprintf("%s_input_value", id)]])
-        if (!is.null(input[[sprintf("lastcmd_%s_%s", toolname, box)]]))
-          params$last_cmd[[box]] <- input[[sprintf("%s_input_value", id)]]
-      }
-      assign("params", params, envir = globalenv())
+      observe({
+        for(box in ui.sections$order) {
+            id <- sprintf("lastcmd_%s_%s", toolname, box)
+            eval(parse(text = sprintf("js$get_%s_input()", id)))
+            params$last_cmd[[box]] <- input[[sprintf("%s_input_value", id)]]
+        }
+        if (!is.null(input[[sprintf("%s_input_value", id)]]))
+          output <- submit_task_modal(input, output, params)
+      })
     })
-    output <- submit_task_modal(input, output, params)
-
   })
   return(output)
 }
 
+pipeline_tools <- config$shiny_tools$pipeline
+for(pipeline_tool in pipeline_tools) {
+  pkgs <- config$shiny_tools_params$require[[pipeline_tool]]
+  cmd <- sprintf("%s_server <- function(input, output){
+  output <- generate_submit_server_object(input, output, config.%s, '%s', pkgs = c(%s))
+}", pipeline_tool, pipeline_tool, pipeline_tool,
+                 sprintf("'%s'", paste0(pkgs, collapse = "', '")))
+  eval(parse(text = cmd))
+}
 
-easy_project_server <- function(input, output){
-  output <- generate_submit_server_object(input, output, config.easy_project, "easy_project")
+
+instant_tools <- config$shiny_tools$instant
+for(instant_tool in instant_tools) {
+  pkgs <- config$shiny_tools_params$require[[instant_tool]]
+  cmd <- sprintf("%s_server <- function(input, output){
+                 output <- generate_server_object(input, output, config.%s, '%s', pkgs = c(%s))
+}", instant_tool, instant_tool, instant_tool,
+                 sprintf("'%s'", paste0(pkgs, collapse = "', '")))
+  eval(parse(text = cmd))
 }

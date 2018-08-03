@@ -1,4 +1,10 @@
-2018-08-01 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
+2018-08-03 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
+
+		* use editor in pipeline
+		* add instant page
+		* plugins dir could change
+
+2018-08-02 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
 
 		* Improve the setting function
 		* Use codemirror editor

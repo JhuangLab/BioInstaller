@@ -106,6 +106,6 @@ set_shiny_workers <- function(n, shiny_config_file =
   worker_script <- system.file('extdata', 'shiny/worker.R', package = 'BioInstaller')
 
   for(i in 1:n) {
-    system(sprintf("Rscript %s & > %s/worker_%s.log &", worker_script, log_dir, stringi::stri_rand_strings(1, 20)))
+    system(sprintf("Rscript %s &> %s/worker_%s.log &", worker_script, log_dir, stringi::stri_rand_strings(1, 20)))
   }
 }

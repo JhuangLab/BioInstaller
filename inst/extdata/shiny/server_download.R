@@ -20,7 +20,15 @@ download_section_server <- function(input, output) {
       }
 
       if (any(input$item.name != "")) {
-        extra.params <- eval(parse(text = input$extra.paramters))
+        extra.params <- clean_parsed_item(input$extra.paramters, FALSE)
+        extra.params <- eval(parse(text = extra.params))
+        if ("extra.list" %in% extra.params){
+          print(input$download.buildver)
+          extra.params$extra.list <- config.list.merge(extra.params$extra.list,
+                                                       list(buildber = input$download.buildver))
+        } else {extra.params$extra.list <- list(buildver = input$download.buildver)}
+        for(i in input$download.logical) {extra.params <- config.list.merge(extra.params,
+                                                            eval(parse(text = sprintf('list(%s=TRUE)', i))))}
         params <- list(name = input$item.name, download.dir = download.dir,
                        verbose = TRUE, version = version)
         params <- config.list.merge(params, extra.params)
@@ -60,13 +68,22 @@ download_section_server <- function(input, output) {
                   choices = BioInstaller::install.bioinfo(input$item.name, show.all.versions = TRUE), multiple = TRUE)
     })
     output$download.dir.parent.input <- shiny::renderUI({
-      textInput("download.dir.parent", "Download directory (Paraent)")
+      textInput("download.dir.parent", "Download directory (Hints)", value = config$shiny_download$download_dir)
     })
     output$download.dir.input <- shiny::renderUI({
       req(input$download.dir.parent)
       selectInput("download.dir", "Download directory", choices =
-                  normalizePath(dir(path = input$download.dir.parent, full.names = TRUE, include.dirs = TRUE)), selectize = TRUE)
+                  normalizePath(list.dirs(path = input$download.dir.parent, full.names = TRUE)), selectize = TRUE)
     })
   })
+
+  observeEvent(input$download.version, {
+    output$download.buildver.selector <- shiny::renderUI({
+      textInput("download.buildver", "Buildver version (Database needed, e.g. hg19, hg38)",
+                  value = "hg19")
+    })
+  })
+
+
   return(output)
 }

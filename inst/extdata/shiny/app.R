@@ -14,9 +14,11 @@ for (i in files) {
 get_tabItems <- function () {
   source("config.R")
   items <- c("introduction", "dashbord",
-             "file_viewer", "pipeline",
+             "file_viewer",
              "upload", "download", "setting")
   body_items <- sprintf("get_%s_tabItem_ui()", items)
+  items_auto <- c("pipeline", "instant")
+  body_items <- c(body_items, sprintf("get_tabItem_ui('%s')", items_auto))
   cmd <- sprintf("tabItems(%s)", paste0(body_items, collapse = ", "))
   eval(parse(text = cmd))
 }
@@ -29,9 +31,10 @@ sidebar <- dashboardSidebar(
   sidebarMenu(id = "navbar_tabs",
     menuItem("Introduction", tabName = "introduction", icon = icon("home")),
     menuItem("Dashbord", tabName = "dashboard", icon = icon("dashboard")),
-    menuItem("Pipeline", tabName = "pipeline", icon = icon("diamond")),
-    menuItem("File Viewer", tabName = "file_viewer", icon = icon("file")),
     menuItem("Upload", tabName = "upload", icon = icon("cloud-upload")),
+    menuItem("File Viewer", tabName = "file_viewer", icon = icon("file")),
+    menuItem("Pipeline", tabName = "pipeline", icon = icon("diamond")),
+    menuItem("Instant", tabName = "instant", icon = icon("delicious")),
     menuItem("Installer", icon = icon("cloud-download"), tabName = "download"),
     menuItem("Setting", icon = icon("gears"), tabName = "setting"),
     menuItem("Source code for app", icon = icon("file-code-o"),
@@ -45,19 +48,22 @@ set_extend_shinyjs <- function (id) {
   Shiny.onInputChange("%s_input_value", input_value);
 }', id, id, id)
 }
-setting_js_code <- set_extend_shinyjs("setting_yaml")
-config$shiny_tools$pipeline
 
+extend_js_objs <- list()
+for(tool in c(config$shiny_tools$pipeline, config$shiny_tools$instant, "setting_yaml")){
+  if (!tool == "setting_yaml"){
+    config.tool <- get(sprintf("config.%s", tool))
+    id <- sprintf("lastcmd_%s_%s", names(config.tool),
+                  names(config.tool[[tool]]$paramters))
+  }
+  json_code <- set_extend_shinyjs(id)
+  extend_js_objs <- config.list.merge(
+    extend_js_objs, list(extendShinyjs(text = json_code, functions = sprintf("get_%s_input", id))))
+}
 
 body <- dashboardBody(
   shinyjs::useShinyjs(),
-  {
-    id <- sprintf("lastcmd_%s_%s", names(config.easy_project),
-            names(config.easy_project$easy_project$paramters))
-    json_code <- set_extend_shinyjs(id)
-    extendShinyjs(text = json_code, functions = sprintf("get_%s_input", id))
-  },
-  extendShinyjs(text = setting_js_code, functions = "get_setting_yaml_input"),
+  extend_js_objs,
   tags$head(
     tags$link(rel = "stylesheet", type = "text/css", href = "custom.css"),
     tags$link(rel = "stylesheet", type = "text/css", href = "codemirror/lib/codemirror.css"),

@@ -20,6 +20,8 @@ shiny_db_table:
   - uid
   - username
   - password
+shiny_plugins:
+  shiny_plugin_dir: ~/.BioInstaller/plugins
 shiny_download:
   download_dir: ~/.BioInstaller/download
 shiny_output:
@@ -42,6 +44,13 @@ shiny_queue:
   queue_db: ~/.BioInstaller/BioInstaller.shiny.queue.sqlite
 shiny_tools:
   pipeline: easy_project
+  instant:
+      - maftools
+      - bioinstaller
+shiny_tools_params:
+    require:
+      maftools: maftools
+      bioinstaller: BioInstaller
 shiny_upload:
   upload_dir: ~/.BioInstaller/upload
   supported_genome_version:

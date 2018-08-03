@@ -2,11 +2,11 @@ skin <- Sys.getenv("DASHBOARD_SKIN")
 skin <- tolower(skin)
 
 # Read configuration file and set the environment vars
-config.file.template <- Sys.getenv("BIOINSTALLER_SHINY_CONFIG", system.file("extdata", "config/shiny/shiny.config.yaml",
-                                                               package = "BioInstaller"))
-if (!file.exists(config.file.template)) config.file.template <- system.file("extdata", "config/shiny/shiny.config.yaml",
-                                                               package = "BioInstaller")
-config <- read.config(config.file.template, file.type = "yaml")
+config.file.template.repo <- system.file("extdata", "config/shiny/shiny.config.yaml",
+                                    package = "BioInstaller")
+config.file.template <- Sys.getenv("BIOINSTALLER_SHINY_CONFIG", config.file.template.repo)
+if (!file.exists(config.file.template)) config.file.template <- config.file.template.repo
+config <- configr::read.config(config.file.template)
 db_dirname<- dirname(config$shiny_db$db_path)
 config.file <- sprintf("%s/shiny.config.yaml", db_dirname)
 if (!dir.exists(db_dirname)) {
@@ -14,6 +14,17 @@ if (!dir.exists(db_dirname)) {
 }
 if (!file.exists(config.file) || !configr::is.yaml.file(config.file)) file.copy(config.file.template, sprintf("%s/shiny.config.yaml", db_dirname))
 Sys.setenv(BIOINSTALLER_SHINY_CONFIG = sprintf("%s/shiny.config.yaml", db_dirname))
+
+shiny_plugin_dir_repo <- system.file("extdata", "config/shiny", package = "BioInstaller")
+shiny_plugin_dir <- shiny_plugin_dir_repo
+if (!is.null(config$shiny_plugins$shiny_plugin_dir)) {
+  shiny_plugin_dir <-config$shiny_plugins$shiny_plugin_dir
+}
+if (!dir.exists(shiny_plugin_dir) || length(list.files(shiny_plugin_dir)) == 0) {
+  dir.create(shiny_plugin_dir, recursive = TRUE, showWarnings = FALSE)
+  file.copy(sprintf("%s/%s", shiny_plugin_dir_repo, list.files(shiny_plugin_dir_repo, "shiny.*parameters")),
+            shiny_plugin_dir)
+}
 
 db_type <- config$shiny_db$db_type
 db_path <- normalizePath(config$shiny_db$db_path, mustWork = FALSE)
@@ -70,8 +81,10 @@ featch_files <- function(file_types = NULL) {
 update_configuration_files <- function(){
 
   for(toolname in shiny_tools) {
-    config <-  configr::read.config(system.file("extdata", sprintf("config/shiny/shiny.%s.parameters.toml", toolname),
-                                                package = "BioInstaller"), rcmd.parse = TRUE, glue.parse = TRUE, file.type = "toml")
+    plugin <- sprintf("%s/shiny.%s.parameters.toml", shiny_plugin_dir, toolname)
+    if (!file.exists(plugin)) {warning(sprintf("Plugin %s not found.", plugin)); next}
+    config <-  configr::read.config(plugin,
+      rcmd.parse = TRUE, glue.parse = TRUE, file.type = "toml")
     assign(sprintf("config.%s", toolname), config, envir = globalenv())
   }
 }
@@ -393,4 +406,27 @@ submit_task_modal <- function(input, output, params) {
     HTML(html_text)
   })
   return(output)
+}
+
+get_tabItem_ui <- function(tabitem = "instant") {
+  cmd <- sprintf("body_%s_tabItem <- tabItem('%s', tabsetPanel(type = 'pills', ",
+                 tabitem, tabitem)
+
+  count <- 1
+  for(tool in shiny_tools_list[[tabitem]]) {
+    assign(sprintf("%s_boxes", tool),
+           generate_boxes_object(get(sprintf("config.%s", tool)), tool))
+    if (count == length(shiny_tools_list[[tabitem]])) {
+      cmd <- paste0(cmd, sprintf("tabPanel('%s', fluidRow(%s))", tool,
+                                 paste0(unname(get(sprintf("%s_boxes", tool))), collapse = ",")))
+    } else {
+      cmd <- paste0(cmd, sprintf("tabPanel('%s', fluidRow(%s)),", tool,
+                                 paste0(unname(get(sprintf("%s_boxes", tool))), collapse = ",")
+      )
+      )
+    }
+    count <- count + 1
+  }
+  cmd <- paste0(cmd, "))")
+  eval(parse(text = cmd))
 }

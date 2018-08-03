@@ -125,7 +125,10 @@ while (TRUE) {
       sink(log_con, append = TRUE)
       sink(log_con, append = TRUE, type = "message")
       worker_do_env <- new.env()
-      cmd <- 'sapply(req_pkgs, function(x){require(x, character.only = TRUE)})'
+      if (is.null(req_pkgs) | req_pkgs == "") {cmd <- ""} else {
+        cmd <- 'sapply(req_pkgs, function(x){require(x, character.only = TRUE)})'
+      }
+
       if (qqcommand != "") {
         status <- tryCatch({
           eval(parse(text = cmd), envir = worker_do_env)

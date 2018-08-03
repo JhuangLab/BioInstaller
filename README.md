@@ -8,7 +8,7 @@ Status](https://travis-ci.org/JhuangLab/BioInstaller.svg)](https://travis-ci.org
 
 ## Introduction
 
-[BioInstaller](https://life2cloud.com/tools/bioinstaller) is a comprehensive R package 
+[BioInstaller](https://github.com/JhuangLab/BioInstaller) is a comprehensive R package 
 to manage bioinformatics software/script and database based on the R, Shiny web application and 
 the GitHub forum. Hundreds of bioinformatics tool/script and database has been included in BioInstaller.
 
@@ -47,6 +47,25 @@ the GitHub forum. Hundreds of bioinformatics tool/script and database has been i
   - Software Dependence Database 
   - ......
 
+## Shiny UI overview
+
+```
+# install the latest developmental version
+# than start the BioInstaller R Shiny application
+# the document is still under construction
+BioInstaller::web()
+```
+
+<img src="https://raw.githubusercontent.com/Miachol/ftp/master/files/images/bioinstaller/overview1.jpg" align="middle" />
+
+<img src="https://raw.githubusercontent.com/Miachol/ftp/master/files/images/bioinstaller/overview2.jpg" align="middle" />
+
+<img src="https://raw.githubusercontent.com/Miachol/ftp/master/files/images/bioinstaller/overview3.jpg" align="middle" />
+
+<img src="https://raw.githubusercontent.com/Miachol/ftp/master/files/images/bioinstaller/overview4.jpg" align="middle" />
+
+<img src="https://raw.githubusercontent.com/Miachol/ftp/master/files/images/bioinstaller/overview5.jpg" align="middle" />
+
 ## Installation
 
 ### CRAN
@@ -80,7 +99,7 @@ devtools::install_github("JhuangLab/BioInstaller")
 
 ## Support Summary
 
-<img src="https://raw.githubusercontent.com/JhuangLab/BioInstaller/develop/man/figures/design_of_bioInstaller.jpg" align="center" />
+<img src="https://raw.githubusercontent.com/JhuangLab/BioInstaller/develop/man/figures/design_of_bioInstaller.jpg" align="middle" />
 
 **Quality Control:**
 
