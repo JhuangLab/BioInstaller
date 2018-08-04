@@ -8,9 +8,16 @@ Status](https://travis-ci.org/JhuangLab/BioInstaller.svg)](https://travis-ci.org
 
 ## Introduction
 
+Accessing and management of various bioinformatics tool/script and database are essential for almost all bioinformatics analysis projects. 
+
+There is an urgent need for the development of new all-in-one tools that allows users to search, download, install and share these bioinformatics tool/script and database.
+
+[Conda](https://conda.io/docs/) and [Spack](https://spack.io/) have done a lot of work and we can use them to conveniently install some bioinformatics software. But there are still many problems with these package managers, such as incompatible to some precompiled programs, little support for the database and other non-software files.
+
 [BioInstaller](https://github.com/JhuangLab/BioInstaller) is a comprehensive R package 
-to manage bioinformatics software/script and database based on the R, Shiny web application and 
-the GitHub forum. Hundreds of bioinformatics tool/script and database has been included in BioInstaller.
+to integrate bioinformatics resources, such as software/script and database. 
+It provides the R, Shiny web application, and the GitHub forum. Hundreds of bioinformatics tool/script and database have been included in BioInstaller.
+
 
 **Feature**:
 
@@ -46,6 +53,9 @@ the GitHub forum. Hundreds of bioinformatics tool/script and database has been i
   - Proteomic Database
   - Software Dependence Database 
   - ......
+
+<img src="https://raw.githubusercontent.com/JhuangLab/BioInstaller/develop/man/figures/design_of_bioInstaller.jpg" align="middle" />
+
 
 ## Shiny UI overview
 
@@ -98,8 +108,6 @@ devtools::install_github("JhuangLab/BioInstaller")
   - [Docker](https://github.com/JhuangLab/BioInstaller/blob/master/inst/extdata/config/docker/docker.toml)
 
 ## Support Summary
-
-<img src="https://raw.githubusercontent.com/JhuangLab/BioInstaller/develop/man/figures/design_of_bioInstaller.jpg" align="middle" />
 
 **Quality Control:**
 
