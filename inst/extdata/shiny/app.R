@@ -30,7 +30,7 @@ sidebar <- dashboardSidebar(
   sidebarSearchForm(label = "Search...", "searchText", "searchButton"),
   sidebarMenu(id = "navbar_tabs",
     menuItem("Introduction", tabName = "introduction", icon = icon("home")),
-    menuItem("Dashbord", tabName = "dashboard", icon = icon("dashboard")),
+    menuItem("Dashboard", tabName = "dashboard", icon = icon("dashboard")),
     menuItem("Upload", tabName = "upload", icon = icon("cloud-upload")),
     menuItem("File Viewer", tabName = "file_viewer", icon = icon("file")),
     menuItem("Pipeline", tabName = "pipeline", icon = icon("diamond")),
@@ -50,7 +50,7 @@ set_extend_shinyjs <- function (id) {
 }
 
 extend_js_objs <- list()
-for(tool in c(config$shiny_tools$pipeline, config$shiny_tools$instant, "setting_yaml")){
+for(tool in c(config$shiny_tools$pipeline, config$shiny_tools$instant)){
   if (!tool == "setting_yaml"){
     config.tool <- get(sprintf("config.%s", tool))
     id <- sprintf("lastcmd_%s_%s", names(config.tool),
@@ -63,6 +63,8 @@ for(tool in c(config$shiny_tools$pipeline, config$shiny_tools$instant, "setting_
 
 body <- dashboardBody(
   shinyjs::useShinyjs(),
+  extendShinyjs(text = set_extend_shinyjs("setting_yaml"),
+                functions = sprintf("get_setting_yaml_input", id)),
   extend_js_objs,
   tags$head(
     tags$link(rel = "stylesheet", type = "text/css", href = "custom.css"),

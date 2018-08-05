@@ -99,6 +99,7 @@ setting_server <- function(input, output) {
   observeEvent(input$setting_yaml_confirmed, {
     observe({
       js$get_setting_yaml_input()
+      print(input$setting_yaml_input_value)
       req(input$setting_yaml_input_value)
       writeLines(input$setting_yaml_input_value, config.file)
       source("global_var.R", encoding = "UTF-8")

@@ -1,5 +1,5 @@
-#' This package can be used to install and download massive bioinformatics analysis 
-#' softwares and databases, such as NGS reads mapping tools with its required databases.
+#' This package is a comprehensive R package to integrate 
+#' bioinformatics resources, such as software/script and database
 #'
 #' @author
 #' Li Jianfeng \url{lee_jianfeng@sjtu.edu.cn}
