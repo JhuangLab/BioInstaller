@@ -154,12 +154,18 @@ devtools::install_github("JhuangLab/BioInstaller")
 
 ## Docker
 
-You can use the BioInstaller in Docker since v0.3.0.
+You can use the BioInstaller in Docker since v0.3.0. Shiny application was supported since v0.3.5.
 
 ``` bash
-docker pull bioinstaller/bioinstaller:develop
-docker run -it -v /tmp/download:/tmp/download bioinstaller/bioinstaller:develop R
+docker pull bioinstaller/bioinstaller
+docker run -it -p 80:80 -p 8004:8004 -v /tmp/download:/tmp/download bioinstaller/bioinstaller
 ```
+
+Service list:
+
+- http://localhost/ocpu/ Opencpu service
+- http://localhost/shiny/BioInstaller Shiny service
+- http://localhost/rstudio/ Rstudio server (opencpu/opencpu)
 
 ## How to contribute?
 
