@@ -679,3 +679,9 @@ install = ["./configure --prefix={{destdir}} && make", "make install"]
 [rop]
 github_url = "https://github.com/smangul1/rop"
 install = "./install.sh"
+
+[mrnn]
+github_url = "https://github.com/hendrixlab/mRNN"
+
+[snakemake_dna_gatk_flow]
+github_url = "https://github.com/snakemake-workflows/dna-seq-gatk-variant-calling"

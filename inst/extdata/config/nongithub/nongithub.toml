@@ -776,3 +776,11 @@ version_available = ["hg19.fa"]
 [jaffa_reffa]
 source_url = "http://bioinfo.rjh.com.cn/download/bioinstaller/jaffa/JAFFA_REFERENCE_FILES_{{version}}.tar.gz"
 version_available = ["HG19_GENCODE19", "HG38_GENCODE22"]
+
+[effusion]
+source_url = "http://www.babbittlab.ucsf.edu/effusion/effusion_{{version}}.tar.gz"
+version_available = ["1.0.0"]
+
+[hgtid]
+source_url = "http://bioinfo.rjh.com.cn/download/bioinstaller/hgtid/{{version}}"
+version_available = ["HGT-ID_v1.0.tar.gz", "sampleResults.zip"]

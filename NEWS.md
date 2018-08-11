@@ -1,10 +1,26 @@
-# BioInstaller 0.3.3
+# BioInstaller 0.3.5
 
 ## New features
 
-* Supported 148 softwares
+* Shiny application supported
 
-* Supported 169 databases
+* Numbers increased of included items, especialy the databases
+
+* Use github [forum](https://github.com/JhuangLab/BioInstaller/issues)
+
+* Add parameter `overwrite` in `install.bioinfo`
+
+* Add Opencpu, Shiny and Rstudio service in Docker container
+
+* Use 'Setting' module in Shiny application to manage the variables
+
+## Minor bugs fixed
+
+* Check and confirm delete the existing dir only when clone a github project
+
+# BioInstaller 0.3.3
+
+## New features
 
 * Multiple resources file be supported
 

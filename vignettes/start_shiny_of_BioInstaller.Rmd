@@ -1,0 +1,96 @@
+---
+title: "Start the BioInstaller Shiny Application"
+author: "Jianfeng Li"
+date: "`r Sys.Date()`"
+output:
+  prettydoc::html_pretty:
+    toc: true
+    theme: cayman
+    highlight: github
+  pdf_document:
+    toc: true
+vignette: >
+  %\VignetteIndexEntry{Start the BioInstaller Shiny Application}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction
+
+Shiny application of BioInstaller has been supported since v0.3.5. A pre-built [Docker image](https://hub.docker.com/r/bioinstaller/bioinstaller/) can help you to start all configured BioInstaller services in one-click, which includes the R (v3.4.4), Opencpu server (v??), Shiny server (v??), and BioInstaller (v0.3.5).
+
+## How to deploy the BioInstaller using Docker
+
+You need install the [Docker](https://docs.docker.com/install/) program for futher opreations. It is required for running any Docker image including BioInstaller.
+
+```{bash eval=FALSE}
+docker pull bioinstaller/bioinstaller
+docker run -it -p 80:80 -p 8004:8004 -v /tmp/download:/tmp/download bioinstaller/bioinstaller
+```
+
+When the docker container of BioInstaller was created, you can access the three types of web service in the browser.
+
+- http://localhost/ocpu/ Opencpu server
+- http://localhost/shiny/BioInstaller Shiny server
+- http://localhost/rstudio/ Rstudio server (opencpu/opencpu)
+
+### Opencpu server
+
+![](https://raw.githubusercontent.com/Miachol/ftp/master/files/images/bioinstaller/opencpu.png)
+
+```bash
+#Show all items supported by BioInstaller
+curl http://localhost/ocpu/library/BioInstaller/R/install.bioinfo -d \
+"show.all.names=TRUE" X POST
+#Show all versions of Bwa
+curl http://localhost/ocpu/library/BioInstaller/R/install.bioinfo \
+-d "name='bwa', show.all.versions=TRUE" -X POST
+
+#Download and install latest Bwa
+curl http://localhost/ocpu/library/BioInstaller/R/install.bioinfo \
+-d "name='bwa', destdir='/opt/aliner/bwa'" -X POST
+# Download 1000 Genome Project annotation database
+curl http://localhost:5656/ocpu/library/BioInstaller/R/install.bioinfo \
+-d "name='db_annovar_1000g', destdir = '/opt/annovardb', \
+extra.list=list(buildver='hg19')" -X POST
+
+# Get the character key and retrieve the output
+# Get the JSON format value of returned output
+curl http://localhost/ocpu/tmp/{key}/R/.val/json
+# Get the text format value of returned output
+curl http://localhost/ocpu/tmp/{key}/R/.val/text
+# Get the function ‘print’ output of returned value
+curl http://localhost/ocpu/tmp/{key}/R/.val/print
+```
+
+### Shiny server
+
+Open browser and input the URL "http://localhost/shiny/BioInstaller". It will activate a Shiny session and start the BioInstaller Shiny application.
+
+![](https://raw.githubusercontent.com/Miachol/ftp/master/files/images/bioinstaller/shiny.png)
+
+### Rstudio server
+
+The [Rstudio server](https://www.rstudio.com/products/rstudio-server/) was provided for users to connect the docker container just like in the desktop version of Rstudio.
+
+![](https://raw.githubusercontent.com/Miachol/ftp/master/files/images/bioinstaller/rstudio.png)
+
+## How to start the standalone Shiny service of BioInstaller
+
+If the users can not to run a docker image, the standalone shiny service of BioInstaller is an another way to start the service.
+
+```{r eval=FALSE}
+# If the BioInstaller R package has not been installed, 
+# you need execute the followed commands:
+# install.packages('BioInstaller')
+# It is better to start the worker in another background processor
+BioInstaller::set_shiny_workers(3)
+BioInstaller::web()
+```
+
+To reduce the dependence of BioInstaller, we do not add the Shiny application modules dependent packages in the DESCRIPTION file. The function 'BioInstaller::web' will check the required dependences of Shiny application and install them if the dependence not be installed.

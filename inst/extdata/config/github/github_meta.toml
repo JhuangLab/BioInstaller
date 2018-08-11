@@ -9,7 +9,7 @@ title = "Burrow-Wheeler Aligner for pairwise alignment between DNA sequences"
 description = "BWA is a software package for mapping DNA sequences against a large reference genome, such as the human genome. It consists of three algorithms: BWA-backtrack, BWA-SW and BWA-MEM. The first algorithm is designed for Illumina sequence reads up to 100bp, while the rest two for longer sequences ranged from 70bp to a few megabases. BWA-MEM and BWA-SW share similar features such as the support of long reads and chimeric alignment, but BWA-MEM, which is the latest, is generally recommended as it is faster and more accurate. BWA-MEM also has better performance than BWA-backtrack for 70-100bp Illumina reads."
 publication = [
 "Li H. and Durbin R. (2009) Fast and accurate short read alignment with Burrows-Wheeler transform. Bioinformatics, 25, 1754-1760. [PMID: 19451168]",
-"Li H. and Durbin R. (2010) Fast and accurate long-read alignment with Burrows-Wheeler transform. Bioinformatics, 26, 589-595. [PMID: 20080505]", 
+"Li H. and Durbin R. (2010) Fast and accurate long-read alignment with Burrows-Wheeler transform. Bioinformatics, 26, 589-595. [PMID: 20080505]",
 "Li H. (2013) Aligning sequence reads, clone sequences and assembly contigs with BWA-MEM. arXiv:1303.3997v2 [q-bio.GN]"]
 
 [github.item.arnapipe]
@@ -93,7 +93,7 @@ publication = ""
 [github.item.picky]
 title = "Structural Variants Pipeline for Long Reads"
 description = """Picky is a structural variant pipeline for long reads developed by Genome Technologies, The Jackson Laboratory. Picky was initially designed for Oxford Nanopore long reads, but will also work for PacBio reads. Picky uses LAST to generate all possible High-scoring Segment Pairs (HSPs) for a read, and 'pick'-and-stitch the segments into the representative alignments with a greedy algorithm instead of using last-split. Picky's picking does not assume colinearity nor mandate that each read base must only be aligned to at most a single genomic location."""
-publication = """(Gong et al., 2017) Nanopore Sequencing Reveals High-Resolution Structural Variation in the Cancer Genome.  BioRxiv. 
+publication = """(Gong et al., 2017) Nanopore Sequencing Reveals High-Resolution Structural Variation in the Cancer Genome.  BioRxiv.
 DOI: 10.1101/209718"""
 
 [github.item.freec]
@@ -144,3 +144,21 @@ description = """ROP is a computational protocol aimed to discover the source of
 - microbial communities
 The 'dumpster diving' profile of unmapped reads output by our method is not limited to RNA-Seq technology and may be applied to whole-exome and whole-genome sequencing."""
 publication = "Mangul S, Yang H T, Strauli N, et al. ROP: dumpster diving in RNA-sequencing to find the source of 1 trillion reads across diverse adult human tissues[J]. Genome Biology, 2018, 19(1):36. doi: 10.1186/s13059-018-1403-7"
+
+[github.item.varianttools]
+title = "software tool for the manipulation, annotation, selection, simulation, and analysis of variants in the context of next-gen sequencing analysis"
+description = "VariantTools, software tool for the manipulation, annotation, selection, simulation, and analysis of variants in the context of next-gen sequencing analysis."
+publication = "Integrated annotation and analysis of genetic variants from next-generation sequencing studies with variant tools, Bioinformatics 28 (3): 421-422."
+
+[github.item.trimal]
+title = "A tool for automated alignment trimming in large-scale phylogenetic analyses."
+description = "trimAl can consider several parameters, alone or in multiple combinations, in order to select the most-reliable positions in the alignment. These include the proportion of sequences with a gap, the level of residue similarity and, if several alignments for the same set of sequences are provided, the consistency level of columns among alignments. Moreover, trimAl is able to manually select a set of columns to be removed from the alignment."
+publication = "trimAl: a tool for automated alignment trimming in large-scale phylogenetic analyses, Bioinformatics, 2009, doi:10.1093/bioinformatics/btp348"
+
+[github.item.mrnn]
+title = "An implementation of a Gated Recurrent Unit (GRU) network for classification of transcripts as either coding or noncoding"
+description = "mRNN is a package for distinguishing coding transcripts from noncoding using gated recurrent neural networks (GRNNs)."
+publication = "Hill, S. T., Kuintzle, R. C., Teegarden, A., Merrill, E., Danaee, P., & Hendrix, D. A. (2017). A Deep Recurrent Neural Network Discovers Complex Biological Rules to Decipher RNA Protein-Coding Potential. Nucleic acids research,"
+
+[github.item.snakemake_dna_gatk_flow]
+description = "This Snakemake pipeline implements the GATK best-practices workflow"

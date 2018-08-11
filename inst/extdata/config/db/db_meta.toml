@@ -43,7 +43,7 @@ publication = "Yue M, Zhou D, Zhi H, et al. MSDD: a manually curated database of
 [db.item.mndr]
 url = "http://www.rna-society.org/mndr"
 description = "Accumulated evidences suggest diverse non-coding RNAs (ncRNAs) involved in a wide variety of diseases progression. Hence, we have updated the MNDR v2.0 database by integrating experimental and prediction diverse ncRNA-disease associations from manual literatures curation and other resources under one common framework. The new developments in MNDR v2.0 include (1) over 220-fold ncRNA-disease associations enhancement than previous version (including lncRNA, miRNA, piRNA, snoRNA and more than 1,400 diseases); (2) integrating experimental and prediction evidence from 14 resources and prediction algorithms for each ncRNA-disease association; (3) mapping disease name to the Disease Ontology and Medical Subject Headings (MeSH); (4) providing a confidence score for each ncRNA-disease association; and (5) an increase of species coverage to 6 mammals."
-publication = ["Cui T, Zhang L, Huang Y, et al. MNDR v2. 0: an updated resource of ncRNA–disease associations in mammals[J]. Nucleic Acids Research, 2017.", 
+publication = ["Cui T, Zhang L, Huang Y, et al. MNDR v2. 0: an updated resource of ncRNA–disease associations in mammals[J]. Nucleic Acids Research, 2017.",
                "Wang Y, Chen L, Chen B, et al. Mammalian ncRNA-disease repository: a global view of ncRNA-mediated disease network[J]. Cell death & disease, 2013, 4(8): e765."]
 
 [db.item.rsnp3]
@@ -84,7 +84,7 @@ publication = "Papatheodorou, I., et al. Expression Atlas: gene and protein expr
 url = "http://tagc.univ-mrs.fr/remap/"
 description = "ReMap, an integrative analysis of transcriptional regulators ChIP-seq experiments from both Public and Encode datasets. The ReMap atlas consits of 80 million peaks from 485 transcription factors (TFs), transcription coactivators (TCAs) and chromatin-remodeling factors (CRFs). The atlas is available to browse or download either for a given TF or cell line, or for the entire dataset. "
 publication = [
-               "Integrative analysis of public ChIP-seq experiments reveals a complex multi-cell regulatory landscape.Griffon, A., Barbier, Q., Dalino, J., van Helden, J., Spicuglia, S., Ballester, B. Nucleic Acids Research, Volume 43, Issue 4, 27 February 2015 ", 
+               "Integrative analysis of public ChIP-seq experiments reveals a complex multi-cell regulatory landscape.Griffon, A., Barbier, Q., Dalino, J., van Helden, J., Spicuglia, S., Ballester, B. Nucleic Acids Research, Volume 43, Issue 4, 27 February 2015 ",
                "ReMap 2018: An updated regulatory regions atlas from an integrative analysis of DNA-binding ChIP-seq experiments. Cheneby J., Gheorghe M., Artufel M., Mathelier A., Ballester, B. Nucleic Acids Research, gkx1092, https://doi.org/10.1093/nar/gkx1092"]
 
 [db.item.funcoup]
@@ -92,8 +92,8 @@ url = "http://funcoup.sbc.su.se/search/"
 description = "This release of the FunCoup database (http://funcoup.sbc.su.se) is the fourth generation of one of the most comprehensive databases for genome-wide functional association networks. These functional associations are inferred via integrating various data types using a naive Bayesian algorithm and orthology based information transfer across different species. This approach provides high coverage of the included genomes as well as high quality of inferred interactions. In this update of FunCoup we introduce four new eukaryotic species: Schizosaccharomyces pombe, Plasmodium falciparum, Bos taurus, Oryza sativa and open the database to the prokaryotic domain by including networks for Escherichia coli and Bacillus subtilis. The latter allows us to also introduce a new class of functional association between genes - co-occurrence in the same operon. We also supplemented the existing classes of functional association: metabolic, signaling, complex and physical protein interaction with up-to-date information. In this release we switched to InParanoid v8 as the source of orthology and base for calculation of phylogenetic profiles. While populating all other evidence types with new data we introduce a new evidence type based on quantitative mass spectrometry data. Finally, the new JavaScript based network viewer provides the user an intuitive and responsive platform to further evaluate the results."
 publication = [
                "Ogris, C., et al. FunCoup 4: new species, data, and visualization. Nucleic Acids Res 2017.",
-               "Schmitt, T., Ogris, C., & Sonnhammer, E. L. (2013). FunCoup 3.0: database of genome-wide functional coupling networks. Nucleic Acids Research, 42(Database issue), D380-8", 
-               "Alexeyenko, A., Schmitt, T., E. L. (2012). Comparative interactomics with Funcoup 2.0. Nucleic Acids Research, 40(Database issue), D821-8", 
+               "Schmitt, T., Ogris, C., & Sonnhammer, E. L. (2013). FunCoup 3.0: database of genome-wide functional coupling networks. Nucleic Acids Research, 42(Database issue), D380-8",
+               "Alexeyenko, A., Schmitt, T., E. L. (2012). Comparative interactomics with Funcoup 2.0. Nucleic Acids Research, 40(Database issue), D821-8",
                "Alexeyenko, A., & Sonnhammer, E. L. (2009). Global networks of functional coupling in eukaryotes from comprehensive data integration. Genome Research, 19(6), 1107-1116"]
 [db.item.proteinatlas]
 url = "https://www.proteinatlas.org/"
@@ -116,7 +116,7 @@ publication = [
                "Wishart D S, Knox C, Guo A C, et al. DrugBank: a comprehensive resource for in silico drug discovery and exploration[J]. Nucleic acids research, 2006, 34(suppl_1): D668-D672.",
                "Wishart D S, Knox C, Guo A C, et al. DrugBank: a knowledgebase for drugs, drug actions and drug targets[J]. Nucleic acids research, 2007, 36(suppl_1): D901-D906.",
                "Knox C, Law V, Jewison T, et al. DrugBank 3.0: a comprehensive resource for ‘omics’ research on drugs[J]. Nucleic acids research, 2010, 39(suppl_1): D1035-D1041.",
-               "Law V, Knox C, Djoumbou Y, et al. DrugBank 4.0: shedding new light on drug metabolism[J]. Nucleic acids research, 2013, 42(D1): D1091-D1097.", 
+               "Law V, Knox C, Djoumbou Y, et al. DrugBank 4.0: shedding new light on drug metabolism[J]. Nucleic acids research, 2013, 42(D1): D1091-D1097.",
                "Wishart DS, Feunang YD, Guo AC, Lo EJ, Marcu A, Grant JR, Sajed T, Johnson D, Li C, Sayeeda Z, Assempour N, Iynkkaran I, Liu Y, Maciejewski A, Gale N, Wilson A, Chin L, Cummings R, Le D, Pon A, Knox C, Wilson M. DrugBank 5.0: a major update to the DrugBank database for 2018. Nucleic Acids Res. 2017 Nov 8. doi: 10.1093/nar/gkx1037."]
 
 [db.item.interpro]
@@ -169,7 +169,7 @@ publication = "Hu X, Wang Q, Tang M, et al. TumorFusions: an integrative resourc
 url = "https://www.gtexportal.org"
 description = "Correlations between genotype and tissue-specific gene expression levels will help identify regions of the genome that influence whether and how much a gene is expressed. GTEx will help researchers to understand inherited susceptibility to disease and will be a resource database and tissue bank for many studies in the future. The Genotype-Tissue Expression (GTEx) project aims to provide to the scientific community a resource with which to study human gene expression and regulation and its relationship to genetic variation. This project will collect and analyze multiple human tissues from donors who are also densely genotyped, to assess genetic variation within their genomes. By analyzing global RNA expression within individual tissues and treating the expression levels of genes as quantitative traits, variations in gene expression that are highly correlated with genetic variation can be identified as expression quantitative trait loci, or eQTLs. Despite the rapid progress achieved using genome-wide association studies (GWAS; See: http://www.genome.gov/26525384 ) to identify genetic changes associated with common human diseases, such as heart disease, cancer, diabetes, asthma, and stroke, a large majority of these genetic changes lies outside of the protein-coding regions of genes and often even outside of the genes themselves, making it difficult to discern which genes are affected and by what mechanism. The comprehensive identification of human eQTLs will greatly help to identify genes whose expression is affected by genetic variation, and will provide a valuable basis on which to study the mechanism of that gene regulation. The project will also involve consultation and research into the ethical, legal and social issues raised by the research, support for statistical methods development, and creation of a database to house existing and GTEx-generated eQTL data . The database will allow users to view and download computed eQTL results and provide a controlled access system for de-identified individual-level genotype, expression, and clinical data. The associated tissue repository will also serve as a resource for many additional kinds of analyses."
 publication = [
-               "Consortium G. Human genomics. The Genotype-Tissue Expression (GTEx) pilot analysis: multitissue gene regulation in humans[J]. Science, 2015, 348(6235):648-60.", 
+               "Consortium G. Human genomics. The Genotype-Tissue Expression (GTEx) pilot analysis: multitissue gene regulation in humans[J]. Science, 2015, 348(6235):648-60.",
                "Consortium G, Battle A, Brown C D, et al. Genetic effects on gene expression across human tissues[J]. Nature, 2017, 550(7675):204."
                ]
 
@@ -214,7 +214,7 @@ publication = "Li S, Li Y, Chen B, et al. exoRBase: a database of circRNA, lncRN
 [db.item.exsnp]
 url = "http://www.exsnp.org"
 description = "Genome-wide association studies (GWAS) of human complex disease have identified a large number of disease associated genetic loci, distinguished by an altered frequency of specific single nucleotide polymorphisms (SNPs) among individuals with a particular disease, compared to controls. However, most of these risk loci do not provide direct information on the biological basis of a disease or on the underlying mechanisms. Recent genome-wide expression quantitative trait loci (eQTLs) association studies have provided information on genetic factors, especially SNPs, associated with gene expression variation. These eQTLs likely contribute to phenotype diversity and disease susceptibility, but interpretation is handicapped by low reproducibility of the expression results. Our primary goal is to establish a gold-standard list of consensus eQTLs by integrating publicly available data for specific human populations and cell types, so as to efficiently prioritize functional SNPs. We used linkage disequilibrium data from Hapmap and the 1000 Genome Project to integrate the results of eQTL studies. Separate gold-standard sets for various populations allowed us to investigate eQTLs which contribute to population-specific expression variation. Additionally, tissue-specific eQTL associations were identified by comparing eQTL data from six cell types: LCLs, B cells, Monocytes, Brain, Liver, and Skin. Moreover, to discover the role of these eQTLs play in human common diseases, we have integrated the current gold standard data with SNPs in disease risk loci from GWA studies of seven common human diseases."
-publication = ["Yu CH, Pal LR, & Moult J. (2016). Consensus Genome-Wide Expression Quantitative Trait Loci and Their Relationship with Human Complex Trait Disease. OMICS, 20(7):400-14. PMID: 27428252", 
+publication = ["Yu CH, Pal LR, & Moult J. (2016). Consensus Genome-Wide Expression Quantitative Trait Loci and Their Relationship with Human Complex Trait Disease. OMICS, 20(7):400-14. PMID: 27428252",
                "Pal LR, Yu CH, Mount SM, & Moult J. (2015). Insights from GWAS: emerging landscape of mechanisms underlying complex trait disease. BMC Genomics, 16 Suppl 8:S4 PMID: 26110739"]
 
 [db.item.rvarbase]
@@ -239,11 +239,11 @@ publication = "Arnold, M., Raffler, J., Pfeufer, A., Suhre, K., & Kastenmüller,
 
 [db.item.rddpred]
 url = "http://epigenomics.snu.ac.kr/RDDpred/prior_data"
-description = """RDDpred: A condition-specific RNA-editing prediction model from RNA-seq data 
-1) RDDpred deduces condition-specific training examples without any experimental validations to construct a predictor. 
-2) As far as we know, RDDpred is the very first machine-learning based automated pipeline for RNA-editing prediction. 
-3) RDDpred successfully reproduced the results of two previous studies (95%, 90%), 
-with showing significant NPV (84%, 75%) and the prediction procedures are finished in reasonable time (18 hrs). 
+description = """RDDpred: A condition-specific RNA-editing prediction model from RNA-seq data
+1) RDDpred deduces condition-specific training examples without any experimental validations to construct a predictor.
+2) As far as we know, RDDpred is the very first machine-learning based automated pipeline for RNA-editing prediction.
+3) RDDpred successfully reproduced the results of two previous studies (95%, 90%),
+with showing significant NPV (84%, 75%) and the prediction procedures are finished in reasonable time (18 hrs).
 """
 publication = "Kim M, Hur B, Kim S. RDDpred: a condition-specific RNA-editing prediction model from RNA-seq data[J]. BMC genomics, 2016, 17(Suppl 1)."
 
@@ -272,14 +272,14 @@ tag = ["NGS", "database"]
 [db.item.cancer_hotspots]
 title = "A RESOURCE FOR STATISTICALLY SIGNIFICANT MUTATIONS IN CANCER"
 description = "This resource is maintained by the Kravis Center for Molecular Oncology at Memorial Sloan Kettering Cancer Center. It provides information about statistically significantly recurrent mutations identified in large scale cancer genomics data."
-publication = ["Chang et al., Accelerating discovery of functional mutant alleles in cancer. Cancer Discovery, 10.1158/2159-8290.CD-17-0321 (2017)", 
+publication = ["Chang et al., Accelerating discovery of functional mutant alleles in cancer. Cancer Discovery, 10.1158/2159-8290.CD-17-0321 (2017)",
                "Chang et al., Identifying recurrent mutations in cancer reveals widespread lineage diversity and mutational specificity. Nature Biotechnology 34, 155–163 (2016)"]
 tag = ["NGS", "database"]
 
 [db.item.intogen]
 title = "Integrative Onco Genomics"
 description = "IntOGen-mutations platform (http://www.intogen.org/mutations/) summarizes somatic mutations, genes and pathways involved in tumorigenesis. It identifies and visualizes cancer drivers, analyzing 4,623 exomes from 13 cancer sites. It provides support to cancer researchers, aids the identification of drivers across tumor cohorts and helps rank mutations for better clinical decision-making."
-publication = ["Rubio-Perez, C., Tamborero, D., Schroeder, MP., Antolín, AA., Deu-Pons,J., Perez-Llamas, C., Mestres, J., Gonzalez-Perez, A., Lopez-Bigas, N. In silico prescription of anticancer drugs to cohorts of 28 tumor types reveals novel targeting opportunities. Cancer Cell 27 (2015), pp. 382-396", 
+publication = ["Rubio-Perez, C., Tamborero, D., Schroeder, MP., Antolín, AA., Deu-Pons,J., Perez-Llamas, C., Mestres, J., Gonzalez-Perez, A., Lopez-Bigas, N. In silico prescription of anticancer drugs to cohorts of 28 tumor types reveals novel targeting opportunities. Cancer Cell 27 (2015), pp. 382-396",
                "Gonzalez-Perez A, Perez-Llamas C, Deu-Pons J, Tamborero D, Schroeder MP, Jene-Sanz A, Santos A & Lopez-Bigas N IntOGen-mutations identifies cancer Nature Methods 2013; doi:10.1038/nmeth.2642"]
 tag = ["NGS", "database"]
 
@@ -309,3 +309,105 @@ benefit from a standard treatment. OncoKB annotations are available through a pu
 resource (http://oncokb.org) and are incorporated into the cBioPortal for Cancer Genomics to
 facilitate the interpretation of genomic alterations by physicians and researchers."""
 publication = "Chakravarty D, Gao J, Phillips S M, et al. OncoKB: A Precision Oncology Knowledge Base.[J]. Jco Precision Oncology, 2017, 2017."
+
+[db.item.mirdb]
+title = "miRDB: an online resource for microRNA target prediction and functional annotations"
+description = "miRDB is an online database for miRNA target prediction and functional annotations. All the targets in miRDB were predicted by a bioinformatics tool, MirTarget, which was developed by analyzing thousands of miRNA-target interactions from high-throughput sequencing experiments. Common features associated with miRNA target binding have been identified and used to predict miRNA targets with machine learning methods. miRDB hosts predicted miRNA targets in five species: human, mouse, rat, dog and chicken. As a recent update, users may provide their own sequences for customized target prediction. In addition, through combined computational analyses and literature mining, functionally active miRNAs in humans and mice were identified. These miRNAs, as well as associated functional annotations, are presented in the FuncMir Collection in miRDB."
+publication = "Nathan Wong and Xiaowei Wang (2015) miRDB: an online resource for microRNA target prediction and functional annotations. Nucleic Acids Research. 43(D1):D146-152."
+
+[db.item.mirtarbase]
+title = "miRTarBase: the experimentally validated microRNA-target interactions database"
+description = """As a database, miRTarBase has accumulated more than three hundred and
+sixty thousand miRNA-target interactions (MTIs), which are collected by manually surveying pertinent literature after NLP of the text systematically to filter research articles related to functional studies of miRNAs."""
+publication = "miRTarBase update 2018: a resource for experimentally validated microRNA-target interactions. (2018) Nucleic Acids Research. PMID:29126174"
+
+[db.item.mirnest]
+title = "miRNEST is an integrative collection of animal, plant and virus microRNA data."
+description = """The database provides you with:
+a)  microRNAs from our high-throughput predictions as well as from external databases
+b)  predicted targets for plant candidates and experimental target support
+c)  integrated data from 15 external databases, which includes e.g. sequences, polymorphism, expression, promoters.
+d) mirtrons, miRNA gene structures, degradome data and more!
+"""
+publication = "Szczesniak MW, Makalowska I (2014) miRNEST 2.0: a database of plant and animal microRNAs. Nucleic Acids Res. 42:D74-D77. "
+
+[db.item.rbpdb]
+title = "RBPDB, the database of RNA-binding protein specificities"
+description = """RBPDB is a collection of RNA-binding proteins linked to a curated database of published observations of RNA binding. For a description of the database,
+including types of proteins and experiments represented, data sources, and curation methodology, please refer to the RBPDB paper at Nucleic Acids Research."""
+publication = "RBPDB: a database of RNA-binding specificities. 2010 Nucleic Acids Research. doi:10.1093/nar/gkq1069"
+
+[db.item.appris]
+title = "APPRIS, annotating principal splice isoforms"
+description = "{APPRIS} is a system that deploys a range of computational methods to provide annotations of alternative splice isoforms and identify principal isoforms for vertebrate species."
+publication = "APPRIS 2017: principal isoforms for multiple gene sets. Rodriguez JM, Rodriguez-Rivas J, Domenico TD, Vázquez J, Valencia A, and Tress ML. Nucleic Acids Res. Database issue; 2017 Oct 23. DOI:10.1093/nar/gkx997"
+
+[db.item.lncipedia]
+title = "A comprehensive compendium of human long non-coding RNAs"
+description = "LNCipedia is a public database for long non-coding RNA (lncRNA) sequence and annotation. The current release contains 127,802 transcripts and 56,946 genes."
+publication = "Pieter-Jan Volders; Kenneth Verheggen; Gerben Menschaert; Klaas Vandepoele; Lennart Martens; Jo Vandesompele and Pieter Mestdagh; Nucleic Acids Research 2015 doi:10.1093/nar/gku1060"
+
+[db.item.msigdb]
+title = "Molecular Signatures Database"
+description = "MSigDB (Molecular Signatures Database), The Molecular Signatures Database (MSigDB) is a collection of annotated gene sets for use with GSEA software."
+publication = "Gene set enrichment analysis: A knowledge-based approach for interpreting genome-wide expression profiles, 2005, PNAS, doi:10.1073/pnas.0506580102"
+
+[db.item.mircancer]
+title = "miRCancer : microRNA Cancer Association Database"
+description = "miRCancer provides comprehensive collection of microRNA (miRNA) expression profiles in various human cancers which are automatically extracted from published literatures in PubMed. It utilizes text mining techniques for information collection. Manual revision is applied after auto-extraction to provide 100% precision."
+publication = "miRCancer: a microRNA-cancer association database constructed by text mining on literature Boya Xie; Qin Ding; Hongjin Han; Di Wu Bioinformatics, Vol. 29, Issue 5, pp.638-644, 2013"
+
+[db.item.dcdb]
+title = "Drug Combination Database"
+description = "DCDB (Drug Combination Database), Accumulating scientific and clinical evidences have suggested the use of drug combinations as a safe and effective approach, to treat complicated and refractory diseases. The Drug Combination Database (DCDB) is devoted to the research and development of multi-component drugs. The current version of DCDB collected 1363 drug combinations (330 approved and 1033 investigational, including 237 unsuccessful usages), involving 904 individual drugs, 805 targets."
+publication = "DCDB 2.0: a major update of the drug combination database. Yanbin Liu, Qiang Wei, et.al, Database (2014) 2014 : bau124 doi: 10.1093/database/bau124"
+
+[db.item.oncomirdb]
+title = "A Database for Oncogenic & Tumor-Suppressive MicroRNAs"
+description = "OncomiRDB, aiming at annotating the experimentally verified oncogenic and tumor-suppressive miRNAs from literature."
+publication = "Dongfang Wang, Jin Gu#, Ting Wang, Zijian Ding. OncomiRDB: a database for the experimentally verified oncogenic and tumor-suppressive microRNAs. Bioinformatics 2014, 30(15):2237-2238."
+
+[db.item.islandviewer]
+title = "An integrated interface for computational identification and visualization of genomic islands"
+description = "This web site was developed so that researchers could easily view and download genomic islands for all published sequenced bacterial and archaeal genomes that have been predicted using the the currently most accurate GI prediction methods."
+publication = "Bertelli, C. et al. 2017. 'IslandViewer 4: Expanded prediction of genomic islands for larger-scale datasets' Nucleic Acids Research. 2017 May 2. doi: 10.1093/nar/gkx343"
+
+[db.item.hpdi]
+title = "Human Protein-DNA Interactome (hPDI)"
+description = "hPDI (Human Protein-DNA Interactome), The hPDI database holds experimental protein-DNA interaction data for humans identified by protein microarray assays. The current release of hPDI contains 17,718 protein-DNA interactions for 1013 human DNA-binding proteins. These DNA-binding proteins include 493 human transcription factors (TFs) and 520 unconventional DNA binding proteins (uDBPs)."
+publication = "Xie, Z., Hu, S.H., Blackshaw, S., Zhu, H. and Qian, J. (2009) hPDI: a database of experimental human protein-DNA interactions, Bioinformatics.;Hu, S.H., Xie, Z., Onishi, A., Yu, X.P., Jiang, L.Z., Lin, J., Rho, H.S., Woodard, C., Wang, H., Jeong, J.S., Long, S.Y., He, X.F., Blackshaw, S., Qian, Q. and Zhu, H. (2009) Profiling the Human Protein-DNA Interactome Reveals ERK2 as a Transcriptional Repressor of Interferon Signalling, Cell, 139, 610-622."
+
+[db.item.dbsno]
+title = "dbSNO: Database of Cysteine S-NitrOsylation"
+description = "dbSNO, Protein S-nitrosylation (SNO) is a reversible post-translational modification (PTM) and involves the covalent attachment of nitric oxide (NO) to the thiol group of cysteine (Cys) residues. Given the increasing number of proteins reported to be regulated by this modification, S-nitrosylation is considered to act, in a manner analogous to phosphorylation, as a pleiotropic regulator that elicits dual effects to regulate diverse pathophysiological processes by altering protein function, stability, and conformation change in various cancers and human disorders."
+publication = "Yi-Ju Chen, Wei-Chieh Ching, Jinn-Shiun Chen, Tzong-Yi Lee, Cheng-Tsung Lu, Hsiao-Chiao Chou, Pei-Yi Lin, Kay-Hooi Khoo, Jenn-Han Chen, and Yu-Ju Chen (2014) 'Decoding the S-nitrosoproteomic Atlas in Individualized Human Colorectal Cancer Tissues Using a Label-free Quantitation Strategy', Journal of Proteome Research, DOI: 10.1021/pr5002675"
+
+[db.item.phosphonetworks]
+title = "A database for experimentally determined kinase-substrate relationships"
+description = "PhosphoNetworks, a combined bioinformatics and protein microarray-based strategy to construct a high-resolution map of the human phosphorylation networks."
+publication = "Hu, J., Rho H., Newman, R., Zhang, J., Zhu, Heng., Qian, J. 'PhosphoNetworks: A Database for Human Phosphorylation Networks'. Bioinformatics. doi: 10.1093/bioinformatics/btt627. (2013)"
+
+[db.item.consensuspathdb]
+title = "Interaction networks in Homo sapiens"
+description = "ConsensusPathDB-human integrates interaction networks in Homo sapiens including binary and complex protein-protein, genetic, metabolic, signaling, gene regulatory and drug-target interactions, as well as biochemical pathways."
+publication = "Kamburov, A. et al. (2013) The ConsensusPathDB interaction database: 2013 update. Nucleic Acids Res. "
+
+[db.item.instruct]
+title = "A database of 3D protein interactome networks with structural resolution"
+description = "INstruct, a database of high-quality protein interactome networks annotated to 3D structural resolution. We currently catalogue 6585 human, 644 A. thaliana, 120 C. elegans, 166 D. melanogaster, 119 M. musculus, 1273 S. cerevisiae, and 37 S. pombe structurally resolved interactions. The interactions shown on this site have been curated from some of the most popular interaction databases and filtered to reflect only binary interactions that meet our strict quality criteria. The schematic below shows how we are then able to reconstruct 3D interaction interfaces for our high-quality set by using available co-crystal structure"
+publication = "INstruct: a database of high-quality 3D structurally resolved protein interactome networks. Bioinformatics. 2013 Jun 15;29(12):1577-9. doi: 10.1093/bioinformatics/btt181"
+
+[db.item.redoxdb]
+title = "RedoxDB: a curated database of protein oxidative modification"
+description = "RedoxDB, a manually curated database of experimentally verified protein oxidative modification. RedoxDB mainly consists of two types of data: dataset (A) includes redox proteins for which the modified Cys have been experimentally verified, and dataset (B) includes redox proteins that the modified Cys have not been determined yet. When searching or blasting RedoxDB, user can decide to included dataset(B) or not."
+publication = "Sun M., Wang Y., Cheng H., Zhang Q., Ge W., Guo D. RedoxDB - a curated database of experimentally verified protein redox modification. Bioinformatics, 28(19):2551-2552 (PMID: 22833525)."
+
+[db.item.sm2mir]
+title = "SM2miR: a database of the experimentally validated small molecules' effects on microRNA expression"
+description = "SM2miR, a manual curated database which collects and incorporates the experimentally validated small molecules' effects on miRNA expression in 20 species from the published papers. Each entry contains the detailed information about small molecules, miRNAs and their relationships, including species, small molecule name, DrugBank Accession number, PubChem CID, approved by FDA or not, miRNA name, miRBase Accession number, expression pattern of miRNA, experimental detection method, tissues or conditions for detection, evidences in the reference, PubMed ID and the published year of the reference."
+publication = "Liu X, Wang S, Meng F, Wang J, Zhang Y, Dai E, Yu X, Li X, Jiang W. SM2miR: a database of the experimentally validated small molecules' effects on microRNA expression. Bioinformatics. 2013 Feb 1; 29(3): 409-11. doi: 10.1093/bioinformatics/bts698. Epub 2012 Dec 5."
+
+[db.item.hmdb]
+title = "HMDB:The Human Metabolome Database"
+description = "HMDB is an online database of small molecule metabolites found in the human body, which facilitates human metabolomics research including the identification and characterization of human metabolites using NMR and MS."
+publication = "Wishart DS, Knox C, Guo AC, et al., HMDB: a knowledgebase for the human metabolome. Nucleic Acids Res. 2009 37(Database issue):D603-610. 18953024 ; Wishart DS, Feunang YD, Marcu A, Guo AC, Liang K, et al., HMDB 4.0 — The Human Metabolome Database for 2018. Nucleic Acids Res. 2018. Jan 4;46(D1):D608-17. 29140435"

@@ -22,7 +22,7 @@ version_available = ["HPA_Adrenal", "HPA_Appendix", "HPA_Bonemarrow", "HPA_Brain
 [db_seecancer]
 source_url = "http://biocc.hrbmu.edu.cn/SEECancer/download/{{version}}.txt"
 decompress = false
-version_available = ["early_events", "late_events", "relapse_events", "metastasis_events", 
+version_available = ["early_events", "late_events", "relapse_events", "metastasis_events",
                      "drug_resistant_events", "drug_induced_events", "temporal_sequence"]
 
 [db_diseaseenhancer]
@@ -31,22 +31,22 @@ version_available = ["diseaseEnh5.1", "enhInfo", "enh2target"]
 
 [db_pancanqtl]
 source_url = "http://bioinfo.life.hust.edu.cn/PancanQTL/static/download/{{version}}.xls"
-version_available = ["ACC_tumor.cis_eQTL", "BLCA_tumor.cis_eQTL", "BRCA_tumor.cis_eQTL", 
-"CESC_tumor.cis_eQTL", "CHOL_tumor.cis_eQTL", "COAD_tumor.cis_eQTL", "DLBC_tumor.cis_eQTL", 
-"ESCA_tumor.cis_eQTL", "GBM_tumor.cis_eQTL", "HNSC_tumor.cis_eQTL", "KICH_tumor.cis_eQTL", 
-"KIRC_tumor.cis_eQTL", "KIRP_tumor.cis_eQTL", "LAML_tumor.cis_eQTL", "LGG_tumor.cis_eQTL", 
-"LIHC_tumor.cis_eQTL", "LUAD_tumor.cis_eQTL", "LUSC_tumor.cis_eQTL", "MESO_tumor.cis_eQTL", 
-"OV_tumor.cis_eQTL", "PAAD_tumor.cis_eQTL", "PCPG_tumor.cis_eQTL", "PRAD_tumor.cis_eQTL", 
-"READ_tumor.cis_eQTL", "SARC_tumor.cis_eQTL", "SKCM_tumor.cis_eQTL", "STAD_tumor.cis_eQTL", 
-"TGCT_tumor.cis_eQTL", "THCA_tumor.cis_eQTL", "THYM_tumor.cis_eQTL", "UCEC_tumor.cis_eQTL", 
-"UCS_tumor.cis_eQTL", "UVM_tumor.cis_eQTL", "ACC_tumor.trans_eQTL", "BLCA_tumor.trans_eQTL", 
-"BRCA_tumor.trans_eQTL", "CESC_tumor.trans_eQTL", "CHOL_tumor.trans_eQTL", "COAD_tumor.trans_eQTL", 
-"DLBC_tumor.trans_eQTL", "ESCA_tumor.trans_eQTL", "GBM_tumor.trans_eQTL", "HNSC_tumor.trans_eQTL", 
-"KICH_tumor.trans_eQTL", "KIRC_tumor.trans_eQTL", "KIRP_tumor.trans_eQTL", "LAML_tumor.trans_eQTL", 
-"LGG_tumor.trans_eQTL", "LIHC_tumor.trans_eQTL", "LUAD_tumor.trans_eQTL", "LUSC_tumor.trans_eQTL", 
-"MESO_tumor.trans_eQTL", "OV_tumor.trans_eQTL", "PAAD_tumor.trans_eQTL", "PCPG_tumor.trans_eQTL", 
-"PRAD_tumor.trans_eQTL", "READ_tumor.trans_eQTL", "SARC_tumor.trans_eQTL", "SKCM_tumor.trans_eQTL", 
-"STAD_tumor.trans_eQTL", "TGCT_tumor.trans_eQTL", "THCA_tumor.trans_eQTL", "THYM_tumor.trans_eQTL", 
+version_available = ["ACC_tumor.cis_eQTL", "BLCA_tumor.cis_eQTL", "BRCA_tumor.cis_eQTL",
+"CESC_tumor.cis_eQTL", "CHOL_tumor.cis_eQTL", "COAD_tumor.cis_eQTL", "DLBC_tumor.cis_eQTL",
+"ESCA_tumor.cis_eQTL", "GBM_tumor.cis_eQTL", "HNSC_tumor.cis_eQTL", "KICH_tumor.cis_eQTL",
+"KIRC_tumor.cis_eQTL", "KIRP_tumor.cis_eQTL", "LAML_tumor.cis_eQTL", "LGG_tumor.cis_eQTL",
+"LIHC_tumor.cis_eQTL", "LUAD_tumor.cis_eQTL", "LUSC_tumor.cis_eQTL", "MESO_tumor.cis_eQTL",
+"OV_tumor.cis_eQTL", "PAAD_tumor.cis_eQTL", "PCPG_tumor.cis_eQTL", "PRAD_tumor.cis_eQTL",
+"READ_tumor.cis_eQTL", "SARC_tumor.cis_eQTL", "SKCM_tumor.cis_eQTL", "STAD_tumor.cis_eQTL",
+"TGCT_tumor.cis_eQTL", "THCA_tumor.cis_eQTL", "THYM_tumor.cis_eQTL", "UCEC_tumor.cis_eQTL",
+"UCS_tumor.cis_eQTL", "UVM_tumor.cis_eQTL", "ACC_tumor.trans_eQTL", "BLCA_tumor.trans_eQTL",
+"BRCA_tumor.trans_eQTL", "CESC_tumor.trans_eQTL", "CHOL_tumor.trans_eQTL", "COAD_tumor.trans_eQTL",
+"DLBC_tumor.trans_eQTL", "ESCA_tumor.trans_eQTL", "GBM_tumor.trans_eQTL", "HNSC_tumor.trans_eQTL",
+"KICH_tumor.trans_eQTL", "KIRC_tumor.trans_eQTL", "KIRP_tumor.trans_eQTL", "LAML_tumor.trans_eQTL",
+"LGG_tumor.trans_eQTL", "LIHC_tumor.trans_eQTL", "LUAD_tumor.trans_eQTL", "LUSC_tumor.trans_eQTL",
+"MESO_tumor.trans_eQTL", "OV_tumor.trans_eQTL", "PAAD_tumor.trans_eQTL", "PCPG_tumor.trans_eQTL",
+"PRAD_tumor.trans_eQTL", "READ_tumor.trans_eQTL", "SARC_tumor.trans_eQTL", "SKCM_tumor.trans_eQTL",
+"STAD_tumor.trans_eQTL", "TGCT_tumor.trans_eQTL", "THCA_tumor.trans_eQTL", "THYM_tumor.trans_eQTL",
 "UCEC_tumor.trans_eQTL", "UCS_tumor.trans_eQTL", "UVM_tumor.trans_eQTL"]
 
 [db_msdd]
@@ -66,12 +66,12 @@ source_url = "http://bioinfo.rjh.com.cn/download/bioinstaller/ecodrug/ECOdrug_{{
 version_available = ["eggnog", "ensembl", "inparanoid", "majority_vote"]
 
 [db_medreaders]
-source_url = ["http://bioinfo.rjh.com.cn/download/bioinstaller/medreader/paper.TF.PWM.tar.gz", 
+source_url = ["http://bioinfo.rjh.com.cn/download/bioinstaller/medreader/paper.TF.PWM.tar.gz",
               "http://bioinfo.rjh.com.cn/download/bioinstaller/medreader/paper.TF.summary.xlsx.gz"]
 version_available = "newst"
 
 [db_superdrug2]
-source_url = ["http://bioinfo.rjh.com.cn/download/bioinstaller/superdrug2/{{version}}.csv.zip", 
+source_url = ["http://bioinfo.rjh.com.cn/download/bioinstaller/superdrug2/{{version}}.csv.zip",
               "http://bioinfo.rjh.com.cn/download/bioinstaller/superdrug2/{{version}}.zip"]
 url_all_download = false
 version_available = ["all_drugs_2D_structures", "all_drugs_3D_structures", "all_drugs_chemical_structure_identifiers", "all_drugs_extlinks", "all_drugs_molecular_properties", "approved_drugs_chemical_structure_identifiers", "approved_drugs_extlinks", "approved_drugs_molecular_properties"]
@@ -92,24 +92,24 @@ source_url = "ftp://ftp.ebi.ac.uk/pub/databases/microarray/data/atlas/experiment
 version_available = "latest"
 
 [db_remap2]
-source_url = ["http://tagc.univ-mrs.fr/remap/download/MACS/ReMap2_TF_{{version}}Peaks.tar.gz", 
+source_url = ["http://tagc.univ-mrs.fr/remap/download/MACS/ReMap2_TF_{{version}}Peaks.tar.gz",
               "http://tagc.univ-mrs.fr/remap/download/MACS/ReMap2_{{version}}Peaks.bed.gz",
-              "http://tagc.univ-mrs.fr/remap/download/MACS/ReMap2_{{version}}.bed.gz", 
+              "http://tagc.univ-mrs.fr/remap/download/MACS/ReMap2_{{version}}.bed.gz",
               "@<@if (str_detect('{{version}}', 'hg19')) {str_replace('{{version}}', '_hg19', '');'http://tagc.univ-mrs.fr/remap/download/MACS_lifted_hg19/ReMap2_TF_{{version}}Peaks_hg19.tar.gz'}@<@",
-              "@<@if (str_detect('{{version}}', 'hg19')) {str_replace('{{version}}', '_hg19', '');'http://tagc.univ-mrs.fr/remap/download/MACS_lifted_hg19/ReMap2_{{version}}Peaks_hg19.bed.gz'}@<@", 
+              "@<@if (str_detect('{{version}}', 'hg19')) {str_replace('{{version}}', '_hg19', '');'http://tagc.univ-mrs.fr/remap/download/MACS_lifted_hg19/ReMap2_{{version}}Peaks_hg19.bed.gz'}@<@",
               "@<@if (str_detect('{{version}}', 'hg19')) {str_replace('{{version}}', '_hg19', '');'http://tagc.univ-mrs.fr/remap/download/MACS_lifted_hg19/ReMap2_{{version}}_hg19.bed.gz'}@<@"]
 
-version_available = ["archive_all", "archive_nr", 
-                     "archive_all_hg19", "archive_nr_hg19", 
-                     "public_all", "public_crm", "public_nr", 
-                     "encode_all", "encode_crm", "encode_nr", 
+version_available = ["archive_all", "archive_nr",
+                     "archive_all_hg19", "archive_nr_hg19",
+                     "public_all", "public_crm", "public_nr",
+                     "encode_all", "encode_crm", "encode_nr",
                      "all", "crm", "nr"]
 
 [db_remap]
 source_url = ["http://tagc.univ-mrs.fr/remap/download/remap1/ReMap2015_TF_{{version}}Peaks.tar.gz",
               "http://tagc.univ-mrs.fr/remap/download/ReMap1_lifted_hg38/{{version}}.bed.gz",
               "http://tagc.univ-mrs.fr/remap/download/remap1/All/{{version}}.bed.gz"]
-version_available = ["archive_all", "archive_nr", "filPeaks_public", "filPeaks_all", "nrPeaks_public", "nrPeaks_all", 
+version_available = ["archive_all", "archive_nr", "filPeaks_public", "filPeaks_all", "nrPeaks_public", "nrPeaks_all",
                      "hg38_allPeaks", "hg38_nrPeaks"]
 
 [db_funcoup]
@@ -122,14 +122,14 @@ source_url = ["https://www.proteinatlas.org/download/{{version}}.tsv.zip",
               "https://www.proteinatlas.org/images_static/{{version}}"]
 decompress = [true, true, false]
 url_all_download = false
-version_available = ["normal_tissue", "pathology", "subcellular_location", 
-                     "rna_tissue", "transcript_rna_tissue", "transcript_rna_celline", 
+version_available = ["normal_tissue", "pathology", "subcellular_location",
+                     "rna_tissue", "transcript_rna_tissue", "transcript_rna_celline",
                      "proteinatlas", "proteinatlas.xml", "proteinatlas.trig", "cell.svg"]
 
 [db_dgidb]
 source_url = "http://www.dgidb.org/data/{{version}}"
-version_available = ["interactions.tsv", "genes.tsv", "drugs.tsv", 
-                      "categories.tsv", "data/dGene_04-16-2013_2257.tsv", 
+version_available = ["interactions.tsv", "genes.tsv", "drugs.tsv",
+                      "categories.tsv", "data/dGene_04-16-2013_2257.tsv",
                       "data.sql"]
 
 [db_drugbank]
@@ -138,8 +138,8 @@ version_available = "drugbank_all_full_database"
 
 [db_interpro]
 source_url = "ftp://ftp.ebi.ac.uk/pub/databases/interpro/{{version}}"
-version_available = ["entry.list", "interpro.xml.gz", "match_complete.xml.gz", 
-                     "uniparc_match.tar.gz", "protein2ipr.dat.gz", "ParentChildTreeFile.txt", 
+version_available = ["entry.list", "interpro.xml.gz", "match_complete.xml.gz",
+                     "uniparc_match.tar.gz", "protein2ipr.dat.gz", "ParentChildTreeFile.txt",
                      "interpro2go", "release_notes.txt"]
 
 [db_inbiomap]
@@ -155,7 +155,7 @@ version_available = ["mim2gene", "full_omim_table", "gene_symbol_thesaurus", "us
 
 [db_omim_private]
 # {{license}} is omim.org granted
-# if you want to download the data using JhuangLab URL and only for academic purpose, 
+# if you want to download the data using JhuangLab URL and only for academic purpose,
 # you can contact lee_jianfeng@sjtu.edu.cn
 source_url = [
              "https://data.omim.org/downloads/{{license}}/{{version}}.txt",
@@ -189,19 +189,19 @@ version_available = [
                      ]
 
 [db_hgnc]
-source_url = ["ftp://ftp.ebi.ac.uk/pub/databases/genenames/new/tsv/locus_groups/{{version}}.txt", 
+source_url = ["ftp://ftp.ebi.ac.uk/pub/databases/genenames/new/tsv/locus_groups/{{version}}.txt",
               "ftp://ftp.ebi.ac.uk/pub/databases/genenames/new/tsv/{{version}}.txt",
               "http://bioinfo.rjh.com.cn/download/bioinstaller/hgnc/{{version}}.txt"]
-version_available = ["protein-coding_gene", "non-coding_RNA", "phenotype", 
-                     "pseudogene", "other", "withdrawn", "protein-coding_gene_alt_loci", 
-                     "non-coding_RNA_alt_loci", "pseudogene_alt_loci", 
+version_available = ["protein-coding_gene", "non-coding_RNA", "phenotype",
+                     "pseudogene", "other", "withdrawn", "protein-coding_gene_alt_loci",
+                     "non-coding_RNA_alt_loci", "pseudogene_alt_loci",
                      "other_alt_loci", "genefamilies"]
 url_all_download = false
 
 [db_atcircdb]
 source_url = "http://genome.sdau.edu.cn/circRNAdata/{{version}}"
-version_available = ["sw_final_circ_web_final.xlsx", "enrich_circ.csv", "SRRList_622samples_website.csv", 
-                     "SRRList_150samples_CIRI2_validation.xlsx", "psTarget.csv", 
+version_available = ["sw_final_circ_web_final.xlsx", "enrich_circ.csv", "SRRList_622samples_website.csv",
+                     "SRRList_150samples_CIRI2_validation.xlsx", "psTarget.csv",
                      "TAPIR.csv", "Sun.xls", "Ye.csv"]
 
 [db_circnet]
@@ -210,29 +210,29 @@ version_available = "CircNetData"
 
 [db_circbase]
 source_url = "http://circrna.org/download/{{version}}"
-version_available = ["hsa_hg19_circRNA.txt", "hsa_hg19_circRNA.xlsx", 
-                     "hsa_hg19_circRNA.bed", "hsa_graph.png", 
-                     "ce6_circID_to_name.txt", "mm9_circID_to_name.txt", 
-                     "hg19_circID_to_name.txt", "find_circ.tar.gz", 
-                     "mouse_mm9_circRNAs_putative_spliced_sequence.fa.gz", 
+version_available = ["hsa_hg19_circRNA.txt", "hsa_hg19_circRNA.xlsx",
+                     "hsa_hg19_circRNA.bed", "hsa_graph.png",
+                     "ce6_circID_to_name.txt", "mm9_circID_to_name.txt",
+                     "hg19_circID_to_name.txt", "find_circ.tar.gz",
+                     "mouse_mm9_circRNAs_putative_spliced_sequence.fa.gz",
                      "human_hg19_circRNAs_putative_spliced_sequence.fa.gz"]
 
 [db_circrnadb]
 source_url = "http://202.195.183.4:8000/circrnadb/doc/{{version}}.zip"
-version_available = ["circRNADb", "genes.gtf", "Protein_features", 
+version_available = ["circRNADb", "genes.gtf", "Protein_features",
                      "Protein_expression_evidence", "circRNA_parentalgene-diseases"]
 
 [db_exorbase]
 source_url = "http://www.exorbase.org/exoRBase/download/download?file={{version}}.txt"
-version_available = ["Normal_circRNA_RPM", "CHD_circRNA_RPM", "CRC_circRNA_RPM", "HCC_circRNA_RPM", "PAAD_circRNA_RPM", "WhB_circRNA_RPM", "Samples_combined_circRNA_RPM", "Normal_lncRNA_TPM", "CHD_lncRNA_TPM", "CRC_lncRNA_TPM", "HCC_lncRNA_TPM", "PAAD_lncRNA_TPM", "WhB_lncRNA_TPM", "Samples_combined_lncRNA_TPM", "Normal_mRNA_TPM", "CHD_mRNA_TPM", "CRC_mRNA_TPM", "HCC_mRNA_TPM", "PAAD_mRNA_TPM", "WhB_mRNA_TPM", "Samples_combined_mRNA_TPM", "circRNA_ann", "lncRNA_ann", "mRNA_ann", 
+version_available = ["Normal_circRNA_RPM", "CHD_circRNA_RPM", "CRC_circRNA_RPM", "HCC_circRNA_RPM", "PAAD_circRNA_RPM", "WhB_circRNA_RPM", "Samples_combined_circRNA_RPM", "Normal_lncRNA_TPM", "CHD_lncRNA_TPM", "CRC_lncRNA_TPM", "HCC_lncRNA_TPM", "PAAD_lncRNA_TPM", "WhB_lncRNA_TPM", "Samples_combined_lncRNA_TPM", "Normal_mRNA_TPM", "CHD_mRNA_TPM", "CRC_mRNA_TPM", "HCC_mRNA_TPM", "PAAD_mRNA_TPM", "WhB_mRNA_TPM", "Samples_combined_mRNA_TPM", "circRNA_ann", "lncRNA_ann", "mRNA_ann",
 "Experimental_revised"]
 
 [db_exsnp]
 source_url = "http://www.exsnp.org/data/{{version}}.txt"
-version_available = ["raw_eQTL", "GSexSNP_allc_allp_ld8", "GSexSNP_allc_allp_ld5", 
-            "GSexSNP_allc_allp_ld3", "WTCCC_DZ_allc_allp_GSeQTL_0.05cM_list_BD", 
-            "WTCCC_DZ_allc_allp_GSeQTL_0.05cM_list_CAD", "WTCCC_DZ_allc_allp_GSeQTL_0.05cM_list_CD", 
-            "WTCCC_DZ_allc_allp_GSeQTL_0.05cM_list_HT", "WTCCC_DZ_allc_allp_GSeQTL_0.05cM_list_RA", 
+version_available = ["raw_eQTL", "GSexSNP_allc_allp_ld8", "GSexSNP_allc_allp_ld5",
+            "GSexSNP_allc_allp_ld3", "WTCCC_DZ_allc_allp_GSeQTL_0.05cM_list_BD",
+            "WTCCC_DZ_allc_allp_GSeQTL_0.05cM_list_CAD", "WTCCC_DZ_allc_allp_GSeQTL_0.05cM_list_CD",
+            "WTCCC_DZ_allc_allp_GSeQTL_0.05cM_list_HT", "WTCCC_DZ_allc_allp_GSeQTL_0.05cM_list_RA",
             "WTCCC_DZ_allc_allp_GSeQTL_0.05cM_list_T1D", "WTCCC_DZ_allc_allp_GSeQTL_0.05cM_list_T2D"]
 tag = ["eqtl"]
 
@@ -242,13 +242,13 @@ version_available = ["dbsnp_info1", "dbvar_info"]
 tag = ["eqtl"]
 
 [db_seeqtl]
-source_url = ["http://www.bios.unc.edu/research/genomic_software/seeQTL/data/{{version}}.tar.gz", 
+source_url = ["http://www.bios.unc.edu/research/genomic_software/seeQTL/data/{{version}}.tar.gz",
               "http://www.bios.unc.edu/research/genomic_software/seeQTL/data/{{version}}.txt"]
 url_all_download = false
 version_available = [
                      "pca_genotype", "genotype_expression_data",
-                     "eQTL_Qvalue_cutoff_hapmap3_cis_hg19", "eQTL_Qvalue_cutoff_hapmap3_trans_hg19", 
-                     "eQTL_Qvalue_cutoff_Myers_cis_hg19", "eQTL_Qvalue_cutoff_Myers_trans_hg19", 
+                     "eQTL_Qvalue_cutoff_hapmap3_cis_hg19", "eQTL_Qvalue_cutoff_hapmap3_trans_hg19",
+                     "eQTL_Qvalue_cutoff_Myers_cis_hg19", "eQTL_Qvalue_cutoff_Myers_trans_hg19",
                      "data.montgomery", "data.argonne", "data.yale"
                      ]
 tag = ["eqtl"]
@@ -271,7 +271,7 @@ version_available = "Enhancers"
 [db_fantom_motifs]
 source_url = "http://fantom.gsc.riken.jp/5/datafiles/phase1.3/extra/Motifs/{{version}}/"
 source_is_dir = true
-version_available = ["/", "TFBS", "jaspar_Significance_of_the_correlation_with_CAGE_expression", 
+version_available = ["/", "TFBS", "jaspar_Significance_of_the_correlation_with_CAGE_expression",
                       "novel_GREAT_analysis_results", "novel_Significance_of_the_correlation_with_CAGE_expression"]
 
 [db_fantom_ontology]
@@ -286,7 +286,7 @@ version_available = ["TSS_classifier"]
 
 [db_snipa3]
 source_url = [
-              "http://snipa.helmholtz-muenchen.de/snipa3/data/annotation/grch37/ensembl87/{{version}}.tabix.gz", 
+              "http://snipa.helmholtz-muenchen.de/snipa3/data/annotation/grch37/ensembl87/{{version}}.tabix.gz",
               "http://snipa.helmholtz-muenchen.de/snipa3/data/annotation/grch37/ensembl87/{{version}}.tabix.gz.tbi"
               ]
 version_available = ["!!glue {sprintf('chr%s', 1:22)}", "chrX"]
@@ -299,16 +299,16 @@ version_available = ["Human", "Mouse", "Drosophila", "Arabidopsis"]
 [db_lncediting]
 source_url = "http://bioinfo.life.hust.edu.cn/LNCediting/static/human/download/{{version}}"
 
-version_available = ["table1_lncrna_info", "table2_edit_sequence", "table3_edit_site_info", 
-                     "table4_mirna_info", "table5_mirna_profile", "table7_function_gain", 
+version_available = ["table1_lncrna_info", "table2_edit_sequence", "table3_edit_site_info",
+                     "table4_mirna_info", "table5_mirna_profile", "table7_function_gain",
                      "table8_function_loss"]
 
 [db_eggnog]
-source_url = ["http://eggnogdb.embl.de/download/eggnog_4.5/data/{{version}}/{{version}}.members.tsv.gz", 
-              "http://eggnogdb.embl.de/download/eggnog_4.5/data/{{version}}/{{version}}.annotations.tsv.gz", 
-              "http://eggnogdb.embl.de/download/eggnog_4.5/data/{{version}}/{{version}}.trees.tsv.gz", 
-              "http://eggnogdb.embl.de/download/eggnog_4.5/data/{{version}}/{{version}}.raw_algs.tsv.gz", 
-              "http://eggnogdb.embl.de/download/eggnog_4.5/data/{{version}}/{{version}}.trimmed_algs.tsv.gz", 
+source_url = ["http://eggnogdb.embl.de/download/eggnog_4.5/data/{{version}}/{{version}}.members.tsv.gz",
+              "http://eggnogdb.embl.de/download/eggnog_4.5/data/{{version}}/{{version}}.annotations.tsv.gz",
+              "http://eggnogdb.embl.de/download/eggnog_4.5/data/{{version}}/{{version}}.trees.tsv.gz",
+              "http://eggnogdb.embl.de/download/eggnog_4.5/data/{{version}}/{{version}}.raw_algs.tsv.gz",
+              "http://eggnogdb.embl.de/download/eggnog_4.5/data/{{version}}/{{version}}.trimmed_algs.tsv.gz",
               "http://eggnogdb.embl.de/download/eggnog_4.5/data/{{version}}/{{version}}.hmm.tsv.gz"]
 version_available = ["NOG", "aciNOG", "acidNOG", "acoNOG", "actNOG", "agaNOG", "agarNOG", "apiNOG", "aproNOG", "aquNOG", "arNOG", "arcNOG", "artNOG", "arthNOG", "ascNOG", "aveNOG", "bacNOG", "bactNOG", "bacteNOG", "basNOG", "bctoNOG", "biNOG", "bproNOG", "braNOG", "carNOG", "chaNOG", "chlNOG", "chlaNOG", "chloNOG", "chlorNOG", "chloroNOG", "chorNOG", "chrNOG", "cloNOG", "cocNOG", "creNOG", "cryNOG", "cyaNOG", "cytNOG", "debNOG", "defNOG", "dehNOG", "deiNOG", "delNOG", "dipNOG", "dotNOG", "dproNOG", "droNOG", "eproNOG", "eryNOG", "euNOG", "eurNOG", "euroNOG", "eurotNOG", "fiNOG", "firmNOG", "flaNOG", "fuNOG", "fusoNOG", "gproNOG", "haeNOG", "halNOG", "homNOG", "hymNOG", "hypNOG", "inNOG", "kinNOG", "lepNOG", "lilNOG", "maNOG", "magNOG", "meNOG", "metNOG", "methNOG", "methaNOG", "necNOG", "negNOG", "nemNOG", "onyNOG", "opiNOG", "perNOG", "plaNOG", "pleNOG", "poaNOG", "prNOG", "proNOG", "rhaNOG", "roNOG", "sacNOG", "saccNOG", "sorNOG", "sordNOG", "sphNOG", "spiNOG", "spriNOG", "strNOG", "synNOG", "tenNOG", "thaNOG", "theNOG", "therNOG", "thermNOG", "treNOG", "veNOG", "verNOG", "verrNOG", "virNOG"]
 
@@ -325,13 +325,13 @@ source_url = "http://bioinfo.rjh.com.cn/download/bioinstaller/cancer_hotspots/ca
 version_available = ["v1_sheet1", "v1_sheet2", "v2_sheet1", "v2_sheet2"]
 
 [db_intogen]
-source_url = ["http://bioinfo.rjh.com.cn/download/bioinstaller/intogen/intogen_cancer_{{version}}.zip", 
+source_url = ["http://bioinfo.rjh.com.cn/download/bioinstaller/intogen/intogen_cancer_{{version}}.zip",
               "http://bioinfo.rjh.com.cn/download/bioinstaller/intogen/intogen_{{version}}.zip"]
 url_all_download = false
 version_available = ["drivers-2014.12", "drivers_actionability-2014.12", "driver_mutations_catalog-2016.5"]
 
 [db_disgenet]
-source_url = ["http://bioinfo.rjh.com.cn/download/bioinstaller/disgenet/{{version}}.tsv.gz", 
+source_url = ["http://bioinfo.rjh.com.cn/download/bioinstaller/disgenet/{{version}}.tsv.gz",
               "http://bioinfo.rjh.com.cn/download/bioinstaller/disgenet/{{version}}.tar.gz"]
 url_all_download = false
 version_available = ["all_gene_disease_associations", "all_gene_disease_pmid_associations", "all_variant_disease_associations", "all_variant_disease_pmid_associations", "befree_gene_disease_associations", "befree_variant_disease_associations", "curated_gene_disease_associations", "curated_variant_disease_associations", "pubannotator", "pubannotator_variant_disease"]
@@ -343,3 +343,90 @@ version_available = ["cancer_bioactivities", "catalog_of_cancer_genes", "catalog
 [db_oncokb]
 source_url = "http://oncokb.org/api/v1/utils/{{version}}.txt"
 version_available = ["allAnnotatedVariants", "allActionableVariants"]
+
+[db_mirdb]
+source_url = "http://mirdb.org/download/miRDB_v{{version}}_prediction_result.txt.gz"
+version_avaliable = ["5.0", "4.0", "3.0", "2.0", "1.0"]
+
+[db_mirtarbase]
+source_url = "http://mirtarbase.mbc.nctu.edu.tw/cache/download/{{version}}/miRTarBase_MTI.xlsx"
+version_avaliable = ["7.0"]
+
+[db_mirnest]
+source_url = "http://rhesus.amu.edu.pl/mirnest/copy/downloads/{{version}}.gz"
+version_avaliable = ["mirnest_EST_predictions", "mirnest_targets", "mirnest_deep_predictions",
+                                  "mirnest_degradomes", "mirnest_mirtrons", "mirnest_mirna_gene_structure"]
+
+[db_rbpdb]
+source_url = "http://rbpdb.ccbr.utoronto.ca/downloads/{{version}}"
+version_avaliable = ["RBPDB_v1.3.1_2012-11-21.sql", "RBPDB_v1.3.1_2012-11-21_TDT.zip",
+                                  "RBPDB_v1.3.1_2012-11-21_CSV.zip"]
+
+[db_appris]
+source_url = "http://apprisws.bioinfo.cnio.es/pub/current_release/datafiles/homo_sapiens/{{version}}/appris_data.principal.txt"
+version_avaliable = ["GRCh38", "rs108v26", "up201703v26", "a1v26", "GRCh37", "rs105v24", "g12v24"]
+
+[db_lncipedia]
+source_url = "https://lncipedia.org/downloads/lncipedia_{{version}}"
+version_avaliable = ["5_1_hg19.bed", "5_1_hg38.bed", "5_1_hc_hg19.bed", "5_1_hc_hg38.bed",
+                                  "5_1.fasta", "5_1_hc.fasta", "5_1_hg19.gff", "5_1_hg38.gff", "5_1_hc_hg19.gff",
+                                  "5_1_hc_hg38.gff", "5_1_hg19.gtf", "5_1_hg38.gtf", "5_1_hc_hg19.gtf",
+                                  "5_1_hc_hg38.gtf"]
+
+[db_msigdb]
+source_url = "http://bioinfo.rjh.com.cn/download/bioinstaller/msigdb/{{version}}"
+version_avaliable = ["c1.all.v6.2.entrez.gmt", "c1.all.v6.2.symbols.gmt", "c2.all.v6.2.entrez.gmt", "c2.all.v6.2.symbols.gmt", "c2.cgp.v6.2.entrez.gmt", "c2.cgp.v6.2.symbols.gmt", "c2.cp.biocarta.v6.2.entrez.gmt", "c2.cp.biocarta.v6.2.symbols.gmt", "c2.cp.kegg.v6.2.entrez.gmt", "c2.cp.kegg.v6.2.symbols.gmt", "c2.cp.reactome.v6.2.entrez.gmt", "c2.cp.reactome.v6.2.symbols.gmt", "c2.cp.v6.2.entrez.gmt", "c2.cp.v6.2.symbols.gmt", "c3.all.v6.2.entrez.gmt", "c3.all.v6.2.symbols.gmt", "c3.mir.v6.2.entrez.gmt", "c3.mir.v6.2.symbols.gmt", "c3.tft.v6.2.entrez.gmt", "c3.tft.v6.2.symbols.gmt", "c4.all.v6.2.entrez.gmt", "c4.all.v6.2.symbols.gmt", "c4.cgn.v6.2.entrez.gmt", "c4.cgn.v6.2.symbols.gmt", "c4.cm.v6.2.entrez.gmt", "c4.cm.v6.2.symbols.gmt", "c5.all.v6.2.entrez.gmt", "c5.all.v6.2.symbols.gmt", "c5.bp.v6.2.entrez.gmt", "c5.bp.v6.2.symbols.gmt", "c5.cc.v6.2.entrez.gmt", "c5.cc.v6.2.symbols.gmt", "c5.mf.v6.2.entrez.gmt", "c5.mf.v6.2.symbols.gmt", "c6.all.v6.2.entrez.gmt", "c6.all.v6.2.symbols.gmt", "c7.all.v6.2.entrez.gmt", "c7.all.v6.2.symbols.gmt", "msigdb.v6.2.entrez.gmt", "msigdb.v6.2.symbols.gmt", "msigdb_v3.0.zip", "msigdb_v3.1.zip", "msigdb_v4.0.zip", "msigdb_v5.0.zip", "msigdb_v5.1.zip", "msigdb_v5.1_chip.zip", "msigdb_v5.2.zip", "msigdb_v5.2_chip.zip", "msigdb_v6.0.zip", "msigdb_v6.0_chip.zip", "msigdb_v6.1.zip", "msigdb_v6.1_chip.zip", "msigdb_v6.2.xml", "msigdb_v6.2.zip"]
+
+[db_mircancer]
+source_url = "http://mircancer.ecu.edu/downloads/{{version}}.txt"
+version_avaliable = ["miRCancerOctober2017", "miRCancerMarch2017", "miRCancerDecember2016", "miRCancerSeptember2016", "miRCancerJune2016", "miRCancerMarch2016", "miRCancerDecember2015", "miRCancerSeptember2015", "miRCancerJune2015", "miRCancerMarch2015", "miRCancerDecember2014", "miRCancerSeptember2014", "miRCancerJune2014", "miRCancerMarch2014", "miRCancerDecember2013", "miRCancerSeptember2013", "miRCancerJune2013", "miRCancerMarch2013", "miRCancerNovember2012"]
+
+[db_dcdb]
+source_url = "http://www.cls.zju.edu.cn/dcdb/downloadfile/{{version}}.zip"
+version_avaliable = ["DCDB2_plaintxt", "DCDB2.sql", "targets", "Drug_combinations",
+                                  "components_identifier"]
+
+[db_oncomirdb]
+source_url = "http://lifeome.net/database/oncomirdb/oncomirdb.v-{{version}}_download.txt"
+version_avaliable = "1.1-20131217"
+
+[db_islandviewer]
+source_url = "http://www.pathogenomics.sfu.ca/islandviewer/download/datasets/all_gis_{{version}}.txt.tar.gz"
+version_avaliable = ["islandviewer_iv4", "islandpick_iv4", "islandpath_dimob_iv4",
+                                  "sigi_hmm_iv4", "islander_iv4"]
+
+[db_hpdi]
+source_url = "http://bioinfo.wilmer.jhu.edu/PDI/{{version}}"
+version_avaliable = ["protein_chip_full_seq.csv", "protein_annotation.txt",
+                                  "pro2motif.txt", "DNA_motifs.txt", "motif2protein.txt",
+                                  "all_pwm.zip", "all_gpr_files.zip", "supplemental.pdf"]
+
+[db_dbsno]
+source_url = "http://140.138.144.145/~dbSNO/download/dbSNO{{version}}_all_data.txt.gz"
+version_available = "v2"
+
+[db_phosphonetworks]
+soource_url = "http://www.phosphonetworks.org/download/{{version}}"
+version_available = ["rawKSI.csv", "refKSI.csv", "comKSI.csv", "motifSite.csv",
+                                  "motifMatrix.csv",  "motifLogo.tar", "highResolutionNetwork.csv",
+                                  "supplemental.pdf"]
+
+[db_consensuspathdb]
+source_url = "http://cpdb.molgen.mpg.de/download/ConsensusPathDB_{{version}}.gz"
+version_available = ["human_PPI", "human_PPI.psi25"]
+
+[db_instruct]
+source_url = "http://instruct.yulab.org/download/{{version}}.sin"
+version_available = ["sapiens", "thaliana", "elegans", "melanogaster", "musculus", "cerevisiae", "pombe"]
+
+[db_redoxdb]
+source_url = "https://biocomputer.bio.cuhk.edu.hk/RedoxDB/download/{{version}}"
+version_available = ["redoxdb.A.txt", "redoxdb.B.txt", "redoxdb.A.fa", "redoxdb.B.fa"]
+
+[db_sm2mir]
+source_url = "http://210.46.85.180:8080/sm2mir/files/{{versin}}.xls"
+version_available = ["SM2miR3", "SM2miR2n", "SM2miR"]
+
+[db_hmdb]
+source_url = "http://www.hmdb.ca/system/downloads/current/{{version}}.zip"
+avaliable_version = ["hmdb_proteins", "hmdb_metabolites", "structures"]

@@ -4,11 +4,11 @@
 \name{BioInstaller}
 \alias{BioInstaller}
 \alias{BioInstaller-package}
-\title{This package can be used to install and download massive bioinformatics analysis 
-softwares and databases, such as NGS reads mapping tools with its required databases.}
+\title{This package is a comprehensive R package to integrate 
+bioinformatics resources, such as software/script and database}
 \description{
-This package can be used to install and download massive bioinformatics analysis 
-softwares and databases, such as NGS reads mapping tools with its required databases.
+This package is a comprehensive R package to integrate 
+bioinformatics resources, such as software/script and database
 }
 \seealso{
 Useful links:

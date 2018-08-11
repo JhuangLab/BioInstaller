@@ -18,6 +18,7 @@
 #' @importFrom RCurl getURL basicTextGatherer
 #' @importFrom R.utils gunzip gzip
 #' @importFrom utils unzip untar download.file URLencode
+#' @importFrom utils compareVersion install.packages installed.packages
 #' @importFrom devtools install_github
 #' @importFrom shiny runApp
 NULL
