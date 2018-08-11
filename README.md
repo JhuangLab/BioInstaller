@@ -3,6 +3,7 @@
 [![Build
 Status](https://travis-ci.org/JhuangLab/BioInstaller.svg)](https://travis-ci.org/JhuangLab/BioInstaller)
 [![CRAN](http://www.r-pkg.org/badges/version/BioInstaller)](https://cran.r-project.org/package=BioInstaller)
+[![Zenodo](https://zenodo.org/badge/DOI/10.5281/zenodo.1343914.svg)](https://zenodo.org/record/1343914)
 [![Downloads](http://cranlogs.r-pkg.org/badges/BioInstaller?color=brightgreen)](http://www.r-pkg.org/pkg/BioInstaller)
 [![codecov](https://codecov.io/github/JhuangLab/BioInstaller/branch/master/graphs/badge.svg)](https://codecov.io/github/JhuangLab/BioInstaller)
 
@@ -56,26 +57,6 @@ It provides the R, Shiny web application, and the GitHub forum. Hundreds of bioi
 
 <img src="https://raw.githubusercontent.com/JhuangLab/BioInstaller/develop/man/figures/design_of_bioInstaller.jpg" align="middle" />
 
-
-## Shiny UI overview
-
-```
-# install the latest developmental version
-# than start the BioInstaller R Shiny application
-# the document is still under construction
-BioInstaller::web()
-```
-
-<img src="https://raw.githubusercontent.com/Miachol/ftp/master/files/images/bioinstaller/overview1.jpg" align="middle" />
-
-<img src="https://raw.githubusercontent.com/Miachol/ftp/master/files/images/bioinstaller/overview2.jpg" align="middle" />
-
-<img src="https://raw.githubusercontent.com/Miachol/ftp/master/files/images/bioinstaller/overview3.jpg" align="middle" />
-
-<img src="https://raw.githubusercontent.com/Miachol/ftp/master/files/images/bioinstaller/overview4.jpg" align="middle" />
-
-<img src="https://raw.githubusercontent.com/Miachol/ftp/master/files/images/bioinstaller/overview5.jpg" align="middle" />
-
 ## Installation
 
 ### CRAN
@@ -90,7 +71,25 @@ install.packages('BioInstaller')
 ``` bash
 # install.packages("devtools")
 devtools::install_github("JhuangLab/BioInstaller")
+
 ```
+## Shiny UI overview
+
+```
+# Start the standalone Shiny application
+BioInstaller::web()
+```
+
+<img src="https://raw.githubusercontent.com/Miachol/ftp/master/files/images/bioinstaller/overview1.jpg" align="middle" />
+
+<img src="https://raw.githubusercontent.com/Miachol/ftp/master/files/images/bioinstaller/overview2.jpg" align="middle" />
+
+<img src="https://raw.githubusercontent.com/Miachol/ftp/master/files/images/bioinstaller/overview3.jpg" align="middle" />
+
+<img src="https://raw.githubusercontent.com/Miachol/ftp/master/files/images/bioinstaller/overview4.jpg" align="middle" />
+
+<img src="https://raw.githubusercontent.com/Miachol/ftp/master/files/images/bioinstaller/overview5.jpg" align="middle" />
+
 
 ## Contributed Resources
 
@@ -163,9 +162,9 @@ docker run -it -p 80:80 -p 8004:8004 -v /tmp/download:/tmp/download bioinstaller
 
 Service list:
 
-- http://localhost/ocpu/ Opencpu service
-- http://localhost/shiny/BioInstaller Shiny service
-- http://localhost/rstudio/ Rstudio server (opencpu/opencpu)
+- localhost/ocpu/ Opencpu service
+- localhost/shiny/BioInstaller Shiny service
+- localhost/rstudio/ Rstudio server (opencpu/opencpu)
 
 ## How to contribute?
 

@@ -3,14 +3,22 @@
 [![Build
 Status](https://travis-ci.org/JhuangLab/BioInstaller.svg)](https://travis-ci.org/JhuangLab/BioInstaller)
 [![CRAN](http://www.r-pkg.org/badges/version/BioInstaller)](https://cran.r-project.org/package=BioInstaller)
+[![Zenodo](https://zenodo.org/badge/DOI/10.5281/zenodo.1343914.svg)](https://zenodo.org/record/1343914)
 [![Downloads](http://cranlogs.r-pkg.org/badges/BioInstaller?color=brightgreen)](http://www.r-pkg.org/pkg/BioInstaller)
 [![codecov](https://codecov.io/github/JhuangLab/BioInstaller/branch/master/graphs/badge.svg)](https://codecov.io/github/JhuangLab/BioInstaller)
 
 ## Introduction
 
-[BioInstaller](https://life2cloud.com/tools/bioinstaller) is a comprehensive R package 
-to manage bioinformatics software/script and database based on the R, Shiny web application and 
-the GitHub forum. Hundreds of bioinformatics tool/script and database has been included in BioInstaller.
+Accessing and management of various bioinformatics tool/script and database are essential for almost all bioinformatics analysis projects. 
+
+There is an urgent need for the development of new all-in-one tools that allows users to search, download, install and share these bioinformatics tool/script and database.
+
+[Conda](https://conda.io/docs/) and [Spack](https://spack.io/) have done a lot of work and we can use them to conveniently install some bioinformatics software. But there are still many problems with these package managers, such as incompatible to some precompiled programs, little support for the database and other non-software files.
+
+[BioInstaller](https://github.com/JhuangLab/BioInstaller) is a comprehensive R package 
+to integrate bioinformatics resources, such as software/script and database. 
+It provides the R, Shiny web application, and the GitHub forum. Hundreds of bioinformatics tool/script and database have been included in BioInstaller.
+
 
 **Feature**:
 
@@ -47,6 +55,8 @@ the GitHub forum. Hundreds of bioinformatics tool/script and database has been i
   - Software Dependence Database 
   - ......
 
+<img src="https://raw.githubusercontent.com/JhuangLab/BioInstaller/develop/man/figures/design_of_bioInstaller.jpg" align="middle" />
+
 ## Installation
 
 ### CRAN
@@ -61,7 +71,25 @@ install.packages('BioInstaller')
 ``` bash
 # install.packages("devtools")
 devtools::install_github("JhuangLab/BioInstaller")
+
 ```
+## Shiny UI overview
+
+```
+# Start the standalone Shiny application
+BioInstaller::web()
+```
+
+<img src="https://raw.githubusercontent.com/Miachol/ftp/master/files/images/bioinstaller/overview1.jpg" align="middle" />
+
+<img src="https://raw.githubusercontent.com/Miachol/ftp/master/files/images/bioinstaller/overview2.jpg" align="middle" />
+
+<img src="https://raw.githubusercontent.com/Miachol/ftp/master/files/images/bioinstaller/overview3.jpg" align="middle" />
+
+<img src="https://raw.githubusercontent.com/Miachol/ftp/master/files/images/bioinstaller/overview4.jpg" align="middle" />
+
+<img src="https://raw.githubusercontent.com/Miachol/ftp/master/files/images/bioinstaller/overview5.jpg" align="middle" />
+
 
 ## Contributed Resources
 
@@ -79,8 +107,6 @@ devtools::install_github("JhuangLab/BioInstaller")
   - [Docker](https://github.com/JhuangLab/BioInstaller/blob/master/inst/extdata/config/docker/docker.toml)
 
 ## Support Summary
-
-<img src="https://raw.githubusercontent.com/JhuangLab/BioInstaller/develop/man/figures/design_of_bioInstaller.jpg" align="center" />
 
 **Quality Control:**
 
@@ -127,12 +153,18 @@ devtools::install_github("JhuangLab/BioInstaller")
 
 ## Docker
 
-You can use the BioInstaller in Docker since v0.3.0.
+You can use the BioInstaller in Docker since v0.3.0. Shiny application was supported since v0.3.5.
 
 ``` bash
-docker pull bioinstaller/bioinstaller:develop
-docker run -it -v /tmp/download:/tmp/download bioinstaller/bioinstaller:develop R
+docker pull bioinstaller/bioinstaller
+docker run -it -p 80:80 -p 8004:8004 -v /tmp/download:/tmp/download bioinstaller/bioinstaller
 ```
+
+Service list:
+
+- localhost/ocpu/ Opencpu service
+- localhost/shiny/BioInstaller Shiny service
+- localhost/rstudio/ Rstudio server (opencpu/opencpu)
 
 ## How to contribute?
 

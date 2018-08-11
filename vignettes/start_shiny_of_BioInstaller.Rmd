@@ -35,9 +35,9 @@ docker run -it -p 80:80 -p 8004:8004 -v /tmp/download:/tmp/download bioinstaller
 
 When the docker container of BioInstaller was created, you can access the three types of web service in the browser.
 
-- http://localhost/ocpu/ Opencpu server
-- http://localhost/shiny/BioInstaller Shiny server
-- http://localhost/rstudio/ Rstudio server (opencpu/opencpu)
+- localhost/ocpu/ Opencpu server
+- localhost/shiny/BioInstaller Shiny server
+- localhost/rstudio/ Rstudio server (opencpu/opencpu)
 
 ### Opencpu server
 
@@ -70,7 +70,7 @@ curl http://localhost/ocpu/tmp/{key}/R/.val/print
 
 ### Shiny server
 
-Open browser and input the URL "http://localhost/shiny/BioInstaller". It will activate a Shiny session and start the BioInstaller Shiny application.
+Open browser and input the URL "localhost/shiny/BioInstaller". It will activate a Shiny session and start the BioInstaller Shiny application.
 
 ![](https://raw.githubusercontent.com/Miachol/ftp/master/files/images/bioinstaller/shiny.png)
 
