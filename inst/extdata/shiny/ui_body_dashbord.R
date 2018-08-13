@@ -65,6 +65,39 @@ get_dashbord_tabItem_ui <- function() {
           collapsible = TRUE,
           collapsed = TRUE,
           withSpinner(DT::dataTableOutput("files_of_path_monitor"), type = 8)
+        ),
+        box(
+          title = "Installed items (BioInstaller)",
+          width = 12,
+          status = "primary",
+          collapsible = TRUE,
+          collapsed = TRUE,
+          withSpinner(DT::dataTableOutput("bioinstaller_items_monitor"), type = 8)
+        ),
+        box(
+          title = "All environments (conda)",
+          width = 12,
+          status = "primary",
+          collapsible = TRUE,
+          collapsed = TRUE,
+          withSpinner(DT::dataTableOutput("conda_envlist_monitor"), type = 8)
+        ),
+        box(
+          title = "Installed items in environment (conda)",
+          width = 12,
+          status = "primary",
+          collapsible = TRUE,
+          collapsed = TRUE,
+          uiOutput("conda_env_name_ui"),
+          withSpinner(DT::dataTableOutput("conda_items_monitor"), type = 8)
+        ),
+        box(
+          title = "Installed items (spack)",
+          width = 12,
+          status = "primary",
+          collapsible = TRUE,
+          collapsed = TRUE,
+          withSpinner(shiny::verbatimTextOutput("spack_items_monitor"), type = 8)
         )
       )
   )

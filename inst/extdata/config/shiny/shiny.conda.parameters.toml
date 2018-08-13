@@ -1,0 +1,30 @@
+[conda.ui.sections]
+order = ["readfiles", "outputFields"]
+[conda.ui.sections.ui_basic]
+readfiles = "title = 'Input', status = 'primary', width = 12, collapsed = FALSE, collapsible = TRUE"
+outputFields = "title = 'Output of conda', status = 'primary', width = 12, collapsed = FALSE, collapsible = TRUE"
+
+[conda.paramters.readfiles]
+# For reading annovarR shiny APP conda tool input files  
+section_type = "input"
+rcmd_last = """
+
+"""
+progressbar_message = "Running conda functions."
+render_id = "conda_readfiles"
+
+#!!!!! input_ui_order required related section
+input_ui_order = ["start_analysis"]
+
+[conda.paramters.readfiles.input.start_analysis]
+input_id = "start_conda_analysis"
+type = "shiny::actionButton"
+label = "Run"
+
+[conda.paramters.outputFields]
+section_type = "output"
+rcmd_last = "BioInstaller::conda.list()"
+render_type = "shiny::renderPrint"
+render_id = "conda_output"
+output_type = "shiny::verbatimTextOutput"
+progressbar_message = "conda ouput"

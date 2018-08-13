@@ -2,6 +2,7 @@
 #'
 #' @param appDir The application to run.
 #' Default is system.file('extdata', 'tools/shiny/R', package = 'BioInstaller')
+#' @param auto_create Auto create dir, default is FALSE
 #' @param ... Other parameters pass to \code{\link[shiny]{runApp}}
 #' @export
 #'
@@ -10,10 +11,12 @@
 #'   web()
 #' }
 web <- function(appDir = system.file("extdata", "shiny", package = "BioInstaller"),
-    ...) {
+    auto_create = FALSE, ...) {
   check_shiny_dep(install = TRUE)
   params <- list(...)
   params <- config.list.merge(list(appDir), params)
+  Sys.setenv("AUTO_CREATE_BIOINSTALLER_DIR"=FALSE)
+  if (auto_create) Sys.setenv("AUTO_CREATE_BIOINSTALLER_DIR"=TRUE)
   do.call(runApp, params)
 }
 
@@ -94,15 +97,20 @@ check_shiny_dep <- function(install = FALSE) {
 #'
 #' @param n Number of needed workers
 #' @param shiny_config_file BioInstaller shiny configuration file
+#' @param auto_create Auto create log dir, default is FALSE
 #' @export
 #' @examples
+#' \dontrun{
 #' set_shiny_workers(4)
+#' }
 set_shiny_workers <- function(n, shiny_config_file =
     Sys.getenv("BIOINSTALLER_SHINY_CONFIG", system.file("extdata", "config/shiny/shiny.config.yaml",
-    package = "BioInstaller"))) {
+    package = "BioInstaller")), auto_create = FALSE) {
   config <- configr::read.config(shiny_config_file)
   log_dir <- config$shiny_queue$log_dir
-  if(!dir.exists(log_dir)) {dir.create(log_dir, recursive = TRUE)}
+  if (auto_create) {
+    if(!dir.exists(log_dir)) {dir.create(log_dir, recursive = TRUE)}
+  }
   worker_script <- system.file('extdata', 'shiny/worker.R', package = 'BioInstaller')
 
   for(i in 1:n) {

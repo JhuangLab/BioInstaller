@@ -1,6 +1,40 @@
-# BioInstaller 0.3.5.2000
+---
+title: "Download Source Code of BioInstaller"
+author: "Jianfeng Li"
+date: "`r Sys.Date()`"
+output:
+  prettydoc::html_pretty:
+    toc: true
+    theme: cayman
+    highlight: github
+  pdf_document:
+    toc: true
+vignette: >
+  %\VignetteIndexEntry{Download Source Code of BioInstaller}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+  %\VignetteEncoding{UTF-8}
+---
 
-## New features
+```{r, echo = FALSE}
+knitr::opts_chunk$set(comment = "#>", collapse = TRUE)
+```
+
+## Github
+
+Github: https://github.com/JhuangLab/BioInstaller
+
+## CRAN
+
+CRAN: https://CRAN.R-project.org/package=BioInstaller
+
+## JhuangLab host
+
+### v0.3.5.2000
+
+Download [here](http://bioinfo.rjh.com.cn/download/bioinstaller/bioinstaller/v0.3.5.2000.tar.gz).
+
+#### New features
 
 * Shiny application supported
 
@@ -14,13 +48,15 @@
 
 * Use 'Setting' module in Shiny application to manage the variables
 
-## Minor bugs fixed
+#### Minor bugs fixed
 
 * Check and confirm delete the existing dir only when clone a github project
 
-# BioInstaller 0.3.3
+### v0.3.3
 
-## New features
+Download [here](http://bioinfo.rjh.com.cn/download/bioinstaller/bioinstaller/v0.3.3.tar.gz).
+
+#### New features
 
 * Multiple resources file be supported
 
@@ -32,16 +68,17 @@
 
 * Docker supported
 
-
-## Minor bugs fixed
+#### Minor bugs fixed
 
 * change.info default is to write tempfile() now
 
 * Fixed a bug when set save.to.db to FALSE. It can raise installed fail
 
-# BioInstaller 0.2.1
+### v0.2.1
 
-## New features
+Download [here](http://bioinfo.rjh.com.cn/download/bioinstaller/bioinstaller/v0.2.1.tar.gz).
+
+#### New features
 
 * ANNOVAR databases can be download using inst/extdata/databases/ANNOVAR.toml
 
@@ -53,9 +90,11 @@
 
 * Function `craw.all.versions` be added to crawl source code of all version (Sotwares or databases)
 
-# BioInstaller 0.1.2
+### v0.1.2
 
-## New features
+Download [here](http://bioinfo.rjh.com.cn/download/bioinstaller/bioinstaller/v0.1.2.tar.gz).
+
+#### New features
 
 * #R# CMD #R# marked the R CMD need to be runed
 
@@ -67,6 +106,6 @@
 
 * `verbose` default is TRUE, show log infomation
 
-## Minor bugs fixed
+#### Minor bugs fixed
 
 * Fix `unlink()` clean tests files fail on windows (force = TRUE)

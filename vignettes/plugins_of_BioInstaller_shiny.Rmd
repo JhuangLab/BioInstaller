@@ -29,6 +29,7 @@ Both the R files and plugin files (TOML format) are supported to extend and add 
 ### Plugin easy_project
 
 ![](https://raw.githubusercontent.com/Miachol/ftp/master/files/images/bioinstaller/easy_project.png)
+
 First level: `ui`, `parameters`
 
 - `ui.sections` defined the boxes, such as the `new_proj`.

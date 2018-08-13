@@ -1,5 +1,5 @@
 ---
-title: "Introduction to BioInstaller"
+title: "Introduction to R functions of BioInstaller"
 author: "Jianfeng Li"
 date: "`r Sys.Date()`"
 output:
@@ -10,7 +10,7 @@ output:
   pdf_document:
     toc: true
 vignette: >
-  %\VignetteIndexEntry{Introduction to BioInstaller}
+  %\VignetteIndexEntry{Introduction to R functions of BioInstaller}
   %\VignetteEngine{knitr::rmarkdown}
   \usepackage[utf8]{inputenc}
   %\VignetteEncoding{UTF-8}
@@ -22,36 +22,16 @@ knitr::opts_chunk$set(comment = "#>", collapse = TRUE)
 
 ## Introduction
 
-BioInstaller is a downloader and installer of bio-software and bio-database. The inspiration for this project comes from various types convenient package manager, such as [pip](https://pypi.python.org/pypi/pip) for Python package, `install.packages` for R package, biocLite for [Bioconductor](http://www.bioconductor.org) R package, etc.
+in this vignette, you can learn the R functions usage of BioInstaller R package.
 
-**Why we do not have an integrated bioinformatics database and software package manager?**
+Key points:
 
-In fact, there are already some tools can complete part of the work:
+- How to set the database to store installation information.
+- How to featch the versions of a item?
+- How to download and install a tool/script or database?
+- How to get the installation information?
 
-[Conda](https://conda.io/docs/intro.html) and [BioConda](http://bioconda.github.io) have done a lot of work and we can use them to conveniently install some bioinformatics software. But there are still many problems with these package managers, such as version updating not timely, incompatible to some precompiled programs, little support for the database and other non-software files.
-
-[docker](https://www.docker.com/) is another kind very promising tool to complete the migration of the analytical environment. But the root authority is required that it's difficult for you to always get root privileges.
-
-Furthermore, learning how to install and compile bioinformatics software is still necessary, because these 'unpleasant' experience will help you to improve the ability to debug and modify programs.
-
-As for me, when starting some NGS analysis work in a new computer or operating system, I have to spend much time and energy to
-establish a complete set of software and dependent files with the corresponding configuration file.
-
-BioInstaller can help us to download, install and manage a variety of bioinformatics tools and databases.
-
-What's more, BioInstaller provides a different way to download and install your files, softwares, and databases. More detail can be found in another vignette [Write Your Own Configuration File](https://life2cloud.com/tools/bioinstaller/articles/write_configuration_file.html).
-
-**Feature**:
-
-- More attention for those software and database resource that not be
-  included in the other software warehouse
-- Extendible
-- Download the source code and version information from the original site
-- One step installation or download software and databases (Partial
-  dependence supported)
-- A software and database resources pool
-
-## Core functions
+## Core R functions
 
 Function `set.biosoftwares.db()` can be used to set a database file saving the information of installed software and database.
 
@@ -66,7 +46,7 @@ x <- install.bioinfo(show.all.names = TRUE)
 ```
 ```{r echo = FALSE}
 suppressWarnings(
-  DT::datatable(matrix(x, ncol=3), caption = sprintf("Sotware and database supported by BioInstaller (n=%s)", length(x)))
+  DT::datatable(matrix(x, ncol=3), caption = sprintf("Items supported by BioInstaller"))
 )
 ```
 

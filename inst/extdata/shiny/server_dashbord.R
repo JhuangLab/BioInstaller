@@ -76,7 +76,7 @@ set_monitor_progress_bar <- function(id, ratio, span_text) {
           id, id, ratio, id, span_text)
 }
 
-custom_render_DT <- function(output, input_id, cmd = NULL, func = NULL, caption = "",
+custom_render_DT <- function(input, output, input_id, cmd = NULL, func = NULL, caption = "",
                              columnDefs = list(list(width = "100px", targets = "_all")),
                              initComplete = DT::JS("function(settings, json) {",
                                                    "$(this.api().table().header()).css({'background-color': '#487ea5', 'color': '#fff'});",
@@ -180,10 +180,10 @@ dashbord_section_server <- function(input, output) {
     print(sessionInfo())
   })
 
-  output <- custom_render_DT(output, "r_packages_info_monitor", "installed.packages()")
-  output <- custom_render_DT(output, "r_env_info_monitor", "x <- Sys.getenv(); y <- unname(x); attributes(y) <- NULL; data.frame(var=names(x), value=y)")
+  output <- custom_render_DT(input, output, "r_packages_info_monitor", "installed.packages()")
+  output <- custom_render_DT(input, output, "r_env_info_monitor", "x <- Sys.getenv(); y <- unname(x); attributes(y) <- NULL; data.frame(var=names(x), value=y)")
 
-  output <- custom_render_DT(output, "files_of_path_monitor",
+  output <- custom_render_DT(input, output, "files_of_path_monitor",
 "result <- NULL; for(x in str_split(Sys.getenv('PATH'), ':')[[1]]) {
   files <- list.files(x)
   files <- file.path(x, files)
@@ -251,11 +251,11 @@ dashbord_section_server <- function(input, output) {
     output$task_table_hr2 <- renderUI(HTML(paste0(br(), h4("Output of output files"), hr())))
     output$task_table_hr3 <- renderUI(HTML(paste0(h4("Output of log"),hr())))
     func1 <- render_task_table()
-    output <- custom_render_DT(output, "task_table_DT", func = func1,
+    output <- custom_render_DT(input, output, "task_table_DT", func = func1,
                                caption = "Task information")
 
     func2 <- render_task_output_table()
-    output <- custom_render_DT(output, "task_table_output_DT", func = func2,
+    output <- custom_render_DT(input, output, "task_table_output_DT", func = func2,
                                caption = "Output files",
                                columnDefs = list(list(width = "150px",
                                targets = c(1,5))))
@@ -269,6 +269,23 @@ dashbord_section_server <- function(input, output) {
          }
       }
     })
+  })
+
+  output <- custom_render_DT(input, output, "bioinstaller_items_monitor",
+                             "get_bioinstaller_installed()")
+  output <- custom_render_DT(input, output, "conda_envlist_monitor",
+                             "BioInstaller::conda.env.list()")
+  output$conda_env_name_ui <- renderUI({
+    conda_envs <- BioInstaller::conda.env.list()[,1]
+    selectInput("conda_env_name", "Environment name",
+                choices = conda_envs,
+                selected = conda_envs[1])
+  })
+  output <- custom_render_DT(input, output, "conda_items_monitor",
+                             "BioInstaller::conda.list(env_name = input$conda_env_name)")
+
+  output$spack_items_monitor <- renderPrint({
+    cat(BioInstaller::spack("find"))
   })
   return(output)
 }

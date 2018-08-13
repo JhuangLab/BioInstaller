@@ -685,3 +685,9 @@ github_url = "https://github.com/hendrixlab/mRNN"
 
 [snakemake_dna_gatk_flow]
 github_url = "https://github.com/snakemake-workflows/dna-seq-gatk-variant-calling"
+
+[spack]
+github_url = "https://github.com/spack/spack"
+[spack.install]
+linux = "#R#cat('export SPACK_ROOT={{download.dir}}\nsource $SPACK_ROOT/share/spack/setup-env.sh', file = '~/.bashrc', append = TRUE)#R#"
+mac = "#R#cat('export SPACK_ROOT={{download.dir}}\nsource $SPACK_ROOT/share/spack/setup-env.sh', file = '~/.bashrc', append = TRUE)#R#"

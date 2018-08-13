@@ -4,11 +4,14 @@
 \alias{web}
 \title{Function to run BioInstaller shiny APP service}
 \usage{
-web(appDir = system.file("extdata", "shiny", package = "BioInstaller"), ...)
+web(appDir = system.file("extdata", "shiny", package = "BioInstaller"),
+  auto_create = FALSE, ...)
 }
 \arguments{
 \item{appDir}{The application to run.
 Default is system.file('extdata', 'tools/shiny/R', package = 'BioInstaller')}
+
+\item{auto_create}{Auto create dir, default is FALSE}
 
 \item{...}{Other parameters pass to \code{\link[shiny]{runApp}}}
 }

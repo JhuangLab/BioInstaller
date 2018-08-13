@@ -1,5 +1,5 @@
 ---
-title: "Description of software and database"
+title: "Description of supported items"
 author: "Jianfeng Li"
 date: "`r Sys.Date()`"
 output:
@@ -10,7 +10,7 @@ output:
   pdf_document:
     toc: true
 vignette: >
-  %\VignetteIndexEntry{Description of software and database}
+  %\VignetteIndexEntry{Description of supported items}
   %\VignetteEngine{knitr::rmarkdown}
   \usepackage[utf8]{inputenc}
   %\VignetteEncoding{UTF-8}
@@ -32,9 +32,12 @@ get_dt <- function(item) {
 }
 ```
 
-## Description of software and database
+## Description of supported items
 
-Meta information of software and database were saved in the followed files. You can get the file list by command `unname(unlist(get.meta()[1:4]))`.
+Partial meta information of tools/scripts and databases are saved in the followed files. 
+You can get the file list by command `unname(unlist(get.meta()[1:4]))`.
+
+We do not show the meta information of [annovarR](https://github.com/JhuangLab/BioInstaller/blob/master/inst/extdata/config/db/db_annovar.toml) supported items in this vignette.
 
 ```{r}
 library(BioInstaller)
@@ -42,7 +45,7 @@ meta_info <- get.meta(read.config.params = list(rcmd.parse = TRUE))
 unname(unlist(meta_info[1:4]))
 ```
 
-The followed tables show partial items description have been collected in BioInstaller package including `Github items`, `Non-github items` and `Database items`.
+The followed tables show partial items description that have been collected in BioInstaller package including `Github items`, `Non-github items` and `Database items`.
 
 ### Github items
 

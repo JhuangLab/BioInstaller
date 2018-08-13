@@ -77,7 +77,7 @@ devtools::install_github("JhuangLab/BioInstaller")
 
 ```
 # Start the standalone Shiny application
-BioInstaller::web()
+BioInstaller::web(auto_create = TRUE)
 ```
 
 <img src="https://raw.githubusercontent.com/Miachol/ftp/master/files/images/bioinstaller/overview1.jpg" align="middle" />

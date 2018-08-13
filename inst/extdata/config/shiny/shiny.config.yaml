@@ -47,10 +47,14 @@ shiny_tools:
   instant:
       - maftools
       - bioinstaller
+      - conda
+      - spack
 shiny_tools_params:
     require:
       maftools: maftools
       bioinstaller: BioInstaller
+      conda: BioInstaller
+      spack: BioInstaller
 shiny_upload:
   upload_dir: ~/.BioInstaller/upload
   supported_genome_version:

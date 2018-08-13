@@ -1,4 +1,5 @@
 skin <- Sys.getenv("DASHBOARD_SKIN")
+auto_create <- as.logical(Sys.getenv("AUTO_CREATE_BIOINSTALLER_DIR", FALSE))
 skin <- tolower(skin)
 
 # Read configuration file and set the environment vars
@@ -9,8 +10,10 @@ if (!file.exists(config.file.template)) config.file.template <- config.file.temp
 config <- configr::read.config(config.file.template)
 db_dirname<- dirname(config$shiny_db$db_path)
 config.file <- sprintf("%s/shiny.config.yaml", db_dirname)
-if (!dir.exists(db_dirname)) {
+if (!dir.exists(db_dirname) && auto_create) {
   dir.create(db_dirname)
+} else if (!dir.exists(db_dirname) && !auto_create){
+  stop("Please set the 'auto_create' in web() to TRUE, or AUTO_CREATE_BIOINSTALLER_DIR to TRUE.")
 }
 if (!file.exists(config.file) || !configr::is.yaml.file(config.file)) file.copy(config.file.template, sprintf("%s/shiny.config.yaml", db_dirname))
 Sys.setenv(BIOINSTALLER_SHINY_CONFIG = sprintf("%s/shiny.config.yaml", db_dirname))
@@ -429,4 +432,11 @@ get_tabItem_ui <- function(tabitem = "instant") {
   }
   cmd <- paste0(cmd, "))")
   eval(parse(text = cmd))
+}
+
+get_bioinstaller_installed <- function() {
+  items_db <- Sys.getenv('BIO_SOFTWARES_DB_ACTIVE')
+  x <- configr::read.config(items_db)
+  if (is.list(x)) {item_name <- names(x);x <- data.table::rbindlist(x)} else {return(data.frame())}
+  return(cbind(item_name, x))
 }

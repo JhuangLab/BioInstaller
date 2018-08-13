@@ -90,7 +90,7 @@ If the users can not to run a docker image, the standalone shiny service of BioI
 # install.packages('BioInstaller')
 # It is better to start the worker in another background processor
 BioInstaller::set_shiny_workers(3)
-BioInstaller::web()
+BioInstaller::web(auto_create = TRUE)
 ```
 
 To reduce the dependence of BioInstaller, we do not add the Shiny application modules dependent packages in the DESCRIPTION file. The function 'BioInstaller::web' will check the required dependences of Shiny application and install them if the dependence not be installed.

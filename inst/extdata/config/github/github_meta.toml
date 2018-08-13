@@ -162,3 +162,10 @@ publication = "Hill, S. T., Kuintzle, R. C., Teegarden, A., Merrill, E., Danaee,
 
 [github.item.snakemake_dna_gatk_flow]
 description = "This Snakemake pipeline implements the GATK best-practices workflow"
+
+[github.item.spack]
+title = "A flexible package manager that supports multiple versions, configurations, platforms, and compilers."
+description = """
+Spack is a package manager for supercomputers, Linux, and macOS. It makes installing scientific software easy. With Spack, you can build a package with multiple versions, configurations, platforms, and compilers, and all of these builds can coexist on the same machine. Spack isn't tied to a particular language; you can build a software stack in Python or R, link to libraries written in C, C++, or Fortran, and easily swap compilers. Use Spack to install in your home directory, to manage shared installations and modules on a cluster, or to build combinatorial versions of software for testing.
+"""
+publication = "Todd Gamblin, Matthew P. LeGendre, Michael R. Collette, Gregory L. Lee, Adam Moody, Bronis R. de Supinski, and W. Scott Futral. The Spack Package Manager: Bringing Order to HPC Software Chaos. In Supercomputing 2015 (SC’15), Austin, Texas, November 15-20 2015. LLNL-CONF-669890."

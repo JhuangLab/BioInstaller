@@ -36,6 +36,22 @@ get_download_tabItem_ui <- function(){
                                             ),
                 shiny::textInput("extra.paramters", "Extra parameters", "list()"),
                 actionButton("install_run", "Run")
+              ),
+              box(
+                title = "Conda",
+                width = 12,
+                status = "primary",
+                uiOutput("conda_installer_ui"),
+                collapsible = TRUE,
+                collapsed = TRUE
+              ),
+              box(
+                title = "Spack",
+                width = 12,
+                status = "primary",
+                uiOutput("spack_installer_ui"),
+                collapsible = TRUE,
+                collapsed = TRUE
               )
             )
     )

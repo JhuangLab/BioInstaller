@@ -17,7 +17,7 @@
 #' @importFrom stringi stri_rand_strings
 #' @importFrom RCurl getURL basicTextGatherer
 #' @importFrom R.utils gunzip gzip
-#' @importFrom utils unzip untar download.file URLencode
+#' @importFrom utils unzip untar download.file URLencode read.table
 #' @importFrom utils compareVersion install.packages installed.packages
 #' @importFrom devtools install_github
 #' @importFrom shiny runApp

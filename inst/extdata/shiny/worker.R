@@ -138,6 +138,7 @@ while (TRUE) {
                              message(e$message)
                              FALSE
                            })
+        cat(status)
       } else {
         status <- tryCatch({
          eval(parse(text = cmd), envir = worker_do_env)
@@ -151,6 +152,7 @@ while (TRUE) {
            eval(parse(text = last_cmd[[x]]), envir = worker_do_env)
          })
         }, error = function(e) {message(e$message)})
+        cat(status)
       }
       sink()
       sink(type = "message")

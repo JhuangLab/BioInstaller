@@ -41,25 +41,7 @@ download_section_server <- function(input, output) {
         params$qqcommand <- "BioInstaller::install.bioinfo"
         params$qqkey <- stringi::stri_rand_strings(1, 50)
         params$qqcommand_type <- "R"
-        msg <- jsonlite::toJSON(params)
-        queue <- liteq::ensure_queue(shiny_queue_name, db = queue_db)
-        while(TRUE) {
-          tryCatch({liteq::publish(queue, title = "Download", message = msg);break},
-                   error = function(e) {})
-        }
-        output <- dashbord_section_server(input, output)
-        output$task_submit_modal <- renderUI({
-          html_text <- tryCatch(get("html_text_task_submit_modal", envir = globalenv()), error = function(e) {
-            html_text <- paste0(readLines("www/modal.html"), collapse = "\n")
-            assign("html_text_task_submit_modal", html_text, envir = globalenv())
-            return(html_text)
-          })
-          html_text <- stringr::str_replace_all(html_text, '\\{\\{task_title\\}\\}', "Downloader")
-          html_text <- stringr::str_replace_all(html_text, '\\{\\{task_key\\}\\}', params$qqkey)
-          html_text <- stringr::str_replace_all(html_text, '\\{\\{task_msg\\}\\}', msg)
-          html_text <- sprintf("%s<script>$('#myModal').modal('show')</script>", html_text)
-          HTML(html_text)
-        })
+        submit_task_modal(input, output, params)
       }
   })
   observeEvent(input$item.name, {
@@ -84,6 +66,63 @@ download_section_server <- function(input, output) {
     })
   })
 
+
+  output$conda_installer_ui <- renderUI({
+    conda_envs <- BioInstaller::conda.env.list()[,1]
+    HTML(
+    paste0(shiny::selectInput("installer_conda_sub_command", "Sub command of conda",
+                       c("clean", "config", "create",
+                         "info", "install",
+                         "list", "package",
+                         "remove", "uninstall",
+                         "search", "update", "upgrade"),
+                       selected = "list"),
+    shiny::selectInput("installer_conda_env_name", label = "Conda environment",
+                       choices = conda_envs,
+                       selected = "base"),
+    shiny::textAreaInput("installer_conda_parameters", label = "Parameters"),
+    actionButton("installer_conda_run", label = "Run")
+    ), collapse = "\n")
+  })
+
+  output$spack_installer_ui <- renderUI({
+    conda_envs <- BioInstaller::conda.env.list()[,1]
+    HTML(
+      paste0(shiny::selectInput("installer_spack_sub_command", "Sub command of spack",
+                                c("list", "info", "find",
+                                  "install", "uninstall",
+                                  "spec", "load",
+                                  "module", "unload",
+                                  "view", "create", "edit",
+                                  "arch", "compilers"),
+                                selected = "find"),
+             shiny::textAreaInput("installer_spack_parameters", label = "Parameters"),
+             actionButton("installer_spack_run", label = "Run")
+      ), collapse = "\n")
+  })
+
+  observeEvent(input$installer_conda_run, {
+    params <- list()
+    params$req_pkgs <- "BioInstaller"
+    params$qqcommand <- "BioInstaller::conda"
+    params$qqkey <- stringi::stri_rand_strings(1, 50)
+    params$qqcommand_type <- "R"
+    params$prefix_params <- sprintf("source activate %s;", input$installer_conda_env_name)
+    params$suffix_params <- sprintf("%s %s", input$installer_conda_sub_command,
+                                    input$installer_conda_parameters)
+    submit_task_modal(input, output, params)
+  })
+
+  observeEvent(input$installer_spack_run, {
+    params <- list()
+    params$req_pkgs <- "BioInstaller"
+    params$qqcommand <- "BioInstaller::spack"
+    params$qqkey <- stringi::stri_rand_strings(1, 50)
+    params$qqcommand_type <- "R"
+    params$suffix_params <- sprintf("%s %s", input$installer_spack_sub_command,
+                                    input$installer_spack_parameters)
+    submit_task_modal(input, output, params)
+  })
 
   return(output)
 }

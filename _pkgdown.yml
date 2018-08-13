@@ -11,14 +11,20 @@ navbar:
   left:
   - text: Get started
     href: articles/BioInstaller.html
+  - text: Download
+    href: articles/download.html
   - text: Reference
     href: reference/index.html
   - text: Articles
     menu:
-    - text: Description of software and database
+    - text: Description of supported items
       href: articles/items_description.html
     - text: Write Your Own Configuration File
       href: articles/write_configuration_file.html
+    - text: Start the BioInstaller Shiny Application
+      href: articles/start_shiny_of_BioInstaller.html
+    - text: Plugins of BioInstaller Shiny Application
+      href: articles/plugins_of_BioInstaller_shiny.html
   - text: News
     href: news/index.html
   right:

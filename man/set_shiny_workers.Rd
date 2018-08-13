@@ -7,16 +7,20 @@
 set_shiny_workers(n,
   shiny_config_file = Sys.getenv("BIOINSTALLER_SHINY_CONFIG",
   system.file("extdata", "config/shiny/shiny.config.yaml", package =
-  "BioInstaller")))
+  "BioInstaller")), auto_create = FALSE)
 }
 \arguments{
 \item{n}{Number of needed workers}
 
 \item{shiny_config_file}{BioInstaller shiny configuration file}
+
+\item{auto_create}{Auto create log dir, default is FALSE}
 }
 \description{
 Function to set shiny workers for background service
 }
 \examples{
+\dontrun{
 set_shiny_workers(4)
+}
 }
