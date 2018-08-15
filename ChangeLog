@@ -1,3 +1,7 @@
+2018-08-15 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
+
+		* add datasets2tools plugin
+
 2018-08-13 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
 
 		* add wrapper functions, conda and spack

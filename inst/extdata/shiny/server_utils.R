@@ -248,7 +248,7 @@ render_input_command <- function (input, output, params, item, use_codemirror = 
   if (cmd != "")
   output[[paste0("lastcmd_ui_", render_id)]] <- renderUI({
     HTML(paste0(shiny::textAreaInput(inputId = paste0("lastcmd_", render_id), label = label,
-                         value = cmd, rows = stringr::str_count(cmd, "\n") * 1.5, resize = "vertical"),
+                         value = cmd, rows = (2 + stringr::str_count(cmd, "\n") * 1.1), resize = "vertical"),
                 text_area_js
         )
     )
