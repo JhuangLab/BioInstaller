@@ -17,7 +17,7 @@ generate_server_object <- function(input, output, ui_server_config, toolname, pk
       require(x, character.only = TRUE)
     })}
     shinyjs::disable(start_trigger)
-    msg <- sprintf("Running %s analysis steps,  waiting please...", toolname)
+    msg <- sprintf("Running %s task steps,  waiting please...", toolname)
     for (i in 1:100) {
       progress$set(message = msg, value = 1)
       Sys.sleep(0.02)

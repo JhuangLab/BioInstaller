@@ -45,16 +45,24 @@ shiny_queue:
 shiny_tools:
   pipeline: easy_project
   instant:
-      - maftools
       - bioinstaller
       - conda
       - spack
+      - datasets2tools
+      - pubmed 
+      - maftools
 shiny_tools_params:
     require:
-      maftools: maftools
       bioinstaller: BioInstaller
       conda: BioInstaller
       spack: BioInstaller
+      datasets2tools:
+          - RCurl
+          - jsonlite
+      pubmed:
+          - rentrez
+          - XML
+      maftools: maftools
 shiny_upload:
   upload_dir: ~/.BioInstaller/upload
   supported_genome_version:

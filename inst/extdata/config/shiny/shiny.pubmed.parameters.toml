@@ -1,0 +1,118 @@
+[pubmed.ui.sections]
+order = ["pubmed_input_box", "pubmed_output_table"]
+[pubmed.ui.sections.ui_basic]
+pubmed_input_box = "title = 'Input', status = 'primary', width = 12, collapsed = FALSE, collapsible = TRUE"
+pubmed_output_table = "title = 'Output of pubmed (Table)', status = 'primary', width = 12, collapsed = FALSE, collapsible = TRUE"
+
+[pubmed.paramters.pubmed_input_box]
+# For reading annovarR shiny APP pubmed tool input files  
+section_type = "input"
+rcmd_last = """
+set_entrez_key(pubmed_account_key)
+max_n_items <- as.numeric(max_n_items)
+objs <- NULL
+
+if (term != "") {
+  objs <- entrez_search(db = "pubmed", term = term, retmax = 99999, use_history=TRUE)
+  if (objs$count > 99999 && max_n_items > 99999) {
+    for( seq_start in seq(99999, objs$count, 99999)){ 
+      objs_tmp <- entrez_search(db = "pubmed", term = term,
+        retstart = seq_start, retmax = 99999)
+      objs$id <- c(objs$id, objs_tmp$id)
+    }
+  }
+  if (objs$count < max_n_items) max_n_items <- objs$count
+} 
+result <- data.frame()
+if (!is.null(objs) && (max_n_items >= 500)){
+  for(seq_start in seq(1,max_n_items,500)){
+    if ((max_n_items - seq_start) >= 500) {
+      fetch.pubmed.tmp <- entrez_fetch(db = "pubmed", web_history = objs$web_history,
+                            rettype = "xml", parsed = T, retstart = seq_start, retmax = 500)
+    } else {
+      fetch.pubmed.tmp <- entrez_fetch(db = "pubmed", web_history = objs$web_history,
+                            rettype = "xml", parsed = T, retstart = seq_start, retmax = max_n_items - seq_start + 1)
+    }
+    xL <- xmlToList(fetch.pubmed.tmp)
+    abstracts.tmp = xpathApply(fetch.pubmed.tmp, '//*//Article|//*//BookDocument', function(x)
+                                   xmlValue(xmlChildren(x)$Abstract))
+    title.tmp = xpathApply(fetch.pubmed.tmp, '//*//Article|//*//BookDocument', function(x)
+                                   xmlValue(xmlChildren(x)$ArticleTitle))
+    journal.name.tmp <- xpathApply(fetch.pubmed.tmp, '//*//Article//Journal|//*//BookDocument//Book', 
+                          function(x) xmlValue(xmlChildren(x)[["Title"]]))
+    book.name.tmp <- xpathApply(fetch.pubmed.tmp, '//*//Article//Journal|//*//BookDocument//Book', 
+                          function(x) xmlValue(xmlChildren(x)[["BookTitle"]]))
+    publish.year.tmp <- xpathApply(fetch.pubmed.tmp, '//*//Article//Journal//PubDate|//*//BookDocument//Book//PubDate', 
+                          function(x) xmlValue(x)) 
+    publish.year.tmp <- unlist(publish.year.tmp)
+    pmid.tmp <- xpathApply(fetch.pubmed.tmp, '//*/ArticleIdList//ArticleId[@IdType="pubmed"]', function(x) xmlValue(x))
+    pmid.tmp <- unlist(pmid.tmp)
+    journal.name.tmp <- unlist(journal.name.tmp)
+    book.name.tmp <- unlist(book.name.tmp)
+    abstracts.tmp <- unlist(abstracts.tmp)
+    abstracts.tmp[is.na(abstracts.tmp)] <- ""
+    title.tmp <- unlist(title.tmp)
+    title.tmp[is.na(title.tmp)] <- ""
+    res <- suppressWarnings(rentrez::parse_pubmed_xml(fetch.pubmed.tmp))
+    doi.tmp <- unlist(lapply(res, function(x) {if (length(x$doi) == 0) return(NA); x$doi}))
+    result.tmp <- cbind(pmid.tmp, doi.tmp, title.tmp, abstracts.tmp, publish.year.tmp, journal.name.tmp, book.name.tmp)
+    result <- rbind(result, result.tmp)
+  }
+  result <- result[1:max_n_items,]
+} else if (!is.null(objs)) {
+    fetch.pubmed.tmp <- entrez_fetch(db = "pubmed", web_history = objs$web_history,
+                          rettype = "xml", parsed = T, retmax = max_n_items)
+    abstracts.tmp = xpathApply(fetch.pubmed.tmp, '//*//Article|//*//BookDocument', function(x)
+                                   xmlValue(xmlChildren(x)$Abstract))
+    title.tmp = xpathApply(fetch.pubmed.tmp, '//*//Article|//*//BookDocument', function(x)
+                                   xmlValue(xmlChildren(x)$ArticleTitle))
+    pmid.tmp <- xpathApply(fetch.pubmed.tmp, '//*/ArticleIdList//ArticleId[@IdType="pubmed"]', function(x) xmlValue(x))
+    journal.name.tmp <- xpathApply(fetch.pubmed.tmp, '//*//Article//Journal|//*//BookDocument//Book', 
+                          function(x) xmlValue(xmlChildren(x)[["Title"]]))
+    book.name.tmp <- xpathApply(fetch.pubmed.tmp, '//*//Article//Journal|//*//BookDocument//Book', 
+                          function(x) xmlValue(xmlChildren(x)[["BookTitle"]]))
+    publish.year.tmp <- xpathApply(fetch.pubmed.tmp, '//*//Article//Journal//PubDate|//*//BookDocument//Book//PubDate', 
+                          function(x) xmlValue(x)) 
+    publish.year.tmp <- unlist(publish.year.tmp)
+    journal.name.tmp <- unlist(journal.name.tmp)
+    book.name.tmp <- unlist(book.name.tmp)
+    abstracts.tmp <- unlist(abstracts.tmp)
+    title.tmp <- unlist(title.tmp)
+    pmid.tmp <- unlist(pmid.tmp)
+    res <- suppressWarnings(rentrez::parse_pubmed_xml(fetch.pubmed.tmp))
+    doi.tmp <- unlist(lapply(res, function(x) {if (length(x$doi) == 0) return(NA); x$doi}))
+    result <- cbind(pmid.tmp, doi.tmp, title.tmp, abstracts.tmp, publish.year.tmp, journal.name.tmp, book.name.tmp)
+}
+colnames(result) <- c("PMID", "DOI", "Title", "Abstract", "PublishDate", "JournalName", "BookName")
+"""
+progressbar_message = "Running pubmed functions."
+render_id = "pubmed_pubmed_input_box"
+
+#!!!!! input_ui_order required related section
+input_ui_order = ["single_input", "start_analysis"]
+
+[pubmed.paramters.pubmed_input_box.input.single_input]
+title = "Parameters:"
+title_control = "class = 'input-section-p'"
+varname = ["term", "max_n_items", "pubmed_account_key"]
+input_id = ["input_pubmed_1", "input_pubmed_2", "input_pubmed_3"]
+type = ["shiny::textInput", "shiny::numericInput", "shiny::textInput"]
+label = ["Term (e.g. 30105797,30105798,B-ALL)", "Counts", "Pubmed Account Key"]
+[pubmed.paramters.pubmed_input_box.input.single_input.value]
+max_n_items = 100
+pubmed_account_key = "193124979d2e7f360c150dadc5b1e3bfec09"
+
+[pubmed.paramters.pubmed_input_box.input.start_analysis]
+input_id = "start_pubmed_analysis"
+type = "shiny::actionButton"
+label = "Run"
+
+[pubmed.paramters.pubmed_output_table]
+section_type = "output"
+rcmd_last = """
+result
+"""
+render_type = "DT::renderDataTable"
+render_id = "pubmed_output_table"
+output_type = "DT::dataTableOutput"
+progressbar_message = "PUBMED search ouput"

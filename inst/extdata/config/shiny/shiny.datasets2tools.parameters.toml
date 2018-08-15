@@ -1,10 +1,10 @@
 [datasets2tools.ui.sections]
-order = ["dataset2tools_in", "dataset2tools_out"]
+order = ["dataset2tools_input_box", "dataset2tools_out_box"]
 [datasets2tools.ui.sections.ui_basic]
-dataset2tools_in = "title = 'Datasets2tools API (http://amp.pharm.mssm.edu/datasets2tools/api)', status = 'primary', width = 12, collapsed = FALSE, collapsible = TRUE"
-dataset2tools_out = "title = 'Output of Datasets2tools', status = 'primary', width = 12, collapsed = FALSE, collapsible = TRUE"
+dataset2tools_input_box = "title = 'Datasets2tools API (http://amp.pharm.mssm.edu/datasets2tools/api)', status = 'primary', width = 12, collapsed = FALSE, collapsible = TRUE"
+dataset2tools_out_box = "title = 'Output of Datasets2tools', status = 'primary', width = 12, collapsed = FALSE, collapsible = TRUE"
 
-[datasets2tools.paramters.dataset2tools_in]
+[datasets2tools.paramters.dataset2tools_input_box]
 # For reading annovarR shiny APP datasets2tools tool input files
 section_type = "input"
 rcmd_last = """
@@ -32,7 +32,7 @@ render_id = "datasets2tools_cmds"
 #!!!!! input_ui_order required related section
 input_ui_order = ["single_input", "start_analysis"]
 
-[datasets2tools.paramters.dataset2tools_in.input.single_input]
+[datasets2tools.paramters.dataset2tools_input_box.input.single_input]
 title = "Parameters:"
 title_control = "class = 'input-section-p'"
 varname = ["object_type", "q", "dataset_accession", "tool_name", "disease_name", "canned_analysis_accession", "geneset", "page_size"]
@@ -44,18 +44,18 @@ type = ["shiny::selectInput", "shiny::textInput", "shiny::textInput", "shiny::te
 label = ["Query type", "Key Words", "Dataset Accession (e.g. GSE775)", "Tool name", "Disease name", 
          "Canned nalysis Cccession", "Geneset", "Page size"]
 
-[datasets2tools.paramters.dataset2tools_in.input.single_input.choices]
+[datasets2tools.paramters.dataset2tools_input_box.input.single_input.choices]
 object_type = ["canned_analysis", "dataset", "tool"]
 
-[datasets2tools.paramters.dataset2tools_in.input.single_input.value]
+[datasets2tools.paramters.dataset2tools_input_box.input.single_input.value]
 page_size = 100
 
-[datasets2tools.paramters.dataset2tools_in.input.start_analysis]
+[datasets2tools.paramters.dataset2tools_input_box.input.start_analysis]
 input_id = "start_datasets2tools_analysis"
 type = "shiny::actionButton"
 label = "Submit"
 
-[datasets2tools.paramters.dataset2tools_out]
+[datasets2tools.paramters.dataset2tools_out_box]
 section_type = "output"
 rcmd_last = """json_dat"""
 render_type = "DT::renderDataTable"

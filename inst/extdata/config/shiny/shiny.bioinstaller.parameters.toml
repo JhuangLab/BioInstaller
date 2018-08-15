@@ -1,23 +1,23 @@
 [bioinstaller.ui.sections]
-order = ["input_box", "output_table", "output_text"]
+order = ["bioinstaller_input_box", "bioinstaller_output_table", "bioinstaller_output_text"]
 [bioinstaller.ui.sections.ui_basic]
-input_box = "title = 'Input', status = 'primary', width = 12, collapsed = FALSE, collapsible = TRUE"
-output_text = "title = 'Output of bioinstaller', status = 'primary', width = 12, collapsed = FALSE, collapsible = TRUE"
-output_table = "title = 'Output of bioinstaller (Table)', status = 'primary', width = 12, collapsed = FALSE, collapsible = TRUE"
+bioinstaller_input_box = "title = 'Input', status = 'primary', width = 12, collapsed = FALSE, collapsible = TRUE"
+bioinstaller_output_text = "title = 'Output of bioinstaller', status = 'primary', width = 12, collapsed = FALSE, collapsible = TRUE"
+bioinstaller_output_table = "title = 'Output of bioinstaller (Table)', status = 'primary', width = 12, collapsed = FALSE, collapsible = TRUE"
 
-[bioinstaller.paramters.input_box]
+[bioinstaller.paramters.bioinstaller_input_box]
 # For reading annovarR shiny APP bioinstaller tool input files  
 section_type = "input"
 rcmd_last = """
 
 """
 progressbar_message = "Running BioInstaller functions."
-render_id = "bioinstaller_input_box"
+render_id = "bioinstaller_bioinstaller_input_box"
 
 #!!!!! input_ui_order required related section
 input_ui_order = ["single_input", "start_analysis"]
 
-[bioinstaller.paramters.input_box.input.single_input]
+[bioinstaller.paramters.bioinstaller_input_box.input.single_input]
 title = "Parameters:"
 title_control = "class = 'input-section-p'"
 varname = ["object_type"]
@@ -25,23 +25,23 @@ input_id = ["input_bioinstaller_1"]
 type = ["shiny::selectInput"]
 label = ["Query type"]
 
-[bioinstaller.paramters.input_box.input.single_input.choices]
+[bioinstaller.paramters.bioinstaller_input_box.input.single_input.choices]
 object_type = ["github", "nongithub", "db", "all"]
 
-[bioinstaller.paramters.input_box.input.start_analysis]
+[bioinstaller.paramters.bioinstaller_input_box.input.start_analysis]
 input_id = "start_bioinstaller_analysis"
 type = "shiny::actionButton"
 label = "Run"
 
-[bioinstaller.paramters.output_text]
+[bioinstaller.paramters.bioinstaller_output_text]
 section_type = "output"
 rcmd_last = "BioInstaller::install.bioinfo(show.all.names = TRUE)[1:10]"
 render_type = "shiny::renderPrint"
-render_id = "bioinstaller_output_text"
+render_id = "bioinstaller_bioinstaller_output_text"
 output_type = "shiny::verbatimTextOutput"
-progressbar_message = "BioInstaller output_text"
+progressbar_message = "BioInstaller bioinstaller_output_text"
 
-[bioinstaller.paramters.output_table]
+[bioinstaller.paramters.bioinstaller_output_table]
 section_type = "output"
 rcmd_last = """
 get_dt <- function(item) {
@@ -77,6 +77,6 @@ if (object_type != "all") {
 obj <- cbind(obj, resources_db)
 """
 render_type = "DT::renderDataTable"
-render_id = "bioinstaller_output_table"
+render_id = "bioinstaller_bioinstaller_output_table"
 output_type = "DT::dataTableOutput"
-progressbar_message = "BioInstaller output_table"
+progressbar_message = "BioInstaller bioinstaller_output_table"

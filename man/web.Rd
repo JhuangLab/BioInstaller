@@ -20,6 +20,6 @@ Function to run BioInstaller shiny APP service
 }
 \examples{
 \dontrun{
-  web()
+  web(auto_create = TRUE)
 }
 }

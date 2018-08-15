@@ -8,7 +8,7 @@
 #'
 #' @examples
 #' \dontrun{
-#'   web()
+#'   web(auto_create = TRUE)
 #' }
 web <- function(appDir = system.file("extdata", "shiny", package = "BioInstaller"),
     auto_create = FALSE, ...) {
@@ -34,7 +34,7 @@ check_shiny_dep <- function(install = FALSE) {
   pkgs_meta[,2] <- as.character(pkgs_meta[,2])
   cran_pkgs <- c("shinycssloaders", "shinydashboard", "configr",
                  "data.table", "shinyjs", "DT", "stringr", "liteq",
-                 "benchmarkme", "rmarkdown", "markdown")
+                 "benchmarkme", "rmarkdown", "markdown", "rentrez")
   cran_lowest_version <- list(configr = "0.3.2", data.table = "1.11.2")
   github_pkgs <- c()
   github_lowest_version <- list()
