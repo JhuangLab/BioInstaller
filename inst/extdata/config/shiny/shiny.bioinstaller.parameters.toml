@@ -12,7 +12,7 @@ rcmd_last = """
 
 """
 progressbar_message = "Running BioInstaller functions."
-render_id = "bioinstaller_bioinstaller_input_box"
+render_id = "bioinstaller_input_box"
 
 #!!!!! input_ui_order required related section
 input_ui_order = ["single_input", "start_analysis"]
@@ -37,7 +37,7 @@ label = "Run"
 section_type = "output"
 rcmd_last = "BioInstaller::install.bioinfo(show.all.names = TRUE)[1:10]"
 render_type = "shiny::renderPrint"
-render_id = "bioinstaller_bioinstaller_output_text"
+render_id = "bioinstaller_output_text"
 output_type = "shiny::verbatimTextOutput"
 progressbar_message = "BioInstaller bioinstaller_output_text"
 
@@ -77,6 +77,6 @@ if (object_type != "all") {
 obj <- cbind(obj, resources_db)
 """
 render_type = "DT::renderDataTable"
-render_id = "bioinstaller_bioinstaller_output_table"
+render_id = "bioinstaller_output_table"
 output_type = "DT::dataTableOutput"
 progressbar_message = "BioInstaller bioinstaller_output_table"

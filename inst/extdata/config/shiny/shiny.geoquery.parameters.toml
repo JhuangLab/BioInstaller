@@ -1,0 +1,59 @@
+[geoquery.ui.sections]
+order = ["geoquery_input_box", "geoquery_output_text_1", "geoquery_output_table_1"]
+[geoquery.ui.sections.ui_basic]
+geoquery_input_box = "title = 'Input', status = 'primary', width = 12, collapsed = FALSE, collapsible = TRUE"
+geoquery_output_text_1 = "title = 'Output of geoquery', status = 'primary', width = 12, collapsed = FALSE, collapsible = TRUE"
+geoquery_output_table_1 = "title = 'Output of geoquery (Table)', status = 'primary', width = 12, collapsed = FALSE, collapsible = TRUE"
+
+[geoquery.paramters.geoquery_input_box]
+# For reading annovarR shiny APP geoquery tool input files  
+section_type = "input"
+rcmd_last = """
+gds <- ""
+gsm <- ""
+if (gds_file != "") gds <- getGEO(filename=gds_file)
+if (gsm_file != "") gsm <- getGEO(filename=gsm_file)
+"""
+progressbar_message = "Running geoquery functions."
+render_id = "geoquery_input_box"
+
+#!!!!! input_ui_order required related section
+input_ui_order = ["single_input", "start_analysis"]
+
+[geoquery.paramters.geoquery_input_box.input.single_input]
+title = "Parameters:"
+title_control = "class = 'input-section-p'"
+varname = ["gds_file", "gsm_file"]
+input_id = ["input_geoquery_1", "input_geoquery_2"]
+type = ["shiny::selectInput", "shiny::selectInput"]
+label = ["GDS File", "GSE File"]
+
+[geoquery.paramters.geoquery_input_box.input.single_input.choices]
+gds_file = "!!glue {c(system.file('extdata', 'GDS507.soft.gz', package = 'GEOquery'), featch_files()$file_path, '')}"
+gsm_file = "!!glue {c(system.file('extdata', 'GSM11805.txt.gz', package = 'GEOquery'), featch_files()$file_path, '')}"
+[geoquery.paramters.geoquery_input_box.input.single_input.selected]
+gds_file = ""
+gsm_file = ""
+
+[geoquery.paramters.geoquery_input_box.input.start_analysis]
+input_id = "start_geoquery_analysis"
+type = "shiny::actionButton"
+label = "Run"
+
+[geoquery.paramters.geoquery_output_text_1]
+section_type = "output"
+rcmd_last = "head(Meta(gsm))"
+render_type = "shiny::renderPrint"
+render_id = "geoquery_output_text_1"
+output_type = "shiny::verbatimTextOutput"
+progressbar_message = "GEOquery geoquery_output_text_1"
+
+[geoquery.paramters.geoquery_output_table_1]
+section_type = "output"
+rcmd_last = """
+Table(gsm)
+"""
+render_type = "DT::renderDataTable"
+render_id = "geoquery_output_table_1"
+output_type = "DT::dataTableOutput"
+progressbar_message = "GEOquery geoquery_output_table_1"

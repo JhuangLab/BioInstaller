@@ -35,7 +35,7 @@ get_download_tabItem_ui <- function(){
                                                             "save.to.db", "overwrite")
                                             ),
                 shiny::textInput("extra.paramters", "Extra parameters", "list()"),
-                actionButton("install_run", "Run")
+                actionButton("install_run", "Submit")
               ),
               box(
                 title = "Conda",

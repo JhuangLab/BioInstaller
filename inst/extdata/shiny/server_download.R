@@ -70,7 +70,7 @@ download_section_server <- function(input, output) {
   output$conda_installer_ui <- renderUI({
     conda_envs <- BioInstaller::conda.env.list()[,1]
     HTML(
-    paste0(shiny::selectInput("installer_conda_sub_command", "Sub command of conda",
+    paste0(shiny::selectInput("installer_conda_sub_command", "Conda subcommands",
                        c("clean", "config", "create",
                          "info", "install",
                          "list", "package",
@@ -80,8 +80,8 @@ download_section_server <- function(input, output) {
     shiny::selectInput("installer_conda_env_name", label = "Conda environment",
                        choices = conda_envs,
                        selected = "base"),
-    shiny::textAreaInput("installer_conda_parameters", label = "Parameters"),
-    actionButton("installer_conda_run", label = "Run")
+    shiny::textAreaInput("installer_conda_parameters", label = "Conda parameters"),
+    actionButton("installer_conda_run", label = "Submit")
     ), collapse = "\n")
   })
 
@@ -97,7 +97,7 @@ download_section_server <- function(input, output) {
                                   "arch", "compilers"),
                                 selected = "find"),
              shiny::textAreaInput("installer_spack_parameters", label = "Parameters"),
-             actionButton("installer_spack_run", label = "Run")
+             actionButton("installer_spack_run", label = "Submit")
       ), collapse = "\n")
   })
 

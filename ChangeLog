@@ -1,6 +1,8 @@
 2018-08-16 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
 
 		* add pubmed search tool
+		* add geoquery instant plugin
+		* improve instant spack and code plugins
 
 2018-08-15 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
 

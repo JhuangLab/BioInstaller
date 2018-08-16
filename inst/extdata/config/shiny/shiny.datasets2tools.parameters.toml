@@ -20,9 +20,11 @@ for (i in input_params) {
 json_dat <- getForm(url, .params=datasets2tools_params)
 json_dat <- jsonlite::fromJSON(json_dat)
 json_dat <- as.data.frame(json_dat)
-for(i in 1:ncol(json_dat)) {
-  if (typeof(json_dat[,i]) == "list") {
-    json_dat[,i] <- unlist(lapply(json_dat[,i], function(x) {paste0(x, collapse = ", ")}))
+if (length(json_dat) > 0) {
+  for(i in 1:ncol(json_dat)) {
+    if (typeof(json_dat[,i]) == "list") {
+      json_dat[,i] <- unlist(lapply(json_dat[,i], function(x) {paste0(x, collapse = ", ")}))
+    }
   }
 }
 """
@@ -42,7 +44,7 @@ input_id = ["input_datasets2tools_1", "input_datasets2tools_2",
 type = ["shiny::selectInput", "shiny::textInput", "shiny::textInput", "shiny::textInput", "shiny::textInput",
        "shiny::textInput", "shiny::textInput", "shiny::numericInput"]
 label = ["Query type", "Key Words", "Dataset Accession (e.g. GSE775)", "Tool name", "Disease name", 
-         "Canned nalysis Cccession", "Geneset", "Page size"]
+         "Canned nalysis Cccession", "Geneset", "Counts"]
 
 [datasets2tools.paramters.dataset2tools_input_box.input.single_input.choices]
 object_type = ["canned_analysis", "dataset", "tool"]
@@ -53,7 +55,7 @@ page_size = 100
 [datasets2tools.paramters.dataset2tools_input_box.input.start_analysis]
 input_id = "start_datasets2tools_analysis"
 type = "shiny::actionButton"
-label = "Submit"
+label = "Run"
 
 [datasets2tools.paramters.dataset2tools_out_box]
 section_type = "output"

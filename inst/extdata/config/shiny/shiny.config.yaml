@@ -46,10 +46,11 @@ shiny_tools:
   pipeline: easy_project
   instant:
       - bioinstaller
-      - conda
       - spack
+      - conda
       - datasets2tools
       - pubmed 
+      - geoquery
       - maftools
 shiny_tools_params:
     require:
@@ -62,6 +63,7 @@ shiny_tools_params:
       pubmed:
           - rentrez
           - XML
+      geoquery: GEOquery
       maftools: maftools
 shiny_upload:
   upload_dir: ~/.BioInstaller/upload

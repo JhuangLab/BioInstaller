@@ -86,7 +86,7 @@ if (!is.null(objs) && (max_n_items >= 500)){
 colnames(result) <- c("PMID", "DOI", "Title", "Abstract", "PublishDate", "JournalName", "BookName")
 """
 progressbar_message = "Running pubmed functions."
-render_id = "pubmed_pubmed_input_box"
+render_id = "pubmed_input_box"
 
 #!!!!! input_ui_order required related section
 input_ui_order = ["single_input", "start_analysis"]
