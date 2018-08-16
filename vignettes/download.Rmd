@@ -30,9 +30,9 @@ CRAN: https://CRAN.R-project.org/package=BioInstaller
 
 ## JhuangLab host
 
-### v0.3.5.2000
+### v0.3.5.6000
 
-Download [here](http://bioinfo.rjh.com.cn/download/bioinstaller/bioinstaller/v0.3.5.2000.tar.gz).
+Download [here](http://bioinfo.rjh.com.cn/download/bioinstaller/bioinstaller/v0.3.5.6000.tar.gz).
 
 #### New features
 

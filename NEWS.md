@@ -1,4 +1,4 @@
-# BioInstaller 0.3.5.2000
+# BioInstaller 0.3.5.6000
 
 ## New features
 

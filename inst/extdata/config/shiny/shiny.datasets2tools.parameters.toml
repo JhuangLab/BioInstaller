@@ -2,7 +2,7 @@
 order = ["dataset2tools_input_box", "dataset2tools_out_box"]
 [datasets2tools.ui.sections.ui_basic]
 dataset2tools_input_box = "title = 'Datasets2tools API (http://amp.pharm.mssm.edu/datasets2tools/api)', status = 'primary', width = 12, collapsed = FALSE, collapsible = TRUE"
-dataset2tools_out_box = "title = 'Output of Datasets2tools', status = 'primary', width = 12, collapsed = FALSE, collapsible = TRUE"
+dataset2tools_out_box = "title = 'Output of Datasets2tools (Table)', status = 'primary', width = 12, collapsed = FALSE, collapsible = TRUE"
 
 [datasets2tools.paramters.dataset2tools_input_box]
 # For reading annovarR shiny APP datasets2tools tool input files

@@ -22,7 +22,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Introduction
 
-Shiny application of BioInstaller has been supported since v0.3.5. A pre-built [Docker image](https://hub.docker.com/r/bioinstaller/bioinstaller/) can help you to start all configured BioInstaller services in one-click, which includes the R (v3.4.4), Opencpu server (v??), Shiny server (v??), and BioInstaller (v0.3.5).
+Shiny application of BioInstaller has been supported since v0.3.5. A pre-built [Docker image](https://hub.docker.com/r/bioinstaller/bioinstaller/) can help you to start all configured BioInstaller services in one-click, which includes the R (v3.4.4), Opencpu server, Shiny server, and latest BioInstaller.
 
 ## How to deploy the BioInstaller using Docker
 
