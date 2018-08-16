@@ -1,16 +1,14 @@
 [bioinstaller.ui.sections]
 order = ["bioinstaller_input_box", "bioinstaller_output_table", "bioinstaller_output_text"]
 [bioinstaller.ui.sections.ui_basic]
-bioinstaller_input_box = "title = 'Input', status = 'primary', width = 12, collapsed = FALSE, collapsible = TRUE"
-bioinstaller_output_text = "title = 'Output of bioinstaller', status = 'primary', width = 12, collapsed = FALSE, collapsible = TRUE"
+bioinstaller_input_box = "title = 'BioInstaller query', status = 'primary', width = 12, collapsed = FALSE, collapsible = TRUE"
+bioinstaller_output_text = "title = 'Output of bioinstaller (Text)', status = 'primary', width = 12, collapsed = FALSE, collapsible = TRUE"
 bioinstaller_output_table = "title = 'Output of bioinstaller (Table)', status = 'primary', width = 12, collapsed = FALSE, collapsible = TRUE"
 
 [bioinstaller.paramters.bioinstaller_input_box]
 # For reading annovarR shiny APP bioinstaller tool input files  
 section_type = "input"
-rcmd_last = """
-
-"""
+rcmd_last = ""
 progressbar_message = "Running BioInstaller functions."
 render_id = "bioinstaller_input_box"
 

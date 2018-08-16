@@ -1,7 +1,7 @@
 [pubmed.ui.sections]
 order = ["pubmed_input_box", "pubmed_output_table"]
 [pubmed.ui.sections.ui_basic]
-pubmed_input_box = "title = 'Input', status = 'primary', width = 12, collapsed = FALSE, collapsible = TRUE"
+pubmed_input_box = "title = 'Input (Pubmed)', status = 'primary', width = 12, collapsed = FALSE, collapsible = TRUE"
 pubmed_output_table = "title = 'Output of pubmed (Table)', status = 'primary', width = 12, collapsed = FALSE, collapsible = TRUE"
 
 [pubmed.paramters.pubmed_input_box]
@@ -80,7 +80,9 @@ if (!is.null(objs) && (max_n_items >= 500)){
     title.tmp <- unlist(title.tmp)
     pmid.tmp <- unlist(pmid.tmp)
     res <- suppressWarnings(rentrez::parse_pubmed_xml(fetch.pubmed.tmp))
-    doi.tmp <- unlist(lapply(res, function(x) {if (length(x$doi) == 0) return(NA); x$doi}))
+    if (length(res[[1]]) == 1 && length(res$doi) == 0) {doi.tmp <- NA} 
+    else if (length(res[[1]]) == 1 && length(res$doi) != 0) {doi.tmp <- res$doi}
+    else { doi.tmp <- unlist(lapply(res, function(x) {if (length(x$doi) == 0) return(NA); x$doi})) }
     result <- cbind(pmid.tmp, doi.tmp, title.tmp, abstracts.tmp, publish.year.tmp, journal.name.tmp, book.name.tmp)
 }
 colnames(result) <- c("PMID", "DOI", "Title", "Abstract", "PublishDate", "JournalName", "BookName")

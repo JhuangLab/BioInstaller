@@ -436,6 +436,8 @@ get_tabItem_ui <- function(tabitem = "instant") {
 
 get_bioinstaller_installed <- function() {
   items_db <- Sys.getenv('BIO_SOFTWARES_DB_ACTIVE')
+  if (!file.exists(items_db) || file.size (items_db) == 0 || 
+      configr::get.config.type (items_db) == FALSE) return(data.frame())
   x <- configr::read.config(items_db)
   if (is.list(x)) {item_name <- names(x);x <- data.table::rbindlist(x)} else {return(data.frame())}
   return(cbind(item_name, x))

@@ -97,6 +97,14 @@ while (TRUE) {
       params[[item]] <- NULL
     }
     log_file <- sprintf("%s/%s.log", log_dir, qqkey)
+    log_con <- file(log_file)
+    sink(log_con, append = TRUE)
+    sink(log_con, append = TRUE, type = "message")
+    cat(sprintf("@@Task start at:@@ %s\n", format(Sys.time(), "%Y-%m-%d %H:%M:%S")))
+    cat(sprintf("@@Worker nodename:@@ %s\n", Sys.info()[["nodename"]]))
+    cat(sprintf("@@Worker user:@@ %s\n", Sys.getenv("USER")))
+    cat(sprintf("@@Worker locale:@@ %s\n", Sys.getlocale()))
+    cat(sprintf("@@Worker PID:@@ %s\n", Sys.getpid()))
     con <- DBI::dbConnect(RSQLite::SQLite(), db_path)
     need.initial <- nrow(DBI::dbGetQuery(con, sprintf("SELECT * FROM %s WHERE key = \"%s\"",
                                                       task_table, qqkey))) == 0
@@ -121,9 +129,6 @@ while (TRUE) {
     if (tolower(qqcommand_type) == "r") {
       cat(sprintf("%s Running R command for key %s
 ", format(Sys.time(), "%Y %m-%d %X"), qqkey))
-      log_con <- file(log_file)
-      sink(log_con, append = TRUE)
-      sink(log_con, append = TRUE, type = "message")
       worker_do_env <- new.env()
       if (is.null(req_pkgs) | req_pkgs == "") {cmd <- ""} else {
         cmd <- 'sapply(req_pkgs, function(x){require(x, character.only = TRUE)})'
@@ -131,14 +136,18 @@ while (TRUE) {
 
       if (qqcommand != "") {
         status <- tryCatch({
+          cat(sprintf("@@CMD:@@ %s\n", cmd))
           eval(parse(text = cmd), envir = worker_do_env)
+          cat(sprintf("@@CMD:@@ %s\n", qqcommand))
+          cat("@@Params:@@\n")
+          print(params)
           do.call(eval(parse(text = qqcommand), envir = worker_do_env), params,
                   envir = worker_do_env)},
                            error = function(e) {
                              message(e$message)
                              FALSE
                            })
-        cat(status)
+        if (is.character(status) || is.numeric(status)) {cat(status)} else {print(status)}
       } else {
         status <- tryCatch({
          eval(parse(text = cmd), envir = worker_do_env)
@@ -152,7 +161,7 @@ while (TRUE) {
            eval(parse(text = last_cmd[[x]]), envir = worker_do_env)
          })
         }, error = function(e) {message(e$message)})
-        cat(status)
+        if (is.character(status) || is.numeric(status)) {cat(status)} else {print(status)}
       }
       sink()
       sink(type = "message")

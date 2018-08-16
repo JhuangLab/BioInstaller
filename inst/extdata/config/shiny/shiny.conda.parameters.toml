@@ -8,9 +8,7 @@ conda_output_box_table = "title = 'Output of conda (Table)', status = 'primary',
 [conda.paramters.conda_input_box]
 # For reading annovarR shiny APP conda tool input files  
 section_type = "input"
-rcmd_last = """
-
-"""
+rcmd_last = ""
 progressbar_message = "Running conda functions."
 render_id = "conda_input_box"
 
