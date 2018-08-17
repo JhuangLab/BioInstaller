@@ -274,15 +274,16 @@ dashbord_section_server <- function(input, output) {
   output <- custom_render_DT(input, output, "bioinstaller_items_monitor",
                              "get_bioinstaller_installed()")
   output <- custom_render_DT(input, output, "conda_envlist_monitor",
-                             "BioInstaller::conda.env.list()")
+                             "tryCatch(BioInstaller::conda.env.list(), warning=function(w){data.frame()})")
   output$conda_env_name_ui <- renderUI({
-    conda_envs <- BioInstaller::conda.env.list()[,1]
+    conda_envs <- BioInstaller::conda.env.list()
+    if (is.data.frame(conda_envs)) conda_envs <- conda_envs[,1]
     selectInput("conda_env_name", "Environment name",
                 choices = conda_envs,
                 selected = conda_envs[1])
   })
   output <- custom_render_DT(input, output, "conda_items_monitor",
-                             "BioInstaller::conda.list(env_name = input$conda_env_name)")
+                             "tryCatch(BioInstaller::conda.list(env_name = input$conda_env_name), warning = function(w){data.frame()})")
 
   output$spack_items_monitor <- renderPrint({
     cat(BioInstaller::spack("find"))

@@ -68,7 +68,8 @@ download_section_server <- function(input, output) {
 
 
   output$conda_installer_ui <- renderUI({
-    conda_envs <- BioInstaller::conda.env.list()[,1]
+    conda_envs <- BioInstaller::conda.env.list()
+    if (is.data.frame(conda_envs)) conda_envs <- conda_envs[,1]
     HTML(
     paste0(shiny::selectInput("installer_conda_sub_command", "Conda subcommands",
                        c("clean", "config", "create",
@@ -86,7 +87,8 @@ download_section_server <- function(input, output) {
   })
 
   output$spack_installer_ui <- renderUI({
-    conda_envs <- BioInstaller::conda.env.list()[,1]
+    conda_envs <- BioInstaller::conda.env.list()
+    if (is.data.frame(conda_envs)) conda_envs <- conda_envs[,1]
     HTML(
       paste0(shiny::selectInput("installer_spack_sub_command", "Sub command of spack",
                                 c("list", "info", "find",

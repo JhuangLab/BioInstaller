@@ -12,7 +12,7 @@
 #' }
 conda <- function(suffix_params = "", prefix_params = "", conda = Sys.which('conda'), ...) {
   conda <- unname(conda)
-  if (conda == "") stop("Executable 'conda' Not Found.")
+  if (conda == "") {warning("Executable 'conda' Not Found."); return(FALSE)}
   objs <- system(sprintf("%s%s %s", prefix_params, conda, suffix_params), intern = TRUE, ...)
   x <- paste0(objs, collapse = "\n")
   return(x) 
@@ -32,6 +32,7 @@ conda <- function(suffix_params = "", prefix_params = "", conda = Sys.which('con
 conda.list <- function(env_name = "base", ...) {
   if (!is.null(env_name) && env_name != "") objs <- conda("list", prefix_params = sprintf("source activate %s;", env_name), ...)
   if (is.null (env_name) || env_name == "") objs <- conda("list", ...)
+  if (is.logical(objs) && !objs) {return(FALSE)}
   text <- paste0(objs, collapse = "\n")
   x <- tryCatch(read.table(text=text), error = function(e) {
     data.frame()
@@ -53,6 +54,7 @@ conda.list <- function(env_name = "base", ...) {
 #' }
 conda.env.list <- function(...) {
   objs <- conda("env list", ...)
+  if (is.logical(objs) && !objs) {return(FALSE)}
   text <- paste0(objs, collapse = "\n")
   x <- read.table(text=str_replace(text, " [*] ", ""), skip=2)
   colnames(x) <- c("env_name", "env_path")

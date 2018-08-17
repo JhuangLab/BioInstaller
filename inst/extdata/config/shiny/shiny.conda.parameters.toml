@@ -27,7 +27,7 @@ label = ["Conda subcommands", "Conda environment", "Conda parameters"]
 conda_sub_cmd = ["clean", "config", "create", "info", "install",
                  "list", "package", "remove", "uninstall",
                  "search", "update", "upgrade"]
-conda_env_name = "!!glue {BioInstaller::conda.env.list()[,1]}"
+conda_env_name = "!!glue {conda_envs <- BioInstaller::conda.env.list(); if (is.data.frame(conda_envs)) conda_envs <- conda_envs[,1]}"
 [conda.paramters.conda_input_box.input.single_input.selected]
 conda_sub_cmd = "list"
 conda_env_name = "base"

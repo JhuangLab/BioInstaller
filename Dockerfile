@@ -19,4 +19,4 @@ Run apt update && apt install -y lmodern \
     && rm -rf /var/lib/apt/lists/* \
     && rm -rf /tmp/downloaded_packages/ /tmp/*.rds
 
-CMD service cron start && runuser -l opencpu -c 'Rscript -e "BioInstaller::set_shiny_workers(3)" &>/log/BioInstaller_worker_main.log &' && runuser -l opencpu -c 'sh /usr/bin/start_shiny_server' && /usr/lib/rstudio-server/bin/rserver && apachectl -DFOREGROUND
+CMD service cron start && runuser -l opencpu -c 'export AUTO_CREATE_BIOINSTALLER_DIR="TRUE";Rscript -e "BioInstaller::set_shiny_workers(3, auto_create = TRUE)" &' && runuser -l opencpu -c 'sh /usr/bin/start_shiny_server' && /usr/lib/rstudio-server/bin/rserver && apachectl -DFOREGROUND
