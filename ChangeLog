@@ -1,3 +1,8 @@
+2018-08-18 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
+
+		* add miniconda and spack in docker image
+		* add table output box in instant spack
+
 2018-08-16 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
 
 		* add pubmed search tool

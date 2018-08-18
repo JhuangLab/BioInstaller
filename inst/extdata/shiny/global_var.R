@@ -439,6 +439,6 @@ get_bioinstaller_installed <- function() {
   if (!file.exists(items_db) || file.size (items_db) == 0 || 
       configr::get.config.type (items_db) == FALSE) return(data.frame())
   x <- configr::read.config(items_db)
-  if (is.list(x)) {item_name <- names(x);x <- data.table::rbindlist(x)} else {return(data.frame())}
+  if (is.list(x)) {item_name <- names(x);x <- data.table::rbindlist(x, fill = TRUE)} else {return(data.frame())}
   return(cbind(item_name, x))
 }

@@ -27,7 +27,8 @@ github2versions <- function(github.url) {
     `Accept-Language` = "en-us", Connection = "keep-alive", `Accept-Charset` = "GB2312,utf-8;q=0.7,*;q=0.7")
   url <- sprintf("https://api.github.com/repos/%s/%s/tags?client_id=1d40ab6884d214ef6889&client_secret=23b818c2bad8e9f88dafd8a425613475362b326d", 
     user, repo)
-  txt <- getURL(url, headerfunction = h$update, httpheader = myheader)
+  txt <- tryCatch(getURL(url, headerfunction = h$update, httpheader = myheader), error = function(e) {
+       getURL(url, headerfunction = h$update, httpheader = myheader, ssl.verifypeer = FALSE) })
   json <- tempfile()
   cat(txt, file = json, sep = "\n")
   return(read.config(file = json)$name)

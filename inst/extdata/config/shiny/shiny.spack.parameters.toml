@@ -1,8 +1,9 @@
 [spack.ui.sections]
-order = ["spack_input_box", "spack_output_box_text"]
+order = ["spack_input_box", "spack_output_box_table", "spack_output_box_text"]
 [spack.ui.sections.ui_basic]
 spack_input_box = "title = 'Input', status = 'primary', width = 12, collapsed = FALSE, collapsible = TRUE"
-spack_output_box_text = "title = 'Output of spack', status = 'primary', width = 12, collapsed = FALSE, collapsible = TRUE"
+spack_output_box_text = "title = 'Output of spack (Text)', status = 'primary', width = 12, collapsed = FALSE, collapsible = TRUE"
+spack_output_box_table = "title = 'Output of spack (Table)', status = 'primary', width = 12, collapsed = FALSE, collapsible = TRUE"
 
 [spack.paramters.spack_input_box]
 # For reading annovarR shiny APP spack tool input files  
@@ -29,7 +30,7 @@ spack_sub_cmd = ["list", "info", "find", "install", "uninstall",
                  "view", "create", "edit",
                  "arch", "compilers"]
 [spack.paramters.spack_input_box.input.single_input.selected]
-spack_sub_cmd = "find"
+spack_sub_cmd = "list"
 
 [spack.paramters.spack_input_box.input.start_analysis]
 input_id = "start_spack_analysis"
@@ -43,3 +44,15 @@ render_type = "shiny::renderPrint"
 render_id = "spack_output"
 output_type = "shiny::verbatimTextOutput"
 progressbar_message = "spack ouput"
+
+[spack.paramters.spack_output_box_table]
+section_type = "output"
+rcmd_last = """
+if (spack_sub_cmd == 'list') obj <- as.data.frame(spack.list())
+colnames(obj) <- "item"
+obj
+"""
+render_type = "DT::renderDataTable"
+render_id = "spack_output_table"
+output_type = "DT::dataTableOutput"
+progressbar_message = "spack ouput_box_table"
