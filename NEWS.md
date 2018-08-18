@@ -1,3 +1,9 @@
+# BioInstaller 0.3.5.7000
+
+## Minor bugs fixed
+
+* Add conda and spack in the Docker image
+
 # BioInstaller 0.3.5.6000
 
 ## New features
