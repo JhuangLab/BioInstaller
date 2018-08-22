@@ -30,6 +30,17 @@ CRAN: https://CRAN.R-project.org/package=BioInstaller
 
 ## JhuangLab host
 
+### BioInstaller 0.3.6
+
+Download [here](http://bioinfo.rjh.com.cn/download/bioinstaller/bioinstaller/v0.3.6.tar.gz).
+
+#### New features
+
+* add copy\_plugins and copy\_configs functions to restore 
+  the plugins and config
+* use fromJSON to access the github APIs, 
+  which can avoid the SSL problem on windows platform
+
 ### v0.3.5.7000
 
 Download [here](http://bioinfo.rjh.com.cn/download/bioinstaller/bioinstaller/v0.3.5.7000.tar.gz).

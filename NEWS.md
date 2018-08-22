@@ -1,3 +1,12 @@
+# BioInstaller 0.3.6
+
+## New features
+
+* add copy\_plugins and copy\_configs functions to restore 
+  the plugins and config
+* use fromJSON to access the github APIs, 
+  which can avoid the SSL problem on windows platform
+
 # BioInstaller 0.3.5.7000
 
 ## Minor bugs fixed

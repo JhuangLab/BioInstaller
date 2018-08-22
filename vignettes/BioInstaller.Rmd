@@ -130,8 +130,11 @@ Tips:
 
 ```{r}
 download.dir <- sprintf('%s/github_demo_local', tempdir())
+tryCatch({
 install.bioinfo('github_demo', download.dir = download.dir, download.only = TRUE, verbose = FALSE)
-install.bioinfo('github_demo', local.source = download.dir)
+install.bioinfo('github_demo', local.source = download.dir)}, error = function(e) {
+  message("Please check the SSL or connection with GitHub")
+})
 
 download.dir <- sprintf('%s/demo_local', tempdir())
 install.bioinfo('demo_2', download.dir = download.dir, download.only = TRUE, verbose = FALSE)

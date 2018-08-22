@@ -4,7 +4,7 @@ Version: 0.3.6
 Authors@R: person("Jianfeng", "Li", email = "lee_jianfeng@sjtu.edu.cn", role = c("aut", "cre"), comment = c(ORCID = "0000-0003-2349-208X"))
 Maintainer: Jianfeng Li <lee_jianfeng@sjtu.edu.cn>
 Description:
-    Can be used to integrate massive bioinformatics tool/script and database. It provides the R functions and Shiny web application. Hundreds of bioinformatics tool/script and database have been included.
+    Can be used to integrate massive bioinformatics resources, such as tool/script and database. It provides the R functions and Shiny web application. Hundreds of bioinformatics tool/script and database have been included.
 Depends:
     R (>= 3.3.0)
 URL: https://github.com/JhuangLab/BioInstaller
