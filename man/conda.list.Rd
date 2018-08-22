@@ -17,6 +17,6 @@ Wrapper function of 'conda list', list linked packages in a conda environment.
 \examples{
 \dontrun{
   conda.list()
-  conda.list(env_name = "your_env")
+  conda.list(env_name = 'your_env')
 }
 }

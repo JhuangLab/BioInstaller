@@ -1,6 +1,6 @@
 Package: BioInstaller
 Title: Integrator of Bioinformatics Resources
-Version: 0.3.5.7000
+Version: 0.3.6
 Authors@R: person("Jianfeng", "Li", email = "lee_jianfeng@sjtu.edu.cn", role = c("aut", "cre"), comment = c(ORCID = "0000-0003-2349-208X"))
 Maintainer: Jianfeng Li <lee_jianfeng@sjtu.edu.cn>
 Description:
@@ -15,7 +15,8 @@ LazyData: true
 Imports:
     stringr (>= 1.2.0),
     futile.logger (>= 1.4.1),
-    configr (>= 0.3.1.1),
+    configr (>= 0.3.3),
+    jsonlite,
     git2r (>= 0.0.3),
     R.utils (>= 2.5.0),
     RCurl (>= 1.95-4.8),

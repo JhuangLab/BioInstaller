@@ -80,6 +80,9 @@ Install or download softwares from non-Github Web site
 \examples{
 db <- sprintf('\%s/.BioInstaller', tempdir())
 set.biosoftwares.db(db)
-install.nongithub('gmap', show.all.versions = TRUE)
+tryCatch(install.nongithub('gmap', show.all.versions = TRUE),
+error = function(e) {
+  message('Connecting Gmap website failed. Please try it again later.')
+})
 unlink(db)
 }

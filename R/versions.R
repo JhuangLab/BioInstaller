@@ -21,17 +21,15 @@ github2versions <- function(github.url) {
   txt <- str_split(github.url, "/")[[1]]
   user <- txt[2]
   repo <- txt[3]
-  h <- basicTextGatherer()
-  myheader <- c(`User-Agent` = "Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_0_1 like Mac OS X; ja-jp) AppleWebKit/532.9 (KHTML, like Gecko) Version/4.0.5 Mobile/8A306 Safari/6531.22.7", 
-    Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8", 
-    `Accept-Language` = "en-us", Connection = "keep-alive", `Accept-Charset` = "GB2312,utf-8;q=0.7,*;q=0.7")
   url <- sprintf("https://api.github.com/repos/%s/%s/tags?client_id=1d40ab6884d214ef6889&client_secret=23b818c2bad8e9f88dafd8a425613475362b326d", 
     user, repo)
-  txt <- tryCatch(getURL(url, headerfunction = h$update, httpheader = myheader), error = function(e) {
-       getURL(url, headerfunction = h$update, httpheader = myheader, ssl.verifypeer = FALSE) })
-  json <- tempfile()
-  cat(txt, file = json, sep = "\n")
-  return(read.config(file = json)$name)
+  json <- tryCatch(fromJSON(url), error = function(e) {
+    message("Featch the github version failed.")
+    NULL
+  })
+  if (is.null(json)) 
+    return("master")
+  return(json$name)
 }
 
 use.github.response <- function(config) {

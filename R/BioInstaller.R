@@ -12,7 +12,8 @@
 #'
 #' @docType package
 #' @name BioInstaller
-#' @import configr stringr futile.logger rvest
+#' @import configr stringr futile.logger rvest liteq
+#' @importFrom jsonlite fromJSON
 #' @importFrom git2r clone checkout
 #' @importFrom stringi stri_rand_strings
 #' @importFrom RCurl getURL basicTextGatherer

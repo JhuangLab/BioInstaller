@@ -71,6 +71,9 @@ Install or download softwares from Github
 \examples{
 db <- sprintf('\%s/.BioInstaller', tempdir())
 set.biosoftwares.db(db)
-install.github('bwa', show.all.versions = TRUE)
+tryCatch(install.github('bwa', show.all.versions = TRUE),
+error = function(e) {
+  message('Connecting Github failed. Please try it again later.')
+})
 unlink(db)
 }

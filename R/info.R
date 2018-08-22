@@ -17,7 +17,8 @@
 #' bin.dir = '', excutable.files = c('demo'), others.customer = 'demo')
 #' unlink(db)
 change.info <- function(name = "", installed = TRUE, source.dir = "", bin.dir = "", 
-  executable.files = "", db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", tempfile()), ..., verbose = TRUE) {
+  executable.files = "", db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", tempfile()), 
+  ..., verbose = TRUE) {
   msg <- sprintf("Running change.info for %s and be saved to %s", name, db)
   info.msg(msg, verbose = verbose)
   source.dir <- normalizePath(source.dir, mustWork = F)
@@ -50,7 +51,8 @@ change.info <- function(name = "", installed = TRUE, source.dir = "", bin.dir = 
 #' bin.dir = '', excutable.files = c('demo'), others.customer = 'demo')
 #' get.info('bwa')
 #' unlink(db)
-get.info <- function(name = "", db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", tempfile()), verbose = TRUE) {
+get.info <- function(name = "", db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", tempfile()), 
+  verbose = TRUE) {
   db <- normalizePath(db, mustWork = FALSE)
   if (!db.check(db)) {
     return(FALSE)
@@ -81,7 +83,8 @@ get.info <- function(name = "", db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", tempf
 #' bin.dir = '', excutable.files = c('demo'), others.customer = 'demo')
 #' del.info('bwa')
 #' unlink(db)
-del.info <- function(name = "", db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", tempfile()), verbose = TRUE) {
+del.info <- function(name = "", db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", tempfile()), 
+  verbose = TRUE) {
   db <- normalizePath(db, mustWork = FALSE)
   if (!db.check(db)) {
     return(FALSE)
@@ -113,8 +116,8 @@ del.info <- function(name = "", db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", tempf
 #' bin.dir = '', excutable.files = c('demo'), others.customer = 'demo')
 #' show.installed()
 #' unlink(db)
-show.installed <- function(db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", tempfile()), only.installed = TRUE, 
-  verbose = TRUE) {
+show.installed <- function(db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", tempfile()), 
+  only.installed = TRUE, verbose = TRUE) {
   db <- normalizePath(db, mustWork = FALSE)
   if (!db.check(db)) {
     return(FALSE)

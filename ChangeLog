@@ -1,3 +1,8 @@
+2018-08-22 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
+
+		* add copy_plugins and copy_configs functions in R/web.R
+		* replace getURL by fromJSON to access the Github APIs
+
 2018-08-18 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
 
 		* add miniconda and spack in docker image

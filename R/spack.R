@@ -10,10 +10,15 @@
 #' \dontrun{
 #'   spack()
 #' }
-spack <- function(suffix_params = "", prefix_params = "", spack = Sys.which('spack'), ...) {
+spack <- function(suffix_params = "", prefix_params = "", spack = Sys.which("spack"), 
+  ...) {
   spack <- unname(spack)
-  if (spack == "") {warning("Executable 'spack' Not Found."); return(FALSE)}
-  objs <- system(sprintf("%s%s %s", prefix_params, spack, suffix_params), intern = TRUE, ...)
+  if (spack == "") {
+    warning("Executable 'spack' Not Found.")
+    return(FALSE)
+  }
+  objs <- system(sprintf("%s%s %s", prefix_params, spack, suffix_params), intern = TRUE, 
+    ...)
   paste0(objs, collapse = "\n")
 }
 
@@ -28,9 +33,11 @@ spack <- function(suffix_params = "", prefix_params = "", spack = Sys.which('spa
 #' }
 spack.list <- function(...) {
   objs <- spack("list", ...)
-  if (is.logical(objs) && !objs) {return(FALSE)}
+  if (is.logical(objs) && !objs) {
+    return(FALSE)
+  }
   text <- paste0(objs, collapse = "\n")
-  x <- read.table(text=text)
+  x <- read.table(text = text)
   colnames(x) <- c("Name")
   return(x)
 }

@@ -40,7 +40,10 @@
 #' @examples
 #' db <- sprintf('%s/.BioInstaller', tempdir())
 #' set.biosoftwares.db(db)
-#' install.bioinfo('bwa', show.all.versions = TRUE)
+#' tryCatch(install.bioinfo('bwa', show.all.versions = TRUE), 
+#' error = function(e) {
+#'   message('Connecting Github failed. Please try it again later.')
+#' })
 #' unlink(db)
 install.bioinfo <- function(name = c(), download.dir = c(), destdir = c(), name.saved = NULL, 
   github.cfg = system.file("extdata", "config/github/github.toml", package = "BioInstaller"), 
@@ -52,8 +55,8 @@ install.bioinfo <- function(name = c(), download.dir = c(), destdir = c(), name.
   db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", system.file("extdata", "demo/softwares_db_demo.yaml", 
     package = "BioInstaller")), download.only = FALSE, decompress = TRUE, dependence.need = TRUE, 
   showWarnings = FALSE, extra.list = list(), rcmd.parse = TRUE, bash.parse = TRUE, 
-  glue.parse = TRUE, glue.flag = "!!glue", save.to.db = TRUE, license = "", overwrite = FALSE, verbose = TRUE, 
-  ...) {
+  glue.parse = TRUE, glue.flag = "!!glue", save.to.db = TRUE, license = "", overwrite = FALSE, 
+  verbose = TRUE, ...) {
   github.cfg.env <- paste0(github.cfg, collapse = ",")
   nongithub.cfg.env <- paste0(nongithub.cfg, collapse = ",")
   Sys.setenv(github.cfg = github.cfg.env, nongithub.cfg = nongithub.cfg.env)
@@ -128,8 +131,7 @@ install.bioinfo <- function(name = c(), download.dir = c(), destdir = c(), name.
         decompress = decompress, dependence.need = dependence.need, verbose = verbose, 
         extra.list = extra.list, rcmd.parse = rcmd.parse, bash.parse = bash.parse, 
         glue.parse = glue.parse, glue.flag = glue.flag, save.to.db = save.to.db, 
-        overwrite = overwrite,
-        ...)
+        overwrite = overwrite, ...)
       bynongithub <- c(bynongithub, i)
     } else {
       warning(sprintf("%s not existed in install database, so can not be installed by BioInstaller package.", 
@@ -211,7 +213,10 @@ install.bioinfo <- function(name = c(), download.dir = c(), destdir = c(), name.
 #' @examples
 #' db <- sprintf('%s/.BioInstaller', tempdir())
 #' set.biosoftwares.db(db)
-#' install.github('bwa', show.all.versions = TRUE)
+#' tryCatch(install.github('bwa', show.all.versions = TRUE),
+#' error = function(e) {
+#'   message('Connecting Github failed. Please try it again later.')
+#' })
 #' unlink(db)
 install.github <- function(name = "", download.dir = NULL, destdir = NULL, version = NULL, 
   local.source = NULL, show.all.versions = FALSE, name.saved = NULL, github.cfg = system.file("extdata", 
@@ -243,7 +248,7 @@ install.github <- function(name = "", download.dir = NULL, destdir = NULL, versi
   destdir <- processed.dir.list[["des.dir"]]
   download.dir <- processed.dir.list[["down.dir"]]
   status <- destdir.initial(download.dir, strict = FALSE, download.only, local.source = local.source, 
-                            overwrite = overwrite, is.git = TRUE)
+    overwrite = overwrite, is.git = TRUE)
   if (status == FALSE) {
     return(FALSE)
   }
@@ -384,7 +389,10 @@ install.github <- function(name = "", download.dir = NULL, destdir = NULL, versi
 #' @examples
 #' db <- sprintf('%s/.BioInstaller', tempdir())
 #' set.biosoftwares.db(db)
-#' install.nongithub('gmap', show.all.versions = TRUE)
+#' tryCatch(install.nongithub('gmap', show.all.versions = TRUE),
+#' error = function(e) {
+#'   message('Connecting Gmap website failed. Please try it again later.')
+#' })
 #' unlink(db)
 install.nongithub <- function(name = "", download.dir = NULL, destdir = NULL, version = NULL, 
   local.source = NULL, show.all.versions = FALSE, name.saved = NULL, nongithub.cfg = c(system.file("extdata", 
@@ -420,7 +428,7 @@ install.nongithub <- function(name = "", download.dir = NULL, destdir = NULL, ve
   destdir <- processed.dir.list[["des.dir"]]
   download.dir <- processed.dir.list[["down.dir"]]
   status <- destdir.initial(download.dir, strict = FALSE, download.only, local.source = local.source, 
-                            is.git = FALSE, overwrite = overwrite)
+    is.git = FALSE, overwrite = overwrite)
   if (status == FALSE) {
     return(FALSE)
   }

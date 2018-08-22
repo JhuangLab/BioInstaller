@@ -23,12 +23,12 @@ Wrapper function of 'conda env create', create an environment based on an enviro
 }
 \examples{
 \dontrun{
-  conda.env.create(params = "vader/deathstar")
-  conda.env.create(env_name = "name")
-  conda.env.create(env_file = "/path/to/environment.yml")
-  conda.env.create(env_name = "deathstar", 
-                   env_file = "/path/to/requirements.txt")
-  conda.env.create(env_file = "/path/to/requirements.txt", 
-  env_path = "/home/user/software/deathstar")
+  conda.env.create(params = 'vader/deathstar')
+  conda.env.create(env_name = 'name')
+  conda.env.create(env_file = '/path/to/environment.yml')
+  conda.env.create(env_name = 'deathstar', 
+                   env_file = '/path/to/requirements.txt')
+  conda.env.create(env_file = '/path/to/requirements.txt', 
+  env_path = '/home/user/software/deathstar')
 }
 }

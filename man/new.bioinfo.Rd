@@ -20,5 +20,5 @@ new.bioinfo(config.file = "github.toml", title = "", description = "",
 Create new BioInstaller items to github forum
 }
 \examples{
-new.bioinfo("db_main.toml", "test_item", "Just is a test item", "NA")
+new.bioinfo('db_main.toml', 'test_item', 'Just is a test item', 'NA')
 }

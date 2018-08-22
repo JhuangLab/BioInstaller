@@ -15,7 +15,8 @@ if (!dir.exists(db_dirname) && auto_create) {
 } else if (!dir.exists(db_dirname) && !auto_create){
   stop("Please set the 'auto_create' in web() to TRUE, or AUTO_CREATE_BIOINSTALLER_DIR to TRUE.")
 }
-if (!file.exists(config.file) || !configr::is.yaml.file(config.file)) file.copy(config.file.template, sprintf("%s/shiny.config.yaml", db_dirname))
+if (!file.exists(config.file) || !configr::is.yaml.file(config.file)) 
+    file.copy(config.file.template, sprintf("%s/shiny.config.yaml", db_dirname))
 Sys.setenv(BIOINSTALLER_SHINY_CONFIG = sprintf("%s/shiny.config.yaml", db_dirname))
 
 shiny_plugin_dir_repo <- system.file("extdata", "config/shiny", package = "BioInstaller")
@@ -24,9 +25,7 @@ if (!is.null(config$shiny_plugins$shiny_plugin_dir)) {
   shiny_plugin_dir <-config$shiny_plugins$shiny_plugin_dir
 }
 if (!dir.exists(shiny_plugin_dir) || length(list.files(shiny_plugin_dir)) == 0) {
-  dir.create(shiny_plugin_dir, recursive = TRUE, showWarnings = FALSE)
-  file.copy(sprintf("%s/%s", shiny_plugin_dir_repo, list.files(shiny_plugin_dir_repo, "shiny.*parameters")),
-            shiny_plugin_dir)
+  BioInstaller::copy_plugins(shiny_plugin_dir, auto_create = auto_create)
 }
 
 db_type <- config$shiny_db$db_type

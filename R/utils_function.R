@@ -226,7 +226,7 @@ download.file.custom <- function(url = "", destfile = "", is.dir = FALSE, showWa
 
 # Check destdir and decide wheather overwrite
 destdir.initial <- function(destdir, strict = TRUE, download.only = FALSE, local.source = NULL, 
-                            is.git = TRUE, overwrite = FALSE) {
+  is.git = TRUE, overwrite = FALSE) {
   if (!is.null(local.source)) {
     return(TRUE)
   }

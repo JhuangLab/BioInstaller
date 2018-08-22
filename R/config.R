@@ -5,11 +5,10 @@
 #' @param publication Publication of new item
 #' @export
 #' @examples
-#' new.bioinfo("db_main.toml", "test_item", "Just is a test item", "NA")
-new.bioinfo <- function(config.file = "github.toml", 
-                        title = "", description = "", 
-                        publication = "") {
+#' new.bioinfo('db_main.toml', 'test_item', 'Just is a test item', 'NA')
+new.bioinfo <- function(config.file = "github.toml", title = "", description = "", 
+  publication = "") {
   text <- sprintf("**Configuration file**:%s\n**title**:%s\n**description**:%s\n**publication**:%s\n", 
-                  config.file, title, description, publication)
+    config.file, title, description, publication)
   cat(text)
 }
