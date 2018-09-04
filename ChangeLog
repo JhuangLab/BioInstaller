@@ -1,3 +1,7 @@
+2018-09-04 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
+
+		* add fill = TRUE in conda.list read.table
+
 2018-08-22 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
 
 		* add copy_plugins and copy_configs functions in R/web.R
