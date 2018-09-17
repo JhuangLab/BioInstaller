@@ -13,9 +13,9 @@ The increase in bioinformatics resources such as tools/scripts and databases pos
 
 R language, as the most popular programming language for statistics, biological data analysis, and big data, has enabled diverse and free R packages (>14000) for different types of applications. However, due to the lack of high-performance and open-source cloud platforms based on R (e.g., Galaxy for Python users), it is still difficult for R users, especially those without web development skills, to construct interactive and reproducible biological data analysis applications supporting the upload and management of files, long-time computation, task submission, tracking of output files, exception handling, logging, export of plots and tables, and extendible plugin systems.
 
-Collection, management, and share of various bioinformatics tools/scripts and databases are also essential for almost all bioinformatics analysis projects.
+The collection, management, and share of various bioinformatics tools/scripts and databases are also essential for almost all bioinformatics analysis projects.
 
-Here, we established a new platform to construct interactive and reproducible biological data analysis applications based on R language. This platform contains diverse user interfaces, including the R functions and R Shiny applitation, REST APIs, and support for collecting, managing, sharing, and utilizing massive bioinformatics tools/scripts and databases.
+Here, we established a new platform to construct interactive and reproducible biological data analysis applications based on R language. This platform contains diverse user interfaces, including the R functions and R Shiny application, REST APIs, and support for collecting, managing, sharing, and utilizing massive bioinformatics tools/scripts and databases.
 
 **Feature**:
 

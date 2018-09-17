@@ -6,11 +6,11 @@
 \alias{BioInstaller-package}
 \title{This package is a new platform to construct interactive and reproducible biological 
 data analysis applications based on R language, which includes the R functions and R 
-Shiny applitation, REST APIs.}
+Shiny application, REST APIs.}
 \description{
 This package is a new platform to construct interactive and reproducible biological 
 data analysis applications based on R language, which includes the R functions and R 
-Shiny applitation, REST APIs.
+Shiny application, REST APIs.
 }
 \seealso{
 Useful links:
