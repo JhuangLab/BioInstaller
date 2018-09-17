@@ -4,8 +4,8 @@
 \alias{get.info}
 \title{Show biologly softwares infomation of system}
 \usage{
-get.info(name = "", db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", tempfile()),
-  verbose = TRUE)
+get.info(name = "", db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE",
+  tempfile()), verbose = TRUE)
 }
 \arguments{
 \item{name}{Software name}

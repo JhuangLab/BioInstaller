@@ -5,12 +5,14 @@
 \title{A function can be used to craw all source code from nongithub.cfg stored information}
 \usage{
 crawl.all.versions(name, download.dir = "./",
-  nongithub.cfg = c(system.file("extdata", "config/nongithub/nongithub.toml",
-  package = "BioInstaller"), system.file("extdata", "config/db/db_main.toml",
-  package = "BioInstaller"), system.file("extdata", "config/db/db_annovar.toml",
-  package = "BioInstaller"), system.file("extdata", "config/db/db_blast.toml",
-  package = "BioInstaller")), parse.extra.params = list(extra.list = list(),
-  rcmd.parse = TRUE, bash.parse = TRUE, glue.parse = TRUE), license = "")
+  nongithub.cfg = c(system.file("extdata",
+  "config/nongithub/nongithub.toml", package = "BioInstaller"),
+  system.file("extdata", "config/db/db_main.toml", package =
+  "BioInstaller"), system.file("extdata", "config/db/db_annovar.toml",
+  package = "BioInstaller"), system.file("extdata",
+  "config/db/db_blast.toml", package = "BioInstaller")),
+  parse.extra.params = list(extra.list = list(), rcmd.parse = TRUE,
+  bash.parse = TRUE, glue.parse = TRUE), license = "")
 }
 \arguments{
 \item{name}{Software name}

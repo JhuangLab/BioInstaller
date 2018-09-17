@@ -9,16 +9,13 @@ Status](https://travis-ci.org/JhuangLab/BioInstaller.svg)](https://travis-ci.org
 
 ## Introduction
 
-Accessing and management of various bioinformatics tool/script and database are essential for almost all bioinformatics analysis projects. 
+The increase in bioinformatics resources such as tools/scripts and databases poses a great challenge for users seeking to construct interactive and reproducible biological data analysis applications. 
 
-There is an urgent need for the development of new all-in-one tools that allows users to search, download, install and share these bioinformatics tool/script and database.
+R language, as the most popular programming language for statistics, biological data analysis, and big data, has enabled diverse and free R packages (>14000) for different types of applications. However, due to the lack of high-performance and open-source cloud platforms based on R (e.g., Galaxy for Python users), it is still difficult for R users, especially those without web development skills, to construct interactive and reproducible biological data analysis applications supporting the upload and management of files, long-time computation, task submission, tracking of output files, exception handling, logging, export of plots and tables, and extendible plugin systems.
 
-[Conda](https://conda.io/docs/) and [Spack](https://spack.io/) have done a lot of work and we can use them to conveniently install some bioinformatics software. But there are still many problems with these package managers, such as incompatible to some precompiled programs, little support for the database and other non-software files.
+Collection, management, and share of various bioinformatics tools/scripts and databases are also essential for almost all bioinformatics analysis projects.
 
-[BioInstaller](https://github.com/JhuangLab/BioInstaller) is a comprehensive R package 
-to integrate bioinformatics resources, such as software/script and database. 
-It provides the R, Shiny web application, and the GitHub forum. Hundreds of bioinformatics tool/script and database have been included in BioInstaller.
-
+Here, we established a new platform to construct interactive and reproducible biological data analysis applications based on R language. This platform contains diverse user interfaces, including the R functions and R Shiny applitation, REST APIs, and support for collecting, managing, sharing, and utilizing massive bioinformatics tools/scripts and databases.
 
 **Feature**:
 
@@ -77,7 +74,7 @@ devtools::install_github("JhuangLab/BioInstaller")
 
 ```
 # Start the standalone Shiny application
-BioInstaller::web()
+BioInstaller::web(auto_create = TRUE)
 ```
 
 <img src="https://raw.githubusercontent.com/Miachol/ftp/master/files/images/bioinstaller/overview1.jpg" align="middle" />

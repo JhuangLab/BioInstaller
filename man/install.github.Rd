@@ -10,10 +10,10 @@ install.github(name = "", download.dir = NULL, destdir = NULL,
   "config/github/github.toml", package = "BioInstaller"),
   db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", system.file("extdata",
   "demo/softwares_db_demo.yaml", package = "BioInstaller")),
-  download.only = FALSE, showWarnings = FALSE, dependence.need = TRUE,
-  extra.list = list(), rcmd.parse = TRUE, bash.parse = TRUE,
-  glue.parse = TRUE, glue.flag = "!!glue", save.to.db = TRUE,
-  overwrite = FALSE, verbose = TRUE, ...)
+  download.only = FALSE, showWarnings = FALSE,
+  dependence.need = TRUE, extra.list = list(), rcmd.parse = TRUE,
+  bash.parse = TRUE, glue.parse = TRUE, glue.flag = "!!glue",
+  save.to.db = TRUE, overwrite = FALSE, verbose = TRUE, ...)
 }
 \arguments{
 \item{name}{Software name}

@@ -4,8 +4,8 @@
 \alias{conda}
 \title{Wrapper function of conda}
 \usage{
-conda(suffix_params = "", prefix_params = "", conda = Sys.which("conda"),
-  ...)
+conda(suffix_params = "", prefix_params = "",
+  conda = Sys.which("conda"), ...)
 }
 \arguments{
 \item{suffix_params}{Command line parameters of conda}

@@ -10,14 +10,14 @@
 #' \dontrun{
 #'   conda()
 #' }
-conda <- function(suffix_params = "", prefix_params = "", conda = Sys.which("conda"),
+conda <- function(suffix_params = "", prefix_params = "", conda = Sys.which("conda"), 
   ...) {
   conda <- unname(conda)
   if (conda == "") {
     warning("Executable 'conda' Not Found.")
     return(FALSE)
   }
-  objs <- system(sprintf("%s%s %s", prefix_params, conda, suffix_params), intern = TRUE,
+  objs <- system(sprintf("%s%s %s", prefix_params, conda, suffix_params), intern = TRUE, 
     ...)
   x <- paste0(objs, collapse = "\n")
   return(x)
@@ -35,10 +35,10 @@ conda <- function(suffix_params = "", prefix_params = "", conda = Sys.which("con
 #'   conda.list(env_name = 'your_env')
 #' }
 conda.list <- function(env_name = "base", ...) {
-  if (!is.null(env_name) && env_name != "")
-    objs <- conda("list", prefix_params = sprintf("source activate %s;", env_name),
+  if (!is.null(env_name) && env_name != "") 
+    objs <- conda("list", prefix_params = sprintf("source activate %s;", env_name), 
       ...)
-  if (is.null(env_name) || env_name == "")
+  if (is.null(env_name) || env_name == "") 
     objs <- conda("list", ...)
   if (is.logical(objs) && !objs) {
     return(FALSE)
@@ -47,10 +47,10 @@ conda.list <- function(env_name = "base", ...) {
   x <- tryCatch(read.table(text = text, fill = TRUE), error = function(e) {
     data.frame()
   })
-  if (nrow(x) == 0)
+  if (nrow(x) == 0) 
     return(x)
   colnames(x)[1:3] <- c("Name", "Version", "Build")
-  if (ncol(x) == 4)
+  if (ncol(x) == 4) 
     colnames(x)[4] <- "Channel"
   return(x)
 }
@@ -94,13 +94,13 @@ conda.env.list <- function(...) {
 #'   conda.env.create(env_file = '/path/to/requirements.txt',
 #'   env_path = '/home/user/software/deathstar')
 #' }
-conda.env.create <- function(env_name = "", env_file = "", env_path = "", params = "",
+conda.env.create <- function(env_name = "", env_file = "", env_path = "", params = "", 
   ...) {
-  if (env_name != "")
+  if (env_name != "") 
     env_name <- paste0("-n ", env_name, " ")
-  if (env_file != "")
+  if (env_file != "") 
     env_file <- paste0("-f=", env_file, " ")
-  if (env_path != "")
+  if (env_path != "") 
     env_path <- paste0("-p ", env_path, " ")
   conda(sprintf("env create %s%s%s%s", env_name, env_file, env_path, params), ...)
 }

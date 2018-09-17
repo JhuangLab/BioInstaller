@@ -4,8 +4,8 @@
 \alias{spack}
 \title{Wrapper function of spack}
 \usage{
-spack(suffix_params = "", prefix_params = "", spack = Sys.which("spack"),
-  ...)
+spack(suffix_params = "", prefix_params = "",
+  spack = Sys.which("spack"), ...)
 }
 \arguments{
 \item{suffix_params}{Command line parameters of spack (prefix_params spack suffix_params)}

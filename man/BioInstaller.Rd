@@ -4,11 +4,13 @@
 \name{BioInstaller}
 \alias{BioInstaller}
 \alias{BioInstaller-package}
-\title{This package is a comprehensive R package to integrate 
-bioinformatics resources, such as software/script and database}
+\title{This package is a new platform to construct interactive and reproducible biological 
+data analysis applications based on R language, which includes the R functions and R 
+Shiny applitation, REST APIs.}
 \description{
-This package is a comprehensive R package to integrate 
-bioinformatics resources, such as software/script and database
+This package is a new platform to construct interactive and reproducible biological 
+data analysis applications based on R language, which includes the R functions and R 
+Shiny applitation, REST APIs.
 }
 \seealso{
 Useful links:

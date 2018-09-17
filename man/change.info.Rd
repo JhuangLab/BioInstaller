@@ -4,9 +4,10 @@
 \alias{change.info}
 \title{Update biologly softwares infomation of system}
 \usage{
-change.info(name = "", installed = TRUE, source.dir = "", bin.dir = "",
-  executable.files = "", db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE",
-  tempfile()), ..., verbose = TRUE)
+change.info(name = "", installed = TRUE, source.dir = "",
+  bin.dir = "", executable.files = "",
+  db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", tempfile()), ...,
+  verbose = TRUE)
 }
 \arguments{
 \item{name}{Software name}

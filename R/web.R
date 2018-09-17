@@ -130,21 +130,28 @@ set_shiny_workers <- function(n, shiny_config_file = Sys.getenv("BIOINSTALLER_SH
 #' @param plugin_dir The destdir to store plugins [~/.BioInstaller/plugins]
 #' @param template_dir The template dir system.file('extdata', 'config/shiny/', 
 #' package = 'BioInstaller')
-#' @param pattern Used in \code{\link{list.files}} ["shiny.*.parameters.toml"]
+#' @param pattern Used in \code{\link{list.files}} ['shiny.*.parameters.toml']
 #' @param auto_create Auto create dir, default is FALSE
 #' @export
 #' @examples
 #' copy_plugins(tempdir())
-copy_plugins <- function(plugin_dir = "~/.BioInstaller/plugins", template_dir = system.file('extdata', 'config/shiny/',
-                                                                  package = 'BioInstaller'),
-                           pattern = "shiny.*.parameters.toml", auto_create = FALSE) {
+copy_plugins <- function(plugin_dir = "~/.BioInstaller/plugins", template_dir = system.file("extdata", 
+  "config/shiny/", package = "BioInstaller"), pattern = "shiny.*.parameters.toml", 
+  auto_create = FALSE) {
   plugin_dir <- normalizePath(plugin_dir, mustWork = FALSE)
-  if (!dir.exists(plugin_dir) && auto_create) {dir.create(plugin_dir, recursive = TRUE)}
-  else if (!dir.exists(plugin_dir) && !auto_create) {
-      warning(sprintf("Plugin dir %s not exists and auto_create was FALSE.", plugin_dir));return(FALSE)}
-  if (!dir.exists(template_dir)) {warning(sprintf("Template dir %s not exists.", template_dir));return(FALSE)}
+  if (!dir.exists(plugin_dir) && auto_create) {
+    dir.create(plugin_dir, recursive = TRUE)
+  } else if (!dir.exists(plugin_dir) && !auto_create) {
+    warning(sprintf("Plugin dir %s not exists and auto_create was FALSE.", plugin_dir))
+    return(FALSE)
+  }
+  if (!dir.exists(template_dir)) {
+    warning(sprintf("Template dir %s not exists.", template_dir))
+    return(FALSE)
+  }
   all_plugins <- list.files(template_dir, pattern, full.names = TRUE)
-  if (length(all_plugins) >= 1) file.copy(all_plugins, plugin_dir)
+  if (length(all_plugins) >= 1) 
+    file.copy(all_plugins, plugin_dir)
 }
 
 
@@ -153,20 +160,26 @@ copy_plugins <- function(plugin_dir = "~/.BioInstaller/plugins", template_dir = 
 #' @param config_dir The destdir to store plugins [~/.BioInstaller]
 #' @param template_dir The template dir system.file('extdata', 'config/shiny/', 
 #' package = 'BioInstaller')
-#' @param pattern Used in \code{\link{list.files}} ["shiny.config.yaml"]
+#' @param pattern Used in \code{\link{list.files}} ['shiny.config.yaml']
 #' @param auto_create Auto create dir, default is FALSE
 #' @export
 #' @examples
 #' copy_configs(tempdir())
 copy_configs <- function(config_dir = "~/.BioInstaller/", template_dir = Sys.getenv("BIOINSTALLER_SHINY_CONFIG", 
-                                                                 system.file('extdata', 'config/shiny/',
-                                                                 package = 'BioInstaller')),
-                           pattern = "shiny.config.yaml", auto_create = FALSE) {
+  system.file("extdata", "config/shiny/", package = "BioInstaller")), pattern = "shiny.config.yaml", 
+  auto_create = FALSE) {
   config_dir <- normalizePath(config_dir, mustWork = FALSE)
-  if (!dir.exists(config_dir) && auto_create) {dir.create(config_dir, recursive = TRUE)}
-  else if (!dir.exists(config_dir) && !auto_create) {
-      warning(sprintf("Config dir %s not exists and auto_create was FALSE.", config_dir));return(FALSE)}
-  if (!dir.exists(template_dir)) {warning(sprintf("Template dir %s not exists.", template_dir));return(FALSE)}
+  if (!dir.exists(config_dir) && auto_create) {
+    dir.create(config_dir, recursive = TRUE)
+  } else if (!dir.exists(config_dir) && !auto_create) {
+    warning(sprintf("Config dir %s not exists and auto_create was FALSE.", config_dir))
+    return(FALSE)
+  }
+  if (!dir.exists(template_dir)) {
+    warning(sprintf("Template dir %s not exists.", template_dir))
+    return(FALSE)
+  }
   all_configs <- list.files(template_dir, pattern, full.names = TRUE)
-  if (length(all_configs) >= 1) file.copy(all_configs, config_dir)
+  if (length(all_configs) >= 1) 
+    file.copy(all_configs, config_dir)
 }

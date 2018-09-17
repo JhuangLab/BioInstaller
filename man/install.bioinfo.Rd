@@ -7,19 +7,20 @@
 install.bioinfo(name = c(), download.dir = c(), destdir = c(),
   name.saved = NULL, github.cfg = system.file("extdata",
   "config/github/github.toml", package = "BioInstaller"),
-  nongithub.cfg = c(system.file("extdata", "config/nongithub/nongithub.toml",
-  package = "BioInstaller"), system.file("extdata", "config/db/db_main.toml",
-  package = "BioInstaller"), system.file("extdata", "config/db/db_annovar.toml",
-  package = "BioInstaller"), system.file("extdata", "config/db/db_blast.toml",
-  package = "BioInstaller")), version = c(), local.source = NULL,
-  show.all.versions = FALSE, show.all.names = FALSE,
-  db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", system.file("extdata",
-  "demo/softwares_db_demo.yaml", package = "BioInstaller")),
-  download.only = FALSE, decompress = TRUE, dependence.need = TRUE,
-  showWarnings = FALSE, extra.list = list(), rcmd.parse = TRUE,
-  bash.parse = TRUE, glue.parse = TRUE, glue.flag = "!!glue",
-  save.to.db = TRUE, license = "", overwrite = FALSE, verbose = TRUE,
-  ...)
+  nongithub.cfg = c(system.file("extdata",
+  "config/nongithub/nongithub.toml", package = "BioInstaller"),
+  system.file("extdata", "config/db/db_main.toml", package =
+  "BioInstaller"), system.file("extdata", "config/db/db_annovar.toml",
+  package = "BioInstaller"), system.file("extdata",
+  "config/db/db_blast.toml", package = "BioInstaller")), version = c(),
+  local.source = NULL, show.all.versions = FALSE,
+  show.all.names = FALSE, db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE",
+  system.file("extdata", "demo/softwares_db_demo.yaml", package =
+  "BioInstaller")), download.only = FALSE, decompress = TRUE,
+  dependence.need = TRUE, showWarnings = FALSE, extra.list = list(),
+  rcmd.parse = TRUE, bash.parse = TRUE, glue.parse = TRUE,
+  glue.flag = "!!glue", save.to.db = TRUE, license = "",
+  overwrite = FALSE, verbose = TRUE, ...)
 }
 \arguments{
 \item{name}{Software name}

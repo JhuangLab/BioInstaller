@@ -6,7 +6,8 @@
 \usage{
 copy_plugins(plugin_dir = "~/.BioInstaller/plugins",
   template_dir = system.file("extdata", "config/shiny/", package =
-  "BioInstaller"), pattern = "shiny.*.parameters.toml", auto_create = FALSE)
+  "BioInstaller"), pattern = "shiny.*.parameters.toml",
+  auto_create = FALSE)
 }
 \arguments{
 \item{plugin_dir}{The destdir to store plugins [~/.BioInstaller/plugins]}
@@ -14,7 +15,7 @@ copy_plugins(plugin_dir = "~/.BioInstaller/plugins",
 \item{template_dir}{The template dir system.file('extdata', 'config/shiny/', 
 package = 'BioInstaller')}
 
-\item{pattern}{Used in \code{\link{list.files}} ["shiny.*.parameters.toml"]}
+\item{pattern}{Used in \code{\link{list.files}} ['shiny.*.parameters.toml']}
 
 \item{auto_create}{Auto create dir, default is FALSE}
 }

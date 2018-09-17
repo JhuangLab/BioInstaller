@@ -15,7 +15,7 @@ copy_configs(config_dir = "~/.BioInstaller/",
 \item{template_dir}{The template dir system.file('extdata', 'config/shiny/', 
 package = 'BioInstaller')}
 
-\item{pattern}{Used in \code{\link{list.files}} ["shiny.config.yaml"]}
+\item{pattern}{Used in \code{\link{list.files}} ['shiny.config.yaml']}
 
 \item{auto_create}{Auto create dir, default is FALSE}
 }

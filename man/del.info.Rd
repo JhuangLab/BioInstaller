@@ -4,8 +4,8 @@
 \alias{del.info}
 \title{Delete biologly softwares infomation of system}
 \usage{
-del.info(name = "", db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE", tempfile()),
-  verbose = TRUE)
+del.info(name = "", db = Sys.getenv("BIO_SOFTWARES_DB_ACTIVE",
+  tempfile()), verbose = TRUE)
 }
 \arguments{
 \item{name}{Software name}

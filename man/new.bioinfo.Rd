@@ -4,8 +4,8 @@
 \alias{new.bioinfo}
 \title{Create new BioInstaller items to github forum}
 \usage{
-new.bioinfo(config.file = "github.toml", title = "", description = "",
-  publication = "")
+new.bioinfo(config.file = "github.toml", title = "",
+  description = "", publication = "")
 }
 \arguments{
 \item{config.file}{github.toml, nongithub.toml, db_annovar.toml, db_main.toml, or new}
