@@ -1,3 +1,7 @@
+2018-09-23 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
+
+		* update ANNOVAR dbnsfp versions
+
 2018-09-04 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
 
 		* add fill = TRUE in conda.list read.table

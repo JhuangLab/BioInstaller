@@ -120,16 +120,18 @@ description = "whole-exome SIFT, PolyPhen2 HDIV, PolyPhen2 HVAR, LRT, MutationTa
 source_url = ["http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.gz",
               "http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.idx.gz"]
 decompress = [true, true]
-version_newest = "dbnsfp33a"
-version_available = ["dbnsfp30a", "dbnsfp31a_interpro", "dbnsfp33a"]
+version_newest = "dbnsfp35a"
+version_available = ["dbnsfp35a", "dbnsfp33a", "dbnsfp31a_interpro", "dbnsfp30a"]
 [db_annovar_dbnsfp.buildver_available]
 dbnsfp30a = ["hg38", "hg19", "hg18"]
 dbnsfp31a_interpro = ["hg38", "hg19"]
 dbnsfp33a = ["hg38", "hg19", "hg18"]
+dbnsfp35a = ["hg38", "hg19", "hg18"]
 [db_annovar_dbnsfp.description]
 dbnsfp30a = "whole-exome SIFT, PolyPhen2 HDIV, PolyPhen2 HVAR, LRT, MutationTaster, MutationAssessor, FATHMM, MetaSVM, MetaLR, VEST, CADD, GERP++, DANN, fitCons, PhyloP and SiPhy scores from dbNSFP version 3.0a"
 dbnsfp31a_interpro = "protein domain for variants"
 dbnsfp33a = "whole-exome SIFT, PolyPhen2 HDIV, PolyPhen2 HVAR, LRT, MutationTaster, MutationAssessor, FATHMM, PROVEAN, MetaSVM, MetaLR, VEST, M-CAP, CADD, GERP++, DANN, fathmm-MKL, Eigen, GenoCanyon, fitCons, PhyloP and SiPhy scores from dbNSFP version 3.3a"
+dbnsfp35a = "whole-exome SIFT, PolyPhen2 HDIV, PolyPhen2 HVAR, LRT, MutationTaster, MutationAssessor, FATHMM, PROVEAN, MetaSVM, MetaLR, VEST, M-CAP, CADD, GERP++, DANN, fathmm-MKL, Eigen, GenoCanyon, fitCons, PhyloP and SiPhy scores from dbNSFP version 3.5a"
 
 [db_annovar_intervar]
 source_url = ["http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.gz",
@@ -400,7 +402,7 @@ source_url = ["http://www.openbioinformatics.org/annovar/download/{{buildver}}_{
 decompress = [true, true]
 version_newest = "regsnpintron"
 version_available = ["regsnpintron"]
-buildver_available = ["hg19"]
+buildver_available = ["hg19", "hg38"]
 description = "prioritize the disease-causing probability of intronic SNVs"
 
 [db_annovar_avsnp_sqlite]
