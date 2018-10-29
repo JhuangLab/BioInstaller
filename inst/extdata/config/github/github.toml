@@ -691,3 +691,13 @@ github_url = "https://github.com/spack/spack"
 [spack.install]
 linux = "#R#cat('export SPACK_ROOT={{download.dir}}\nsource $SPACK_ROOT/share/spack/setup-env.sh;', file = '~/.bashrc', append = TRUE)#R#"
 mac = "#R#cat('export SPACK_ROOT={{download.dir}}\nsource $SPACK_ROOT/share/spack/setup-env.sh;', file = '~/.bashrc', append = TRUE)#R#"
+
+[snakemake]
+github_url = "https://bitbucket.org/snakemake/snakemake"
+bitbucket = true
+install = "python setup.py install"
+
+[bpipe]
+github_url = "https://github.com/ssadedin/bpipe"
+bin_dir = ["./bin"]
+install = ["mkdir -p {{destdir}}/bin" ,"cp {{download.dir}}/bin/* {{destdir}}/bin"]

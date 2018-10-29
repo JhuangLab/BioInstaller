@@ -1,3 +1,8 @@
+2018-10-29 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
+
+		* support bitbucket repo
+		* add workflow tools and databases
+
 2018-09-23 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
 
 		* update ANNOVAR dbnsfp versions

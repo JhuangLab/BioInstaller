@@ -37,6 +37,7 @@ Variables to control the download and installation steps of software and databas
 - You can use the `before_install` stored the pre-installation steps
 - The `install` mainly be used to store the installation steps. Besides, you can use your own installation script and setted it to `#R# system('/path/yourscript')#R#`
 - The `make_dir` is the compile directory of software and database. Because the workdir of R default will be set to `download.dir`, and need be changed to `make_dir` finish `install` steps.
+- All [Bitbucket](https://bitbucket.org) repo should set 'bitbucket' to 'true' (e.g. snakemake in [github.toml](https://github.com/JhuangLab/BioInstaller/blob/master/inst/extdata/config/github/github.toml))
 
 ```toml
 [bwa]

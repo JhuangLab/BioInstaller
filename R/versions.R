@@ -1,6 +1,8 @@
 get.github.version <- function(config) {
-  if (is.null(config$github_url)) {
+  if (is.null(config$github_url) && is.null(config$bitbucket)) {
     result <- github2versions(config$source_url)
+  } else if (!is.null(config$bitbucket) && config$bitbucket) {
+    result <- bitbucket2versions(config$github_url)
   } else {
     result <- github2versions(config$github_url)
   }
@@ -30,6 +32,22 @@ github2versions <- function(github.url) {
   if (is.null(json)) 
     return("master")
   return(json$name)
+}
+
+bitbucket2versions <- function(bitbucket.url) {
+  bitbucket.url <- str_replace(bitbucket.url, "http://|https://|git://", "")
+  txt <- str_split(bitbucket.url, "/")[[1]]
+  user <- txt[2]
+  repo <- txt[3]
+  url <- sprintf("https://api.bitbucket.org/2.0/repositories/%s/%s/refs/tags", 
+    user, repo)
+  json <- tryCatch(fromJSON(url), error = function(e) {
+    message("Featch the bitbucket version failed.")
+    NULL
+  })
+  if (is.null(json)) 
+    return("master")
+  return(json$values$name)
 }
 
 use.github.response <- function(config) {

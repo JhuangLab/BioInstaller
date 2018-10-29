@@ -133,3 +133,8 @@ publication = "Effusion: Prediction of Protein Function from Sequence Similarity
 title = "HGT-ID: an efficient and sensitive workflow to detect human-viral insertion sites using next-generation sequencing data"
 description = "Identifies viral insertion sequences for the genome of human cancers. HGT-ID incorporates a sample dataset, references limited to chromosome 18 and the software package. This software detects viral insertion sequences from known viral reference genome of human cancers."
 publication = """HGT-ID: an efficient and sensitive workflow to detect human-viral insertion sites using next-generation sequencing data, BMC Bioinformatics 2018, 10.1186/s12859-018-2260-9"""
+
+[nongithub.item.cromwell]
+title = "Scientific workflow engine designed for simplicity & scalability. Trivially transition between one off use cases to massive scale production environments http://cromwell.readthedocs.io/"
+description = "Cromwell is a Workflow Management System geared towards scientific workflows. Cromwell is open sourced under the BSD 3-Clause license."
+publication = "Not yet"
