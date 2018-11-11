@@ -28,6 +28,8 @@ Run apt update && apt install -y lmodern openssl \
     && rm -rf /var/lib/apt/lists/* \
     && rm -rf /tmp/downloaded_packages/ /tmp/*.rds
 
+Run Rscript -e "source(system.file('extdata', 'shiny/deps.R', package = 'BioInstaller'))"
+
 Run runuser -s /bin/bash -l opencpu -c "Rscript -e \"BioInstaller::install.bioinfo('miniconda2', destdir = '/home/opencpu/opt/')\"" \
     && rm /home/opencpu/opt/*.sh \
     && runuser -s /bin/bash -l opencpu -c "Rscript -e \"BioInstaller::install.bioinfo('spack', version = 'master', destdir = '/home/opencpu/opt/spack')\""

@@ -3,6 +3,7 @@
 		* improve the sort method of versions
 		* remove check_shiny_dep
 		* use pacman to install the shiny application required packages
+		* add shiny/deps.R to install the Shiny application dependences
 
 2018-10-29 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
 

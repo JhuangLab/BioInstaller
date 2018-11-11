@@ -1,16 +1,6 @@
-pkgs.shiny <- c("shinycssloaders", "Cairo", "shinydashboard", "configr",
-                "data.table", "shinyjs", "liteq", "DT", "benchmarkme",
-                "stringr", "R.utils", "shiny", "RSQLite")
-tryCatch({if (!requireNamespace("pacman")) install.packages("pacman")}, warning = function(w) {
-  if (!requireNamespace("devtools"))
-    install.packages("devtools")
-  devtools::install_url("https://cran.r-project.org/src/contrib/Archive/pacman/pacman_0.4.6.tar.gz")
-})
-text <- sprintf("pacman::p_load(%s)", pkgs.shiny)
-eval(parse(text = text))
 # source UI required code config.R sourced in the body_upload_ui.R
 files <- list.files(".", "^ui_")
-files <- c(files, "config.R")
+files <- c("deps.R", files, "config.R")
 for (i in files) {
   source(i, encoding = "UTF-8")
 }
