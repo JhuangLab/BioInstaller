@@ -54,9 +54,6 @@ version.initial <- function(name = "", version = NULL, versions = NULL, config =
   if (is.numeric(version)) {
     version <- as.character(version)
   }
-  if (!version %in% versions) {
-    stop(sprintf("%s version of %s are not available!", version, name))
-  }
   return(version)
 }
 

@@ -1,5 +1,5 @@
 skin <- Sys.getenv("DASHBOARD_SKIN")
-auto_create <- as.logical(Sys.getenv("AUTO_CREATE_BIOINSTALLER_DIR", FALSE))
+auto_create <- as.logical(Sys.getenv("AUTO_CREATE_BIOINSTALLER_DIR", TRUE))
 skin <- tolower(skin)
 
 # Read configuration file and set the environment vars
@@ -22,7 +22,7 @@ Sys.setenv(BIOINSTALLER_SHINY_CONFIG = sprintf("%s/shiny.config.yaml", db_dirnam
 shiny_plugin_dir_repo <- system.file("extdata", "config/shiny", package = "BioInstaller")
 shiny_plugin_dir <- shiny_plugin_dir_repo
 if (!is.null(config$shiny_plugins$shiny_plugin_dir)) {
-  shiny_plugin_dir <-config$shiny_plugins$shiny_plugin_dir
+  shiny_plugin_dir <- config$shiny_plugins$shiny_plugin_dir
 }
 if (!dir.exists(shiny_plugin_dir) || length(list.files(shiny_plugin_dir)) == 0) {
   BioInstaller::copy_plugins(shiny_plugin_dir, auto_create = auto_create)

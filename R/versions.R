@@ -9,6 +9,7 @@ get.github.version <- function(config) {
   if (is.null(result)) {
     result <- "master"
   }
+  result <- str_sort(result, numeric = TRUE)
   if (!("master" %in% result)) {
     result <- c(result, "master")
   }
@@ -59,7 +60,7 @@ use.github.response <- function(config) {
 nongithub2versions <- function(name) {
   script <- system.file("extdata", "scripts/parse_version.R", package = "BioInstaller")
   source(script, local = TRUE)
-  text <- sprintf("get.%s.versions()", name)
+  text <- sprintf("str_sort(get.%s.versions(), numeric = TRUE)", name)
   tryCatch(eval(parse(text = text)), error = function(e) {
     NULL
   })
@@ -67,7 +68,7 @@ nongithub2versions <- function(name) {
 
 version.newest <- function(config, versions) {
   if (is.null(config$version_order_fixed)) {
-    versions <- versions[order(str_extract(versions, "[0-9.-].*"), decreasing = T)]
+    versions <- versions[length(versions)]
   }
   if (!is.null(config$version_newest_fixed)) {
     return(config$version_newest_fixed)

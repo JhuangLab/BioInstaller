@@ -1,3 +1,9 @@
+2018-11-11 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
+
+		* improve the sort method of versions
+		* remove check_shiny_dep
+		* use pacman to install the shiny application required packages
+
 2018-10-29 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
 
 		* support bitbucket repo

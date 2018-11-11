@@ -1,6 +1,6 @@
 Package: BioInstaller
 Title: Integrator of Bioinformatics Resources
-Version: 0.3.6.1000
+Version: 0.3.6.2000
 Authors@R: person("Jianfeng", "Li", email = "lee_jianfeng@sjtu.edu.cn", role = c("aut", "cre"), comment = c(ORCID = "0000-0003-2349-208X"))
 Maintainer: Jianfeng Li <lee_jianfeng@sjtu.edu.cn>
 Description:
@@ -25,7 +25,7 @@ Imports:
     stringi (>= 1.1.5),
     shiny,
     liteq
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1
 Suggests: knitr,
     rmarkdown,
     testthat,
