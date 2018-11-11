@@ -86,8 +86,13 @@ check_shiny_dep <- function(install = FALSE) {
       lower_version <- FALSE
     }
     if ((!is.installed || lower_version) && install) {
-      source("https://bioconductor.org/biocLite.R")
-      eval(parse(text = "biocLite(pkg, ask = FALSE)"))
+      if (compareVersion("5.1", R.version$minor) <= 0 && compareVersion("3", R.version$major) <= 0) {
+        if (!requireNamespace("BiocManager")) install.packages("BiocManager")
+          BiocManager::install(pkg, ask = FALSE) 
+      } else {
+        source("https://bioconductor.org/biocLite.R")
+        eval(parse(text = "biocLite(pkg, ask = FALSE)"))
+      }
     } else if (!is.installed || lower_version) {
       req.pkgs <- c(req.pkgs, pkg)
     }
