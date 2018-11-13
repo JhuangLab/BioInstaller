@@ -11,7 +11,7 @@ get.github.version <- function(config) {
   }
   result <- str_sort(result, numeric = TRUE)
   if (!("master" %in% result)) {
-    result <- c(result, "master")
+    result <- c("master", result)
   }
   black_list <- c("vcf-direct-final", "stable2", "stable1", "konnector2-prerelease", 
     "konnector-prelease", "bc_4.13", "BCM", "st-final", "sgdp")

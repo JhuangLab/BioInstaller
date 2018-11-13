@@ -485,7 +485,7 @@ linux = "make"
 mac = "make"
 
 [htslib]
-source_url = "https://github.com/samtools/htslib/archive/{{version}}.tar.gz"
+source_url = "https://codeload.github.com/samtools/htslib/tar.gz/{{version}}"
 use_github_versions = true
 after_success = ["ln -s htslib/* ./; echo successful!"]
 make_dir = ["./"]
@@ -496,7 +496,7 @@ linux = ["autoheader; autoconf; ./configure --prefix={{destdir}}; make;", " make
 mac = ["autoheader; autoconf; ./configure --prefix={{destdir}}; make;", " make install"]
 
 [samtools]
-source_url = "https://github.com/samtools/samtools/archive/{{version}}.tar.gz"
+source_url = "https://codeload.github.com/samtools/samtools/tar.gz/{{version}}"
 use_github_versions = true
 dependence = ["htslib"]
 dependence_version = ["{{version}}"]
@@ -660,7 +660,8 @@ win = ["ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/{{version}}/ncbi-bla
        "ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/{{version}}/ncbi-blast-{{version}}+-win64.exe"]
 
 [gridss]
-source_url = "https://github.com/PapenfussLab/gridss/releases/download/{{version}}/gridss-@>@str_replace('{{version}}', 'v', '')@<@-jar-with-dependencies.jar"
+source_url = ["https://github.com/PapenfussLab/gridss/releases/download/{{version}}/gridss-@>@str_replace('{{version}}', 'v', '')@<@-jar-with-dependencies.jar", 
+             "https://github.com/PapenfussLab/gridss/releases/download/{{version}}/gridss-@>@str_replace('{{version}}', 'v', '')@<@-gridss-jar-with-dependencies.jar"]
 use_github_versions = true
 [gridss.install]
 linux = "mkdir -p {{destdir}}/bin; cp {{download.dir}}/*.jar {{destdir}}/bin"

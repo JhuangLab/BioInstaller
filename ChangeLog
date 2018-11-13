@@ -1,3 +1,8 @@
+2018-11-13 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
+
+		* change samtools and htslib source_url t codeload
+		* add the second source url of gridss 
+
 2018-11-11 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
 
 		* improve the sort method of versions
