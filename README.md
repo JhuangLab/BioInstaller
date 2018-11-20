@@ -167,6 +167,10 @@ Service list:
 - localhost/shiny/BioInstaller Shiny service
 - localhost/rstudio/ Rstudio server (opencpu/opencpu)
 
+## Citation
+
+- Li J, Cui B, Dai Y, et al. BioInstaller: a comprehensive R package to construct interactive and reproducible biological data analysis applications based on the R platform[J]. PeerJ, 2018, 6:e5853.
+
 ## How to contribute?
 
 Please fork the [GitHub BioInstaller
