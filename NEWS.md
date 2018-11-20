@@ -1,3 +1,15 @@
+# BioInstaller 0.3.7
+
+## New features
+
+* support bitbucket repo
+* remove function "check_shiny_dep" use pacman install dependences 
+* add new databases and tools (meta and files)
+
+## Minor bugs fixed
+
+* fix "version\_avaliable" to "version\_available" in ~10 item
+
 # BioInstaller 0.3.6
 
 ## New features

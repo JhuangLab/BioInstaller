@@ -455,3 +455,21 @@ version_available = "latest"
 [db_sedb]
 source_url = "http://www.licpathway.net/sedb/download/{{version}}"
 version_available = "latest"
+
+[db_lnc2cancer]
+source_url = "http://www.bio-bigdata.net/lnc2cancer/download/{{version}}.txt"
+version_available = ["all_lnc_cancer_associations", "Circulating_lnc_cancer_associations", "Prognostic_lnc_cancer_associations",
+                     "Drug-resistant_lnc_cancer_associations", "LncRNAs%20regulated%20by%20TF%20in%20cancers",
+                     "LncRNAs%20regulated%20by%20miRNA%20in%20cancers", "LncRNAs%20regulated%20by%20variant%20in%20cancers",
+                     "LncRNAs%20regulated%20by%20methylation%20in%20cancers"]
+
+[db_fusiongdb]
+source_url = "https://ccsm.uth.edu/FusionGDB/tables/{{version}}.txt"
+version_available = ["TCGA_ChiTaRS_combined_fusion_information_on_hg19", "TCGA_ChiTaRS_combined_fusion_ORF_analyzed_gencode_h19v19_fgID",
+                     "TCGA_ChiTaRS_combined_fusion_ORF_analyzed_gencode_h19v19", "TCGA_ChiTaRS_combined_fusion_Prot_feature_retention_search_UniProt_for_Hgene",
+                     "TCGA_ChiTaRS_combined_fusion_Prot_feature_retention_search_UniProt_for_Tgene", 
+                     "fusion_ppi", "fusion_uniprot_related_drugs", "fgene_disease_associations", 
+                     "uniprot_gsymbol", "TCGA_ChiTaRS_combined_fusion_ORF_analyzed_gencode_h19v19_In-frame_100k_check_aminoacid_seq",
+                     "TCGA_ChiTaRS_combined_fusion_ORF_analyzed_gencode_h19v19_In-frame_100k_check_cds_seq",
+                     "TCGA_ChiTaRS_combined_fusion_ORF_analyzed_gencode_h19v19_In-frame_100k_check_transcript_seq",
+                     "In-frame_fgene_num_samples"]

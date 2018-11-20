@@ -17,7 +17,7 @@ vignette: >
 ---
 
 ```{r, echo = FALSE}
-knitr::opts_chunk$set(comment = "#>", collapse = TRUE)
+knitr::opts_chunk$set(comment = "#>", collapse = TRUE, screenshot.force = FALSE)
 ```
 
 Configuration files in BioInstaller are important. We used these configuration files to stored the software and databases URL, the script of installation, and other useful information.

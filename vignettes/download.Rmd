@@ -17,7 +17,7 @@ vignette: >
 ---
 
 ```{r, echo = FALSE}
-knitr::opts_chunk$set(comment = "#>", collapse = TRUE)
+knitr::opts_chunk$set(comment = "#>", collapse = TRUE, screenshot.force = FALSE)
 ```
 
 ## Github
@@ -29,6 +29,10 @@ Github: https://github.com/JhuangLab/BioInstaller
 CRAN: https://CRAN.R-project.org/package=BioInstaller
 
 ## JhuangLab host
+
+### BioInstaller 0.3.7
+
+Download [here](http://bioinfo.rjh.com.cn/download/bioinstaller/bioinstaller/v0.3.7.tar.gz).
 
 ### BioInstaller 0.3.6
 
