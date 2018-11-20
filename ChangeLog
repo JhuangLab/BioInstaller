@@ -1,3 +1,7 @@
+2018-11-20 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
+
+		* fix "version_avaliable" to "version_available"
+
 2018-11-13 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
 
 		* change samtools and htslib source_url t codeload

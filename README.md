@@ -72,14 +72,18 @@ devtools::install_github("JhuangLab/BioInstaller")
 ```
 ## Shiny UI overview
 
+**Note**, the Shiny application of BioInstaller was migrated to [bioshiny](https://github.com/ngsjs/bioshiny) project. All shiny files in this package will deprecated soon.
+
+In the new project, we will provides one-click method (command line and Shiny UI) to create bioshiny application and its plugins. We are also developing more free plugins of bioshiny for various bioinformatics data analysis. 
+
 ```
 # Start the standalone Shiny application
 BioInstaller::web(auto_create = TRUE)
 ```
 
-<img src="https://raw.githubusercontent.com/Miachol/ftp/master/files/images/bioinstaller/overview1.jpg" align="middle" />
-
 <img src="https://raw.githubusercontent.com/Miachol/ftp/master/files/images/bioinstaller/overview2.jpg" align="middle" />
+
+<img src="https://raw.githubusercontent.com/Miachol/ftp/master/files/images/bioinstaller/overview1.jpg" align="middle" />
 
 <img src="https://raw.githubusercontent.com/Miachol/ftp/master/files/images/bioinstaller/overview3.jpg" align="middle" />
 

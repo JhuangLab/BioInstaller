@@ -346,58 +346,55 @@ version_available = ["allAnnotatedVariants", "allActionableVariants"]
 
 [db_mirdb]
 source_url = "http://mirdb.org/download/miRDB_v{{version}}_prediction_result.txt.gz"
-version_avaliable = ["5.0", "4.0", "3.0", "2.0", "1.0"]
+version_available = ["5.0", "4.0", "3.0", "2.0", "1.0"]
 
 [db_mirtarbase]
 source_url = "http://mirtarbase.mbc.nctu.edu.tw/cache/download/{{version}}/miRTarBase_MTI.xlsx"
-version_avaliable = ["7.0"]
+version_available = ["7.0"]
 
 [db_mirnest]
 source_url = "http://rhesus.amu.edu.pl/mirnest/copy/downloads/{{version}}.gz"
-version_avaliable = ["mirnest_EST_predictions", "mirnest_targets", "mirnest_deep_predictions",
+version_available = ["mirnest_EST_predictions", "mirnest_targets", "mirnest_deep_predictions",
                                   "mirnest_degradomes", "mirnest_mirtrons", "mirnest_mirna_gene_structure"]
 
 [db_rbpdb]
 source_url = "http://rbpdb.ccbr.utoronto.ca/downloads/{{version}}"
-version_avaliable = ["RBPDB_v1.3.1_2012-11-21.sql", "RBPDB_v1.3.1_2012-11-21_TDT.zip",
+version_available = ["RBPDB_v1.3.1_2012-11-21.sql", "RBPDB_v1.3.1_2012-11-21_TDT.zip",
                                   "RBPDB_v1.3.1_2012-11-21_CSV.zip"]
 
 [db_appris]
 source_url = "http://apprisws.bioinfo.cnio.es/pub/current_release/datafiles/homo_sapiens/{{version}}/appris_data.principal.txt"
-version_avaliable = ["GRCh38", "rs108v26", "up201703v26", "a1v26", "GRCh37", "rs105v24", "g12v24"]
+version_available = ["GRCh38", "rs108v26", "up201703v26", "a1v26", "GRCh37", "rs105v24", "g12v24"]
 
 [db_lncipedia]
 source_url = "https://lncipedia.org/downloads/lncipedia_{{version}}"
-version_avaliable = ["5_1_hg19.bed", "5_1_hg38.bed", "5_1_hc_hg19.bed", "5_1_hc_hg38.bed",
-                                  "5_1.fasta", "5_1_hc.fasta", "5_1_hg19.gff", "5_1_hg38.gff", "5_1_hc_hg19.gff",
-                                  "5_1_hc_hg38.gff", "5_1_hg19.gtf", "5_1_hg38.gtf", "5_1_hc_hg19.gtf",
-                                  "5_1_hc_hg38.gtf"]
+version_available = "!!glue {strsplit('@>@str <- c('%s_hg19.bed', '%s_hg38.bed', '%s_hc_hg19.bed', '%s_hc_hg38.bed', '%s.fasta', '%s_hc.fasta', '%s_hg19.gff', '%s_hg38.gff', '%s_hc_hg19.gff', '%s_hc_hg38.gff', '%s_hg19.gtf', '%s_hg38.gtf', '%s_hc_hg19.gtf', '%s_hc_hg38.gtf'); c(sprintf(str, '5_1'), sprintf(str, '5_2'))@<@', ' ')[[1]]}"
 
 [db_msigdb]
 source_url = "http://bioinfo.rjh.com.cn/download/bioinstaller/msigdb/{{version}}"
-version_avaliable = ["c1.all.v6.2.entrez.gmt", "c1.all.v6.2.symbols.gmt", "c2.all.v6.2.entrez.gmt", "c2.all.v6.2.symbols.gmt", "c2.cgp.v6.2.entrez.gmt", "c2.cgp.v6.2.symbols.gmt", "c2.cp.biocarta.v6.2.entrez.gmt", "c2.cp.biocarta.v6.2.symbols.gmt", "c2.cp.kegg.v6.2.entrez.gmt", "c2.cp.kegg.v6.2.symbols.gmt", "c2.cp.reactome.v6.2.entrez.gmt", "c2.cp.reactome.v6.2.symbols.gmt", "c2.cp.v6.2.entrez.gmt", "c2.cp.v6.2.symbols.gmt", "c3.all.v6.2.entrez.gmt", "c3.all.v6.2.symbols.gmt", "c3.mir.v6.2.entrez.gmt", "c3.mir.v6.2.symbols.gmt", "c3.tft.v6.2.entrez.gmt", "c3.tft.v6.2.symbols.gmt", "c4.all.v6.2.entrez.gmt", "c4.all.v6.2.symbols.gmt", "c4.cgn.v6.2.entrez.gmt", "c4.cgn.v6.2.symbols.gmt", "c4.cm.v6.2.entrez.gmt", "c4.cm.v6.2.symbols.gmt", "c5.all.v6.2.entrez.gmt", "c5.all.v6.2.symbols.gmt", "c5.bp.v6.2.entrez.gmt", "c5.bp.v6.2.symbols.gmt", "c5.cc.v6.2.entrez.gmt", "c5.cc.v6.2.symbols.gmt", "c5.mf.v6.2.entrez.gmt", "c5.mf.v6.2.symbols.gmt", "c6.all.v6.2.entrez.gmt", "c6.all.v6.2.symbols.gmt", "c7.all.v6.2.entrez.gmt", "c7.all.v6.2.symbols.gmt", "msigdb.v6.2.entrez.gmt", "msigdb.v6.2.symbols.gmt", "msigdb_v3.0.zip", "msigdb_v3.1.zip", "msigdb_v4.0.zip", "msigdb_v5.0.zip", "msigdb_v5.1.zip", "msigdb_v5.1_chip.zip", "msigdb_v5.2.zip", "msigdb_v5.2_chip.zip", "msigdb_v6.0.zip", "msigdb_v6.0_chip.zip", "msigdb_v6.1.zip", "msigdb_v6.1_chip.zip", "msigdb_v6.2.xml", "msigdb_v6.2.zip"]
+version_available = ["c1.all.v6.2.entrez.gmt", "c1.all.v6.2.symbols.gmt", "c2.all.v6.2.entrez.gmt", "c2.all.v6.2.symbols.gmt", "c2.cgp.v6.2.entrez.gmt", "c2.cgp.v6.2.symbols.gmt", "c2.cp.biocarta.v6.2.entrez.gmt", "c2.cp.biocarta.v6.2.symbols.gmt", "c2.cp.kegg.v6.2.entrez.gmt", "c2.cp.kegg.v6.2.symbols.gmt", "c2.cp.reactome.v6.2.entrez.gmt", "c2.cp.reactome.v6.2.symbols.gmt", "c2.cp.v6.2.entrez.gmt", "c2.cp.v6.2.symbols.gmt", "c3.all.v6.2.entrez.gmt", "c3.all.v6.2.symbols.gmt", "c3.mir.v6.2.entrez.gmt", "c3.mir.v6.2.symbols.gmt", "c3.tft.v6.2.entrez.gmt", "c3.tft.v6.2.symbols.gmt", "c4.all.v6.2.entrez.gmt", "c4.all.v6.2.symbols.gmt", "c4.cgn.v6.2.entrez.gmt", "c4.cgn.v6.2.symbols.gmt", "c4.cm.v6.2.entrez.gmt", "c4.cm.v6.2.symbols.gmt", "c5.all.v6.2.entrez.gmt", "c5.all.v6.2.symbols.gmt", "c5.bp.v6.2.entrez.gmt", "c5.bp.v6.2.symbols.gmt", "c5.cc.v6.2.entrez.gmt", "c5.cc.v6.2.symbols.gmt", "c5.mf.v6.2.entrez.gmt", "c5.mf.v6.2.symbols.gmt", "c6.all.v6.2.entrez.gmt", "c6.all.v6.2.symbols.gmt", "c7.all.v6.2.entrez.gmt", "c7.all.v6.2.symbols.gmt", "msigdb.v6.2.entrez.gmt", "msigdb.v6.2.symbols.gmt", "msigdb_v3.0.zip", "msigdb_v3.1.zip", "msigdb_v4.0.zip", "msigdb_v5.0.zip", "msigdb_v5.1.zip", "msigdb_v5.1_chip.zip", "msigdb_v5.2.zip", "msigdb_v5.2_chip.zip", "msigdb_v6.0.zip", "msigdb_v6.0_chip.zip", "msigdb_v6.1.zip", "msigdb_v6.1_chip.zip", "msigdb_v6.2.xml", "msigdb_v6.2.zip"]
 
 [db_mircancer]
 source_url = "http://mircancer.ecu.edu/downloads/{{version}}.txt"
-version_avaliable = ["miRCancerOctober2017", "miRCancerMarch2017", "miRCancerDecember2016", "miRCancerSeptember2016", "miRCancerJune2016", "miRCancerMarch2016", "miRCancerDecember2015", "miRCancerSeptember2015", "miRCancerJune2015", "miRCancerMarch2015", "miRCancerDecember2014", "miRCancerSeptember2014", "miRCancerJune2014", "miRCancerMarch2014", "miRCancerDecember2013", "miRCancerSeptember2013", "miRCancerJune2013", "miRCancerMarch2013", "miRCancerNovember2012"]
+version_available = ["miRCancerOctober2017", "miRCancerMarch2017", "miRCancerDecember2016", "miRCancerSeptember2016", "miRCancerJune2016", "miRCancerMarch2016", "miRCancerDecember2015", "miRCancerSeptember2015", "miRCancerJune2015", "miRCancerMarch2015", "miRCancerDecember2014", "miRCancerSeptember2014", "miRCancerJune2014", "miRCancerMarch2014", "miRCancerDecember2013", "miRCancerSeptember2013", "miRCancerJune2013", "miRCancerMarch2013", "miRCancerNovember2012"]
 
 [db_dcdb]
 source_url = "http://www.cls.zju.edu.cn/dcdb/downloadfile/{{version}}.zip"
-version_avaliable = ["DCDB2_plaintxt", "DCDB2.sql", "targets", "Drug_combinations",
+version_available = ["DCDB2_plaintxt", "DCDB2.sql", "targets", "Drug_combinations",
                                   "components_identifier"]
 
 [db_oncomirdb]
 source_url = "http://lifeome.net/database/oncomirdb/oncomirdb.v-{{version}}_download.txt"
-version_avaliable = "1.1-20131217"
+version_available = "1.1-20131217"
 
 [db_islandviewer]
 source_url = "http://www.pathogenomics.sfu.ca/islandviewer/download/datasets/all_gis_{{version}}.txt.tar.gz"
-version_avaliable = ["islandviewer_iv4", "islandpick_iv4", "islandpath_dimob_iv4",
+version_available = ["islandviewer_iv4", "islandpick_iv4", "islandpath_dimob_iv4",
                                   "sigi_hmm_iv4", "islander_iv4"]
 
 [db_hpdi]
 source_url = "http://bioinfo.wilmer.jhu.edu/PDI/{{version}}"
-version_avaliable = ["protein_chip_full_seq.csv", "protein_annotation.txt",
+version_available = ["protein_chip_full_seq.csv", "protein_annotation.txt",
                                   "pro2motif.txt", "DNA_motifs.txt", "motif2protein.txt",
                                   "all_pwm.zip", "all_gpr_files.zip", "supplemental.pdf"]
 
@@ -450,3 +447,11 @@ version_available = ["ewas_singlemarker", "GO_Category", "KEGG_Pathway"]
 [db_cancersplicingqtl]
 source_url = "http://www.cancersplicingqtl-hust.com/downloads/{{version}}.xlsx"
 version_available = ["ACC_sQTLs", "BLCA_sQTLs", "BRCA_sQTLs", "CESC_sQTLs", "CHOL_sQTLs", "COAD_sQTLs", "DLBC_sQTLs", "ESCA_sQTLs", "GBM_sQTLs", "HNSC_sQTLs", "KICH_sQTLs", "KIRC_sQTLs", "KIRP_sQTLs", "LAML_sQTLs", "LGG_sQTLs", "LIHC_sQTLs", "LUAD_sQTLs", "LUSC_sQTLs", "MESO_sQTLs", "OV_sQTLs", "PAAD_sQTLs", "PCPG_sQTLs", "PRAD_sQTLs", "READ_sQTLs", "SARC_sQTLs", "SKCM_sQTLs", "STAD_sQTLs", "TGCT_sQTLs", "THCA_sQTLs", "THYM_sQTLs", "UCEC_sQTLs", "UCS_sQTLs", "UVM_sQTLs", "ACC_Survival_sQTLs", "BLCA_Survival_sQTLs", "BRCA_Survival_sQTLs", "CESC_Survival_sQTLs", "CHOL_Survival_sQTLs", "COAD_Survival_sQTLs", "DLBC_Survival_sQTLs", "ESCA_Survival_sQTLs", "GBM_Survival_sQTLs", "HNSC_Survival_sQTLs", "KICH_Survival_sQTLs", "KIRC_Survival_sQTLs", "KIRP_Survival_sQTLs", "LAML_Survival_sQTLs", "LGG_Survival_sQTLs", "LIHC_Survival_sQTLs", "LUAD_Survival_sQTLs", "LUSC_Survival_sQTLs", "MESO_Survival_sQTLs", "OV_Survival_sQTLs", "PAAD_Survival_sQTLs", "PCPG_Survival_sQTLs", "PRAD_Survival_sQTLs", "READ_Survival_sQTLs", "SARC_Survival_sQTLs", "SKCM_Survival_sQTLs", "STAD_Survival_sQTLs", "TGCT_Survival_sQTLs", "THCA_Survival_sQTLs", "THYM_Survival_sQTLs", "UCEC_Survival_sQTLs", "UCS_Survival_sQTLs", "UVM_Survival_sQTLs", "ACC_GWAS_sQTLs", "BLCA_GWAS_sQTLs", "BRCA_GWAS_sQTLs", "CESC_GWAS_sQTLs", "CHOL_GWAS_sQTLs", "COAD_GWAS_sQTLs", "DLBC_GWAS_sQTLs", "ESCA_GWAS_sQTLs", "GBM_GWAS_sQTLs", "HNSC_GWAS_sQTLs", "KICH_GWAS_sQTLs", "KIRC_GWAS_sQTLs", "KIRP_GWAS_sQTLs", "LAML_GWAS_sQTLs", "LGG_GWAS_sQTLs", "LIHC_GWAS_sQTLs", "LUAD_GWAS_sQTLs", "LUSC_GWAS_sQTLs", "MESO_GWAS_sQTLs", "OV_GWAS_sQTLs", "PAAD_GWAS_sQTLs", "PCPG_GWAS_sQTLs", "PRAD_GWAS_sQTLs", "READ_GWAS_sQTLs", "SARC_GWAS_sQTLs", "SKCM_GWAS_sQTLs", "STAD_GWAS_sQTLs", "TGCT_GWAS_sQTLs", "THCA_GWAS_sQTLs", "THYM_GWAS_sQTLs", "UCEC_GWAS_sQTLs", "UCS_GWAS_sQTLs", "UVM_GWAS_sQTLs"]
+
+[db_pmkb]
+source_url = "https://pmkb.weill.cornell.edu/therapies/download.xlsx"
+version_available = "latest"
+
+[db_sedb]
+source_url = "http://www.licpathway.net/sedb/download/{{version}}"
+version_available = "latest"

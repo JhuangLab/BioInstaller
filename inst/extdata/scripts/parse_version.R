@@ -559,3 +559,9 @@ get.blast.versions <- function() {
   versions_final <- unique(versions_final)
   versions_final <- sort(versions_final, decreasing = T)
 }
+
+get.db_sedb.versions <- function() {
+  files <- system.file("extdata", "files/sedb_files", package = "BioInstaller")
+  versions_final <- readLines(files)
+  return(versions_final)
+}
