@@ -120,8 +120,8 @@ description = "whole-exome SIFT, PolyPhen2 HDIV, PolyPhen2 HVAR, LRT, MutationTa
 source_url = ["http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.gz",
               "http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.idx.gz"]
 decompress = [true, true]
-version_newest = "dbnsfp35a"
-version_available = ["dbnsfp35a", "dbnsfp33a", "dbnsfp31a_interpro", "dbnsfp30a"]
+version_newest = "dbnsfp35c"
+version_available = ["dbnsfp35a", "dbnsfp33a", "dbnsfp31a_interpro", "dbnsfp30a", "dbnsfp35c"]
 [db_annovar_dbnsfp.buildver_available]
 dbnsfp30a = ["hg38", "hg19", "hg18"]
 dbnsfp31a_interpro = ["hg38", "hg19"]
@@ -137,8 +137,8 @@ dbnsfp35a = "whole-exome SIFT, PolyPhen2 HDIV, PolyPhen2 HVAR, LRT, MutationTast
 source_url = ["http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.gz",
               "http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.idx.gz"]
 decompress = [true, true]
-version_newest = "intervar_20170202"
-version_available = "intervar_20170202"
+version_newest = "intervar_20180118"
+version_available = ["intervar_20170202", "intervar_20180118"]
 buildver_available = ["hg19"]
 description = "InterVar: clinical interpretation of missense variants"
 
@@ -199,11 +199,13 @@ source_url = ["http://www.openbioinformatics.org/annovar/download/{{buildver}}_{
               "http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.idx.gz"]
 decompress = [true, true]
 version_newest = "gnomad_genome"
-version_available = ["gnomad_exome", "gnomad_genome"]
+version_available = ["gnomad_exome", "gnomad_genome", "gnomad211_exome", "gnomad211_genome"]
 buildver_available = ["hg38", "hg19"]
 [db_annovar_gnomad.description]
 gnomad_exome = "gnomAD exome collection"
 gnomad_genome = "gnomAD genome collection"
+gnomad211_exnome = """gnomAD exome collection (v2.1.1), with "AF AF_popmax AF_male AF_female AF_raw AF_afr AF_sas AF_amr AF_eas AF_nfe AF_fin AF_asj AF_oth non_topmed_AF_popmax non_neuro_AF_popmax non_cancer_AF_popmax controls_AF_popmax" header"""
+gnomad211_genome = "same above all"
 
 [db_annovar_kaviar]
 source_url = ["http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.gz",
@@ -236,10 +238,10 @@ description = "Great Middle East allele frequency including NWA (northwest Afric
 source_url = ["http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.gz",
               "http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.idx.gz"]
 decompress = [true, true]
-version_newest = "mcap"
-version_available = ["mcap"]
+version_newest = "mcap13"
+version_available = ["mcap", "mcap13"]
 buildver_available = ["hg38", "hg19"]
-description = "M-CAP scores for non-synonymous variants"
+description = "M-CAP scores for non-synonymous variants; mcap13:M-CAP scores v1.3, 20181203"
 
 [db_annovar_revel]
 source_url = ["http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.gz",
@@ -289,7 +291,8 @@ version_available = ["clinvar_20131105", "clinvar_20140211", "clinvar_20140303",
                      "clinvar_20140702", "clinvar_20140902", "clinvar_20140929",
                      "clinvar_20150330", "clinvar_20150629", "clinvar_20151201",
                      "clinvar_20160302", "clinvar_20161128", "clinvar_20170130",
-                     "clinvar_20170501", "clinvar_20170905", "clinvar_20180603"]
+                     "clinvar_20170501", "clinvar_20170905", "clinvar_20180603",
+                     "clinvar_20190305"]
 description = "CLINVAR database with Variant Clinical Significance (unknown, untested, non-pathogenic, probable-non-pathogenic, probable-pathogenic, pathogenic, drug-response, histocompatibility, other) and Variant disease name"
 [db_annovar_clinvar.buildver_available]
 clinvar_20140929 = "hg19"

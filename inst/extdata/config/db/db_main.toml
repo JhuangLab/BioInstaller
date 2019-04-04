@@ -425,8 +425,13 @@ source_url = "http://210.46.85.180:8080/sm2mir/files/{{versin}}.xls"
 version_available = ["SM2miR3", "SM2miR2n", "SM2miR"]
 
 [db_hmdb]
-source_url = "http://www.hmdb.ca/system/downloads/current/{{version}}.zip"
-avaliable_version = ["hmdb_proteins", "hmdb_metabolites", "structures"]
+source_url = ["http://www.hmdb.ca/system/downloads/current/{{version}}.zip", 
+              "http://specdb.wishartlab.com/downloads/exports/peak_lists_txt/{{version}}.zip",
+              "http://www.hmdb.ca/system/downloads/current/sequences/{{version}}.zip", 
+              "http://specdb.wishartlab.com/downloads/exports/spectra_xml/{{version}}.zip", 
+              "http://specdb.wishartlab.com/downloads/exports/fid_files/{{version}}.zip",
+              "http://specdb.wishartlab.com/downloads/exports/image_files/{{version}}.zip"]
+avaliable_version = ["protein.fasta.zip", "gene.fasta.zip", "structures.zip", "hmdb_metabolites.zip", "hmdb_proteins.zip", "urine_metabolites.zip", "serum_metabolites.zip", "csf_metabolites.zip", "saliva_metabolites.zip", "feces_metabolites.zip", "sweat_metabolites.zip", "hmdb_image_files.zip", "hmdb_fid_files.zip", "hmdb_nmr_peak_lists.zip", "hmdb_predicted_cms_peak_lists.zip", "hmdb_predicted_msms_peak_lists.zip", "hmdb_experimental_msms_peak_lists.zip", "hmdb_all_peak_lists.zip", "hmdb_nmr_spectra.zip", "hmdb_predicted_cms_spectra.zip", "hmdb_experimental_cms_spectra.zip", "hmdb_predicted_msms_spectra.zip", "hmdb_experimental_msms_spectra.zip", "hmdb_all_spectra.zip"]
 
 [db_awesome]
 source_url = "http://www.awesome-hust.com/downloads/{{version}}.zip"
