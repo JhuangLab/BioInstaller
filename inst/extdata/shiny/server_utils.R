@@ -8,14 +8,25 @@ generate_server_object <- function(input, output, ui_server_config, toolname, pk
   start_trigger <- sprintf("start_%s_analysis", toolname)
   observeEvent(input[[start_trigger]], {
     progress <- shiny::Progress$new()
-    if (!is.null(pkgs) && input[[start_trigger]] == 1) {sapply(pkgs, function(x){
-      msg <- sprintf("Loading %s ...", x)
-      for (i in 1:100) {
-        progress$set(message = msg, value = i/100)
-        Sys.sleep(0.02)
+    if (!is.null(pkgs) && input[[start_trigger]] == 1) {
+      for(x in pkgs){
+        msg <- sprintf("Loading %s ...", x)
+        for (i in 1:100) {
+          progress$set(message = msg, value = i/100)
+          Sys.sleep(0.02)
+        }
+        status <- require(x, character.only = TRUE)
+        if (!status) {
+          msg <- sprintf("Instaling %s ...", x)
+          for (i in 1:100) {
+            progress$set(message = msg, value = i/100)
+            Sys.sleep(0.02)
+          }
+          cmd <- sprintf("pacman::p_load(%s)", x)
+          eval(parse(text = cmd))
+        }
       }
-      require(x, character.only = TRUE)
-    })}
+    }
     shinyjs::disable(start_trigger)
     msg <- sprintf("Running %s task steps,  waiting please...", toolname)
     for (i in 1:100) {

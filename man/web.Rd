@@ -5,13 +5,17 @@
 \title{Function to run BioInstaller shiny APP service}
 \usage{
 web(appDir = system.file("extdata", "shiny", package = "BioInstaller"),
-  auto_create = FALSE, ...)
+  auto_create = FALSE, host = "0.0.0.0", port = 3333, ...)
 }
 \arguments{
 \item{appDir}{The application to run.
 Default is system.file('extdata', 'tools/shiny/R', package = 'BioInstaller')}
 
 \item{auto_create}{Auto create dir, default is FALSE}
+
+\item{host}{Default use the 0.0.0.0}
+
+\item{port}{Default use the 3333}
 
 \item{...}{Other parameters pass to \code{\link[shiny]{runApp}}}
 }

@@ -1,0 +1,34 @@
+[vep.ui.sections]
+order = ["readfiles"]
+[vep.ui.sections.ui_basic]
+readfiles = "title = 'Input files', status = 'primary', width = 12, collapsed = FALSE, collapsible = TRUE"
+
+[vep.paramters.readfiles]
+# For reading vepR shiny APP vep tool input files  
+section_type = "input"
+rcmd_last = """
+
+"""
+progressbar_message = "Reading related files."
+render_id = "vep_readfiles"
+
+#!!!!! input_ui_order required related section
+input_ui_order = ["single_input", "start_analysis"]
+
+[vep.paramters.readfiles.input.single_input]
+title = "Demo input:"
+title_control = "class = 'input-section-p'"
+varname = ["in_file", "in_text", "in_reffa", 
+"in_file_type", "in_gene_def"]
+input_id = ["vep_input_file", "vep_input_file_area"]
+type = ["shiny::selectInput", "shiny::textAreaInput"]
+label = ["Input File (in_file)", "or Paste Variant Calls (in_text)"]
+[vep.paramters.readfiles.input.single_input.choices] 
+in_file = "!!glue {featch_files()$file_path}"
+[vep.paramters.readfiles.input.single_input.selected] 
+in_reffa = "GRch37"
+
+[vep.paramters.readfiles.input.start_analysis]
+input_id = "start_vep_analysis"
+type = "shiny::actionButton"
+label = "Submit"

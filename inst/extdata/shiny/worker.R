@@ -1,8 +1,19 @@
+pid <- Sys.getpid()
 shiny_config_file =
-  Sys.getenv("BIOINSTALLER_SHINY_CONFIG", system.file("extdata", "config/shiny/shiny.config.yaml",
+  Sys.getenv("BIOSHINY_CONFIG", system.file("extdata", "config/shiny.config.yaml",
                                                   package = "BioInstaller"))
 
 config <- configr::read.config(shiny_config_file)
+
+nodename <- Sys.info()["nodename"]
+if (!file.exists(config$shiny_workers$pid_pool)) {
+  configr::write.config(list(), config$shiny_workers$pid_pool, write.type = "json")
+}
+
+config_pid_pool <- configr::read.config(config$shiny_workers$pid_pool)
+config_pid_pool[[nodename]] <- c(pid, config_pid_pool[[nodename]])
+configr::write.config(config_pid_pool, config$shiny_workers$pid_pool, write.type = "json")
+
 db_type <- config$shiny_db$db_type
 db_path <- normalizePath(config$shiny_db$db_path, mustWork = FALSE)
 queue_db <- normalizePath(config$shiny_queue$queue_db, mustWork = FALSE)
@@ -131,7 +142,10 @@ while (TRUE) {
 ", format(Sys.time(), "%Y %m-%d %X"), qqkey))
       worker_do_env <- new.env()
       if (is.null(req_pkgs) | req_pkgs == "") {cmd <- ""} else {
-        cmd <- 'sapply(req_pkgs, function(x){require(x, character.only = TRUE)})'
+        cmd <- 'for(x in req_pkgs){
+                  text <- sprintf("pacman::p_load(%s)", x)
+                  eval(parse(text = text))
+        }'
       }
 
       if (qqcommand != "") {

@@ -1,0 +1,261 @@
+[clusterProfiler.ui.sections]
+order = ["readfiles", "convertor", "groupGO", "enrichGO", 
+"enrichGO2", "gseGO", "gseKEGG", "enricher", 
+"GSEA", "barplot_ggo", "barplot_ego", "dotplot_ego", "emapplot_ego", 
+"cnetplot_ego", "gseaplot"]
+[clusterProfiler.ui.sections.ui_basic]
+readfiles = "title = 'Input files', status = 'primary', width = 12, collapsed = FALSE, collapsible = TRUE"
+convertor = "title = 'Output of clusterProfiler convertor', status = 'primary', width = 12, collapsed = TRUE, collapsible = TRUE"
+groupGO = "title = 'Output of clusterProfiler groupGO', status = 'primary', width = 12, collapsed = TRUE, height='auto', collapsible = TRUE"
+enrichGO = "title = 'Output of clusterProfiler enrichGO', status = 'primary', width = 12, collapsed = TRUE, height='auto', collapsible = TRUE"
+enrichGO2 = "title = 'Output of clusterProfiler enrichGO2', status = 'primary', width = 12, collapsed = TRUE, height='auto', collapsible = TRUE"
+gseGO = "title = 'Output of clusterProfiler gseGO', status = 'primary', width = 12, collapsed = TRUE, height='auto', collapsible = TRUE"
+gseKEGG = "title = 'Output of clusterProfiler gseKEGG', status = 'primary', width = 12, collapsed = TRUE, height='auto', collapsible = TRUE"
+GSEA = "title = 'Output of clusterProfiler GSEA', status = 'primary', width = 12, collapsed = TRUE, height='auto', collapsible = TRUE"
+barplot_ggo = "title = 'Output of clusterProfiler barplot_ggo', status = 'primary', width = 12, collapsed = TRUE, height='auto', collapsible = TRUE"
+barplot_ego = "title = 'Output of clusterProfiler barplot_ego', status = 'primary', width = 12, collapsed = TRUE, height='auto', collapsible = TRUE"
+dotplot_ego = "title = 'Output of clusterProfiler dotplot_ego', status = 'primary', width = 12, collapsed = TRUE, height='auto', collapsible = TRUE"
+emapplot_ego = "title = 'Output of clusterProfiler emapplot_ego', status = 'primary', width = 12, collapsed = TRUE, height='auto', collapsible = TRUE"
+cnetplot_ego = "title = 'Output of clusterProfiler cnetplot_ego', status = 'primary', width = 12, collapsed = TRUE, height='auto', collapsible = TRUE"
+gseaplot = "title = 'Output of clusterProfiler gseaplot', status = 'primary', width = 12, collapsed = TRUE, height='auto', collapsible = TRUE"
+
+[clusterProfiler.paramters.readfiles]
+# For reading annovarR shiny APP clusterProfiler tool input files  
+section_type = "input"
+rcmd_last = """
+data(geneList, package="DOSE")
+gene <- names(geneList)[abs(geneList) > 2]
+gene.df <- bitr(gene, fromType = "ENTREZID",
+        toType = c("ENSEMBL", "SYMBOL"),
+        OrgDb = org.Hs.eg.db)
+c5 <- read.gmt(gmtfile)
+"""
+progressbar_message = "Reading related MAF and other files."
+render_id = "clusterProfiler_readfiles"
+
+#!!!!! input_ui_order required related section
+input_ui_order = ["single_input", "start_analysis"]
+
+[clusterProfiler.paramters.readfiles.input.single_input]
+title = "Single sample anlayais:"
+title_control = "class = 'input-section-p'"
+varname = ["gmtfile"]
+input_id = ["input_gmtfile"]
+type = ["shiny::selectInput"]
+label = ["GSEA analysis required gmt file(gmtfile)"]
+[clusterProfiler.paramters.readfiles.input.single_input.choices] 
+gmtfile = "@>@system.file('extdata', 'c5.cc.v5.0.entrez.gmt', package='clusterProfiler')@<@"
+[clusterProfiler.paramters.readfiles.input.single_input.selected] 
+gmtfile = "@>@system.file('extdata', 'c5.cc.v5.0.entrez.gmt', package='clusterProfiler')@<@"
+
+[clusterProfiler.paramters.readfiles.input.start_analysis]
+input_id = "start_clusterProfiler_analysis"
+type = "shiny::actionButton"
+label = "Start analysis"
+
+[clusterProfiler.paramters.convertor]
+section_type = "output"
+rcmd_preprocess = """
+x <- c("GPX3",  "GLRX",   "LBP",   "CRYAB", "DEFB1", "HCLS1",   "SOD2",   "HSPA2",
+       "ORM1",  "IGFBP1", "PTHLH", "GPC3",  "IGFBP3","TOB1",    "MITF",   "NDRG1",
+       "NR1H4", "FGFR3",  "PVR",   "IL6",   "PTPRM", "ERBB2",   "NID2",   "LAMB1",
+       "COMP",  "PLS3",   "MCAM",  "SPP1",  "LAMC1", "COL4A2",  "COL4A1", "MYOC",
+       "ANXA4", "TFPI2",  "CST6",  "SLPI",  "TIMP2", "CPM",     "GGT1",   "NNMT",
+       "MAL",   "EEF1A2", "HGD",   "TCN2",  "CDA",   "PCCA",    "CRYM",   "PDXK",
+       "STC1",  "WARS",  "HMOX1", "FXYD2", "RBP4",   "SLC6A12", "KDELR3", "ITM2B")
+eg = bitr(x, fromType="SYMBOL", toType="ENTREZID", OrgDb="org.Hs.eg.db")
+"""
+rcmd_last = """
+head(eg)
+ids <- bitr(x, fromType="SYMBOL", toType=c("UNIPROT", "ENSEMBL"), OrgDb="org.Hs.eg.db")
+head(ids)
+"""
+render_type = "shiny::renderPrint"
+render_id = "clusterProfiler_convertor"
+output_type = "shiny::verbatimTextOutput"
+progressbar_message = "clusterProfiler convertor"
+
+[clusterProfiler.paramters.groupGO]
+section_type = "output"
+rcmd_last = """
+ggo <- groupGO(gene     = gene,
+               OrgDb    = org.Hs.eg.db,
+               ont      = "CC",
+               level    = 3,
+               readable = TRUE)
+as.data.table(ggo)
+"""
+render_type = "DT::renderDataTable"
+render_id = "clusterProfiler_groupGO"
+output_type = "DT::dataTableOutput"
+progressbar_message = "clusterProfiler groupGO"
+
+
+[clusterProfiler.paramters.enrichGO]
+section_type = "output"
+rcmd_last = """
+ego <- enrichGO(gene          = gene,
+                universe      = names(geneList),
+                OrgDb         = org.Hs.eg.db,
+                ont           = "CC",
+                pAdjustMethod = "BH",
+                pvalueCutoff  = 0.01,
+                qvalueCutoff  = 0.05,
+        readable      = TRUE)
+as.data.table(ego)
+"""
+render_type = "DT::renderDataTable"
+render_id = "clusterProfiler_enrichGO"
+output_type = "DT::dataTableOutput"
+progressbar_message = "clusterProfiler enrichGO"
+
+[clusterProfiler.paramters.enrichGO2]
+section_type = "output"
+rcmd_last = """
+ego2 <- enrichGO(gene         = gene.df$ENSEMBL,
+                OrgDb         = org.Hs.eg.db,
+                keyType       = 'ENSEMBL',
+                ont           = "CC",
+                pAdjustMethod = "BH",
+                pvalueCutoff  = 0.01,
+                qvalueCutoff  = 0.05)
+as.data.table(ego2)
+"""
+render_type = "DT::renderDataTable"
+render_id = "clusterProfiler_enrichGO2"
+output_type = "DT::dataTableOutput"
+progressbar_message = "clusterProfiler enrichGO2"
+
+[clusterProfiler.paramters.gseGO]
+section_type = "output"
+rcmd_last = """
+ego3 <- gseGO(geneList     = geneList,
+              OrgDb        = org.Hs.eg.db,
+              ont          = "CC",
+              nPerm        = 1000,
+              minGSSize    = 100,
+              maxGSSize    = 500,
+              pvalueCutoff = 0.05,
+              verbose      = FALSE)
+as.data.table(ego3)
+"""
+render_type = "DT::renderDataTable"
+render_id = "clusterProfiler_gseGO"
+output_type = "DT::dataTableOutput"
+progressbar_message = "clusterProfiler gseGO"
+
+
+[clusterProfiler.paramters.gseKEGG]
+section_type = "output"
+rcmd_last = """
+kk2 <- gseKEGG(geneList     = geneList,
+               organism     = 'hsa',
+               nPerm        = 1000,
+               minGSSize    = 120,
+               pvalueCutoff = 0.05,
+               verbose      = FALSE)
+as.data.table(kk2)
+"""
+render_type = "DT::renderDataTable"
+render_id = "clusterProfiler_gseKEGG"
+output_type = "DT::dataTableOutput"
+progressbar_message = "clusterProfiler gseKEGG"
+
+
+[clusterProfiler.paramters.enrichDAVID]
+section_type = "output"
+rcmd_last = """
+david <- enrichDAVID(gene = gene,
+                     idType = "ENTREZ_GENE_ID",
+                     listType = "Gene",
+                     annotation = "KEGG_PATHWAY",
+                     david.user = "clusterProfiler@hku.hk")
+as.data.table(david)
+"""
+render_type = "DT::renderDataTable"
+render_id = "clusterProfiler_enrichDAVID"
+output_type = "DT::dataTableOutput"
+progressbar_message = "clusterProfiler enrichDAVID"
+
+[clusterProfiler.paramters.enricher]
+section_type = "output"
+rcmd_last = """
+egmt <- enricher(gene, TERM2GENE=c5)
+as.data.table(egmt)
+"""
+render_type = "DT::renderDataTable"
+render_id = "clusterProfiler_enricher"
+output_type = "DT::dataTableOutput"
+progressbar_message = "clusterProfiler enricher"
+
+[clusterProfiler.paramters.GSEA]
+section_type = "output"
+rcmd_last = """
+egmt2 <- GSEA(geneList, TERM2GENE=c5, verbose=FALSE)
+as.data.table(egmt2)
+"""
+render_type = "DT::renderDataTable"
+render_id = "clusterProfiler_GSEA"
+output_type = "DT::dataTableOutput"
+progressbar_message = "clusterProfiler GSEA"
+
+[clusterProfiler.paramters.barplot_ggo]
+section_type = "output"
+render_type = "shiny::renderPlot"
+render_id = "clusterProfiler_barplot_ggo"
+output_type = "shiny::plotOutput"
+export_engine = "ggsave"
+export_params = "type = 'pdf', width = 21, height = 17, units='cm', bg='transparent'"
+rcmd_last = """barplot(ggo, drop=TRUE, showCategory=12)"""
+progressbar_message = "clusterProfiler barplot_ggo"
+
+[clusterProfiler.paramters.barplot_ego]
+section_type = "output"
+render_type = "shiny::renderPlot"
+render_id = "clusterProfiler_barplot_ego"
+output_type = "shiny::plotOutput"
+export_engine = "ggsave"
+export_params = "type = 'pdf', width = 21, height = 17, units='cm', bg='transparent'"
+rcmd_last = """barplot(ego, showCategory=8)"""
+progressbar_message = "clusterProfiler barplot_ego"
+
+[clusterProfiler.paramters.dotplot_ego]
+section_type = "output"
+render_type = "shiny::renderPlot"
+render_id = "clusterProfiler_dotplot_ego"
+output_type = "shiny::plotOutput"
+export_engine = "ggsave"
+export_params = "type = 'pdf', width = 21, height = 17, units='cm', bg='transparent'"
+rcmd_last = """dotplot(ego)"""
+progressbar_message = "clusterProfiler dotplot_ego"
+
+
+[clusterProfiler.paramters.emapplot_ego]
+section_type = "output"
+render_type = "shiny::renderPlot"
+render_id = "clusterProfiler_emapplot_ego"
+output_type = "shiny::plotOutput"
+export_engine = "ggsave"
+export_params = "type = 'pdf', width = 21, height = 17, units='cm', bg='transparent'"
+rcmd_last = """emapplot(ego)"""
+progressbar_message = "clusterProfiler emapplot_ego"
+
+[clusterProfiler.paramters.cnetplot_ego]
+section_type = "output"
+render_type = "shiny::renderPlot"
+render_id = "clusterProfiler_cnetplot_ego"
+output_type = "shiny::plotOutput"
+export_engine = "ggsave"
+export_params = "type = 'pdf', width = 21, height = 17, units='cm', bg='transparent'"
+rcmd_last = """cnetplot(ego, categorySize="pvalue", foldChange=geneList)"""
+progressbar_message = "clusterProfiler cnetplot_ego"
+
+[clusterProfiler.paramters.gseaplot]
+section_type = "output"
+render_type = "shiny::renderPlot"
+render_id = "clusterProfiler_gseaplot"
+output_type = "shiny::plotOutput"
+export_engine = "ggsave"
+export_params = "type = 'pdf', width = 21, height = 17, units='cm', bg='transparent'"
+rcmd_last = """gseaplot(kk2, geneSetID = "hsa04145")"""
+progressbar_message = "clusterProfiler gseaplot"

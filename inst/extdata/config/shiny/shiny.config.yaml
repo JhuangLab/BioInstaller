@@ -1,9 +1,9 @@
 shiny_db:
-  db_path: ~/.BioInstaller/BioInstaller.shiny.sqlite
+  db_path: ~/.bioshiny/bioshiny.shiny.sqlite
   db_type: sqlite
 shiny_db_table:
   output_file_table_name: output_files
-  task_table_admin_key: BioInstaller_admin
+  task_table_admin_key: bioshiny_admin
   task_table_name: task_info
   upload_data_table_colnames:
   - file_name
@@ -20,13 +20,16 @@ shiny_db_table:
   - uid
   - username
   - password
+shiny_workers:
+  thread: 5
+  pid_pool: ~/.bioshiny/worker_pids.json
 shiny_plugins:
-  shiny_plugin_dir: ~/.BioInstaller/plugins
+  shiny_plugin_dir: ~/.bioshiny/plugins
 shiny_download:
-  download_dir: ~/.BioInstaller/download
+  download_dir: ~/.bioshiny/download
 shiny_output:
-  out_dir: ~/.BioInstaller/output
-  tmp_dir: ~/.BioInstaller/tmp
+  out_dir: ~/.bioshiny/output
+  tmp_dir: ~/.bioshiny/tmp
 shiny_preview:
   fread:
   - csv
@@ -39,11 +42,16 @@ shiny_preview:
   - jpeg
   - zip
 shiny_queue:
-  log_dir: ~/.BioInstaller/log
-  name: BioInstaller_shiny
-  queue_db: ~/.BioInstaller/BioInstaller.shiny.queue.sqlite
+  log_dir: ~/.bioshiny/log
+  name: bioshiny_shiny
+  queue_db: ~/.bioshiny/bioshiny.shiny.queue.sqlite
 shiny_tools:
-  pipeline: easy_project
+  pipeline: 
+      - easy_project
+      - CEMiTool
+      - annovarR
+      - annovar
+      - vcfanno
   instant:
       - bioinstaller
       - spack
@@ -52,6 +60,8 @@ shiny_tools:
       - pubmed 
       - geoquery
       - maftools
+      - gvmap
+      - clusterProfiler
 shiny_tools_params:
     require:
       bioinstaller: BioInstaller
@@ -65,8 +75,21 @@ shiny_tools_params:
           - XML
       geoquery: GEOquery
       maftools: maftools
+      CEMiTool: CEMiTool
+      annovarR: annovarR
+      annovar: annovarR
+      vcfanno: annovarR
+      clusterProfiler: 
+          - clusterProfiler
+          - org.Hs.eg.db
+          - GSEABase
+          - cowplot
+      gvmap: gvmap
+shiny_tools_path:
+    vcfanno: ~/.bioshiny/download/tools/vcfanno/vcfanno_linux64
+    annovar: ~/.bioshiny/download/tools/annovar
 shiny_upload:
-  upload_dir: ~/.BioInstaller/upload
+  upload_dir: ~/.bioshiny/upload
   supported_genome_version:
   - hg19
   - hg38

@@ -4,8 +4,7 @@
 \alias{set_shiny_workers}
 \title{Function to set shiny workers for background service}
 \usage{
-set_shiny_workers(n,
-  shiny_config_file = Sys.getenv("BIOINSTALLER_SHINY_CONFIG",
+set_shiny_workers(n, shiny_config_file = Sys.getenv("BIOSHINY_CONFIG",
   system.file("extdata", "config/shiny/shiny.config.yaml", package =
   "BioInstaller")), auto_create = FALSE)
 }

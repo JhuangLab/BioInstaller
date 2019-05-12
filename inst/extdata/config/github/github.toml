@@ -701,3 +701,37 @@ install = "python setup.py install"
 github_url = "https://github.com/ssadedin/bpipe"
 bin_dir = ["./bin"]
 install = ["mkdir -p {{destdir}}/bin" ,"cp {{download.dir}}/bin/* {{destdir}}/bin"]
+
+[mscentipede]
+github_url = "https://github.com/rajanil/msCentipede"
+bin_dir = "./"
+install = ["mkdir -p {{destdir}}/bin" , "python setup.py build_ext --inplace", 
+           "cp {{download.dir}}/call_binding.py {{destdir}}/bin"]
+
+[piq]
+github_url = "https://bitbucket.org/thashim/piq"
+
+[chia-pet2]
+github_url = "https://github.com/GuipengLi/ChIA-PET2"
+bin_dir = "./bin"
+install = ["chmod +x bin/ChIA-PET2 && make"]
+
+[chromtime]
+github_url = "https://github.com/ernstlab/ChromTime"
+install = "make"
+
+[dreg]
+github_url = "https://github.com/Danko-Lab/dREG"
+install = "make R_dependencies && make dreg"
+
+[cesam]
+github_url = "https://bitbucket.org/weischen/cesam"
+install = "pip install -r requirements.txt"
+
+[genomedisco]
+github_url = "https://github.com/kundajelab/genomedisco"
+install = "pip install --editable genomedisco/"
+
+[virchip]
+github_url = "https://bitbucket.org/hoffmanlab/virchip"
+install = "pip install ."

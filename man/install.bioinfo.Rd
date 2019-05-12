@@ -92,9 +92,8 @@ Download and install biology software or database
 \examples{
 db <- sprintf('\%s/.BioInstaller', tempdir())
 set.biosoftwares.db(db)
-tryCatch(install.bioinfo('bwa', show.all.versions = TRUE), 
-error = function(e) {
-  message('Connecting Github failed. Please try it again later.')
-})
+\dontrun{
+  install.bioinfo('bwa', show.all.versions = TRUE)
+}
 unlink(db)
 }

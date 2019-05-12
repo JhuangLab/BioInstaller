@@ -4,10 +4,9 @@
 \alias{copy_configs}
 \title{Function to copy the default configuration file of BioInstaller}
 \usage{
-copy_configs(config_dir = "~/.BioInstaller/",
-  template_dir = Sys.getenv("BIOINSTALLER_SHINY_CONFIG",
-  system.file("extdata", "config/shiny/", package = "BioInstaller")),
-  pattern = "shiny.config.yaml", auto_create = FALSE)
+copy_configs(config_dir = "~/.bioshiny/",
+  template_dir = system.file("extdata", "config/shiny/", package =
+  "BioInstaller"), pattern = "shiny.config.yaml", auto_create = FALSE)
 }
 \arguments{
 \item{config_dir}{The destdir to store plugins [~/.BioInstaller]}

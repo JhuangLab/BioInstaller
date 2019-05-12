@@ -103,59 +103,67 @@ server_upload_file <- function(input, output, session) {
     if (db_type == "sqlite") {
       con <- DBI::dbConnect(RSQLite::SQLite(), db_path)
       id <- get_start_id(con, upload_table)
-      assign(upload_table_colnames[1], input$upload.file$name)
-      destfile <- sprintf("%s/%s", upload_dir, id)
-      destfile <- normalizePath(destfile, mustWork = FALSE, winslash = "/")
-      print(destfile)
-      assign(upload_table_colnames[7], tools::md5sum(input$upload.file$datapath))
-      tryCatch(file.rename(input$upload.file$datapath, destfile),
-        warning = function(w) {
-        file.copy(input$upload.file$datapath, destfile, overwrite = TRUE)
-      })
-      assign(upload_table_colnames[2], destfile)
-      assign(upload_table_colnames[3], file.size(destfile))
-      print(input$upload.file.type)
-      if (input$upload.file.type != "auto") {
-        assign(upload_table_colnames[4], input$upload.file.type)
-      } else {
-        supported_file_type <- config$shiny_upload$supported_file_type
-        supported_file_type <- c(supported_file_type, paste0(supported_file_type, 'gz'))
-        supported_file_type <- supported_file_type[supported_file_type != "auto"]
-        index <- stringr::str_detect(input$upload.file$name,
-                   sprintf("%s$", supported_file_type))
-        if (sum(index) == 0) {upload.file.type <- "unknown"} else {
-          upload.file.type <- supported_file_type[index][
-            max.col(matrix(stringr::str_length(supported_file_type[index]), nrow = 1))
-          ]
+      count <- 1
+      for(fn in input$upload.file$name) {
+        print(fn)
+        assign(upload_table_colnames[1], fn)
+        destfile <- sprintf("%s/%s", upload_dir, id)
+        destfile <- normalizePath(destfile, mustWork = FALSE, winslash = "/")
+        print(destfile)
+        
+        assign(upload_table_colnames[7], tools::md5sum(input$upload.file$datapath[count]))
+        tryCatch(file.rename(input$upload.file$datapath[count], destfile),
+                 warning = function(w) {
+                   file.copy(input$upload.file$datapath[count], destfile, overwrite = TRUE)
+                 })
+        assign(upload_table_colnames[2], destfile)
+        assign(upload_table_colnames[3], file.size(destfile))
+        if (input$upload.file.type != "auto") {
+          assign(upload_table_colnames[4], input$upload.file.type)
+        } else {
+          supported_file_type <- config$shiny_upload$supported_file_type
+          supported_file_type <- c(supported_file_type, paste0(supported_file_type, 'gz'))
+          supported_file_type <- supported_file_type[supported_file_type != "auto"]
+          index <- stringr::str_detect(input$upload.file$name,
+                                       sprintf("%s$", supported_file_type))
+          if (sum(index) == 0) {upload.file.type <- "unknown"} else {
+            upload.file.type <- supported_file_type[index][
+              max.col(matrix(stringr::str_length(supported_file_type[index]), nrow = 1))
+              ]
+          }
+          assign(upload_table_colnames[4], upload.file.type)
         }
-        assign(upload_table_colnames[4], upload.file.type)
+        assign(upload_table_colnames[5], input$upload.genome.version)
+        assign(upload_table_colnames[6], format(Sys.time(), "%Y-%m-%d %H:%M:%S"))
+        assign(upload_table_colnames[8], input$upload.file.description)
+        row_data <- NULL
+        for (var in c("id", upload_table_colnames)) {
+          row_data <- c(row_data, get(var))
+        }
+        row_data <- data.frame(row_data)
+        row_data <- t(row_data)
+        row_data <- as.data.frame(row_data)
+        colnames(row_data) <- c("id", upload_table_colnames)
+        
+        
+        DBI::dbWriteTable(con, upload_table,
+                          row_data, append = TRUE, row.names = FALSE)
+        
+        delete_file_item(id)
+        
+        id <- id + 1
+        count <- count + 1
       }
-      assign(upload_table_colnames[5], input$upload.genome.version)
-      assign(upload_table_colnames[6], format(Sys.time(), "%Y-%m-%d %H:%M:%S"))
-      assign(upload_table_colnames[8], input$upload.file.description)
-      row_data <- NULL
-      for (var in c("id", upload_table_colnames)) {
-        row_data <- c(row_data, get(var))
-      }
-      row_data <- data.frame(row_data)
-      row_data <- t(row_data)
-      row_data <- as.data.frame(row_data)
-      colnames(row_data) <- c("id", upload_table_colnames)
-
-
-      DBI::dbWriteTable(con, upload_table,
-        row_data, append = TRUE, row.names = FALSE)
       shinyjs::alert("Upload and update database successful!")
       shinyjs::reset("upload.file")
       shinyjs::toggleState(id = "upload_save")
       # update file view UI and ovserve the preview and delete event
       render_files_info_DT()
+      update_configuration_files()
       output <- set_preview(id, output = output)
-      delete_file_item(id)
       DBI::dbDisconnect(con)
       # Chose the navbar
       updateNavbarPage(session, "navbar_tabs", selected = "file_viewer")
-      update_configuration_files()
       output <- render_input_box_ui(input, output)
     }
   })

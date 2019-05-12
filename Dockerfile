@@ -7,11 +7,11 @@ ADD . /tmp/BioInstaller
 
 Run apt update && apt install -y lmodern openssl \
     && Rscript -e "devtools::install('/tmp/BioInstaller')" \ 
-    && runuser -s /bin/bash -l opencpu -c "export BIO_SOFTWARES_DB_ACTIVE=/home/opencpu/.BioInstaller/info.yaml" \
+    && runuser -s /bin/bash -l opencpu -c "export BIO_SOFTWARES_DB_ACTIVE=/home/opencpu/.bioshiny/info.yaml" \
     && chown -R opencpu /home/opencpu/ \
-    && echo 'export BIO_SOFTWARES_DB_ACTIVE="~/.BioInstaller/info.yaml"\n' >> /home/opencpu/.bashrc \
-    && echo 'BIO_SOFTWARES_DB_ACTIVE="~/.BioInstaller/info.yaml"\n' >> /home/opencpu/.Renviron \
-    && runuser -s /bin/bash -l opencpu -c "export AUTO_CREATE_BIOINSTALLER_DIR=TRUE" \
+    && echo 'export BIO_SOFTWARES_DB_ACTIVE="~/.bioshiny/info.yaml"\n' >> /home/opencpu/.bashrc \
+    && echo 'BIO_SOFTWARES_DB_ACTIVE="~/.bioshiny/info.yaml"\n' >> /home/opencpu/.Renviron \
+    && runuser -s /bin/bash -l opencpu -c "export AUTO_CREATE_BIOSHINY_DIR=TRUE" \
     && echo 'file=`ls /usr/local/lib/R/site-library/`; cd /usr/lib/R/library; for i in ${file}; do rm -rf ${i};done' >> /tmp/rm_script \
     && sh /tmp/rm_script \
     && ln -sf /usr/local/lib/R/site-library/* /usr/lib/R/library/ \
@@ -33,4 +33,4 @@ Run echo 'source /etc/profile' >> /home/opencpu/.bashrc \
     && echo "options('repos' = c(CRAN='https://mirrors.tuna.tsinghua.edu.cn/CRAN/'))" >> /root/.Rprofile \
     && echo "options(BioC_mirror='https://mirrors.tuna.tsinghua.edu.cn/bioconductor')" >> /root/.Rprofile
 
-CMD service cron start && runuser -s /bin/bash -l opencpu -c '. ~/.bashrc; export AUTO_CREATE_BIOINSTALLER_DIR="TRUE";Rscript -e "BioInstaller::set_shiny_workers(3, auto_create = TRUE)" &' && runuser -s /bin/bash -l opencpu -c '. ~/.bashrc; sh /usr/bin/start_shiny_server' && . /etc/profile; /usr/lib/rstudio-server/bin/rserver && apachectl -DFOREGROUND
+CMD service cron start && runuser -s /bin/bash -l opencpu -c '. ~/.bashrc; export AUTO_CREATE_BIOSHINY_DIR="TRUE";Rscript -e "BioInstaller::set_shiny_workers(3, auto_create = TRUE)" &' && runuser -s /bin/bash -l opencpu -c '. ~/.bashrc; sh /usr/bin/start_shiny_server' && . /etc/profile; /usr/lib/rstudio-server/bin/rserver && apachectl -DFOREGROUND

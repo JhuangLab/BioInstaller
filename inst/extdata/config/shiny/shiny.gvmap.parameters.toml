@@ -1,0 +1,142 @@
+[gvmap.ui.sections]
+order = ["readfiles", "heatmap_1", "heatmap_2", "heatmap_3", "heatmap_4"]
+[gvmap.ui.sections.ui_basic]
+readfiles = "title = 'Input files', status = 'primary', width = 12, collapsed = FALSE, collapsible = TRUE"
+heatmap_1 = "title = 'Output of gvmap demo 1', status = 'primary', width = 12, collapsed = TRUE, collapsible = TRUE"
+heatmap_2 = "title = 'Output of gvmap demo 2', status = 'primary', width = 12, collapsed = TRUE, collapsible = TRUE"
+heatmap_3 = "title = 'Output of gvmap demo 3', status = 'primary', width = 12, collapsed = TRUE, collapsible = TRUE"
+heatmap_4 = "title = 'Output of gvmap demo 4', status = 'primary', width = 12, collapsed = TRUE, collapsible = TRUE"
+
+[gvmap.paramters.readfiles]
+# For reading annovarR shiny APP gvmap tool input files  
+section_type = "input"
+rcmd_last = """
+heatmap_data_1 <- read.table(heatmap_file, header = T)
+rownames(heatmap_data_1) <- heatmap_data_1$X
+heatmap_data_1 <- heatmap_data_1[, -1]
+heatmap_data_2 <- heatmap_data_1[20:50, ]
+heatmap_data_3 <- heatmap_data_1[80:100, ]
+heatmap_data_mtp <- list(heatmap_1 = heatmap_data_1,
+                     heatmap_2 = heatmap_data_2,
+                     heatmap_3 = heatmap_data_3)
+heatmap_data_sig <- heatmap_data_1
+heatmap_data_sig <- list(heatmap_1 = heatmap_data_1)
+
+legend_file <- system.file("extdata", "legend.txt", package = "gvmap")
+
+legend_data <- read.table(legend_file, header = T)
+row.names(legend_data) <- legend_data$SampleName
+"""
+progressbar_message = "Reading related files."
+render_id = "gvmap_readfiles"
+
+#!!!!! input_ui_order required related section
+input_ui_order = ["single_input", "start_analysis"]
+
+[gvmap.paramters.readfiles.input.single_input]
+title = "Demo input:"
+title_control = "class = 'input-section-p'"
+varname = ["heatmap_file"]
+input_id = ["input_gvmap_het_fn"]
+type = ["shiny::selectInput"]
+label = ["Heatmap data file (heatmap_file)"]
+[gvmap.paramters.readfiles.input.single_input.choices] 
+heatmap_file = "!!glue {c(system.file('extdata', 'heatmap.txt', package = 'gvmap'), featch_files('txt')$file_path)}"
+[gvmap.paramters.readfiles.input.single_input.selected] 
+heatmap_file = "@>@system.file('extdata', 'heatmap.txt', package = 'gvmap')@<@"
+
+[gvmap.paramters.readfiles.input.start_analysis]
+input_id = "start_gvmap_analysis"
+type = "shiny::actionButton"
+label = "Start analysis"
+
+[gvmap.paramters.heatmap_1]
+section_type = "output"
+render_type = "shiny::renderImage"
+render_id = "gvmap_plot_heatmap_1"
+render_params = "deleteFile = FALSE"
+output_type = "shiny::imageOutput"
+export_engine = "link"
+export_params = "type = 'svg'"
+rcmd_preprocess = """
+config_file <- system.file("extdata", "config.mtp.yaml", package = "gvmap")
+output_svg_name <- paste0(tempdir(), "/o1.svg")
+
+gvmap(legend_data = legend_data,
+      heatmap_data = heatmap_data_mtp,
+      config_file = config_file,
+      output_svg_name = output_svg_name,
+      plot_width = 800,
+      plot_height = 400)
+"""
+rcmd_last = """
+list(src = output_svg_name,
+         alt = paste("Heatmap_1"))
+"""
+progressbar_message = "gvmap heatmap_1"
+
+[gvmap.paramters.heatmap_2]
+section_type = "output"
+render_type = "shiny::renderImage"
+render_id = "gvmap_plot_heatmap_2"
+render_params = "deleteFile = FALSE"
+output_type = "shiny::imageOutput"
+export_engine = "link"
+export_params = "type = 'svg'"
+rcmd_preprocess = """
+config_file <- system.file("extdata", "config.sig.yaml", package = "gvmap")
+output_svg_name_2 <- paste0(tempdir(), "/o2.svg")
+gvmap(legend_data = legend_data,
+      heatmap_data = heatmap_data_sig,
+      config_file = config_file,
+      output_svg_name = output_svg_name_2,
+      plot_width = 800,
+      plot_height = 400)
+"""
+rcmd_last = "list(src = output_svg_name_2, alt = paste('Heatmap_2'))"
+progressbar_message = "gvmap heatmap_2"
+
+[gvmap.paramters.heatmap_3]
+section_type = "output"
+render_type = "shiny::renderImage"
+render_id = "gvmap_plot_heatmap_3"
+render_params = "deleteFile = FALSE"
+output_type = "shiny::imageOutput"
+export_engine = "link"
+export_params = "type = 'svg'"
+rcmd_preprocess = """
+config_file <- system.file("extdata", "config.leg.yaml", package = "gvmap")
+output_svg_name_3 <- paste0(tempdir(), "/o3.svg")
+gvmap(legend_data = legend_data,
+      config_file = config_file,
+      output_svg_name = output_svg_name_3,
+      plot_width = 800,
+      plot_height = 400)
+"""
+rcmd_last = """
+list(src = output_svg_name_3, alt = paste('Heatmap_3'))
+"""
+progressbar_message = "gvmap heatmap_3"
+
+[gvmap.paramters.heatmap_4]
+section_type = "output"
+render_type = "shiny::renderImage"
+render_id = "gvmap_plot_heatmap_4"
+render_params = "deleteFile = FALSE"
+output_type = "shiny::imageOutput"
+export_engine = "link"
+export_params = "type = 'svg'"
+rcmd_preprocess = """
+config_file <- system.file("extdata/config.mtp.yaml", package = "gvmap")
+output_svg_name_4 <- paste0(tempdir(), "/o4.svg")
+gvmap(legend_data = legend_data,
+      heatmap_data = heatmap_data_mtp,
+      config_file = config_file,
+      output_svg_name = output_svg_name_4,
+      sample_span = 5,
+      heatmap_row_span = 4,
+      plot_width = 800,
+      plot_height = 400)
+"""
+rcmd_last = "list(src = output_svg_name_4, alt = paste('Heatmap_4'))"
+progressbar_message = "gvmap heatmap_4"

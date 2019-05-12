@@ -1,0 +1,68 @@
+[annovarR.ui.sections]
+order = ["readfiles"]
+[annovarR.ui.sections.ui_basic]
+readfiles = "title = 'Input files', status = 'primary', width = 12, collapsed = FALSE, collapsible = TRUE"
+
+[annovarR.paramters.readfiles]
+# For reading annovarRR shiny APP annovarR tool input files  
+section_type = "input"
+rcmd_last = """
+if (in_text != "") {
+  in_text <- stringr::str_replace(in_text, " +", " ")
+  in_file = tempfile()
+  cat(in_text, file = in_file)
+}
+input.dat <- data.table::fread(in_file)
+if (ncol(input.dat)>5)
+  input.dat <- input.dat[,1:5]
+out_key <- qqkey
+
+shiny_config <- Sys.getenv("BIOSHINY_CONFIG", system.file("extdata", "config/shiny.config.yaml",
+                                                  package = "bioshiny"))
+config <- configr::read.config(shiny_config)
+
+out = sprintf("~/%s/output/%s/%s.Rdata", dirname(config$shiny_db$db_path), 
+              out_key, basename(in_file))
+dir.create(dirname(out), recursive = TRUE)
+db_dir = normalizePath(config$shiny_download$download_dir, mustWork = FALSE)
+result <- annovarR::annotation.merge(dat = input.dat, anno.name = in_anno_names,
+buildver = in_reffa, database.dir = db_dir, 
+vcfanno = normalizePath(config$shiny_tools_path$vcfanno, mustWork = FALSE), 
+annovar.dir = normalizePath(config$shiny_tools_path$annovar, mustWork = FALSE))
+save(result, file = out)
+"""
+progressbar_message = ""
+render_id = "annovarR_readfiles"
+
+#!!!!! input_ui_order required related section
+input_ui_order = ["single_input", "start_analysis"]
+
+[annovarR.paramters.readfiles.input.single_input]
+title = "Demo input:"
+title_control = "class = 'input-section-p'"
+varname = ["in_file", "in_text", "in_reffa", 
+"in_file_type", "in_anno_names"]
+input_id = ["annovarR_input_file", "annovarR_input_file_area", "annovarR_input_file_genome", 
+"annovarR_input_file_type", "annovarR_input_annotation_items"]
+type = ["shiny::selectInput", "shiny::textAreaInput", "shiny::selectInput", 
+"shiny::selectInput", "shiny::selectInput"]
+label = ["Input File (in_file)", "or Paste Variant Calls (in_text)", "Reference Genome (in_reffa)", 
+"Input Format (in_file_type)", "Annotaion Databases (in_anno_names)"]
+[annovarR.paramters.readfiles.input.single_input.choices] 
+in_file = "!!glue {featch_files()$file_path}"
+in_reffa = ["hg19", "hg38", "mm9", "mm10"]
+in_file_type = ["vcf", "vcf_old", "tsv", "avinput", "solid_gff3", "complete_genomics_masterVar"]
+in_anno_names = ["annovar_all", "1000g2015aug_all","1000g2015aug_afr","1000g2015aug_amr","1000g2015aug_eas","1000g2015aug_eur","1000g2015aug_sas","perl_annovar_refGene","perl_annovar_ensGene","perl_annovar_knownGene","perl_annovar_cytoBand","perl_annovar_genomicSuperDups","perl_annovar_clinvar_20170905","perl_annovar_esp6500siv2_all","perl_annovar_1000g2015aug_all","perl_annovar_1000g2015aug_afr","perl_annovar_1000g2015aug_eas","perl_annovar_1000g2015aug_eur","perl_annovar_avsnp142","perl_annovar_avsnp144","perl_annovar_avsnp147","perl_annovar_avsnp150","perl_annovar_dbnsfp33a","perl_annovar_cosmic70","perl_annovar_cosmic81","perl_annovar_cosmic82","perl_annovar_eigen","perl_annovar_gwava","perl_annovar_cadd13","perl_annovar_cadd13gt10","perl_annovar_cadd13gt20","perl_annovar_regsnpintron","perl_annovar_mitimpact24","perl_annovar_popfreq_all_20150413","perl_annovar_popfreq_max_20150413","perl_annovar_icgc21","perl_annovar_nci60","perl_annovar_gme","perl_annovar_hrcr1","perl_annovar_kaviar_20150923","perl_annovar_gnomad_genome","perl_annovar_gnomad_exome","perl_annovar_exac03nonpsych","perl_annovar_exac03nontcga","perl_annovar_exac03","perl_annovar_cg69","perl_annovar_cg46","perl_annovar_intervar_20170202","perl_annovar_dbscsnv11","perl_annovar_merge","avsnp138","avsnp142","avsnp144","avsnp147","avsnp150","bioc_org_hs_eg","bioc_gene2","bioc_gene2alias","bioc_gene2ensembl_gene_id","bioc_gene2entrez_gene_id","bioc_gene2gene_full_name","brvar_v1_core","brvar_v1_extra","cadd","caddgt10","caddgt20","cadd13","cadd13gt10","cadd13gt20","cancer_hotspots_v2","nightly_civic_gene_summaries","clinvar_20170130","clinvar_20170501","clinvar_20170905","clinvar_20180603","cosmic70","cosmic81","cosmic82","cscd_cancer_circrna","cscd_common_circrna","cscd_normal_circrna","darned","dbnsfp30a","dbnsfp31a_interpro","dbnsfp33a","dbscsnv11","dhs_gene_connectivity_2012","disgenet_gene_disease","disgenet_befree_gene_disease","disgenet_curated_gene_disease","disgenet_rs_disease","disgenet_befree_rs_disease","disgenet_curated_rs_disease","disgenet_pubannotator_rs_disease","docm_3.2","eigen","epi_genes_v1","exac03","exac03nontcga","exac03nonpsych","gdi_score_full_10282015","gme","gnomad_exome","gnomad_genome","gtex_adipose_subcutaneous.v7.egenes","gtex_adipose_visceral_omentum.v7.egenes","gtex_adrenal_gland.v7.egenes","gtex_artery_aorta.v7.egenes","gtex_artery_coronary.v7.egenes","gtex_artery_tibial.v7.egenes","gtex_brain_amygdala.v7.egenes","gtex_brain_anterior_cingulate_cortex_ba24.v7.egenes","gtex_brain_caudate_basal_ganglia.v7.egenes","gtex_brain_cerebellar_hemisphere.v7.egenes","gtex_brain_cerebellum.v7.egenes","gtex_brain_cortex.v7.egenes","gtex_brain_frontal_cortex_ba9.v7.egenes","gtex_brain_hippocampus.v7.egenes","gtex_brain_hypothalamus.v7.egenes","gtex_brain_nucleus_accumbens_basal_ganglia.v7.egenes","gtex_brain_putamen_basal_ganglia.v7.egenes","gtex_brain_spinal_cord_cervical_c_1.v7.egenes","gtex_brain_substantia_nigra.v7.egenes","gtex_breast_mammary_tissue.v7.egenes","gtex_cells_ebv_transformed_lymphocytes.v7.egenes","gtex_cells_transformed_fibroblasts.v7.egenes","gtex_colon_sigmoid.v7.egenes","gtex_colon_transverse.v7.egenes","gtex_esophagus_gastroesophageal_junction.v7.egenes","gtex_esophagus_mucosa.v7.egenes","gtex_esophagus_muscularis.v7.egenes","gtex_heart_atrial_appendage.v7.egenes","gtex_heart_left_ventricle.v7.egenes","gtex_liver.v7.egenes","gtex_lung.v7.egenes","gtex_minor_salivary_gland.v7.egenes","gtex_muscle_skeletal.v7.egenes","gtex_nerve_tibial.v7.egenes","gtex_ovary.v7.egenes","gtex_pancreas.v7.egenes","gtex_pituitary.v7.egenes","gtex_prostate.v7.egenes","gtex_skin_not_sun_exposed_suprapubic.v7.egenes","gtex_skin_sun_exposed_lower_leg.v7.egenes","gtex_small_intestine_terminal_ileum.v7.egenes","gtex_spleen.v7.egenes","gtex_stomach.v7.egenes","gtex_testis.v7.egenes","gtex_thyroid.v7.egenes","gtex_uterus.v7.egenes","gtex_vagina.v7.egenes","gtex_whole_blood.v7.egenes","gwava","hgnc_coding_gene2alias","hgnc_coding_pre2gene","hrcr1","icgc21","intervar_20170202","intogen_20180119","kaviar_20150923","lncediting","loftool_scores","mcap","nci60","2016sih_wes_ball","2016sih_wes_tall","2016sih_wes_nkt","2016sih_wgs_nkt","2016sih_wgs_dlbcl","2018sih_wgs_nkt_full","2018sih_wgs_nkt_full_sqlite","omim_genemap2_ensembl_gene_id2phenotype","omim_genemap2_entrez_gene_id2phenotype","omim_genemap2_symbol2phenotype","popfreq_max_20150413","popfreq_all_20150413","radar2","rddpred_mes","REDIportal","ucsc_refgene","ens_refgene","revel","rs2pos138","rs2pos142","rs2pos144","rs2pos147","rs2pos150","rvis_exac_4kw","seeqtl_qvalue_hapmap3_cis","seeqtl_qvalue_hapmap3_trans","seeqtl_qvalue_myers_cis","seeqtl_qvalue_myers_trans","tall_somatic_genes_20171206","tmcsnpdb","varcards","vcfanno_demo","vep_all"]
+[annovarR.paramters.readfiles.input.single_input.selected] 
+in_reffa = "hg19"
+in_file_type = "avinput"
+in_anno_names = "all"
+[annovarR.paramters.readfiles.input.single_input.multiple]
+in_anno_names = true
+[annovarR.paramters.readfiles.input.single_input.rows]
+in_text = 15
+
+[annovarR.paramters.readfiles.input.start_analysis]
+input_id = "start_annovarR_analysis"
+type = "shiny::actionButton"
+label = "Submit"

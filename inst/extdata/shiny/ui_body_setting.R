@@ -69,7 +69,7 @@ setting_server <- function(input, output) {
   });</script>"
     output$setting_ui_yaml <- renderUI({
       HTML(
-        paste0(textAreaInput("setting_yaml_input", label = "BioInstaller YAML",
+        paste0(textAreaInput("setting_yaml_input", label = sprintf("%s YAML", shiny_app_name),
                              value = html_text,
                              rows = 100, height = 500)
                ,text_area_js

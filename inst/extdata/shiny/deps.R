@@ -1,6 +1,6 @@
 pkgs.shiny <- c("shinycssloaders", "Cairo", "shinydashboard", "configr",
                 "data.table", "shinyjs", "liteq", "DT", "benchmarkme",
-                "stringr", "R.utils", "shiny", "RSQLite")
+                "stringr", "R.utils", "shiny", "RSQLite", "cowplot")
 tryCatch({if (!requireNamespace("pacman")) install.packages("pacman")}, warning = function(w) {
   if (!requireNamespace("devtools"))
     install.packages("devtools")

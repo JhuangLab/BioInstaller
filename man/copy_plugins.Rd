@@ -4,7 +4,7 @@
 \alias{copy_plugins}
 \title{Function to copy the default plugins of BioInstaller}
 \usage{
-copy_plugins(plugin_dir = "~/.BioInstaller/plugins",
+copy_plugins(plugin_dir = "~/.bioshiny/plugins",
   template_dir = system.file("extdata", "config/shiny/", package =
   "BioInstaller"), pattern = "shiny.*.parameters.toml",
   auto_create = FALSE)

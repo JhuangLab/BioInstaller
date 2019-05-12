@@ -40,10 +40,9 @@
 #' @examples
 #' db <- sprintf('%s/.BioInstaller', tempdir())
 #' set.biosoftwares.db(db)
-#' tryCatch(install.bioinfo('bwa', show.all.versions = TRUE), 
-#' error = function(e) {
-#'   message('Connecting Github failed. Please try it again later.')
-#' })
+#' \dontrun{
+#'   install.bioinfo('bwa', show.all.versions = TRUE)
+#' }
 #' unlink(db)
 install.bioinfo <- function(name = c(), download.dir = c(), destdir = c(), name.saved = NULL, 
   github.cfg = system.file("extdata", "config/github/github.toml", package = "BioInstaller"), 
@@ -213,10 +212,9 @@ install.bioinfo <- function(name = c(), download.dir = c(), destdir = c(), name.
 #' @examples
 #' db <- sprintf('%s/.BioInstaller', tempdir())
 #' set.biosoftwares.db(db)
-#' tryCatch(install.github('bwa', show.all.versions = TRUE),
-#' error = function(e) {
-#'   message('Connecting Github failed. Please try it again later.')
-#' })
+#' \dontrun{
+#'   install.github('bwa', show.all.versions = TRUE)
+#' }
 #' unlink(db)
 install.github <- function(name = "", download.dir = NULL, destdir = NULL, version = NULL, 
   local.source = NULL, show.all.versions = FALSE, name.saved = NULL, github.cfg = system.file("extdata", 
@@ -389,10 +387,9 @@ install.github <- function(name = "", download.dir = NULL, destdir = NULL, versi
 #' @examples
 #' db <- sprintf('%s/.BioInstaller', tempdir())
 #' set.biosoftwares.db(db)
-#' tryCatch(install.nongithub('gmap', show.all.versions = TRUE),
-#' error = function(e) {
-#'   message('Connecting Gmap website failed. Please try it again later.')
-#' })
+#' \dontrun{
+#'   install.nongithub('gmap', show.all.versions = TRUE)
+#' }
 #' unlink(db)
 install.nongithub <- function(name = "", download.dir = NULL, destdir = NULL, version = NULL, 
   local.source = NULL, show.all.versions = FALSE, name.saved = NULL, nongithub.cfg = c(system.file("extdata", 

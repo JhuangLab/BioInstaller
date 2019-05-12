@@ -52,16 +52,16 @@ suppressWarnings(
 
 When setting the `show.all.versions` to `TRUE`, the versions of software and database will be returned.
 
-```{r}
+```{r eval = FALSE}
 # Fetching versions of softwares
-install.bioinfo(name = 'samtools', show.all.versions = TRUE)
+ install.bioinfo(name = 'samtools', show.all.versions = TRUE)
 ```
 
 Parameter `verbose` in `install.bioinfo` can be used to show the extra debug information. 
 
 Besides, if you only want to download the source code or raw database files to a specific directory, the parameter `download.dir` and `download.only`are required. 
 
-```{r}
+```{r eval = FALSE}
 # Install 'demo' with debug infomation
 download.dir <- sprintf('%s/demo_2', tempdir())
 install.bioinfo('demo', download.dir = download.dir, verbose = TRUE)
@@ -80,7 +80,7 @@ It is optional to create `bin` directory in the `destdir`, and copy all the exec
 
 If you want to download the source code in `A` directory and install it to `B` directory, you need to simultaneously set the parameters `destdir` and `download.dir`in function `install.bioinfo`.
 
-```{r}
+```{r eval = FALSE}
 # Set download.dir and destdir (destdir like /usr/local 
 # including bin, lib, include and others), 
 # destdir will work if install step {{destdir}} be used
@@ -93,7 +93,7 @@ install.bioinfo('demo', download.dir = download.dir, destdir = destdir)
 
 It is important to save related information of installation. This step can help you to use the software or database in the other pipeline. So, after installed the software and database, BioInstaller will save the information, such as software name, version, path, update time, in the database file set by function `set.biosoftwares.db()`, which also defined by environment variable `BIO_SOFWARES_DB_ACTIVE`.
 
-```{r}
+```{r eval = FALSE}
 temp.db <- tempfile()
 set.biosoftwares.db(temp.db)
 is.biosoftwares.db.active(temp.db)
@@ -107,7 +107,7 @@ Function `get.info()` can be used to get the saved information of installed soft
 
 When you want to delete the saved information, you can use function `del.info`.
 
-```{r}
+```{r eval = FALSE}
 config <- get.info('demo')
 config
 
@@ -128,13 +128,10 @@ Tips:
 - Github software/database: a cloned directory were required
 - Non-github software/database: a decompressed directory or a compressed archive.
 
-```{r}
+```{r eval = FALSE}
 download.dir <- sprintf('%s/github_demo_local', tempdir())
-tryCatch({
 install.bioinfo('github_demo', download.dir = download.dir, download.only = TRUE, verbose = FALSE)
-install.bioinfo('github_demo', local.source = download.dir)}, error = function(e) {
-  message("Please check the SSL or connection with GitHub")
-})
+install.bioinfo('github_demo', local.source = download.dir)
 
 download.dir <- sprintf('%s/demo_local', tempdir())
 install.bioinfo('demo_2', download.dir = download.dir, download.only = TRUE, verbose = FALSE)
@@ -145,7 +142,7 @@ install.bioinfo('demo_2', download.dir = download.dir, local.source = sprintf('%
 
 Function `craw.all.version` is the simplest method to download all available URL files in nongithub or database files.
 
-```{r}
+```{r eval = FALSE}
 download.dir <- sprintf('%s/crawl.all.versions', tempdir())
 crawl.all.versions('demo', download.dir = download.dir)
 ```

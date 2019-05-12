@@ -3,6 +3,8 @@
 #' @param appDir The application to run.
 #' Default is system.file('extdata', 'tools/shiny/R', package = 'BioInstaller')
 #' @param auto_create Auto create dir, default is FALSE
+#' @param host Default use the 0.0.0.0
+#' @param port Default use the 3333
 #' @param ... Other parameters pass to \code{\link[shiny]{runApp}}
 #' @export
 #'
@@ -11,12 +13,12 @@
 #'   web(auto_create = TRUE)
 #' }
 web <- function(appDir = system.file("extdata", "shiny", package = "BioInstaller"), 
-  auto_create = FALSE, ...) {
-  params <- list(...)
+  auto_create = FALSE, host = "0.0.0.0", port = 3333, ...) {
+  params <- list(..., host = host, port = 3333)
   params <- config.list.merge(list(appDir), params)
-  Sys.setenv(AUTO_CREATE_BIOINSTALLER_DIR = FALSE)
+  Sys.setenv(AUTO_CREATE_BIOSHINY_DIR = FALSE)
   if (auto_create) 
-    Sys.setenv(AUTO_CREATE_BIOINSTALLER_DIR = TRUE)
+    Sys.setenv(AUTO_CREATE_BIOSHINY_DIR = TRUE)
   do.call(runApp, params)
 }
 
@@ -31,7 +33,7 @@ web <- function(appDir = system.file("extdata", "shiny", package = "BioInstaller
 #' \dontrun{
 #' set_shiny_workers(4)
 #' }
-set_shiny_workers <- function(n, shiny_config_file = Sys.getenv("BIOINSTALLER_SHINY_CONFIG", 
+set_shiny_workers <- function(n, shiny_config_file = Sys.getenv("BIOSHINY_CONFIG", 
   system.file("extdata", "config/shiny/shiny.config.yaml", package = "BioInstaller")), 
   auto_create = FALSE) {
   config <- configr::read.config(shiny_config_file)
@@ -40,7 +42,7 @@ set_shiny_workers <- function(n, shiny_config_file = Sys.getenv("BIOINSTALLER_SH
     if (!dir.exists(log_dir)) {
       dir.create(log_dir, recursive = TRUE)
     }
-    Sys.setenv(AUTO_CREATE_BIOINSTALLER_DIR = TRUE)
+    Sys.setenv(AUTO_CREATE_BIOSHINY_DIR = TRUE)
   }
   worker_script <- system.file("extdata", "shiny/worker.R", package = "BioInstaller")
   
@@ -60,7 +62,7 @@ set_shiny_workers <- function(n, shiny_config_file = Sys.getenv("BIOINSTALLER_SH
 #' @export
 #' @examples
 #' copy_plugins(tempdir())
-copy_plugins <- function(plugin_dir = "~/.BioInstaller/plugins", template_dir = system.file("extdata", 
+copy_plugins <- function(plugin_dir = "~/.bioshiny/plugins", template_dir = system.file("extdata", 
   "config/shiny/", package = "BioInstaller"), pattern = "shiny.*.parameters.toml", 
   auto_create = FALSE) {
   plugin_dir <- normalizePath(plugin_dir, mustWork = FALSE)
@@ -90,9 +92,8 @@ copy_plugins <- function(plugin_dir = "~/.BioInstaller/plugins", template_dir = 
 #' @export
 #' @examples
 #' copy_configs(tempdir())
-copy_configs <- function(config_dir = "~/.BioInstaller/", template_dir = Sys.getenv("BIOINSTALLER_SHINY_CONFIG", 
-  system.file("extdata", "config/shiny/", package = "BioInstaller")), pattern = "shiny.config.yaml", 
-  auto_create = FALSE) {
+copy_configs <- function(config_dir = "~/.bioshiny/", template_dir = system.file("extdata", 
+  "config/shiny/", package = "BioInstaller"), pattern = "shiny.config.yaml", auto_create = FALSE) {
   config_dir <- normalizePath(config_dir, mustWork = FALSE)
   if (!dir.exists(config_dir) && auto_create) {
     dir.create(config_dir, recursive = TRUE)

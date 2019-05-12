@@ -794,3 +794,29 @@ use_github_versions = true
 [nextflow]
 source_url = "https://github.com/nextflow-io/nextflow/releases/download/{{version}}/nextflow-@>@str_replace('{{version}}', 'v', '')@<@-all"
 use_github_versions = true
+
+[chromhmm]
+source_url = "http://compbio.mit.edu/ChromHMM/{{version}}.zip"
+version_available = "ChromHMM"
+
+[autochrom3d]
+source_url = "http://ibi.hzau.edu.cn/3dmodel/AutoChrom3D_{{version}}.tar.gz"
+version_available = "v1"
+
+[quest]
+source_url = "http://mendel.stanford.edu/sidowlab/downloads/quest/QuEST_{{version}}.tar.gz"
+version_available = "2.4"
+install = "make"
+
+[maorm]
+source_url = "http://bcb.dfci.harvard.edu/~gcyuan/MAnorm/MAnorm_data/MAnorm_Linux_R_Package.zip"
+version_available = ["latest"]
+
+[easeq]
+source_url = "http://easeq.net/download/EaSeq.zip"
+version_available = "latest"
+
+[useq]
+source_url = "https://github.com/HuntsmanCancerInstitute/USeq/releases/download/USeq_{{version}}/USeq_{{version}}.zip"
+use_github_versions = true
+
