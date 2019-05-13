@@ -7,7 +7,7 @@ auto_create <- as.logical(Sys.getenv("AUTO_CREATE_BIOSHINY_DIR", TRUE))
 skin <- tolower(skin)
 
 # Read configuration file and set the environment vars
-config.file.template.repo <- system.file("extdata", "config/shiny.config.yaml",
+config.file.template.repo <- system.file("extdata", "config/shiny/shiny.config.yaml",
                                     package = shiny_app_name)
 config.file.template <- Sys.getenv("BIOSHINY_CONFIG", config.file.template.repo)
 if (!file.exists(config.file.template)) config.file.template <- config.file.template.repo
@@ -22,14 +22,14 @@ if (!dir.exists(db_dirname) && auto_create) {
 if (!file.exists(config.file) || !configr::is.yaml.file(config.file)) 
     file.copy(config.file.template, config.file)
 Sys.setenv(BIOSHINY_CONFIG = config.file)
-
 shiny_plugin_dir_repo <- system.file("extdata", "config", package = shiny_app_name)
 shiny_plugin_dir <- shiny_plugin_dir_repo
 if (!is.null(config$shiny_plugins$shiny_plugin_dir)) {
   shiny_plugin_dir <- config$shiny_plugins$shiny_plugin_dir
 }
 if (!dir.exists(shiny_plugin_dir) || length(list.files(shiny_plugin_dir)) == 0) {
-  cmd <- sprintf("do.call(%s::%s)", shiny_app_name, "copy_plugins(shiny_plugin_dir, auto_create = auto_create)")
+  params <- list(plugin_dir = shiny_plugin_dir, auto_create = auto_create)
+  cmd <- sprintf("do.call(%s::copy_plugins, params)", shiny_app_name)
   eval(parse(text = cmd))
 }
 

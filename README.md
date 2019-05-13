@@ -77,6 +77,9 @@ devtools::install_github("JhuangLab/BioInstaller")
 In the new project, we will provides one-click method (command line and Shiny UI) to create bioshiny application and its plugins. We are also developing more free plugins of bioshiny for various bioinformatics data analysis. 
 
 ```
+echo 'export BIO_SOFTWARES_DB_ACTIVE="~/.bioshiny/info.yaml" >> ~/.bashrc'
+echo 'export BIOSHINY_CONFIG="~/.bioshiny/shiny.config.yaml" >> ~/.bashrc'
+
 # Start the standalone Shiny application
 BioInstaller::web(auto_create = TRUE)
 ```
