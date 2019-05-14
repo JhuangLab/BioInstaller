@@ -8,3 +8,5 @@ _pkgdown.yml
 README.Rmd
 Makefile
 Dockerfile
+.circleci
+.editorconfig

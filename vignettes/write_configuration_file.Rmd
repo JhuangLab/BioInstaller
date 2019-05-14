@@ -1,5 +1,5 @@
 ---
-title: "Write Your Own Configuration File"
+title: "Write BioInstaller Configuration File"
 author: "Jianfeng Li"
 date: "`r Sys.Date()`"
 output:

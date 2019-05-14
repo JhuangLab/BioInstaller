@@ -1,5 +1,5 @@
 ---
-title: "Start the BioInstaller Shiny Application"
+title: "Start the bioshiny Application"
 author: "Jianfeng Li"
 date: "`r Sys.Date()`"
 output:
@@ -80,17 +80,38 @@ The [Rstudio server](https://www.rstudio.com/products/rstudio-server/) was provi
 
 ![](https://raw.githubusercontent.com/Miachol/ftp/master/files/images/bioinstaller/rstudio.png)
 
-## How to start the standalone Shiny service of BioInstaller
+## How to start the standalone Shiny service of bioshiny
 
-If the users can not to run a docker image, the standalone shiny service of BioInstaller is an another way to start the service.
+If the users can not to run a docker image, the standalone shiny service of bioshiny is an another way to start the service.
 
-```{r eval=FALSE}
-# If the BioInstaller R package has not been installed, 
-# you need execute the followed commands:
-# install.packages('BioInstaller')
-# It is better to start the worker in another background processor
-BioInstaller::set_shiny_workers(3)
-BioInstaller::web(auto_create = TRUE)
+```bash
+echo 'export BIO_SOFTWARES_DB_ACTIVE="~/.bioshiny/info.yaml" >> ~/.bashrc'
+echo 'export BIOSHINY_CONFIG="~/.bioshiny/shiny.config.yaml" >> ~/.bashrc'
+. ~/.bashrc
+
+# Start the standalone Shiny application
+wget https://raw.githubusercontent.com/openbiox/bioshiny/master/bin/bioshiny_deps_r
+wget https://raw.githubusercontent.com/openbiox/bioshiny/master/bin/bioshiny_start
+chmod a+x bioshiny_deps_r
+chmod a+x bioshiny_start
+./bioshiny_deps_r
+
+# Start Shiny application workers
+Rscript -e "bioshiny::set_shiny_workers(1)"
+./bioshiny_start
+
+# or use yarn
+yarn global add bioshiny
+bioshiny_deps_r
+Rscript -e "bioshiny::set_shiny_workers(1)"
+bioshiny_start
 ```
 
-To reduce the dependence of BioInstaller, we do not add the Shiny application modules dependent packages in the DESCRIPTION file. The function 'BioInstaller::web' will check the required dependences of Shiny application and install them if the dependence not be installed.
+```{r eval=FALSE}
+# If the bioshiny R package has not been installed, 
+# you need execute the followed commands:
+# devtools::install_github('openbiox/bioshiny/src/bioshiny')
+# It is better to start the worker in another background processor
+bioshiny::set_shiny_workers(3)
+bioshiny::web(auto_create = TRUE)
+```

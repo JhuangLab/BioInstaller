@@ -1,5 +1,5 @@
 ---
-title: "Plugins of BioInstaller Shiny Application"
+title: "Plugins of bioshiny Application"
 author: "Jianfeng Li"
 date: "`r Sys.Date()`"
 output:
@@ -22,7 +22,7 @@ knitr::opts_chunk$set(echo = TRUE, screenshot.force = FALSE, comment = "#>", col
 
 ## Introduction
 
-Both the R files and plugin files (TOML format) are supported to extend and add new functions of BioInstaller Shiny application. Users can modifed the value of shiny_plugin_dir to use a custom plugins library. The plugins filename: shiny.easy_project.parameters.toml, shiny.maftools.parameters, etc. Now we use the "shiny.{toolname}.parameters.toml" rule to search the plugin file, or you can modifed the line 84 of `global_bar.R` to change the rule.
+Both the R files and plugin files (TOML format) are supported to extend and add new functions of bioshiny application. Users can modifed the value of shiny_plugin_dir to use a custom plugins library. The plugins filename: shiny.easy_project.parameters.toml, shiny.maftools.parameters, etc. Now we use the "shiny.{toolname}.parameters.toml" rule to search the plugin file, or you can modifed the line 84 of `global_bar.R` to change the rule.
 
 ## Demos
 
@@ -465,4 +465,4 @@ progressbar_message = "Maftools maftools_plot_clusters"
 
 ## More demos
 
-We developed several plugins files in BioInstaller package, such as [gvmap](https://github.com/ytdai/gvmap), [clusterProfiler](https://github.com/GuangchuangYu/clusterProfiler), [ANNOVAR](http://annovar.openbioinformatics.org/en/latest/), [CEMiTool](https://github.com/csbl-usp/CEMiTool), [vcfanno](https://github.com/brentp/vcfanno), [annovarR](https://github.com/JhuangLab/annovarR), etc. It is noted that we do not want to limite users to write R codes for extending the R shiny functions. But using the plugin files to simultaneously generate UI and server code is a good choice to simplify the steps for adding new functions in a Shiny application.
+We developed several plugins files in [bioshiny](https://github.com/openbiox/bioshiny) package, such as [gvmap](https://github.com/ytdai/gvmap), [clusterProfiler](https://github.com/GuangchuangYu/clusterProfiler), [ANNOVAR](http://annovar.openbioinformatics.org/en/latest/), [CEMiTool](https://github.com/csbl-usp/CEMiTool), [vcfanno](https://github.com/brentp/vcfanno), [annovarR](https://github.com/JhuangLab/annovarR), etc. It is noted that we do not want to limite users to write R codes for extending the R shiny functions. But using the plugin files to simultaneously generate UI and server code is a good choice to simplify the steps for adding new functions in a Shiny application.

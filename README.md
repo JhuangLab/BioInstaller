@@ -1,7 +1,7 @@
 # BioInstaller <img src="https://raw.githubusercontent.com/JhuangLab/BioInstaller/master/man/figures/logo.png" align="right" />
 
 [![Build
-Status](https://travis-ci.org/JhuangLab/BioInstaller.svg)](https://travis-ci.org/JhuangLab/BioInstaller)
+Status](https://img.shields.io/circleci/project/github/JhuangLab/BioInstaller/master.svg)](https://circleci.com/gh/JhuangLab/BioInstaller/tree/master)
 [![CRAN](http://www.r-pkg.org/badges/version/BioInstaller)](https://cran.r-project.org/package=BioInstaller)
 [![Zenodo](https://zenodo.org/badge/DOI/10.5281/zenodo.1343914.svg)](https://zenodo.org/record/1343914)
 [![Downloads](http://cranlogs.r-pkg.org/badges/BioInstaller?color=brightgreen)](http://www.r-pkg.org/pkg/BioInstaller)
@@ -200,6 +200,4 @@ R package:
 
 Related Other Resources
 
-[Creative Commons Attribution-NonCommercial-NoDerivatives 4.0
-International
-License](https://creativecommons.org/licenses/by-nc-nd/4.0/)
+Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License

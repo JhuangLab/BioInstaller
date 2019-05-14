@@ -1,18 +1,37 @@
-FROM bioinstaller/bioinstaller-base:latest
+FROM bioinstaller/opencpu:latest
 
 ## This handle reaches Jianfeng
 MAINTAINER "Jianfeng Li" lee_jianfeng@life2cloud.com
 
 ADD . /tmp/BioInstaller
 
-Run apt update && apt install -y lmodern openssl \
+ADD https://raw.githubusercontent.com/JhuangLab/annovarR/master/inst/docker/shiny-server.conf /etc/shiny-server/shiny-server.conf
+ADD https://raw.githubusercontent.com/JhuangLab/annovarR/master/inst/docker/shiny-apache.conf /etc/apache2/sites-enabled/000-default.conf
+
+Run apt update && apt install -y lmodern openssl tcl environment-modules qpdf \
+    && Rscript -e "install.packages('prettydoc')" \ 
     && Rscript -e "devtools::install('/tmp/BioInstaller')" \ 
     && Rscript -e "devtools::install_github('openbiox/bioshiny/src/bioshiny')" \ 
+    && ln -s /usr/local/lib/R/site-library/bioshiny/extdata/shiny /srv/shiny-server/bioshiny \
+    && mkdir /home/opencpu/.bioshiny \
+    && chown -R opencpu /home/opencpu/.bioshiny \
+    && runuser -s /bin/bash -l opencpu -c "Rscript -e 'bioshiny::copy_configs()'" \
+    && chown -R opencpu /etc/shiny-server/shiny-server.conf \
+    && chmod a+r /etc/apache2/sites-enabled/000-default.conf \
+    && echo 'LC_ALL="en_US.UTF-8"\nLANG="en_US.UTF-8"' >> /etc/R/Renviron \
+    && Rscript -e "source(system.file('extdata', 'shiny/deps.R', package = 'bioshiny'))" \
     && runuser -s /bin/bash -l opencpu -c "export BIO_SOFTWARES_DB_ACTIVE=/home/opencpu/.bioshiny/info.yaml" \
-    && chown -R opencpu /home/opencpu/ \
-    && echo 'export BIO_SOFTWARES_DB_ACTIVE="~/.bioshiny/info.yaml"\n' >> /home/opencpu/.bashrc \
-    && echo 'BIO_SOFTWARES_DB_ACTIVE="~/.bioshiny/info.yaml"\n' >> /home/opencpu/.Renviron \
+    && export BIO_SOFTWARES_DB_ACTIVE="/home/opencpu/.bioshiny/info.yaml" \
+    && export BIOSHINY_CONFIG="/home/opencpu/.bioshiny/shiny.config.yaml" \
+    && echo 'source /usr/share/modules/init/bash\n' >> /etc/profile \
+    && echo 'export BIO_SOFTWARES_DB_ACTIVE="/home/opencpu/.bioshiny/info.yaml"\n' >> /home/opencpu/.bashrc \
+    && echo 'BIOSHINY_CONFIG="/home/opencpu/.bioshiny/shiny.config.yaml"\n' >> /home/opencpu/.Renviron \
+    && echo 'export BIO_SOFTWARES_DB_ACTIVE="/home/opencpu/.bioshiny/info.yaml"\n' >> /home/opencpu/.bashrc \
+    && echo 'BIOSHINY_CONFIG="/home/opencpu/.bioshiny/shiny.config.yaml"\n' >> /home/opencpu/.Renviron \
     && runuser -s /bin/bash -l opencpu -c "export AUTO_CREATE_BIOSHINY_DIR=TRUE" \
+    && chown -R opencpu /home/opencpu/ \
+    && chown -R opencpu /usr/local/lib/R/site-library \
+    && chown -R opencpu /usr/lib/R/library \
     && echo 'file=`ls /usr/local/lib/R/site-library/`; cd /usr/lib/R/library; for i in ${file}; do rm -rf ${i};done' >> /tmp/rm_script \
     && sh /tmp/rm_script \
     && ln -sf /usr/local/lib/R/site-library/* /usr/lib/R/library/ \

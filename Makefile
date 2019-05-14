@@ -4,7 +4,7 @@ PKGSRC  := $(shell basename `pwd`)
 DOWNLOAD_DIR := "/tmp/test_BioInstaller"
 DEST_DIR := "/tmp/test_src"
 
-all: doc build
+all: doc build check_cran
 
 doc:
 	Rscript -e "devtools::document()"
