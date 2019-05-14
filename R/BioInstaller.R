@@ -22,5 +22,4 @@
 #' @importFrom utils unzip untar download.file URLencode read.table
 #' @importFrom utils compareVersion install.packages installed.packages
 #' @importFrom devtools install_github install_url
-#' @importFrom shiny runApp
 NULL

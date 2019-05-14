@@ -70,30 +70,36 @@ install.packages('BioInstaller')
 devtools::install_github("JhuangLab/BioInstaller")
 
 ```
-## Shiny UI overview
+## Shiny application
 
-**Note**, the Shiny application of BioInstaller was migrated to [bioshiny](https://github.com/openbiox/bioshiny) project. All shiny files in this package will sync from bioshiny project.
+**Note**, the Shiny application of BioInstaller was migrated to [bioshiny](https://github.com/openbiox/bioshiny) project. All shiny files in this package have been removed for reducing package size.
 
-In the new project, we will provides one-click method (command line and Shiny UI) to create bioshiny application and its plugins. We are also developing more free plugins of bioshiny for various bioinformatics data analysis. 
+In the new project, we are developing more free plugins of bioshiny for various bioinformatics data analysis. 
 
-```
+```bash
 echo 'export BIO_SOFTWARES_DB_ACTIVE="~/.bioshiny/info.yaml" >> ~/.bashrc'
 echo 'export BIOSHINY_CONFIG="~/.bioshiny/shiny.config.yaml" >> ~/.bashrc'
+. ~/.bashrc
 
 # Start the standalone Shiny application
-BioInstaller::web(auto_create = TRUE)
+wget https://raw.githubusercontent.com/openbiox/bioshiny/master/bin/bioshiny_deps_r
+wget https://raw.githubusercontent.com/openbiox/bioshiny/master/bin/bioshiny_start
+chmod a+x bioshiny_deps_r
+chmod a+x bioshiny_start
+./bioshiny_deps_r
+
+# Start Shiny application workers
+Rscript -e "bioshiny::set_shiny_workers(1)"
+./bioshiny_start
+
+# or use yarn
+yarn global add bioshiny
+bioshiny_deps_r
+Rscript -e "bioshiny::set_shiny_workers(1)"
+bioshiny_start
 ```
 
-<img src="https://raw.githubusercontent.com/Miachol/ftp/master/files/images/bioinstaller/overview2.jpg" align="middle" />
-
-<img src="https://raw.githubusercontent.com/Miachol/ftp/master/files/images/bioinstaller/overview1.jpg" align="middle" />
-
-<img src="https://raw.githubusercontent.com/Miachol/ftp/master/files/images/bioinstaller/overview3.jpg" align="middle" />
-
-<img src="https://raw.githubusercontent.com/Miachol/ftp/master/files/images/bioinstaller/overview4.jpg" align="middle" />
-
-<img src="https://raw.githubusercontent.com/Miachol/ftp/master/files/images/bioinstaller/overview5.jpg" align="middle" />
-
+[spack](https://spack.io/) and [miniconda](https://docs.conda.io/en/latest/miniconda.html) are required for extra functions.
 
 ## Contributed Resources
 

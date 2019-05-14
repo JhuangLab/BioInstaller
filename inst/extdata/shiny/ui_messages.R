@@ -1,2 +1,0 @@
-messages <- dropdownMenu(type = "messages"
-)

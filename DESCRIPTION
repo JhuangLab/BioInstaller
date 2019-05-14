@@ -23,7 +23,6 @@ Imports:
     rvest (>= 0.3.2),
     devtools (>= 1.13.2),
     stringi (>= 1.1.5),
-    shiny,
     liteq
 RoxygenNote: 6.1.1
 Suggests: knitr,
