@@ -70,7 +70,10 @@ conda.env.list <- function(...) {
     return(FALSE)
   }
   text <- paste0(objs, collapse = "\n")
-  x <- read.table(text = str_replace(text, " [*] ", ""), skip = 2)
+  x <- tryCatch(read.table(text = str_replace(text, " [*] ", ""), skip = 2), error=function(e) {
+          read.table(text = str_replace(text, " [*] ", ""), skip = 2, fill = TRUE, 
+                     colClasses = c('character', 'character'), header = F)
+       })
   colnames(x) <- c("env_name", "env_path")
   return(x)
 }
