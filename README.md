@@ -54,6 +54,11 @@ Here, we established a new platform to construct interactive and reproducible bi
 
 <img src="https://raw.githubusercontent.com/JhuangLab/BioInstaller/develop/man/figures/design_of_bioInstaller.jpg" align="middle" />
 
+**Note:** We are developing [bget](https://github.com/openbiox/bget) and [bioshiny](https://github.com/openbiox/bioshiny) projects independently for simplify the functions of download and shiny. 
+
+- [bget](https://github.com/openbiox/bget) is an golang-based command-line tool that do not need to install any R packages. 
+- [bioshiny](https://github.com/openbiox/bioshiny) is the core shiny application of previous BioInstaller package.
+
 ## Installation
 
 ### CRAN
