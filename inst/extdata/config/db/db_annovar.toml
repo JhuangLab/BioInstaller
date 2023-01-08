@@ -327,8 +327,8 @@ decompress = [true, true]
 version_newest = "gerp++elem"
 version_available = ["gerp++elem", "gerp++gt2"]
 [db_annovar_gerp.buildver_available]
-grep++elem = ["hg19", "hg18", "mm9"]
-gerp++gt2 = ["hg19", "hg18"]
+"grep++elem" = ["hg19", "hg18", "mm9"]
+"gerp++gt2" = ["hg19", "hg18"]
 
 [db_annovar_cadd]
 source_url = ["http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.gz",
